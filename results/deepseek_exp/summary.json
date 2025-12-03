@@ -1,14 +1,14 @@
 {
   "metadata": {
     "version": "0.1.0",
-    "generated_at": "2025-12-03T09:58:06.049876+00:00",
+    "generated_at": "2025-12-03T10:02:52.722053+00:00",
     "total_models": 1,
     "total_levels": 5
   },
   "results": [
     {
-      "submission_id": "sub_a7f676af1b0a",
-      "timestamp": "2025-12-03T09:56:11.502894+00:00",
+      "submission_id": "sub_26ecee7c6e4b",
+      "timestamp": "2025-12-03T10:01:09.731708+00:00",
       "contributor": "jw409-gemini-agent",
       "model": "deepseek/deepseek-v3.2-exp",
       "level": 0,
@@ -21,8 +21,8 @@
       "successes": 5
     },
     {
-      "submission_id": "sub_d0c5ace7c9ea",
-      "timestamp": "2025-12-03T09:56:27.360652+00:00",
+      "submission_id": "sub_72a04fae07f4",
+      "timestamp": "2025-12-03T10:01:26.060284+00:00",
       "contributor": "jw409-gemini-agent",
       "model": "deepseek/deepseek-v3.2-exp",
       "level": 1,
@@ -35,8 +35,8 @@
       "successes": 5
     },
     {
-      "submission_id": "sub_66eefe036577",
-      "timestamp": "2025-12-03T09:56:39.248799+00:00",
+      "submission_id": "sub_aff0dfe3041b",
+      "timestamp": "2025-12-03T10:01:37.695354+00:00",
       "contributor": "jw409-gemini-agent",
       "model": "deepseek/deepseek-v3.2-exp",
       "level": 2,
@@ -49,22 +49,22 @@
       "successes": 5
     },
     {
-      "submission_id": "sub_d15446d6f8a6",
-      "timestamp": "2025-12-03T09:56:58.938996+00:00",
+      "submission_id": "sub_37987f9c452b",
+      "timestamp": "2025-12-03T10:01:57.730824+00:00",
       "contributor": "jw409-gemini-agent",
       "model": "deepseek/deepseek-v3.2-exp",
       "level": 3,
-      "rate": 0.0,
+      "rate": 1.0,
       "wilson_ci_95": [
-        0.0,
-        0.43449149475208104
+        0.5655085052479191,
+        1.0
       ],
       "trials": 5,
-      "successes": 0
+      "successes": 5
     },
     {
-      "submission_id": "sub_b0f2f68dae8a",
-      "timestamp": "2025-12-03T09:57:24.536614+00:00",
+      "submission_id": "sub_7a419b52f210",
+      "timestamp": "2025-12-03T10:02:20.441623+00:00",
       "contributor": "jw409-gemini-agent",
       "model": "deepseek/deepseek-v3.2-exp",
       "level": 4,

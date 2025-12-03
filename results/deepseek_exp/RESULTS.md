@@ -4,7 +4,7 @@ Tool-calling capability benchmarks for free LLM models.
 
 | Model | L0 Basic | L1 Schema | L2 Select | L3 Multi | L4 Advers | Grade |
 |-------|----------|-----------|-----------|----------|-----------|-------|
-| deepseek/deepseek-v3.2-exp | 100% [56,100] | 100% [56,100] | 100% [56,100] | 0% [0,43] | 100% [56,100] | **C** |
+| deepseek/deepseek-v3.2-exp | 100% [56,100] | 100% [56,100] | 100% [56,100] | 100% [56,100] | 100% [56,100] | **A** |
 
 *Percentages show success rate. Brackets show 95% Wilson CI.*
 *n=10 per cell. "-" indicates not tested (prerequisite level failed).*

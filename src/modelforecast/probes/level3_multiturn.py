@@ -28,7 +28,7 @@ class Level3MultiTurnProbe:
     def __init__(self):
         self.level = 3
         self.name = "Multi-Turn Coherence"
-        self.turn1_prompt = "Find files related to authentication"
+        self.turn1_prompt = "Find files related to authentication and read the most relevant one."
         self.prompt = self.turn1_prompt  # For provenance tracking
         self.tools = get_multi_tool_set()
 
