@@ -25,6 +25,15 @@ We tested every free model on OpenRouter that advertises tool-calling capability
 
 **Completely broken:** All Qwen variants (6 models), all Google variants (3 models), Llama-4-Maverick, Microsoft MAI-DS-R1, and others returned 0% tool-call success despite marketing claims.
 
+### Premium Baseline: Claude Sonnet 4.5 vs Free Grok
+
+| Model | Tier | L0 Basic | Result |
+|-------|------|----------|--------|
+| claude-sonnet-4-5-20250929 | Paid | 100% | Works |
+| x-ai/grok-4.1-fast:free | **Free** | 100% | Works |
+
+**Key insight**: The best free model (Grok 4.1) matches premium Claude at L0 basic tool-calling. The gulf between "broken free" and "working free" is wider than "working free" vs "premium paid."
+
 [Full analysis](PHASE3_RESULTS.md) | [Raw data](results/phase3_summary.csv)
 
 ---

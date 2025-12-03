@@ -38,6 +38,17 @@ Do free LLM models actually support tool calling? Marketing says yes. We test it
 
 *Full results: [PHASE3_RESULTS.md](PHASE3_RESULTS.md) | [Raw CSV](results/phase3_summary.csv)*
 
+## Premium Models: The Baseline
+
+For comparison, premium models show what "actually works" looks like:
+
+| Model | L0 Basic | Notes |
+|-------|----------|-------|
+| claude-sonnet-4-5-20250929 | 100% | Paid tier, reliable |
+| x-ai/grok-4.1-fast:free | 100% | **Free tier winner** |
+
+**Key insight**: Free-tier Grok 4.1 matches premium Claude Sonnet 4.5 at L0. The gap between "broken free" and "working free" is larger than "working free" vs "premium paid."
+
 ## The 3-Trial Trap
 
 **8 models passed 3/3 quick tests but failed extended testing.**
