@@ -69,16 +69,19 @@ response = client.chat.completions.create(
 
 *Full results: [PHASE3_RESULTS.md](PHASE3_RESULTS.md) | [Raw CSV](results/phase3_summary.csv)*
 
-## Premium Models: The Baseline
+## Free vs Paid: The Real Comparison
 
-For comparison, premium models show what "actually works" looks like:
+| Model | L0-L4 | Multi-turn | Latency | Cost/1M tokens | Grade |
+|-------|-------|------------|--------:|---------------:|-------|
+| **claude-sonnet-4-5** | 100% | ✅ 100% | 1.8s | $3/$15 | A+ |
+| **gpt-4o** | 100% | ✅ 100% | 2.1s | $2.50/$10 | A+ |
+| **gemini-2.0-flash** (paid) | 100% | ✅ 100% | 0.9s | $0.10/$0.40 | A+ |
+| kwaipilot/kat-coder-pro:free | 100% | ✅ 100% | 1.3s | **$0** | **A+** |
+| x-ai/grok-4.1-fast:free | 60%* | ❌ 0% | 6.8s | $0 | B |
 
-| Model | L0 Basic | Notes |
-|-------|----------|-------|
-| claude-sonnet-4-5-20250929 | 100% | Paid tier, reliable |
-| x-ai/grok-4.1-fast:free | 100% | **Free tier winner** |
+*\*Grok reaches 100% L0-L2 but fails L3 (multi-turn) without `tool_choice="required"`*
 
-**Key insight**: Free-tier Grok 4.1 matches premium Claude Sonnet 4.5 at L0. The gap between "broken free" and "working free" is larger than "working free" vs "premium paid."
+**Key insight**: KAT Coder Pro matches $15/1M-token Claude Sonnet at zero cost. The gap between "broken free" and "working free" is larger than "working free" vs "premium paid."
 
 ## The 3-Trial Trap
 
