@@ -18,32 +18,21 @@ Do free LLM models actually support tool calling? Marketing says yes. We test it
 
 ### The Differentiator: Multi-Turn (L3)
 
-**Grok fails multi-turn conversations by default.** After receiving tool results, it returns text instead of continuing to use tools.
+**Grok fails multi-turn conversations.** After receiving tool results, it returns text OR picks the wrong tool.
 
-**But it's fixable!** Three workarounds tested:
+| Fix Attempted | Result |
+|---------------|--------|
+| `tool_choice="required"` | ❌ Calls tool but picks **wrong one** |
+| `tool_choice={"function": {"name": "read_file"}}` | ✅ Works but requires knowing next tool |
+| System prompt forcing | ⚠️ Inconsistent |
 
-| Fix | Works | Complexity |
-|-----|-------|------------|
-| `tool_choice="required"` | ✅ | API param only |
-| System prompt: "MUST use another tool after results" | ✅ | Prompt change |
-| User prompt: "This requires TWO tool calls" | ✅ | Prompt change |
+**Bottom line**: Grok is not suitable for autonomous multi-turn. Use **KAT Coder Pro** instead.
 
-```python
-# Fix Grok multi-turn with one line:
-response = client.chat.completions.create(
-    model="x-ai/grok-4.1-fast:free",
-    messages=messages,
-    tools=tools,
-    tool_choice="required",  # <-- This fixes L3
-)
-```
-
-| Use Case | Recommended Model |
-|----------|-------------------|
-| Agentic workflows (ReAct, loops) | **KAT Coder Pro** (works by default) |
-| Agentic with Grok | Grok + `tool_choice="required"` |
-| Single-shot tool calls | Either (KAT faster) |
-| Real-time applications | **KAT Coder Pro** (5x faster) |
+| Use Case | Recommended |
+|----------|-------------|
+| Autonomous agents (ReAct) | **KAT Coder Pro** |
+| Scripted workflows (known tool sequence) | Grok with specific `tool_choice` |
+| Single-shot tool calls | Either (KAT 5x faster) |
 | Gemini via OpenRouter | **Broken - don't use** |
 
 ### Unreliable (20-60% success)
