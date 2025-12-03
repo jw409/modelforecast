@@ -1,0 +1,48 @@
+name: Weekly Model Probe
+
+on:
+  schedule:
+    # Run every Monday at 6 AM UTC
+    - cron: '0 6 * * 1'
+  workflow_dispatch:  # Manual trigger button
+
+env:
+  OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install uv
+        run: curl -LsSf https://astral.sh/uv/install.sh | sh
+
+      - name: Install dependencies
+        run: uv sync
+
+      - name: Run probes
+        run: uv run python -m modelforecast --output results/$(date +%Y-%m-%d)/
+
+      - name: Generate summary
+        run: uv run python -m modelforecast.summary --input results/$(date +%Y-%m-%d)/
+
+      - name: Update latest symlink
+        run: |
+          rm -f results/latest
+          ln -s $(date +%Y-%m-%d) results/latest
+
+      - name: Commit results
+        run: |
+          git config user.name "ModelForecast Bot"
+          git config user.email "bot@modelforecast.dev"
+          git add results/
+          git commit -m "chore: Weekly probe results $(date +%Y-%m-%d)" || exit 0
+          git push
