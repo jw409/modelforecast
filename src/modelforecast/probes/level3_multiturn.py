@@ -29,6 +29,7 @@ class Level3MultiTurnProbe:
         self.level = 3
         self.name = "Multi-Turn Coherence"
         self.turn1_prompt = "Find files related to authentication"
+        self.prompt = self.turn1_prompt  # For provenance tracking
         self.tools = get_multi_tool_set()
 
         # Mock tool result to inject after turn 1
