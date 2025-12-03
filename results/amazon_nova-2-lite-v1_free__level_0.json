@@ -1,0 +1,50 @@
+{
+  "submission_id": "sub_15af55742fb1",
+  "timestamp": "2025-12-03T07:01:01.038278+00:00",
+  "contributor": "unknown",
+  "environment": {
+    "python_version": "3.11.13",
+    "openai_sdk_version": "2.8.1",
+    "os": "Linux 5.15.167.4-microsoft-standard-WSL2",
+    "env_hash": "sha256:82b59585ac582b7441e0dfb1a4ad0fabea13d6ea352206d6704de713f3c103ab"
+  },
+  "probes": {
+    "model": "amazon/nova-2-lite-v1:free",
+    "level": 0,
+    "trials": [
+      {
+        "openrouter_request_id": "gen-1764745262-wlVOpd8mPfNXMxbvKizW",
+        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
+        "response_hash": "sha256:f6cd8eaeea8a4d491853b6791e489353126786e0d84202d3432917ca616744bc",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 1575
+      },
+      {
+        "openrouter_request_id": "gen-1764745264-PdEtDi5hhiK76ziIkqIR",
+        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
+        "response_hash": "sha256:f6c2305175b3ca6c1b63a99b033d887f1e7ff5ea9bc040ba34c9abd4cb6b6e5f",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 2012
+      },
+      {
+        "openrouter_request_id": null,
+        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
+        "response_hash": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "tool_called": false,
+        "schema_valid": false,
+        "latency_ms": 0
+      }
+    ]
+  },
+  "summary": {
+    "successes": 2,
+    "trials": 3,
+    "rate": 0.6666666666666666,
+    "wilson_ci_95": [
+      0.20765495512648796,
+      0.9385096847238394
+    ]
+  }
+}

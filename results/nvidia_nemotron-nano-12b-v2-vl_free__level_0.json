@@ -1,0 +1,50 @@
+{
+  "submission_id": "sub_fc511db9177c",
+  "timestamp": "2025-12-03T07:03:41.380651+00:00",
+  "contributor": "unknown",
+  "environment": {
+    "python_version": "3.11.13",
+    "openai_sdk_version": "2.8.1",
+    "os": "Linux 5.15.167.4-microsoft-standard-WSL2",
+    "env_hash": "sha256:82b59585ac582b7441e0dfb1a4ad0fabea13d6ea352206d6704de713f3c103ab"
+  },
+  "probes": {
+    "model": "nvidia/nemotron-nano-12b-v2-vl:free",
+    "level": 0,
+    "trials": [
+      {
+        "openrouter_request_id": "gen-1764745422-OrO8PZHNBy1mDhcwiC6l",
+        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
+        "response_hash": "sha256:c21f0f4b3826ca896b8220e799e5c7c17eb098d2f3106ccd4d3afd48d5cca3e3",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 6397
+      },
+      {
+        "openrouter_request_id": "gen-1764745428-QFBHlHJ4VB9Ra2FQJ4oG",
+        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
+        "response_hash": "sha256:3725a65d6fdd483fef31592f1b1c5a38aab429cb08cdb31c9908952b949508bc",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 4525
+      },
+      {
+        "openrouter_request_id": "gen-1764745433-xuvH3ZCFbtybmlcZdtSO",
+        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
+        "response_hash": "sha256:2075fdab6f7227e856622998b3b53fbc0fd3f78b862fdd0e3abd3996975cb356",
+        "tool_called": false,
+        "schema_valid": false,
+        "latency_ms": 4136
+      }
+    ]
+  },
+  "summary": {
+    "successes": 2,
+    "trials": 3,
+    "rate": 0.6666666666666666,
+    "wilson_ci_95": [
+      0.20765495512648796,
+      0.9385096847238394
+    ]
+  }
+}
