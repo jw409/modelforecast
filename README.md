@@ -4,13 +4,51 @@
 
 Do free LLM models actually support tool calling? Marketing says yes. We test it.
 
-## Latest Results (Updated Weekly)
+## Latest Results (2025-12-02)
 
-| Model | Tool Calling | Schema | Selection | Grade |
-|-------|-------------|--------|-----------|-------|
-| *Coming soon* | - | - | - | - |
+**Only 2 of 25 free models achieve 100% tool-calling reliability.**
 
-*First probe run in progress. Results will appear here after initial benchmarks.*
+### Production Ready (100% success)
+
+| Model | L0 Basic | CI (95%) | Grade |
+|-------|----------|----------|-------|
+| x-ai/grok-4.1-fast:free | 100% | [72%, 100%] | **A** |
+| kwaipilot/kat-coder-pro:free | 100% | [72%, 100%] | **A** |
+
+### Unreliable (20-60% success)
+
+| Model | L0 Basic | CI (95%) | Grade |
+|-------|----------|----------|-------|
+| nvidia/nemotron-nano-9b-v2:free | 60% | [31%, 83%] | D |
+| alibaba/tongyi-deepresearch-30b-a3b:free | 50% | [24%, 76%] | D |
+| arcee-ai/trinity-mini:free | 30% | [11%, 60%] | F |
+| z-ai/glm-4.5-air:free | 20% | [6%, 51%] | F |
+| tngtech/tng-r1t-chimera:free | 20% | [6%, 51%] | F |
+| openai/gpt-oss-20b:free | 20% | [6%, 51%] | F |
+| meituan/longcat-flash-chat:free | 20% | [6%, 51%] | F |
+
+### Broken (0% success)
+
+14 models claim tool support but failed all trials:
+- All Qwen variants (qwen3-32b, qwen3-30b-a3b, qwen3-14b, qwen3-4b, qwen3-coder, qwen3-235b-a22b)
+- All Google variants (gemini-2.0-flash-exp, gemini-2.5-flash-lite, gemma-3-27b-it)
+- meta-llama/llama-4-maverick, llama-3.3-70b-instruct
+- microsoft/mai-ds-r1, mistralai/mistral-small-3.1-24b-instruct
+- nousresearch/deephermes-3-llama-3-8b-preview
+
+*Full results: [PHASE3_RESULTS.md](PHASE3_RESULTS.md) | [Raw CSV](results/phase3_summary.csv)*
+
+## The 3-Trial Trap
+
+**8 models passed 3/3 quick tests but failed extended testing.**
+
+| Model | 3 trials | 10 trials | Reality |
+|-------|----------|-----------|---------|
+| meta-llama/llama-3.3-70b-instruct | 100% | 0% | Broken |
+| nvidia/nemotron-nano-9b-v2 | 100% | 60% | Unreliable |
+| alibaba/tongyi-deepresearch-30b-a3b | 100% | 50% | Unreliable |
+
+Small sample sizes give false confidence. Always test with sufficient trials.
 
 ## Quick Start
 
@@ -28,7 +66,7 @@ export OPENROUTER_API_KEY=your_key_here
 uv run python -m modelforecast
 
 # View results
-cat results/latest/summary.md
+cat results/phase3_summary.csv
 ```
 
 ## What We Test
@@ -56,7 +94,7 @@ Every failed experiment on a model that can't tool-call is wasted compute, waste
 
 **We test what model cards claim. We publish what we find. With error bars.**
 
-- **Quantitative**: Not "works" vs "doesn't work" but "87% +/- 8% (95% CI, n=15)"
+- **Quantitative**: Not "works" vs "doesn't work" but "87% +/- 8% (95% CI, n=10)"
 - **Reproducible**: Single command, your API key, same results
 - **Opinionated**: We name names. If a model claims tools but fails Level 0, we say so.
 - **Community-verified**: Crowdsourced results with cryptographic provenance
