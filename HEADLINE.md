@@ -17,9 +17,9 @@ We tested every free model on OpenRouter that advertises tool-calling capability
 | Broken (0%) | 14 | 56% |
 | Partial (~66%) | 2 | 8% |
 
-**The winners:**
-- `x-ai/grok-4.1-fast:free` - 10/10 (100%)
-- `kwaipilot/kat-coder-pro:free` - 10/10 (100%)
+**The winners (L0-L2 tested):**
+- `kwaipilot/kat-coder-pro:free` - 100% all levels, **1.3s avg latency** ⚡
+- `x-ai/grok-4.1-fast:free` - 100% all levels, 4.4s avg latency
 
 **The 3-Trial Trap:** 8 models passed 3/3 quick tests but failed extended 10-trial testing. Small samples give false confidence.
 

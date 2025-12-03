@@ -8,12 +8,14 @@ Do free LLM models actually support tool calling? Marketing says yes. We test it
 
 **Only 2 of 25 free models achieve 100% tool-calling reliability.**
 
-### Production Ready (100% success)
+### Production Ready (100% success across L0-L2)
 
-| Model | L0 Basic | CI (95%) | Grade |
-|-------|----------|----------|-------|
-| x-ai/grok-4.1-fast:free | 100% | [72%, 100%] | **A** |
-| kwaipilot/kat-coder-pro:free | 100% | [72%, 100%] | **A** |
+| Model | L0 Basic | L1 Schema | L2 Selection | Avg Latency | Grade |
+|-------|----------|-----------|--------------|-------------|-------|
+| kwaipilot/kat-coder-pro:free | 100% | 100% | 100% | **1.3s** | **A+** |
+| x-ai/grok-4.1-fast:free | 100% | 100% | 100% | 4.4s | **A** |
+
+**Speed winner**: KAT Coder Pro is 3x faster than Grok with identical reliability.
 
 ### Unreliable (20-60% success)
 
