@@ -8,14 +8,24 @@ Do free LLM models actually support tool calling? Marketing says yes. We test it
 
 **Only 2 of 25 free models achieve 100% tool-calling reliability.**
 
-### Production Ready (100% success across L0-L2)
+### Full Probe Results (L0-L4)
 
-| Model | L0 Basic | L1 Schema | L2 Selection | Avg Latency | Grade |
-|-------|----------|-----------|--------------|-------------|-------|
-| kwaipilot/kat-coder-pro:free | 100% | 100% | 100% | **1.3s** | **A+** |
-| x-ai/grok-4.1-fast:free | 100% | 100% | 100% | 4.4s | **A** |
+| Model | L0 | L1 | L2 | L3 Multi-turn | L4 Adversarial | Latency | Grade |
+|-------|----|----|----|--------------:|---------------:|--------:|-------|
+| kwaipilot/kat-coder-pro:free | 100% | 100% | 100% | **100%** | 100% | **1.3s** | **A+** |
+| x-ai/grok-4.1-fast:free | 100% | 100% | 100% | **0%** ❌ | 100% | 6.8s | **B** |
+| google/gemini-2.5-flash-lite:free | 0% | 0% | 0% | 0% | 0% | N/A | **F** |
 
-**Speed winner**: KAT Coder Pro is 3x faster than Grok with identical reliability.
+### The Differentiator: Multi-Turn (L3)
+
+**Grok fails multi-turn conversations.** After receiving tool results, it returns text instead of continuing to use tools. This makes it unsuitable for agentic loops.
+
+| Use Case | Recommended Model |
+|----------|-------------------|
+| Agentic workflows (ReAct, loops) | **KAT Coder Pro** |
+| Single-shot tool calls | Either (KAT faster) |
+| Real-time applications | **KAT Coder Pro** (5x faster) |
+| Gemini via OpenRouter | **Broken - don't use** |
 
 ### Unreliable (20-60% success)
 
