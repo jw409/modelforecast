@@ -1,0 +1,66 @@
+{
+  "submission_id": "sub_d0c5ace7c9ea",
+  "timestamp": "2025-12-03T09:56:27.360652+00:00",
+  "contributor": "jw409-gemini-agent",
+  "environment": {
+    "python_version": "3.12.3",
+    "openai_sdk_version": "1.107.3",
+    "os": "Linux 5.15.167.4-microsoft-standard-WSL2",
+    "env_hash": "sha256:25b8ad3defac749bb56a6b701fbe609ea049c05ddd6fb18b8b22c278ab993afa"
+  },
+  "probes": {
+    "model": "deepseek/deepseek-v3.2-exp",
+    "level": 1,
+    "trials": [
+      {
+        "openrouter_request_id": "gen-1764755787-eZeyzGGHkjR1qu0hkoyo",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:1264dfe23173aec57864a2d6127fc49d44a090dc91fb588fed83abddfdc11ca6",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 4552
+      },
+      {
+        "openrouter_request_id": "gen-1764755792-WskSw6hyT9jJ7nr1DPjZ",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:6339e4a2517c685c84638d8b629089b29067aa785f129429585d4fd0e33c413f",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 1674
+      },
+      {
+        "openrouter_request_id": "gen-1764755794-jyE8modnkQcJ0QAwKrI2",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:d25970005bc285f75b100bde7665f949f3dcdec0a819a30d8e8fdb13be0a7815",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 1296
+      },
+      {
+        "openrouter_request_id": "gen-1764755796-kFSccVe0S9sznrWfwidU",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:1f6e153f2ef6287d11684e0bbf3803d7125d9ca889f9117ba1854fb4f2350be5",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 1879
+      },
+      {
+        "openrouter_request_id": "gen-1764755798-zMwQRg6TAfUMyWFumMPF",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:c0b29a54c22122a5bfc12cf7cb4c199554bf1223c08cc0b82fc2591ff2ccd505",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 2481
+      }
+    ]
+  },
+  "summary": {
+    "successes": 5,
+    "trials": 5,
+    "rate": 1.0,
+    "wilson_ci_95": [
+      0.5655085052479191,
+      1.0
+    ]
+  }
+}
