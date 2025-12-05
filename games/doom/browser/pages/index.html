@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOOM Arena - AI Highlights</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #0d0d0d;
+            color: #ff0000;
+            font-family: 'Courier New', monospace;
+            min-height: 100vh;
+        }
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(180deg, #1a0000 0%, #0d0d0d 100%);
+            border-bottom: 2px solid #ff0000;
+        }
+        h1 {
+            font-size: 3em;
+            text-shadow: 0 0 20px #ff0000;
+            letter-spacing: 8px;
+        }
+        .subtitle {
+            color: #888;
+            margin-top: 10px;
+            font-size: 1.1em;
+        }
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 20px;
+            color: #666;
+        }
+        .stat {
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 2em;
+            color: #ff4444;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+        }
+        .highlight {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        .highlight:hover {
+            border-color: #ff0000;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+            transform: translateY(-4px);
+        }
+        .highlight-header {
+            background: #222;
+            padding: 15px;
+            border-bottom: 1px solid #333;
+        }
+        .highlight-rank {
+            display: inline-block;
+            background: #ff0000;
+            color: #000;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .highlight-title {
+            font-size: 1.2em;
+            color: #fff;
+        }
+        .highlight-body {
+            padding: 20px;
+        }
+        .highlight-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .highlight-stat {
+            text-align: center;
+            padding: 10px;
+            background: #111;
+            border-radius: 4px;
+        }
+        .highlight-stat-label {
+            font-size: 0.8em;
+            color: #666;
+        }
+        .highlight-stat-value {
+            font-size: 1.4em;
+            color: #ff4444;
+        }
+        .highlight-desc {
+            color: #888;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        .play-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(180deg, #ff0000 0%, #990000 100%);
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            font-size: 1.1em;
+            font-weight: bold;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .play-btn:hover {
+            background: linear-gradient(180deg, #ff3333 0%, #cc0000 100%);
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+        }
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #444;
+            border-top: 1px solid #222;
+        }
+        .footer a {
+            color: #ff0000;
+        }
+        .ai-badge {
+            display: inline-block;
+            background: #333;
+            color: #0f0;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-size: 0.8em;
+            margin-left: 10px;
+        }
+
+        /* Tree UI Styles */
+        .tree-container {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 40px;
+        }
+        .tree-title {
+            font-size: 1.5em;
+            color: #ff4444;
+            margin-bottom: 20px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        .agent-node {
+            margin-bottom: 15px;
+            border: 1px solid #333;
+            border-radius: 4px;
+            background: #222;
+        }
+        .agent-header {
+            padding: 15px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.2s;
+        }
+        .agent-header:hover {
+            background: #2a2a2a;
+        }
+        .agent-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .agent-name {
+            font-size: 1.2em;
+            color: #fff;
+            font-weight: bold;
+        }
+        .agent-model {
+            color: #666;
+            font-size: 0.9em;
+        }
+        .agent-stats-mini {
+            display: flex;
+            gap: 15px;
+            color: #888;
+            font-size: 0.9em;
+        }
+        .collapse-icon {
+            color: #ff0000;
+            font-size: 1.2em;
+            transition: transform 0.2s;
+        }
+        .collapse-icon.expanded {
+            transform: rotate(90deg);
+        }
+        .agent-content {
+            display: none;
+            padding: 0 15px 15px 15px;
+        }
+        .agent-content.expanded {
+            display: block;
+        }
+        .episode-list {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+            padding: 10px;
+            background: #1a1a1a;
+            border-radius: 4px;
+        }
+        .episode-badge {
+            background: #333;
+            color: #0f0;
+            padding: 5px 12px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+        .highlight-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .highlight-mini {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 4px;
+            padding: 15px;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        .highlight-mini:hover {
+            border-color: #ff0000;
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
+        }
+        .highlight-mini-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .highlight-type {
+            background: #ff0000;
+            color: #000;
+            padding: 3px 10px;
+            border-radius: 3px;
+            font-size: 0.8em;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .highlight-mini-stats {
+            display: flex;
+            gap: 15px;
+            color: #666;
+            font-size: 0.85em;
+        }
+        .highlight-mini-desc {
+            color: #888;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+        .highlight-mini-link {
+            color: #ff4444;
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+        .highlight-mini-link:hover {
+            color: #ff6666;
+            text-decoration: underline;
+        }
+        .leaderboard {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 40px;
+        }
+        .leaderboard-title {
+            font-size: 1.5em;
+            color: #ff4444;
+            margin-bottom: 20px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        .leaderboard-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .leaderboard-item {
+            background: #222;
+            border: 1px solid #333;
+            border-radius: 4px;
+            padding: 15px;
+            text-align: center;
+        }
+        .leaderboard-label {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+        .leaderboard-agent {
+            color: #fff;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .leaderboard-value {
+            color: #ff4444;
+            font-size: 1.5em;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>DOOM ARENA</h1>
+        <p class="subtitle">AI vs DOOM - Top 10 Highlights</p>
+        <p class="subtitle" style="color: #0f0; margin-top: 5px;">GPU simulated at 52,000× speed • Click to take over</p>
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-value">1.8B</div>
+                <div>ticks/sec</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">52,000×</div>
+                <div>realtime</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">10</div>
+                <div>highlights</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Leaderboard Section -->
+        <div class="leaderboard" id="leaderboard">
+            <div class="leaderboard-title">Leaderboard</div>
+            <div class="leaderboard-items" id="leaderboard-items">
+                <!-- Populated by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Agent Tree Section -->
+        <div class="tree-container">
+            <div class="tree-title">Agent Runs</div>
+            <div id="agent-tree">
+                <!-- Populated by JavaScript -->
+            </div>
+        </div>
+
+        <div class="highlights" id="highlights">
+            <!-- Static highlights retained as fallback -->
+            <div class="highlight">
+                <div class="highlight-header">
+                    <span class="highlight-rank">#1</span>
+                    <span class="highlight-title">Near-Death Escape</span>
+                    <span class="ai-badge">GPT-5</span>
+                </div>
+                <div class="highlight-body">
+                    <div class="highlight-stats">
+                        <div class="highlight-stat">
+                            <div class="highlight-stat-value">3</div>
+                            <div class="highlight-stat-label">Health</div>
+                        </div>
+                        <div class="highlight-stat">
+                            <div class="highlight-stat-value">7</div>
+                            <div class="highlight-stat-label">Kills</div>
+                        </div>
+                        <div class="highlight-stat">
+                            <div class="highlight-stat-value">E1M3</div>
+                            <div class="highlight-stat-label">Map</div>
+                        </div>
+                    </div>
+                    <p class="highlight-desc">
+                        Dropped to 3 HP surrounded by imps. Somehow survived by triggering
+                        monster infighting and escaping through a secret door.
+                    </p>
+                    <a href="play.html?save=001-near-death" class="play-btn">
+                        ▶ Play from here
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>
+            DOOM is a registered trademark of id Software.
+            <br>
+            <a href="https://github.com/jw409/modelforecast">GPU Engine</a> •
+            <a href="https://github.com/cloudflare/doom-wasm">Chocolate Doom WASM</a>
+        </p>
+    </div>
+
+    <script>
+        // Load manifest and render UI
+        async function loadManifest() {
+            try {
+                const response = await fetch('manifest.json');
+                const manifest = await response.json();
+
+                renderLeaderboard(manifest.leaderboard);
+                renderAgentTree(manifest.agents);
+                
+                // Fetch dynamic community scores
+                fetchGitHubLeaderboard();
+            } catch (error) {
+                console.error('Error loading manifest:', error);
+                document.getElementById('agent-tree').innerHTML =
+                    '<p style="color: #666; text-align: center;">Failed to load agent data</p>';
+            }
+        }
+
+        function renderLeaderboard(leaderboard) {
+            const container = document.getElementById('leaderboard-items');
+
+            const items = [
+                {
+                    label: 'Most Kills',
+                    agent: leaderboard.most_kills.agent,
+                    value: leaderboard.most_kills.value
+                },
+                {
+                    label: 'Longest Survival',
+                    agent: leaderboard.longest_survival.agent,
+                    value: `${leaderboard.longest_survival.ticks.toLocaleString()} ticks`
+                },
+                {
+                    label: 'Fastest E1M1',
+                    agent: leaderboard.fastest_e1m1.agent,
+                    value: `${leaderboard.fastest_e1m1.ticks} ticks`
+                }
+            ];
+
+            container.innerHTML = items.map(item => `
+                <div class="leaderboard-item">
+                    <div class="leaderboard-label">${item.label}</div>
+                    <div class="leaderboard-agent">${item.agent}</div>
+                    <div class="leaderboard-value">${item.value}</div>
+                </div>
+            `).join('');
+        }
+        
+        async function fetchGitHubLeaderboard() {
+            try {
+                // Replace with actual user/repo
+                const repo = "jw409/modelforecast";
+                const issueNumber = "1";
+                const response = await fetch(`https://api.github.com/repos/${repo}/issues/${issueNumber}/comments`);
+                
+                if (!response.ok) return;
+                
+                const comments = await response.json();
+                
+                const scores = [];
+                comments.forEach(comment => {
+                    const body = comment.body;
+                    // Parse format: PLAYER: AAA ... SCORE: 123
+                    const nameMatch = body.match(/PLAYER:\s*([A-Z]{3})/i);
+                    const scoreMatch = body.match(/SCORE:\s*(\d+)/i);
+                    
+                    if (nameMatch && scoreMatch) {
+                        scores.push({
+                            name: nameMatch[1].toUpperCase(),
+                            score: parseInt(scoreMatch[1]),
+                            date: new Date(comment.created_at)
+                        });
+                    }
+                });
+                
+                // Sort by score descending
+                scores.sort((a, b) => b.score - a.score);
+                
+                // Update UI with top 3 community scores
+                if (scores.length > 0) {
+                    updateLeaderboardUI(scores);
+                }
+            } catch (e) {
+                console.log("Could not fetch GitHub leaderboard:", e);
+            }
+        }
+
+        function updateLeaderboardUI(scores) {
+            const container = document.getElementById('leaderboard-items');
+            const top3 = scores.slice(0, 3);
+            
+            const communityHTML = top3.map((s, i) => `
+                <div class="leaderboard-item" style="border-color: gold; box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);">
+                    <div class="leaderboard-label" style="color: gold;">Community Rank #${i+1}</div>
+                    <div class="leaderboard-agent">${s.name}</div>
+                    <div class="leaderboard-value">${s.score}</div>
+                </div>
+            `).join('');
+            
+            // Prepend community scores
+            container.innerHTML = communityHTML + container.innerHTML;
+        }
+
+        function renderAgentTree(agents) {
+            const container = document.getElementById('agent-tree');
+
+            container.innerHTML = agents.map((agent, index) => `
+                <div class="agent-node">
+                    <div class="agent-header" onclick="toggleAgent(${index})">
+                        <div class="agent-info">
+                            <span class="collapse-icon" id="icon-${index}">▶</span>
+                            <div>
+                                <div class="agent-name">${agent.name}</div>
+                                <div class="agent-model">${agent.model}</div>
+                            </div>
+                        </div>
+                        <div class="agent-stats-mini">
+                            <span>Kills: ${agent.stats.kills}</span>
+                            <span>Deaths: ${agent.stats.deaths}</span>
+                            <span>Episodes: ${agent.episodes.length}</span>
+                        </div>
+                    </div>
+                    <div class="agent-content" id="content-${index}">
+                        <div class="episode-list">
+                            ${agent.episodes.map(ep =>
+                                `<span class="episode-badge">${ep}</span>`
+                            ).join('')}
+                        </div>
+                        <div class="highlight-list">
+                            ${agent.highlights.map(highlight => `
+                                <div class="highlight-mini" onclick="window.location.href='play.html?save=${highlight.save}'">
+                                    <div class="highlight-mini-header">
+                                        <span class="highlight-type">${highlight.type.replace('_', ' ')}</span>
+                                        <span class="highlight-mini-stats">
+                                            <span>HP: ${highlight.health}</span>
+                                            <span>Kills: ${highlight.kills}</span>
+                                            <span>${highlight.map}</span>
+                                        </span>
+                                    </div>
+                                    <div class="highlight-mini-desc">
+                                        ${highlight.description}
+                                    </div>
+                                    <a href="play.html?save=${highlight.save}" class="highlight-mini-link" onclick="event.stopPropagation()">
+                                        ▶ Play from tick ${highlight.tick.toLocaleString()}
+                                    </a>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function toggleAgent(index) {
+            const content = document.getElementById(`content-${index}`);
+            const icon = document.getElementById(`icon-${index}`);
+
+            if (content.classList.contains('expanded')) {
+                content.classList.remove('expanded');
+                icon.classList.remove('expanded');
+            } else {
+                content.classList.add('expanded');
+                icon.classList.add('expanded');
+            }
+        }
+
+        // Load manifest on page load
+        document.addEventListener('DOMContentLoaded', loadManifest);
+    </script>
+</body>
+</html>

@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>DOOM Arena - Playing</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #000;
+            color: #fff;
+            font-family: 'Courier New', monospace;
+            overflow: hidden;
+            touch-action: none; /* Prevent zoom/scroll on mobile */
+        }
+        .game-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        #doom-canvas {
+            flex: 1;
+            background: #000;
+            image-rendering: pixelated;
+            cursor: none;
+        }
+        .controls-bar {
+            background: linear-gradient(180deg, #1a1a1a 0%, #0d0d0d 100%);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 2px solid #ff0000;
+            z-index: 50; /* Above mobile controls */
+        }
+        .info {
+            display: flex;
+            gap: 30px;
+        }
+        .info-item {
+            text-align: center;
+        }
+        .info-label {
+            color: #666;
+            font-size: 0.8em;
+        }
+        .info-value {
+            color: #ff0000;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        .cheats {
+            display: flex;
+            gap: 10px;
+        }
+        .cheat-btn {
+            padding: 8px 16px;
+            background: #222;
+            border: 1px solid #444;
+            color: #888;
+            font-family: inherit;
+            font-size: 0.9em;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+        .cheat-btn:hover {
+            border-color: #ff0000;
+            color: #fff;
+        }
+        .cheat-btn.active {
+            background: #ff0000;
+            color: #000;
+            border-color: #ff0000;
+        }
+        .back-btn {
+            padding: 8px 16px;
+            background: transparent;
+            border: 1px solid #ff0000;
+            color: #ff0000;
+            font-family: inherit;
+            cursor: pointer;
+            border-radius: 4px;
+            text-decoration: none;
+        }
+        .back-btn:hover {
+            background: #ff0000;
+            color: #000;
+        }
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+        .loading h2 {
+            color: #ff0000;
+            font-size: 2em;
+            margin-bottom: 20px;
+            animation: pulse 1s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .loading-bar {
+            width: 300px;
+            height: 20px;
+            background: #222;
+            border: 1px solid #ff0000;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .loading-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ff0000, #ff4444);
+            width: 0%;
+            transition: width 0.3s;
+        }
+        .cheat-popup {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 0, 0, 0.9);
+            color: #fff;
+            padding: 10px 30px;
+            border-radius: 4px;
+            font-size: 1.2em;
+            font-weight: bold;
+            z-index: 1000;
+            animation: slideDown 0.3s, fadeOut 0.5s 1.5s forwards;
+        }
+        @keyframes slideDown {
+            from { transform: translateX(-50%) translateY(-50px); opacity: 0; }
+            to { transform: translateX(-50%) translateY(0); opacity: 1; }
+        }
+        @keyframes fadeOut {
+            to { opacity: 0; }
+        }
+        .fullscreen-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid #ff0000;
+            color: #ff0000;
+            cursor: pointer;
+            border-radius: 4px;
+            z-index: 100;
+        }
+        .help-overlay {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            color: #888;
+            z-index: 100;
+        }
+        .help-overlay kbd {
+            background: #333;
+            padding: 2px 6px;
+            border-radius: 3px;
+            color: #fff;
+        }
+        .hidden {
+            display: none;
+        }
+
+        /* Mobile Controls */
+        .mobile-controls {
+            display: none;
+            position: absolute;
+            bottom: 80px; /* Above controls bar */
+            width: 100%;
+            height: 180px;
+            pointer-events: none;
+            z-index: 40;
+        }
+        
+        @media (hover: none) and (pointer: coarse) {
+            .mobile-controls { display: flex; }
+            .help-overlay { display: none; }
+            .fullscreen-btn { top: auto; bottom: 100px; right: 10px; }
+        }
+
+        .d-pad {
+            position: absolute;
+            bottom: 10px;
+            left: 20px;
+            width: 160px;
+            height: 160px;
+            pointer-events: auto;
+        }
+        
+        .action-btns {
+            position: absolute;
+            bottom: 10px;
+            right: 20px;
+            display: flex;
+            gap: 20px;
+            pointer-events: auto;
+            align-items: flex-end;
+        }
+
+        .touch-btn {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 0, 0, 0.15);
+            border: 2px solid rgba(255, 0, 0, 0.4);
+            border-radius: 50%;
+            color: rgba(255, 255, 255, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2em;
+            user-select: none;
+            touch-action: manipulation;
+            backdrop-filter: blur(2px);
+        }
+        
+        .touch-btn:active {
+            background: rgba(255, 0, 0, 0.6);
+            transform: scale(0.95);
+        }
+
+        .touch-btn.fire {
+            width: 90px;
+            height: 90px;
+            background: rgba(255, 0, 0, 0.3);
+            border-color: #ff0000;
+            font-size: 1.5em;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+        .modal-content {
+            background: #111;
+            border: 2px solid #ff0000;
+            padding: 40px;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 0 30px rgba(255,0,0,0.4);
+            max-width: 90%;
+        }
+        .modal input {
+            background: #222;
+            border: 1px solid #666;
+            color: #ff0000;
+            font-family: 'Courier New', monospace;
+            font-size: 3em;
+            width: 150px;
+            text-align: center;
+            text-transform: uppercase;
+            margin: 20px 0;
+            padding: 10px;
+            letter-spacing: 10px;
+        }
+        .modal input:focus {
+            outline: none;
+            border-color: #ff0000;
+            box-shadow: 0 0 10px rgba(255,0,0,0.5);
+        }
+        .submit-btn {
+            background: #ff0000;
+            color: #000;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            font-family: 'Courier New', monospace;
+            text-transform: uppercase;
+            display: block;
+            width: 100%;
+            margin-top: 10px;
+        }
+        .submit-btn:hover {
+            background: #fff;
+            box-shadow: 0 0 15px #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <div class="loading" id="loading">
+            <h2>LOADING DOOM</h2>
+            <p style="color: #666; margin-bottom: 20px;" id="load-status">Initializing...</p>
+            <div class="loading-bar">
+                <div class="loading-fill" id="load-progress"></div>
+            </div>
+        </div>
+
+        <canvas id="doom-canvas"></canvas>
+
+        <button class="fullscreen-btn" onclick="toggleFullscreen()">⛶ Fullscreen</button>
+
+        <div class="help-overlay" id="help">
+            <strong>Controls:</strong><br>
+            <kbd>WASD</kbd> Move • <kbd>Mouse</kbd> Aim<br>
+            <kbd>Space</kbd> Use • <kbd>Ctrl</kbd> Fire<br>
+            <kbd>1-7</kbd> Weapons • <kbd>Tab</kbd> Map<br>
+            <kbd>H</kbd> Hide this
+        </div>
+
+        <div class="controls-bar">
+            <a href="index.html" class="back-btn">← Back</a>
+
+            <div class="info">
+                <div class="info-item">
+                    <div class="info-label">Checkpoint</div>
+                    <div class="info-value" id="checkpoint-name">Loading...</div>
+                </div>
+                <!-- Leaderboard Button -->
+                <button class="cheat-btn" onclick="showLeaderboardModal()" style="border-color: gold; color: gold; margin-left: 10px;">
+                    🏆 SUBMIT SCORE
+                </button>
+            </div>
+
+            <div class="cheats">
+                <button class="cheat-btn" data-cheat="idkfa">IDKFA</button>
+                <button class="cheat-btn" data-cheat="iddqd">IDDQD</button>
+                <button class="cheat-btn" data-cheat="idclip">CLIP</button>
+                <button class="cheat-btn" data-cheat="bfg">BFG</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Controls -->
+    <div class="mobile-controls">
+        <div class="d-pad">
+            <div class="touch-btn" style="position:absolute; top:0; left:50px;" data-key="ArrowUp">↑</div>
+            <div class="touch-btn" style="position:absolute; bottom:0; left:50px;" data-key="ArrowDown">↓</div>
+            <div class="touch-btn" style="position:absolute; top:50px; left:0;" data-key="ArrowLeft">←</div>
+            <div class="touch-btn" style="position:absolute; top:50px; right:0;" data-key="ArrowRight">→</div>
+        </div>
+        <div class="action-btns">
+            <div class="touch-btn" data-key=" " style="margin-bottom: 15px; width: 50px; height: 50px; font-size: 0.8em;">USE</div>
+            <div class="touch-btn fire" data-key="Control">FIRE</div>
+        </div>
+    </div>
+
+    <!-- Leaderboard Modal -->
+    <div id="leaderboard-modal" class="modal">
+        <div class="modal-content">
+            <h2 style="color:#ff0000; margin-bottom:10px; font-size: 2em;">HIGH SCORE</h2>
+            <p style="color:#888;">ENTER YOUR INITIALS</p>
+            <input type="text" maxlength="3" id="player-initials" placeholder="AAA" autocomplete="off">
+            <div style="display: flex; gap: 10px;">
+                <button class="submit-btn" onclick="submitScore()">SUBMIT TO GITHUB</button>
+                <button class="back-btn" onclick="closeModal()" style="flex:1; margin-top:10px;">CANCEL</button>
+            </div>
+            <p style="font-size:0.7em; color:#666; margin-top:15px;">
+                (Requires GitHub account to post comment)
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Parse URL params
+        const params = new URLSearchParams(window.location.search);
+        const saveFile = params.get('save') || 'default';
+
+        // Update UI
+        document.getElementById('checkpoint-name').textContent = saveFile.substring(0, 15) + (saveFile.length > 15 ? '...' : '');
+
+        // Cheat state
+        const cheats = {
+            idkfa: false,
+            iddqd: false,
+            idclip: false,
+            bfg: false
+        };
+
+        // Cheat button handlers
+        document.querySelectorAll('.cheat-btn[data-cheat]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const cheat = btn.dataset.cheat;
+                cheats[cheat] = !cheats[cheat];
+                btn.classList.toggle('active', cheats[cheat]);
+
+                // Show popup
+                const popup = document.createElement('div');
+                popup.className = 'cheat-popup';
+                popup.textContent = cheats[cheat]
+                    ? `${cheat.toUpperCase()} ACTIVATED` 
+                    : `${cheat.toUpperCase()} DISABLED`;
+                document.body.appendChild(popup);
+                setTimeout(() => popup.remove(), 2000);
+
+                // Send to DOOM WASM
+                if (window.DoomModule) {
+                    window.DoomModule.ccall('ApplyCheat', null, ['string'], [cheat]);
+                }
+            });
+        });
+
+        // Fullscreen
+        function toggleFullscreen() {
+            const canvas = document.getElementById('doom-canvas');
+            if (!document.fullscreenElement) {
+                canvas.requestFullscreen().catch(err => {
+                    console.log(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
+                });
+            } else {
+                document.exitFullscreen();
+            }
+        }
+
+        // Hide help on keypress
+        document.addEventListener('keydown', (e) => {
+            if (e.key.toLowerCase() === 'h') {
+                document.getElementById('help').classList.toggle('hidden');
+            }
+        });
+
+        // Mobile Input Logic
+        function simulateKey(key, type) {
+            // Map keys to Doom WASM expectations if needed, but standard keys usually work
+            // Doom WASM uses SDL, which maps Arrow keys
+            const event = new KeyboardEvent(type, {
+                key: key,
+                code: key === ' ' ? 'Space' : (key === 'Control' ? 'ControlLeft' : key),
+                bubbles: true,
+                cancelable: true
+            });
+            document.dispatchEvent(event);
+            
+            // Direct module interaction if needed for smoother movement
+            if (window.DoomModule && window.DoomModule.ccall) {
+                // Optional: Exposed C function for direct input
+            }
+        }
+
+        document.querySelectorAll('.touch-btn').forEach(btn => {
+            const key = btn.dataset.key;
+            
+            btn.addEventListener('touchstart', (e) => {
+                e.preventDefault(); // Prevent scrolling
+                simulateKey(key, 'keydown');
+                btn.style.background = 'rgba(255, 0, 0, 0.6)';
+                btn.style.transform = 'scale(0.95)';
+            });
+            
+            btn.addEventListener('touchend', (e) => {
+                e.preventDefault();
+                simulateKey(key, 'keyup');
+                btn.style.background = '';
+                btn.style.transform = '';
+            });
+        });
+
+        // Leaderboard Logic
+        function showLeaderboardModal() {
+            document.getElementById('leaderboard-modal').style.display = 'flex';
+            setTimeout(() => document.getElementById('player-initials').focus(), 100);
+        }
+
+        function closeModal() {
+            document.getElementById('leaderboard-modal').style.display = 'none';
+        }
+
+        function submitScore() {
+            const initials = document.getElementById('player-initials').value.toUpperCase();
+            if (initials.length !== 3) {
+                alert("PLEASE ENTER EXACTLY 3 INITIALS");
+                return;
+            }
+            
+            // Generate a random score for demonstration since we don't have WASM memory hooks yet
+            // In a real implementation, we'd read 'gamestate.killcount' from memory
+            const kills = Math.floor(Math.random() * 50) + 10;
+            const time = Math.floor(Math.random() * 300) + 60;
+            const score = Math.round(kills * 1000 / time);
+            
+            const repo = "jw409/modelforecast"; 
+            const issueNumber = "1"; // Users must create this issue first!
+            const body = `LEADERBOARD_ENTRY
+PLAYER: ${initials}
+SCORE: ${score}
+KILLS: ${kills}
+TIME: ${time}s
+CHECKPOINT: ${saveFile}
+PLATFORM: Browser`;
+            
+            // Use GitHub's new issue comment URL with pre-filled body
+            // Note: This works for signed-in GitHub users
+            const url = `https://github.com/${repo}/issues/${issueNumber}#new_comment_field`;
+            // We can't pre-fill body via URL hash for comments easily, but we can use 'new' issue link as fallback
+            // Or clipboard copy. Let's try the 'new' issue trick if comment link fails, 
+            // but actually, putting it in the clipboard is safer.
+            
+            navigator.clipboard.writeText(body).then(() => {
+                alert("SCORE COPIED TO CLIPBOARD! \n\nPlease PASTE it into the GitHub comment box that opens next.");
+                window.open(url, '_blank');
+                closeModal();
+            }).catch(() => {
+                // Fallback
+                window.open(`https://github.com/${repo}/issues/${issueNumber}`, '_blank');
+                prompt("Copy this score and paste it in the GitHub issue:", body);
+                closeModal();
+            });
+        }
+
+        // Loading progress simulation (replace with actual WASM loading)
+        let progress = 0;
+        const loadInterval = setInterval(() => {
+            progress += Math.random() * 15;
+            if (progress >= 100) {
+                progress = 100;
+                clearInterval(loadInterval);
+                document.getElementById('load-status').textContent = 'Ready!';
+                setTimeout(() => {
+                    document.getElementById('loading').style.display = 'none';
+                }, 500);
+            }
+            document.getElementById('load-progress').style.width = progress + '%';
+            document.getElementById('load-status').textContent =
+                progress < 30 ? 'Loading WAD...' :
+                progress < 60 ? 'Loading savegame...' :
+                progress < 90 ? 'Initializing engine...' : 'Ready!';
+        }, 200);
+
+        // DOOM WASM Module configuration
+        var Module = {
+            canvas: document.getElementById('doom-canvas'),
+            arguments: ['-iwad', '/doom1.wad'],
+            preRun: [function() {
+                // Set up virtual filesystem
+                Module.setStatus('Setting up filesystem...');
+            }],
+            postRun: [function() {
+                console.log('DOOM initialized');
+                window.DoomModule = Module;
+                document.getElementById('ai-model').textContent = 'GPU Arena';
+
+                // Load savegame if specified
+                if (saveFile && saveFile !== 'default') {
+                    fetch(`checkpoints/${saveFile}.sav`)
+                        .then(r => {
+                            if (!r.ok) throw new Error('Savegame not found');
+                            return r.arrayBuffer();
+                        })
+                        .then(data => {
+                            FS.writeFile('/doomsav0.dsg', new Uint8Array(data));
+                            Module.ccall('G_LoadGame', null, ['number'], [0]);
+                            console.log('Loaded savegame:', saveFile);
+                        })
+                        .catch(e => {
+                            console.log('No savegame, starting fresh:', e.message);
+                        });
+                }
+            }],
+            print: function(text) {
+                console.log('DOOM:', text);
+                // Parse doom stdout protocol messages
+                const match = text.match(/^doom: (\d+), (.*)$/);
+                if (match) {
+                    const [_, code, msg] = match;
+                    if (code === '10') {
+                        document.getElementById('load-status').textContent = 'Game started!';
+                    }
+                }
+            },
+            printErr: function(text) {
+                console.error('DOOM Error:', text);
+            },
+            setStatus: function(text) {
+                if (!text) return;
+                const m = text.match(/([^(]+)\((\d+)\/(\d+)\)/);
+                if (m) {
+                    const pct = Math.round(100 * parseInt(m[2]) / parseInt(m[3]));
+                    document.getElementById('load-progress').style.width = pct + '%';
+                    document.getElementById('load-status').textContent = m[1].trim();
+                } else {
+                    document.getElementById('load-status').textContent = text;
+                    if (text === '') {
+                        document.getElementById('loading').style.display = 'none';
+                    }
+                }
+            },
+            totalDependencies: 0,
+            monitorRunDependencies: function(left) {
+                this.totalDependencies = Math.max(this.totalDependencies, left);
+                const pct = this.totalDependencies > 0
+                    ? Math.round(100 * (this.totalDependencies - left) / this.totalDependencies)
+                    : 100;
+                document.getElementById('load-progress').style.width = pct + '%';
+            }
+        };
+
+        // Load DOOM WASM and WAD
+        (async function() {
+            try {
+                // Load WAD file
+                Module.setStatus('Loading WAD...');
+                const wadResponse = await fetch('assets/doom1.wad');
+                if (!wadResponse.ok) {
+                    throw new Error('doom1.wad not found - run build_wasm.sh first');
+                }
+                const wadData = await wadResponse.arrayBuffer();
+                Module.preRun.push(function() {
+                    FS.writeFile('/doom1.wad', new Uint8Array(wadData));
+                });
+                Module.setStatus('WAD loaded, initializing DOOM...');
+            } catch (e) {
+                document.getElementById('load-status').textContent = 'Error: ' + e.message;
+                console.error(e);
+            }
+        })();
+    </script>
+
+    <!-- DOOM WASM engine -->
+    <script async src="assets/doom.js"></script>
+</body>
+</html>

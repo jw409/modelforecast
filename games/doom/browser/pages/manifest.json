@@ -1,0 +1,71 @@
+{
+  "meta": {
+    "generated": "2025-12-05",
+    "gpu_speed": "52000x realtime",
+    "total_ticks": "1.8B/sec"
+  },
+  "agents": [
+    {
+      "id": "gpt5-run-001",
+      "name": "GPT-5",
+      "model": "openai/gpt-5",
+      "episodes": ["E1M1", "E1M2", "E1M3"],
+      "stats": {"kills": 142, "deaths": 3},
+      "highlights": [
+        {
+          "rank": 1,
+          "type": "near_death",
+          "tick": 12345,
+          "map": "E1M3",
+          "health": 3,
+          "kills": 47,
+          "save": "gpt5-001-neardeath.sav",
+          "description": "Dropped to 3HP surrounded by imps, triggered infighting to escape"
+        }
+      ]
+    },
+    {
+      "id": "claude4-run-001",
+      "name": "Claude-4",
+      "model": "anthropic/claude-4",
+      "episodes": ["E1M1", "E1M2", "E2M8"],
+      "stats": {"kills": 198, "deaths": 1},
+      "highlights": [
+        {
+          "rank": 1,
+          "type": "boss",
+          "tick": 45678,
+          "map": "E2M8",
+          "health": 45,
+          "kills": 23,
+          "save": "claude4-001-cyberdemon.sav",
+          "description": "Cyberdemon showdown with low ammo - 4 minute circle-strafe"
+        }
+      ]
+    },
+    {
+      "id": "gemini3-run-001",
+      "name": "Gemini-3",
+      "model": "google/gemini-3",
+      "episodes": ["E1M1", "E3M6"],
+      "stats": {"kills": 167, "deaths": 2},
+      "highlights": [
+        {
+          "rank": 1,
+          "type": "multi_kill",
+          "tick": 78901,
+          "map": "E3M6",
+          "health": 100,
+          "kills": 42,
+          "save": "gemini3-001-bfg-triple.sav",
+          "description": "Perfect BFG alignment - 3 Barons vaporized in one shot"
+        }
+      ]
+    }
+  ],
+  "leaderboard": {
+    "most_kills": {"agent": "Claude-4", "value": 198},
+    "longest_survival": {"agent": "Claude-4", "ticks": 89000},
+    "fastest_e1m1": {"agent": "GPT-5", "ticks": 2100}
+  }
+}

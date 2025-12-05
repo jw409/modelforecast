@@ -1,0 +1,90 @@
+name: DOOM Arena - Build & Deploy
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'games/doom/**'
+      - '.github/workflows/doom-arena.yml'
+  workflow_dispatch:  # Manual trigger
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout with submodules
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Setup Emscripten
+        uses: mymindstorm/setup-emsdk@v14
+        with:
+          version: 'latest'
+
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y automake autoconf libtool pkg-config
+
+      - name: Build doom-wasm
+        working-directory: games/doom/browser/wasm
+        run: |
+          # Run the build script
+          chmod +x scripts/build.sh
+          ./scripts/build.sh || {
+            echo "Autotools build failed, trying manual approach..."
+            # Manual build if script fails
+            emconfigure autoreconf -fiv
+            ac_cv_exeext=".html" emconfigure ./configure --host=none-none-none
+            emmake make
+          }
+
+      - name: Prepare dist directory
+        run: |
+          mkdir -p dist/assets dist/checkpoints
+
+          # Copy WASM artifacts
+          cp games/doom/browser/wasm/src/doom.wasm dist/assets/ 2>/dev/null || \
+          cp games/doom/browser/wasm/src/doom.js dist/assets/ 2>/dev/null || \
+          find games/doom/browser/wasm -name "*.wasm" -exec cp {} dist/assets/ \; || true
+          find games/doom/browser/wasm -name "chocolate-doom.js" -exec cp {} dist/assets/doom.js \; || true
+
+          # Copy shareware WAD (legally distributable)
+          cp games/doom/wads/doom1.wad dist/assets/
+
+          # Copy HTML pages
+          cp games/doom/browser/pages/*.html dist/
+          cp games/doom/browser/pages/manifest.json dist/
+
+          # List what we have
+          echo "=== dist contents ==="
+          find dist -type f
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'dist'
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
