@@ -29,17 +29,59 @@ def get_available_models(api_key: str | None = None) -> dict[str, Any]:
     return {model["id"]: model for model in data.get("data", [])}
 
 
-def get_free_models(api_key: str | None = None) -> list[str]:
+def supports_tool_calling(model_id: str, api_key: str | None = None) -> bool:
+    """Check if a model supports tool calling on OpenRouter.
+
+    Args:
+        model_id: Full model ID (e.g., "google/gemma-3-12b-it:free")
+        api_key: Optional API key
+
+    Returns:
+        True if model supports tools, False otherwise
+    """
+    models = get_available_models(api_key)
+    model_info = models.get(model_id, {})
+    supported_params = model_info.get("supported_parameters", [])
+    return "tools" in supported_params
+
+
+def get_free_models(api_key: str | None = None, tools_only: bool = False) -> list[str]:
     """Get list of currently available free models.
+
+    Args:
+        api_key: Optional API key
+        tools_only: If True, only return models that support tool calling
 
     Returns:
         List of model IDs ending with :free
     """
     models = get_available_models(api_key)
-    return sorted([
+    free_models = [
         model_id for model_id in models.keys()
         if model_id.endswith(":free")
-    ])
+    ]
+
+    if tools_only:
+        free_models = [
+            m for m in free_models
+            if supports_tool_calling(m, api_key)
+        ]
+
+    return sorted(free_models)
+
+
+def get_tool_support_matrix(api_key: str | None = None) -> dict[str, bool]:
+    """Get tool support status for all free models.
+
+    Returns:
+        Dict mapping model_id -> supports_tools (bool)
+    """
+    models = get_available_models(api_key)
+    return {
+        model_id: "tools" in model_info.get("supported_parameters", [])
+        for model_id, model_info in models.items()
+        if model_id.endswith(":free")
+    }
 
 
 def validate_model(model_id: str, api_key: str | None = None) -> tuple[bool, str]:
