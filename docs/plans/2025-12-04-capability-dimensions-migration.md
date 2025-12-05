@@ -182,14 +182,14 @@ Level4AdversarialProbe → R0AbstainProbe
 
 ## Success Criteria
 
-- [ ] README uses T0/T1/T2/R0/A1 terminology consistently
-- [ ] Charts regenerate with new axis labels
-- [ ] `--probe T0` and `--level 0` both work
-- [ ] `--dimension T` runs T0+T1+T2
-- [ ] All probe files renamed to new convention
-- [ ] `uv run python -m modelforecast --help` shows new terminology
-- [ ] Existing results/ JSON files still parseable (backwards compat)
-- [ ] Git commit atomic with all changes
+- [x] README uses T0/T1/T2/R0/A1 terminology consistently
+- [x] Charts regenerate with new axis labels
+- [x] `--probe T0` and `--level 0` both work
+- [x] `--dimension T` runs T0+T1+T2
+- [x] All probe files renamed to new convention
+- [x] `uv run python -m modelforecast --help` shows new terminology
+- [x] Existing results/ JSON files still parseable (backwards compat)
+- [x] Git commit atomic with all changes
 
 ---
 
@@ -202,13 +202,3 @@ Level4AdversarialProbe → R0AbstainProbe
 - Runner: `/home/jw/dev/modelforecast/src/modelforecast/runner.py`
 - Probes: `/home/jw/dev/modelforecast/src/modelforecast/probes/level*.py`
 
----
-
-## Timeline Estimate
-
-- Phase 1 (parallel): 30-45 minutes total
-- Phase 2: 20-30 minutes
-- Phase 3: 30-40 minutes
-- Integration + testing: 15-20 minutes
-
-**Total**: ~90-135 minutes with parallel execution
