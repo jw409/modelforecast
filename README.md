@@ -4,96 +4,99 @@
 
 Do free LLM models actually support tool calling? Marketing says yes. We test it.
 
-## Latest Results (2025-12-04)
+---
 
-**Only 1 of 25+ free models achieves 100% L0-L4 tool-calling reliability.**
+## Today's Forecast (2025-12-04)
 
-### Full Probe Results (L0-L4)
+**Only 3 of 26 free models are production-ready. Only 1 handles multi-turn.**
 
-| Model | L0 | L1 | L2 | L3 Multi-turn | L4 Adversarial | Latency | Grade |
-|-------|----|----|----|--------------:|---------------:|--------:|-------|
-| kwaipilot/kat-coder-pro:free | 100% | 100% | 100% | **100%** | 100% | **1.3s** | **A+** |
-| x-ai/grok-4.1-fast:free | 100% | 100% | 100% | **0%** ❌ | 100% | 6.8s | **B** |
-| google/gemini-2.5-flash-lite:free | 0% | 0% | 0% | 0% | 0% | N/A | **F** |
+![Reliability vs Latency](charts/reliability_vs_latency.png)
 
-### Paid Model Results (L0-L4)
+*Upper-left quadrant = fast AND reliable. That's where you want to be.*
 
-| Model | L0 | L1 | L2 | L3 Multi-turn | L4 Adversarial | Cost | Grade |
-|-------|----|----|----|--------------:|---------------:|-----:|-------|
-| **deepseek/deepseek-v3.2-exp** | 100% | 100% | 100% | **60%** ⚠️ | 100% | $0.21/$0.32 | **B+** |
+### The Headline Numbers
 
-**DeepSeek V3.2-exp** (new): Strong L0-L2 and L4, but **60% L3 multi-turn** shows weakness similar to Grok. Good for single-shot, not autonomous agents.
+| Category | Count |
+|----------|------:|
+| Production Ready (≥90%) | 3 |
+| Unreliable (50-89%) | 4 |
+| Broken (<50%) | 19 |
+| **Total Tested** | **26** |
 
-### The Differentiator: Multi-Turn (L3)
+---
 
-**Grok fails multi-turn conversations.** After receiving tool results, it returns text OR picks the wrong tool.
+## The Multi-Turn Cliff
 
-| Fix Attempted | Result |
-|---------------|--------|
-| `tool_choice="required"` | ❌ Calls tool but picks **wrong one** |
-| `tool_choice={"function": {"name": "read_file"}}` | ✅ Works but requires knowing next tool |
-| System prompt forcing | ⚠️ Inconsistent |
+Most models pass basic tests. Then they hit L3 (multi-turn) and fall off a cliff.
 
-**Bottom line**: Grok is not suitable for autonomous multi-turn. Use **KAT Coder Pro** instead.
+![Multi-Level Comparison](charts/multi_level_comparison.png)
 
-| Use Case | Recommended |
-|----------|-------------|
-| Autonomous agents (ReAct) | **KAT Coder Pro** |
-| Scripted workflows (known tool sequence) | Grok with specific `tool_choice` |
-| Single-shot tool calls | Either (KAT 5x faster) |
-| Gemini via OpenRouter | **Broken - don't use** |
+**L3 is the differentiator.** After receiving tool results, can the model continue using tools appropriately?
 
-### Unreliable (20-60% success)
+- **KAT Coder Pro**: 100% - continues tool use correctly
+- **DeepSeek V3.2-exp**: 60% - sometimes stops or picks wrong tool
+- **Grok 4.1**: 0% - returns text instead of calling next tool
+- **Gemini (free)**: Never gets there - fails L0
 
-| Model | L0 Basic | CI (95%) | Grade |
-|-------|----------|----------|-------|
-| nvidia/nemotron-nano-9b-v2:free | 60% | [31%, 83%] | D |
-| alibaba/tongyi-deepresearch-30b-a3b:free | 50% | [24%, 76%] | D |
-| arcee-ai/trinity-mini:free | 30% | [11%, 60%] | F |
-| z-ai/glm-4.5-air:free | 20% | [6%, 51%] | F |
-| tngtech/tng-r1t-chimera:free | 20% | [6%, 51%] | F |
-| openai/gpt-oss-20b:free | 20% | [6%, 51%] | F |
-| meituan/longcat-flash-chat:free | 20% | [6%, 51%] | F |
+---
 
-### Broken (0% success)
+## Full Results
 
-14 models claim tool support but failed all trials:
-- All Qwen variants (qwen3-32b, qwen3-30b-a3b, qwen3-14b, qwen3-4b, qwen3-coder, qwen3-235b-a22b)
-- All Google variants (gemini-2.0-flash-exp, gemini-2.5-flash-lite, gemma-3-27b-it)
+### Production Ready (≥90% L0)
+
+| Model | L0-L2 | L3 Multi-turn | L4 Restraint | Latency | Grade |
+|-------|-------|---------------|--------------|--------:|-------|
+| **kwaipilot/kat-coder-pro:free** | 100% | **100%** | 100% | **1.3s** | **A+** |
+| deepseek/deepseek-v3.2-exp | 100% | 60% ⚠️ | 100% | 2.6s | B+ |
+| x-ai/grok-4.1-fast:free | 100% | 0% ❌ | 100% | 6.8s | B |
+
+### The Full Picture
+
+![Success Rates with Confidence Intervals](charts/success_rates_with_ci.png)
+
+*Error bars show 95% Wilson confidence intervals. Wide bars = few trials or high variance.*
+
+### Unreliable (50-89%)
+
+| Model | L0 | CI (95%) |
+|-------|---:|----------|
+| nvidia/nemotron-nano-12b-v2-vl:free | 67% | [21%, 94%] |
+| amazon/nova-2-lite-v1:free | 67% | [21%, 94%] |
+| nvidia/nemotron-nano-9b-v2:free | 60% | [31%, 83%] |
+| alibaba/tongyi-deepresearch-30b-a3b:free | 50% | [24%, 76%] |
+
+### Broken (0-30%)
+
+14 models claim tool support but failed most or all trials:
+
+- **All Qwen variants** (qwen3-32b, qwen3-30b-a3b, qwen3-14b, qwen3-4b, qwen3-coder, qwen3-235b-a22b)
+- **All Google free variants** (gemini-2.0-flash-exp, gemini-2.5-flash-lite, gemma-3-27b-it)
 - meta-llama/llama-4-maverick, llama-3.3-70b-instruct
 - microsoft/mai-ds-r1, mistralai/mistral-small-3.1-24b-instruct
 - nousresearch/deephermes-3-llama-3-8b-preview
 
-*Full results: [PHASE3_RESULTS.md](PHASE3_RESULTS.md) | [Raw CSV](results/phase3_summary.csv)*
+---
 
 ## Free vs Paid: The Real Comparison
 
 | Model | L0-L4 | Multi-turn | Latency | Cost/1M tokens | Grade |
 |-------|-------|------------|--------:|---------------:|-------|
-| **claude-sonnet-4-5** | 100% | ✅ 100% | 1.8s | $3/$15 | A+ |
-| **gpt-4o** | 100% | ✅ 100% | 2.1s | $2.50/$10 | A+ |
-| **gemini-2.0-flash** (paid) | 100% | ✅ 100% | 0.9s | $0.10/$0.40 | A+ |
-| kwaipilot/kat-coder-pro:free | 100% | ✅ 100% | 1.3s | **$0** | **A+** |
-| **deepseek/deepseek-v3.2-exp** | 100%* | ⚠️ 60% | ~2s | $0.21/$0.32 | B+ |
-| x-ai/grok-4.1-fast:free | 60%* | ❌ 0% | 6.8s | $0 | B |
+| claude-sonnet-4-5 | 100% | 100% | 1.8s | $3/$15 | A+ |
+| gpt-4o | 100% | 100% | 2.1s | $2.50/$10 | A+ |
+| gemini-2.0-flash (paid) | 100% | 100% | 0.9s | $0.10/$0.40 | A+ |
+| **kwaipilot/kat-coder-pro:free** | 100% | **100%** | **1.3s** | **$0** | **A+** |
+| deepseek/deepseek-v3.2-exp | 100%* | 60% | ~2s | $0.21/$0.32 | B+ |
+| x-ai/grok-4.1-fast:free | 100%* | 0% | 6.8s | $0 | B |
 
 *\*L0-L2+L4 100%, but L3 (multi-turn) degrades*
 
-**Key insight**: KAT Coder Pro matches $15/1M-token Claude Sonnet at zero cost. DeepSeek V3.2-exp is excellent value for single-shot ($0.21/$0.32) but not reliable for autonomous multi-turn like KAT.
+**Bottom line**: KAT Coder Pro matches $15/1M-token Claude at zero cost for tool calling.
 
-## The 3-Trial Trap
+---
 
-**8 models passed 3/3 quick tests but failed extended testing.**
+## Don't Believe Me? Go Outside.
 
-| Model | 3 trials | 10 trials | Reality |
-|-------|----------|-----------|---------|
-| meta-llama/llama-3.3-70b-instruct | 100% | 0% | Broken |
-| nvidia/nemotron-nano-9b-v2 | 100% | 60% | Unreliable |
-| alibaba/tongyi-deepresearch-30b-a3b | 100% | 50% | Unreliable |
-
-Small sample sizes give false confidence. Always test with sufficient trials.
-
-## Quick Start
+Everything here is reproducible. Run it yourself:
 
 ```bash
 # Clone and install
@@ -108,39 +111,52 @@ export OPENROUTER_API_KEY=your_key_here
 # Run probes (takes ~15 minutes)
 uv run python -m modelforecast
 
-# View results
+# Regenerate charts
+uv run python scripts/generate_charts.py
+
+# View raw results
 cat results/phase3_summary.csv
 ```
 
+---
+
+## The 3-Trial Trap
+
+**8 models passed 3/3 quick tests but failed extended testing.**
+
+| Model | 3 trials | 10 trials | Reality |
+|-------|----------|-----------|---------|
+| meta-llama/llama-3.3-70b-instruct | 100% | 0% | Broken |
+| nvidia/nemotron-nano-9b-v2 | 100% | 60% | Unreliable |
+| alibaba/tongyi-deepresearch-30b-a3b | 100% | 50% | Unreliable |
+
+Small sample sizes give false confidence. That's why we use Wilson score intervals.
+
+---
+
 ## What We Test
 
-| Level | Test | Question Answered |
-|-------|------|-------------------|
-| 0 | Basic | Can it call a tool at all? |
-| 1 | Schema | Does it respect parameter types? |
-| 2 | Selection | Can it choose the right tool? |
-| 3 | Multi-turn | Can it follow up appropriately? |
-| 4 | Adversarial | Does it hallucinate when no tool fits? |
+| Level | Test | Question |
+|-------|------|----------|
+| L0 | Basic | Can it call a tool at all? |
+| L1 | Schema | Does it respect parameter types? |
+| L2 | Selection | Can it choose the right tool from a set? |
+| L3 | Multi-turn | After getting results, can it continue using tools? |
+| L4 | Adversarial | Will it NOT call tools when none are appropriate? |
 
-## The Problem
+---
 
-Free-tier LLM models on OpenRouter claim tool-calling capabilities they may not reliably deliver:
+## Methodology
 
-1. **Fail silently** - Output text instead of tool_call JSON
-2. **Hallucinate tool names** - Call tools that don't exist
-3. **Break on parameters** - Ignore required fields, wrong types
-4. **Degrade under forcing** - Work with tool_choice="auto" but break with "required"
+We use **Wilson score intervals** for confidence - the gold standard for binomial proportions with small samples.
 
-Every failed experiment on a model that can't tool-call is wasted compute, wasted electricity, wasted time.
+- Each probe runs multiple trials (default: 10 for extended, 3 for triage)
+- Results include 95% confidence intervals
+- Grading based on lower bound of CI (conservative)
 
-## What We Do
+Full methodology: [METHODOLOGY.md](METHODOLOGY.md)
 
-**We test what model cards claim. We publish what we find. With error bars.**
-
-- **Quantitative**: Not "works" vs "doesn't work" but "87% +/- 8% (95% CI, n=10)"
-- **Reproducible**: Single command, your API key, same results
-- **Opinionated**: We name names. If a model claims tools but fails Level 0, we say so.
-- **Community-verified**: Crowdsourced results with cryptographic provenance
+---
 
 ## Contributing
 
@@ -152,15 +168,9 @@ We welcome community contributions! See [CONTRIBUTING.md](CONTRIBUTING.md).
 3. Commit your `results/` folder
 4. Open a PR
 
-Automated verification will check your results. If they match our reproduction within tolerance, they'll be merged.
+Automated verification checks your results. If they match within tolerance, they'll be merged.
 
-## Methodology
-
-See [METHODOLOGY.md](METHODOLOGY.md) for:
-- Detailed probe descriptions
-- Statistical approach (Wilson score intervals)
-- Grading rubric
-- Verification protocol
+---
 
 ## License
 
