@@ -25,27 +25,55 @@ Do free LLM models actually support tool calling? Marketing says yes. We test it
 
 ---
 
-## The Multi-Turn Cliff
+## Understanding the Dimensions
 
-Most models pass basic tests. Then they hit L3 (multi-turn) and fall off a cliff.
+We measure three orthogonal capabilities:
 
-![Multi-Level Comparison](charts/multi_level_comparison.png)
+### TOOL CALLING (T): Can it use tools correctly?
+- **T0 (Invoke)**: Can it call a tool at all?
+- **T1 (Schema)**: Does it respect parameter types (string vs int, required vs optional)?
+- **T2 (Selection)**: Can it choose the right tool from a set?
 
-**L3 is the differentiator.** After receiving tool results, can the model continue using tools appropriately?
+### RESTRAINT (R): Does it know when NOT to use tools?
+- **R0 (Abstain)**: Will it refuse to call tools when none are appropriate AND still provide a helpful answer?
+- Not just silence - the model must explain why it's not using tools while still being useful.
+
+### AGENCY (A): Can it orchestrate multi-step workflows?
+- **A1 (Linear)**: After receiving tool results, can it continue using tools to complete a task?
+- This tests whether the model can chain tool calls together, not just invoke once and stop.
+
+### Safe but Stupid vs Smart but Hallucinatory
+
+These dimensions create tradeoffs:
+
+- **High R, Low A** = Safe but can't do complex tasks (won't hallucinate, but limited capability)
+- **High A, Low R** = Capable but might hallucinate tool calls (powerful but dangerous in production)
+
+The sweet spot: High scores across all three dimensions.
+
+---
+
+## The Agency Gap
+
+Most models pass basic tests. Then they hit A1 (agency) and fall off a cliff.
+
+![Multi-Dimension Comparison](charts/multi_level_comparison.png)
+
+**A1 is the differentiator.** After receiving tool results, can the model continue using tools appropriately?
 
 - **KAT Coder Pro**: 100% - continues tool use correctly
 - **DeepSeek V3.2-exp**: 60% - sometimes stops or picks wrong tool
 - **Grok 4.1**: 0% - returns text instead of calling next tool
-- **Gemini (free)**: Never gets there - fails L0
+- **Gemini (free)**: Never gets there - fails T0
 
 ---
 
 ## Full Results
 
-### Production Ready (≥90% L0)
+### Production Ready (≥90% T0)
 
-| Model | L0-L2 | L3 Multi-turn | L4 Restraint | Latency | Grade |
-|-------|-------|---------------|--------------|--------:|-------|
+| Model | T0-T2 | A1 Agency | R0 Restraint | Latency | Grade |
+|-------|-------|-----------|--------------|--------:|-------|
 | **kwaipilot/kat-coder-pro:free** | 100% | **100%** | 100% | **1.3s** | **A+** |
 | deepseek/deepseek-v3.2-exp | 100% | 60% ⚠️ | 100% | 2.6s | B+ |
 | x-ai/grok-4.1-fast:free | 100% | 0% ❌ | 100% | 6.8s | B |
@@ -58,7 +86,7 @@ Most models pass basic tests. Then they hit L3 (multi-turn) and fall off a cliff
 
 ### Unreliable (50-89%)
 
-| Model | L0 | CI (95%) |
+| Model | T0 | CI (95%) |
 |-------|---:|----------|
 | nvidia/nemotron-nano-12b-v2-vl:free | 67% | [21%, 94%] |
 | amazon/nova-2-lite-v1:free | 67% | [21%, 94%] |
@@ -79,8 +107,8 @@ Most models pass basic tests. Then they hit L3 (multi-turn) and fall off a cliff
 
 ## Free vs Paid: The Real Comparison
 
-| Model | L0-L4 | Multi-turn | Latency | Cost/1M tokens | Grade |
-|-------|-------|------------|--------:|---------------:|-------|
+| Model | T0-R0 | Agency | Latency | Cost/1M tokens | Grade |
+|-------|-------|--------|--------:|---------------:|-------|
 | claude-sonnet-4-5 | 100% | 100% | 1.8s | $3/$15 | A+ |
 | gpt-4o | 100% | 100% | 2.1s | $2.50/$10 | A+ |
 | gemini-2.0-flash (paid) | 100% | 100% | 0.9s | $0.10/$0.40 | A+ |
@@ -88,7 +116,7 @@ Most models pass basic tests. Then they hit L3 (multi-turn) and fall off a cliff
 | deepseek/deepseek-v3.2-exp | 100%* | 60% | ~2s | $0.21/$0.32 | B+ |
 | x-ai/grok-4.1-fast:free | 100%* | 0% | 6.8s | $0 | B |
 
-*\*L0-L2+L4 100%, but L3 (multi-turn) degrades*
+*\*T0-T2+R0 100%, but A1 (agency) degrades*
 
 **Bottom line**: KAT Coder Pro matches $15/1M-token Claude at zero cost for tool calling.
 
@@ -136,13 +164,13 @@ Small sample sizes give false confidence. That's why we use Wilson score interva
 
 ## What We Test
 
-| Level | Test | Question |
-|-------|------|----------|
-| L0 | Basic | Can it call a tool at all? |
-| L1 | Schema | Does it respect parameter types? |
-| L2 | Selection | Can it choose the right tool from a set? |
-| L3 | Multi-turn | After getting results, can it continue using tools? |
-| L4 | Adversarial | Will it NOT call tools when none are appropriate? |
+| Dimension | Code | Test | Question |
+|-----------|------|------|----------|
+| TOOL CALLING | T0 | Invoke | Can it call a tool at all? |
+| TOOL CALLING | T1 | Schema | Does it respect parameter types? |
+| TOOL CALLING | T2 | Selection | Can it choose the right tool from a set? |
+| AGENCY | A1 | Linear | After getting results, can it continue using tools? |
+| RESTRAINT | R0 | Abstain | Will it NOT call tools when none are appropriate? |
 
 ---
 
