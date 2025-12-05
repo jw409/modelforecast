@@ -1,4 +1,4 @@
-"""Level 3: Multi-Turn Coherence - Can the model follow up appropriately?"""
+"""A1 Linear: Multi-Turn Agency - Can the model chain tool calls?"""
 
 import json
 import time
@@ -10,9 +10,9 @@ from .base import ProbeResult
 from ..tools.mock_tools import get_multi_tool_set
 
 
-class Level3MultiTurnProbe:
+class A1LinearProbe:
     """
-    Level 3: Multi-Turn Coherence
+    A1 Linear: Multi-Turn Agency
 
     Tests whether the model can process tool results and make appropriate follow-up calls.
 

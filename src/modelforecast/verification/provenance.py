@@ -58,21 +58,27 @@ class ProvenanceTracker:
         schema_valid: bool,
         latency_ms: int,
         openrouter_request_id: str | None = None,
+        *,
+        # New: Full request/response for schema-on-read analysis
+        request_data: dict[str, Any] | None = None,
+        response_data: dict[str, Any] | None = None,
     ) -> dict[str, Any]:
         """Create a trial record with provenance data.
 
         Args:
             prompt: The prompt sent to the model
-            response: The model's response
+            response: The model's response (string repr for hashing)
             tool_called: Whether a tool call was made
             schema_valid: Whether the tool call schema is valid
             latency_ms: Response latency in milliseconds
             openrouter_request_id: OpenRouter request ID from headers
+            request_data: Full request payload (model, messages, tools, settings)
+            response_data: Full API response (usage, choices, etc.)
 
         Returns:
-            Trial record dictionary
+            Trial record dictionary with full data for schema-on-read analysis
         """
-        return {
+        record = {
             "openrouter_request_id": openrouter_request_id,
             "prompt_hash": hash_content(prompt),
             "response_hash": hash_content(response),
@@ -80,6 +86,14 @@ class ProvenanceTracker:
             "schema_valid": schema_valid,
             "latency_ms": latency_ms,
         }
+
+        # Store full data for schema-on-read efficiency analysis
+        if request_data:
+            record["request"] = request_data
+        if response_data:
+            record["response"] = response_data
+
+        return record
 
     def create_result(
         self,

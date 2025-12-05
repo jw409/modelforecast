@@ -1,0 +1,326 @@
+{
+  "submission_id": "sub_314abb688456",
+  "timestamp": "2025-12-05T04:24:14.331189+00:00",
+  "contributor": "unknown",
+  "environment": {
+    "python_version": "3.11.13",
+    "openai_sdk_version": "2.8.1",
+    "os": "Linux 5.15.167.4-microsoft-standard-WSL2",
+    "env_hash": "sha256:82b59585ac582b7441e0dfb1a4ad0fabea13d6ea352206d6704de713f3c103ab"
+  },
+  "probes": {
+    "model": "google/gemini-2.5-flash-preview-09-2025",
+    "level": 0,
+    "trials": [
+      {
+        "openrouter_request_id": "gen-1764908654-q7O7U5iI0ONHAgJ9upLD",
+        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
+        "response_hash": "sha256:6f1b7efe9d3591d05c1436e4e65832e79207f970a5296d36976e4719b3261f60",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 680,
+        "request": {
+          "model": "google/gemini-2.5-flash-preview-09-2025",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764908654-q7O7U5iI0ONHAgJ9upLD",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "tool_search_bRPdy9MRNhMER5P2DHK6",
+                    "function": {
+                      "arguments": "{\"query\":\"authentication\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": null
+              },
+              "native_finish_reason": "STOP"
+            }
+          ],
+          "created": 1764908654,
+          "model": "google/gemini-2.5-flash-preview-09-2025",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 7,
+            "prompt_tokens": 24,
+            "total_tokens": 31,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 2.47e-05,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 7.2e-06,
+              "upstream_inference_completions_cost": 1.75e-05
+            }
+          },
+          "provider": "Google"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764908654-UTYrRhILYeEyEat7HyYa",
+        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
+        "response_hash": "sha256:cb30dabebc7d89e0cdc6f90239a42569d8da420d7c14041e8754297e058dff88",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 467,
+        "request": {
+          "model": "google/gemini-2.5-flash-preview-09-2025",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764908654-UTYrRhILYeEyEat7HyYa",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "tool_search_igUUQBCBxpskktdi4U5D",
+                    "function": {
+                      "arguments": "{\"query\":\"authentication\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": null
+              },
+              "native_finish_reason": "STOP"
+            }
+          ],
+          "created": 1764908654,
+          "model": "google/gemini-2.5-flash-preview-09-2025",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 7,
+            "prompt_tokens": 24,
+            "total_tokens": 31,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 2.47e-05,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 7.2e-06,
+              "upstream_inference_completions_cost": 1.75e-05
+            }
+          },
+          "provider": "Google"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764908655-L8jw6GyJN1S9n7qq2Xwe",
+        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
+        "response_hash": "sha256:0f2bb1e1405b09c69797f0b7ac8e40ed8bad312101917c35fbf791d3175f3d39",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 439,
+        "request": {
+          "model": "google/gemini-2.5-flash-preview-09-2025",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764908655-L8jw6GyJN1S9n7qq2Xwe",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "tool_search_FgHU9oB1vexcapt9dcmu",
+                    "function": {
+                      "arguments": "{\"query\":\"authentication\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": null
+              },
+              "native_finish_reason": "STOP"
+            }
+          ],
+          "created": 1764908655,
+          "model": "google/gemini-2.5-flash-preview-09-2025",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 17,
+            "prompt_tokens": 49,
+            "total_tokens": 66,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 5.72e-05,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 1.47e-05,
+              "upstream_inference_completions_cost": 4.25e-05
+            }
+          },
+          "provider": "Google AI Studio"
+        }
+      }
+    ]
+  },
+  "summary": {
+    "successes": 3,
+    "trials": 3,
+    "rate": 1.0,
+    "wilson_ci_95": [
+      0.43849391955098227,
+      1.0
+    ]
+  }
+}

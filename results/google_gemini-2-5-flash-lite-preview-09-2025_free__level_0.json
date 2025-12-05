@@ -1,6 +1,6 @@
 {
-  "submission_id": "sub_0ca69abd0c45",
-  "timestamp": "2025-12-03T06:58:47.780972+00:00",
+  "submission_id": "sub_ca1f97fa10aa",
+  "timestamp": "2025-12-05T04:20:16.062874+00:00",
   "contributor": "unknown",
   "environment": {
     "python_version": "3.11.13",
@@ -18,7 +18,38 @@
         "response_hash": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
         "tool_called": false,
         "schema_valid": false,
-        "latency_ms": 0
+        "latency_ms": 0,
+        "request": {
+          "model": "google/gemini-2.5-flash-lite-preview-09-2025:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        }
       },
       {
         "openrouter_request_id": null,
@@ -26,7 +57,38 @@
         "response_hash": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
         "tool_called": false,
         "schema_valid": false,
-        "latency_ms": 0
+        "latency_ms": 0,
+        "request": {
+          "model": "google/gemini-2.5-flash-lite-preview-09-2025:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        }
       },
       {
         "openrouter_request_id": null,
@@ -34,7 +96,38 @@
         "response_hash": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
         "tool_called": false,
         "schema_valid": false,
-        "latency_ms": 0
+        "latency_ms": 0,
+        "request": {
+          "model": "google/gemini-2.5-flash-lite-preview-09-2025:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        }
       }
     ]
   },
