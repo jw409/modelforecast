@@ -1,5 +1,5 @@
 NVCC = nvcc
-NVCC_FLAGS = -O3 -arch=sm_80 
+NVCC_FLAGS = -O3 -arch=sm_90 
 
 SRC_DIR = src
 BUILD_DIR = build

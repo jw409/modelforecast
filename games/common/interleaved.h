@@ -17,6 +17,7 @@
 
 #include <cuda_runtime.h>
 #include <stdint.h>
+#include <cstdio>
 
 // ============================================================================
 // INDEXING HELPERS
