@@ -25,6 +25,13 @@ except ImportError:
 RESULTS_DIR = Path(__file__).parent.parent / "results"
 CHARTS_DIR = Path(__file__).parent.parent / "charts"
 
+# Import efficiency metrics
+try:
+    from modelforecast.metrics import compute_efficiency_metrics
+    HAS_METRICS = True
+except ImportError:
+    HAS_METRICS = False
+
 
 def load_all_results():
     """Load all JSON result files."""

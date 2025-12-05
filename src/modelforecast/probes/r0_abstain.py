@@ -1,4 +1,4 @@
-"""Level 4: Adversarial - Does the model avoid hallucinating tools?"""
+"""R0 Abstain: Restraint - Does the model avoid hallucinating tools?"""
 
 import time
 from typing import Any
@@ -9,9 +9,9 @@ from .base import ProbeResult
 from ..tools.mock_tools import get_multi_tool_set
 
 
-class Level4AdversarialProbe:
+class R0AbstainProbe:
     """
-    Level 4: Adversarial (No Hallucination)
+    R0 Abstain: Restraint (No Hallucination)
 
     Tests whether the model can recognize when no tool is appropriate.
 

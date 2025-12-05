@@ -11,7 +11,7 @@ from rich.progress import Progress, SpinnerColumn, TextColumn
 from modelforecast.output.json_report import write_individual_result, write_json_report
 from modelforecast.output.markdown_report import write_markdown_report
 from modelforecast.probes.base import ProbeResult
-from modelforecast.probes.level0_basic import Level0BasicProbe
+from modelforecast.probes.t0_invoke import T0InvokeProbe
 from modelforecast.stats.confidence import wilson_interval
 from modelforecast.verification.provenance import ProvenanceTracker
 
@@ -64,24 +64,24 @@ class ProbeRunner:
         )
 
         # Initialize probe levels
-        # Import all probe classes
+        # Import all probe classes using new T/R/A naming
         try:
-            from modelforecast.probes.level1_schema import Level1SchemaProbe
-            from modelforecast.probes.level2_selection import Level2SelectionProbe
-            from modelforecast.probes.level3_multiturn import Level3MultiTurnProbe
-            from modelforecast.probes.level4_adversarial import Level4AdversarialProbe
+            from modelforecast.probes.t1_schema import T1SchemaProbe
+            from modelforecast.probes.t2_selection import T2SelectionProbe
+            from modelforecast.probes.a1_linear import A1LinearProbe
+            from modelforecast.probes.r0_abstain import R0AbstainProbe
 
             self.probes = {
-                0: Level0BasicProbe(),
-                1: Level1SchemaProbe(),
-                2: Level2SelectionProbe(),
-                3: Level3MultiTurnProbe(),
-                4: Level4AdversarialProbe(),
+                0: T0InvokeProbe(),   # T0 Invoke (was L0 Basic)
+                1: T1SchemaProbe(),   # T1 Schema (was L1)
+                2: T2SelectionProbe(), # T2 Selection (was L2)
+                3: A1LinearProbe(),   # A1 Linear (was L3 Multi-turn)
+                4: R0AbstainProbe(),  # R0 Abstain (was L4 Adversarial)
             }
         except ImportError:
-            # Fall back to Level 0 only if other probes not yet implemented
+            # Fall back to T0 only if other probes not yet implemented
             self.probes = {
-                0: Level0BasicProbe(),
+                0: T0InvokeProbe(),
             }
 
     def run_level(
@@ -123,7 +123,13 @@ class ProbeRunner:
                 result = probe.run(model, self.client)
                 results.append(result)
 
-                # Create trial record for provenance
+                # Create trial record for provenance with full data for schema-on-read
+                request_data = {
+                    "model": model,
+                    "messages": [{"role": "user", "content": probe.prompt}],
+                    "tools": probe.tools,
+                    "temperature": 0.1,
+                }
                 trial_record = tracker.create_trial_record(
                     prompt=probe.prompt,
                     response=str(result.raw_response),
@@ -131,6 +137,9 @@ class ProbeRunner:
                     schema_valid=result.success,  # For L0, success == tool_called
                     latency_ms=result.latency_ms,
                     openrouter_request_id=result.raw_response.get("id"),
+                    # Full data for efficiency analysis
+                    request_data=request_data,
+                    response_data=result.raw_response,
                 )
                 trial_records.append(trial_record)
 

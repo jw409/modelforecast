@@ -1,6 +1,6 @@
 {
-  "submission_id": "sub_2806004b1057",
-  "timestamp": "2025-12-05T04:20:52.761716+00:00",
+  "submission_id": "sub_1fb8e6638a07",
+  "timestamp": "2025-12-05T04:22:20.283875+00:00",
   "contributor": "unknown",
   "environment": {
     "python_version": "3.11.13",
@@ -9,7 +9,7 @@
     "env_hash": "sha256:82b59585ac582b7441e0dfb1a4ad0fabea13d6ea352206d6704de713f3c103ab"
   },
   "probes": {
-    "model": "qwen/qwen3-32b:free",
+    "model": "google/gemini-2.5-flash-preview-05-20",
     "level": 0,
     "trials": [
       {
@@ -20,7 +20,7 @@
         "schema_valid": false,
         "latency_ms": 0,
         "request": {
-          "model": "qwen/qwen3-32b:free",
+          "model": "google/gemini-2.5-flash-preview-05-20",
           "messages": [
             {
               "role": "user",
@@ -59,7 +59,7 @@
         "schema_valid": false,
         "latency_ms": 0,
         "request": {
-          "model": "qwen/qwen3-32b:free",
+          "model": "google/gemini-2.5-flash-preview-05-20",
           "messages": [
             {
               "role": "user",
@@ -98,7 +98,7 @@
         "schema_valid": false,
         "latency_ms": 0,
         "request": {
-          "model": "qwen/qwen3-32b:free",
+          "model": "google/gemini-2.5-flash-preview-05-20",
           "messages": [
             {
               "role": "user",

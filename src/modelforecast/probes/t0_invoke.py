@@ -1,4 +1,4 @@
-"""Level 0: Basic Tool Calling - Can the model produce a tool_call at all?"""
+"""T0 Invoke: Basic Tool Calling - Can the model produce a tool_call at all?"""
 
 import time
 from typing import Any
@@ -9,9 +9,9 @@ from .base import ProbeResult
 from ..tools.mock_tools import get_search_tool_basic
 
 
-class Level0BasicProbe:
+class T0InvokeProbe:
     """
-    Level 0: Basic Tool Calling
+    T0 Invoke: Basic Tool Calling
 
     Tests whether the model can produce a tool_call response at all.
 
