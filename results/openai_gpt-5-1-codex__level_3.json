@@ -1,0 +1,776 @@
+{
+  "submission_id": "sub_967d297ff683",
+  "timestamp": "2025-12-05T04:50:59.918504+00:00",
+  "contributor": "unknown",
+  "environment": {
+    "python_version": "3.11.13",
+    "openai_sdk_version": "2.8.1",
+    "os": "Linux 5.15.167.4-microsoft-standard-WSL2",
+    "env_hash": "sha256:82b59585ac582b7441e0dfb1a4ad0fabea13d6ea352206d6704de713f3c103ab"
+  },
+  "probes": {
+    "model": "openai/gpt-5.1-codex",
+    "level": 3,
+    "trials": [
+      {
+        "openrouter_request_id": "gen-1764910264-dlT7gTI3sslQKsSUWNxG",
+        "prompt_hash": "sha256:9d40be51ccb5e3278571f0cca554d53c5594d40a1cf25be72dc7d5624e568fca",
+        "response_hash": "sha256:319ecd3f81d27de9401c4f29a2aa40a428dd7e19eca3beb65fa09578aa561e2a",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 2683,
+        "request": {
+          "model": "openai/gpt-5.1-codex",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Find files related to authentication and read the most relevant one."
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764910264-dlT7gTI3sslQKsSUWNxG",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_9Si4sI4oNnFWLCMNUArpiZrE",
+                    "function": {
+                      "arguments": "{\"path\":\"src/auth/middleware.ts\"}",
+                      "name": "read_file"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "**Checking for relevant middleware**",
+                "reasoning_details": [
+                  {
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.summary",
+                    "summary": "**Checking for relevant middleware**"
+                  },
+                  {
+                    "id": "rs_0b46e127bef3951001693264b93068819798cd48490bf7668c",
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "gAAAAABpMmS5VlXCSYpfiOciCTp8z5R1lVKEDLUf34B6GDtUpWu3TUv4KT2nwbQ2-vOKtuJMyhkORySZyy14nZXZPEXUUkPqN4TpcsRe9LOgg8SU5biSTq_mDl78Un-bC8IV8V2vr70HNzZ4Ufh9SWlSV9tWpDNy_cpE3ht1Hu8C1FEN7qslGTSExHsk3TVzBXU7omPO9mT8Pm-QTngQqi8V9OQ77Ih9b0vVGgYBLoidAs3XpfYxhwJL8XuNQ0CK1yb7uOffvOFjGULapiMT3J5nOoffOk-G4ZkL0TsOGa5HCOfnUSmdxG3xcJD7krneilBKM3cjrq6id3IW-NDbWviT0Pu9sD2aCNCKBd_yY3E-bGZOIgVjthbLdznDqx-vpPoMpVeBNgzlo0XN-bt9Gva1s4XB7tYbSrWaQDf0vLKLSIOXvZw_KkbZ74Xg_520OpbSw9dTSE5kbzaHQlghZoe0_i38PpWluwy1uV2ockYXwIFXDPt5CJ31hv5-XjU2cLUoLceh4eP_y01djNWxW0yXmcnZyCKq0JHWKD2AIxNu94Vs0UGey_E8dwLj0vPfN4DqILbJNwCUWE4fWYWxJU0NlInQkCZozoqbOfuY3hrjpQa3HXVU0ystWcYO4PQMDuHaPlJVaERAJsyAmF8sC0pXFEp1AdTrL2BHjTCcItPCXgMQC9F8_EGdXJGMXG0d2ITUyx6Bm6H7Z002KDoD7mlYYvGlF4rEz2qQBNHElgEZF-yQt7EYVKDgOXWG9Ac5xFDS6S0niepjFIck4a5Ipji2mVx0j34T8FXNx33w3CVwa3cbFUbzUXe-rQqmtr0g1G3q0D4zI1ED3ASmUzzm2H2XYl6wd_pUZthIYgHFdTqSTEU0m4l7Bab5RNQIV4xkwfmoraS0WiTiZQEMsw0u14uKSvA0BmNHCVqvs9zG8GkdqzkluMDOMIsClJCEdvohF6uJAWxdWeLKzvm7uvAM-cOqmIsMQUA6OF4flLUrvKj42S2mc8i2yVk="
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764910264,
+          "model": "openai/gpt-5.1-codex",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 24,
+            "prompt_tokens": 151,
+            "total_tokens": 175,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0.00042875,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 0.00018875,
+              "upstream_inference_completions_cost": 0.00024
+            }
+          },
+          "provider": "OpenAI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764910270-smQop6Y0Fmgbws6IFUps",
+        "prompt_hash": "sha256:9d40be51ccb5e3278571f0cca554d53c5594d40a1cf25be72dc7d5624e568fca",
+        "response_hash": "sha256:419a5f078eef4e78d19738ebebd67e3c8a74450171c32ca6e1f11eb54e4dfc41",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 6253,
+        "request": {
+          "model": "openai/gpt-5.1-codex",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Find files related to authentication and read the most relevant one."
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764910270-smQop6Y0Fmgbws6IFUps",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_QGwXnlyehL24GJ3M4HRBFDOa",
+                    "function": {
+                      "arguments": "{\"path\":\"src/auth/middleware.ts\"}",
+                      "name": "read_file"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "**Checking relevant middleware file**",
+                "reasoning_details": [
+                  {
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.summary",
+                    "summary": "**Checking relevant middleware file**"
+                  },
+                  {
+                    "id": "rs_0543dddffdd95b1901693264bf42008195ac80c09c81baa171",
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "gAAAAABpMmS_OP71BS_o_Ju4KGymk4cV_-2MQWripYlGgvPMUOaZtSD2LS9bT1z1nxTUWd9rVtV_4IJ6mGL-NrXYU1N_B5iU3DMOeIbYmnOAU3BC7GOXet4c3OYY7AaloLHLT7idmgwtlxC42LGkb0uan0cIPYQQcAOJKMWIU0KBtzK0KC8ENp3N4WRFL0DoGLwWEN4QFD8I_OJZA5gl0DWDShJm-rabxp1UgDVqpXFV5fO7D9BDkNndX0P69H7xCH46VAkW2gjQwnJTfjyeFS9foKECifhlBxeGs_2_U-AvhusXdaAoXX3Q0y67y01H465sheTU0u31OSq_d3nd1V28hygsnFyKAFsKYdV3rm8WFGERB7xNLCp_pLYfOU3TJ1NkwgHdMd9lbfXDtlsGsVqQ9ptpnDRqZ3uycDWEfyoMJ9bhPKFoymJzh0cLfsUgsIpIMbjm0zRBLmd2x0xYH2JE76peVeRrJYlXbOS-jiZoHIBt-UQhOHCzH4KC0dIJ2-y0pNWpFbN8Sn2XVLHOHFOikdYPTz8woWi1AAFbaU4CV9VfV0BhijoKUzy0K8MfUKQiOcQZr_rm0VwmFhg7AE7hWMXZdN6cDYsNdGjtcmry47WHKNKQ5HxJbIC7_DL9heFGSAXuTS7UhrNKodfTIAS3m4lwsPq0Z_Rel78KcMT_ezWG1ThQfytlblyw5vvKfNdo-2s2YrDCbw5alHbsgquxvfYXVC9D_8UkSY9TNFenoVuo1o8qyKqFq9hObq9pm5zLvnIp9UOcXnRqLW1u4XjeLQWDCEAx2Jb5l31MK5yJ0hp5EiNrNVJnLA58fhYoo7SsrgBTWAyfYC8PaQ-_VE_aZpJkhDYjUWRGqfEevbzIKl7EB7U0k6R-ezsZT6RtdC-e0IzpguNIC5LTOjxaZTwUIf6AqUppXg=="
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764910270,
+          "model": "openai/gpt-5.1-codex",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 24,
+            "prompt_tokens": 151,
+            "total_tokens": 175,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0.00042875,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 0.00018875,
+              "upstream_inference_completions_cost": 0.00024
+            }
+          },
+          "provider": "OpenAI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764910279-1UbRWWtTeM2cdzILlh5W",
+        "prompt_hash": "sha256:9d40be51ccb5e3278571f0cca554d53c5594d40a1cf25be72dc7d5624e568fca",
+        "response_hash": "sha256:ccc340fd2ab475471c18b158348d748411f21acc8a3adead666562e68be4d3a4",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 2358,
+        "request": {
+          "model": "openai/gpt-5.1-codex",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Find files related to authentication and read the most relevant one."
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764910279-1UbRWWtTeM2cdzILlh5W",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_Wz47uBhwXlCKPklLKSEo1XZa",
+                    "function": {
+                      "arguments": "{\"path\":\"src/auth/jwt.ts\"}",
+                      "name": "read_file"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "**Considering token options**",
+                "reasoning_details": [
+                  {
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.summary",
+                    "summary": "**Considering token options**"
+                  },
+                  {
+                    "id": "rs_0f4274741633294c01693264c7c7a481969777c36545229aa4",
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "gAAAAABpMmTIW3ypIMqkIF01EFOUjkRnz9n1sxKs-fGoJZvetgpHgAK8JBs2IIBYoRNabjsWJoF7MfBuOEGtyhRfnpmK3uoqkseUG_gEF5t4lrF1BxpFW3qVQ_4ohTVspGCcrqTZEz49gTEhy51kc0UYq4KA-HnZO7E57ZbJxXmcOXd_kUpEmd3PQbi_qdEr5pHpA25NjUVD6LC_pLQY990tLbDecbKqfzEskozs0_sdSUAqggVLKl4J0Ys8DuXQq1HwoSa_n7HUWCjSUIjQUJeU6hutPWtNCBqxsdT7lHtCbgY2Usxki-eRLPTRnxsedppv99dDDRzNH0MbYz11D3H-1f8sfJ0ewKzDUG1EC-WfG8gCPKQ2_ZyieRKoOIjICwjir6fgRro3E9Q0bQeHArGMdi3d8toGc_ml0ccS54sFbhEqQ11wMG3kKbyY0en1o8diGwytWXaLviRAjoHS4VatbYsc6QtBuGSEN4pOW_qDU2ctubrnklDfWwAUmoS8qqkiVsKWRa7eySaoJ0jUbyojwLoE864MJ04jv9q3UD03v1MrM7H4x3n40AzPrkiW4IVc05OCfPHLcBUnRnaHXojrvsgd2N2zHbvGfQMxJE7ou97UKwzVkqrIX1ilNF0F4hSVODnnXZHhZy9PpMRx5iastsPCK4coRdeumYIFxTbXL3zKJ2G7_78V3puqQnpTUGSpFH3IPqxNd4EazCaI2hv2TxBqjDQpXj3ly0abPLtehsZVXUqSDq1ZwRVviwbnWC40PKiaLmnZJVaeo9_i83PtweSLFZzbrn9kzd6Xy_fzv0b1_rAcYjaJzgZOd-dkR-RT4C2yaZLIHkKkhs0I6FO38LEF_0z6KXsL6HOCxSCFBepYjJTBB96ASDBJ_IUN4c1SwUlS18O1"
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764910279,
+          "model": "openai/gpt-5.1-codex",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 24,
+            "prompt_tokens": 150,
+            "total_tokens": 174,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0.0004275,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 0.0001875,
+              "upstream_inference_completions_cost": 0.00024
+            }
+          },
+          "provider": "OpenAI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764910286-8P3rcPK3WJVUKP1TEte9",
+        "prompt_hash": "sha256:9d40be51ccb5e3278571f0cca554d53c5594d40a1cf25be72dc7d5624e568fca",
+        "response_hash": "sha256:4ee367cf367c43ad7655021810e4d50cbbe77873456c2c31fc25d007a7811442",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 2359,
+        "request": {
+          "model": "openai/gpt-5.1-codex",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Find files related to authentication and read the most relevant one."
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764910286-8P3rcPK3WJVUKP1TEte9",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_nMxGbgTBpwVrmlLJeJIOPrFz",
+                    "function": {
+                      "arguments": "{\"path\":\"src/auth/middleware.ts\"}",
+                      "name": "read_file"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "**Choosing files to inspect for authentication**",
+                "reasoning_details": [
+                  {
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.summary",
+                    "summary": "**Choosing files to inspect for authentication**"
+                  },
+                  {
+                    "id": "rs_0f098ef0abc36f1101693264ce67fc8193880684b628ad5142",
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "gAAAAABpMmTPBbkg5ICzKoMaSV8VNNwOZONrll07-5PasFW4Yi-rQW6iL79g4NVRdzWVOA7Mcx2FXrAwVxv4xAkbsGu_9hGBrCzPC65Mj3JMPu6bJ7NYb7IYVgBfm6oAg_wr0o8jSynO8e2ytnvkV5_zMMaOl9a2LUD3ZreSkd7-Gg8_zt4-MsOtzUCa8h0vU1JvVXbBKFQsr51Hef2kVDWLkNYQpSfqzXDnXsAFkz7EG5UleQG4q6qzj71EQQQg_5OJ5mb5KL_Z09rcFOv45masHGogGA9fpE2CJJONkqnZQnOfAzA2cSs80EVUagqfCybK_dfCTTR4E7isl5EpBp0wbonMEyzS2x8eG-gVds0a3yVK4AU9EmbdtT-LXxxqVRpyoG9LB9G9vFF2Cm5vBLDkCsv7ZZLkRaBqE1mj7mFq--RoIciuJbkG0bt4g-cMUvqdFB56V78mLp6rA8tP_Pb3ECLvyYC2585JLzC6jXhqG5GpQrdGsNuktbduHpq-gNqiwQlzQPUymk7knq_KuQTPyaNCqy4xw1J-PNOOwHwTksCTet7zP9oK0q2WYiOsY9ZRevLO2tozhQIo5R9xxmLmg1hu9A_Oo_1b0A4yVB0ud97tkUTTCTxa2w9W6zNXYwcz9uit5Hzf_mlESJsoZBMGGE4SulZrLlwcZbg_oWDsBJuSdZsOf21bLpVuSqdv3aorvm0uXyz8Rp-W9cuGW03Eh1vcRQ_Y8IUfdkrcRXX8e2lWv7DGg6VuRyZanYaa4ol9XAdk2MUL0bl3eBEyzoo_xV_A5Cd_MyEgocdtUzIZ2jSqiko28DIlOZ7bXwP_yNu4O2r6RY2T4TqiHdCw94p_x7ZRtoqsEpyL9ltnmfhVAOIRZhyhUOfAsTeCF7uTC5UxjRXSE7ZRUEzgm1HMGUrgdoovar0j7e9bbWxzdbkqkST2ztGW5Nrrhbs4rszER9sB83SYaNMhp47W_tGltZThoXRAdZcUBngF_YjyDZxStFyCI_JHC94qGlt1UnA09WCda1K9XyZ0DnRbHAeoh6gYp-CXVOsccQEgDUb7tlDJpK8nfHP6dCfM7-L5ud4bLEt6zoETkOwyGdJ_OQFslaK6a15fxiQfjg=="
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764910286,
+          "model": "openai/gpt-5.1-codex",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 24,
+            "prompt_tokens": 151,
+            "total_tokens": 175,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0.00042875,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 0.00018875,
+              "upstream_inference_completions_cost": 0.00024
+            }
+          },
+          "provider": "OpenAI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764910291-zKGGierJ3YDwvJ8qKOOH",
+        "prompt_hash": "sha256:9d40be51ccb5e3278571f0cca554d53c5594d40a1cf25be72dc7d5624e568fca",
+        "response_hash": "sha256:519ea9cfac7600777e3c8f71f5f9f1781f70547dae3e4354ed79f4e6b7608252",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 4108,
+        "request": {
+          "model": "openai/gpt-5.1-codex",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Find files related to authentication and read the most relevant one."
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764910291-zKGGierJ3YDwvJ8qKOOH",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_jSMscD4HzbTAaO3QXVr3rTmS",
+                    "function": {
+                      "arguments": "{\"path\":\"src/auth/middleware.ts\"}",
+                      "name": "read_file"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": null
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764910291,
+          "model": "openai/gpt-5.1-codex",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 22,
+            "prompt_tokens": 150,
+            "total_tokens": 172,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0.0004075,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 0.0001875,
+              "upstream_inference_completions_cost": 0.00022
+            }
+          },
+          "provider": "OpenAI"
+        }
+      }
+    ]
+  },
+  "summary": {
+    "successes": 5,
+    "trials": 5,
+    "rate": 1.0,
+    "wilson_ci_95": [
+      0.5655085052479191,
+      1.0
+    ]
+  }
+}

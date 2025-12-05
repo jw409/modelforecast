@@ -1,0 +1,791 @@
+{
+  "submission_id": "sub_6b92d3094d80",
+  "timestamp": "2025-12-05T04:50:59.903066+00:00",
+  "contributor": "unknown",
+  "environment": {
+    "python_version": "3.11.13",
+    "openai_sdk_version": "2.8.1",
+    "os": "Linux 5.15.167.4-microsoft-standard-WSL2",
+    "env_hash": "sha256:82b59585ac582b7441e0dfb1a4ad0fabea13d6ea352206d6704de713f3c103ab"
+  },
+  "probes": {
+    "model": "x-ai/grok-code-fast-1",
+    "level": 2,
+    "trials": [
+      {
+        "openrouter_request_id": "gen-1764910260-G4j9lrMm7NK14hP1QXtB",
+        "prompt_hash": "sha256:b1b21a108eb3ba14a87eabaacac42f96b50212ecd5909a182b9bcdd9130ecea2",
+        "response_hash": "sha256:7b81b33822ab3201b36d9c149716b6581fb354f58d8e3d6a7c08083ca0dad4c7",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 1864,
+        "request": {
+          "model": "x-ai/grok-code-fast-1",
+          "messages": [
+            {
+              "role": "user",
+              "content": "I need to understand what the auth module does"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764910260-G4j9lrMm7NK14hP1QXtB",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_58800362",
+                    "function": {
+                      "arguments": "{\"query\":\"auth\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "The user wants to understand what the auth module does. I need to explore the codebase to find information about the auth module.\n",
+                "reasoning_details": [
+                  {
+                    "format": "xai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.summary",
+                    "summary": "The user wants to understand what the auth module does. I need to explore the codebase to find information about the auth module.\n"
+                  },
+                  {
+                    "id": "rs_514e3102-e451-24f1-c48b-23eea3775339",
+                    "format": "xai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "+vQkeJ6dbxrZNBz0WWyEnBNDAsufYmtqHDFLkSJmcQ1TolrrQ3qBsbkGvrWKztCyiuq5U70aJ2VnTDxlCOrRUiWTnwlH531z/4+vmB/3l/eLnimQe+2ltMibxxQptIZ46VbGfWxFgCdvFd7haPbN59Fk8LVqyNRfg9aWZRCTeEjohkRAsKwbtMjWDkqCig2tq2SWb4dHesbl54uII7/vP3rlSWmZ3tM+BHpJFZC/Y81gzZAix6GqLtk2Eol4DuXPF1LeR7+ar9gmapszesg+syu0irSRh4t+EodmRW8p7RaLTgg8YcObz+AqlmGZ7+MUyDkJcNF2czgAbdTlCXNl7ol4DseBW8mI8lWTuqlJCyDMtl1NkaS8sKiwWxx+k0T91vFToenoBi55Hwn7BnomR8OjNdGLCd31etUGuWRXWOyJ8EbvR1aBgIvLNWx+iDe5aTPJcr62fNVLZnGDlqubkSsyqZ2uXY0GLSWc1lFuummxWPofIGOKlbrvbn6V7h/5K1w01B5T/U5K"
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764910260,
+          "model": "x-ai/grok-code-fast-1",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 100,
+            "prompt_tokens": 490,
+            "total_tokens": 590,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 76,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 320,
+              "video_tokens": 0
+            },
+            "cost": 0.0001904,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 4.04e-05,
+              "upstream_inference_completions_cost": 0.00015
+            }
+          },
+          "provider": "xAI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764910261-48AryKnJkxVSigh6VwXL",
+        "prompt_hash": "sha256:b1b21a108eb3ba14a87eabaacac42f96b50212ecd5909a182b9bcdd9130ecea2",
+        "response_hash": "sha256:d4197059e726f7e0d52931f905772f08bcba30d63bd63e4209a0d82d10f8c41e",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 901,
+        "request": {
+          "model": "x-ai/grok-code-fast-1",
+          "messages": [
+            {
+              "role": "user",
+              "content": "I need to understand what the auth module does"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764910261-48AryKnJkxVSigh6VwXL",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_40715815",
+                    "function": {
+                      "arguments": "{\"query\":\"auth\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "The user wants to understand what the auth module does. I need to explore the codebase to find information about the auth module.\n",
+                "reasoning_details": [
+                  {
+                    "format": "xai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.summary",
+                    "summary": "The user wants to understand what the auth module does. I need to explore the codebase to find information about the auth module.\n"
+                  },
+                  {
+                    "id": "rs_02fe4bed-1481-9400-3a99-e4876d95578c",
+                    "format": "xai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "708Ke4qV4aRfqjkFvFZEfOD941SyPkpuT7nwvTJHKjVYq5ze7gQgiZv/k/F6Ca4WgzVJw7vpj7vtFLZHJq5OlfKPfYJm1w2TNNS4mfJsEvSrwFQkkXpVRYhk1dlS8gx8k9oxY8i29c5ztZSKhKICDi/8Othjr6QSRAbxQ9xz7WVtHfk9Fc/pli7XubJj6Nn29iO/WhHuvpRl6VLESMKVfNPbvimnltQ419fdShS0CCu5W7v953OdFoWW9h/Z4yOHfGJS5z6UbV0KZHqF34cg9j92pWpEWUYXAZwFq1uf0HjEB8nA9Lf9jP3xI+uQ3D9aSKYYXBmcem1dkfMm13pJiecdHqOr7kK0c0hWDPv5OSr0lYNrOiqt7mGxGSNxJTJRB/ArTFEB9qjTxNqNMAqeo3IYPjdR1Owk2ajyBozX5UHqIJifqomGtYeUB2dUjuhik2hXQtz+uJ+0oEaMft09FMEegVXrgEYF4kBaCHrDqIjv6nur24/cYdWDmAVosTbHaFH29MvSx0Yb"
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764910261,
+          "model": "x-ai/grok-code-fast-1",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 100,
+            "prompt_tokens": 490,
+            "total_tokens": 590,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 76,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 448,
+              "video_tokens": 0
+            },
+            "cost": 0.00016736,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 1.736e-05,
+              "upstream_inference_completions_cost": 0.00015
+            }
+          },
+          "provider": "xAI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764910262-tb0PwMqZpUTL58QDCnnu",
+        "prompt_hash": "sha256:b1b21a108eb3ba14a87eabaacac42f96b50212ecd5909a182b9bcdd9130ecea2",
+        "response_hash": "sha256:ed3a695520c1d1e0a444090ac3f637255490560f196c71d04d0563fca0e0df7e",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 915,
+        "request": {
+          "model": "x-ai/grok-code-fast-1",
+          "messages": [
+            {
+              "role": "user",
+              "content": "I need to understand what the auth module does"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764910262-tb0PwMqZpUTL58QDCnnu",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_27336358",
+                    "function": {
+                      "arguments": "{\"query\":\"auth\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "The user wants to understand what the auth module does. I need to explore the codebase to find information about the auth module.\n",
+                "reasoning_details": [
+                  {
+                    "format": "xai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.summary",
+                    "summary": "The user wants to understand what the auth module does. I need to explore the codebase to find information about the auth module.\n"
+                  },
+                  {
+                    "id": "rs_ea56a0d6-d9d8-d4c1-e236-3470df3ff97e",
+                    "format": "xai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "zHvsFnVBvVgsacRNr3KEdTrV5KJJQ/d6w49R8lFqTTnmmybgvf3sCv9SPNzYmDHF/li7ARm+WPwK7rkBM4cdGpRd4Gv7tjrSDFmwBOLNfDBL7PGiOlQ3sJ+zcxaslzmhcmnUDPjv3o4D8H0BKssqDc/OFOi+d2YEUDPkpax752eoF4B8sVSlGTkZgFRJCsidkybvRZaAK2jlcE8sjhOZqdvRf34ZNjXPVk6Q7Gv4xMsK7WKrg8cQgOCUwBkGbPoOKi0K/b2eUFtDm0YtikPPOOQd46ikm+GSrYF0uAHQeU6iO2hCzFYdoEjsfR2UFcScAoye7W0zrrXuR+X/NNvfVxCORuXtdq6lXQz4SjSY2Cu3rLHwkiZjltfCZl1jUMwsFwkJ5wZd0TP3wdufhx0gNXc3BV8pEtVn/qh/ThURQYA2MpKzXTrFb1ZyNWJwO3lMacErEil2RBhUoKZdUFdV28KK2OLivI7ABdBsGq1V2Zh9huRVtYiXpB1Xr9DkW9EaaeJXsoVYiPTs"
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764910262,
+          "model": "x-ai/grok-code-fast-1",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 100,
+            "prompt_tokens": 490,
+            "total_tokens": 590,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 76,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 448,
+              "video_tokens": 0
+            },
+            "cost": 0.00016736,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 1.736e-05,
+              "upstream_inference_completions_cost": 0.00015
+            }
+          },
+          "provider": "xAI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764910263-n5sF3BFLly0bYFVidpFe",
+        "prompt_hash": "sha256:b1b21a108eb3ba14a87eabaacac42f96b50212ecd5909a182b9bcdd9130ecea2",
+        "response_hash": "sha256:38a9c008f104b4d26bc93ec08069be25135b70afb8353ede7ba932211a66e270",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 1362,
+        "request": {
+          "model": "x-ai/grok-code-fast-1",
+          "messages": [
+            {
+              "role": "user",
+              "content": "I need to understand what the auth module does"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764910263-n5sF3BFLly0bYFVidpFe",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_59541930",
+                    "function": {
+                      "arguments": "{\"query\":\"auth\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "The user wants to understand what the auth module does. I need to explore the codebase to find information about the auth module.\n",
+                "reasoning_details": [
+                  {
+                    "format": "xai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.summary",
+                    "summary": "The user wants to understand what the auth module does. I need to explore the codebase to find information about the auth module.\n"
+                  },
+                  {
+                    "id": "rs_58648cb5-0cff-5b0e-13ec-a78a8662a0a6",
+                    "format": "xai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "94G6ltr4pCO2fIDHPvgJ5eFyswoqUOusOa20qOCvCbmNxBhSyN3iFZPiGX96N6eG0jsl19YEduCEXYrMMW/ZbpMZwqVf/awqDfhklwKT5QedZKeYMztczU5i65wQfvP/UcKj7toub+3NCkAwPKlyMk2lECk5/n+/x9ndLMnG93R5cCwhGjJv2+7719vsx2qqSdLgKMlLEgWdIXKu+YR3FACu5deNlWU1NsM3mKMN8NVuKpsJ5BPVz4+EY8+xq7esQg5kQyPIQH2r5sCyXb1AsrS6My8xOp90WmlBNv6MoshMRxSJ+8FC/bZVxDm3c+lEift2Y653ZYJPUQjDfN/6OYnxqzifoOA/SPaTmCUznHh5rFJ8kaH2S3jlZzV2wQoiwVk8WvztZvudPQ7j0K+yP42bRc1PSTXEJ19NQ9RJEXGCkPDWf0QnI4DSAFM/P/Tw1MNYdcmJfgNaD/j5aFXhLDkk6u8iM+OuplwZy0tyFLIwgH7bmWukzE4"
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764910263,
+          "model": "x-ai/grok-code-fast-1",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 97,
+            "prompt_tokens": 490,
+            "total_tokens": 587,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 73,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 448,
+              "video_tokens": 0
+            },
+            "cost": 0.00016286,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 1.736e-05,
+              "upstream_inference_completions_cost": 0.0001455
+            }
+          },
+          "provider": "xAI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764910264-IxWdKlVBGAfln24CWP9n",
+        "prompt_hash": "sha256:b1b21a108eb3ba14a87eabaacac42f96b50212ecd5909a182b9bcdd9130ecea2",
+        "response_hash": "sha256:b5236a611c2e71d9697bc68ef8018282de11b81990ee414b4aa61bdf70d4042a",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 863,
+        "request": {
+          "model": "x-ai/grok-code-fast-1",
+          "messages": [
+            {
+              "role": "user",
+              "content": "I need to understand what the auth module does"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764910264-IxWdKlVBGAfln24CWP9n",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_64164450",
+                    "function": {
+                      "arguments": "{\"query\":\"auth\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "The user wants to understand what the auth module does. I need to explore the codebase to find information about the auth module.\n",
+                "reasoning_details": [
+                  {
+                    "format": "xai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.summary",
+                    "summary": "The user wants to understand what the auth module does. I need to explore the codebase to find information about the auth module.\n"
+                  },
+                  {
+                    "id": "rs_031b08aa-018a-e7d1-441a-e96f6ad11500",
+                    "format": "xai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "39TEVV1lCPLSF4d2kEyZGzGKEiwx4+v1LecDPw2uzcaS/E3K3b0Vhi0jP1+hKrEmR4vlGN7Oj9E1g+KAy3thoHi1lJQKBEi8Bz+C80WVbtgvKfShDam/QYEdJ+mE0rVmYcauGDf2SYEk8Sdb3I8sJlUmDD/f25L5bEEet69n4yFn2DQPx63bwFHnLzo4qufezJIAwOGVMf/9olKSylNqS+h6vM0FzOtFCzDdyReBpBRpWkpFHZ0dOM8s3w3IH4Ju9xidLnCIQ9TuGWuUqI/XBV/e3uom9hIykH/FV3vJ/12FvIDIEp/KQRjm3GxMOxYJbhYVwpGBuIIKGeWCHh/z62CF1+/Jw/3/5sFjBLwMzClGDIf6tjXc/gxPUfKq9W8l1WB9OSF2i4cSTMT13ZebyP4M5Lh+pHLDhfTaMLLsyCY33lfmSF3yWBFA+FgPFhGAuKjj0AGLPzNL0ulbQGGZ6GLhopeaX2Y+pyarsFZriJJzXVZM0Yo86yM"
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764910264,
+          "model": "x-ai/grok-code-fast-1",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 97,
+            "prompt_tokens": 490,
+            "total_tokens": 587,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 73,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 448,
+              "video_tokens": 0
+            },
+            "cost": 0.00016286,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 1.736e-05,
+              "upstream_inference_completions_cost": 0.0001455
+            }
+          },
+          "provider": "xAI"
+        }
+      }
+    ]
+  },
+  "summary": {
+    "successes": 5,
+    "trials": 5,
+    "rate": 1.0,
+    "wilson_ci_95": [
+      0.5655085052479191,
+      1.0
+    ]
+  }
+}

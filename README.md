@@ -8,7 +8,9 @@ Do free LLM models actually support tool calling? Marketing says yes. We test it
 
 ## Today's Forecast (2025-12-04)
 
-**Only 7 of 32 tested models are production-ready for tool calling.**
+**Only 15 of 50 tested models are production-ready for tool calling.**
+
+**Only 8 achieve perfect scores across ALL capability dimensions.**
 
 ![Reliability vs Latency](charts/reliability_vs_latency.png)
 
@@ -18,10 +20,11 @@ Do free LLM models actually support tool calling? Marketing says yes. We test it
 
 | Category | Count |
 |----------|------:|
-| Production Ready (≥90%) | 7 |
+| Production Ready (≥90% T0) | 15 |
+| Perfect (100% all dimensions) | 8 |
 | Unreliable (50-89%) | 4 |
-| Broken (<50%) | 21 |
-| **Total Tested** | **32** |
+| Broken (<50%) | 31 |
+| **Total Tested** | **50** |
 
 ---
 
@@ -61,10 +64,22 @@ Most models pass basic tests. Then they hit A1 (agency) and fall off a cliff.
 
 **A1 is the differentiator.** After receiving tool results, can the model continue using tools appropriately?
 
-- **KAT Coder Pro**: 100% - continues tool use correctly
+- **8 models achieve 100% A1**: Claude (all 3), Gemini 2.5 Flash, KAT Coder Pro, GPT-5.1-Codex, Grok (paid), Grok-Code-Fast-1
+- **Grok 4.1 (paid)**: 100% A1 - perfect multi-turn tool orchestration
+- **Grok 4.1 (free)**: 0% A1 - returns text instead of calling next tool
 - **DeepSeek V3.2-exp**: 60% - sometimes stops or picks wrong tool
-- **Grok 4.1**: 0% - returns text instead of calling next tool
-- **Gemini (free)**: Never gets there - fails T0 Invoke
+- **Gemini 3 Pro**: 0% A1 - passes everything else but fails multi-turn
+
+### The Paid vs Free Grok Discovery
+
+The same underlying model shows **dramatically different behavior**:
+
+| Variant | T0 | T1 | T2 | A1 | R0 |
+|---------|:--:|:--:|:--:|:--:|:--:|
+| x-ai/grok-4.1-fast (paid) | 100% | 100% | 100% | **100%** | 100% |
+| x-ai/grok-4.1-fast:free | 100% | 100% | 100% | **0%** | 100% |
+
+**Why?** The free tier appears to have more aggressive output truncation or different inference parameters that break multi-turn coherence. Basic tool calling works fine, but complex orchestration fails completely.
 
 ---
 
@@ -72,17 +87,25 @@ Most models pass basic tests. Then they hit A1 (agency) and fall off a cliff.
 
 ### Production Ready (≥90% T0 Invoke)
 
-| Model | T0 Pass | Latency | Tokens | AES | Grade |
-|-------|--------:|--------:|-------:|----:|-------|
-| **gemini-2.5-flash-preview** | 100% | **0.5s** | 7 | **0.95** | **A+** |
-| claude-haiku-4.5 | 100% | 1.1s | 26 | 0.81 | A |
-| kwaipilot/kat-coder-pro:free | 100% | 1.3s | 19 | 0.80 | A |
-| claude-sonnet-4.5 | 100% | 2.0s | 26 | 0.68 | B+ |
-| deepseek-v3.2-exp | 100% | 2.6s | 8 | 0.64 | B+ |
-| claude-opus-4.5 | 100% | 3.4s | 26 | 0.56 | B |
-| x-ai/grok-4.1-fast:free | 100% | 6.8s | 8 | 0.38 | C+ |
+| Model | T0 | T1 | T2 | A1 | R0 | Grade |
+|-------|:--:|:--:|:--:|:--:|:--:|:-----:|
+| **claude-haiku-4.5** | 100% | 100% | 100% | 100% | 100% | **A+** |
+| **claude-sonnet-4.5** | 100% | 100% | 100% | 100% | 100% | **A+** |
+| **claude-opus-4.5** | 100% | 100% | 100% | 100% | 100% | **A+** |
+| **gemini-2.5-flash-preview** | 100% | 100% | 100% | 100% | 100% | **A+** |
+| **kwaipilot/kat-coder-pro:free** | 100% | 100% | 100% | 100% | 100% | **A+** |
+| **openai/gpt-5.1-codex** | 100% | 100% | 100% | 100% | 100% | **A+** |
+| **x-ai/grok-4.1-fast** | 100% | 100% | 100% | 100% | 100% | **A+** |
+| **x-ai/grok-code-fast-1** | 100% | 100% | 100% | 100% | 100% | **A+** |
+| minimax/minimax-m2 | 100% | 80% | 100% | 100% | 100% | A |
+| openai/gpt-5.1 | 100% | 100% | 100% | 80% | 100% | A |
+| deepseek/deepseek-v3.2-exp | 100% | 100% | 100% | 60% | 100% | B+ |
+| google/gemini-3-pro-preview | 100% | 100% | 100% | 0% | 100% | B |
+| x-ai/grok-4.1-fast:free | 100% | 100% | 100% | 0% | 100% | B |
+| openai/gpt-5-mini | 100% | 100% | 80% | 20% | 100% | B- |
+| openai/gpt-5.1-codex-mini | 100% | 100% | 100% | 20% | 100% | B- |
 
-*AES = Agent Efficiency Score. Higher is better. See Efficiency Metrics section.*
+*Grade based on overall capability: A+ = perfect, A = minor weakness, B+ = A1 weakness, B = A1 failure, B- = multiple weaknesses*
 
 ![Efficiency Comparison](charts/efficiency_comparison.png)
 
@@ -115,17 +138,36 @@ Most models pass basic tests. Then they hit A1 (agency) and fall off a cliff.
 
 ## Free vs Paid: The Real Comparison
 
-| Model | T0 Pass | Latency | AES | Cost/1M | Grade |
-|-------|--------:|--------:|----:|--------:|-------|
-| **gemini-2.5-flash-preview** | 100% | **0.5s** | **0.95** | $0.30/$1.25 | **A+** |
-| claude-haiku-4.5 | 100% | 1.1s | 0.81 | $0.80/$4 | A |
-| **kwaipilot/kat-coder-pro:free** | 100% | 1.3s | 0.80 | **$0** | A |
-| claude-sonnet-4.5 | 100% | 2.0s | 0.68 | $3/$15 | B+ |
-| deepseek-v3.2-exp | 100% | 2.6s | 0.64 | $0.21/$0.32 | B+ |
-| claude-opus-4.5 | 100% | 3.4s | 0.56 | $15/$75 | B |
-| x-ai/grok-4.1-fast:free | 100% | 6.8s | 0.38 | $0 | C+ |
+### Best Free Models (100% all dimensions)
 
-**Bottom line**: Gemini 2.5 Flash dominates on efficiency. KAT Coder Pro is the best free option - fast, efficient, and $0.
+| Model | A1 | Cost | Grade |
+|-------|:--:|-----:|:-----:|
+| **kwaipilot/kat-coder-pro:free** | 100% | $0 | **A+** |
+
+Only **one** free model achieves perfect scores across all capability dimensions.
+
+### Best Paid Models (100% all dimensions)
+
+| Model | A1 | Cost/1M (in/out) | Grade |
+|-------|:--:|------------------|:-----:|
+| claude-haiku-4.5 | 100% | $0.80/$4 | **A+** |
+| claude-sonnet-4.5 | 100% | $3/$15 | **A+** |
+| claude-opus-4.5 | 100% | $15/$75 | **A+** |
+| gemini-2.5-flash-preview | 100% | $0.30/$1.25 | **A+** |
+| openai/gpt-5.1-codex | 100% | ~$3/$15 | **A+** |
+| x-ai/grok-4.1-fast | 100% | ~$0.05/1M | **A+** |
+| x-ai/grok-code-fast-1 | 100% | ~$0.05/1M | **A+** |
+
+### The Grok Warning
+
+| Variant | A1 (Multi-turn) | Cost |
+|---------|:---------------:|------|
+| x-ai/grok-4.1-fast (paid) | **100%** | ~$0.05/1M |
+| x-ai/grok-4.1-fast:free | **0%** | $0 |
+
+The free tier saves you nothing if your agents can't chain tool calls.
+
+**Bottom line**: KAT Coder Pro is the only truly free A+ option. If you need agentic capabilities (multi-turn tool orchestration), the free Grok tier is broken - pay the $0.05/1M or use KAT Coder Pro.
 
 ---
 

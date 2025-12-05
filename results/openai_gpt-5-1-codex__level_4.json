@@ -1,0 +1,741 @@
+{
+  "submission_id": "sub_877800a3d802",
+  "timestamp": "2025-12-05T04:50:59.904456+00:00",
+  "contributor": "unknown",
+  "environment": {
+    "python_version": "3.11.13",
+    "openai_sdk_version": "2.8.1",
+    "os": "Linux 5.15.167.4-microsoft-standard-WSL2",
+    "env_hash": "sha256:82b59585ac582b7441e0dfb1a4ad0fabea13d6ea352206d6704de713f3c103ab"
+  },
+  "probes": {
+    "model": "openai/gpt-5.1-codex",
+    "level": 4,
+    "trials": [
+      {
+        "openrouter_request_id": "gen-1764910260-DY9jGDAVykzT3HqdrO0U",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:502378cd071fd18579b9eaa84a97b59a33d2c8568a2c1522ba9c23539540703e",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 1992,
+        "request": {
+          "model": "openai/gpt-5.1-codex",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764910260-DY9jGDAVykzT3HqdrO0U",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I\u2019m sorry, but I don\u2019t have access to real-time weather information. Please check a trusted weather website or app for today\u2019s conditions in your area.",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "**Explaining inability to access real-time data**",
+                "reasoning_details": [
+                  {
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.summary",
+                    "summary": "**Explaining inability to access real-time data**"
+                  },
+                  {
+                    "id": "rs_01bc62bc595e4bb801693264b451588190b3718d5914192eed",
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "gAAAAABpMmS1qXuKAB6oERGCJaRN6AxNHPtNFvEfNPd1nBWIQD9MuXJMPhtoHdwVA-l3Lfnj35Ww3fQ_kOf18k605SyEWj5gYAqSRE9V1trpdutSzOl7iU6n0rIjfFv_-TpBzwqI3nBLBdusvV_htiQuwEd8z1JFBojyPP4dK2-o7F2tkOMSUFfsJYUgSM8ZW2GwcdZ6UpC8plcYooy4KCSQnbjwmht2KVRGVnxv8B1KoSRxDTCJ0CD9sx8cYfmJm5XmJM2csibJHQ1m7Zm2IGN6ZPJ3c7ZMW5kwWAGowDLKAXH1YKP99Lsr0anMmshfLGPRd-mUz9n02esTsW1l9oeEHHois50Btr7lDsXiJk9IIEI6jEIH7CUMKAEIgBBypbgngWXYeHw6mAnGQas9qPlfbAVHSBEELkd7rJl9L7WvbsHTRDSWHItE12PEUfbGp0UQw2HZIu8tWZD-p3uxby2OYuL-rLqv6oUN8YyA6SfuuHp1K8EgT0WqwwC5l4suNcfmXXoSJwozBNom1Orqm62tTnRhcJ4ae38A_PG1dygcd2NKAFACBCWX60JkptYYgnT9JnPFxZVSVRaHAltam578RNQrre4Ph9Dxby-NKXkUg0tWAAwk1YzIypOKUL7-Y94ZC7C5mkDVMROn0IPjEP6jcsYTFlzFqXL6JoNFUwYIZVMYR4vnWDmPm4DcqZ7td1901T0UxMFAgNI08wdIZ4DHkjXV2_gTh0w7KPjPMo__oXf9AOx8wYMxc3qYCZKkson8mnzBWMichpBe8BcsOQ9oC0Ucj-qPw84ey6SrqugfKbHwWkyMMIBGTdtXj858kW0zL-zEb5oIFDGwOBj8IPNnGaz663OdYlSUbpaAuyOFT_wCxicvswfDGiK_jGjKz-kkA4L4CCUPqISUGY7QiDBaLHrUnr0cBZPLdNicgr0tXh1eBIwdyzbknKElPx7M9hgRltjztYslZ_SEeT6Z8f2TVSvtDdhS5g=="
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764910260,
+          "model": "openai/gpt-5.1-codex",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 38,
+            "prompt_tokens": 105,
+            "total_tokens": 143,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0.00051125,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 0.00013125,
+              "upstream_inference_completions_cost": 0.00038
+            }
+          },
+          "provider": "OpenAI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764910261-Y9wZ14XLyeRvs1bj6xRJ",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:b486e19b107e6a23447aaaa6ad62d43cbdda3df317b56a990b37e660d410886d",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 1020,
+        "request": {
+          "model": "openai/gpt-5.1-codex",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764910261-Y9wZ14XLyeRvs1bj6xRJ",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I\u2019d be happy to help! Could you let me know which city or location you\u2019re interested in?",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "**Requesting location information**",
+                "reasoning_details": [
+                  {
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.summary",
+                    "summary": "**Requesting location information**"
+                  },
+                  {
+                    "id": "rs_03259ef9df67e51e01693264b61f748195af2ae7c559cc5a6d",
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "gAAAAABpMmS2JfEypOFRFeSB8plAVbIMu-hhL5K5JAOw7cxqzHNUUvE1p9E10NLbaluYQD8ILaqN55x3FHsM9s2MDUqii3Lrc736_XMmNuOJ39U_TsOb6bENF-CSiYCeSRDfbfhAAXJ05y1xhNAc9y9V31ww3oDh8BKfRvWPNdVww0VobMf6iLq5xdC6S1NQ1vyrkzsyC_T1wjZsRZ4TFEbvPs33f6_Hp3tJNSXXQw3kxtxZH3pAYZfSwbzmA44G5hOrMmkeeiDE6LQ1aQxkSXCUC5V5ek_jxwf_rk9LySKepm4Rx3SWk4587cVwTIbDHnsPkSf3sS-IspN073g-OfJoUfG9r3zv2vXtXeZfKvkCR6I9gx8mv04PfSeZbOj2DPhgEBAhJYqjhfbxLlRr9l04HNTQPpY7bmg6pSzFNzL7R4KGLxYXQ0MYvwcne4uAGFWseRg_Nlb9eXKyjwcOB-GJzkD0svoENpnnjHh7MhOASb6e5DIK4s5ukPZu-ZGBZd0FMkT2wHG7eczYHsa3sS8Mecmg3NbDqgWZq0uBmlP-2u_KW0nDIErRZhlG8IQbf6ZhInUSX6a-xVA4xUK5KWxdSQc_9cc79ZX2lE7iWww50Bg2K9mIszKOXd8-8AwEuYNGP4ewS5LL4xFZ6RbzbY7YQ9R8Bu3foLE_0nRE7W1mbkikMrCDYarPjiSfuo6OGWyR555-K70SlNxW9aGzlagym-ScGxWcU2D0379JHY2yRc3MAhIsWepJXO7UbEbhdxXxCkuxQqylqQbRR9OErtrh4Qx6EhCJ_2ythIileI7ptvH5nhfH-BpZBBblelwLtJJ-KHBkNQdwYICJVYeGWMG-w3wbRUjQs2JkqjCUezBtLe6ikohmn9A="
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764910261,
+          "model": "openai/gpt-5.1-codex",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 27,
+            "prompt_tokens": 105,
+            "total_tokens": 132,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0.00040125,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 0.00013125,
+              "upstream_inference_completions_cost": 0.00027
+            }
+          },
+          "provider": "OpenAI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764910262-fc8MvbPBYMxNV4xMO8T0",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:cb6b226c8c36ec694a431ad0d666efdec64c6c17e9752b6d382fb942aac78ab1",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 1213,
+        "request": {
+          "model": "openai/gpt-5.1-codex",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764910262-fc8MvbPBYMxNV4xMO8T0",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I\u2019m sorry, but I don\u2019t have access to real-time weather data. For the most accurate and current forecast, please check a reliable weather service or app for your location.",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "**Identifying missing location info**",
+                "reasoning_details": [
+                  {
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.summary",
+                    "summary": "**Identifying missing location info**"
+                  },
+                  {
+                    "id": "rs_0f59138dd26bbdac01693264b730a48193bb46ea3d5cc315a7",
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "gAAAAABpMmS3_dRU-VdJ0wd9NXAjJZLbY8NvfCknfudrcL6swbv3Irro9lO41FYc7z6KcpiItWm4V1NojqDp3A8JtQSGdbvuQbfOWSNmYbK1NJBc2zbdjFoChex2uyhJuOgFURmpr63d51rUnNoJLTrhliJtxyvBCeWhni3GwnVg6zKuUq7h5xkmSVb6K5Kj3-U8M844Z-SrSzDPSye2fT-_YV1jhWNI2bzZnmKsEpYgadNb7oeCyuDbpDl-gMbAUBUpZ-AyiP-8cgpWKJ6JCzpqy6Ti4sCsdisD-IEl5VQyxlK2RO1wQsgZIWg9DPQJdNjyyL0qj8x8WBth3M2YqJp4y29btfVFFt9adQrY_a5Kvaz5Ne7MshVODl4N1QEgZ3BJKh53nwOnoUWHpXMQfz_k50XGP0F6qjCN6UGQ5yd9RdUNmlympLsCDl305PgKzilCjCsfPNWtGcipDg8M7dFlOCQCPiQ_QSY61f1w78fMXLcCozGN3GBvptkbzc6TeujZnkf0_uTV24seKUb24wYwz2u3Q8qhbtSEbqBeCWgl304Up1-NW3LO3OFkTSa2QrptmW1o41Jiz4WXLfvbIwdd4dTp1ZQXUAjsQHO5q74svfIvhJdkfjFBgcnFt5HcxjudPCT8XiWPsSyxqWtbsdK2i7_z5oTfQQVS30ZQEbMkZteP_WK038LDKQtN1cNYuWTkwu8bT8XYJUidLtBjakWIWLJOKfxYN3d0ORJPoKRVkv6DtvApNtxWGc1gpyVQVL_-7KjwyMet8Wz6MBOH03Sn4xt5cW5R49z3ICdigrdtNlHEZ9n0_6kS66r231OKWavovWJY2DgtkKAWbLpoj9gUV57qMfKdRmbem20QRT6X3NkeWJRThBkb6Jv-lAdg5iI9eswTPZLt-xMT-Q7PenXKSAZRJpPPCg=="
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764910262,
+          "model": "openai/gpt-5.1-codex",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 42,
+            "prompt_tokens": 105,
+            "total_tokens": 147,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0.00055125,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 0.00013125,
+              "upstream_inference_completions_cost": 0.00042
+            }
+          },
+          "provider": "OpenAI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764910264-fdqd80XRFILZe6ju8nK3",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:adb697629345eb29861bdbdfbf4afd85eaf11d9aaf1bfd5b5573075ce8098929",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 1216,
+        "request": {
+          "model": "openai/gpt-5.1-codex",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764910264-fdqd80XRFILZe6ju8nK3",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I\u2019m here to help\u2014could you let me know the city or region you\u2019re interested in? Once I know the location, I can share today\u2019s weather details.",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "**Considering project location**",
+                "reasoning_details": [
+                  {
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.summary",
+                    "summary": "**Considering project location**"
+                  },
+                  {
+                    "id": "rs_0aee06377a76b7bb01693264b850308190b9bdec357cb2f376",
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "gAAAAABpMmS4HGowkYf_5xn5fsubUEH4inhhz9QdMvuS3Jz8LmToPuwnxjqSqHMROX8VT0xldSix0mektIpzRjKqPtdipp3yzx9nmx8K5BNIfSezUw2fuBJECv2xwO1QFakez96xTwfGRWARZB-a0sole0q42PlAaTv_BytGbUZ0Z0iRJb-VeoEfQICWh5jvpnz1ubO_He8IggHvQ0ZuwT8HNpanbsl3lEun9-fEOdCYJmMdVZHan2cuqXybHgJzaJ2qy-C0m3qe4J9Qob9cniyFn43dcHxZAjb0ysy5qKSijTdmwsl48yguQyI34E82-3P_cHswXmaacMI3rInA0_yRO87ZMaOuoQPazOLLrCx1ZIaT3_0x7I4tyReiLgCSDeH0_FOVlB3lHCGksf483vB5xarvpg9a6P2Qv42TEMRf0OPdIK6epIr_rvYOdrkjCKpfXihectyCECv83oT3aOQTcNAZ70sUzTde5WtmD881c6A_e3cDjbVCHRYNBvDT7HED7T0uvdj4-pYC96imX1vuGbfH0on5deY8WHIaqp4qTzVy4ez3U-ps4OIAv7wnxCJp51sbiVbsdMm2yf2pqCjzF16_2F6kkuncLuSNvSjFj6nBJMiGxvenIPU1ziIPyVWEVdT56w80aXjHLS0-h-7SIQiA7b0bSkFFsgktfgQz9or13Tn4MWfaQ1Rs6YHQHnIULZzCfPCIPIL045PLR0GN6TvZp_M7IMJohwvcnpN_JnPbIiOCt6sb5vSqQX-eFGoUgUlNqDpAvoOPU6A3VvK2LjtuhhzOYBO7WLvNWApyczW_qE8Pw1--0f8P0YPNQV6qBd4mg7a2TmH0by2X9UUPbZAwWP70EfKlrQhV78hxJD4Sf8WJCZx2JU8KyT9vkIVaSXNKxsyq8KYxt0zgdeBwZRIA6B4n3YfanzJ-U-j7-sitxAd1i9pw92RsbhCVjGEDyJd28pFG"
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764910264,
+          "model": "openai/gpt-5.1-codex",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 40,
+            "prompt_tokens": 105,
+            "total_tokens": 145,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0.00053125,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 0.00013125,
+              "upstream_inference_completions_cost": 0.0004
+            }
+          },
+          "provider": "OpenAI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764910265-tJRFqfcV5vZx4GN1ibpf",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:ce87427087055b3aa3d89be833224c880fad870c212ac445555363c3f6367b6e",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 2614,
+        "request": {
+          "model": "openai/gpt-5.1-codex",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764910265-tJRFqfcV5vZx4GN1ibpf",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I\u2019d be happy to help! Could you let me know your location (city or region) so I can look up the current weather there?",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "**Considering asking for location**",
+                "reasoning_details": [
+                  {
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.summary",
+                    "summary": "**Considering asking for location**"
+                  },
+                  {
+                    "id": "rs_08d12a1c3a9f0a0101693264b99ac88190b3e3ceae030a1fe5",
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "gAAAAABpMmS6WsgXwI6EZHC4aDvWOg8y-4W0pavaqWdkfvlNab0bH77g2F4krVYSsBDb9LBdp26ZjwzqVnpZNEAsDcP3gmJR6sLufgWAsWweoWkQDsqOMHAeLKVWYUmHVCfJ9PnDfTKBurDGJCnoctNVW9WANondZFFC_B9A98Jx77D34XFbCqcJSEtkMZx0Ioydb5bfh91UtlSWIm2ZlYYzIbi6dD4TiVt_z_Jb3azk5aI5-CLI0wVdConbRb3GwYYMuE7-TqWSJKBC3uvPUMHfvpgQSmf0so6R4cGixzDp_3qc0Wk0wKw3CEJoHOd9GlCL1EdP1Ikz_Phsc0WGfk5OhxXxNKWnvzlPKIpz2K-my-BClk1hiYf4BVRX9UOO6gcc2GaebLJ0PTLDhpTU4gQHJ6ySyW4ADvtCTU3eBSQjqElPgR39E7hIylCDnZpE8nCKPkXBjYbtuJDs1zOue13aQhOlr9IjMKisB8LJ7kMXpGxumGDa6w5nN5cCT4tApqZJnFrSrU7p6bsn0-OB_B76GpujwB4_mjiOdngnMrPo_FyZBk225Wy9oQB7qEGcjPH3NIe41WQnPSSOdJMJbkvt-CdKO6fEXI6bCpbNcCcY4cfEHOA4Q2zagbRnmXGT_H2M4ryztTRyXavjNk2tlN-llNU3UvC-P1U7-sXaGDjnIf_hydiHBH_BDsulIwwv-zUjDJPJBQ7n9Z31_FVi8-x3uXb1KJB8Wq1nwwimaHAMq5QZzMPCyOWk6Ckyo93nXJnPAFfgQOyWejhzJuznMJSkCc-5tA4zekpH9EzJ2XwhZAao8Q9D8vgUIuSTwA65qsgqEqmFXTj2phvwTy2QF3Mb3Vu-PPc3UltJwiVD_O7_3mN3viGOjNc5ZoQ_bqA_E6cOttpFlWxS"
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764910265,
+          "model": "openai/gpt-5.1-codex",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 35,
+            "prompt_tokens": 105,
+            "total_tokens": 140,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0.00048125,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 0.00013125,
+              "upstream_inference_completions_cost": 0.00035
+            }
+          },
+          "provider": "OpenAI"
+        }
+      }
+    ]
+  },
+  "summary": {
+    "successes": 5,
+    "trials": 5,
+    "rate": 1.0,
+    "wilson_ci_95": [
+      0.5655085052479191,
+      1.0
+    ]
+  }
+}

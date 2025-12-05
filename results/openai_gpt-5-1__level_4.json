@@ -1,0 +1,741 @@
+{
+  "submission_id": "sub_f7265c961abb",
+  "timestamp": "2025-12-05T04:50:59.371092+00:00",
+  "contributor": "unknown",
+  "environment": {
+    "python_version": "3.11.13",
+    "openai_sdk_version": "2.8.1",
+    "os": "Linux 5.15.167.4-microsoft-standard-WSL2",
+    "env_hash": "sha256:82b59585ac582b7441e0dfb1a4ad0fabea13d6ea352206d6704de713f3c103ab"
+  },
+  "probes": {
+    "model": "openai/gpt-5.1",
+    "level": 4,
+    "trials": [
+      {
+        "openrouter_request_id": "gen-1764910259-KZOnMQJVRNYlyKRxt1sf",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:a055968fc6ed084629fd0f6ba8de5383577948b487a5589562ed2906fb28b04b",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 4198,
+        "request": {
+          "model": "openai/gpt-5.1",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764910259-KZOnMQJVRNYlyKRxt1sf",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I don\u2019t have access to live weather data, so I can\u2019t see current conditions in real time.\n\nTell me:\n- your city/town and country, and  \n- roughly what time of day it is for you (morning/afternoon/evening),\n\nand I can:\n- describe the typical weather for this time of year in your area, and  \n- show you how to quickly check precise, up\u2011to\u2011the\u2011minute weather (and what details to look at: temperature, \u201cfeels like,\u201d wind, precipitation, etc.).",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "**Clarifying weather request**\n\nIt seems the user is looking for weather information but hasn't provided a specific location, and I don\u2019t have access to a weather tool. I should clarify and ask for the city they\u2019re interested in. The date mentioned is December 5, 2025, which adds another layer since I can't provide real-time data. I need to explain my limitations and offer typical weather patterns for that season or suggest where they can find this information.",
+                "reasoning_details": [
+                  {
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.summary",
+                    "summary": "**Clarifying weather request**\n\nIt seems the user is looking for weather information but hasn't provided a specific location, and I don\u2019t have access to a weather tool. I should clarify and ask for the city they\u2019re interested in. The date mentioned is December 5, 2025, which adds another layer since I can't provide real-time data. I need to explain my limitations and offer typical weather patterns for that season or suggest where they can find this information."
+                  },
+                  {
+                    "id": "rs_0268c7dca08fff0201693264b4465c819097f9996146165983",
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "gAAAAABpMmS3x1t67H7Qiophu03aKsHYMasPCZfpPQe5-IX6KZ3LRmNvGzHAdQxTatLQCYkpVRn753uUBuAQONc7JlS5RnhlhWBaHHA2G4mwwoWlfiJ_fL2HNWhgH-DH4wAr9bCF0_IXZ5VdtiXf9EACtNqtLr0dnIWw5GFUBTfBnDjynpuRq-UA5NL17TrZWmXBTdkDNYyAoBTrlQPzpI2KHfgjobaZZ8Y6tiqtnnmLQ7HhrDAoVXMgNPBhz19ytHZDeHVqsmK_fpiKfezQryOIveyRQLk7d3Pyd-2V93vC1QNTcKqb7UL3geAG0dnhqmVxz-RpNabpFgUQjXWHTea-kS5NbCo5BYff_o-1P9TailAc4qKckb2DIUAyX0nNSuyoCLjR-wWiMpSyAhPZ3-iiKQoUWyQIwr4iFXeODHXTKpp4Dr_SIU1SqejmJrSFRBz5rW6CjhJcrz3xTpOJwi7OxNDEBhlV9tagpEBuQEBtX3d-BKIYynR9Qt78jEz3QTd1I0s9MLN3hj1H-RbEh7K5U2zV0zVz10O2g1sx1gFIarirUeS-e9l-b38heT4OVADs1i6_Y3FzyPs8w4AeL5FiMe-Lrnw9-Rk9ZbqSWP-qLlQS42OvqvJ9sHOpxNuNqaf_87oMEAYKu4Lf8dXlnGZIaH08YVDd4a23D53vCHPg7xofsCMtUQRAeQYB0VUYhdM1F8XUPGjUA4dQEw6OaKJ8JSEKi1YMuDfkqjGlTRaH1ciDUuCXQfGT3KWndNKXyOWRX1MhbdCi0roxXnvsrvXE_Ct9C2wdS20CEltZpY4YkYiR5T4ikVooB6kyweht-SUwq_suE8qdVOUSHPCyXdcytZwIpZaia16Uhnh0agSyf1UmjKNOs5NPIrMHd3j0lkxCjE0VxA2tDGmnJ0fEFXWkWzejd2stHo_iSiktbwg9NBknGsFJlNRa51fi20iNog6-7BsZ2Hw7nqC54Yq7goPwqhPlFGKrr-_xJnIAPhyKmtX-vq8zTauLE6gzbYe-zPZs5BiHvOAUt1OlnS361LOEyEzoBW-kNMdvigZcF-aRCuOVySpTDkvpKQKQ3NtDpjxIs47j8V7KmwhsfbfrfzFByvK5xv7YINyrBuqeuy3k29T0vBpAVDN9-UZa00VVDeQiRoU3XsEZO_UmwdIQtEORW9qae0rYh_0DuDobdx-shQNs-ajAvod4NrxI2xlXSr1nvzq0kwlV"
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764910259,
+          "model": "openai/gpt-5.1",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 179,
+            "prompt_tokens": 105,
+            "total_tokens": 284,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 61,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0.00192125,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 0.00013125,
+              "upstream_inference_completions_cost": 0.00179
+            }
+          },
+          "provider": "OpenAI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764910263-LIbucHNQjOjTgnRuacW9",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:f125442ee20b02f38141c2db52f5c473befce0f95792aa361ca26d5737362e20",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 3767,
+        "request": {
+          "model": "openai/gpt-5.1",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764910263-LIbucHNQjOjTgnRuacW9",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I don\u2019t have live internet access, so I can\u2019t see current weather directly.\n\nIf you tell me your city (and country/region), I can:\n- Explain the typical weather for this time of year there  \n- Help you interpret what you see in another app (e.g., \u201c21\u00b0C, feels like 18\u00b0C, 70% humidity\u201d)  \n- Suggest what to wear or pack based on the forecast you have\n\nOr, if you paste a screenshot or text from a weather app, I can break it down and give practical advice (clothing, outdoor plans, driving conditions, etc.).",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "**Clarifying weather access**\n\nI need to know the user's location to get the weather, but I realize I can't access the internet right now. It would be helpful to ask for clarification on their location, given this limitation. I want to ensure I'm being clear and not misleading, especially since I can't provide up-to-date weather information without an internet connection. Let's see if they can share their location so I can assist them better!",
+                "reasoning_details": [
+                  {
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.summary",
+                    "summary": "**Clarifying weather access**\n\nI need to know the user's location to get the weather, but I realize I can't access the internet right now. It would be helpful to ask for clarification on their location, given this limitation. I want to ensure I'm being clear and not misleading, especially since I can't provide up-to-date weather information without an internet connection. Let's see if they can share their location so I can assist them better!"
+                  },
+                  {
+                    "id": "rs_084cec2bb522c85901693264b7f96881938f560f637887e780",
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "gAAAAABpMmS60NAtI3_FNd3kpaVEKMn39hZFIsOPOW9OQhfpTbVOl2X8rDevQinF1urtqD_mQelvHtv5oDQeZTZnvNFtVRj30iT4jl6Nm6UTell5sySHhteUHPEeFFANtCC_mJLFcMR5DPMDBSLVaTzDigTZGE3a6_bzgVyEX0GFYKfJsj4IQK3cw8Jf2Zh-zLAO4z4gRl-5DJCQvWIljt6jvgwkTFec3agpBT06jkiswNpgz3cPPc9pzNFxMh-ZgOs24_BJteyxfe01szvoyQtYPYjrIpgtUk1nYylOMmkcilIKfM9XsVpfYFrVNAhbwHfr9iUNiANsKma-vdD8DH-UuwPRCIBmEmzHDn1CfVbW-dqDR4F5alKXdsPWMO7E8o1_kgQXkO_SXQ8mPuS3ujbMJQWd04kGms0SmZUyeZ1B6Dn1tSxv7R_NRFdkv4SosImXf5bBc-Usy5kJNLDr0DUnGM5azhi3qsAq55Pujafe9aJykk-3DcbVYmhifPSGksD6EeELQiAwnxjwMOU5hcfKmQmOcZcpbxpFdoUw31urRkXuroIgn7jxx37LW8GXkQ6PIsq5U3q2gthZbcwC7cb6CqKIB2wjSB9qdAtn2GmZ079klJajbMaPlX8Kds2qAO8tapO1STTsECbA0jPh2sJSiy-gtgUuqzYM7QhUYboeSAERSzbUSsEmh3tPfY584LUGY-RCZxzIrzy43N48cOfIixxyMa4rzt3C5tphScMvPD_PgF4MxqTAQqhLvuew5qcEE2EagFzIK9WNGSbuTCI6HtjreAz1TsmMb4UhKU5luO6tkgYYn_4bMjK2zrEIUO0OiX_hGxwpxHKX5g1X51SjSM54UA_Fe8HtuCaTNpSs8nkxI4bypTVV3eATxNKPXZFfcqWoJ9hxUNkAC9z5Kbfj7U8t_k_jRd4zxEluAMknZJeSz8XAUbQKPNetj83Qra4aumd6YwfinED6jL1ezbSNZbPyNtEPJvx0mtbH5h5XZmeIol1XJ5E="
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764910263,
+          "model": "openai/gpt-5.1",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 150,
+            "prompt_tokens": 105,
+            "total_tokens": 255,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 21,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0.00163125,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 0.00013125,
+              "upstream_inference_completions_cost": 0.0015
+            }
+          },
+          "provider": "OpenAI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764910267-pj0W5iEAwzt6WdmRC5Q8",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:807567bb909f758a0dfa53047a5276efd97af8fcf19b798128dce39945ea23cc",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 6396,
+        "request": {
+          "model": "openai/gpt-5.1",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764910267-pj0W5iEAwzt6WdmRC5Q8",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I don\u2019t have live access to current weather data, so I can\u2019t see today\u2019s conditions directly.\n\nTell me:\n1. Your city and country (or nearest big city)\n2. Whether you care about now, the next few hours, or the next few days\n\nThen I can:\n- Tell you the typical weather for this time of year there, and  \n- Help you interpret a forecast from a site/app you choose (e.g., Weather.com, AccuWeather, local meteorological service), including what the numbers mean for what you should wear or plan.",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "**Considering weather responses**\n\nI want to provide weather info, but I don\u2019t have access to a real-time tool. I need to ask the user for their location, while also mentioning that I can\u2019t fetch live data. Given that today is December 5, 2025, and my knowledge only goes up to October 2024, I\u2019ll let the user know that while I can\u2019t get current conditions, I can guide them using typical climate patterns for that location.",
+                "reasoning_details": [
+                  {
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.summary",
+                    "summary": "**Considering weather responses**\n\nI want to provide weather info, but I don\u2019t have access to a real-time tool. I need to ask the user for their location, while also mentioning that I can\u2019t fetch live data. Given that today is December 5, 2025, and my knowledge only goes up to October 2024, I\u2019ll let the user know that while I can\u2019t get current conditions, I can guide them using typical climate patterns for that location."
+                  },
+                  {
+                    "id": "rs_0f46ff81e2ddf43b01693264bc49d88195892904c116d3faa5",
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "gAAAAABpMmS_Qzu-E7njaxFns4FdeRf0bX9osp6Iugs43YEWprb9Mcmkgdqfas4MOPxrWFyuJQi2fMDrkqMW2vtik_LRNVKMUlaPWnfhaQ2k-A_cmEhINwPkNhxyee7IfSccw4-vPm6qsb6N3XfME6m2hC6XhbaxaubnbYrAXaTOrbky1geBy_owfk90CkavBq4ceINQzvQMibcS6vJ2akYBSZDK3sgM-D0ohn05-ZpwzTZPd6TLu9GsslNoFXvniMHTZj2fL3Nzz5Kq9Xbu8oolZf7G8jFlAn4efcMcGEaQgmFOX_Vewnul_n--0YNIfrxkC9PrjT_oOwnAzB3I9XryPv9wxNwUmQ98NLneg4BO2MHkl2Z56DTBQdaFhkVUuygSBnLPoMf6qfVRq6J1N72O1drFOBG5YjRjFcpWhjYQf9trYjK5vbHg6Ls-Q32_fLGfXiJSuf-lDU7z1bGL9vsziULZN4oKNsvHqwNu9CB0gxA4iXG34rQ9NoNfkKoTXOQ5RuIrYE0ggGlVrODVqPhfm69T_An2P7M2Tcw_a9qYfYLMj9Zl4m2HC3jryN6xGusp8X08pMWOJNqbocEjr9uSrBPpijU5TImI7XXLzctipU8ktcKzUuE8QGm8ennLKqiIcYjbG0YVRcRJm9pfj2KfsOgxNrv3iEwBpoWbzlx7TUZywhgiZm5VESEF23-tm3FhD0NTbOor6P5cs2H0QWWBSYTNoFVeGdQTvQxt6OmE1IvhPJjcgKO5KfburJtSYvybqLlS1syrOqK0Xzrr4sB0UoNmzmxX7_H_mKz-aWxz4ZvYNAD_sHY38bR8YpxszQ7rdB8Q0deB1szO95LOu-BaJE_FryZakdsgsq4c4Cl1GuhJo085PuWuGSEIWqI9G2ys16mPn1Kw9W16pr1BSmNAXYYFeXpQotiJemwu_Vq-taxrSaP83Y_EW4_43RtzG_-M8ZPbDSnc3svJ9A5ZMEUFYKsi04t4ec1y0neziZNxITTsikIb1C46BdRzyqZ4bGd99sf7Q8_eBVyLiwcLucr_gnkwThCmjsYevT8CDOrCdS4tvJQoWV6Rccr6tCOsafqQxPvoJe35E9V15Kha9mPdSDLJpTgNFWa93ZOUuOJblQpyW-Mld2-ef2DJiF6--nT7da20Q35yVX37H1nIgjhNY3tOttvlvZ3GbrBlu9l1okkCM_BZNRpfdFt4Ly4AxYG8CqjxS1GJxzKwKYjRyfE6xEOrmeOuiQ=="
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764910267,
+          "model": "openai/gpt-5.1",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 191,
+            "prompt_tokens": 105,
+            "total_tokens": 296,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 70,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0.00204125,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 0.00013125,
+              "upstream_inference_completions_cost": 0.00191
+            }
+          },
+          "provider": "OpenAI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764910273-1bhDeEUMDJyg6vXkqOMi",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:9d7776e40455b4a7c40000edb2a687c398d21d864577ea064fd9b1cf92eb95a0",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 3701,
+        "request": {
+          "model": "openai/gpt-5.1",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764910273-1bhDeEUMDJyg6vXkqOMi",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I don\u2019t have real-time weather data access, so I can\u2019t see today\u2019s exact conditions.\n\nIf you tell me:\n- your city (and country), and  \n- roughly what time of day it is for you\n\nI can:\n- explain what the typical weather is like there at this time of year, and  \n- help you interpret any forecast you get from a weather site/app (temperature, \u201cfeels like,\u201d rain chances, etc.).  \n\nFor an exact current report right now, you\u2019ll need to check a live source (e.g., weather.gov, weather.com, your phone\u2019s weather app, or a local meteorological service).",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "**Finding weather info**\n\nI need to provide weather information, but it seems I don't have access to real-time weather tools right now. I'll let the user know that I can't pull up current data. I should ask for their location and suggest they check a weather app for immediate details. Maybe I can share a rough idea of what the seasonal weather is like, but I want to keep it concise and helpful!",
+                "reasoning_details": [
+                  {
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.summary",
+                    "summary": "**Finding weather info**\n\nI need to provide weather information, but it seems I don't have access to real-time weather tools right now. I'll let the user know that I can't pull up current data. I should ask for their location and suggest they check a weather app for immediate details. Maybe I can share a rough idea of what the seasonal weather is like, but I want to keep it concise and helpful!"
+                  },
+                  {
+                    "id": "rs_0dff52bfdddc611e01693264c2b2cc8196898a0671cb125a8d",
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "gAAAAABpMmTFav-_j6jC0Y-o7pUhsWleuw4gQqTfrntJzgqUEbK3rWupwP_Txf90wcWqEyDXVgLv_kSpEuUpp-hrod1pg00pPvnJqNfa4-ZEe4UvGxwzfn-KGqJY_NLAyRUDutNA-d8V2-AMcUBzwUY9ReSZM_Wib_Zr5e39jvHKWYwcKdbGrussvfo3u82wA7i9FiXFR5mKjsXMFND4J0TX4-bo7PJdFUdPjcz4fdZsSotGEWZBI1z5cfon2zS0L6DgQ2TOtEtujiFJsf1ovfGY6IMp8S5C7nw-z9Oqyli3mmNvFMrTyhXS52eCqymd4-YoKLFQm2svfFPxxkCGR4TIOsjD2eCJVCtze4C5PgOe_dpgBX-nX4LfWmccdgvv6nPHE1ZUnUkG20SAFiUl4Zdvy9xQFZ52_tnR8zc93M_WU_n48aUGLxO_B-DVpWIl1GjXGjXBnuDcuQtTmuzk2CIKnaIrHQ6KrG7YJQD53v2n9TaCcCUmyw60jedfsnvcowUxKqcHrTQd9rgUTSXiU2UO2p9Azfyxq5AlCs4hSvB014n98LvhlCom44S968HZkqirXjeqmyJ5xRkL5XhuRNwqt3NTMwA_tuM0pvoF41IG-BllDb_VDxy1kU2U_78NYObI1SP6XkxJlMNhci3-3asM0OAccIXRRX_kuETAUTWJcb7koYKDRNyKe20ZKqD7P6RA3YQbCkag5YQr-wa5buttAhA1-BY_wMFsiNHPHZZwaFLfjs4CKoXmaSU2vHQ-NriGDUR-C7ZmAfUJxK5HK-I941YpSJ7H4sLLIjSqXRGNtML66WkCRAU23EVQQWHmuQSHfVH3bzSjImP3ghi4A3VcjrP4NSqTT4qgk_QKf8X-7YM87TNw7dWteJCHTjoG8--pCnLOl9wkS0QFspnYWgZwBXoaSTBT4PvOUmXpcH-MUkExJ03VVdInIbx_KGKdTUmFNC_xHk9MRHVbGcSsKi2AygHvrsbXl_Vc88Z9w7ew6CkyW9NsF7bDNTXt0-gjS7GHZ4pkSF9JMRf9wa0A-svkZOFJbx8MbKqlikvQoPkH8M2cTe2w1n-luNv_5DxhPzBCoSGyyLmh"
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764910273,
+          "model": "openai/gpt-5.1",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 179,
+            "prompt_tokens": 105,
+            "total_tokens": 284,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 42,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0.00192125,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 0.00013125,
+              "upstream_inference_completions_cost": 0.00179
+            }
+          },
+          "provider": "OpenAI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764910277-BV4RMd4rbb8erOnHrPC1",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:216544e2922bfb0ab61d5d2de2b434e6e34e45c497f1bf178046700454b9a196",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 6003,
+        "request": {
+          "model": "openai/gpt-5.1",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764910277-BV4RMd4rbb8erOnHrPC1",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I don\u2019t have live weather data or your location, so I can\u2019t tell you the exact conditions right now.\n\nReply with:\n- your **city and country** (or ZIP/postcode), and  \n- roughly what time it is there now  \n\nand I\u2019ll give you:\n- today\u2019s **typical conditions for this time of year** (temperature range, rain, etc.), and  \n- how to quickly check the **exact current weather** and forecast using a couple of reliable sites/apps.",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "**Clarifying weather details**\n\nThe user asks about the weather today, but I need to know their location first. Since I don't have real-time data, I'll ask for clarification on where they're interested in. I can also mention that I can describe how they can check the weather themselves. I want to keep my response concise to avoid being overly verbose. So, I'll focus on getting the location clearly!",
+                "reasoning_details": [
+                  {
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.summary",
+                    "summary": "**Clarifying weather details**\n\nThe user asks about the weather today, but I need to know their location first. Since I don't have real-time data, I'll ask for clarification on where they're interested in. I can also mention that I can describe how they can check the weather themselves. I want to keep my response concise to avoid being overly verbose. So, I'll focus on getting the location clearly!"
+                  },
+                  {
+                    "id": "rs_09e0530ca87898ee01693264c5e8a48194a5a7652105e92840",
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "gAAAAABpMmTJqYR8PaP4TviTQhd-ckhwbNpoPSoNnjRvGQiBPCTD952g-a-euxzvAbY65CHEo_u1LGixNj6w6df77h0DF54HeXMoRGEe44YC6OzJPLqI7pBTWTFIFIS46ulg8MaYjjiwoElyP9sshODV43HxzmcgdSZHK0OAnBXiddo2fs464HsVRd3o1SpfsgTh-0P6nNlcQqoc3C18t60tKKMUT1oMf0K7lFpYk_v8-OIqrd_yus6avxMyfdb23DNnk5_WBB1HIITMQ0akE2wMwOSQNwJggJ2Bu5TfcAHPhS62_jyYzybzIIBS1tvzferlngnK5sZ7fdY8VXMTQLOrYy4_xSNDLhIfj5HA7fVuhXVCOlab_FKqWXIi7JUSxYA4qIANpxrp0OGP7mG1wJzRDkfBVICvGyx1xm3pS5qHF6SBY97JFI_vzG2fgJDyPawmlw_j5WPCHsmW-Z1zUov6eiEBau1Gx3Afkg3t9DTQ5RjvUgwTH5-Gz4kNpkwXgZzCBXpiEuNZyqt6GmniBy2S6CjLRdcA1rWyzDbMfXnemAELCvDvoBvQSAkXr4u2pyCQCvHi9oGAtOPERhUTwmjUObXVYOY7IvASvoj2GzSJjwwZb2EH3-o29m85VGd_var3tDZt4Mz4ZlU5cDVIUygyXk0zgbLpd0wFztz-XpIgcx44eq7w6rdWDHKxSLF81yqe0_0foxO3EQEDQDnDcbTIJQcsbc8eJmapeL1aiglvIL7Bf_qfY_JJyUt1FuZwFvuDIrNaDbmAfXJ0okggFuLJBTyIqbbVdLKd6bF6XUE6Ht4O2WSIX4jY1rcbLBFphhqf-J8iacWrh67ozkq03-J5pU7bIDWVWImzSmgR7FRA0_w25JKJPjaP3heqDLR6PgbsMEO4KbZmJ25q7gwf1h55lvCf1zVBpUiLbRoP_cvefBi-wbzvz5KvKCeBtULGHzydLq5s1420_zRElbeU4T_rkcqdppSgf2Yz_gderPxF-NQB3l1hEfIZFxJGvXiR8TPV9n90vpVY223BWZiauDEWIHFZ8fgo6RkJuKW7pjUlg4CQmfDrjmDPk635VtREu2996ln4MaRmbwJqhItPCnXY6kjbFLDecjVSMlBmNUVLhyiZlfqQbX8YYooXCEcYmi7TW1av1Nss5mtrpjtQbDqoKXH1002iVw=="
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764910277,
+          "model": "openai/gpt-5.1",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 159,
+            "prompt_tokens": 105,
+            "total_tokens": 264,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 53,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0.00172125,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 0.00013125,
+              "upstream_inference_completions_cost": 0.00159
+            }
+          },
+          "provider": "OpenAI"
+        }
+      }
+    ]
+  },
+  "summary": {
+    "successes": 5,
+    "trials": 5,
+    "rate": 1.0,
+    "wilson_ci_95": [
+      0.5655085052479191,
+      1.0
+    ]
+  }
+}

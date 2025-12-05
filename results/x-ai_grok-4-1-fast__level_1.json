@@ -1,0 +1,591 @@
+{
+  "submission_id": "sub_89b7f940e46d",
+  "timestamp": "2025-12-05T05:04:53.323846+00:00",
+  "contributor": "unknown",
+  "environment": {
+    "python_version": "3.11.13",
+    "openai_sdk_version": "2.8.1",
+    "os": "Linux 5.15.167.4-microsoft-standard-WSL2",
+    "env_hash": "sha256:82b59585ac582b7441e0dfb1a4ad0fabea13d6ea352206d6704de713f3c103ab"
+  },
+  "probes": {
+    "model": "x-ai/grok-4.1-fast",
+    "level": 1,
+    "trials": [
+      {
+        "openrouter_request_id": "gen-1764911093-gipfKEuXu5yKAI2PA00S",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:d366561513d199e72be633279715f016f095278aecae2f13ea5d4d26d1ee001e",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 2824,
+        "request": {
+          "model": "x-ai/grok-4.1-fast",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Search for authentication files, limit results to 5"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764911093-gipfKEuXu5yKAI2PA00S",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_25922095",
+                    "function": {
+                      "arguments": "{\"query\":\"authentication files\",\"limit\":5}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": null,
+                "reasoning_details": [
+                  {
+                    "id": "rs_578057e2-1a25-468d-de79-c2cbb6bf2954",
+                    "format": "xai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "CHtZVw4pa/F8aLDafJyvoNtUYAGvNh2hbjpPf2op9UgFiewkfRLdo/Sa8vp3MWKRvkaOvTm8RbVr98HML4a6ZYhDOLfTegZLxWSXLBX4DWEzTtNH+Sszb1EG7RRGeSbSxsbzgNi4GrDUlGZqNhWwBweU5/OBOUwaPcH/HRhH1CSe6jkhG79k58etVTq4Zcb28S98e+21OXvAp6394to7buIO5a9gHs2rg6QbPStJkZQhn9QC2mRyla/kyRP/iwjnFiimgZda/RsTOCM0opy4s0gV1jVfmHKDQr8FbWIpDHhNkMVea2ClwoZp8Q/0sTQ6R9QFlaI65NQ54XDVrKTui8j/VZYTflO/AuEA67TyWZxc7OZGhRba/DlMiy2V65dqcqgpKnw8ybRxKYf81cQkHzYTo0q2VpieeOXTkokR72Dg2IxqM0GAtOhiPivQsBbbOxVat98jlvy2pK7yrNxYgZ6IoJTRp6uUI2YKDsfnvIQuGZQJ0ICCAyzHnZp0YCfBVMMgYI7JHSrsVGTW4+uUvQSemtCZVn9bk4fXeWo/w4lLwVFpdB6j5K1ROagM4RZAVsUIxsxIgcK9K6iDWn0FBLZSaI73ZisKWq58SNvFAhbGikhChIiqe4uguuEosGgQj8HuyCY4Ori5e0KLYU8+mZwXn2SWE6e6SbLqdGd3bV+WBYqhup3aLcrJ/2diZTYG5H0Uc4NSPoX6TewU/ZaO8p0hCLqQF8ao7djG+wK/jK9/2DKTkF0y5C8xzFLjRgKhlOQiEEf4sycFvDjfzaP2JXEThJydHBBYd7x2qfqfplZOSHrBmiAdZvz2JtU0I4bJopeuaMJu73Mz6GWVxfVbcAfGxKGSFbMPbjOlUT6pxe0k12Ol5pQNiGmijNBckOWzXEn9YiitMm/R/60TLQkCNpF2RB3UlWoW7PCeaMei0av5nh7stRMwoAXWgHMMIDBpsddvUuioKYrWfHK8De9Nt4LjXfOP4wQKyuzFKDaecLEFy7MpC7iXu0XsTwq4wkc723FGH4QfTxgAmq82VjkIYfqynT4KhXx4ayjk7Pewkx2C0HMAWCDo3sGRyzyJgUGCVzF+Kp6iPf/L8hKpxq3N2LuXTrm4T3Kpz2Y31L/GWZPpPoh7pBQBLB7lwtloatLkd4Qjs9Ej1muJRzs04dqHk8g/8LXVvRySVNjjN8+KfX9RYYF14tJZAwSQ8ngq9luIBqHZaU1I9kyxoJ8OyIKWN7JRKl6cLVYOAQdEbKYxRXidOIYjxt0W7ycr+Vvgml6J+S3wCWT8x6XG7EjvpApwJo/NjaLlMevpURBeZ2z4Xw7i2aFBjFIhA7T5Vx2Hu0hc/zVe8jp/Cu3FeQwbhykP1ab7rnUTlicMpoy8h9Qt7kM1kwPH7YQLJ8uoNuCJnw"
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764911093,
+          "model": "x-ai/grok-4.1-fast",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 256,
+            "prompt_tokens": 375,
+            "total_tokens": 631,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 221,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 305,
+              "video_tokens": 0
+            },
+            "cost": 0.00015725,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 2.925e-05,
+              "upstream_inference_completions_cost": 0.000128
+            }
+          },
+          "provider": "xAI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764911096-Aib9MCuFsWrhoK9w3ODS",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:6d15efbe2cb556af2efba2f5d439a67eebc2d80256c9f49817bd87c1932e452a",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 1652,
+        "request": {
+          "model": "x-ai/grok-4.1-fast",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Search for authentication files, limit results to 5"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764911096-Aib9MCuFsWrhoK9w3ODS",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_34963974",
+                    "function": {
+                      "arguments": "{\"query\":\"authentication files\",\"limit\":5}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": null,
+                "reasoning_details": [
+                  {
+                    "id": "rs_31e148cf-4223-3a1e-aec3-7e7cb06593e4",
+                    "format": "xai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "LxpnU1WvvkedNdyVMilCEZ5LFmr017BYbBBkghkgjncXjv1zgLLp/yuo4QdMYUMNFedCeN7NnxmPex/ypVmr8BoBovlFWP68Oag/beZ/kMvgo64ANU1REc4nBKjAgyKjb0G2+pjLH0JUGVH1YoQ/1JSwuQPyOVIdihxWmPP5ALQhu6U1qmt7v/h4ZMKOvwIrZ5yRSXjVOvatRoRGAKFIekcc3jU8xGA4IxtXS5jQZ5sTCFqytzTg+wVswITJmjZOWqofkJvJXAX5pvl3oDtVxDvo1aapo2lqwVBxeOKXNmERaAlL5JFRb4CkXFfsBz1DSit2dBEt2OGN8axjOhZWlB9TyA2Pzw4rUP19AtdZzEz+/a7KvKMeo6IiWZDWnnLDfwcat1kxsfkeM3m9uL+jnFRNJO0XtJOunrqLwTsRbV83gkFobJktK3YeS2BdooWSYLy9ztoixcd6qI+BB6SWEXYiYgHvEs/rFV47/srVxzmOG9aeLMSfEOuGqP5B8JiAiDNzjq3xRQuLx+kmzQh3yJhdGT3iM+lBanwoxaFoCF3YvOKWE9ns1w9VnMpQrdtrVrOUYJ8O8qLAF6SyUQ5ciEvBT++5lATl+rRJc6P4mhvonpoQPABx2Q9OSXqcb0rPyiKBXTiesElSNNeihr3LMUyjApjeDmasBmdq5BoZ1Yqdj+V/XR4SZLaHJ6BgZwfSvgjR79uOiEowIznqokBNW/W/n60Zl9+y+8Ycb6hkXfPqzbi4lob6Dd6Nmk8HuS8h3E2s/3Mj4CulN/zGjjYHU81IdXnPt/5h9TjrmKIJRHyiJ4LJaU3u2nErRlzUzjHSznIn7yBuZnZOtFf9sKJOArXS4RuggocA7vj+iVsskkkOyLaOnwqv/HJlMFof95IAhf0gVdBFLDyxvH/389SnWHqvGCdWoqgpjNAFYN+1N25u/Cj4UGMzA+p9Ohzfgkmy7KC93k8J831M0I+6yZ6imrWnOAM+Qm5g46gkHeVHtqJdGJae+1KLZ6E32/H2ZvgOT069VbwE23kbsdbQIw5T8G4UzZ857xCuYtd1oCHa0zvEGhqJeU82hT7UziecAtwE/RuvdM5NtRtgG1WPd8oO/i+B7eREqmTNwqyoNfK69/oGkKRXgJ9WILIWqr3S0NHlHxWnS5wUTfWQc3m/WDJA4LoqKAwdQ/DBSPZeKViWLOJGhKsFUfbjmQAlGEZlOZz5gUKd5eRZFMEcknN8ySGgPTftb0j8XZaZB2HqLtHre78srOUDsWghE6AGm/ur6WMutdmq4OuVp+6PzbuFBw"
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764911096,
+          "model": "x-ai/grok-4.1-fast",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 241,
+            "prompt_tokens": 375,
+            "total_tokens": 616,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 206,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 374,
+              "video_tokens": 0
+            },
+            "cost": 0.0001394,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 1.89e-05,
+              "upstream_inference_completions_cost": 0.0001205
+            }
+          },
+          "provider": "xAI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764911097-scxYcOnaPufW05S6eSO2",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:125755cabc3a110a417eeae7dcb0887e448f2facc560a59f0dd8481443e06274",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 2325,
+        "request": {
+          "model": "x-ai/grok-4.1-fast",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Search for authentication files, limit results to 5"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764911097-scxYcOnaPufW05S6eSO2",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_22343223",
+                    "function": {
+                      "arguments": "{\"query\":\"authentication files\",\"limit\":5}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": null,
+                "reasoning_details": [
+                  {
+                    "id": "rs_96ea2608-31da-880c-fb63-edc0854a312b",
+                    "format": "xai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "styeYM5jFpRY8BlZrgIIS4Ze9B0MMRH/3kT5bDmPVld1c3SGMVa/fogG9WCQos7emW/NYaf66U/tni2KobY39oy26wUON5IITo+s/6IjKjJWrreCB8sxJP+d6I+Y8eBdLDDNAGL6xNCJS7+HQPHSmHzteIoKPGhiCNulPmkX2EC1DQiNs8sL+3mT6mOIQINnYwZjZSX75H3fQLOFuOEytxc1Hw5iptyJcJmsDmBBvPK0qBYTOMMvGMdkU/7NLpmmTWTIUHMxfU/xgAVl0am7vhivt9/ChqYTp7lDzyasoR3RSNBEoHjXCFRgpUDYPiGrYY6Rw6WtNWh4C2V8xt71uk8ppgTskIJVSIPrPI4I4dE/wCeuGaW1CVrIDXVejjOTbyymIO+ZGkG0mP3DKOGc1p95y9FV+88N+4tB278OODqAmHETK79vHVSfgCfBwN/4LgJtdmZVSTRbYx03Ss8D7QjBmShffmyEINNaXEP1UifTNa+nFmCLu7nbP2/EFEcB/ECTQ62EiJerVnOYul4zhT+Z+48yHo18iBUdsOIGFovHHZKGF/kE334TSBhGRlZn1q53+s3Mb3QeCTBMulFvY4HMefsD/dpQxMKMOUDvBCGfmRI7+OWS1MXiNCmaM5c9V0+/Ek2UPFHVvo8+2cfJi9GdzY/c1HiSQFxSphhgqPTBCEdEGvTJw75/CIH8uy50VYZ08mr3+uH62fvqsr/Ez3NXx4ZSv9qX40amvB21IEoVJRYqARbl9cyurR+a1IHUM8kV96ZsUOMYXQ+6QU31cu0Q61xSDUCtJV5OnehvKfTvlaYoXr+R0YyEKWYAsg9Zj5k8RJLZyiF60f/UlkdqSUUifWNR4YW/qXbAnlZe4o79Lu6Uh4qwJ/unHRyN++IYAhRSp76xOCtF7403+uM2ScIPh0uckqkF/07brdyGQ1iF0DSTNWNcHluh88Dgo08D5qP8xaHgn7e6v4SDv9XNGNJpsFAFES7Cok1dB1TP9WldOKLBtlpM8nSMhq4HDS83Z1DYHRcPrDLeWDj1+7LTbzcUNYbaEdDUVaUWJ6GryY0iMg7l/R3AshDqZfXadJpu"
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764911097,
+          "model": "x-ai/grok-4.1-fast",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 207,
+            "prompt_tokens": 375,
+            "total_tokens": 582,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 172,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 305,
+              "video_tokens": 0
+            },
+            "cost": 0.00013275,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 2.925e-05,
+              "upstream_inference_completions_cost": 0.0001035
+            }
+          },
+          "provider": "xAI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764911100-C6leaj2pJ6dAMTMinFe7",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:db52b21c0521cafb2d06f112ddbee54d18497da180fdf17136b6b871d94b5d7f",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 1488,
+        "request": {
+          "model": "x-ai/grok-4.1-fast",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Search for authentication files, limit results to 5"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764911100-C6leaj2pJ6dAMTMinFe7",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_27152417",
+                    "function": {
+                      "arguments": "{\"query\":\"authentication files\",\"limit\":5}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": null,
+                "reasoning_details": [
+                  {
+                    "id": "rs_94e58983-b598-6b79-ec67-b98074c08bc5",
+                    "format": "xai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "qzdwbC5Srdy/jV50hYdDKq9VstdnLUz2X4j6VvHfacNcGX+KNJG+fxquoGPFMu8qFLFD1MOxZW0TwWOoTmgq+ZLoEh+bnGnCEKQwAiYgA+cdcBDgJoL9SkfUUVNdR+qBg7mfFZPRL+R3Wty/iTwNHK6Uc9hGH5Om4ez15rRIXL8GN4Jfpo4KU+ioQakJOS5Yave4UVotQFkInFQeth23DTqMO37zylSfuq2YsBbST2z8RhbANIoM1mlYWkf0kQJasQGMu/S6SvhnacV7qMK4aUde6lvSFSXXT/tQZ0Z8dGix8tijJXiJ9K9Ni0NB+xmFv2H6cjjXB5qEZIfr+Qlf7c6uV8QXuU/SfnQFT+MQoFx2ifziTnTH4IuSpBMhQKH8RTvBE2+Wj36l1PLJsCE3Rc2ltii8WpGwtadvjqSZawV9fmo9k57mZHtpBaTHa1PVLSrlzsN8S7tHhhUO8imZeUMFoFO8KSrIbWqfevNE5zCGdGY28dc5FSmHXiOiWViVpu6E52Xp46E2HPU762SLNIuL0xDoFxKCLTMrrQbvtWJRIXWZ99+lMmVqh+FzLqCRL7pYrod7Ih9S3n160ANecQmDSCyd4UHI4kpgLlToeiBXP+Eh+WbH4duN3C2lckYDkqFDl6jWny8QP26RXkjdRNTAtJAcTct8jW3kqMCMYyLo+xXu3Xke0UfZuOCRKpe98iIwYsOfzIQn4loMvL49/wiv8rXJwiim9LZwe8+bXlt5hR5qbzdZEuudBHZnA58g69+JiVinvZ5a19YBTyItGpW1eb001m4X87wOlEf5DzF7qpKewhoOkmphkv6Nd4a7rr3FbPpbiHylK4WNFuhc41MOU3sEzK5j+wm53OcfhTOY/HOdqdVrW06U9+zKXPljsO/UncmLYnk9I2a2r8G803bAI2NBswb1FUZg89arAijJ9GP6Lq0EJsnk+v8gsFkBNYSt3HykVEVoxUvdLo+8VEylNEFaSRRkZ4krl0Sd0lZ7XWW2h2rAdcW0RyOMpubgMIuTKYHsvhxshYkEjnc6bXgV+6+CHRexF3L6KFeJWEdUbppmWvNmNJ8kuNsuvj0N97Y5qdMQPXlCXXKT0QzNc76X3xGegW5ANqohCO0jnuNobF04K0As9azj82ps4a5zxgeZ7UCH9pAuOf2wRqCWtY1anCdYyMgRLWQ0Uy4rmiiV65ggTUyFAANWMXXB5NSEhWM81eD/0ARIZR7dGGSdgTCHHIEkS64b+I+qvExxiEoa7zb+y0mN0YeZ40W2Kx/ih0Te7VfCHB37uSyy6+hG9OSswajp9UOrAqQVwr/6VyHP4uAGCgIrZb5Oj0kACUgR847F5bv3jZjphOogHCaLhm6eLGAdCsdpNU0fNktJ6K2DCMYq1oI"
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764911100,
+          "model": "x-ai/grok-4.1-fast",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 256,
+            "prompt_tokens": 375,
+            "total_tokens": 631,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 221,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 374,
+              "video_tokens": 0
+            },
+            "cost": 0.0001469,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 1.89e-05,
+              "upstream_inference_completions_cost": 0.000128
+            }
+          },
+          "provider": "xAI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764911101-uUIDdTyzyO2OeOaaVPUS",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:0d2c9f18faa670b54cf7a60e1df9527f69cf984fdcfa025cccfc2aba37e32966",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 1450,
+        "request": {
+          "model": "x-ai/grok-4.1-fast",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Search for authentication files, limit results to 5"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764911101-uUIDdTyzyO2OeOaaVPUS",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_42226331",
+                    "function": {
+                      "arguments": "{\"query\":\"authentication files\",\"limit\":5}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": null,
+                "reasoning_details": [
+                  {
+                    "id": "rs_423c3e9d-9bfa-2aab-f428-b9bb618b7719",
+                    "format": "xai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "T176Z5PY05wuAeg1Q0tJoYLfpFoiN/x2fahlj40JTTeoFlezfP8Q2khOzUXHpIvqzar9T54+W3tW5yS3O1azEef3c+qaXfCPkt25U5VsXwpW95NYu6m3arJvOgX8vPqteEzrwa0wuz+gggeT1o9jZO95keEXGVuxO9i2WhQKjmHcFVQSHLXjby0tp5adBaG/dyi6aOo7xyc4/PDXuFhJlIYkiwUkOn2BYYuG0oH8nqrVGWhp2brpcfvoOJSMj3M17AgmM6qeryEeb69kM52Qz6rTyyj3QcGnwMpyKr8DhqfPNOBapFetxAEuzZZyX3rVJFyAqhLNWK81zQpJ8XhsO5n5wTX9iOgs4gaYem7ebOIzEsAcnNeb0dFG2YPaEzlYHxH/nkejHyyhJz99RKCkNE2J6IJNDU8OEwitHslCq2bX9iJ1VLXXh4yxk8plpHHKJnFMBIYlQ1yIb82qt7VnIcOxmPZ5ryMU/W2kcGJ4zNcOIuKYSTrP56J149J/tr6oWn22ywQ3z8kPIfRkEUBmRnfd3Pz71Qh4ggIwN4cu820nDvakWkiMGeAvuhaprARYqhorFf7a9CE+qDsTTWDHSbiDxOuT33l9nGno7/XZ2MP/q//272HEY/la+ESVM6RSKYM8paExcBOwne7CR9BVN9CWjD9ND2CmYWjU94CQulEXyn3Co8QNNmo6hS8seCOG1EAgt7pBUaM+kVsPXp1auHcyfC2XWt182c2KHjV+Q+6B+djSNyXsLmU0ROFPfbXjhfF7lDjEbp2r3dLWxldikzXGAfBWUrixpC19/kUnfwoGp5JnX/EzfLv1FdQ1MQrXjRZtp2mTtW9Y5+mOKrlg4pudoK4rGQ"
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764911101,
+          "model": "x-ai/grok-4.1-fast",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 172,
+            "prompt_tokens": 375,
+            "total_tokens": 547,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 137,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 374,
+              "video_tokens": 0
+            },
+            "cost": 0.0001049,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 1.89e-05,
+              "upstream_inference_completions_cost": 8.6e-05
+            }
+          },
+          "provider": "xAI"
+        }
+      }
+    ]
+  },
+  "summary": {
+    "successes": 5,
+    "trials": 5,
+    "rate": 1.0,
+    "wilson_ci_95": [
+      0.5655085052479191,
+      1.0
+    ]
+  }
+}
