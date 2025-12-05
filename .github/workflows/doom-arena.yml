@@ -39,25 +39,52 @@ jobs:
       - name: Build doom-wasm
         working-directory: games/doom/browser/wasm
         run: |
-          # Run the build script
-          chmod +x scripts/build.sh
-          ./scripts/build.sh || {
-            echo "Autotools build failed, trying manual approach..."
-            # Manual build if script fails
-            emconfigure autoreconf -fiv
-            ac_cv_exeext=".html" emconfigure ./configure --host=none-none-none
-            emmake make
-          }
+          # Emscripten flags from configure.ac line 118
+          EMFLAGS="-gsource-map -s INVOKE_RUN=1 -s USE_SDL=2 -s USE_SDL_MIXER=2 -s LEGACY_GL_EMULATION=0 -s USE_SDL_NET=2 -s ASSERTIONS=0 -s WASM=1 -s ALLOW_MEMORY_GROWTH=0 -s FORCE_FILESYSTEM=1 -s EXTRA_EXPORTED_RUNTIME_METHODS=[FS,ccall] -s SAFE_HEAP=0 -s EXIT_RUNTIME=1 -s STACK_OVERFLOW_CHECK=0 -s PROXY_POSIX_SOCKETS=0 -s USE_PTHREADS=0 -s PROXY_TO_PTHREAD=0 -s TOTAL_MEMORY=64MB -s ERROR_ON_UNDEFINED_SYMBOLS=0 -s ASYNCIFY -O3"
+
+          # Generate config.h manually
+          cat > config.h << 'EOF'
+          #ifndef CONFIG_H
+          #define CONFIG_H
+          #define PACKAGE_NAME "Doom WASM"
+          #define PACKAGE_STRING "Doom WASM 1.0"
+          #define PACKAGE_VERSION "1.0"
+          #define PACKAGE_TARNAME "doom-wasm"
+          #define PROGRAM_PREFIX "doom-"
+          #define HAVE_DECL_STRCASECMP 1
+          #define HAVE_DECL_STRNCASECMP 1
+          #endif
+          EOF
+
+          # Collect source files
+          DOOM_SRCS=$(find src/doom -name "*.c" | tr '\n' ' ')
+          MAIN_SRCS=$(find src -maxdepth 1 -name "*.c" | tr '\n' ' ')
+          OPL_SRCS=$(find opl -name "*.c" | tr '\n' ' ')
+          PCSOUND_SRCS=$(find pcsound -name "*.c" | tr '\n' ' ')
+          TEXTSCREEN_SRCS=$(find textscreen -name "*.c" ! -path "*/examples/*" | tr '\n' ' ')
+
+          ALL_SRCS="$DOOM_SRCS $MAIN_SRCS $OPL_SRCS $PCSOUND_SRCS $TEXTSCREEN_SRCS"
+
+          echo "Building with $(echo $ALL_SRCS | wc -w) source files..."
+
+          # Build directly with emcc
+          emcc $EMFLAGS \
+            -I. -Isrc -Iopl -Ipcsound -Itextscreen \
+            -DHAVE_CONFIG_H \
+            $ALL_SRCS \
+            -o src/doom.html \
+            -lwebsocket.js
+
+          echo "Build complete!"
+          ls -la src/doom.*
 
       - name: Prepare dist directory
         run: |
           mkdir -p dist/assets dist/checkpoints
 
-          # Copy WASM artifacts
-          cp games/doom/browser/wasm/src/doom.wasm dist/assets/ 2>/dev/null || \
-          cp games/doom/browser/wasm/src/doom.js dist/assets/ 2>/dev/null || \
-          find games/doom/browser/wasm -name "*.wasm" -exec cp {} dist/assets/ \; || true
-          find games/doom/browser/wasm -name "chocolate-doom.js" -exec cp {} dist/assets/doom.js \; || true
+          # Copy WASM artifacts from build
+          cp games/doom/browser/wasm/src/doom.wasm dist/assets/
+          cp games/doom/browser/wasm/src/doom.js dist/assets/
 
           # Copy shareware WAD (legally distributable)
           cp games/doom/wads/doom1.wad dist/assets/
@@ -69,6 +96,8 @@ jobs:
           # List what we have
           echo "=== dist contents ==="
           find dist -type f
+          echo "=== WASM size ==="
+          ls -lh dist/assets/doom.wasm
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
