@@ -56,12 +56,12 @@ jobs:
           #endif
           EOF
 
-          # Collect source files
+          # Collect source files (exclude dedicated server, standalone tools, and examples)
           DOOM_SRCS=$(find src/doom -name "*.c" | tr '\n' ' ')
-          MAIN_SRCS=$(find src -maxdepth 1 -name "*.c" | tr '\n' ' ')
-          OPL_SRCS=$(find opl -name "*.c" | tr '\n' ' ')
+          MAIN_SRCS=$(find src -maxdepth 1 -name "*.c" ! -name "d_dedicated.c" ! -name "z_native.c" | tr '\n' ' ')
+          OPL_SRCS=$(find opl -name "*.c" ! -path "*/examples/*" | tr '\n' ' ')
           PCSOUND_SRCS=$(find pcsound -name "*.c" | tr '\n' ' ')
-          TEXTSCREEN_SRCS=$(find textscreen -name "*.c" ! -path "*/examples/*" | tr '\n' ' ')
+          TEXTSCREEN_SRCS=$(find textscreen -name "*.c" ! -path "*/examples/*" ! -path "*/fonts/*" | tr '\n' ' ')
 
           ALL_SRCS="$DOOM_SRCS $MAIN_SRCS $OPL_SRCS $PCSOUND_SRCS $TEXTSCREEN_SRCS"
 
