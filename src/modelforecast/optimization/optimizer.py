@@ -3,16 +3,15 @@ import os
 from pathlib import Path
 from openai import OpenAI
 from modelforecast.dags.interpreter import DagInterpreter
+from typing import Dict, Any
 
 class DagOptimizer:
-    def __init__(self, dag_path: Path, client: OpenAI):
-        self.dag_path = dag_path
+    def __init__(self, dag_def: Dict[str, Any], client: OpenAI):
+        self.dag_def = dag_def
         self.client = client
-        with open(dag_path) as f:
-            self.dag_def = json.load(f)
 
     def optimize_loop(self, iterations: int = 3):
-        print(f"Optimizing DAG: {self.dag_path.name}")
+        print(f"Optimizing DAG: {self.dag_def.get('workflow_id', 'unknown')}")
         
         for i in range(iterations):
             print(f"\n--- Iteration {i+1}/{iterations} ---")

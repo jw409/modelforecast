@@ -1,0 +1,122 @@
+{
+  "submission_id": "sub_65a49e1e920c",
+  "timestamp": "2025-12-05T09:20:46.021628+00:00",
+  "contributor": "unknown",
+  "environment": {
+    "python_version": "3.11.13",
+    "openai_sdk_version": "2.8.1",
+    "os": "Linux 5.15.167.4-microsoft-standard-WSL2",
+    "env_hash": "sha256:82b59585ac582b7441e0dfb1a4ad0fabea13d6ea352206d6704de713f3c103ab"
+  },
+  "probes": {
+    "model": "qwen3_4b",
+    "level": 1,
+    "trials": [
+      {
+        "embedding_returned": true,
+        "dimensions": 2560,
+        "success": false,
+        "latency_ms": 195,
+        "error": null,
+        "similarity_score": 0.07188906345126855,
+        "raw_response": {
+          "model": "qwen3_4b",
+          "sim_relevant": 0.7679,
+          "sim_distractor": 0.696,
+          "sim_irrelevant": 0.2351,
+          "margin_relevant_vs_distractor": 0.0719,
+          "margin_distractor_vs_irrelevant": 0.461,
+          "ordering_correct": true,
+          "margins_sufficient": false
+        }
+      },
+      {
+        "embedding_returned": true,
+        "dimensions": 2560,
+        "success": false,
+        "latency_ms": 110,
+        "error": null,
+        "similarity_score": 0.07188906345126855,
+        "raw_response": {
+          "model": "qwen3_4b",
+          "sim_relevant": 0.7679,
+          "sim_distractor": 0.696,
+          "sim_irrelevant": 0.2351,
+          "margin_relevant_vs_distractor": 0.0719,
+          "margin_distractor_vs_irrelevant": 0.461,
+          "ordering_correct": true,
+          "margins_sufficient": false
+        }
+      },
+      {
+        "embedding_returned": true,
+        "dimensions": 2560,
+        "success": false,
+        "latency_ms": 107,
+        "error": null,
+        "similarity_score": 0.07188906345126855,
+        "raw_response": {
+          "model": "qwen3_4b",
+          "sim_relevant": 0.7679,
+          "sim_distractor": 0.696,
+          "sim_irrelevant": 0.2351,
+          "margin_relevant_vs_distractor": 0.0719,
+          "margin_distractor_vs_irrelevant": 0.461,
+          "ordering_correct": true,
+          "margins_sufficient": false
+        }
+      },
+      {
+        "embedding_returned": true,
+        "dimensions": 2560,
+        "success": false,
+        "latency_ms": 112,
+        "error": null,
+        "similarity_score": 0.07188906345126855,
+        "raw_response": {
+          "model": "qwen3_4b",
+          "sim_relevant": 0.7679,
+          "sim_distractor": 0.696,
+          "sim_irrelevant": 0.2351,
+          "margin_relevant_vs_distractor": 0.0719,
+          "margin_distractor_vs_irrelevant": 0.461,
+          "ordering_correct": true,
+          "margins_sufficient": false
+        }
+      },
+      {
+        "embedding_returned": true,
+        "dimensions": 2560,
+        "success": false,
+        "latency_ms": 100,
+        "error": null,
+        "similarity_score": 0.07188906345126855,
+        "raw_response": {
+          "model": "qwen3_4b",
+          "sim_relevant": 0.7679,
+          "sim_distractor": 0.696,
+          "sim_irrelevant": 0.2351,
+          "margin_relevant_vs_distractor": 0.0719,
+          "margin_distractor_vs_irrelevant": 0.461,
+          "ordering_correct": true,
+          "margins_sufficient": false
+        }
+      }
+    ]
+  },
+  "summary": {
+    "successes": 0,
+    "trials": 5,
+    "rate": 0.0,
+    "wilson_ci_95": [
+      0.0,
+      0.43449149475208104
+    ]
+  },
+  "embedding_metadata": {
+    "probe_type": "E1",
+    "probe_name": "Retrieval Quality",
+    "dimensions": 2560,
+    "mode": "local"
+  }
+}

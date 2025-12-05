@@ -158,11 +158,13 @@ Configure max_overflow for burst traffic. Monitor pool exhaustion metrics."""
             sorted_results = sorted(results, key=lambda x: x.get("score", 0), reverse=True)
 
             # Extract scores in original document order
-            scores_by_index = {r["index"]: r["score"] for r in results}
+            # API returns "original_index" not "index"
+            index_key = "original_index" if "original_index" in results[0] else "index"
+            scores_by_index = {r[index_key]: r["score"] for r in results}
             scores = [scores_by_index.get(i, 0.0) for i in range(len(documents))]
 
             # Get ranking order (indices of docs in ranked order)
-            ranking_order = [r["index"] for r in sorted_results]
+            ranking_order = [r[index_key] for r in sorted_results]
 
             # Check if ranking is correct: [0, 1, 2] = relevant, distractor, irrelevant
             ranking_correct = ranking_order == [0, 1, 2]
