@@ -12,6 +12,7 @@
 #include <cuda_runtime.h>
 #include <stdio.h>
 #include <chrono>
+#include <vector>
 
 // ============================================================================
 // DEVICE HELPERS
@@ -339,12 +340,41 @@ void run_borg_simulation(uint32_t num_instances, uint32_t max_turns) {
     CHECK(cudaMemcpy(state->no_deeper, init_no_deeper.data(), num_instances, cudaMemcpyHostToDevice));
 
     // Initialize other fields
-    CHECK(cudaMemset(state->speed, 10, num_instances * sizeof(int16_t)));  // Base speed
-    CHECK(cudaMemset(state->damage, 20, num_instances * sizeof(int16_t)));  // Base damage
-    CHECK(cudaMemset(state->monster_count, 1, num_instances));  // Start with 1 monster
+    // Initialize scalar stats
+    std::vector<int16_t> init_speed(num_instances, 10);
+    std::vector<int16_t> init_damage(num_instances, 20);
+    CHECK(cudaMemcpy(state->speed, init_speed.data(), num_instances * sizeof(int16_t), cudaMemcpyHostToDevice));
+    CHECK(cudaMemcpy(state->damage, init_damage.data(), num_instances * sizeof(int16_t), cudaMemcpyHostToDevice));
+
+    // Initialize monsters: 1 monster per instance at start
+    std::vector<uint8_t> init_monster_count(num_instances, 1);
+    CHECK(cudaMemcpy(state->monster_count, init_monster_count.data(), num_instances, cudaMemcpyHostToDevice));
+
+    // Initialize monster data (interleaved)
+    size_t monster_array_size = (size_t)MAX_MONSTERS * num_instances;
+    std::vector<int16_t> init_monster_x(monster_array_size, 0);
+    std::vector<int16_t> init_monster_y(monster_array_size, 0);
+    std::vector<int16_t> init_monster_hp(monster_array_size, 0);
+    std::vector<uint8_t> init_monster_awake(monster_array_size, 0);
+
+    // Set first monster for each instance (interleaved: monster[0] at positions 0,1,2,...)
+    for (uint32_t i = 0; i < num_instances; i++) {
+        // Monster 0 position = idx2d(0, i, num_instances) = i
+        init_monster_x[i] = DUNGEON_WIDTH / 2 + 5;   // Near player
+        init_monster_y[i] = DUNGEON_HEIGHT / 2 + 3;
+        init_monster_hp[i] = 15;  // Starting monster HP
+        init_monster_awake[i] = 1;  // Awake!
+    }
+    CHECK(cudaMemcpy(state->monster_x, init_monster_x.data(), monster_array_size * sizeof(int16_t), cudaMemcpyHostToDevice));
+    CHECK(cudaMemcpy(state->monster_y, init_monster_y.data(), monster_array_size * sizeof(int16_t), cudaMemcpyHostToDevice));
+    CHECK(cudaMemcpy(state->monster_hp, init_monster_hp.data(), monster_array_size * sizeof(int16_t), cudaMemcpyHostToDevice));
+    CHECK(cudaMemcpy(state->monster_awake, init_monster_awake.data(), monster_array_size, cudaMemcpyHostToDevice));
+
     CHECK(cudaMemset(state->has_healing, 1, num_instances));  // Start with healing
     CHECK(cudaMemset(state->turns, 0, num_instances * sizeof(uint32_t)));
     CHECK(cudaMemset(state->winner, 0, num_instances));
+    CHECK(cudaMemset(state->final_depth, 0, num_instances * sizeof(uint16_t)));
+    CHECK(cudaMemset(state->final_turns, 0, num_instances * sizeof(uint32_t)));
 
     int threads = 256;
     int blocks = (num_instances + threads - 1) / threads;
@@ -370,41 +400,68 @@ void run_borg_simulation(uint32_t num_instances, uint32_t max_turns) {
 
     // Collect results
     std::vector<uint8_t> h_alive(num_instances);
-    std::vector<uint16_t> h_final_depth(num_instances);
+    std::vector<int16_t> h_depth(num_instances);  // Current depth (for alive borgs)
+    std::vector<uint16_t> h_final_depth(num_instances);  // Final depth (for dead borgs)
     std::vector<uint8_t> h_winner(num_instances);
+    std::vector<int16_t> h_hp(num_instances);
 
     CHECK(cudaMemcpy(h_alive.data(), state->alive, num_instances, cudaMemcpyDeviceToHost));
+    CHECK(cudaMemcpy(h_depth.data(), state->depth, num_instances * sizeof(int16_t), cudaMemcpyDeviceToHost));
     CHECK(cudaMemcpy(h_final_depth.data(), state->final_depth, num_instances * sizeof(uint16_t), cudaMemcpyDeviceToHost));
     CHECK(cudaMemcpy(h_winner.data(), state->winner, num_instances, cudaMemcpyDeviceToHost));
+    CHECK(cudaMemcpy(h_hp.data(), state->hp, num_instances * sizeof(int16_t), cudaMemcpyDeviceToHost));
 
     // Count results by config type
     int alive_count[8] = {0};
     int winner_count[8] = {0};
+    int dead_count[8] = {0};
     int total_depth[8] = {0};
+    int max_depth[8] = {0};
     int count[8] = {0};
 
-    for (int i = 0; i < num_instances; i++) {
+    for (uint32_t i = 0; i < num_instances; i++) {
         int config_type = i % 8;
         count[config_type]++;
-        if (h_alive[i]) alive_count[config_type]++;
+        if (h_alive[i]) {
+            alive_count[config_type]++;
+            total_depth[config_type] += h_depth[i];  // Use current depth for alive
+            if (h_depth[i] > max_depth[config_type]) max_depth[config_type] = h_depth[i];
+        } else {
+            dead_count[config_type]++;
+            total_depth[config_type] += h_final_depth[i];  // Use final depth for dead
+            if (h_final_depth[i] > max_depth[config_type]) max_depth[config_type] = h_final_depth[i];
+        }
         if (h_winner[i]) winner_count[config_type]++;
-        total_depth[config_type] += h_final_depth[i];
     }
 
     const char* config_names[] = {"Aggro", "Speed", "Tank", "Scummer", "Meta", "Economy", "Cheat", "Default"};
 
     printf("\n=== RESULTS BY CONFIG ===\n");
-    printf("%-10s %8s %8s %8s %8s\n", "Config", "Alive%", "Win%", "AvgDepth", "Count");
+    printf("%-10s %8s %8s %8s %8s %8s %8s\n", "Config", "Alive%", "Dead%", "Win%", "AvgDepth", "MaxDepth", "Count");
     for (int i = 0; i < 8; i++) {
         if (count[i] > 0) {
-            printf("%-10s %7.1f%% %7.1f%% %8.1f %8d\n",
+            printf("%-10s %7.1f%% %7.1f%% %7.1f%% %8.1f %8d %8d\n",
                 config_names[i],
                 100.0 * alive_count[i] / count[i],
+                100.0 * dead_count[i] / count[i],
                 100.0 * winner_count[i] / count[i],
                 (double)total_depth[i] / count[i],
+                max_depth[i],
                 count[i]);
         }
     }
+
+    // Summary stats
+    int total_alive = 0, total_dead = 0, total_winners = 0;
+    for (int i = 0; i < 8; i++) {
+        total_alive += alive_count[i];
+        total_dead += dead_count[i];
+        total_winners += winner_count[i];
+    }
+    printf("\nSUMMARY: %d alive (%.1f%%), %d dead (%.1f%%), %d winners (%.3f%%)\n",
+           total_alive, 100.0 * total_alive / num_instances,
+           total_dead, 100.0 * total_dead / num_instances,
+           total_winners, 100.0 * total_winners / num_instances);
 
     // Cleanup
     cudaFree(d_actions);

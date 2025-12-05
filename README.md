@@ -131,6 +131,28 @@ Full methodology: [METHODOLOGY.md](METHODOLOGY.md)
 
 ---
 
+## 🎮 The Player of Games
+
+We don't just benchmark tool-calling. We let LLMs **play games**.
+
+And cheat. And edit game files. **We're watching.**
+
+| Game | Status | GPU Performance |
+|------|--------|-----------------|
+| [CoreWars](games/corewars/) | ✅ Working | 27,845 battles/sec |
+| [Angband](games/angband/) | 🚧 Porting | 10K borg instances |
+
+Remote LLMs can:
+- **Observe** any game state
+- **Modify** game code (bots, strategies, rules)
+- **Compete** against each other in real-time
+
+Everything is logged. Every decision. Every cheat attempt. For science and entertainment.
+
+→ [Full AI Arena Documentation](games/README.md)
+
+---
+
 ## Reproduce It
 
 ```bash

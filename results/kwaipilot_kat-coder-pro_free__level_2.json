@@ -1,6 +1,6 @@
 {
-  "submission_id": "sub_83b4fd53e1b4",
-  "timestamp": "2025-12-03T07:33:45.416762+00:00",
+  "submission_id": "sub_84629f1b4723",
+  "timestamp": "2025-12-05T06:33:00.231100+00:00",
   "contributor": "unknown",
   "environment": {
     "python_version": "3.11.13",
@@ -13,93 +13,703 @@
     "level": 2,
     "trials": [
       {
-        "openrouter_request_id": "gen-1764747226-LKguVr6slw3vJJfH5tTA",
+        "openrouter_request_id": "gen-1764916380-GoYzvXQDzMhejinXXAAP",
         "prompt_hash": "sha256:b1b21a108eb3ba14a87eabaacac42f96b50212ecd5909a182b9bcdd9130ecea2",
-        "response_hash": "sha256:76c773daee54399d3e83e4568d3c666f5a7788e4ec71a8130f401ec6b07b9788",
+        "response_hash": "sha256:92ab9a2aba5bb13184afbcde5bb820059756616ddd9fff67f10d2c4f3a116803",
         "tool_called": true,
         "schema_valid": true,
-        "latency_ms": 2444
+        "latency_ms": 1008,
+        "request": {
+          "model": "kwaipilot/kat-coder-pro:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "I need to understand what the auth module does"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764916380-GoYzvXQDzMhejinXXAAP",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_ceeae2a524f34ec09c06b96f",
+                    "function": {
+                      "arguments": "{\"path\": \"src\"}",
+                      "name": "list_directory"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": null
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1764916380,
+          "model": "kwaipilot/kat-coder-pro:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": "",
+          "usage": {
+            "completion_tokens": 21,
+            "prompt_tokens": 451,
+            "total_tokens": 472,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 109,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Novita"
+        }
       },
       {
-        "openrouter_request_id": "gen-1764747229-q3i6vBSI1f3JYOrUhXDy",
+        "openrouter_request_id": "gen-1764916381-ptC4QSQyiKSrMbjuD2iI",
         "prompt_hash": "sha256:b1b21a108eb3ba14a87eabaacac42f96b50212ecd5909a182b9bcdd9130ecea2",
-        "response_hash": "sha256:ecb817315a43db3705238465a11f7db2417475a985a77ad755c3fe9a9f47535e",
+        "response_hash": "sha256:a44c2696c1eb9baae6ce532659a098f3f63312a9fbc71dfeb4aedc25090fba25",
         "tool_called": true,
         "schema_valid": true,
-        "latency_ms": 1030
+        "latency_ms": 1017,
+        "request": {
+          "model": "kwaipilot/kat-coder-pro:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "I need to understand what the auth module does"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764916381-ptC4QSQyiKSrMbjuD2iI",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_025faa4bcb1443e597be804a",
+                    "function": {
+                      "arguments": "{\"path\": \"src\"}",
+                      "name": "list_directory"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": null
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1764916381,
+          "model": "kwaipilot/kat-coder-pro:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": "",
+          "usage": {
+            "completion_tokens": 21,
+            "prompt_tokens": 451,
+            "total_tokens": 472,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 109,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Novita"
+        }
       },
       {
-        "openrouter_request_id": "gen-1764747230-IXDvZAPoVS3N3Sx392Wh",
+        "openrouter_request_id": "gen-1764916382-wUSf15tk4YKZ1ObDNhBv",
         "prompt_hash": "sha256:b1b21a108eb3ba14a87eabaacac42f96b50212ecd5909a182b9bcdd9130ecea2",
-        "response_hash": "sha256:2555a7e8ad00c20cbb79a93aa6247e03f3c532c8ad0af9e79ee4903d478d82e1",
+        "response_hash": "sha256:16c821ed7307b98696a63e14bdc920e1b410b27f5c0030c1dc99fbc5ef8666c5",
         "tool_called": true,
         "schema_valid": true,
-        "latency_ms": 2468
+        "latency_ms": 1013,
+        "request": {
+          "model": "kwaipilot/kat-coder-pro:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "I need to understand what the auth module does"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764916382-wUSf15tk4YKZ1ObDNhBv",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_1cc57b05e3ce4941ad338f3c",
+                    "function": {
+                      "arguments": "{\"path\": \"src\"}",
+                      "name": "list_directory"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": null
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1764916382,
+          "model": "kwaipilot/kat-coder-pro:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": "",
+          "usage": {
+            "completion_tokens": 21,
+            "prompt_tokens": 451,
+            "total_tokens": 472,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 39,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Novita"
+        }
       },
       {
-        "openrouter_request_id": "gen-1764747231-CXkWDcanH8RRJXCCopDF",
+        "openrouter_request_id": "gen-1764916383-UCdOSSF7O39V8dbolUqY",
         "prompt_hash": "sha256:b1b21a108eb3ba14a87eabaacac42f96b50212ecd5909a182b9bcdd9130ecea2",
-        "response_hash": "sha256:4b5c46322f1fa33fa908f83e514b1ca2d65013e14c13546cb92b5b93c8600e2e",
+        "response_hash": "sha256:bf39057f388f78f099a0a24c8adb655237738d4b2c1bd8331036f73f43791e85",
         "tool_called": true,
         "schema_valid": true,
-        "latency_ms": 941
+        "latency_ms": 1018,
+        "request": {
+          "model": "kwaipilot/kat-coder-pro:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "I need to understand what the auth module does"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764916383-UCdOSSF7O39V8dbolUqY",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_4ba1847662524d45915c9ab3",
+                    "function": {
+                      "arguments": "{\"path\": \"src\"}",
+                      "name": "list_directory"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": null
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1764916383,
+          "model": "kwaipilot/kat-coder-pro:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": "",
+          "usage": {
+            "completion_tokens": 21,
+            "prompt_tokens": 451,
+            "total_tokens": 472,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 450,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Novita"
+        }
       },
       {
-        "openrouter_request_id": "gen-1764747232-1ntoJ7pbdnbgP0NC6SSL",
+        "openrouter_request_id": "gen-1764916384-QfvHzJKwZpAHHhMdY9pF",
         "prompt_hash": "sha256:b1b21a108eb3ba14a87eabaacac42f96b50212ecd5909a182b9bcdd9130ecea2",
-        "response_hash": "sha256:a69df1279c0fe459bb9ed9c0030ce4ece547a4ca2c853e14eb491bf3c55b8fc9",
+        "response_hash": "sha256:cb789a65c6b83a5abcb9f02469f597622ce41000b6280e2c0dad2ebba983dd42",
         "tool_called": true,
         "schema_valid": true,
-        "latency_ms": 1680
-      },
-      {
-        "openrouter_request_id": "gen-1764747234-vjBqJlaHZ38eDUUfOAyW",
-        "prompt_hash": "sha256:b1b21a108eb3ba14a87eabaacac42f96b50212ecd5909a182b9bcdd9130ecea2",
-        "response_hash": "sha256:2b3472b395451913e353de39f4933765e610e2902eaa8be78085fe8975bd214a",
-        "tool_called": true,
-        "schema_valid": true,
-        "latency_ms": 904
-      },
-      {
-        "openrouter_request_id": "gen-1764747235-HYQaKtEmb2BIQMSSzKRM",
-        "prompt_hash": "sha256:b1b21a108eb3ba14a87eabaacac42f96b50212ecd5909a182b9bcdd9130ecea2",
-        "response_hash": "sha256:22c4703c169dfb453b3326ecb1c59406f8bf5720c963f51e47b1c84f2c89bbe9",
-        "tool_called": true,
-        "schema_valid": true,
-        "latency_ms": 1438
-      },
-      {
-        "openrouter_request_id": "gen-1764747236-E5nWfSvHiLWtW3OWCT0A",
-        "prompt_hash": "sha256:b1b21a108eb3ba14a87eabaacac42f96b50212ecd5909a182b9bcdd9130ecea2",
-        "response_hash": "sha256:2e9712045aa1b08bd0a168410a459eff56848b33493eff5d17ae9a9a246fdd32",
-        "tool_called": true,
-        "schema_valid": true,
-        "latency_ms": 1034
-      },
-      {
-        "openrouter_request_id": "gen-1764747237-qBn0i4RqBLqomnu05q7F",
-        "prompt_hash": "sha256:b1b21a108eb3ba14a87eabaacac42f96b50212ecd5909a182b9bcdd9130ecea2",
-        "response_hash": "sha256:ad0b3eab702c53e2c600437d8a1bcf0dc1cca377a11862fa601543c421bf7eb8",
-        "tool_called": true,
-        "schema_valid": true,
-        "latency_ms": 974
-      },
-      {
-        "openrouter_request_id": "gen-1764747238-93zdV2iE0AGfFzvvMyv4",
-        "prompt_hash": "sha256:b1b21a108eb3ba14a87eabaacac42f96b50212ecd5909a182b9bcdd9130ecea2",
-        "response_hash": "sha256:51ef3176aded875912794b96e5ac04d256667229aad7dd27360c1315f01913e6",
-        "tool_called": true,
-        "schema_valid": true,
-        "latency_ms": 917
+        "latency_ms": 1060,
+        "request": {
+          "model": "kwaipilot/kat-coder-pro:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "I need to understand what the auth module does"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764916384-QfvHzJKwZpAHHhMdY9pF",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_2f2cc32db8924b49b0b5cec0",
+                    "function": {
+                      "arguments": "{\"path\": \"src\"}",
+                      "name": "list_directory"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": null
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1764916384,
+          "model": "kwaipilot/kat-coder-pro:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": "",
+          "usage": {
+            "completion_tokens": 21,
+            "prompt_tokens": 451,
+            "total_tokens": 472,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 450,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Novita"
+        }
       }
     ]
   },
   "summary": {
-    "successes": 10,
-    "trials": 10,
+    "successes": 5,
+    "trials": 5,
     "rate": 1.0,
     "wilson_ci_95": [
-      0.7224598312333834,
+      0.5655085052479191,
       1.0
     ]
   }

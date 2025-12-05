@@ -21,6 +21,9 @@ dependencies = [
     "httpx>=0.25.0",
     "rich>=13.0.0",
     "matplotlib>=3.10.7",
+    "dagster>=1.12.4",
+    "dagster-pipes>=1.12.4",
+    "pandas>=2.3.3",
 ]
 
 [project.optional-dependencies]

@@ -1,6 +1,6 @@
 {
-  "submission_id": "sub_4e8b07aae8f9",
-  "timestamp": "2025-12-03T07:50:49.756681+00:00",
+  "submission_id": "sub_2bec7da7b93c",
+  "timestamp": "2025-12-05T06:33:16.987227+00:00",
   "contributor": "unknown",
   "environment": {
     "python_version": "3.11.13",
@@ -13,93 +13,653 @@
     "level": 4,
     "trials": [
       {
-        "openrouter_request_id": "gen-1764748250-edNMiH1fL1vkXbI1926m",
+        "openrouter_request_id": "gen-1764916396-NBGtmKw71vmNtsxoreWO",
         "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
-        "response_hash": "sha256:91b5d88c19e43a8ae5843583d6ae2795ecdf14608a48099e732ca79bc222d849",
+        "response_hash": "sha256:3e971248c5c306a6809345c0cf0c6cae1548644de08c130722e0c1104accafe3",
         "tool_called": false,
         "schema_valid": true,
-        "latency_ms": 2184
+        "latency_ms": 1422,
+        "request": {
+          "model": "kwaipilot/kat-coder-pro:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764916396-NBGtmKw71vmNtsxoreWO",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I'm sorry, but I don't have access to real-time weather information. You might want to check a weather website or app for the most up-to-date forecast for your area.",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": null
+              },
+              "native_finish_reason": "stop"
+            }
+          ],
+          "created": 1764916396,
+          "model": "kwaipilot/kat-coder-pro:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 38,
+            "prompt_tokens": 449,
+            "total_tokens": 487,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 437,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "StreamLake"
+        }
       },
       {
-        "openrouter_request_id": "gen-1764748252-V31GrNVGb1Xtrlx91Xig",
+        "openrouter_request_id": "gen-1764916398-Zv7qkwnVoFKSNWNsSJXb",
         "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
-        "response_hash": "sha256:bc5cfb52569db027367fe34e0c3f22c4aa416022491388fb5ddd2c63d645b08b",
+        "response_hash": "sha256:688f90395408a5ed995a6725579c79a949e5466dad2c48858c54a9c1b37a28aa",
         "tool_called": false,
         "schema_valid": true,
-        "latency_ms": 1133
+        "latency_ms": 1594,
+        "request": {
+          "model": "kwaipilot/kat-coder-pro:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764916398-Zv7qkwnVoFKSNWNsSJXb",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I'm sorry, but I don't have access to real-time weather information. To get the current weather for your location, I'd recommend checking a weather service like:\n\n- Weather.com\n- Your local meteorological service\n- A weather app on your phone\n- A search engine with your location\n\nIs there anything else I can help you with?",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": null
+              },
+              "native_finish_reason": "stop"
+            }
+          ],
+          "created": 1764916398,
+          "model": "kwaipilot/kat-coder-pro:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 72,
+            "prompt_tokens": 449,
+            "total_tokens": 521,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 437,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "AtlasCloud"
+        }
       },
       {
-        "openrouter_request_id": "gen-1764748253-VuFOOe6MeNzYaE7dOqPV",
+        "openrouter_request_id": "gen-1764916399-uWvYJyIZwkN5jSOHJxO4",
         "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
-        "response_hash": "sha256:cd5b2aea1949d55982c844fb0273a2865e74a4bfc4f1ce0c7c76d68b1a94c50d",
+        "response_hash": "sha256:8c7a8575fc71ac56a1ea18718b67f7181bd3d90df4d1797828eb8364bba0246f",
         "tool_called": false,
         "schema_valid": true,
-        "latency_ms": 2840
+        "latency_ms": 993,
+        "request": {
+          "model": "kwaipilot/kat-coder-pro:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764916399-uWvYJyIZwkN5jSOHJxO4",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I'm sorry, but I don't have access to real-time weather information. You might want to check a weather website or app for the most up-to-date forecast for your area.",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": null
+              },
+              "native_finish_reason": "stop"
+            }
+          ],
+          "created": 1764916399,
+          "model": "kwaipilot/kat-coder-pro:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 38,
+            "prompt_tokens": 449,
+            "total_tokens": 487,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 448,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "StreamLake"
+        }
       },
       {
-        "openrouter_request_id": "gen-1764748256-GaMNjJ3EfJ2WhLCbZ663",
+        "openrouter_request_id": "gen-1764916400-NBSdGNStbMc6AnMV8rO2",
         "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
-        "response_hash": "sha256:549fcb7278b4f07eabbfc2b3bc72defd4199a21c4dcb6ca9fa714513a3f5c863",
+        "response_hash": "sha256:76b65311be60205e460a6b2545b8b6d8f11014050a31304ed79947f570eec4e9",
         "tool_called": false,
         "schema_valid": true,
-        "latency_ms": 1149
+        "latency_ms": 1323,
+        "request": {
+          "model": "kwaipilot/kat-coder-pro:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764916400-NBSdGNStbMc6AnMV8rO2",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I'm sorry, but I don't have access to real-time weather information. You might want to check a weather website or app for the most up-to-date forecast for your area.",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": null
+              },
+              "native_finish_reason": "stop"
+            }
+          ],
+          "created": 1764916400,
+          "model": "kwaipilot/kat-coder-pro:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": "",
+          "usage": {
+            "completion_tokens": 38,
+            "prompt_tokens": 449,
+            "total_tokens": 487,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 437,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Novita"
+        }
       },
       {
-        "openrouter_request_id": "gen-1764748257-MN8KwE9zS8y4aZY0AmIA",
+        "openrouter_request_id": "gen-1764916402-1Qx9wenEsugJFPge4ovP",
         "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
-        "response_hash": "sha256:5d2cff2c8d533369fbbeef4340e80854d6600ec4a3905dced0c6d0a0732fbc7d",
+        "response_hash": "sha256:58e3908f604f1f0463b66cf5c28a30b847878950f564a738b8a678e509845612",
         "tool_called": false,
         "schema_valid": true,
-        "latency_ms": 1702
-      },
-      {
-        "openrouter_request_id": "gen-1764748259-BKZ7yXSZGfA7rqetNCY9",
-        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
-        "response_hash": "sha256:4021177968c3579a2fe3ac6312f4db6cfcb48b294432691d2418922cafdc86c6",
-        "tool_called": false,
-        "schema_valid": true,
-        "latency_ms": 1456
-      },
-      {
-        "openrouter_request_id": "gen-1764748260-9pmema789UB9d0r1UImL",
-        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
-        "response_hash": "sha256:a9a35e07086ab0e34ae7191740dbc06aaf89000464ff58d301c4276c0523a2e0",
-        "tool_called": false,
-        "schema_valid": true,
-        "latency_ms": 1360
-      },
-      {
-        "openrouter_request_id": "gen-1764748262-zj7TXC3UNryb1YAykva5",
-        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
-        "response_hash": "sha256:a1c30a2883827bfe45900ae22f51a8011c17f6da32617856426b1e4c70193ef4",
-        "tool_called": false,
-        "schema_valid": true,
-        "latency_ms": 3407
-      },
-      {
-        "openrouter_request_id": "gen-1764748265-i0HEwTRyGOaYotX6z0W9",
-        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
-        "response_hash": "sha256:e8fb9295e0afc54198a1c81229c658af2edd894a6ce974b2d2d376fb077ed061",
-        "tool_called": false,
-        "schema_valid": true,
-        "latency_ms": 1848
-      },
-      {
-        "openrouter_request_id": "gen-1764748267-AUIRq1OkXJry69QZf46i",
-        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
-        "response_hash": "sha256:b6299e7f8705e42fd08a74e1e49602a0c2d8fa772fc4cb2e77019f0f883a7928",
-        "tool_called": false,
-        "schema_valid": true,
-        "latency_ms": 1844
+        "latency_ms": 1647,
+        "request": {
+          "model": "kwaipilot/kat-coder-pro:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764916402-1Qx9wenEsugJFPge4ovP",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I\u2019m not able to access real\u2011time weather data. For the most accurate and up\u2011to\u2011date conditions, please check a trusted weather service or app (such as the National Weather Service, Weather.com, or a local news station). If you\u2019d like, I can help you find a reliable source or set up a quick way to check the forecast regularly.",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": null
+              },
+              "native_finish_reason": "stop"
+            }
+          ],
+          "created": 1764916402,
+          "model": "kwaipilot/kat-coder-pro:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": "",
+          "usage": {
+            "completion_tokens": 75,
+            "prompt_tokens": 449,
+            "total_tokens": 524,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 448,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Novita"
+        }
       }
     ]
   },
   "summary": {
-    "successes": 10,
-    "trials": 10,
+    "successes": 5,
+    "trials": 5,
     "rate": 1.0,
     "wilson_ci_95": [
-      0.7224598312333834,
+      0.5655085052479191,
       1.0
     ]
   }
