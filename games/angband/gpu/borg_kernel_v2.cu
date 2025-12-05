@@ -33,7 +33,6 @@ __device__ int calculate_danger(
 ) {
     int danger = 0;
     int monster_count = s->monster_count[id];
-    int player_level = s->level[id];
     int player_ac = s->ac[id];
 
     for (int i = 0; i < monster_count && i < MAX_MONSTERS; i++) {
@@ -458,6 +457,31 @@ __global__ void borg_execute_kernel(
             break;
     }
 
+    // === MONSTER AI LOOP (Process monsters) ===
+    int monster_count = state.monster_count[id];
+    for (int i = 0; i < monster_count && i < MAX_MONSTERS; i++) {
+        // Skip dead monsters
+        if (IGET(state.monster_hp, i, id, num_instances) <= 0) continue;
+
+        int mtype = IGET(state.monster_type, i, id, num_instances);
+        const MonsterRace& race = MONSTER_RACES[mtype]; // From angband_monsters.cuh
+
+        // 1. BREEDING LOGIC
+        if (race.flags & MFLAG_BREEDS) {
+            int mx = IGET(state.monster_x, i, id, num_instances);
+            int my = IGET(state.monster_y, i, id, num_instances);
+            
+            try_breed_monster(
+                i, mtype, mx, my,
+                state.monster_x, state.monster_y, state.monster_hp,
+                state.monster_type, state.monster_awake,
+                &state.monster_count[id],
+                state.dungeon_terrain,
+                id, num_instances, rng
+            );
+        }
+    }
+
     // Check for death
     if (hp <= 0) {
         state.alive[id] = 0;
@@ -643,11 +667,11 @@ void run_borg_simulation(uint32_t num_instances, uint32_t max_turns, bool verify
     const char* config_names[] = {"Aggro", "Speed", "Tank", "Scummer", "Meta", "Economy", "Cheat", "Default"};
 
     printf("\n=== RESULTS BY CONFIG ===\n");
-    printf("%-10s %8s %8s %8s %8s %8s %8s %8s\n",
+    printf("% -10s %8s %8s %8s %8s %8s %8s %8s\n",
            "Config", "Alive%", "Dead%", "Win%", "AvgDepth", "MaxDepth", "AvgLevel", "Count");
     for (int i = 0; i < 8; i++) {
         if (count[i] > 0) {
-            printf("%-10s %7.1f%% %7.1f%% %7.1f%% %8.1f %8d %8.1f %8d\n",
+            printf("% -10s %7.1f%% %7.1f%% %7.1f%% %8.1f %8d %8.1f %8d\n",
                 config_names[i],
                 100.0 * alive_count[i] / count[i],
                 100.0 * dead_count[i] / count[i],
