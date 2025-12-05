@@ -6,6 +6,7 @@ import sys
 from pathlib import Path
 
 from modelforecast import __version__
+from modelforecast.models import get_available_models, get_free_models, validate_model
 from modelforecast.runner import ProbeRunner
 
 
@@ -21,9 +22,17 @@ def main():
         help="Output directory for results (default: ./results)",
     )
     parser.add_argument("--model", type=str, help="Specific model to test")
-    parser.add_argument(
-        "--level", type=int, choices=[0, 1, 2, 3, 4], help="Specific level to test"
+
+    # Mutually exclusive group for level selection
+    level_group = parser.add_mutually_exclusive_group()
+    level_group.add_argument(
+        "--level", type=int, choices=[0, 1, 2, 3, 4], help="Specific level to test (0-4, backwards compatible)"
     )
+    level_group.add_argument(
+        "--probe", type=str, choices=["T0", "T1", "T2", "A1", "R0"],
+        help="Specific probe to test (T0=level 0, T1=level 1, T2=level 2, A1=level 3, R0=level 4)"
+    )
+
     parser.add_argument(
         "--trials", type=int, default=10, help="Number of trials per probe (default: 10)"
     )
@@ -32,8 +41,35 @@ def main():
         type=str,
         help="GitHub username for provenance (default: GITHUB_USERNAME env var)",
     )
+    parser.add_argument(
+        "--skip-validation",
+        action="store_true",
+        help="Skip model ID validation against OpenRouter API",
+    )
+    parser.add_argument(
+        "--list-models",
+        action="store_true",
+        help="List available free models and exit",
+    )
+    parser.add_argument(
+        "--validate",
+        type=str,
+        metavar="MODEL_ID",
+        help="Validate a model ID exists on OpenRouter and exit",
+    )
 
     args = parser.parse_args()
+
+    # Map --probe to --level internally
+    probe_to_level = {
+        "T0": 0,
+        "T1": 1,
+        "T2": 2,
+        "A1": 3,
+        "R0": 4,
+    }
+    if args.probe:
+        args.level = probe_to_level[args.probe]
 
     print(f"ModelForecast v{__version__}")
 
@@ -42,6 +78,26 @@ def main():
         print("ERROR: OPENROUTER_API_KEY environment variable not set")
         print("Get your API key from: https://openrouter.ai/keys")
         return 1
+
+    # Handle --list-models
+    if args.list_models:
+        print("\nFetching available free models from OpenRouter...")
+        try:
+            free_models = get_free_models()
+            print(f"\nFound {len(free_models)} free models:\n")
+            for model in free_models:
+                print(f"  {model}")
+            return 0
+        except Exception as e:
+            print(f"ERROR: {e}")
+            return 1
+
+    # Handle --validate
+    if args.validate:
+        print(f"\nValidating model: {args.validate}")
+        is_valid, message = validate_model(args.validate)
+        print(f"  {message}")
+        return 0 if is_valid else 1
 
     # Initialize output directory
     output_dir = Path(args.output)
@@ -53,6 +109,7 @@ def main():
         output_dir=output_dir,
         models=models,
         contributor=args.contributor,
+        skip_validation=args.skip_validation,
     )
 
     try:

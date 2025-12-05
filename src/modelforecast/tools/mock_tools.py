@@ -4,7 +4,7 @@ from typing import Any
 
 
 def get_search_tool_basic() -> dict[str, Any]:
-    """Level 0: Basic search tool with only query parameter."""
+    """T0 Invoke: Basic search tool with only query parameter."""
     return {
         "type": "function",
         "function": {
@@ -25,7 +25,7 @@ def get_search_tool_basic() -> dict[str, Any]:
 
 
 def get_search_tool_with_limit() -> dict[str, Any]:
-    """Level 1: Search tool with query (string) and limit (integer) parameters."""
+    """T1 Schema: Search tool with query (string) and limit (integer) parameters."""
     return {
         "type": "function",
         "function": {
@@ -92,7 +92,7 @@ def get_list_directory_tool() -> dict[str, Any]:
 
 
 def get_multi_tool_set() -> list[dict[str, Any]]:
-    """Level 2: Multiple tools for selection testing."""
+    """T2 Selection: Multiple tools for selection testing."""
     return [
         get_search_tool_basic(),
         get_read_file_tool(),

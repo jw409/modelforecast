@@ -8,6 +8,7 @@ from openai import OpenAI
 from rich.console import Console
 from rich.progress import Progress, SpinnerColumn, TextColumn
 
+from modelforecast.models import filter_valid_models, get_free_models, validate_model
 from modelforecast.output.json_report import write_individual_result, write_json_report
 from modelforecast.output.markdown_report import write_markdown_report
 from modelforecast.probes.base import ProbeResult
@@ -15,21 +16,11 @@ from modelforecast.probes.t0_invoke import T0InvokeProbe
 from modelforecast.stats.confidence import wilson_interval
 from modelforecast.verification.provenance import ProvenanceTracker
 
-# Default models to test (from METHODOLOGY.md)
-DEFAULT_MODELS = [
-    "google/gemma-3-27b-it:free",
-    "google/gemini-2.5-flash-lite-preview-09-2025:free",
-    "meta-llama/llama-4-maverick:free",
-    "microsoft/mai-ds-r1:free",
-    "nousresearch/deephermes-3-llama-3-8b-preview:free",
-    "qwen/qwen3-14b:free",
-    "qwen/qwen3-30b-a3b:free",
-    "qwen/qwen3-32b:free",
-    "x-ai/grok-4.1-fast:free",
-]
+# Default models set to None - will fetch dynamically from OpenRouter
+DEFAULT_MODELS: list[str] | None = None
 
-# Level threshold for skipping higher levels
-LEVEL_0_THRESHOLD = 0.20  # If L0 < 20%, skip higher levels
+# Threshold for skipping higher probes if T0 fails
+T0_THRESHOLD = 0.20  # If T0 < 20%, skip higher probes
 
 
 class ProbeRunner:
@@ -40,16 +31,17 @@ class ProbeRunner:
         output_dir: Path,
         models: list[str] | None = None,
         contributor: str | None = None,
+        skip_validation: bool = False,
     ):
         """Initialize probe runner.
 
         Args:
             output_dir: Directory to write results to
-            models: List of models to test (defaults to all free models)
+            models: List of models to test (defaults to all free models from OpenRouter)
             contributor: GitHub username for provenance (defaults to env var or "unknown")
+            skip_validation: If True, skip model validation (for testing)
         """
         self.output_dir = Path(output_dir)
-        self.models = models or DEFAULT_MODELS
         self.contributor = contributor or os.getenv("GITHUB_USERNAME", "unknown")
         self.console = Console()
 
@@ -62,6 +54,24 @@ class ProbeRunner:
             base_url="https://openrouter.ai/api/v1",
             api_key=api_key,
         )
+
+        # Validate and set models
+        if models:
+            if skip_validation:
+                self.models = models
+            else:
+                self.console.print("[bold]Validating model IDs against OpenRouter API...[/bold]")
+                self.models = filter_valid_models(models, api_key)
+                if not self.models:
+                    raise ValueError("No valid models found after validation")
+                self.console.print(f"[green]✓ {len(self.models)} valid models[/green]")
+        else:
+            # Fetch current free models from OpenRouter
+            self.console.print("[bold]Fetching available free models from OpenRouter...[/bold]")
+            self.models = get_free_models(api_key)
+            if not self.models:
+                raise ValueError("No free models available on OpenRouter")
+            self.console.print(f"[green]✓ Found {len(self.models)} free models[/green]")
 
         # Initialize probe levels
         # Import all probe classes using new T/R/A naming
@@ -134,7 +144,7 @@ class ProbeRunner:
                     prompt=probe.prompt,
                     response=str(result.raw_response),
                     tool_called=result.tool_called,
-                    schema_valid=result.success,  # For L0, success == tool_called
+                    schema_valid=result.success,  # For T0, success == tool_called
                     latency_ms=result.latency_ms,
                     openrouter_request_id=result.raw_response.get("id"),
                     # Full data for efficiency analysis
@@ -196,21 +206,21 @@ class ProbeRunner:
         """
         model_results = {}
 
-        # Always run Level 0 first
-        level_0_result = self.run_level(model, 0, trials)
-        if level_0_result:
-            model_results[0] = level_0_result
+        # Always run T0 Invoke first
+        t0_result = self.run_level(model, 0, trials)
+        if t0_result:
+            model_results[0] = t0_result
 
-            # Check if Level 0 performance warrants testing higher levels
-            l0_rate = level_0_result["summary"]["rate"]
-            if l0_rate < LEVEL_0_THRESHOLD:
+            # Check if T0 performance warrants testing higher probes
+            t0_rate = t0_result["summary"]["rate"]
+            if t0_rate < T0_THRESHOLD:
                 self.console.print(
-                    f"[yellow]Skipping higher levels (L0 rate {l0_rate:.1%} < "
-                    f"{LEVEL_0_THRESHOLD:.0%})[/yellow]"
+                    f"[yellow]Skipping higher probes (T0 rate {t0_rate:.1%} < "
+                    f"{T0_THRESHOLD:.0%})[/yellow]"
                 )
                 return model_results
 
-        # Run higher levels if L0 passed threshold
+        # Run higher probes if T0 passed threshold
         for level in range(1, max_level + 1):
             if level in self.probes:
                 result = self.run_level(model, level, trials)

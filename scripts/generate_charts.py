@@ -27,14 +27,14 @@ CHARTS_DIR = Path(__file__).parent.parent / "charts"
 
 # Import efficiency metrics
 try:
-    from modelforecast.metrics import compute_efficiency_metrics
+    from modelforecast.metrics.efficiency import analyze_result_file
     HAS_METRICS = True
 except ImportError:
     HAS_METRICS = False
 
 
 def load_all_results():
-    """Load all JSON result files."""
+    """Load all JSON result files with efficiency metrics."""
     results = {}
     for f in RESULTS_DIR.glob("*.json"):
         if f.name.startswith(".") or "comparison" in f.name:
@@ -49,7 +49,7 @@ def load_all_results():
             latencies = [t.get("latency_ms", 0) for t in trials if t.get("latency_ms")]
 
             key = f"{model}__L{level}"
-            results[key] = {
+            result_entry = {
                 "model": model,
                 "level": level,
                 "rate": data.get("summary", {}).get("rate", 0),
@@ -61,6 +61,22 @@ def load_all_results():
                 "avg_latency_ms": mean(latencies) if latencies else 0,
                 "latency_std": stdev(latencies) if len(latencies) > 1 else 0,
             }
+
+            # Add efficiency metrics if available
+            if HAS_METRICS:
+                enriched = analyze_result_file(data)
+                eff = enriched.get("efficiency", {})
+                result_entry["aes"] = eff.get("agent_efficiency_score", 0)
+                result_entry["has_full_data"] = eff.get("has_full_data", False)
+                result_entry["avg_completion_tokens"] = eff.get("avg_completion_tokens", 0)
+                result_entry["strictness"] = eff.get("strictness_score", 0)
+            else:
+                result_entry["aes"] = 0
+                result_entry["has_full_data"] = False
+                result_entry["avg_completion_tokens"] = 0
+                result_entry["strictness"] = 0
+
+            results[key] = result_entry
         except Exception as e:
             print(f"Error loading {f}: {e}")
     return results
@@ -78,7 +94,7 @@ def generate_reliability_latency_scatter(results, output_path):
                 print(f"{short_name:30} | {data['rate']*100:4.0f}% | {data['avg_latency_ms']:7.0f}")
         return
 
-    # Filter to T0 only for main chart
+    # Filter to T0 (Invoke) only for main chart
     l0_data = {k: v for k, v in results.items() if v["level"] == 0 and v["avg_latency_ms"] > 0}
 
     fig, ax = plt.subplots(figsize=(12, 8))
@@ -109,7 +125,7 @@ def generate_reliability_latency_scatter(results, output_path):
 
     ax.set_xlabel("Average Latency (seconds)", fontsize=12)
     ax.set_ylabel("Success Rate (%)", fontsize=12)
-    ax.set_title("Free Model Tool-Calling: Reliability vs Speed\n(T0 Basic Tool Invocation)", fontsize=14)
+    ax.set_title("Free Model Tool-Calling: Reliability vs Speed\n(T0 Invoke - Basic Tool Invocation)", fontsize=14)
 
     # Add quadrant lines
     ax.axhline(y=90, color='gray', linestyle='--', alpha=0.5, label='90% threshold')
@@ -136,7 +152,7 @@ def generate_success_bar_chart(results, output_path):
         print("\n=== SUCCESS RATES WITH CI (ASCII) ===")
         return
 
-    # Filter to T0
+    # Filter to T0 (Invoke)
     l0_data = [(k, v) for k, v in results.items() if v["level"] == 0]
     l0_data.sort(key=lambda x: -x[1]["rate"])
 
@@ -156,7 +172,7 @@ def generate_success_bar_chart(results, output_path):
     ax.set_xticks(range(len(names)))
     ax.set_xticklabels(names, rotation=45, ha='right', fontsize=8)
     ax.set_ylabel("Success Rate (%)", fontsize=12)
-    ax.set_title("Free Model Tool-Calling Success Rates (T0)\nwith 95% Wilson Confidence Intervals", fontsize=14)
+    ax.set_title("Free Model Tool-Calling Success Rates (T0 Invoke)\nwith 95% Wilson Confidence Intervals", fontsize=14)
     ax.set_ylim(0, 110)
 
     # Add 90% line
@@ -210,10 +226,73 @@ def generate_multi_level_comparison(results, output_path):
     ax.set_xticks(x)
     ax.set_xticklabels(level_names)
     ax.set_ylabel("Success Rate (%)")
-    ax.set_title("Capability Dimension Comparison\n(A1 Agency is the differentiator)")
+    ax.set_title("Capability Dimension Comparison\n(A1 Linear Agency is the differentiator)")
     ax.legend(loc='upper right')
     ax.set_ylim(0, 110)
     ax.axhline(y=90, color='gray', linestyle='--', alpha=0.3)
+
+    plt.tight_layout()
+    plt.savefig(output_path, dpi=150, bbox_inches='tight')
+    print(f"Saved: {output_path}")
+    plt.close()
+
+
+def generate_efficiency_chart(results, output_path):
+    """Bar chart comparing Agent Efficiency Scores (AES) for 100% pass models."""
+    if not HAS_MPL:
+        print("\n=== EFFICIENCY SCORES (ASCII) ===")
+        print("Model                          | AES   | Tokens | Strict")
+        print("-" * 60)
+        for key, data in sorted(results.items(), key=lambda x: -x[1].get("aes", 0)):
+            if data["level"] == 0 and data["rate"] >= 0.9 and data.get("has_full_data"):
+                short_name = data["model"].split("/")[-1][:25]
+                aes = data.get("aes", 0)
+                tokens = data.get("avg_completion_tokens", 0)
+                strict = data.get("strictness", 0)
+                print(f"{short_name:30} | {aes:.3f} | {tokens:5.0f}  | {strict:.0%}")
+        return
+
+    # Filter to T0 (Invoke) models with 100% pass rate AND full efficiency data
+    efficient_data = [
+        (k, v) for k, v in results.items()
+        if v["level"] == 0 and v["rate"] >= 0.9 and v.get("has_full_data")
+    ]
+    efficient_data.sort(key=lambda x: -x[1].get("aes", 0))
+
+    if not efficient_data:
+        print("No models with full efficiency data found")
+        return
+
+    fig, ax = plt.subplots(figsize=(12, 8))
+
+    names = [d[1]["model"].split("/")[-1].replace(":free", "") for d in efficient_data]
+    aes_scores = [d[1].get("aes", 0) * 100 for d in efficient_data]  # Convert to percentage
+    tokens = [d[1].get("avg_completion_tokens", 0) for d in efficient_data]
+
+    # Color by AES: high (green) vs lower (blue)
+    colors = ['#2ecc71' if aes >= 80 else '#3498db' if aes >= 60 else '#f39c12' for aes in aes_scores]
+
+    bars = ax.barh(range(len(names)), aes_scores, color=colors, alpha=0.8, edgecolor='black', linewidth=0.5)
+
+    # Add token count annotations
+    for i, (aes, tok) in enumerate(zip(aes_scores, tokens)):
+        ax.text(aes + 1, i, f"{tok:.0f} tok", va='center', fontsize=8, color='gray')
+
+    ax.set_yticks(range(len(names)))
+    ax.set_yticklabels(names, fontsize=9)
+    ax.set_xlabel("Agent Efficiency Score (%)", fontsize=12)
+    ax.set_title("Tool-Calling Efficiency: The Tiebreaker\n(Among models with 100% T0 Invoke pass rate)", fontsize=14)
+    ax.set_xlim(0, 110)
+
+    # Add efficiency threshold lines
+    ax.axvline(x=80, color='green', linestyle='--', alpha=0.5, linewidth=1)
+    ax.axvline(x=60, color='orange', linestyle='--', alpha=0.5, linewidth=1)
+
+    # Legend
+    green_patch = mpatches.Patch(color='#2ecc71', label='Excellent (≥80%)')
+    blue_patch = mpatches.Patch(color='#3498db', label='Good (60-79%)')
+    orange_patch = mpatches.Patch(color='#f39c12', label='Fair (<60%)')
+    ax.legend(handles=[green_patch, blue_patch, orange_patch], loc='lower right')
 
     plt.tight_layout()
     plt.savefig(output_path, dpi=150, bbox_inches='tight')
@@ -284,6 +363,11 @@ def main():
     generate_multi_level_comparison(
         results,
         CHARTS_DIR / "multi_level_comparison.png"
+    )
+
+    generate_efficiency_chart(
+        results,
+        CHARTS_DIR / "efficiency_comparison.png"
     )
 
     # Always generate ASCII summary

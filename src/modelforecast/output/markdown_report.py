@@ -5,14 +5,14 @@ from typing import Any
 
 
 def calculate_grade(level_results: dict[int, dict[str, Any]]) -> str:
-    """Calculate letter grade based on performance across levels.
+    """Calculate letter grade based on performance across probes.
 
     Grading rubric:
-    - A: L0 >= 80%, L1 >= 70%, no level below 50%
-    - B: L0 >= 60%, L1 >= 50%, no level below 30%
-    - C: L0 >= 40%, at least one level above 50%
-    - D: L0 >= 20%, or any success at higher levels
-    - F: L0 < 20% (cannot reliably call tools at all)
+    - A: T0 >= 80%, T1 >= 70%, no probe below 50%
+    - B: T0 >= 60%, T1 >= 50%, no probe below 30%
+    - C: T0 >= 40%, at least one probe above 50%
+    - D: T0 >= 20%, or any success at higher probes
+    - F: T0 < 20% (cannot reliably call tools at all)
 
     Args:
         level_results: Dictionary mapping level -> result data
@@ -80,8 +80,8 @@ def write_markdown_report(
         Path to written markdown file
 
     Output format:
-    | Model | L0 Basic | L1 Schema | L2 Select | L3 Multi | L4 Advers | Grade |
-    |-------|----------|-----------|-----------|----------|-----------|-------|
+    | Model | T0 Invoke | T1 Schema | T2 Select | A1 Linear | R0 Abstain | Grade |
+    |-------|-----------|-----------|-----------|-----------|------------|-------|
     | grok-4.1-fast:free | 90% [76,97] | 85% [62,96] | ... | ... | ... | **A** |
     """
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -107,8 +107,8 @@ def write_markdown_report(
         "",
         "Tool-calling capability benchmarks for free LLM models.",
         "",
-        "| Model | L0 Basic | L1 Schema | L2 Select | L3 Multi | L4 Advers | Grade |",
-        "|-------|----------|-----------|-----------|----------|-----------|-------|",
+        "| Model | T0 Invoke | T1 Schema | T2 Select | A1 Linear | R0 Abstain | Grade |",
+        "|-------|-----------|-----------|-----------|-----------|------------|-------|",
     ]
 
     # Sort models by name
@@ -145,15 +145,15 @@ def write_markdown_report(
         [
             "",
             "*Percentages show success rate. Brackets show 95% Wilson CI.*",
-            "*n=10 per cell. \"-\" indicates not tested (prerequisite level failed).*",
+            "*n=10 per cell. \"-\" indicates not tested (prerequisite probe failed).*",
             "",
             "## Grading Rubric",
             "",
-            "- **A**: L0 >= 80%, L1 >= 70%, no level below 50%",
-            "- **B**: L0 >= 60%, L1 >= 50%, no level below 30%",
-            "- **C**: L0 >= 40%, at least one level above 50%",
-            "- **D**: L0 >= 20%, or any success at higher levels",
-            "- **F**: L0 < 20% (cannot reliably call tools at all)",
+            "- **A**: T0 >= 80%, T1 >= 70%, no probe below 50%",
+            "- **B**: T0 >= 60%, T1 >= 50%, no probe below 30%",
+            "- **C**: T0 >= 40%, at least one probe above 50%",
+            "- **D**: T0 >= 20%, or any success at higher probes",
+            "- **F**: T0 < 20% (cannot reliably call tools at all)",
         ]
     )
 

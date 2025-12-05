@@ -2,11 +2,76 @@
 
 This document describes our probe methodology, statistical approach, and grading rubric.
 
-## The Five Probe Levels
+## Capability Dimensions
 
-Each level tests a specific capability. Models are graded per-level, not overall (a model might be A at Level 0 but F at Level 3).
+### Why Dimensions Instead of Levels
 
-### Level 0: Basic Tool Calling
+Our original taxonomy used L0-L4 "levels", implying a difficulty progression where each level was harder than the previous. Empirically, this was wrong:
+
+- **L4 (restraint)** turned out to be easier than **L3 (agency)** for many models
+- L2 (tool selection) and L1 (schema compliance) are orthogonal skills, not sequential
+- Models could excel at L3 while failing L1, which "levels" couldn't represent
+
+**Dimensions** are orthogonal capabilities that models may possess in any combination. A model might be excellent at restraint (R) but poor at multi-step agency (A). This is information, not a bug.
+
+### TOOL CALLING (T): Technical Invocation Capability
+
+The T dimension measures whether a model can mechanically invoke tools correctly.
+
+| Code | Name | What We Test |
+|------|------|--------------|
+| **T0** | Invoke | Can the model produce a `tool_call` at all? Given a clear prompt and single tool, does it output the correct JSON structure? |
+| **T1** | Schema | Does it respect parameter types? `limit=5` (integer) vs `limit="5"` (string). Required vs optional fields. No hallucinated parameters. |
+| **T2** | Selection | Given multiple tools, can it choose the appropriate one? Not random, not hallucinated, not "all of them". |
+
+**T is prerequisite**: If a model fails T0, testing other dimensions is meaningless. If it fails T1, tool results will be unpredictable.
+
+### RESTRAINT (R): Knowing When NOT to Use Tools
+
+The R dimension measures whether a model can recognize when tools are inappropriate AND still be helpful.
+
+| Code | Name | What We Test |
+|------|------|--------------|
+| **R0** | Abstain | Given a question where no tool fits (e.g., "What's the weather?" with only file tools), does the model: (1) NOT call a tool, AND (2) provide a helpful text response? |
+
+**Falsification requirement**: R0 requires BOTH conditions. A model that refuses tools but gives unhelpful responses ("I cannot help with that") fails. A model that provides good answers but still calls an irrelevant tool also fails.
+
+**Why R is "easier"**: Most models have been trained extensively on refusal behaviors. Restraint leverages existing alignment training. Agency (A) requires novel multi-step planning that many models lack.
+
+### AGENCY (A): Multi-Step Workflow Orchestration
+
+The A dimension measures whether a model can orchestrate multi-step tool workflows.
+
+| Code | Name | What We Test |
+|------|------|--------------|
+| **A1** | Linear | After receiving tool results, can it chain to the next logical tool call? (e.g., search returns files, then read_file on those files) |
+
+**Future A-dimensions** (not yet implemented):
+- **A2 Parallel**: Can it recognize when multiple independent tool calls can be made simultaneously?
+- **A3 Tree**: Can it explore multiple branches and backtrack when one fails?
+- **A4 Diamond**: Can it handle workflows where parallel branches must converge?
+
+### Backwards Compatibility: L-to-TRA Mapping
+
+For historical data and gradual migration:
+
+| Old Level | New Dimension | Notes |
+|-----------|---------------|-------|
+| L0 Basic | T0 Invoke | Direct mapping |
+| L1 Schema | T1 Schema | Direct mapping |
+| L2 Select | T2 Selection | Direct mapping |
+| L3 Multi | A1 Linear | Renamed to clarify it tests agency |
+| L4 Advers | R0 Abstain | Reordered: restraint is not "hardest" |
+
+**In results tables**: We now report T/R/A dimensions, but historical data may show L0-L4.
+
+---
+
+## The Probe Tests
+
+Each probe tests a specific capability dimension. Models are graded per-dimension, not overall (a model might be A at T0 but F at A1).
+
+### T0 Invoke: Basic Tool Calling
 
 **What we test**: Can the model produce a tool_call at all?
 
@@ -34,13 +99,13 @@ Each level tests a specific capability. Models are graded per-level, not overall
 - Empty tool_calls array
 - Malformed JSON
 
-### Level 1: Schema Compliance
+### T1 Schema: Schema Compliance
 
 **What we test**: Does the model respect parameter types and required fields?
 
 **Prompt**: "Search for authentication files, limit results to 5"
 
-**Tools provided**: Same as Level 0, but with `limit` parameter:
+**Tools provided**: Same as T0, but with `limit` parameter:
 ```json
 {
   "name": "search",
@@ -65,7 +130,7 @@ Each level tests a specific capability. Models are graded per-level, not overall
 - Missing required fields
 - Extra hallucinated fields
 
-### Level 2: Tool Selection
+### T2 Selection: Tool Selection
 
 **What we test**: Given multiple tools, does the model choose appropriately?
 
@@ -89,7 +154,7 @@ Each level tests a specific capability. Models are graded per-level, not overall
 - Hallucinated tool not in list
 - No tool call
 
-### Level 3: Multi-Turn Coherence
+### A1 Linear: Multi-Turn Agency
 
 **What we test**: Can the model follow up appropriately after getting tool results?
 
@@ -106,28 +171,31 @@ Each level tests a specific capability. Models are graded per-level, not overall
 - Outputs text summary without reading files
 - Hallucinates file that wasn't in results
 
-### Level 4: Adversarial (No Hallucination)
+### R0 Abstain: Restraint Under Adversarial Conditions
 
-**What we test**: When no tool fits, does the model avoid hallucinating?
+**What we test**: When no tool fits, does the model avoid hallucinating AND remain helpful?
 
 **Prompt**: "What's the weather like today?"
 
 **Tools provided**: [search, read_file, list_directory] (no weather tool)
 
-**Pass criteria**: Text response explaining it can't check weather, OR asks clarifying question
+**Pass criteria**: BOTH conditions must be met:
+1. Does NOT call any tool (no hallucination, no tool misuse)
+2. Provides a helpful text response (explains limitation, suggests alternatives, or asks clarifying question)
 
 **Fail modes**:
 - Calls "weather" tool (hallucination)
 - Calls search with "weather" (misuse of available tools)
 - Makes up an answer
+- Refuses unhelpfully ("I cannot help with that" with no explanation)
 
 ## Statistical Framework
 
 ### Sample Size
 
-**Minimum n=10 per (model, level) combination**
+**Minimum n=10 per (model, dimension) combination**
 
-With 9 free models and 5 levels = 45 combinations = 450 minimum API calls per full run.
+With 9 free models and 5 dimensions (T0, T1, T2, A1, R0) = 45 combinations = 450 minimum API calls per full run.
 
 At ~2 seconds per call with rate limiting = ~15 minutes for full suite.
 
@@ -159,21 +227,21 @@ def wilson_interval(successes: int, trials: int, confidence: float = 0.95) -> tu
 
 | Grade | Criteria |
 |-------|----------|
-| **A** | L0 >= 80%, L1 >= 70%, no level below 50% |
-| **B** | L0 >= 60%, L1 >= 50%, no level below 30% |
-| **C** | L0 >= 40%, at least one level above 50% |
-| **D** | L0 >= 20%, or any success at higher levels |
-| **F** | L0 < 20% (cannot reliably call tools at all) |
+| **A** | T0 >= 80%, T1 >= 70%, no dimension below 50% |
+| **B** | T0 >= 60%, T1 >= 50%, no dimension below 30% |
+| **C** | T0 >= 40%, at least one dimension above 50% |
+| **D** | T0 >= 20%, or any success at other dimensions |
+| **F** | T0 < 20% (cannot reliably call tools at all) |
 
 ## Output Format
 
 ```markdown
-| Model | L0 Basic | L1 Schema | L2 Select | L3 Multi | L4 Advers | Grade |
-|-------|----------|-----------|-----------|----------|-----------|-------|
+| Model | T0 Invoke | T1 Schema | T2 Select | A1 Linear | R0 Abstain | Grade |
+|-------|-----------|-----------|-----------|-----------|------------|-------|
 | grok-4.1-fast:free | 90% [76,97] | 85% [62,96] | 80% [52,95] | 70% [42,89] | 95% [75,99] | **A** |
 
 *Percentages show success rate. Brackets show 95% Wilson CI. n=10 per cell.*
-*"-" indicates not tested (prerequisite level failed).*
+*"-" indicates not tested (T0 prerequisite failed).*
 ```
 
 ## Verification Protocol
@@ -195,7 +263,7 @@ Every submission includes:
   },
   "probes": {
     "model": "x-ai/grok-4.1-fast:free",
-    "level": 0,
+    "dimension": "T0",
     "trials": [
       {
         "openrouter_request_id": "req_xyz789",
