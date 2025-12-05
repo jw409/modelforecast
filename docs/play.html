@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>DOOM Arena - Playing</title>
-    <script src="https://js-dos.com/v7/build/releases/latest/js-dos/js-dos.js"></script>
-    <link rel="stylesheet" href="https://js-dos.com/v7/build/releases/latest/js-dos/js-dos.css">
+    <link rel="stylesheet" href="https://v8.js-dos.com/latest/js-dos.css">
+    <script src="https://v8.js-dos.com/latest/js-dos.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html, body {
@@ -14,15 +14,16 @@
             background: #000;
             overflow: hidden;
         }
-        #jsdos {
+        #dos {
             width: 100%;
-            height: 100%;
+            height: calc(100% - 50px);
         }
         .controls-bar {
             position: fixed;
             bottom: 0;
             left: 0;
             right: 0;
+            height: 50px;
             background: linear-gradient(180deg, rgba(26,26,26,0.95) 0%, rgba(13,13,13,0.98) 100%);
             padding: 10px 20px;
             display: flex;
@@ -33,7 +34,7 @@
             font-family: 'Courier New', monospace;
         }
         .back-btn {
-            padding: 8px 16px;
+            padding: 6px 12px;
             background: transparent;
             border: 1px solid #ff0000;
             color: #ff0000;
@@ -41,6 +42,7 @@
             cursor: pointer;
             border-radius: 4px;
             text-decoration: none;
+            font-size: 0.9em;
         }
         .back-btn:hover {
             background: #ff0000;
@@ -49,142 +51,40 @@
         .info {
             color: #888;
             text-align: center;
+            font-size: 0.85em;
         }
         .info strong { color: #ff4444; }
-        .cheats {
-            display: flex;
-            gap: 10px;
-        }
-        .cheat-btn {
-            padding: 8px 12px;
-            background: #222;
-            border: 1px solid #444;
-            color: #888;
-            font-family: inherit;
+        kbd {
+            background: #333;
+            padding: 2px 5px;
+            border-radius: 3px;
             font-size: 0.85em;
-            cursor: pointer;
-            border-radius: 4px;
         }
-        .cheat-btn:hover {
-            border-color: #ff0000;
-            color: #fff;
-        }
-        .loading-overlay {
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.95);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-            font-family: 'Courier New', monospace;
-            color: #ff0000;
-        }
-        .loading-overlay h1 {
-            font-size: 3em;
-            text-shadow: 0 0 20px #ff0000;
-            animation: pulse 1s infinite;
-        }
-        .loading-overlay p {
-            color: #888;
-            margin-top: 20px;
-        }
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-        .hidden { display: none !important; }
 
         /* Mobile responsiveness */
         @media (max-width: 600px) {
             .controls-bar {
-                flex-direction: column;
-                gap: 10px;
-                padding: 10px;
+                padding: 8px 10px;
             }
-            .cheats { flex-wrap: wrap; justify-content: center; }
+            .info { display: none; }
         }
     </style>
 </head>
 <body>
-    <div id="loading" class="loading-overlay">
-        <h1>LOADING DOOM</h1>
-        <p id="load-status">Initializing js-dos...</p>
-    </div>
-
-    <div id="jsdos"></div>
+    <div id="dos"></div>
 
     <div class="controls-bar">
         <a href="index.html" class="back-btn">← MENU</a>
         <div class="info">
-            <strong>DOOM</strong> - Level: <span id="level">E1M1</span>
-            | Use <kbd>WASD</kbd> to move, <kbd>Ctrl</kbd> to fire
+            <strong>DOOM</strong> | <kbd>WASD</kbd> move | <kbd>Ctrl</kbd> fire | <kbd>Space</kbd> use | Type IDDQD/IDKFA for cheats
         </div>
-        <div class="cheats">
-            <button class="cheat-btn" data-cheat="iddqd">IDDQD</button>
-            <button class="cheat-btn" data-cheat="idkfa">IDKFA</button>
-            <button class="cheat-btn" data-cheat="idclip">IDCLIP</button>
-        </div>
+        <a href="index.html" class="back-btn" style="visibility:hidden">← MENU</a>
     </div>
 
     <script>
-        // Parse URL params
-        const params = new URLSearchParams(window.location.search);
-        const level = params.get('level') || 'e1m1';
-        document.getElementById('level').textContent = level.toUpperCase();
-
-        // Level to warp command mapping
-        const levelWarps = {
-            'e1m1': '', // Default start
-            'e1m2': '-warp 1 2',
-            'e1m3': '-warp 1 3',
-            'e1m4': '-warp 1 4',
-            'e1m5': '-warp 1 5',
-            'e1m6': '-warp 1 6',
-            'e1m7': '-warp 1 7',
-            'e1m8': '-warp 1 8',
-            'e1m9': '-warp 1 9',
-        };
-
-        const warpCmd = levelWarps[level.toLowerCase()] || '';
-
-        // Initialize js-dos
-        const loadStatus = document.getElementById('load-status');
-
-        Dos(document.getElementById("jsdos"), {
-            url: "https://cdn.dos.zone/original/2X/2/24b00b14f118580763440ecaddcc948f8cb94f14.jsdos",
-            onprogress: (stage, progress) => {
-                loadStatus.textContent = `${stage}: ${Math.round(progress * 100)}%`;
-            },
-        }).then((ci) => {
-            document.getElementById('loading').classList.add('hidden');
-            window.ci = ci; // Store for cheat access
-
-            // Type cheats into the emulator
-            document.querySelectorAll('.cheat-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const cheat = btn.dataset.cheat;
-                    if (ci && ci.simulateKeyPress) {
-                        // Type the cheat code letter by letter
-                        for (const char of cheat) {
-                            ci.simulateKeyPress(char.charCodeAt(0), true);
-                            ci.simulateKeyPress(char.charCodeAt(0), false);
-                        }
-                        btn.style.background = '#ff0000';
-                        btn.style.color = '#000';
-                        setTimeout(() => {
-                            btn.style.background = '';
-                            btn.style.color = '';
-                        }, 500);
-                    }
-                });
-            });
-
-            console.log('DOOM loaded successfully');
-        }).catch((err) => {
-            loadStatus.textContent = 'Error loading DOOM: ' + err.message;
-            console.error('js-dos error:', err);
+        // js-dos v8 API
+        Dos(document.getElementById("dos"), {
+            url: "https://js-dos.com/cdn/upload/DOOM-@evilution.jsdos",
         });
     </script>
 </body>
