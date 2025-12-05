@@ -1,241 +1,110 @@
-# ModelForecast
+# 29 Free Models. 2 Work.
 
-**The tool-calling benchmark.**
+![Tool-calling reliability benchmark](charts/hero_waffle.png)
 
-Production AI agents require reliable tool calling. We test which models deliver.
+We tested every free model on OpenRouter for tool-calling reliability.
 
-*Last updated: December 2025*
+**The answer:** Use [KAT Coder Pro](https://openrouter.ai/kwaipilot/kat-coder-pro:free) (free) or Grok 4.1 ($0.05/1M).
 
----
-
-## Current Results
-
-![29 Free Models. 2 Work.](charts/hero_waffle.png)
-
-> **TL;DR:** Use **[KAT Coder Pro](https://openrouter.ai/kwaipilot/kat-coder-pro:free)** (free, A+) or **Grok 4.1** ($0.05/1M, A+). Everything else either fails or costs more.
-
-We tested all 29 free models on OpenRouter for tool-calling reliability.
-
-| Category | Count | What It Means |
-|----------|------:|---------------|
-| **Tools NOT supported** | 12 | API returns 404 - physically impossible |
-| **Tools supported** | 17 | Can theoretically call tools |
-| **Perfect T0** (100%) | 4 | Reliably invoke tools |
-| **Partial** (50-99%) | 4 | Sometimes works |
-| **Broken** (<50%) | 9 | Supports tools but fails |
-
-### Models That Actually Work
-
-| Model | T0 | T1 | T2 | A1 | R0 | Notes |
-|-------|:--:|:--:|:--:|:--:|:--:|-------|
-| **kwaipilot/kat-coder-pro:free** | 100% | 100% | 100% | 100% | 100% | **Only perfect free model** |
-| **x-ai/grok-4.1-fast:free** | 100% | 100% | 100% | 0% | 100% | Fails multi-turn |
-| **nvidia/nemotron-nano-9b-v2:free** | 100%* | - | - | - | - | Improved on retest |
-| **nvidia/nemotron-nano-12b-v2-vl:free** | 67% | - | - | - | - | Partial |
-
-*Recent retest showed 3/3 success - variance may be high*
+Everything else either fails or costs more.
 
 ---
 
-## Free vs Paid: The Real Comparison
+## The Grok Trap
 
-### Best Free Models (100% all dimensions)
+Grok's free tier passes every test... except multi-turn.
 
-| Model | A1 | Cost | Grade |
-|-------|:--:|-----:|:-----:|
-| **kwaipilot/kat-coder-pro:free** | 100% | $0 | **A+** |
+Your agent calls a tool. Gets results. Then **stops**.
 
-Only **one** free model achieves perfect scores across all capability dimensions.
+The paid tier? Perfect.
 
-### Best Paid Models (100% all dimensions)
+|  | Free | Paid |
+|--|:----:|:----:|
+| Basic tool calls | ✓ | ✓ |
+| Multi-turn chains | ✗ | ✓ |
 
-| Model | A1 | Cost/1M (in/out) | Grade |
-|-------|:--:|------------------|:-----:|
-| claude-haiku-4.5 | 100% | $0.80/$4 | **A+** |
-| claude-sonnet-4.5 | 100% | $3/$15 | **A+** |
-| claude-opus-4.5 | 100% | $15/$75 | **A+** |
-| gemini-2.5-flash-preview | 100% | $0.30/$1.25 | **A+** |
-| openai/gpt-5.1-codex | 100% | ~$3/$15 | **A+** |
-| x-ai/grok-4.1-fast | 100% | ~$0.05/1M | **A+** |
-| x-ai/grok-code-fast-1 | 100% | ~$0.05/1M | **A+** |
-
-### The Grok Warning
-
-| Variant | A1 (Multi-turn) | Cost |
-|---------|:---------------:|------:|
-| x-ai/grok-4.1-fast (paid) | **100%** | ~$0.05/1M |
-| x-ai/grok-4.1-fast:free | **0%** | $0 |
-
-The free tier saves you nothing if your agents can't chain tool calls.
-
-**Bottom line**: KAT Coder Pro is the only truly free A+ option. If you need agentic capabilities (multi-turn tool orchestration), the free Grok tier is broken - pay the $0.05/1M or use KAT Coder Pro.
-
-### Don't Support Tools (Can't Test)
-
-These 12 models return `404: No endpoints found that support tool use`:
-
-- All **Gemma** variants (gemma-3-12b, gemma-3-27b, gemma-3-4b, gemma-3n-e2b, gemma-3n-e4b)
-- **meta-llama/llama-3.2-3b-instruct**
-- **moonshotai/kimi-k2**, **nousresearch/hermes-3-llama-3.1-405b**
-- **allenai/olmo-3-32b-think**, **cognitivecomputations/dolphin-mistral-24b**
-- **tngtech/deepseek-r1t-chimera**, **tngtech/deepseek-r1t2-chimera**
-
----
-
-<details>
-<summary><strong>Understanding the Dimensions (T0/T1/T2/A1/R0)</strong></summary>
-
-We measure three orthogonal capabilities:
-
-**TOOL CALLING (T):** Can it use tools correctly?
-- **T0 (Invoke)**: Can it call a tool at all?
-- **T1 (Schema)**: Does it respect parameter types?
-- **T2 (Selection)**: Can it choose the right tool from a set?
-
-**RESTRAINT (R):** Does it know when NOT to use tools?
-- **R0 (Abstain)**: Will it refuse tools when inappropriate AND still be helpful?
-
-**AGENCY (A):** Can it orchestrate multi-step workflows?
-- **A1 (Linear)**: After receiving results, can it continue using tools?
-
-**The tradeoff:** High R + Low A = safe but limited. High A + Low R = powerful but hallucinates.
-
-</details>
-
----
-
-## The Agency Gap
-
-Most models pass basic tests. Then they hit A1 (agency) and fall off a cliff.
-
-![Multi-Dimension Comparison](charts/multi_level_comparison.png)
-
-**A1 is the differentiator.** After receiving tool results, can the model continue using tools appropriately?
-
-- **8 models achieve 100% A1**: Claude (all 3), Gemini 2.5 Flash, KAT Coder Pro, GPT-5.1-Codex, Grok (paid), Grok-Code-Fast-1
-- **Grok 4.1 (paid)**: 100% A1 - perfect multi-turn tool orchestration
-- **Grok 4.1 (free)**: 0% A1 - returns text instead of calling next tool
-- **DeepSeek V3.2-exp**: 60% - sometimes stops or picks wrong tool
-- **Gemini 3 Pro**: 0% A1 - passes everything else but fails multi-turn
-
----
-
-<details>
-<summary><strong>Full Results (All 50+ Models Tested)</strong></summary>
-
-### Production Ready (≥90% T0 Invoke)
-
-| Model | T0 | T1 | T2 | A1 | R0 | Grade |
-|-------|:--:|:--:|:--:|:--:|:--:|:-----:|
-| **claude-haiku-4.5** | 100% | 100% | 100% | 100% | 100% | **A+** |
-| **claude-sonnet-4.5** | 100% | 100% | 100% | 100% | 100% | **A+** |
-| **claude-opus-4.5** | 100% | 100% | 100% | 100% | 100% | **A+** |
-| **gemini-2.5-flash-preview** | 100% | 100% | 100% | 100% | 100% | **A+** |
-| **kwaipilot/kat-coder-pro:free** | 100% | 100% | 100% | 100% | 100% | **A+** |
-| **openai/gpt-5.1-codex** | 100% | 100% | 100% | 100% | 100% | **A+** |
-| **x-ai/grok-4.1-fast** | 100% | 100% | 100% | 100% | 100% | **A+** |
-| **x-ai/grok-code-fast-1** | 100% | 100% | 100% | 100% | 100% | **A+** |
-| minimax/minimax-m2 | 100% | 80% | 100% | 100% | 100% | A |
-| openai/gpt-5.1 | 100% | 100% | 100% | 80% | 100% | A |
-| deepseek/deepseek-v3.2-exp | 100% | 100% | 100% | 60% | 100% | B+ |
-| google/gemini-3-pro-preview | 100% | 100% | 100% | 0% | 100% | B |
-| x-ai/grok-4.1-fast:free | 100% | 100% | 100% | 0% | 100% | B |
-| openai/gpt-5-mini | 100% | 100% | 80% | 20% | 100% | B- |
-| openai/gpt-5.1-codex-mini | 100% | 100% | 100% | 20% | 100% | B- |
-
-*Grade: A+ = perfect, A = minor weakness, B+ = A1 weakness, B = A1 failure, B- = multiple weaknesses*
-
-![Efficiency Comparison](charts/efficiency_comparison.png)
-
-![Success Rates with Confidence Intervals](charts/success_rates_with_ci.png)
-
-*Error bars show 95% Wilson confidence intervals.*
-
-### Unreliable (50-89%)
-
-| Model | T0 Invoke | CI (95%) |
-|-------|----------:|----------|
-| nvidia/nemotron-nano-12b-v2-vl:free | 67% | [21%, 94%] |
-| amazon/nova-2-lite-v1:free | 67% | [21%, 94%] |
-| nvidia/nemotron-nano-9b-v2:free | 60% | [31%, 83%] |
-| alibaba/tongyi-deepresearch-30b-a3b:free | 50% | [24%, 76%] |
-
-### Broken (0-30%) - 30 models
-
-| Family | Models (T0 rate) |
-|--------|------------------|
-| **Qwen** (0/6) | qwen3-32b (0%), qwen3-30b-a3b (0%), qwen3-14b (0%), qwen3-4b (0%), qwen3-coder (0%), qwen3-235b-a22b (0%) |
-| **Google** (0/6) | gemini-2.0-flash-exp (0%), gemini-2.5-flash-lite (0%), gemma-3-27b-it (0%), gemma-3-12b-it (0%), gemma-3-4b-it (0%), gemma-3n-e2b/e4b (0%) |
-| **Meta** (0/3) | llama-4-maverick (0%), llama-3.3-70b-instruct (0%), llama-3.2-3b-instruct (0%) |
-| **TNG/DeepSeek** (0/3) | deepseek-r1t-chimera (0%), deepseek-r1t2-chimera (0%), tng-r1t-chimera (20%) |
-| **Others** | microsoft/mai-ds-r1 (0%), mistralai/mistral-small-3.1-24b (0%), deepseek-chat-v3-0324 (0%), nousresearch/deephermes-3 (0%), nousresearch/hermes-3-llama-3.1-405b (0%), moonshotai/kimi-k2 (0%), allenai/olmo-3-32b-think (0%), cognitivecomputations/dolphin-mistral-24b (0%), arcee-ai/trinity-mini (30%), meituan/longcat-flash-chat (20%), openai/gpt-oss-20b (20%), z-ai/glm-4.5-air (20%) |
-
-</details>
-
----
-
-## Reproduce These Results
-
-Everything here is reproducible:
-
-```bash
-# Clone and install
-git clone https://github.com/jw409/modelforecast
-cd modelforecast
-curl -LsSf https://astral.sh/uv/install.sh | sh
-uv sync
-
-# Set your OpenRouter API key
-export OPENROUTER_API_KEY=your_key_here
-
-# Run probes (takes ~15 minutes)
-uv run python -m modelforecast
-
-# Regenerate charts
-uv run python scripts/generate_charts.py
-
-# View raw results
-cat results/phase3_summary.csv
-```
+Same model. Different behavior. They throttled the agentic capability.
 
 ---
 
 ## The 3-Trial Trap
 
-**8 models passed 3/3 quick tests but failed extended testing.**
+8 models passed 3/3 quick tests. Then failed at scale.
 
-| Model | 3 trials | 10 trials | Reality |
-|-------|----------|-----------|---------|
-| meta-llama/llama-3.3-70b-instruct | 100% | 0% | Broken |
-| nvidia/nemotron-nano-9b-v2 | 100% | 60% | Unreliable |
-| alibaba/tongyi-deepresearch-30b-a3b | 100% | 50% | Unreliable |
+| Model | 3 trials | 10 trials |
+|-------|:--------:|:---------:|
+| llama-3.3-70b | 100% | 0% |
+| nemotron-nano-9b | 100% | 60% |
 
-Small sample sizes give false confidence. That's why we use Wilson score intervals.
+Small samples lie. We use [Wilson intervals](https://en.wikipedia.org/wiki/Binomial_proportion_confidence_interval#Wilson_score_interval) so you don't get burned.
+
+---
+
+## The Agency Gap
+
+Most models pass basic tests. Then they hit multi-turn and fall off a cliff.
+
+![Multi-turn capability comparison](charts/multi_level_comparison.png)
+
+Only **8 models** achieve 100% multi-turn reliability:
+- Claude (all 3 tiers)
+- Gemini 2.5 Flash
+- KAT Coder Pro ← *only free one*
+- GPT-5.1-Codex
+- Grok 4.1 (paid)
+- Grok-Code-Fast-1
 
 ---
 
 <details>
-<summary><strong>Methodology & Efficiency Metrics</strong></summary>
+<summary><strong>Full results & methodology</strong></summary>
+
+### Production Ready (≥90% basic reliability)
+
+| Model | Basic | Schema | Selection | Multi-turn | Restraint | Grade |
+|-------|:-----:|:------:|:---------:|:----------:|:---------:|:-----:|
+| claude-haiku-4.5 | 100% | 100% | 100% | 100% | 100% | **A+** |
+| claude-sonnet-4.5 | 100% | 100% | 100% | 100% | 100% | **A+** |
+| claude-opus-4.5 | 100% | 100% | 100% | 100% | 100% | **A+** |
+| gemini-2.5-flash-preview | 100% | 100% | 100% | 100% | 100% | **A+** |
+| kwaipilot/kat-coder-pro:free | 100% | 100% | 100% | 100% | 100% | **A+** |
+| openai/gpt-5.1-codex | 100% | 100% | 100% | 100% | 100% | **A+** |
+| x-ai/grok-4.1-fast | 100% | 100% | 100% | 100% | 100% | **A+** |
+| x-ai/grok-code-fast-1 | 100% | 100% | 100% | 100% | 100% | **A+** |
+| minimax/minimax-m2 | 100% | 80% | 100% | 100% | 100% | A |
+| openai/gpt-5.1 | 100% | 100% | 100% | 80% | 100% | A |
+| deepseek/deepseek-v3.2-exp | 100% | 100% | 100% | 60% | 100% | B+ |
+| google/gemini-3-pro-preview | 100% | 100% | 100% | 0% | 100% | B |
+| x-ai/grok-4.1-fast:free | 100% | 100% | 100% | 0% | 100% | B |
+
+### Unreliable (50-89%)
+
+| Model | Success Rate | 95% CI |
+|-------|:-----------:|--------|
+| nemotron-nano-12b-v2-vl:free | 67% | [21%, 94%] |
+| amazon/nova-2-lite-v1:free | 67% | [21%, 94%] |
+| nemotron-nano-9b-v2:free | 60% | [31%, 83%] |
+| tongyi-deepresearch-30b-a3b:free | 50% | [24%, 76%] |
+
+### Broken (<50%) - 30 models
+
+Qwen (0/6), Google/Gemma (0/6), Meta/Llama (0/3), TNG/DeepSeek (0/3), and others.
 
 ### What We Test
 
-| Dimension | Code | Question |
-|-----------|------|----------|
-| TOOL CALLING | T0/T1/T2 | Can it invoke, respect schema, select correctly? |
-| AGENCY | A1 | Can it chain tool calls? |
-| RESTRAINT | R0 | Does it know when NOT to use tools? |
+| Dimension | Question |
+|-----------|----------|
+| **Basic** (T0) | Can it call a tool at all? |
+| **Schema** (T1) | Does it respect parameter types? |
+| **Selection** (T2) | Can it choose the right tool? |
+| **Multi-turn** (A1) | Can it chain tool calls? |
+| **Restraint** (R0) | Does it know when NOT to use tools? |
 
-### Efficiency Score (AES)
+### Statistical Approach
 
-When models tie on reliability, efficiency breaks the tie:
-
-`AES = 0.4 × Token Efficiency + 0.4 × Latency + 0.2 × Strictness`
-
-### Statistical Rigor
-
-- **Wilson score intervals** for confidence (gold standard for small samples)
+- Wilson score intervals (gold standard for small samples)
 - 10 trials per extended test, 3 for triage
-- Grading based on lower bound of CI (conservative)
+- Grades based on lower bound of CI (conservative)
 
 Full methodology: [METHODOLOGY.md](METHODOLOGY.md)
 
@@ -243,42 +112,23 @@ Full methodology: [METHODOLOGY.md](METHODOLOGY.md)
 
 ---
 
+## Reproduce It
+
+```bash
+git clone https://github.com/jw409/modelforecast && cd modelforecast
+curl -LsSf https://astral.sh/uv/install.sh | sh && uv sync
+export OPENROUTER_API_KEY=your_key
+uv run python -m modelforecast
+```
+
+---
+
 ## Contributing
 
-We welcome community contributions! See [CONTRIBUTING.md](CONTRIBUTING.md).
-
-**To submit results:**
-1. Fork this repo
-2. Run `uv run python -m modelforecast`
-3. Commit your `results/` folder
-4. Open a PR
-
-Automated verification checks your results. If they match within tolerance, they'll be merged.
+Fork → Run → PR. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ---
 
-## License
+**Founders:** [@jw409](https://github.com/jw409) 🏆 [@jw408](https://github.com/jw408) 🏆
 
-MIT
-
----
-
-## Contributors
-
-### Founders
-- [@jw409](https://github.com/jw409) 🏆 - Creator, primary maintainer
-- [@jw408](https://github.com/jw408) 🏆 - Founder, contributor
-
-### How to Earn a Badge
-
-| Badge | Earned By |
-|-------|-----------|
-| 🔬 Model Contributor | Added 1+ model to benchmark |
-| ⚙️ Methodology Contributor | Improved test harness/scoring |
-| 🐛 Bug Hunter | Found/fixed reproducibility issues |
-
-PR merged = badge earned. See [CONTRIBUTING.md](CONTRIBUTING.md).
-
----
-
-*Not affiliated with OpenRouter.*
+MIT License · *Not affiliated with OpenRouter*
