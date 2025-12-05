@@ -48,11 +48,18 @@ typedef struct {
 } BorgState;
 ```
 
-### Phase 2: Decision Kernel
-Port `borg_think()` to CUDA. The 600KB monster:
+### Phase 2: Decision Kernel (DIRECT PORT - NO SIMPLIFICATION)
+
+**Philosophy**: 600KB of C can be optimized OR IT CAN JUST BE PORTED TO GPU.
+We choose: **JUST PORT IT**.
+
+Each GPU thread = one complete borg brain. Parallelism is INSTANCES, not LOGIC.
+
 ```cuda
+// Don't simplify. Don't optimize. JUST PORT.
+// 600KB of borg logic, verbatim on GPU
 __global__ void borg_think_kernel(
-    BorgState* states,      // [N] instances
+    BorgState* states,      // [N] instances (10,000 borgs)
     Action* actions,        // [N] output actions
     int num_instances
 ) {
@@ -61,53 +68,91 @@ __global__ void borg_think_kernel(
 
     BorgState* s = &states[idx];
 
-    // Priority cascade (from borg.txt)
-    if (s->hp < s->config.flee_hp) {
-        actions[idx] = find_escape_route(s);
-        return;
-    }
+    // ALL priority cascades from borg9-1.c
+    // Every conditional, every heuristic, every edge case
+    // Port line-by-line, preserve behavior exactly
 
-    if (has_valuable_loot(s) && s->depth < s->config.sell_depth) {
-        actions[idx] = ACTION_RECALL;
-        return;
-    }
+    // This is NOT a simplification - it's the FULL borg brain
+    // running 10,000 times in parallel
 
-    // ... 50+ more decision branches
+    actions[idx] = borg_think_full(s);  // The whole 600KB
+}
+
+// The complete borg decision tree - all 50+ branches
+__device__ Action borg_think_full(BorgState* s) {
+    // Phase 1: Emergency responses (flee, heal, teleport)
+    // Phase 2: Combat decisions (attack, buff, position)
+    // Phase 3: Exploration (pathfinding, door handling)
+    // Phase 4: Item management (identify, enchant, sell)
+    // Phase 5: Town behavior (shopping, restocking)
+    // Phase 6: Long-term planning (stat goals, depth targets)
+
+    // EVERY decision from the original C code
+    // No shortcuts. No "simplified combat".
 }
 ```
 
-### Phase 3: World Simulation
-Simplified Angband world on GPU:
+### Phase 3: World Simulation (FAITHFUL + PROCEDURAL)
+
+**Monster AI**: FAITHFUL to original Angband. No simplification.
+**Dungeon Generation**: PROCEDURAL ON GPU. Each instance gets unique levels.
+
 ```cuda
 __global__ void simulate_turn_kernel(
     BorgState* states,
     Action* actions,
     DungeonLevel* levels,
+    uint32_t* rng_states,      // Per-instance RNG for procedural gen
     int num_instances
 ) {
-    int idx = ...;
+    int idx = blockIdx.x * blockDim.x + threadIdx.x;
+    if (idx >= num_instances) return;
 
     Action a = actions[idx];
     BorgState* s = &states[idx];
-    DungeonLevel* level = &levels[s->depth];
+    DungeonLevel* level = &levels[s->depth * num_instances + idx];  // Per-instance level
 
+    // FULL action resolution - faithful to Angband
     switch (a.type) {
         case ACTION_MOVE:
-            // Check collision, move, trigger traps
+            // Full movement: collision, trap triggers, door opening
+            // Includes: terrain effects, confusion, fear
             break;
         case ACTION_ATTACK:
-            // Combat resolution
+            // FAITHFUL combat: to-hit, AC, damage dice, criticals
+            // Monster resistances, immunities, vulnerabilities
             break;
         case ACTION_CAST:
-            // Spell effects
+            // Full spell system: mana cost, failure rate, effects
+            // Beam vs bolt vs ball, resistances
             break;
-        // ...
+        case ACTION_USE_ITEM:
+            // Wands, staves, scrolls, potions, rods
+            // Recharge, identify, cursed items
+            break;
+        // ALL other actions from Angband
     }
 
-    // Monster turns
+    // FAITHFUL Monster AI - each monster acts intelligently
     for (int m = 0; m < level->num_monsters; m++) {
-        monster_act(&level->monsters[m], s);
+        Monster* mon = &level->monsters[m];
+        // Full monster behavior: pursuit, flee at low HP, spellcasting
+        // Pathfinding (A* or equivalent), LOS checks
+        // Monster-specific AI flags from monster.txt
+        monster_act_faithful(mon, s, level, &rng_states[idx]);
     }
+}
+
+// Procedural dungeon generation ON GPU
+__device__ void generate_dungeon_level(
+    DungeonLevel* level,
+    int depth,
+    uint32_t* rng
+) {
+    // Full Angband dungeon gen: rooms, corridors, vaults
+    // Themed levels, special rooms, permanent walls
+    // Stairs, traps, treasure distribution
+    // Monster placement based on depth and OOD rolls
 }
 ```
 
@@ -143,18 +188,45 @@ __constant__ MonsterTemplate MONSTERS[500] = {
 };
 ```
 
-### Task 3: Simplified Combat
+### Task 3: FAITHFUL Combat (Full Angband Rules)
 ```cuda
-__device__ int attack(BorgState* borg, Monster* mon) {
-    int to_hit = borg->skill_thn + borg->weapon_bonus;
-    int ac = mon->ac;
+__device__ int attack(BorgState* borg, Monster* mon, uint32_t* rng) {
+    // FULL Angband combat from melee.c and ranged.c
 
-    if (rand() % 100 < (to_hit - ac)) {
-        int damage = roll_dice(borg->weapon_dice);
-        mon->hp -= damage;
-        return damage;
-    }
-    return 0;
+    // 1. To-hit calculation (skill + bonuses - penalties)
+    int to_hit = borg->skill_thn;
+    to_hit += borg->weapon_bonus;
+    to_hit -= mon->ac;
+    to_hit -= distance_penalty(borg, mon);  // Ranged only
+
+    // 2. Hit determination with critical chance
+    int roll = xorshift32(rng) % 100;
+    bool hit = roll < to_hit;
+    bool critical = hit && (roll < to_hit / 5);
+
+    if (!hit) return 0;
+
+    // 3. Damage calculation (FAITHFUL dice + slays + brands)
+    int damage = roll_dice(borg->weapon_dice, rng);
+
+    // Slay multipliers from object.txt
+    if (mon->flags & RF_EVIL && borg->weapon_slays & SLAY_EVIL) damage = damage * 2;
+    if (mon->flags & RF_UNDEAD && borg->weapon_slays & SLAY_UNDEAD) damage = damage * 3;
+    if (mon->flags & RF_DEMON && borg->weapon_slays & SLAY_DEMON) damage = damage * 3;
+    if (mon->flags & RF_DRAGON && borg->weapon_slays & SLAY_DRAGON) damage = damage * 3;
+    // ... ALL slays from the original
+
+    // Brand effects (fire, cold, acid, lightning, poison)
+    damage = apply_brands(damage, borg, mon, rng);
+
+    // Critical multiplier
+    if (critical) damage = damage * (2 + xorshift32(rng) % 3);
+
+    // Monster resistance/immunity
+    damage = apply_resistances(damage, mon);
+
+    mon->hp -= damage;
+    return damage;
 }
 ```
 
@@ -204,9 +276,18 @@ class AngbandGPU:
 
 ## Blockers
 
-1. **borg_think() is 600KB of C** - Need to identify core decision paths
-2. **Monster AI** - Simplified or faithful?
-3. **Dungeon generation** - Pre-generate or procedural on GPU?
+1. **borg_think() is 600KB of C** - ~~Need to identify core decision paths~~ **RESOLVED: JUST PORT IT**
+2. **Monster AI** - ~~Simplified or faithful?~~ **RESOLVED: FAITHFUL**
+3. **Dungeon generation** - ~~Pre-generate or procedural on GPU?~~ **RESOLVED: PROCEDURAL ON GPU**
+
+## Design Decisions (LOCKED)
+
+| Question | Decision | Rationale |
+|----------|----------|-----------|
+| Port vs Optimize borg.c | **DIRECT PORT** | 600KB can be ported, parallelism is instances not logic |
+| Monster AI | **FAITHFUL** | Full Angband monster behavior, no shortcuts |
+| Dungeon Gen | **PROCEDURAL ON GPU** | Each instance gets unique procedural levels |
+| Memory Layout | **Per-instance levels** | `levels[depth * N + idx]` gives each borg its own dungeon |
 
 ## References
 
