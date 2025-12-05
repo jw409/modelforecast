@@ -1,0 +1,91 @@
+#!/usr/bin/expect -f
+# Test Angband borg automation
+
+set timeout 30
+set ANGBAND "/home/jw/dev/game1/external/angband-arena/angband/build/game/angband"
+set SAVE "borgtest_[clock seconds]"
+
+# Change to correct directory
+cd /home/jw/dev/game1/external/angband-arena/angband/build
+
+puts "Starting Angband with borg..."
+puts "Save: $SAVE"
+
+# Start angband
+spawn $ANGBAND -mgcu -u$SAVE -n
+
+# Wait for initialization and press space to continue
+sleep 2
+send " "
+sleep 1
+
+# Race selection - send 'a' for Human
+send "a"
+sleep 0.5
+
+# Class selection - send 'a' for Warrior
+send "a"
+sleep 0.5
+
+# Accept roller/stats - press Enter
+send "\r"
+sleep 0.5
+
+# Accept name - press Enter
+send "\r"
+sleep 0.5
+
+# Final confirmation - press Enter
+send "\r"
+sleep 0.5
+
+# Extra enters just in case
+send "\r"
+sleep 0.5
+send "\r"
+sleep 1
+
+puts "\n--- Character should be created, starting borg ---"
+
+# Open borg menu with Ctrl-Z
+send "\x1a"
+sleep 0.5
+
+# Activate borg with 'z'
+send "z"
+sleep 0.5
+
+puts "\n--- Borg should be running ---"
+
+# Let it run for 15 seconds
+set run_time 15
+puts "Running for $run_time seconds..."
+sleep $run_time
+
+puts "\n--- Stopping borg ---"
+
+# Stop borg with space
+send " "
+sleep 0.5
+
+# Create log snapshot
+send "\x1a"
+sleep 0.3
+send "l"
+sleep 1
+
+puts "\n--- Saving and quitting ---"
+
+# Save and quit
+send "\x1b"
+sleep 0.2
+send "S"
+sleep 0.5
+send "y"
+sleep 0.5
+
+# Force exit
+send "\x03"
+sleep 0.5
+
+puts "\n--- Done ---"
