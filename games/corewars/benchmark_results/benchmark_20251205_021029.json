@@ -1,0 +1,88 @@
+[
+  {
+    "model_id": "kat-coder",
+    "model_name": "kwaipilot/kat-coder-pro:free",
+    "grade": "A+",
+    "turns": [
+      {
+        "turn": 1,
+        "win_rate": 23.1,
+        "warrior_lines": 5,
+        "response_preview": "```redcode\n; Improved IMP - faster win rate\n    SPL 0\n    MOV 0, 1\n    MOV 0, 1\n    JMP -2\n```"
+      },
+      {
+        "turn": 2,
+        "win_rate": 29.3,
+        "warrior_lines": 9,
+        "response_preview": "```redcode\n; Turn 2 - IMP Bomber hybrid\n; Strategy: Use Dwarf to slow opponent while launching IMP\n; This should improve win rate vs Basic IMP\n    SPL 0           ; Split process - parallel execution\n"
+      },
+      {
+        "turn": 3,
+        "win_rate": 32.9,
+        "warrior_lines": 10,
+        "response_preview": "```redcode\n; kat-coder - Turn 3\n; Turn 3 - Improved IMP Bomber\n; Strategy: Add SPL-based replication for faster IMP deployment\n; Improved bombing pattern to disrupt opponent more effectively\n    SPL 0"
+      },
+      {
+        "turn": 4,
+        "win_rate": 34.8,
+        "warrior_lines": 9,
+        "response_preview": "```redcode\n; kat-coder - Turn 4\n; Turn 4 - Improved Dwarf + Imp hybrid\n; Strategy: Bomb first to disable opponent, then deploy IMP stream\n; Uses DJN loop for efficient bombing, then transitions to MOV"
+      },
+      {
+        "turn": 5,
+        "win_rate": 28.1,
+        "warrior_lines": 13,
+        "response_preview": "```redcode\n; kat-coder - Turn 5\n; Improved bomb + imp core clear\n; Faster start with SPL, multi-stage bombing, then imp stream\n    SPL 1           ; Split for parallel execution\n    SPL 1           ; "
+      },
+      {
+        "turn": 6,
+        "win_rate": 21.8,
+        "warrior_lines": 13,
+        "response_preview": "```redcode\n; kat-coder - Turn 6\n; Improved bomb + imp core clear\n; Faster start with SPL, multi-stage bombing, then imp stream\n    SPL 1           ; Split for parallel execution\n    SPL 1           ; "
+      },
+      {
+        "turn": 7,
+        "win_rate": 29.4,
+        "warrior_lines": 20,
+        "response_preview": "```redcode\n; kat-coder - Turn 7\n; Optimized dwarf-style bomber with faster execution and better coverage\n; Parallel processes for immediate multi-path attack\n    SPL 1           ; Create parallel proc"
+      },
+      {
+        "turn": 8,
+        "win_rate": 33.8,
+        "warrior_lines": 20,
+        "response_preview": "```redcode\n; kat-coder - Turn 8\n; Optimized dwarf-style bomber with faster execution and better coverage\n; Parallel processes for immediate multi-path attack\n    SPL 1           ; Create parallel proc"
+      },
+      {
+        "turn": 9,
+        "win_rate": 33.9,
+        "warrior_lines": 20,
+        "response_preview": "```redcode\n; kat-coder - Turn 9\n; Enhanced 3-way parallel bomber with optimized bomb spacing\n; Uses DAT bombs with varying values for maximum disruption\n    SPL 1           ; Create parallel process\n "
+      },
+      {
+        "turn": 10,
+        "win_rate": 36.0,
+        "warrior_lines": 23,
+        "response_preview": "```redcode\n; kat-coder - Turn 10\n; Three-way parallel bomber with optimized timing, bomb spacing, and decoys\n; Uses DAT bombs with varying values for maximum disruption\n    SPL 1           ; Create pa"
+      }
+    ],
+    "win_rates": [
+      23.1,
+      29.3,
+      32.9,
+      34.8,
+      28.1,
+      21.8,
+      29.4,
+      33.8,
+      33.9,
+      36.0
+    ],
+    "drama": [
+      "Turn 6: Surprise mice.red challenge!",
+      "Turn 7: Surprise dwarf.red challenge!"
+    ],
+    "final_win_rate": 36.0,
+    "improvement": 12.899999999999999,
+    "final_warrior": "; kat-coder - Turn 10\n; kat-coder - Turn 10\n; Three-way parallel bomber with optimized timing, bomb spacing, and decoys\n; Uses DAT bombs with varying values for maximum disruption\n    SPL 1           ; Create parallel process\n    SPL 1           ; Split again for 3-way parallel execution\n    SPL bomb        ; Start first bombing process\n    SPL bomb2       ; Start second bombing process\n    SPL bomb3       ; Start third bombing process\n    DAT #123        ; Decoy to waste opponent cycles\n    DAT #456        ; More decoys\n    DAT #789        ; Final decoy\n\nbomb    ADD #3, 4   ; Increment pointer by 3\n        MOV #0, @4  ; Drop DAT bomb\n        DJN -2, #5333 ; Loop 5333 times (full memory sweep)\n\nbomb2   ADD #3, 5   ; Second bomber with offset\n        MOV #1, @5  ; Drop DAT bomb with value 1\n        DJN -2, #5333\n\nbomb3   ADD #3, 6   ; Third bomber for maximum coverage\n        MOV #2, @6  ; Drop DAT bomb with value 2\n        DJN -2, #5333"
+  }
+]

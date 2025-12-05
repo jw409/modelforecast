@@ -1,0 +1,316 @@
+[
+  {
+    "model_id": "kat-coder",
+    "model_name": "kwaipilot/kat-coder-pro:free",
+    "grade": "A+",
+    "turns": [
+      {
+        "turn": 1,
+        "win_rate": 23.1,
+        "warrior_lines": 5,
+        "response_preview": "```redcode\n; Improved IMP - faster win rate\n    SPL 0\n    MOV 0, 1\n    MOV 0, 1\n    JMP -2\n```"
+      },
+      {
+        "turn": 2,
+        "win_rate": 29.3,
+        "warrior_lines": 9,
+        "response_preview": "```redcode\n; Turn 2 - IMP Bomber hybrid\n; Strategy: Use Dwarf to slow opponent while launching IMP\n; This should improve win rate vs Basic IMP\n    SPL 0           ; Split process - parallel execution\n"
+      },
+      {
+        "turn": 3,
+        "win_rate": 32.9,
+        "warrior_lines": 10,
+        "response_preview": "```redcode\n; kat-coder - Turn 3\n; Turn 3 - Improved IMP Bomber\n; Strategy: Add SPL-based replication for faster IMP deployment\n; Improved bombing pattern to disrupt opponent more effectively\n    SPL 0"
+      },
+      {
+        "turn": 4,
+        "win_rate": 34.8,
+        "warrior_lines": 9,
+        "response_preview": "```redcode\n; kat-coder - Turn 4\n; Turn 4 - Improved Dwarf + Imp hybrid\n; Strategy: Bomb first to disable opponent, then deploy IMP stream\n; Uses DJN loop for efficient bombing, then transitions to MOV"
+      },
+      {
+        "turn": 5,
+        "win_rate": 28.1,
+        "warrior_lines": 13,
+        "response_preview": "```redcode\n; kat-coder - Turn 5\n; Improved bomb + imp core clear\n; Faster start with SPL, multi-stage bombing, then imp stream\n    SPL 1           ; Split for parallel execution\n    SPL 1           ; "
+      },
+      {
+        "turn": 6,
+        "win_rate": 21.8,
+        "warrior_lines": 13,
+        "response_preview": "```redcode\n; kat-coder - Turn 6\n; Improved bomb + imp core clear\n; Faster start with SPL, multi-stage bombing, then imp stream\n    SPL 1           ; Split for parallel execution\n    SPL 1           ; "
+      },
+      {
+        "turn": 7,
+        "win_rate": 29.4,
+        "warrior_lines": 20,
+        "response_preview": "```redcode\n; kat-coder - Turn 7\n; Optimized dwarf-style bomber with faster execution and better coverage\n; Parallel processes for immediate multi-path attack\n    SPL 1           ; Create parallel proc"
+      },
+      {
+        "turn": 8,
+        "win_rate": 33.8,
+        "warrior_lines": 20,
+        "response_preview": "```redcode\n; kat-coder - Turn 8\n; Optimized dwarf-style bomber with faster execution and better coverage\n; Parallel processes for immediate multi-path attack\n    SPL 1           ; Create parallel proc"
+      },
+      {
+        "turn": 9,
+        "win_rate": 33.9,
+        "warrior_lines": 20,
+        "response_preview": "```redcode\n; kat-coder - Turn 9\n; Enhanced 3-way parallel bomber with optimized bomb spacing\n; Uses DAT bombs with varying values for maximum disruption\n    SPL 1           ; Create parallel process\n "
+      },
+      {
+        "turn": 10,
+        "win_rate": 36.0,
+        "warrior_lines": 23,
+        "response_preview": "```redcode\n; kat-coder - Turn 10\n; Three-way parallel bomber with optimized timing, bomb spacing, and decoys\n; Uses DAT bombs with varying values for maximum disruption\n    SPL 1           ; Create pa"
+      }
+    ],
+    "win_rates": [
+      23.1,
+      29.3,
+      32.9,
+      34.8,
+      28.1,
+      21.8,
+      29.4,
+      33.8,
+      33.9,
+      36.0
+    ],
+    "drama": [
+      "Turn 6: Surprise mice.red challenge!",
+      "Turn 7: Surprise dwarf.red challenge!"
+    ],
+    "final_win_rate": 36.0,
+    "improvement": 12.899999999999999,
+    "final_warrior": "; kat-coder - Turn 10\n; kat-coder - Turn 10\n; Three-way parallel bomber with optimized timing, bomb spacing, and decoys\n; Uses DAT bombs with varying values for maximum disruption\n    SPL 1           ; Create parallel process\n    SPL 1           ; Split again for 3-way parallel execution\n    SPL bomb        ; Start first bombing process\n    SPL bomb2       ; Start second bombing process\n    SPL bomb3       ; Start third bombing process\n    DAT #123        ; Decoy to waste opponent cycles\n    DAT #456        ; More decoys\n    DAT #789        ; Final decoy\n\nbomb    ADD #3, 4   ; Increment pointer by 3\n        MOV #0, @4  ; Drop DAT bomb\n        DJN -2, #5333 ; Loop 5333 times (full memory sweep)\n\nbomb2   ADD #3, 5   ; Second bomber with offset\n        MOV #1, @5  ; Drop DAT bomb with value 1\n        DJN -2, #5333\n\nbomb3   ADD #3, 6   ; Third bomber for maximum coverage\n        MOV #2, @6  ; Drop DAT bomb with value 2\n        DJN -2, #5333"
+  },
+  {
+    "model_id": "grok-free",
+    "model_name": "x-ai/grok-4.1-fast:free",
+    "grade": "B (0% A1)",
+    "turns": [
+      {
+        "turn": 1,
+        "error": "[ERROR: 404 - {\"error\":{\"message\":\"No endpoints found for x-ai/grok-4.1-fast:free.\",\"code\":404},\"user_id\":\"user_33wNLjDjfEHXt4yFzsWqFOEWhAE\"}]",
+        "win_rate": 19.2
+      },
+      {
+        "turn": 2,
+        "error": "[ERROR: 404 - {\"error\":{\"message\":\"No endpoints found for x-ai/grok-4.1-fast:free.\",\"code\":404},\"user_id\":\"user_33wNLjDjfEHXt4yFzsWqFOEWhAE\"}]",
+        "win_rate": 20.4
+      },
+      {
+        "turn": 3,
+        "error": "[ERROR: 404 - {\"error\":{\"message\":\"No endpoints found for x-ai/grok-4.1-fast:free.\",\"code\":404},\"user_id\":\"user_33wNLjDjfEHXt4yFzsWqFOEWhAE\"}]",
+        "win_rate": 16.7
+      },
+      {
+        "turn": 4,
+        "error": "[ERROR: 404 - {\"error\":{\"message\":\"No endpoints found for x-ai/grok-4.1-fast:free.\",\"code\":404},\"user_id\":\"user_33wNLjDjfEHXt4yFzsWqFOEWhAE\"}]",
+        "win_rate": 20.7
+      },
+      {
+        "turn": 5,
+        "error": "[ERROR: 404 - {\"error\":{\"message\":\"No endpoints found for x-ai/grok-4.1-fast:free.\",\"code\":404},\"user_id\":\"user_33wNLjDjfEHXt4yFzsWqFOEWhAE\"}]",
+        "win_rate": 16.6
+      },
+      {
+        "turn": 6,
+        "error": "[ERROR: 404 - {\"error\":{\"message\":\"No endpoints found for x-ai/grok-4.1-fast:free.\",\"code\":404},\"user_id\":\"user_33wNLjDjfEHXt4yFzsWqFOEWhAE\"}]",
+        "win_rate": 9.6
+      },
+      {
+        "turn": 7,
+        "error": "[ERROR: 404 - {\"error\":{\"message\":\"No endpoints found for x-ai/grok-4.1-fast:free.\",\"code\":404},\"user_id\":\"user_33wNLjDjfEHXt4yFzsWqFOEWhAE\"}]",
+        "win_rate": 18.6
+      },
+      {
+        "turn": 8,
+        "error": "[ERROR: 404 - {\"error\":{\"message\":\"No endpoints found for x-ai/grok-4.1-fast:free.\",\"code\":404},\"user_id\":\"user_33wNLjDjfEHXt4yFzsWqFOEWhAE\"}]",
+        "win_rate": 18.8
+      },
+      {
+        "turn": 9,
+        "error": "[ERROR: 404 - {\"error\":{\"message\":\"No endpoints found for x-ai/grok-4.1-fast:free.\",\"code\":404},\"user_id\":\"user_33wNLjDjfEHXt4yFzsWqFOEWhAE\"}]",
+        "win_rate": 19.8
+      },
+      {
+        "turn": 10,
+        "error": "[ERROR: 404 - {\"error\":{\"message\":\"No endpoints found for x-ai/grok-4.1-fast:free.\",\"code\":404},\"user_id\":\"user_33wNLjDjfEHXt4yFzsWqFOEWhAE\"}]",
+        "win_rate": 19.0
+      }
+    ],
+    "win_rates": [
+      19.2,
+      20.4,
+      16.7,
+      20.7,
+      16.6,
+      9.6,
+      18.6,
+      18.8,
+      19.8,
+      19.0
+    ],
+    "drama": [
+      "Turn 6: Surprise mice.red challenge!",
+      "Turn 7: Surprise imp_gate.red challenge!"
+    ],
+    "final_win_rate": 19.0,
+    "improvement": -0.1999999999999993,
+    "final_warrior": "; Basic IMP - Starting Point\n; Your job: improve this warrior\n    MOV 0, 1\n    JMP -1\n"
+  },
+  {
+    "model_id": "gemini-flash",
+    "model_name": "google/gemini-2.5-flash-lite-preview-09-2025:free",
+    "grade": "?",
+    "turns": [
+      {
+        "turn": 1,
+        "error": "[ERROR: 404 - {\"error\":{\"message\":\"No endpoints found for google/gemini-2.5-flash-lite-preview-09-2025:free.\",\"code\":404},\"user_id\":\"user_33wNLjDjfEHXt4yFzsWqFOEWhAE\"}]",
+        "win_rate": 22.6
+      },
+      {
+        "turn": 2,
+        "error": "[ERROR: 404 - {\"error\":{\"message\":\"No endpoints found for google/gemini-2.5-flash-lite-preview-09-2025:free.\",\"code\":404},\"user_id\":\"user_33wNLjDjfEHXt4yFzsWqFOEWhAE\"}]",
+        "win_rate": 17.3
+      },
+      {
+        "turn": 3,
+        "error": "[ERROR: 404 - {\"error\":{\"message\":\"No endpoints found for google/gemini-2.5-flash-lite-preview-09-2025:free.\",\"code\":404},\"user_id\":\"user_33wNLjDjfEHXt4yFzsWqFOEWhAE\"}]",
+        "win_rate": 18.6
+      },
+      {
+        "turn": 4,
+        "error": "[ERROR: 404 - {\"error\":{\"message\":\"No endpoints found for google/gemini-2.5-flash-lite-preview-09-2025:free.\",\"code\":404},\"user_id\":\"user_33wNLjDjfEHXt4yFzsWqFOEWhAE\"}]",
+        "win_rate": 19.5
+      },
+      {
+        "turn": 5,
+        "error": "[ERROR: 404 - {\"error\":{\"message\":\"No endpoints found for google/gemini-2.5-flash-lite-preview-09-2025:free.\",\"code\":404},\"user_id\":\"user_33wNLjDjfEHXt4yFzsWqFOEWhAE\"}]",
+        "win_rate": 19.9
+      },
+      {
+        "turn": 6,
+        "error": "[ERROR: 404 - {\"error\":{\"message\":\"No endpoints found for google/gemini-2.5-flash-lite-preview-09-2025:free.\",\"code\":404},\"user_id\":\"user_33wNLjDjfEHXt4yFzsWqFOEWhAE\"}]",
+        "win_rate": 13.5
+      },
+      {
+        "turn": 7,
+        "error": "[ERROR: 404 - {\"error\":{\"message\":\"No endpoints found for google/gemini-2.5-flash-lite-preview-09-2025:free.\",\"code\":404},\"user_id\":\"user_33wNLjDjfEHXt4yFzsWqFOEWhAE\"}]",
+        "win_rate": 18.7
+      },
+      {
+        "turn": 8,
+        "error": "[ERROR: 404 - {\"error\":{\"message\":\"No endpoints found for google/gemini-2.5-flash-lite-preview-09-2025:free.\",\"code\":404},\"user_id\":\"user_33wNLjDjfEHXt4yFzsWqFOEWhAE\"}]",
+        "win_rate": 18.8
+      },
+      {
+        "turn": 9,
+        "error": "[ERROR: 404 - {\"error\":{\"message\":\"No endpoints found for google/gemini-2.5-flash-lite-preview-09-2025:free.\",\"code\":404},\"user_id\":\"user_33wNLjDjfEHXt4yFzsWqFOEWhAE\"}]",
+        "win_rate": 15.2
+      },
+      {
+        "turn": 10,
+        "error": "[ERROR: 404 - {\"error\":{\"message\":\"No endpoints found for google/gemini-2.5-flash-lite-preview-09-2025:free.\",\"code\":404},\"user_id\":\"user_33wNLjDjfEHXt4yFzsWqFOEWhAE\"}]",
+        "win_rate": 19.9
+      }
+    ],
+    "win_rates": [
+      22.6,
+      17.3,
+      18.6,
+      19.5,
+      19.9,
+      13.5,
+      18.7,
+      18.8,
+      15.2,
+      19.9
+    ],
+    "drama": [
+      "Turn 6: Surprise imp_gate.red challenge!",
+      "Turn 7: Surprise dwarf.red challenge!"
+    ],
+    "final_win_rate": 19.9,
+    "improvement": -2.700000000000003,
+    "final_warrior": "; Basic IMP - Starting Point\n; Your job: improve this warrior\n    MOV 0, 1\n    JMP -1\n"
+  },
+  {
+    "model_id": "deepseek",
+    "model_name": "deepseek/deepseek-chat-v3-0324:free",
+    "grade": "B+",
+    "turns": [
+      {
+        "turn": 1,
+        "error": "[ERROR: 404 - {\"error\":{\"message\":\"No endpoints found for deepseek/deepseek-chat-v3-0324:free.\",\"code\":404},\"user_id\":\"user_33wNLjDjfEHXt4yFzsWqFOEWhAE\"}]",
+        "win_rate": 19.0
+      },
+      {
+        "turn": 2,
+        "error": "[ERROR: 404 - {\"error\":{\"message\":\"No endpoints found for deepseek/deepseek-chat-v3-0324:free.\",\"code\":404},\"user_id\":\"user_33wNLjDjfEHXt4yFzsWqFOEWhAE\"}]",
+        "win_rate": 19.4
+      },
+      {
+        "turn": 3,
+        "error": "[ERROR: 404 - {\"error\":{\"message\":\"No endpoints found for deepseek/deepseek-chat-v3-0324:free.\",\"code\":404},\"user_id\":\"user_33wNLjDjfEHXt4yFzsWqFOEWhAE\"}]",
+        "win_rate": 20.9
+      },
+      {
+        "turn": 4,
+        "error": "[ERROR: 404 - {\"error\":{\"message\":\"No endpoints found for deepseek/deepseek-chat-v3-0324:free.\",\"code\":404},\"user_id\":\"user_33wNLjDjfEHXt4yFzsWqFOEWhAE\"}]",
+        "win_rate": 21.3
+      },
+      {
+        "turn": 5,
+        "error": "[ERROR: 404 - {\"error\":{\"message\":\"No endpoints found for deepseek/deepseek-chat-v3-0324:free.\",\"code\":404},\"user_id\":\"user_33wNLjDjfEHXt4yFzsWqFOEWhAE\"}]",
+        "win_rate": 22.5
+      },
+      {
+        "turn": 6,
+        "error": "[ERROR: 404 - {\"error\":{\"message\":\"No endpoints found for deepseek/deepseek-chat-v3-0324:free.\",\"code\":404},\"user_id\":\"user_33wNLjDjfEHXt4yFzsWqFOEWhAE\"}]",
+        "win_rate": 19.9
+      },
+      {
+        "turn": 7,
+        "error": "[ERROR: 404 - {\"error\":{\"message\":\"No endpoints found for deepseek/deepseek-chat-v3-0324:free.\",\"code\":404},\"user_id\":\"user_33wNLjDjfEHXt4yFzsWqFOEWhAE\"}]",
+        "win_rate": 5.8
+      },
+      {
+        "turn": 8,
+        "error": "[ERROR: 404 - {\"error\":{\"message\":\"No endpoints found for deepseek/deepseek-chat-v3-0324:free.\",\"code\":404},\"user_id\":\"user_33wNLjDjfEHXt4yFzsWqFOEWhAE\"}]",
+        "win_rate": 5.6
+      },
+      {
+        "turn": 9,
+        "error": "[ERROR: 404 - {\"error\":{\"message\":\"No endpoints found for deepseek/deepseek-chat-v3-0324:free.\",\"code\":404},\"user_id\":\"user_33wNLjDjfEHXt4yFzsWqFOEWhAE\"}]",
+        "win_rate": 5.9
+      },
+      {
+        "turn": 10,
+        "error": "[ERROR: 404 - {\"error\":{\"message\":\"No endpoints found for deepseek/deepseek-chat-v3-0324:free.\",\"code\":404},\"user_id\":\"user_33wNLjDjfEHXt4yFzsWqFOEWhAE\"}]",
+        "win_rate": 9.5
+      }
+    ],
+    "win_rates": [
+      19.0,
+      19.4,
+      20.9,
+      21.3,
+      22.5,
+      19.9,
+      5.8,
+      5.6,
+      5.9,
+      9.5
+    ],
+    "drama": [
+      "Turn 6: Surprise dwarf.red challenge!",
+      "Turn 7: Surprise mice.red challenge!"
+    ],
+    "final_win_rate": 9.5,
+    "improvement": -9.5,
+    "final_warrior": "; Basic IMP - Starting Point\n; Your job: improve this warrior\n    MOV 0, 1\n    JMP -1\n"
+  }
+]
