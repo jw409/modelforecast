@@ -1,0 +1,601 @@
+{
+  "submission_id": "sub_f869b3f74835",
+  "timestamp": "2025-12-05T04:42:50.461127+00:00",
+  "contributor": "unknown",
+  "environment": {
+    "python_version": "3.11.13",
+    "openai_sdk_version": "2.8.1",
+    "os": "Linux 5.15.167.4-microsoft-standard-WSL2",
+    "env_hash": "sha256:82b59585ac582b7441e0dfb1a4ad0fabea13d6ea352206d6704de713f3c103ab"
+  },
+  "probes": {
+    "model": "google/gemini-3-pro-preview",
+    "level": 0,
+    "trials": [
+      {
+        "openrouter_request_id": "gen-1764909770-OEp1nsJqcT5i8Je5qE2L",
+        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
+        "response_hash": "sha256:04c5caab26ec529d37a7c5f38eadb6219e33293060f169044d886b900911167d",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 12980,
+        "request": {
+          "model": "google/gemini-3-pro-preview",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764909770-OEp1nsJqcT5i8Je5qE2L",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "tool_search_5DaNz4RMW5GU73vT4ZKd",
+                    "function": {
+                      "arguments": "{\"query\":\"authentication\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "**Begin Searching for Files**\n\nI'm focusing now on the best way to locate those files. To ensure the results are accurate and relevant, I'll employ the 'search' tool and set the query parameter to \"authentication.\" The goal is to efficiently pinpoint the files containing this term.\n\n\n",
+                "reasoning_details": [
+                  {
+                    "format": "google-gemini-v1",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "**Begin Searching for Files**\n\nI'm focusing now on the best way to locate those files. To ensure the results are accurate and relevant, I'll employ the 'search' tool and set the query parameter to \"authentication.\" The goal is to efficiently pinpoint the files containing this term.\n\n\n"
+                  },
+                  {
+                    "id": "tool_search_5DaNz4RMW5GU73vT4ZKd",
+                    "format": "google-gemini-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "EoMCCoACAXLI2nwmm/tXCoHaoUz+AtLuYsmFYE5v9WOBWoIVRHedmd4Ll1XkU9DBk2FvgR97nFZamuKlmTRnEhj7H/6u16mEz7qGRpzDBVPsWjgwD3lbgnc+vfp0QiXuOpTyfnasAqzJuWRkJWIWMq4EQJFKluQvp9Y2D6ims1X7PSZYPjGZFks7XPvSeWD6M/iJWLLILBGxuwQSTXGdnGmEvca69y/97oYJD5qhjqphtkFfGfLgwTMDjFuOtbnfzSQWXkTskXb/biX2c3QWyltwlusVINJhIncsO0QHPdFKF4wd3EtC/rCvWw4hHE6gyulSyZy9k4MMUoJexp/WxBRqA0xObA=="
+                  }
+                ]
+              },
+              "native_finish_reason": "STOP"
+            }
+          ],
+          "created": 1764909780,
+          "model": "google/gemini-3-pro-preview",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 52,
+            "prompt_tokens": 60,
+            "total_tokens": 112,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 38,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0.000744,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 0.00012,
+              "upstream_inference_completions_cost": 0.000624
+            }
+          },
+          "provider": "Google AI Studio"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764909783-Ho6QGm6QRK35jU8nfpVT",
+        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
+        "response_hash": "sha256:6dab64cfd4258b6fe1b6132b2a517af99301dba81871d24d4502f9187506e97c",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 3147,
+        "request": {
+          "model": "google/gemini-3-pro-preview",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764909783-Ho6QGm6QRK35jU8nfpVT",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "tool_search_PBe9yQcROdY1gQQENzYi",
+                    "function": {
+                      "arguments": "{\"query\":\"authentication\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "**Identifying 'Authentication' Files**\n\nI've decided to use the `search` tool, employing a `query` parameter specifically targeting the term 'authentication'. This seems the most direct approach to locate the relevant files. I'm focusing on the technical aspect of execution.\n\n\n",
+                "reasoning_details": [
+                  {
+                    "format": "google-gemini-v1",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "**Identifying 'Authentication' Files**\n\nI've decided to use the `search` tool, employing a `query` parameter specifically targeting the term 'authentication'. This seems the most direct approach to locate the relevant files. I'm focusing on the technical aspect of execution.\n\n\n"
+                  },
+                  {
+                    "id": "tool_search_PBe9yQcROdY1gQQENzYi",
+                    "format": "google-gemini-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "EoMCCoACAXLI2nxUnbeSxtIGtDzMnJACGGjSZgaqHgMxx0LjyW8CC0/souLM5Rip3SHyt84ztwGXAhHGquVQPBMzgdZ7xRRTJu+BQMCRhFLStRp+ryS1OPUZt/JE0SLU6lOn0K/NOevQSaBHJsD36Jad+NSbgzklmFOrdPa/+NJqG9inwNr8J1RMncineSI7HyAMNGl26trJhuDDxSKK/sw1dO3EFZVKheskwPLg41fyHz30g9X+Rm520IpbXO9TtKpW/HGOQdSQ+AqJMiSS0ctJ6wh+vkYfheGeCYZNFua3/gYz9X4m9xDc57YA4GXvh9dJQuHu7qDNw4ZNA1pSsT8DouUpzQ=="
+                  }
+                ]
+              },
+              "native_finish_reason": "STOP"
+            }
+          ],
+          "created": 1764909783,
+          "model": "google/gemini-3-pro-preview",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 52,
+            "prompt_tokens": 60,
+            "total_tokens": 112,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 38,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0.000744,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 0.00012,
+              "upstream_inference_completions_cost": 0.000624
+            }
+          },
+          "provider": "Google AI Studio"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764909786-rWYSx4vfiJqJPeRqMuNn",
+        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
+        "response_hash": "sha256:e018519e00227c39eec89f4e9179ef5927d30a3b380544a1f1e883790beedd4a",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 2834,
+        "request": {
+          "model": "google/gemini-3-pro-preview",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764909786-rWYSx4vfiJqJPeRqMuNn",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "tool_search_NdXRwVwNIvto7QSdrQlN",
+                    "function": {
+                      "arguments": "{\"query\":\"authentication\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "**Initiating File Search**\n\nI'm starting a file search using the `search` tool. The query is \"authentication,\" aiming to identify all relevant files. This feels straightforward, but I'll see what the tool turns up.\n\n\n",
+                "reasoning_details": [
+                  {
+                    "format": "google-gemini-v1",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "**Initiating File Search**\n\nI'm starting a file search using the `search` tool. The query is \"authentication,\" aiming to identify all relevant files. This feels straightforward, but I'll see what the tool turns up.\n\n\n"
+                  },
+                  {
+                    "id": "tool_search_NdXRwVwNIvto7QSdrQlN",
+                    "format": "google-gemini-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "EvABCu0BAXLI2nwFkmajaAGYPA0dxdi6qyl/JCIpB+772qdi8CgECwl8XCFJbq0x0eg7a2jRK8X+MutfkkfCfVx+wxACP8m6MfIpyBdYI/ywmC6eX6hnDtQKq67wwvOFBMR0UHvI+xAOzhS2QrmFjpT2Z4GGH+BHizb1DufLFemh89NyCsVrG2ZuhLJp3AdtrmSi/JgliNgplSyVAbKaOqQoIHJ0a27Y1MK9CSyJ3UO7QyQHOEvuMnqLw+Oo4XnUb4t6mJlO45lZTeLrSRWF0Q4vnEbBTYQlDIB/1v9RXg6w8lsKU+RmC+LDEcfsN8LjYCJ1"
+                  }
+                ]
+              },
+              "native_finish_reason": "STOP"
+            }
+          ],
+          "created": 1764909786,
+          "model": "google/gemini-3-pro-preview",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 47,
+            "prompt_tokens": 60,
+            "total_tokens": 107,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 33,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0.000684,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 0.00012,
+              "upstream_inference_completions_cost": 0.000564
+            }
+          },
+          "provider": "Google AI Studio"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764909789-cg49uYVOUHE2Jv8KvAFo",
+        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
+        "response_hash": "sha256:6b68be86ad1abfbc43e9cae904499d7a2fe23bea3abe6b97c8936dc43ea6fbc5",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 8592,
+        "request": {
+          "model": "google/gemini-3-pro-preview",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764909789-cg49uYVOUHE2Jv8KvAFo",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "tool_search_ancMdqZ8zumIVWJ1hGWq",
+                    "function": {
+                      "arguments": "{\"query\":\"authentication\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "**Searching for Authentication Files**\n\nI'm focusing now on the specifics of the file search. My current plan is to employ the search tool, with \"authentication\" as the primary search term. This should allow me to pinpoint the relevant files efficiently.\n\n\n",
+                "reasoning_details": [
+                  {
+                    "format": "google-gemini-v1",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "**Searching for Authentication Files**\n\nI'm focusing now on the specifics of the file search. My current plan is to employ the search tool, with \"authentication\" as the primary search term. This should allow me to pinpoint the relevant files efficiently.\n\n\n"
+                  },
+                  {
+                    "id": "tool_search_ancMdqZ8zumIVWJ1hGWq",
+                    "format": "google-gemini-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "CiQBjz1rX6CJW/QefdBqIwS0dbNrE5ZxDwXcyXbi4baL4gNRxOgKcgGPPWtfoE9zlO/ba5FQ/GPKA3BR4omLrkIw845EnGcWANshAtfPObTO0Eh9YlabhRmNezQCOwI7UD5DrBqmfFtHrxJsrDJ/zU3W8271VdlyVnlopbf7jTIR6xTtUEjqSPn+UToQFLOLp/dC0Pu9+yMZQgpmAY89a19zWuLUh9sqipFOrWWA4iuABOF4ffEuAQGLSeBfUpUXKiQenUUqofN1Ev0Bn4nHc+LnRFiuMWjyBjRxfBk4c67xk+nNbzjJtoz/bKZPcNRPzkSdJK8sPNzbf6I/0OCYX/F5"
+                  }
+                ]
+              },
+              "native_finish_reason": "STOP"
+            }
+          ],
+          "created": 1764909789,
+          "model": "google/gemini-3-pro-preview",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 40,
+            "prompt_tokens": 25,
+            "total_tokens": 65,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 33,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0.00053,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 5e-05,
+              "upstream_inference_completions_cost": 0.00048
+            }
+          },
+          "provider": "Google"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764909797-iVwlXhV7BuPtzScysLfp",
+        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
+        "response_hash": "sha256:346c86f3fef0ea999a67d6e56bf34672dac6e679247087dbd0de674f6cfe5ca1",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 13306,
+        "request": {
+          "model": "google/gemini-3-pro-preview",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764909797-iVwlXhV7BuPtzScysLfp",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "tool_search_ZqiQ6GUOjs2wx7EcGgrT",
+                    "function": {
+                      "arguments": "{\"query\":\"authentication\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "**Defining the Search Strategy**\n\nI'm now formulating the search command using the term \"authentication\". The objective is to efficiently locate all files that contain this specific keyword. I'll utilize the appropriate tool for this type of task.\n\n\n",
+                "reasoning_details": [
+                  {
+                    "format": "google-gemini-v1",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "**Defining the Search Strategy**\n\nI'm now formulating the search command using the term \"authentication\". The objective is to efficiently locate all files that contain this specific keyword. I'll utilize the appropriate tool for this type of task.\n\n\n"
+                  },
+                  {
+                    "id": "tool_search_ZqiQ6GUOjs2wx7EcGgrT",
+                    "format": "google-gemini-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "EvABCu0BAXLI2nx0J9ujNHMEnlnM/R3kWD8geKhxtTePRGku6HExSnblLTf/j2gDOiduGfa4xiN9UaiX1Ac3McAcuO5+D4YSHNrkCkueIQkOcbhiUVF4nop6AV82oBZMP/yVcPlO9Q/J2gQgVAQ+udZmV3EeBAWdB3fyWqf8X6OqUSg51xCI74KtdkX3fyXxYvvcLTkZ5AmQIM03mp49kkvh7eVq37s+MLx6DnXFIZHPmAD3ir9poqhwno8GlR/vi4Bfj57N1vlrbZebj+X9SRkd8FLUZNE6x9N9Ln1uW7NgzCnWsMWaDxUyEl5jVb1xsrG7"
+                  }
+                ]
+              },
+              "native_finish_reason": "STOP"
+            }
+          ],
+          "created": 1764909808,
+          "model": "google/gemini-3-pro-preview",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 47,
+            "prompt_tokens": 60,
+            "total_tokens": 107,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 33,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0.000684,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 0.00012,
+              "upstream_inference_completions_cost": 0.000564
+            }
+          },
+          "provider": "Google AI Studio"
+        }
+      }
+    ]
+  },
+  "summary": {
+    "successes": 5,
+    "trials": 5,
+    "rate": 1.0,
+    "wilson_ci_95": [
+      0.5655085052479191,
+      1.0
+    ]
+  }
+}

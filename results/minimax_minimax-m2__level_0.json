@@ -1,0 +1,568 @@
+{
+  "submission_id": "sub_2b642d6522a2",
+  "timestamp": "2025-12-05T04:42:51.199851+00:00",
+  "contributor": "unknown",
+  "environment": {
+    "python_version": "3.11.13",
+    "openai_sdk_version": "2.8.1",
+    "os": "Linux 5.15.167.4-microsoft-standard-WSL2",
+    "env_hash": "sha256:82b59585ac582b7441e0dfb1a4ad0fabea13d6ea352206d6704de713f3c103ab"
+  },
+  "probes": {
+    "model": "minimax/minimax-m2",
+    "level": 0,
+    "trials": [
+      {
+        "openrouter_request_id": "gen-1764909771-htpvklKnagBQttsZQDhg",
+        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
+        "response_hash": "sha256:1b963bc376043465536849c7ce3c00efa8c8c5144dad0d8ef2e2f0af3c1af61d",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 2110,
+        "request": {
+          "model": "minimax/minimax-m2",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764909771-htpvklKnagBQttsZQDhg",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "\n",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_function_mc50jf2300pz_1",
+                    "function": {
+                      "arguments": "{\"query\": \"authentication\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "The user wants me to use the search tool to find files containing the word 'authentication'. This is a straightforward request - I need to use the provided search function with the query parameter set to \"authentication\".",
+                "reasoning_details": [
+                  {
+                    "id": "reasoning-text-1",
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "The user wants me to use the search tool to find files containing the word 'authentication'. This is a straightforward request - I need to use the provided search function with the query parameter set to \"authentication\"."
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1764909771,
+          "model": "minimax/minimax-m2",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 65,
+            "prompt_tokens": 206,
+            "total_tokens": 271,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 43,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0.00011883,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 5.253e-05,
+              "upstream_inference_completions_cost": 6.63e-05
+            }
+          },
+          "provider": "Minimax"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764909773-jvxq2iMT385nlqFGQuZB",
+        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
+        "response_hash": "sha256:2a3debf2bbe9b7a52e3b793616c81503785fb72b492970555e6cd79893611de9",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 7556,
+        "request": {
+          "model": "minimax/minimax-m2",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764909773-jvxq2iMT385nlqFGQuZB",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "\n",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_function_huy9ycyd1qhd_1",
+                    "function": {
+                      "arguments": "{\"query\": \"authentication\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "Alright, let me analyze what's happening here. The user is asking me to use a search tool to find files containing the word 'authentication'. This is a straightforward request that requires me to use one of the tools I have available.\n\nLooking at my available tools, I have a \"search\" tool which allows me to search for files in the codebase. The tool takes a parameter called \"query\" which is a string that represents the search term.\n\nIn this case, the user wants to find files containing the word \"authentication\", so I need to pass \"authentication\" as the query parameter. The search tool will then look through the codebase and return files that contain this term.\n\nThe user's request is very clear and specific - they want to find files related to authentication. This could be for various reasons - maybe they're trying to understand the authentication system in their codebase, or perhaps they're looking to modify authentication-related functionality.\n\nSince this is a straightforward request and I have all the information I need (the search term is \"authentication\"), I should proceed with using the search tool with the appropriate parameters.\n\nI'll format my response using the required XML tags for tool calls, providing the tool name \"search\" and the arguments in a JSON object with the query parameter set to \"authentication\".\n\nSo I'll call the search tool with:\n- name: search\n- arguments: {\"query\": \"authentication\"}\n\nThis should return a list of files in the codebase that contain the word \"authentication\".",
+                "reasoning_details": [
+                  {
+                    "id": "reasoning-text-1",
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "Alright, let me analyze what's happening here. The user is asking me to use a search tool to find files containing the word 'authentication'. This is a straightforward request that requires me to use one of the tools I have available.\n\nLooking at my available tools, I have a \"search\" tool which allows me to search for files in the codebase. The tool takes a parameter called \"query\" which is a string that represents the search term.\n\nIn this case, the user wants to find files containing the word \"authentication\", so I need to pass \"authentication\" as the query parameter. The search tool will then look through the codebase and return files that contain this term.\n\nThe user's request is very clear and specific - they want to find files related to authentication. This could be for various reasons - maybe they're trying to understand the authentication system in their codebase, or perhaps they're looking to modify authentication-related functionality.\n\nSince this is a straightforward request and I have all the information I need (the search term is \"authentication\"), I should proceed with using the search tool with the appropriate parameters.\n\nI'll format my response using the required XML tags for tool calls, providing the tool name \"search\" and the arguments in a JSON object with the query parameter set to \"authentication\".\n\nSo I'll call the search tool with:\n- name: search\n- arguments: {\"query\": \"authentication\"}\n\nThis should return a list of files in the codebase that contain the word \"authentication\"."
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1764909773,
+          "model": "minimax/minimax-m2",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 316,
+            "prompt_tokens": 206,
+            "total_tokens": 522,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 298,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0.00037485,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 5.253e-05,
+              "upstream_inference_completions_cost": 0.00032232
+            }
+          },
+          "provider": "Minimax"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764909780-msXx2iljvui1638ksasO",
+        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
+        "response_hash": "sha256:5248c5b2f7dd6496420429b4db8cde80c796ce73311273cebb2577102847e14e",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 6553,
+        "request": {
+          "model": "minimax/minimax-m2",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764909780-msXx2iljvui1638ksasO",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "\n\n\n",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_b30e21afb6e7406e88feee89",
+                    "function": {
+                      "arguments": "{\"query\": \"authentication\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "Alright, the user is asking me to use the search tool to find files containing the word 'authentication'. This is a straightforward request that requires me to use one of the tools I have available.\n\nLooking at my available tools, I have a \"search\" tool which is designed to \"Search for files in the codebase\". This is exactly what I need for this task. The tool requires a \"query\" parameter, which should be the search term.\n\nIn this case, the user wants to find files containing 'authentication', so I'll use that as my query parameter. The search tool will then scan through the codebase and return files that contain this term.\n\nThe proper way to call this tool is to use the tool_calls XML format with the name of the tool and the arguments in JSON format. For the search tool, I need to provide:\n1. The tool name: \"search\"\n2. The arguments: a JSON object with the \"query\" field set to \"authentication\"\n\nSo I'll construct my response with the tool call using this format. The query parameter will be \"authentication\" as requested by the user. This should return all files in the codebase that contain this term, which might include authentication-related modules, configuration files, documentation, or any other files that mention authentication.\n\nI'll format my response according to the required XML structure with the tool name and arguments in a JSON object.\n",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "Alright, the user is asking me to use the search tool to find files containing the word 'authentication'. This is a straightforward request that requires me to use one of the tools I have available.\n\nLooking at my available tools, I have a \"search\" tool which is designed to \"Search for files in the codebase\". This is exactly what I need for this task. The tool requires a \"query\" parameter, which should be the search term.\n\nIn this case, the user wants to find files containing 'authentication', so I'll use that as my query parameter. The search tool will then scan through the codebase and return files that contain this term.\n\nThe proper way to call this tool is to use the tool_calls XML format with the name of the tool and the arguments in JSON format. For the search tool, I need to provide:\n1. The tool name: \"search\"\n2. The arguments: a JSON object with the \"query\" field set to \"authentication\"\n\nSo I'll construct my response with the tool call using this format. The query parameter will be \"authentication\" as requested by the user. This should return all files in the codebase that contain this term, which might include authentication-related modules, configuration files, documentation, or any other files that mention authentication.\n\nI'll format my response according to the required XML structure with the tool name and arguments in a JSON object.\n"
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1764909780,
+          "model": "minimax/minimax-m2",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 302,
+            "prompt_tokens": 192,
+            "total_tokens": 494,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 352,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0.00040106,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 5.376e-05,
+              "upstream_inference_completions_cost": 0.0003473
+            }
+          },
+          "provider": "AtlasCloud"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764909787-CDX2YZRpfdPGf6O6oKZ1",
+        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
+        "response_hash": "sha256:c3838c42ccc533d585063a1539e47c8678edf33004d0ce55ebd97119fc45eb89",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 1757,
+        "request": {
+          "model": "minimax/minimax-m2",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764909787-CDX2YZRpfdPGf6O6oKZ1",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "\n\n\n",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_function_xzlcn2rmfxox_1",
+                    "function": {
+                      "arguments": "{\"query\": \"authentication\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "\nThe user is asking me to use the search tool to find files containing 'authentication'. This is a straightforward request - I need to use the search tool with the query parameter set to \"authentication\".\n",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "\nThe user is asking me to use the search tool to find files containing 'authentication'. This is a straightforward request - I need to use the search tool with the query parameter set to \"authentication\".\n"
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1764909787,
+          "model": "minimax/minimax-m2",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": "",
+          "usage": {
+            "completion_tokens": 63,
+            "prompt_tokens": 206,
+            "total_tokens": 269,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 41,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0.0001374,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 6.18e-05,
+              "upstream_inference_completions_cost": 7.56e-05
+            }
+          },
+          "provider": "Novita"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764909789-I3w3xnq9fh7h0kG4d8V0",
+        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
+        "response_hash": "sha256:f660dd296cb2df581250737286b90cd380cd292822e95f68979fb09ecd8157a7",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 30762,
+        "request": {
+          "model": "minimax/minimax-m2",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764909789-I3w3xnq9fh7h0kG4d8V0",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_0de2e4e8559040eb84e7de1e",
+                    "function": {
+                      "arguments": "{\"query\": \"authentication\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "Alright, the user is asking me to use the search tool to find files containing the word 'authentication'. This is a straightforward request that requires me to use the search functionality that's available to me.\n\nLooking at the tools I have access to, I can see there's a \"search\" tool that allows me to search for files in the codebase. The tool requires a \"query\" parameter, which should be the search term I want to look for.\n\nIn this case, the user wants to find files containing 'authentication', so I'll need to use the search tool with that exact term as the query. The search tool will then return files that contain this term, which should help the user find relevant authentication-related code in their codebase.\n\nThe format for using the tool is clear from the system message - I need to make a tool call using XML tags and provide the tool name and arguments in JSON format. The tool name is \"search\" and the argument is a JSON object with a \"query\" property set to \"authentication\".\n\nSo I'll construct my response with the proper tool call format, specifying \"search\" as the tool name and providing the query \"authentication\" as the argument. This should return a list of files that contain the term \"authentication\" somewhere in their content.\n\nLet me format this properly according to the instructions:\n",
+                "reasoning_details": [
+                  {
+                    "format": null,
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "Alright, the user is asking me to use the search tool to find files containing the word 'authentication'. This is a straightforward request that requires me to use the search functionality that's available to me.\n\nLooking at the tools I have access to, I can see there's a \"search\" tool that allows me to search for files in the codebase. The tool requires a \"query\" parameter, which should be the search term I want to look for.\n\nIn this case, the user wants to find files containing 'authentication', so I'll need to use the search tool with that exact term as the query. The search tool will then return files that contain this term, which should help the user find relevant authentication-related code in their codebase.\n\nThe format for using the tool is clear from the system message - I need to make a tool call using XML tags and provide the tool name and arguments in JSON format. The tool name is \"search\" and the argument is a JSON object with a \"query\" property set to \"authentication\".\n\nSo I'll construct my response with the proper tool call format, specifying \"search\" as the tool name and providing the query \"authentication\" as the argument. This should return a list of files that contain the term \"authentication\" somewhere in their content.\n\nLet me format this properly according to the instructions:\n"
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1764909789,
+          "model": "minimax/minimax-m2",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 348,
+            "prompt_tokens": 82,
+            "total_tokens": 430,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 339,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0.0004422,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 2.46e-05,
+              "upstream_inference_completions_cost": 0.0004176
+            }
+          },
+          "provider": "Fireworks"
+        }
+      }
+    ]
+  },
+  "summary": {
+    "successes": 5,
+    "trials": 5,
+    "rate": 1.0,
+    "wilson_ci_95": [
+      0.5655085052479191,
+      1.0
+    ]
+  }
+}
