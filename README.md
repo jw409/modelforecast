@@ -99,6 +99,25 @@ Qwen (0/6), Google/Gemma (0/6), Meta/Llama (0/3), TNG/DeepSeek (0/3), and others
 | **Selection** (T2) | Can it choose the right tool? |
 | **Multi-turn** (A1) | Can it chain tool calls? |
 | **Restraint** (R0) | Does it know when NOT to use tools? |
+| **Embedding** (E0) | Can it produce embeddings? |
+| **Retrieval** (E1) | Can it rank relevant docs above distractors? |
+
+#### Embeddings: The Distractor Problem
+
+MTEB tests paraphrase detection. We test RAG failure modes.
+
+**Query**: "How do I handle async errors in Python?"
+
+| Document | Expected Rank |
+|----------|:-------------:|
+| Python asyncio try/except | 1st |
+| JavaScript async .catch() | 2nd (distractor) |
+| Database connection pooling | 3rd |
+
+The JavaScript doc has keyword overlap (async, errors, try/catch) but wrong language.
+A good embedding model ranks Python > JavaScript by **≥0.08 margin**.
+
+See [docs/EMBEDDINGS_BRIEFING.md](docs/EMBEDDINGS_BRIEFING.md) for methodology.
 
 ### Statistical Approach
 
