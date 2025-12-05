@@ -108,6 +108,14 @@ Adding new probe levels is a significant change:
 3. Explain what capability it tests that existing levels don't
 4. Wait for approval before implementing
 
+**Example**: See [2025-12-04-capability-dimensions-migration.md](docs/plans/2025-12-04-capability-dimensions-migration.md) for a well-structured plan that:
+- Explains the "why" (L0-L4 implied difficulty progression, but L4 < L3 empirically)
+- Defines the taxonomy clearly (T = Tool Calling, R = Restraint, A = Agency)
+- Maps old → new naming with rationale
+- Includes falsification tests (R0 must abstain AND be helpful, preventing "dumb silence" false positives)
+- Specifies backwards compatibility requirements
+- Outlines phased execution with verification steps
+
 ## Code Style
 
 - Python 3.11+
