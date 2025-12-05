@@ -66,12 +66,12 @@ def generate_reliability_latency_scatter(results, output_path):
         print("Model                          | Rate | Latency(ms)")
         print("-" * 55)
         for key, data in sorted(results.items(), key=lambda x: -x[1]["rate"]):
-            if data["level"] == 0:  # Only L0 for simplicity
+            if data["level"] == 0:  # Only T0 for simplicity
                 short_name = data["model"].split("/")[-1][:25]
                 print(f"{short_name:30} | {data['rate']*100:4.0f}% | {data['avg_latency_ms']:7.0f}")
         return
 
-    # Filter to L0 only for main chart
+    # Filter to T0 only for main chart
     l0_data = {k: v for k, v in results.items() if v["level"] == 0 and v["avg_latency_ms"] > 0}
 
     fig, ax = plt.subplots(figsize=(12, 8))
@@ -102,7 +102,7 @@ def generate_reliability_latency_scatter(results, output_path):
 
     ax.set_xlabel("Average Latency (seconds)", fontsize=12)
     ax.set_ylabel("Success Rate (%)", fontsize=12)
-    ax.set_title("Free Model Tool-Calling: Reliability vs Speed\n(L0 Basic Tool Invocation)", fontsize=14)
+    ax.set_title("Free Model Tool-Calling: Reliability vs Speed\n(T0 Basic Tool Invocation)", fontsize=14)
 
     # Add quadrant lines
     ax.axhline(y=90, color='gray', linestyle='--', alpha=0.5, label='90% threshold')
@@ -129,7 +129,7 @@ def generate_success_bar_chart(results, output_path):
         print("\n=== SUCCESS RATES WITH CI (ASCII) ===")
         return
 
-    # Filter to L0
+    # Filter to T0
     l0_data = [(k, v) for k, v in results.items() if v["level"] == 0]
     l0_data.sort(key=lambda x: -x[1]["rate"])
 
@@ -149,7 +149,7 @@ def generate_success_bar_chart(results, output_path):
     ax.set_xticks(range(len(names)))
     ax.set_xticklabels(names, rotation=45, ha='right', fontsize=8)
     ax.set_ylabel("Success Rate (%)", fontsize=12)
-    ax.set_title("Free Model Tool-Calling Success Rates (L0)\nwith 95% Wilson Confidence Intervals", fontsize=14)
+    ax.set_title("Free Model Tool-Calling Success Rates (T0)\nwith 95% Wilson Confidence Intervals", fontsize=14)
     ax.set_ylim(0, 110)
 
     # Add 90% line
@@ -163,7 +163,7 @@ def generate_success_bar_chart(results, output_path):
 
 
 def generate_multi_level_comparison(results, output_path):
-    """Compare models across L0-L4 levels."""
+    """Compare models across T0-T2/A1/R0 capability dimensions."""
     if not HAS_MPL:
         return
 
@@ -186,7 +186,7 @@ def generate_multi_level_comparison(results, output_path):
     fig, ax = plt.subplots(figsize=(10, 6))
 
     levels = [0, 1, 2, 3, 4]
-    level_names = ["L0\nBasic", "L1\nSchema", "L2\nSelection", "L3\nMulti-turn", "L4\nAdversarial"]
+    level_names = ["T0\nInvoke", "T1\nSchema", "T2\nSelection", "A1\nLinear", "R0\nAbstain"]
 
     x = range(len(levels))
     width = 0.8 / len(multi_level)
@@ -203,7 +203,7 @@ def generate_multi_level_comparison(results, output_path):
     ax.set_xticks(x)
     ax.set_xticklabels(level_names)
     ax.set_ylabel("Success Rate (%)")
-    ax.set_title("Multi-Level Probe Comparison\n(L3 Multi-turn is the differentiator)")
+    ax.set_title("Capability Dimension Comparison\n(A1 Agency is the differentiator)")
     ax.legend(loc='upper right')
     ax.set_ylim(0, 110)
     ax.axhline(y=90, color='gray', linestyle='--', alpha=0.3)
