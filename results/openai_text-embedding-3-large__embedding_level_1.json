@@ -1,0 +1,122 @@
+{
+  "submission_id": "sub_d28b09158c51",
+  "timestamp": "2025-12-05T09:15:58.747926+00:00",
+  "contributor": "unknown",
+  "environment": {
+    "python_version": "3.11.13",
+    "openai_sdk_version": "2.8.1",
+    "os": "Linux 5.15.167.4-microsoft-standard-WSL2",
+    "env_hash": "sha256:82b59585ac582b7441e0dfb1a4ad0fabea13d6ea352206d6704de713f3c103ab"
+  },
+  "probes": {
+    "model": "openai/text-embedding-3-large",
+    "level": 1,
+    "trials": [
+      {
+        "embedding_returned": true,
+        "dimensions": 3072,
+        "success": true,
+        "latency_ms": 779,
+        "error": null,
+        "similarity_score": 0.1715844500494128,
+        "raw_response": {
+          "model": "openai/text-embedding-3-large",
+          "sim_relevant": 0.7134,
+          "sim_distractor": 0.5419,
+          "sim_irrelevant": 0.1586,
+          "margin_relevant_vs_distractor": 0.1716,
+          "margin_distractor_vs_irrelevant": 0.3833,
+          "ordering_correct": true,
+          "margins_sufficient": true
+        }
+      },
+      {
+        "embedding_returned": true,
+        "dimensions": 3072,
+        "success": true,
+        "latency_ms": 424,
+        "error": null,
+        "similarity_score": 0.17169529030122566,
+        "raw_response": {
+          "model": "openai/text-embedding-3-large",
+          "sim_relevant": 0.7134,
+          "sim_distractor": 0.5418,
+          "sim_irrelevant": 0.1604,
+          "margin_relevant_vs_distractor": 0.1717,
+          "margin_distractor_vs_irrelevant": 0.3814,
+          "ordering_correct": true,
+          "margins_sufficient": true
+        }
+      },
+      {
+        "embedding_returned": true,
+        "dimensions": 3072,
+        "success": true,
+        "latency_ms": 651,
+        "error": null,
+        "similarity_score": 0.1715844500494128,
+        "raw_response": {
+          "model": "openai/text-embedding-3-large",
+          "sim_relevant": 0.7134,
+          "sim_distractor": 0.5419,
+          "sim_irrelevant": 0.1586,
+          "margin_relevant_vs_distractor": 0.1716,
+          "margin_distractor_vs_irrelevant": 0.3833,
+          "ordering_correct": true,
+          "margins_sufficient": true
+        }
+      },
+      {
+        "embedding_returned": true,
+        "dimensions": 3072,
+        "success": true,
+        "latency_ms": 496,
+        "error": null,
+        "similarity_score": 0.1720939016717199,
+        "raw_response": {
+          "model": "openai/text-embedding-3-large",
+          "sim_relevant": 0.7138,
+          "sim_distractor": 0.5417,
+          "sim_irrelevant": 0.1586,
+          "margin_relevant_vs_distractor": 0.1721,
+          "margin_distractor_vs_irrelevant": 0.3831,
+          "ordering_correct": true,
+          "margins_sufficient": true
+        }
+      },
+      {
+        "embedding_returned": true,
+        "dimensions": 3072,
+        "success": true,
+        "latency_ms": 435,
+        "error": null,
+        "similarity_score": 0.17170387002967424,
+        "raw_response": {
+          "model": "openai/text-embedding-3-large",
+          "sim_relevant": 0.7134,
+          "sim_distractor": 0.5417,
+          "sim_irrelevant": 0.1586,
+          "margin_relevant_vs_distractor": 0.1717,
+          "margin_distractor_vs_irrelevant": 0.3831,
+          "ordering_correct": true,
+          "margins_sufficient": true
+        }
+      }
+    ]
+  },
+  "summary": {
+    "successes": 5,
+    "trials": 5,
+    "rate": 1.0,
+    "wilson_ci_95": [
+      0.5655085052479191,
+      1.0
+    ]
+  },
+  "embedding_metadata": {
+    "probe_type": "E1",
+    "probe_name": "Retrieval Quality",
+    "dimensions": 3072,
+    "mode": "openrouter"
+  }
+}

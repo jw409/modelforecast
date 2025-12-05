@@ -222,16 +222,19 @@ __global__ void borg_execute_kernel(
 
         case BORG_ACTION_ATTACK:
             // Combat: simplified damage exchange
-            // Monster deals damage back
-            hp -= 5;  // Simplified monster damage
-            // Clear monster if killed (simplified)
             if (state.monster_count[id] > 0) {
                 int idx = 0;  // Attack nearest
                 int mhp = IGET(state.monster_hp, idx, id, num_instances);
+
+                // Monster damage scales with depth (deeper = deadlier)
+                int monster_damage = 5 + state.depth[id] * 2;
+                hp -= monster_damage;
+
+                // Player damage
                 mhp -= state.damage[id];
                 if (mhp <= 0) {
                     state.monster_count[id]--;
-                    state.exp[id] += 100;  // XP gain
+                    state.exp[id] += 50 * state.depth[id];  // XP scales with depth
                 } else {
                     ISET(state.monster_hp, idx, id, num_instances, mhp);
                 }

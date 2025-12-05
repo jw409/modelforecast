@@ -80,6 +80,17 @@ class ProbeRunner:
             from modelforecast.probes.t2_selection import T2SelectionProbe
             from modelforecast.probes.a1_linear import A1LinearProbe
             from modelforecast.probes.r0_abstain import R0AbstainProbe
+            from modelforecast.probes.dag_probe import DagProbe
+            
+            # Load default DAG definition
+            import json
+            dag_path = Path(__file__).parent / "dags/definitions/story_v1.json"
+            if dag_path.exists():
+                with open(dag_path) as f:
+                    dag_def = json.load(f)
+                dag_probe = DagProbe(dag_def)
+            else:
+                dag_probe = None
 
             self.probes = {
                 0: T0InvokeProbe(),   # T0 Invoke (was L0 Basic)
@@ -88,6 +99,9 @@ class ProbeRunner:
                 3: A1LinearProbe(),   # A1 Linear (was L3 Multi-turn)
                 4: R0AbstainProbe(),  # R0 Abstain (was L4 Adversarial)
             }
+            if dag_probe:
+                self.probes[5] = dag_probe
+                
         except ImportError:
             # Fall back to T0 only if other probes not yet implemented
             self.probes = {

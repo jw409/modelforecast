@@ -26,11 +26,11 @@ def main():
     # Mutually exclusive group for level selection
     level_group = parser.add_mutually_exclusive_group()
     level_group.add_argument(
-        "--level", type=int, choices=[0, 1, 2, 3, 4], help="Specific level to test (0-4, backwards compatible)"
+        "--level", type=int, choices=[0, 1, 2, 3, 4, 5], help="Specific level to test (0-5)"
     )
     level_group.add_argument(
-        "--probe", type=str, choices=["T0", "T1", "T2", "A1", "R0"],
-        help="Specific probe to test (T0=level 0, T1=level 1, T2=level 2, A1=level 3, R0=level 4)"
+        "--probe", type=str, choices=["T0", "T1", "T2", "A1", "R0", "DAG"],
+        help="Specific probe to test (T0=0, T1=1, T2=2, A1=3, R0=4, DAG=5)"
     )
 
     parser.add_argument(
@@ -67,6 +67,7 @@ def main():
         "T2": 2,
         "A1": 3,
         "R0": 4,
+        "DAG": 5,
     }
     if args.probe:
         args.level = probe_to_level[args.probe]
@@ -143,7 +144,7 @@ def main():
                 return 0
         else:
             # Run all levels
-            max_level = 4  # TODO: Adjust based on implemented probes
+            max_level = 5
             runner.run_all(trials=args.trials, max_level=max_level)
             print(f"\nResults written to: {output_dir}")
             return 0

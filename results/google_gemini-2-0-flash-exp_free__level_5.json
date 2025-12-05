@@ -1,0 +1,61 @@
+{
+  "submission_id": "sub_3e9ff11bb627",
+  "timestamp": "2025-12-05T09:17:02.208907+00:00",
+  "contributor": "unknown",
+  "environment": {
+    "python_version": "3.11.13",
+    "openai_sdk_version": "2.8.1",
+    "os": "Linux 5.15.167.4-microsoft-standard-WSL2",
+    "env_hash": "sha256:82b59585ac582b7441e0dfb1a4ad0fabea13d6ea352206d6704de713f3c103ab"
+  },
+  "probes": {
+    "model": "google/gemini-2.0-flash-exp:free",
+    "level": 5,
+    "trials": [
+      {
+        "openrouter_request_id": null,
+        "prompt_hash": "sha256:af05070fedf902bbdc346776d4038004f02f8ec8ee76b267ff966bb83481930f",
+        "response_hash": "sha256:b7a7c22af380ff653d7e4646f4c43c04910d482d76c9c585a864ee432408bcf3",
+        "tool_called": false,
+        "schema_valid": false,
+        "latency_ms": 2975,
+        "request": {
+          "model": "google/gemini-2.0-flash-exp:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Execute DAG: DAG Benchmark: generic-story-v1"
+            }
+          ],
+          "tools": [],
+          "temperature": 0.1
+        },
+        "response": {
+          "workflow_id": "generic-story-v1",
+          "nodes": {
+            "chapter1": {
+              "node_id": "chapter1",
+              "output": "",
+              "tool_calls": [],
+              "latency_ms": 2975,
+              "cost": 0.0,
+              "status": "failed",
+              "error": "Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemini-2.0-flash-exp:free is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations', 'provider_name': 'Google'}}, 'user_id': 'user_33wNLjDjfEHXt4yFzsWqFOEWhAE'}"
+            }
+          },
+          "total_cost": 0.0,
+          "success": false
+        }
+      }
+    ]
+  },
+  "summary": {
+    "successes": 0,
+    "trials": 1,
+    "rate": 0.0,
+    "wilson_ci_95": [
+      0.0,
+      0.7934567085261071
+    ]
+  }
+}
