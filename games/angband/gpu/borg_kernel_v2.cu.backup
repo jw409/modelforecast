@@ -11,8 +11,10 @@
 #include "../../common/interleaved.h"
 
 // Real Angband rules (being created by other agents)
-#include "angband_combat.cuh"      // Real hit/damage formulas
-#include "angband_monsters.cuh"    // Real monster data and AI
+// NOTE: Include order matters! monsters.cuh defines monster_attack() and MonsterRace data
+// combat.cuh references monster data for get_monster_damage_potential()
+#include "angband_monsters.cuh"    // Real monster data and AI (must be first)
+#include "angband_combat.cuh"      // Real hit/damage formulas (uses monster data)
 #include "angband_dungeon.cuh"     // Real dungeon generation
 
 #include <cuda_runtime.h>
@@ -26,6 +28,7 @@
 // ============================================================================
 
 // Calculate danger at position using REAL monster stats
+// Config-aware: different personality types perceive danger differently
 __device__ int calculate_danger(
     BorgStateInterleaved* s,
     int id, int x, int y,
@@ -33,7 +36,9 @@ __device__ int calculate_danger(
 ) {
     int danger = 0;
     int monster_count = s->monster_count[id];
+    int player_level = s->level[id];
     int player_ac = s->ac[id];
+    uint16_t config = s->config[id];
 
     for (int i = 0; i < monster_count && i < MAX_MONSTERS; i++) {
         int mx = IGET(s->monster_x, i, id, num_instances);
@@ -57,6 +62,29 @@ __device__ int calculate_danger(
         if (awake) threat *= 2;
 
         danger += threat;
+    }
+
+    // BASE DANGER from depth - even if no monsters nearby, deep dungeons are dangerous
+    // This prevents Level 1 characters from trivially reaching depth 127
+    int depth = s->depth[id];
+    int base_danger = depth * depth / 10;  // depth 50 = 250, depth 100 = 1000
+    danger += base_danger;
+
+    // Level-adjusted danger - being underleveled is VERY dangerous
+    int level_deficit = depth - player_level * 2;  // Safe depth = level * 2
+    if (level_deficit > 0) {
+        danger += level_deficit * level_deficit;  // Quadratic penalty for being underleveled
+    }
+
+    // Config-based danger perception modifiers
+    // Risky borgs perceive less danger (aggressive)
+    if (config_has(config, CFG_PLAYS_RISKY)) {
+        danger = (danger * 7) / 10;  // 30% less scary
+    }
+
+    // Tank/defensive borgs perceive more danger (conservative)
+    if (config_has(config, CFG_WORSHIPS_HP) && config_has(config, CFG_WORSHIPS_AC)) {
+        danger = (danger * 13) / 10;  // 30% more scary
     }
 
     return danger;
@@ -193,15 +221,24 @@ __global__ void borg_think_kernel(
     int max_hp = state.max_hp[id];
     int depth = state.depth[id];
     int speed = state.speed[id];
+    int player_level = state.level[id];
     uint16_t config = state.config[id];
     int no_deeper = state.no_deeper[id];
 
     bool has_healing = state.has_healing[id];
     bool has_recall = state.has_recall[id];
     bool has_teleport = state.has_teleport[id];
-    bool plays_risky = config_has(config, CFG_PLAYS_RISKY);
 
-    // Calculate danger using REAL monster stats
+    // Config flags (from APWBorg)
+    bool plays_risky = config_has(config, CFG_PLAYS_RISKY);
+    bool worships_damage = config_has(config, CFG_WORSHIPS_DAMAGE);
+    bool worships_speed = config_has(config, CFG_WORSHIPS_SPEED);
+    bool worships_hp = config_has(config, CFG_WORSHIPS_HP);
+    bool worships_ac = config_has(config, CFG_WORSHIPS_AC);
+    bool worships_gold = config_has(config, CFG_WORSHIPS_GOLD);
+    bool kills_uniques = config_has(config, CFG_KILLS_UNIQUES);
+
+    // Calculate danger using REAL monster stats (now config-aware)
     int danger = calculate_danger(&state, id, x, y, num_instances);
 
     // Find nearest monster
@@ -209,53 +246,165 @@ __global__ void borg_think_kernel(
     int monster_dist = find_nearest_monster(&state, id, x, y, num_instances, &mx, &my, &nearest_idx);
 
     // =========================================================================
-    // BORG DECISION TREE (simplified from borg_think in borg9.c)
+    // CONFIG-BASED THRESHOLDS (from APWBorg analysis)
+    // =========================================================================
+
+    // HP thresholds (config-dependent)
+    float critical_hp_threshold = 0.2f;
+    float low_hp_threshold = 0.5f;
+    float rest_hp_threshold = 0.8f;
+    float descend_hp_threshold = 0.7f;
+
+    // TANK: More conservative HP management (from borg4.c:4533)
+    if (worships_hp && worships_ac) {
+        critical_hp_threshold = 0.3f;  // Panic earlier
+        low_hp_threshold = 0.6f;       // Heal more often
+        rest_hp_threshold = 0.9f;      // Rest more frequently
+        descend_hp_threshold = 0.85f;  // Require higher HP to descend
+    }
+
+    // AGGRO: More aggressive HP management (from borg6.c:2886)
+    if (plays_risky && worships_damage) {
+        critical_hp_threshold = 0.15f; // Fight longer
+        low_hp_threshold = 0.35f;      // Less healing
+        rest_hp_threshold = 0.6f;      // Rest less
+        descend_hp_threshold = 0.5f;   // Descend with less HP
+    }
+
+    // Danger thresholds (config-dependent)
+    int danger_flee_threshold = 300;
+    int danger_fight_threshold = 200;
+    int danger_descend_threshold = 50;
+
+    // RISKY: Higher danger tolerance (from borg6.c:2092)
+    if (plays_risky) {
+        danger_flee_threshold = 450;      // +50% tolerance
+        danger_fight_threshold = 300;
+        danger_descend_threshold = 100;   // Will descend in more danger
+    }
+
+    // TANK: Lower danger tolerance (conservative)
+    if (worships_hp && worships_ac) {
+        danger_flee_threshold = 200;      // -33% tolerance
+        danger_fight_threshold = 150;
+        danger_descend_threshold = 30;    // Require safer descents
+    }
+
+    // =========================================================================
+    // BORG DECISION TREE (Config-Aware, from APWBorg borg_think)
     // =========================================================================
 
     uint8_t action = BORG_ACTION_EXPLORE;  // Default
-
-    // 1. CRITICAL: Very low HP - try to survive
     float hp_pct = (float)hp / (float)max_hp;
-    if (hp_pct < 0.2f) {
+
+    // 1. CRITICAL HP: Emergency survival (all configs)
+    if (hp_pct < critical_hp_threshold) {
         if (has_healing) {
             action = BORG_ACTION_HEAL;
-        } else if (has_teleport && danger > 50) {
+        } else if (has_teleport && danger > danger_flee_threshold / 6) {
             action = BORG_ACTION_FLEE;
-        } else if (has_recall) {
-            action = BORG_ACTION_ASCEND;  // Recall to town
-        } else if (!plays_risky) {
+        } else if (has_recall && !plays_risky) {
+            action = BORG_ACTION_ASCEND;  // Conservative: recall to town
+        } else if (!plays_risky && has_teleport) {
             action = BORG_ACTION_FLEE;
+        } else {
+            // Risky borgs fight even at low HP
+            if (monster_dist <= 1) {
+                action = BORG_ACTION_ATTACK;  // Desperate attack
+            } else {
+                action = BORG_ACTION_FLEE;
+            }
         }
     }
-    // 2. LOW HP: Consider healing/fleeing
-    else if (hp_pct < 0.5f && danger > 100) {
+    // 2. LOW HP + HIGH DANGER: Defensive actions
+    else if (hp_pct < low_hp_threshold && danger > danger_flee_threshold) {
         if (has_healing) {
             action = BORG_ACTION_HEAL;
-        } else if (!plays_risky) {
+        } else if (has_teleport) {
             action = BORG_ACTION_FLEE;
+        } else if (has_recall && !plays_risky) {
+            action = BORG_ACTION_ASCEND;
+        } else if (!plays_risky) {
+            action = BORG_ACTION_FLEE;  // Run away even without teleport
+        } else {
+            action = BORG_ACTION_ATTACK;  // Risky: fight through it
         }
     }
-    // 3. COMBAT: Monster in range
+    // 3. MELEE RANGE: Attack if acceptable danger
     else if (monster_dist <= 1) {
-        action = BORG_ACTION_ATTACK;
+        if (danger < danger_flee_threshold || plays_risky) {
+            action = BORG_ACTION_ATTACK;
+        } else {
+            action = BORG_ACTION_FLEE;  // Too dangerous even in melee
+        }
     }
-    // 4. APPROACH: Monster nearby
-    else if (monster_dist <= 5 && danger < 200) {
-        action = BORG_ACTION_ATTACK;  // Will approach
+    // 4. NEARBY MONSTER: Approach if config allows
+    else if (monster_dist <= 5) {
+        // AGGRO: Charge in (from borg8.c analysis)
+        if ((worships_damage || plays_risky) && danger < danger_fight_threshold) {
+            action = BORG_ACTION_ATTACK;  // Approach to fight
+        }
+        // SPEED: Hit and run - only if we can escape
+        else if (worships_speed && speed > 10 && danger < danger_fight_threshold && has_teleport) {
+            action = BORG_ACTION_ATTACK;  // Speed borg: quick strike
+        }
+        // TANK/CONSERVATIVE: Only approach if very safe
+        else if ((worships_hp || worships_ac) && danger < danger_descend_threshold) {
+            action = BORG_ACTION_ATTACK;  // Careful approach
+        }
+        // SCUMMER: Prioritize uniques (simplified - would check monster type)
+        else if (kills_uniques && danger < danger_fight_threshold) {
+            action = BORG_ACTION_ATTACK;  // Hunt uniques
+        }
+        // DEFAULT: Attack if not too dangerous (encourage XP gain)
+        else if (danger < danger_fight_threshold && hp_pct > 0.3f) {
+            action = BORG_ACTION_ATTACK;  // Default: fight for XP
+        }
+        else {
+            action = BORG_ACTION_EXPLORE;  // Not safe enough to approach
+        }
     }
-    // 5. REST: Low HP but safe
-    else if (hp_pct < 0.8f && danger < 20) {
+    // 5. REST: Recover HP when safe
+    else if (hp_pct < rest_hp_threshold && danger < danger_descend_threshold) {
         action = BORG_ACTION_REST;
     }
-    // 6. DESCEND: At stairs and ready
-    else if (depth < no_deeper && hp_pct > 0.7f && danger < 50) {
-        // Check if speed worship requires more speed
-        bool speed_ok = !config_has(config, CFG_WORSHIPS_SPEED) || speed >= 10;
-        if (speed_ok) {
+    // 6. DESCEND: Go deeper (config-dependent conditions)
+    // Priority order: TANK > AGGRO > SPEED > SCUMMER > ECONOMY > DEFAULT
+    else if (depth < no_deeper && hp_pct > descend_hp_threshold && danger < danger_descend_threshold) {
+        bool should_descend = false;
+
+        // TANK: Very conservative about descending (highest priority - most restrictive)
+        if (worships_hp && worships_ac) {
+            should_descend = (hp_pct > 0.9f && danger < danger_descend_threshold / 2);
+        }
+        // AGGRO: Descend aggressively (from borg8.c:4570)
+        else if (plays_risky && worships_damage) {
+            should_descend = (hp_pct > 0.5f);  // Low bar
+        }
+        // SPEED worship: Need adequate speed first
+        else if (worships_speed && !worships_hp && !plays_risky) {
+            should_descend = (speed >= 10 + depth / 10);  // Need more speed at deeper levels
+        }
+        // SCUMMER: Clear level more before descending (moderate)
+        else if (kills_uniques && !plays_risky) {
+            // Would ideally track unique kills; simplified: just be more careful
+            // Require higher HP and lower danger than default
+            should_descend = (hp_pct > 0.85f && danger < 30);
+        }
+        // ECONOMY: Ensure we collected enough gold (simplified)
+        else if (worships_gold && !plays_risky) {
+            should_descend = (state.gold[id] > depth * 100 && hp_pct > 0.75f);
+        }
+        // DEFAULT: Moderate descending
+        else {
+            should_descend = (hp_pct > 0.7f && danger < 50);
+        }
+
+        if (should_descend) {
             action = BORG_ACTION_DESCEND;
         }
     }
-    // 7. EXPLORE: Default
+    // 7. EXPLORE: Default wandering
     else {
         action = BORG_ACTION_EXPLORE;
     }
@@ -288,9 +437,10 @@ __global__ void borg_execute_kernel(
     int player_level = state.level[id];
 
     // Get player combat stats
+    int equipment_power = state.equipment_power[id];
     int player_skill = state.level[id] * 3;  // Base to-hit skill
-    int player_ac = state.ac[id];
-    int player_deadliness = state.damage[id];  // Deadliness bonus
+    int player_ac = state.ac[id] + equipment_power / 2;  // Equipment improves AC
+    int player_deadliness = state.damage[id] + equipment_power;  // Equipment adds damage
 
     // Execute action
     switch (action) {
@@ -329,10 +479,11 @@ __global__ void borg_execute_kernel(
                     int monster_hp = IGET(state.monster_hp, target_idx, id, num_instances);
                     int monster_ac = get_monster_ac(monster_type);
 
-                    // Weapon stats (simplified - could be from inventory later)
-                    int weapon_dd = 2;  // 2d6 weapon
-                    int weapon_ds = 6;
-                    int weapon_to_hit = 5;
+                    // Weapon stats (scale with equipment power)
+                    // Start at 2d6, improve with better equipment
+                    int weapon_dd = 2 + (equipment_power / 40);  // Max ~7 dice at depth 100
+                    int weapon_ds = 6 + (equipment_power / 50);  // Max ~10 sides at depth 100
+                    int weapon_to_hit = 5 + (equipment_power / 10);  // +20 to-hit at depth 100
 
                     // Calculate player to-hit
                     int to_hit = calc_player_to_hit(player_skill, weapon_to_hit);
@@ -359,12 +510,24 @@ __global__ void borg_execute_kernel(
                         // Remove monster (set HP to 0, will be cleaned up)
                         ISET(state.monster_hp, target_idx, id, num_instances, 0);
 
-                        // Check for level up (simplified)
-                        if (state.exp[id] > player_level * 100) {
+                        // Check for level up (REAL Angband XP curve)
+                        while (state.level[id] < MAX_LEVEL && state.exp[id] >= LEVEL_XP[state.level[id]]) {
                             state.level[id]++;
-                            // Increase stats on level up
-                            state.max_hp[id] += 10;
-                            state.damage[id] += 2;
+
+                            // HP gain on level up (Angband: 10 + d10 for warrior)
+                            // Simplified: 10 + random 0-9
+                            int hp_gain = 10 + (curand(rng) % 10);
+                            state.max_hp[id] += hp_gain;
+
+                            // Fully heal on level up
+                            hp = state.max_hp[id];
+
+                            // Increase damage (simulates better to-hit and deadliness)
+                            // Gain ~3 damage per level
+                            state.damage[id] += 2 + (curand(rng) % 3);
+
+                            // Increase AC slightly (simulates finding better armor)
+                            state.ac[id] += 1;
                         }
                     } else {
                         ISET(state.monster_hp, target_idx, id, num_instances, monster_hp);
@@ -373,7 +536,6 @@ __global__ void borg_execute_kernel(
                         int retaliation_damage = monster_attack(
                             monster_type,
                             player_ac,
-                            player_level,
                             rng
                         );
 
@@ -421,6 +583,18 @@ __global__ void borg_execute_kernel(
                 );
 
                 state.monster_count[id] = monster_count;
+
+                // EQUIPMENT DISCOVERY: Chance to find better gear when descending
+                // In real Angband, this comes from items on the floor
+                // Simplified: 10% chance per level to upgrade equipment
+                if (curand(rng) % 10 == 0) {
+                    // Equipment power scales with depth (approximately depth * 2)
+                    int found_power = new_depth * 2;
+                    // Only upgrade if better than current equipment
+                    if (found_power > state.equipment_power[id]) {
+                        state.equipment_power[id] = found_power;
+                    }
+                }
             }
             break;
 
@@ -457,28 +631,49 @@ __global__ void borg_execute_kernel(
             break;
     }
 
-    // === MONSTER AI LOOP (Process monsters) ===
+    // MONSTER TURN - awake monsters attack adjacent player
     int monster_count = state.monster_count[id];
     for (int i = 0; i < monster_count && i < MAX_MONSTERS; i++) {
-        // Skip dead monsters
-        if (IGET(state.monster_hp, i, id, num_instances) <= 0) continue;
-
+        int mx = IGET(state.monster_x, i, id, num_instances);
+        int my = IGET(state.monster_y, i, id, num_instances);
+        int mhp = IGET(state.monster_hp, i, id, num_instances);
         int mtype = IGET(state.monster_type, i, id, num_instances);
-        const MonsterRace& race = MONSTER_RACES[mtype]; // From angband_monsters.cuh
+        int awake = IGET(state.monster_awake, i, id, num_instances);
 
-        // 1. BREEDING LOGIC
-        if (race.flags & MFLAG_BREEDS) {
-            int mx = IGET(state.monster_x, i, id, num_instances);
-            int my = IGET(state.monster_y, i, id, num_instances);
-            
-            try_breed_monster(
-                i, mtype, mx, my,
-                state.monster_x, state.monster_y, state.monster_hp,
-                state.monster_type, state.monster_awake,
-                &state.monster_count[id],
-                state.dungeon_terrain,
-                id, num_instances, rng
-            );
+        // Skip dead or sleeping monsters
+        if (mhp <= 0 || !awake) continue;
+
+        // Check if adjacent to player
+        int dx = abs(mx - x);
+        int dy = abs(my - y);
+        int dist = max(dx, dy);
+
+        if (dist == 1) {
+            // Monster attacks!
+            int damage = monster_attack(mtype, player_ac, rng);
+            hp -= damage;
+
+            // Check for death immediately
+            if (hp <= 0) break;
+        } else if (dist <= 20 && dist > 1) {
+            // Move toward player (simple AI) - increased range from 10 to 20
+            int move_dx = 0;
+            int move_dy = 0;
+
+            if (mx < x) move_dx = 1;
+            else if (mx > x) move_dx = -1;
+
+            if (my < y) move_dy = 1;
+            else if (my > y) move_dy = -1;
+
+            int new_mx = mx + move_dx;
+            int new_my = my + move_dy;
+
+            // Check if walkable
+            if (is_walkable(state.dungeon_terrain, new_mx, new_my, id, num_instances)) {
+                ISET(state.monster_x, i, id, num_instances, new_mx);
+                ISET(state.monster_y, i, id, num_instances, new_my);
+            }
         }
     }
 
@@ -545,10 +740,11 @@ void run_borg_simulation(uint32_t num_instances, uint32_t max_turns, bool verify
     // Initialize state (simplified)
     std::vector<int16_t> init_depth(num_instances, 1);
     std::vector<int16_t> init_level(num_instances, 1);
-    std::vector<int16_t> init_hp(num_instances, 20); // Realistic Level 1 HP
+    std::vector<int16_t> init_hp(num_instances, 100);
     std::vector<int16_t> init_speed(num_instances, 10);
     std::vector<int16_t> init_ac(num_instances, 20);
     std::vector<int16_t> init_damage(num_instances, 15);
+    std::vector<int16_t> init_equipment_power(num_instances, 0);  // Start with no equipment
     std::vector<uint8_t> init_alive(num_instances, 1);
     std::vector<uint16_t> init_config(num_instances);
     std::vector<uint8_t> init_no_deeper(num_instances, 127);
@@ -575,6 +771,7 @@ void run_borg_simulation(uint32_t num_instances, uint32_t max_turns, bool verify
     CHECK(cudaMemcpy(state->speed, init_speed.data(), num_instances * sizeof(int16_t), cudaMemcpyHostToDevice));
     CHECK(cudaMemcpy(state->ac, init_ac.data(), num_instances * sizeof(int16_t), cudaMemcpyHostToDevice));
     CHECK(cudaMemcpy(state->damage, init_damage.data(), num_instances * sizeof(int16_t), cudaMemcpyHostToDevice));
+    CHECK(cudaMemcpy(state->equipment_power, init_equipment_power.data(), num_instances * sizeof(int16_t), cudaMemcpyHostToDevice));
     CHECK(cudaMemcpy(state->alive, init_alive.data(), num_instances, cudaMemcpyHostToDevice));
     CHECK(cudaMemcpy(state->config, init_config.data(), num_instances * sizeof(uint16_t), cudaMemcpyHostToDevice));
     CHECK(cudaMemcpy(state->no_deeper, init_no_deeper.data(), num_instances, cudaMemcpyHostToDevice));
@@ -630,6 +827,8 @@ void run_borg_simulation(uint32_t num_instances, uint32_t max_turns, bool verify
     std::vector<uint8_t> h_winner(num_instances);
     std::vector<int16_t> h_hp(num_instances);
     std::vector<int16_t> h_level(num_instances);
+    std::vector<int16_t> h_equipment_power(num_instances);
+    std::vector<uint32_t> h_exp(num_instances);
 
     CHECK(cudaMemcpy(h_alive.data(), state->alive, num_instances, cudaMemcpyDeviceToHost));
     CHECK(cudaMemcpy(h_depth.data(), state->depth, num_instances * sizeof(int16_t), cudaMemcpyDeviceToHost));
@@ -637,6 +836,8 @@ void run_borg_simulation(uint32_t num_instances, uint32_t max_turns, bool verify
     CHECK(cudaMemcpy(h_winner.data(), state->winner, num_instances, cudaMemcpyDeviceToHost));
     CHECK(cudaMemcpy(h_hp.data(), state->hp, num_instances * sizeof(int16_t), cudaMemcpyDeviceToHost));
     CHECK(cudaMemcpy(h_level.data(), state->level, num_instances * sizeof(int16_t), cudaMemcpyDeviceToHost));
+    CHECK(cudaMemcpy(h_equipment_power.data(), state->equipment_power, num_instances * sizeof(int16_t), cudaMemcpyDeviceToHost));
+    CHECK(cudaMemcpy(h_exp.data(), state->exp, num_instances * sizeof(uint32_t), cudaMemcpyDeviceToHost));
 
     // Count results by config type
     int alive_count[8] = {0};
@@ -645,15 +846,19 @@ void run_borg_simulation(uint32_t num_instances, uint32_t max_turns, bool verify
     int total_depth[8] = {0};
     int max_depth[8] = {0};
     int total_level[8] = {0};
+    int total_equipment[8] = {0};
     int count[8] = {0};
 
     for (uint32_t i = 0; i < num_instances; i++) {
         int config_type = i % 8;
         count[config_type]++;
         total_level[config_type] += h_level[i];
+        total_equipment[config_type] += h_equipment_power[i];
 
         if (h_alive[i]) {
             alive_count[config_type]++;
+            total_depth[config_type] += h_depth[i];  // Use current depth for alive
+            if (h_depth[i] > max_depth[config_type]) max_depth[config_type] = h_depth[i];
         } else {
             dead_count[config_type]++;
             total_depth[config_type] += h_final_depth[i];  // Use final depth for dead
@@ -665,11 +870,11 @@ void run_borg_simulation(uint32_t num_instances, uint32_t max_turns, bool verify
     const char* config_names[] = {"Aggro", "Speed", "Tank", "Scummer", "Meta", "Economy", "Cheat", "Default"};
 
     printf("\n=== RESULTS BY CONFIG ===\n");
-    printf("% -10s %8s %8s %8s %8s %8s %8s %8s\n",
-           "Config", "Alive%", "Dead%", "Win%", "AvgDepth", "MaxDepth", "AvgLevel", "Count");
+    printf("%-10s %8s %8s %8s %8s %8s %8s %8s %8s\n",
+           "Config", "Alive%", "Dead%", "Win%", "AvgDepth", "MaxDepth", "AvgLevel", "AvgEquip", "Count");
     for (int i = 0; i < 8; i++) {
         if (count[i] > 0) {
-            printf("% -10s %7.1f%% %7.1f%% %7.1f%% %8.1f %8d %8.1f %8d\n",
+            printf("%-10s %7.1f%% %7.1f%% %7.1f%% %8.1f %8d %8.1f %8.1f %8d\n",
                 config_names[i],
                 100.0 * alive_count[i] / count[i],
                 100.0 * dead_count[i] / count[i],
@@ -677,6 +882,7 @@ void run_borg_simulation(uint32_t num_instances, uint32_t max_turns, bool verify
                 (double)total_depth[i] / count[i],
                 max_depth[i],
                 (double)total_level[i] / count[i],
+                (double)total_equipment[i] / count[i],
                 count[i]);
         }
     }
@@ -697,14 +903,16 @@ void run_borg_simulation(uint32_t num_instances, uint32_t max_turns, bool verify
     // Verification mode: print first 10 instances for reproducibility check
     if (verify_mode && num_instances >= 10) {
         printf("\n=== VERIFICATION DATA (first 10 instances) ===\n");
-        printf("ID  Alive  Depth  Level  HP\n");
+        printf("ID  Alive  Depth  Level  HP   Equip    Exp\n");
         for (int i = 0; i < 10; i++) {
-            printf("%2d  %5s  %5d  %5d  %3d\n",
+            printf("%2d  %5s  %5d  %5d  %3d  %5d  %7u\n",
                    i,
                    h_alive[i] ? "YES" : "NO",
                    h_alive[i] ? h_depth[i] : h_final_depth[i],
                    h_level[i],
-                   h_hp[i]);
+                   h_hp[i],
+                   h_equipment_power[i],
+                   h_exp[i]);
         }
     }
 

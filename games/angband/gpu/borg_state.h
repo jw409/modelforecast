@@ -36,20 +36,62 @@
 #define CFG_USES_SWAPS       (1 << 8)
 #define CFG_CHEAT_DEATH      (1 << 9)
 
-// Borg actions (from borg decision tree)
+// Borg actions (comprehensive combat + exploration)
+// === BASIC ===
 #define BORG_ACTION_NONE        0
-#define BORG_ACTION_REST        1
-#define BORG_ACTION_HEAL        2
-#define BORG_ACTION_FLEE        3
-#define BORG_ACTION_ATTACK      4
-#define BORG_ACTION_EXPLORE     5
-#define BORG_ACTION_DESCEND     6
-#define BORG_ACTION_ASCEND      7
-#define BORG_ACTION_PICKUP      8
-#define BORG_ACTION_EQUIP       9
-#define BORG_ACTION_USE_ITEM    10
-#define BORG_ACTION_CAST        11
-#define BORG_ACTION_SHOP        12
+#define BORG_ACTION_REST        1   // Recover HP/mana
+#define BORG_ACTION_EXPLORE     2   // Move/explore
+#define BORG_ACTION_DESCEND     3   // Go down stairs
+#define BORG_ACTION_ASCEND      4   // Go up stairs
+#define BORG_ACTION_PICKUP      5   // Pick up item
+#define BORG_ACTION_DROP        6   // Drop item
+
+// === MELEE COMBAT ===
+#define BORG_ACTION_MELEE       10  // Standard melee attack
+#define BORG_ACTION_CHARGE      11  // Rush + attack (risky)
+
+// === RANGED COMBAT ===
+#define BORG_ACTION_SHOOT       20  // Bow/crossbow attack
+#define BORG_ACTION_THROW       21  // Throw item (rock, potion, oil)
+#define BORG_ACTION_THROW_OIL   22  // Burn area - critical vs breeders!
+
+// === MAGIC (Spells) ===
+#define BORG_ACTION_CAST_BOLT   30  // Single target damage (Magic Missile, Lightning)
+#define BORG_ACTION_CAST_BALL   31  // Area damage (Fireball, Frost Ball)
+#define BORG_ACTION_CAST_BEAM   32  // Line damage (Light Beam)
+#define BORG_ACTION_CAST_HEAL   33  // Heal self
+#define BORG_ACTION_CAST_BUFF   34  // Haste, Resist, Bless
+#define BORG_ACTION_CAST_ESCAPE 35  // Teleport, Phase Door
+
+// === ITEMS (Consumables) ===
+#define BORG_ACTION_QUAFF       40  // Drink potion
+#define BORG_ACTION_READ        41  // Read scroll
+#define BORG_ACTION_ZAP         42  // Use wand/staff
+#define BORG_ACTION_ACTIVATE    43  // Activate artifact/rod
+
+// === DEFENSIVE ===
+#define BORG_ACTION_FLEE        50  // Tactical retreat
+#define BORG_ACTION_PHASE       51  // Phase door (short teleport)
+#define BORG_ACTION_TELEPORT    52  // Long teleport
+#define BORG_ACTION_RECALL      53  // Word of Recall (town/dungeon)
+
+// === EQUIPMENT ===
+#define BORG_ACTION_EQUIP       60  // Equip item
+#define BORG_ACTION_UNEQUIP     61  // Remove item
+#define BORG_ACTION_SWAP        62  // Swap weapon sets
+
+// === SPECIAL ===
+#define BORG_ACTION_SHOP        70  // Town: buy/sell
+#define BORG_ACTION_ENCHANT     71  // Town: enchant item
+#define BORG_ACTION_IDENTIFY    72  // ID unknown item
+
+// Energy costs (Angband: 100 energy = 1 normal action)
+#define ENERGY_MOVE         100
+#define ENERGY_ATTACK       100
+#define ENERGY_REST         100
+#define ENERGY_THROW        100
+#define ENERGY_PICKUP       50   // Half action
+#define ENERGY_QUAFF        100
 
 // Death causes
 #define DEATH_NONE              0
@@ -58,6 +100,43 @@
 #define DEATH_STARVATION        3
 #define DEATH_POISON            4
 #define DEATH_UNIQUE            5
+
+// Attack effects (from Angband monster.txt)
+#define EFFECT_HURT             0   // Plain damage
+#define EFFECT_POISON           1   // Ongoing poison damage
+#define EFFECT_FIRE             2   // Fire damage
+#define EFFECT_COLD             3   // Cold damage
+#define EFFECT_ACID             4   // Acid damage + equipment damage
+#define EFFECT_ELEC             5   // Electric damage
+#define EFFECT_PARALYZE         6   // Can't act! Fatal if surrounded
+#define EFFECT_CONFUSE          7   // Random movement
+#define EFFECT_BLIND            8   // Can't see monsters
+#define EFFECT_TERRIFY          9   // Forced flee, can't attack
+#define EFFECT_LOSE_STR         10  // Stat drain (permanent!)
+#define EFFECT_LOSE_DEX         11
+#define EFFECT_LOSE_CON         12
+#define EFFECT_LOSE_INT         13
+#define EFFECT_LOSE_WIS         14
+#define EFFECT_LOSE_ALL         15  // Morgoth special - ALL stats
+#define EFFECT_EXP_DRAIN        16  // Experience drain (level loss!)
+#define EFFECT_DRAIN_CHARGES    17  // Empties wands/staves
+#define EFFECT_DISENCHANT       18  // Removes item +hit/+dam/+AC
+#define EFFECT_BLACK_BREATH     19  // Nazgul - prevents HP regen
+#define EFFECT_SHATTER          20  // Destroys equipment
+#define EFFECT_HALLU            21  // Hallucination
+#define EFFECT_EAT_GOLD         22  // Steals gold
+#define EFFECT_EAT_ITEM         23  // Steals item
+#define EFFECT_EAT_FOOD         24  // Steals food
+#define EFFECT_EAT_LIGHT        25  // Drains light source
+
+// Timed status effects (player debuffs)
+#define STATUS_POISONED         (1 << 0)
+#define STATUS_PARALYZED        (1 << 1)
+#define STATUS_CONFUSED         (1 << 2)
+#define STATUS_BLIND            (1 << 3)
+#define STATUS_AFRAID           (1 << 4)
+#define STATUS_HALLUCINATING    (1 << 5)
+#define STATUS_BLACK_BREATH     (1 << 6)  // No HP regen
 
 // ============================================================================
 // BORG STATE (Interleaved)
@@ -103,7 +182,26 @@ typedef struct {
     uint8_t* monster_awake;     // Is monster awake?
     uint8_t* monster_count;     // [num_instances] - how many monsters visible
 
-    // --- Inventory (Simplified) ---
+    // --- Inventory (Item Counts) ---
+    uint8_t* potions_healing;   // [num_instances] - Cure Light/Serious/Critical
+    uint8_t* potions_restore;   // Restore mana/stats
+    uint8_t* scrolls_recall;    // Word of Recall
+    uint8_t* scrolls_teleport;  // Teleport/Phase Door
+    uint8_t* scrolls_detection; // Detect Monsters/Traps
+    uint8_t* flasks_oil;        // OIL - burn area, critical vs breeders!
+    uint8_t* wands_charges;     // Generic wand charges (Magic Missile, etc)
+
+    // --- Equipment Slots ---
+    uint8_t* weapon_dd;         // Weapon damage dice
+    uint8_t* weapon_ds;         // Weapon damage sides
+    int8_t* weapon_to_hit;      // Weapon to-hit bonus
+    int8_t* weapon_to_dam;      // Weapon to-damage bonus
+    uint8_t* armor_ac;          // Armor base AC
+
+    // --- Energy System (Speed-based turns) ---
+    int16_t* energy;            // Current energy (100 = 1 action)
+
+    // --- Legacy compatibility ---
     uint8_t* has_healing;       // [num_instances] - has healing potions
     uint8_t* has_recall;        // Has recall scrolls
     uint8_t* has_teleport;      // Has teleport items
@@ -161,7 +259,26 @@ static inline BorgStateInterleaved* borg_state_alloc(uint32_t num_instances) {
     cudaMalloc(&s->monster_awake, monster_size);
     cudaMalloc(&s->monster_count, num_instances);
 
-    // Inventory
+    // Inventory (new item system)
+    cudaMalloc(&s->potions_healing, num_instances);
+    cudaMalloc(&s->potions_restore, num_instances);
+    cudaMalloc(&s->scrolls_recall, num_instances);
+    cudaMalloc(&s->scrolls_teleport, num_instances);
+    cudaMalloc(&s->scrolls_detection, num_instances);
+    cudaMalloc(&s->flasks_oil, num_instances);
+    cudaMalloc(&s->wands_charges, num_instances);
+
+    // Equipment
+    cudaMalloc(&s->weapon_dd, num_instances);
+    cudaMalloc(&s->weapon_ds, num_instances);
+    cudaMalloc(&s->weapon_to_hit, num_instances);
+    cudaMalloc(&s->weapon_to_dam, num_instances);
+    cudaMalloc(&s->armor_ac, num_instances);
+
+    // Energy system
+    cudaMalloc(&s->energy, num_instances * sizeof(int16_t));
+
+    // Legacy compatibility
     cudaMalloc(&s->has_healing, num_instances);
     cudaMalloc(&s->has_recall, num_instances);
     cudaMalloc(&s->has_teleport, num_instances);
@@ -187,6 +304,16 @@ static inline void borg_state_free(BorgStateInterleaved* s) {
     cudaFree(s->dungeon_terrain); cudaFree(s->dungeon_known); cudaFree(s->dungeon_danger);
     cudaFree(s->monster_x); cudaFree(s->monster_y); cudaFree(s->monster_hp);
     cudaFree(s->monster_type); cudaFree(s->monster_awake); cudaFree(s->monster_count);
+    // Inventory
+    cudaFree(s->potions_healing); cudaFree(s->potions_restore);
+    cudaFree(s->scrolls_recall); cudaFree(s->scrolls_teleport); cudaFree(s->scrolls_detection);
+    cudaFree(s->flasks_oil); cudaFree(s->wands_charges);
+    // Equipment
+    cudaFree(s->weapon_dd); cudaFree(s->weapon_ds);
+    cudaFree(s->weapon_to_hit); cudaFree(s->weapon_to_dam); cudaFree(s->armor_ac);
+    // Energy
+    cudaFree(s->energy);
+    // Legacy
     cudaFree(s->has_healing); cudaFree(s->has_recall);
     cudaFree(s->has_teleport); cudaFree(s->has_detection);
     cudaFree(s->alive); cudaFree(s->death_cause);
