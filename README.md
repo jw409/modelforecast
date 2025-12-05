@@ -1,18 +1,16 @@
 # ModelForecast
 
-**Check the forecast before you deploy.**
+**The tool-calling benchmark.**
 
-Do free LLM models actually support tool calling? Marketing says yes. We test it.
+Production AI agents require reliable tool calling. We test which models deliver.
 
 ---
 
-## Today's Forecast (2025-12-04)
+## Current Results
 
-**Reality Check: Most "free" models can't call tools at all.**
+![29 Free Models. 2 Work.](charts/hero_waffle.png)
 
-We tested all 29 free models on OpenRouter. Here's what we found:
-
-![Reliability vs Latency](charts/reliability_vs_latency.png)
+We tested all 29 free models on OpenRouter for tool-calling reliability.
 
 ### The Honest Numbers
 
@@ -294,5 +292,22 @@ MIT
 
 ---
 
-*ModelForecast is maintained by [@jw409](https://github.com/jw409) and contributors.*
+## Contributors
+
+### Founders
+- [@jw409](https://github.com/jw409) 🏆 - Creator, primary maintainer
+- [@jw408](https://github.com/jw408) 🏆 - Founder, contributor
+
+### How to Earn a Badge
+
+| Badge | Earned By |
+|-------|-----------|
+| 🔬 Model Contributor | Added 1+ model to benchmark |
+| ⚙️ Methodology Contributor | Improved test harness/scoring |
+| 🐛 Bug Hunter | Found/fixed reproducibility issues |
+
+PR merged = badge earned. See [CONTRIBUTING.md](CONTRIBUTING.md).
+
+---
+
 *Not affiliated with OpenRouter.*
