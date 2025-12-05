@@ -1,0 +1,571 @@
+{
+  "submission_id": "sub_98e1682d9bae",
+  "timestamp": "2025-12-05T04:42:48.741374+00:00",
+  "contributor": "unknown",
+  "environment": {
+    "python_version": "3.11.13",
+    "openai_sdk_version": "2.8.1",
+    "os": "Linux 5.15.167.4-microsoft-standard-WSL2",
+    "env_hash": "sha256:82b59585ac582b7441e0dfb1a4ad0fabea13d6ea352206d6704de713f3c103ab"
+  },
+  "probes": {
+    "model": "x-ai/grok-4.1-fast",
+    "level": 0,
+    "trials": [
+      {
+        "openrouter_request_id": "gen-1764909768-pTS1iv8KuliPfXj0b677",
+        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
+        "response_hash": "sha256:eca76667066cf8ac5ced25eeada6c205dee7ecd674fcb27fd861a9fbec0f80b1",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 2640,
+        "request": {
+          "model": "x-ai/grok-4.1-fast",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764909768-pTS1iv8KuliPfXj0b677",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_61371707",
+                    "function": {
+                      "arguments": "{\"query\":\"authentication\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": null,
+                "reasoning_details": [
+                  {
+                    "id": "rs_a346d35f-bc7f-fc64-6015-0ba42be78fe8",
+                    "format": "xai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "gkCQvPMXkmi9g5uvZinWFY+Mvy7IoVWQb0POHAjvRTkDOLNmjZszJSbuMoa7ma3atcEKSwUulYHziRd8iCb+XR7fo/2t0wk9ZdyhlM+HkWzYgf6wQrNh6zL35/iHix1+T4QWc8k7MlLkVDyoqB2u+uR9nxmDag5b+jvTj4pu/j1UMQALgIe9eOuEapZlqj6QKYm/MHNi/Irt3M71CS0EG6oH3+dF1XlAckNm0Fo+CtjKCjU7/PRVlHlaA8vAwzz+sfYiaCFXAcG8xZcEyV6vUMSj6m1OB4Arksh8roAycFhpfyCODVTxzPuBa4GwZvU9J94RF2sDbAGxIKw9KbTEVkt64eFLRKPlLo0ymn0T8bFtX/42VDGsRni8oz9+W0osMdSmiNP9YpfjtrigsjacvSsFYQZ9IrAKSxsjND2ajW5+lSVtYeeB57pWtdSbykacN0ILWD9dzvMOVclBVrNFXo1Isfce5Tw4ZDSrbGQ6uOWP+MMAmqOhB2xhp/hYrvnEdbL8gWCBp79sPOhqWk4MV5my+/ovIWROAMdERHp5K5FH299l2zfe4uvFIMIPQa9J4ovi4/Xo1WsXx0OJws2aeghad/41LbPtjt9zkkTvdpw+JXoV1LXrQs/SHXe7dySv1SakKJqpWpveKdxpClxSPDDFnpUHynwHUvPS/VNQiAUUni2g7iL6fWucyKJWC7Kk6T2CXECtqP/bTtv1JEMhtX9Ru9OpWY/1t0KPbVBkYRy7IewEI5M3ywxP4dc9Zpja59YImxtXqKkfHHghLD52o2dhW5LM12+CRb+86R0cga6Z3k9HZVJc1fSQTIqOBvlzBr98MmMkMMXWgEcxJ9B3JtZJ3O5dvX6PFoa6V3crlD+3KQm7KHHv4aeoo05qzXIquLwetidP1pcP6one5x5FWP413nKH+ATwGJFiovUhapFNT3qw8iEqpKkkk/XkO1NTRhbuzq2tbfWoGDF2EkPRZzvye3ogJwRHFMbqIAFxSFZ1pb8FYQIa7vMpevR6a8XckaqH8KQf2OVEzkCFfnbcshxS72wmzRstriLgAKi+E5kQ5HAeJHjvOy4kobODwJIZInVpFL2EOHLCb1L383Djjj04KiDi2b3CO8H4iobUDsJPpcl1tm6881DsQUythJNcnqjPs+oGmxYGfUCm1trHrwF3yvTbr3PRRdK8Hl/vHtK61DE9ZUW1+mjk8dQrgsuCvY9LtVa2H+GbAr0Z4gYR2UdrLcW2g1xkyHLp7pkepq+X41aYf2gXy1+O6z476SObJkbtUagIf9FkhJxEv9yPrfA9PCHHBWE/T/NINDPXR1tV1zXq3QZulyU1ST2yduiPLUkIwzGURXx+2VjDo6HFqRFYG2tyWNxZOsKlMdjoynLgCYh8i+pEw7l6qRicls5R/ojAkX8B2ndGiT9RYmGxJbXpkRWiUwOKW1w2sr10S3IgBKmc7OEiAncafPCp+qV48ChMEAU9oavmb5PvHmVDgZHOgALHQCHe7xgq3Hw5HWkEUYR7PMXCodjT7+0MJbkvw25EXgRKjBW4N1N4+xAgix+4IuHTJpMZ1ibJypWNpldwLoGnSwWPGUTArGcKtDtTa0+DNuN+sgPE9718or7EVnIcNjGfM/KOnC4xcMlrjb1cjoGxcaetbBUTVnUHeviqNQ4vEWlBOq4XlRoY"
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764909768,
+          "model": "x-ai/grok-4.1-fast",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 287,
+            "prompt_tokens": 363,
+            "total_tokens": 650,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 263,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 305,
+              "video_tokens": 0
+            },
+            "cost": 0.00017035,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 2.685e-05,
+              "upstream_inference_completions_cost": 0.0001435
+            }
+          },
+          "provider": "xAI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764909771-46nwmriDGMeMhA5eBab9",
+        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
+        "response_hash": "sha256:bbce046fc79d969423bb16583d647d171bec77c1aebecbb6f2fdf941f4621100",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 1526,
+        "request": {
+          "model": "x-ai/grok-4.1-fast",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764909771-46nwmriDGMeMhA5eBab9",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_63703838",
+                    "function": {
+                      "arguments": "{\"query\":\"authentication\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": null,
+                "reasoning_details": [
+                  {
+                    "id": "rs_f9fed958-fbee-20ab-a279-222e2c1e3ea6",
+                    "format": "xai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "8ukApDVqMgq2Y1TsdmGPmh7lKtqC5XQlrYnUhn492QhsjSQusIdHAUgymCo4N6arJhMnCubc4be+1+F05SY51PzUNdoSdKyVfBYhALM4RfvL5n6/uP1scGhGiDotgGgv3klCFntLX0cJhMO6dq3vdUCB+FdfgwGNnPa+cioKEP/A4ItFizJq5qDUD8XU95JbQM5PtRMdC1Ir7b8KIP53VBKQBV4khkw8eMUjvcNilBHSZ+DsinNRwkSGgqRuSkRbju1ZucixuAOlh20GUU4j7hMdniqj5begAmmO21PW4IRv8o5tppORdE0OKwCy7CaI7dIqhUzeiMEZwZ5c0vMwdwt/S/kOv9nECoVzxVBaJSPHaK9W7kiHO5z7clBJ5ElSIGHtIOUSCxfGf8dzJSVizjBM4zmoCcqhZjuDk1DbORj2h9s+E50F80FqPl0wjs4jkHP7IOmb6No+cEwX4qENs9hlyPpJmqLstQYp5mmTl5xPHLicmV191Wgxzlj+pgXxSyikDHicGrTI2B6E9axfnW7LRurYP+MapfQPPgRA9Ov12ChW47K6xNwoC2DGkyGYrDBI8gPIAuOb2798bedfMlPU7EplI9jSwyZhOLevPxx5xHtyYShKideCO7MhThvMnq+J2dDj+ArayMBcwfcAjDGtMZ+XGD36+YVygPM4QLkd1G4c7n/sY4Qf+3dvdKT5uP541YLkixm+ZmFACeiho37n0lN2hQCXaSfDBgxFODoceOHRa1rN498RF91hwaHPr9W9YMlYus6Y4y2SalRuxrEO8L0iiPlbfaAP862pNTsOgn5wL+gZXGzzJLBA9tRdUNvJ5Kq22d6A+yCkC+J7g2yfhktsZymExtcYT3Ul+iAKphbVa3t+zMsvLKWQhQrETD0XUuiUnSj8yGs5N3S0rnU17eC5LlM1nh1sbV5kYyCC8RoM4n9nvtPPO/eNOt+zGpdEyan3IVtsB+UoRYRn7Tbd+IGPxAyon8b0iI9+E02us31jH8vPK/i5e9oGbE/txN1ey/ePEcwn/010Uz7kf3EyglWllS09HJFNJWs4mYIaq4YqKezc51kQnkZAT8HygLgtjoMFpXkrZmJCzzaXWo7y66jqXEPP+uvvlPflTBj/fNhFNBhzao0RTyj8pKsMfwBmdmejYcIxYJzwGxBQZw4ZaXs7FIdn+Iy6I/l4Fp4d4/dPMrmth/KA768cBvmz6914G/+tpweXZMGikgmmO5FTu9stGvKStdgbAR41WEIxvHstUcPRDlHUlf7T4X6AieJAKK8WAdPbfyPyXUG3c9VVIIT09NZEvyj6udYKoOZRc5feDMJurOKRT2jaqJ/h5ZOvYiObabUR5Y094xtS9ErGeUJ3zLDmz/kG3jjN74UB27WKGN0LBN5mPLgpwl0kMdtjlwOHUZeZWzlS5pUWt2ccwPTQV/1A8lCkR9bXCZNUTjNGbZtklwZMDzkuC+wj6lO40oPjgAyKV+ZakinPbhCcbFFljopBtbRz"
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764909771,
+          "model": "x-ai/grok-4.1-fast",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 260,
+            "prompt_tokens": 363,
+            "total_tokens": 623,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 236,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 362,
+              "video_tokens": 0
+            },
+            "cost": 0.0001483,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 1.83e-05,
+              "upstream_inference_completions_cost": 0.00013
+            }
+          },
+          "provider": "xAI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764909772-fEWbQ5twwXKdvs3WfpNL",
+        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
+        "response_hash": "sha256:cbdb233f5165d0e5d2e039b62d30791e9606cff20604aadf58d422c1bd155c5c",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 1472,
+        "request": {
+          "model": "x-ai/grok-4.1-fast",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764909772-fEWbQ5twwXKdvs3WfpNL",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_59434971",
+                    "function": {
+                      "arguments": "{\"query\":\"authentication\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": null,
+                "reasoning_details": [
+                  {
+                    "id": "rs_3b3643b2-9f3d-07d6-a616-8d44c0e66b7b",
+                    "format": "xai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "tkskd2YUtaIg09/k3xXFkUjxwv862NvvJ1qlsrv6zctmhvT//OTfsdH/CflYXBhDwNVIR/2GCZruhz4kDoFobf0czy9TBZr8Urtas6hxzxJLpBHHEHSK+bdf/0XLIw4svulBsAYJ0l8cFQJLpTNi41NNP0gzeAR/OKwoG83t70R7FHikyxWxSPzkXhJhDg9Y6Kb0H9vgcaSGjQH5tycXCKWGbJqOCpk8umDGSfxsLuflQcxt1gtdiS+1sXxjpWi/tfHWthPUATUfHbNUQcRR9vXhGvL3hBgiUJqbdFJRmpibKzeTdquyO7vqKSXDoDeVQVfus4+SRs+Ay2JqE7mq7gcVMCufBblt9d9UmCdTUYJuwYLf+/2FO4HSEz+amB2miq+pCT4u5CinHF80PhoGmNOUaZsd8BGw3jeqaMb8EIrmWBbuUVswD39jvLsL7Fr0szcX1H9j/cZht9iEcODf61dIif9PUY999tftv+nxWARdOO7d25H3M666bx650r8m/0sr18Wxu5mng55fwDH6ZL/xQ2ZlYGa9KdJSuswThPvaNe/KWYXbf5V1oX9YpDcWqUkhbJhjVDIxHyRfiRSQT0t/s+IFNX0Iwii7E/Nirr2NB4/WlWtOOyRT3JBJr0OEPqOoP6k+CO+g12jTtPZ/0oz52/VOiw5/H0/EnE7D2a06pwNmQ4VatIsEhdHF8UyMbjf0dPcy02hsrUdQko8FkVocaQz3S+knqEOATuWS2Zxh5as8r73a5DlEuR0/sCX8Hza0j8/JMKFmgCl5f8sDM7pX3v0wHCfDDaqf1f2k9u2AFP35vBYX8J9OTU/6ow/KcBiGJKoGV5Aob7aJataBnai3ceWOTtSOnI5N1N7NWK3t78dMF4MevXFD8mETGVPQsmZ3PnwP77gi728EBDnlaFnBHfih7qj0JmQcwoFOGpR1z1SrpTMoKfwbJq+Lubvl+wARalQRTR97BIFcebgA4rRmXUd24/RH/m8aknGBFMdlp6sW+LzQCdAYXf/oyTG5n+EgoJCD3Gzf+noSX1ihtH/eiXmVpzx8tPSU8shDwQZsvOuiYDLStW53BCvfITZ38dVyvD/0SHjLofZyXEazQjnsG1v5dLTr9HIjWG+CpDFhBWbOXv4cUqj/CPpcnJeenlNOxwyPcdw/tI03ELG+RBr4tj0hf/aQkPbag7fd+2j9QfOpg6csDBNeYEFV9QVNtIFgL+xpCQNB6AQvLrJEfZ/UJE7cxSqYHwCrQyd/MZcRneLt03jufFWYLawCbvG8q7JyM3CG/i280d/5AXvTexQkieSBgTfdkLMSxOXIWzM/Qw"
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764909772,
+          "model": "x-ai/grok-4.1-fast",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 233,
+            "prompt_tokens": 363,
+            "total_tokens": 596,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 209,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 362,
+              "video_tokens": 0
+            },
+            "cost": 0.0001348,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 1.83e-05,
+              "upstream_inference_completions_cost": 0.0001165
+            }
+          },
+          "provider": "xAI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764909774-8JWUvEb51cD0Z2oNGPva",
+        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
+        "response_hash": "sha256:1a6a56276447707c0a561a6ccfdca923945f36df08b3e9ee5bdf7a76e49da8a2",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 1374,
+        "request": {
+          "model": "x-ai/grok-4.1-fast",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764909774-8JWUvEb51cD0Z2oNGPva",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_18012809",
+                    "function": {
+                      "arguments": "{\"query\":\"authentication\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": null,
+                "reasoning_details": [
+                  {
+                    "id": "rs_e09d9b31-cdd1-a61c-7e7c-10c22252594b",
+                    "format": "xai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "mWJLQJsExcS5Zo/RxLePuF6BW9nYhdp9H1v7K+nU4JE1A5pPeYPKklwEaHm/0PTVE+yXGy1w0pcfZCwCKHSbZBz89yu0b+tijH9soQ7XopMNIiJrDvMhcmt1yYoZRVNZZr2ZTIES34CNnxX+1Gn0/ExJWPTFgF/Gwnv2lqPN7SC9q+AXjHXEe1fhEI2abfXywAYsvt8KEJ9EGrmMomLS3OwJZ9rsHHyVcOZTNHXB0zHSBYsNJe1UCXk7/rK4sEt1BfEP3wrOEnfr0JXAklUd2fhV/c+HPpUBHoESW6iILahJkrRsSTWST1cd9iG0e9j1UufpHUHm/S62kz8vaNb9fVKxovZuBM8kzjiqlpdRvm7rVI3b+lQaA7isuke71zpKOb5fESABnBaO7ZZ4jVl859ns0aJNi+UZ3BnnqljHjlUclCIjh1zEmfo1TAydamsePBhsy6zZWKZUM7C21uuKAon0qF0UkQbvm8zJnoDpH0B2oO2V5ElQiuV8nk7CDUTPO7dLM7dl+zLw34Q82TR8QnPa+dxL4+pDiVUjJ8W1JE3JBot1+SRz2jvsRhwuRLWYrux+JEK/6Waakzr28AlsfZXHNn88cjOdbKnmD4+Jh4X5b5j4K2MDZ7IZUS8JrOJ8+Ilf7ZrKnejLERjvENeDxJNZxJpK3h6mPnTo/c2taiIGB+3W+xRvfTi4kBw8hRrbRuizh4d7ERKsjPf7tHT5QPVchOY4enxD26PTtrT9Kt5uqvd3xmJ4IXyRW+MNyGtwb0P3W956AM9GIsI3VbGFudQTLmZmBVvHkpzgHAPEou8Mno9G4jVXljS0LAbjTvBWPuNSHLSY8M96guSONiCy3I47/lsnORLWWQKJg+b43fasR+HDyd1Hy5LH8kNRoVLY1u0DRSN6KtqX0LqQ75MyIOiowkKEy95r6BCywcKLV1WMZyde0KoqZMRDoa1KY8PsH07ZRUZwadXdDPLSv6OG8BAb8MKmVs9gNzXISoc+knmqtZ2/f4jicRvAqflV0uX5S/y24SCLEw1TkVM57YVigQcvfoi5NRHMGCFxMn68hQQFSjl8DISLgMED6JoNxofXmneIWzLTvsNYWwv7nKKrQIWvbPWwgid3BaHSbZpN3EMV2xbrgoVwj4JN6A4d+OiusrGpkmwekcVc+VZiIAx8rGHbmnGBK4DDtLp+nflf9EmmdDJHgdZe9gdRVarqFpU/7AG86xTlt8Xfib4iLrgceonCmbeHHhAZYKpP4oAyvsPg7BGLAFF2zuCO+02upKyV4OLAIi03Rc+RtZUYz4KylbBi5ao0ey36lyCLlMeygbvOT72Ro7ChYmoRVLfLxLONwYIxqIPU/APxqdDY6Yj86QXr0Wuxt0Ut016h7elFgz7GHLy5gOILYzb/Hj5H6cVsVeqilWAmJOC/G6qzb06TDHFosIREi8QAeutacFHSTRkf6igX7z8k++5lLbehv2FpNL88Q35oSbDLBYtc7JMsS815CervklTcXrGbdYDHuuZWOOcqOacS61FcsEwa8zXc6/y77ZyNq+qWnok1pxRtE1oE/0/YWrjObuzjlBc5LVu5ywEpd8C2ZmjUMluelAXDCaQW7oaBNtnTa4PByJD7M6zGIoKB+AflExufo4pK9l84pxsdGTD2aucTWCbRNu9gyXHUC3KEJz5wC27JvOh+tqs4Dt8T2UAX/rXCNoWaRb8kxBO+JzToixFnz9zs6vgqWTPulgoQdykoDKDD"
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764909774,
+          "model": "x-ai/grok-4.1-fast",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 298,
+            "prompt_tokens": 363,
+            "total_tokens": 661,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 274,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 362,
+              "video_tokens": 0
+            },
+            "cost": 0.0001673,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 1.83e-05,
+              "upstream_inference_completions_cost": 0.000149
+            }
+          },
+          "provider": "xAI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764909775-fYpHqs0yWcZSnDnP1KBl",
+        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
+        "response_hash": "sha256:4c393c90bf27046700e3e93973a094a64f1dd5f46d0855373f046b480d2c61d4",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 1739,
+        "request": {
+          "model": "x-ai/grok-4.1-fast",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764909775-fYpHqs0yWcZSnDnP1KBl",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_21796028",
+                    "function": {
+                      "arguments": "{\"query\":\"authentication\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": null,
+                "reasoning_details": [
+                  {
+                    "id": "rs_780aedd4-8205-7933-88ae-257c533ba70f",
+                    "format": "xai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "nRGyaGNPY6ZLS8GQIOAklQk7C6N8f7dp8KZP+8YWVSny26ya3Z/fIgrjhPXQEK+6uM+Yrhb3+tXKiNSzNbqEjg01kNcs7QE/v1oiC9jctxN0Y80KDlZZsZ334iqyo933/T72r4cqYCU/pziuHknFQuVb6PXbrCDEahhzH0jXLDd8TP2ZktMpGQJT9McoU15N0TPk/hpNzJX0LRzUiBZSDAt1CoqxQvflUkqRLUzJENX39WGE5MQsL0ANSkThQ7pC6nl8a2FH8vGjlrgGNwE7Cm4ssL70PYLSnRmH9fq3AKUPyPgCSH+QQ6nU4462Kz0nwzDniQEh6AZZyVysl3lkUjNHWfmF1NQi5W8zOsWmk6donj8j+iZAVxzlt1lUgWlxCa4FuYkmmAihTAefEXiAfCrmunG6qaZ4/Zhs13iA2vY9Fx8N2PJSXzoGEdyGGtE/EYGkuxGYCI5TIzpShd1CpZ1JyAmVLuli54+6PdndM4C1G8J9sRyRMRjjlFiUqpeMfDA6oPvHhHYJHlLvOEq+MUJK1YfTBPJiphHJi9sulu+dALT0OXYw7etittVER4PEI2QZEPoEU3Osja5xIhTwNR3U2v2fhRuygH64rzn0u97xUzaVv+FZCGrBefomB1W1sC3zHDywaQbcRKo7Iv4tb3VRamgJcbzl7XvxI5jG69AaWlT6YqPAOmraP6Chjr6T/v62kM41KXMc9HWHqU0g58TWROITQYseSZoZnLrwek6typWf7ciQ6cwsV+87VbKw2m/LogRjAI0+/zQ+9ymuGZJL76Ue0mbUsBwj2ftEpz1ohS2VYzV9Fchy5TtKhVasGh4yjylvwrJj7QBbkZNYCpGka3C8oGcG71FY+LIhn0aUnCSOLgf1PZu0uUrg1huR0YPD6HU//mexejJojuWeSa/KBPY7niM/noB6MPDPfvsxLDMt1RQQfsQihJ81D6pVV75ZGA3zk2uKWZA+VrsfdlwTm64ONq0qXiZbF3sZGeXpcoAODAGXG8KR61WU0CWvOSs4xX1OmRT7sBhLtgVOVY0FacEdFRwo2FXrddFbGyRlBVbfvl5fcoJxQYO9ZBWl03oXZeuMYa1bGKh5+7vPLWaq1uKix10OD9+8nEKdP8UJAN8t2yCk0W28g2XC57PwmtLA5pCEnYZ5AKFhX1IX0gzmNjtFqUp5i94illWmeK0Rg8XQqwnEggUENrwn7CnCJ0Qo6G7wbZw+VCM2018X6JO71/juGyHXiVeUHeiMw/emTaV/2T4tMf70eXLeYdA9KHkn+BLE9b23wsaFHhSHuXqVhC2KftXP5B0TlT0CExiz98vMbexTkNeWpmjcANetJVvkuUdfU/fQQSznG1ZxVN561OjvFkwJ4BZ2/zf+MSFrpoBg5M8kQRtW4H0smsnMQYSfE8cnSuH8Q06ooNg/msL/zl/l27KlK2cZ8sfB0mZM/XOwXtpoaZxQVwpeXyRLn0AMPOr+iaPxCFEJkTWLiQJ1XDhML8uFC3Lg5qttIdZnlcGo+faCdY78nZTc15taZBviinVZZICUcRaI+z6JDrkYYqpRukGVvaDTNldDqZLQD35VSV5iEHAOdQoynTs2j1OS5bPnTM0CWSOdRG5rR8poVoCDmyWHeEtQ+5t5faQp0Lw3hqxAmUG3GIHUkwawSS/W3sm91zVIvq9LH1fOiso"
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764909775,
+          "model": "x-ai/grok-4.1-fast",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 289,
+            "prompt_tokens": 363,
+            "total_tokens": 652,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 265,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 362,
+              "video_tokens": 0
+            },
+            "cost": 0.0001628,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 1.83e-05,
+              "upstream_inference_completions_cost": 0.0001445
+            }
+          },
+          "provider": "xAI"
+        }
+      }
+    ]
+  },
+  "summary": {
+    "successes": 5,
+    "trials": 5,
+    "rate": 1.0,
+    "wilson_ci_95": [
+      0.5655085052479191,
+      1.0
+    ]
+  }
+}

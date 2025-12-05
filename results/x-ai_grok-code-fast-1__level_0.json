@@ -1,0 +1,601 @@
+{
+  "submission_id": "sub_ce46ecf5bd9a",
+  "timestamp": "2025-12-05T04:42:49.779763+00:00",
+  "contributor": "unknown",
+  "environment": {
+    "python_version": "3.11.13",
+    "openai_sdk_version": "2.8.1",
+    "os": "Linux 5.15.167.4-microsoft-standard-WSL2",
+    "env_hash": "sha256:82b59585ac582b7441e0dfb1a4ad0fabea13d6ea352206d6704de713f3c103ab"
+  },
+  "probes": {
+    "model": "x-ai/grok-code-fast-1",
+    "level": 0,
+    "trials": [
+      {
+        "openrouter_request_id": "gen-1764909769-HzVUuxLgjkQ2TEmtmpEP",
+        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
+        "response_hash": "sha256:068c1a5255131155a134ecae226dc94bd94fb900b5c4fe566c3708d3dff3ed08",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 4485,
+        "request": {
+          "model": "x-ai/grok-code-fast-1",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764909769-HzVUuxLgjkQ2TEmtmpEP",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_00628801",
+                    "function": {
+                      "arguments": "{\"query\":\"authentication\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "The user asked to use the search tool to find files containing 'authentication'. I need to make a function call to the search tool with the query 'authentication'.\n",
+                "reasoning_details": [
+                  {
+                    "format": "xai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.summary",
+                    "summary": "The user asked to use the search tool to find files containing 'authentication'. I need to make a function call to the search tool with the query 'authentication'.\n"
+                  },
+                  {
+                    "id": "rs_2e45fd79-7281-2450-0055-659da09a568f",
+                    "format": "xai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "edVxFpX9nEJQ1DXk2hEak//Ep9hVBgorcdPNwzz3Dzdi6ZrAG91qfPMjGb0bNWTRRDj7oHuaSFnxXj5XY6dY49TPKFQCUVcmQAHdJ+bREuxs5Lfw5Cda/0/iT+tnucmsMY2+m9VwGkgVPaPQ5/AZs1PNwI/p/OCSOHoxwfm4TdXlaL4Vxc7uzgOufqy/njBmmodHgRkVhSix5nVFTxEuWWMnt9GIegBIV01kL09+6uA8vBXslyYGw9Z8pYwiX/7GJMY60GMXRseJ03BaWoPx6cKVEBi1wu1LpMf5lcrtUMcbD/I91gYtIqA0Avgs1zN4HlQEUNBfyQW8bdvtF0QWI3gOZn7eJRmwy7x77q6wBMpIuvp9eGKevr0tO0EB19mtyuaYrUtd+DSxQN56ZKcjvsVDfvasdoB3r7HsykuqmaaSPNdNlglWaAUcjypgahIqEYY4p+wNflc2m2iJA4ow"
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764909769,
+          "model": "x-ai/grok-code-fast-1",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 90,
+            "prompt_tokens": 392,
+            "total_tokens": 482,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 66,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 320,
+              "video_tokens": 0
+            },
+            "cost": 0.0001558,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 2.08e-05,
+              "upstream_inference_completions_cost": 0.000135
+            }
+          },
+          "provider": "xAI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764909774-IpCzNzYWfZuYNnodEg4b",
+        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
+        "response_hash": "sha256:c4716a5f09bd3551d55302b5095e632d013445284e51e14468826c174b431bc8",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 906,
+        "request": {
+          "model": "x-ai/grok-code-fast-1",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764909774-IpCzNzYWfZuYNnodEg4b",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_78234800",
+                    "function": {
+                      "arguments": "{\"query\":\"authentication\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "The user asked to use the search tool to find files containing 'authentication'. I need to call the search function with the query 'authentication'.\n",
+                "reasoning_details": [
+                  {
+                    "format": "xai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.summary",
+                    "summary": "The user asked to use the search tool to find files containing 'authentication'. I need to call the search function with the query 'authentication'.\n"
+                  },
+                  {
+                    "id": "rs_afdab6d4-a102-afda-2a1d-da5725825121",
+                    "format": "xai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "xok7n8FKCG0l+1V3tgEbBfpdvpGqK8eFBQWFufXhWojEuzTcckIyOgUpt5iYryQA8x7cfiveUvMti2viod7R3C2ImiY162yYCAoAmXR/ncBIO06MGX06wxXXaz7Kg1mKb+6HzT5kQFe/cZobz8ysHkLce1V9qV4zV5rXUqZOWeAd/ARBLsfyB7+cjRYUQPwroSm4fJRaBBkU97YULoEIU2j+1MWsI+x+k/55zuuq1KmqyMSJ+02XAeLFnuMPQRxXPNeoJ2isUCN8Qexc2NoKH4y0OM3zEfPjdwxA8Weqtk0gjyD5RSAeBAEcre92KHvrvZjAvPLVHbvRRSSebRstPhg/KAosoW5ECX4RQtI+kaPjPVsoQKy0DpNjMn0PkTsFSITbcEPoNxi7/6NSAF3028quw6yF7s5+mKJsbgHlJFF5/ueNYwBzLh3i0Gx8Eizu"
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764909774,
+          "model": "x-ai/grok-code-fast-1",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 86,
+            "prompt_tokens": 392,
+            "total_tokens": 478,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 62,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 384,
+              "video_tokens": 0
+            },
+            "cost": 0.00013828,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 9.28e-06,
+              "upstream_inference_completions_cost": 0.000129
+            }
+          },
+          "provider": "xAI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764909775-JTWEx3F4bbAbRct7oH1V",
+        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
+        "response_hash": "sha256:e13e5b09314483a6649b42544f085938e5146ce273efdac8d743c5349acd3584",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 788,
+        "request": {
+          "model": "x-ai/grok-code-fast-1",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764909775-JTWEx3F4bbAbRct7oH1V",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_88076824",
+                    "function": {
+                      "arguments": "{\"query\":\"authentication\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "The user asked to use the search tool to find files containing 'authentication'. I need to call the search function with the query 'authentication'.\n",
+                "reasoning_details": [
+                  {
+                    "format": "xai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.summary",
+                    "summary": "The user asked to use the search tool to find files containing 'authentication'. I need to call the search function with the query 'authentication'.\n"
+                  },
+                  {
+                    "id": "rs_1e4f4f6f-9e92-d49f-d1cb-da769beb255f",
+                    "format": "xai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "IFIzOPxxyVU8MEIS6/4+EWuKXiScb6TjQ1LEk/ZM5+DUbK0Xy9COEEN2Lrsy41IwE3qySF9nABu2udK1R/Slbtge395j5vGgH9AKQYTKDIAqAbtjfEK6vKMTkCCrBXrk0D50UUgJRymHfz4qLr7K15LFDBaUQFoUCa3yZoaI4S2WozcD2FTS43ned749JO9q7elKpuDWx6CYUJ9UUd3HAGLdyzGHxRBQ49MrvcRlJ3FlXNTacwWk5CImLEzPSEFBcQNx/73AyQlvKqVR8C5NbnP2//43ID2iJHHhMWW39FylNRNODGmYM/T5w4lzAytQEUQwZf9iDgiPae2VpiMmPUSlq/DOT/ouKKVCnum64bUowlSmkif/YuPFFWSrTKkii2WMm8toBrsxfdZVSGvhO8RRkLqYRiaOqdDCyf56eT04M1aqrFzSTIFRu9gT20yu"
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764909775,
+          "model": "x-ai/grok-code-fast-1",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 86,
+            "prompt_tokens": 392,
+            "total_tokens": 478,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 62,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 384,
+              "video_tokens": 0
+            },
+            "cost": 0.00013828,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 9.28e-06,
+              "upstream_inference_completions_cost": 0.000129
+            }
+          },
+          "provider": "xAI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764909775-sbvWXhj7Jbu10KijjeA5",
+        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
+        "response_hash": "sha256:18dc7036c1739cd77e81c2a6115c1ba6801a58c2f9b099380398ad787cf83a9d",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 1640,
+        "request": {
+          "model": "x-ai/grok-code-fast-1",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764909775-sbvWXhj7Jbu10KijjeA5",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_08017080",
+                    "function": {
+                      "arguments": "{\"query\":\"authentication\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "The user asked to use the search tool to find files containing 'authentication'. I need to use the search tool with the query 'authentication'.\n\n\n## Preparing search query  \n- The user requested finding files containing 'authentication.",
+                "reasoning_details": [
+                  {
+                    "format": "xai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.summary",
+                    "summary": "The user asked to use the search tool to find files containing 'authentication'. I need to use the search tool with the query 'authentication'.\n\n\n## Preparing search query  \n- The user requested finding files containing 'authentication."
+                  },
+                  {
+                    "id": "rs_252007a4-5eee-43e2-0dab-5bf03b438e53",
+                    "format": "xai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "ohj5Gwr3JjZXiTkmF68neOJygCjuoGul3WlmXdwX7RhhnRbgVMBL2rC7NHLw65j8o+PZnHVs3QJ2k/lxvXfpWQ9hxredq98jQTApyhoRwPr/da30yAL234FF+rtuKxXvl+Q2e23izhVHb8Tls8ELkbaVAuF9x/iH+dQOGTLCjBdu2hTfiCGJg3GnBho8eZAkP45BcTdHkJR+0SLFeESFsW3fMW4Afav/u2YMN9fBA9VyGEFoNNzMZPU39bL/vpqlJVFvmJvWmniCtYIX0E4ULPQ4CbN9QEU022JaBjKSnWuxfVHPs2LIokJrVwk06Brh859hX6Juuky9LMxGyjgxiGOSWDGsiB1pSXHp6WwmU58IE6XDeMyfcLlqabQ7kRkYd9nQuTL+RgXwN3cNiKpTXWuWsut7W1qywT96nIPaeihli+JPziKrtGapujPDEOWuizIAU0/fBQBgwEq9SN4tjJIum9d27cBD4bwzDOff/ASBY1D82yIgvH2z7KiNBUpAqR/RY+fOaZozxYQqkrfR2EODpJc5dqUKw7IBqoW7SociQ6mgCFFkoyBIv/52MCkl7vftO85Zrt8ZP9vL6AwipOl+wmvcaoCnEC0B+T0YGAdmyDVjV8P5fKcoU3V0nPjNgGUGSkAnBVev1lKULfcmYi0528yA4CNw7OWvcwE2AHVgGwqfIIlD5KtAevEjldvmCAy0h97XXepmpSW+CwQdo5hg0Ad9W9AWf1NYZ+N1WRGOQFCg9cn47PqA+DqL3U9H+fHzziGqddwBG/5I9xpdwPWuxWIm2sCDbeVkssYysPAeApeBNRvI66BQBB2A3DgraleEn8ebjMhLHhN/nkWG7wN6H2MIaThHE8ua+aZAf/Fgt8EMGEFiGT8Sft2g6LjtnlF8lKrXIc8jP1fHHCnU4hYzlPQsJKImKLbjlS+bXZUqRUw7Ookf06Uz0tSFkbn9SeYeMce+OWp4Q1Jj9z4P7XxIYfaFJsfjXcp7me7iIaLaEMId4xdzhBll3GTv0xaiI7cuknKLJrg"
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764909775,
+          "model": "x-ai/grok-code-fast-1",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 185,
+            "prompt_tokens": 392,
+            "total_tokens": 577,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 161,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 384,
+              "video_tokens": 0
+            },
+            "cost": 0.00028678,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 9.28e-06,
+              "upstream_inference_completions_cost": 0.0002775
+            }
+          },
+          "provider": "xAI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764909777-KIedUwq27NwreuToilx2",
+        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
+        "response_hash": "sha256:4fa131f4ba92c65d9ccb01f0eb0002d9f4aaa5343c41bf0323d3de802d6bf9ca",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 792,
+        "request": {
+          "model": "x-ai/grok-code-fast-1",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764909777-KIedUwq27NwreuToilx2",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_31218607",
+                    "function": {
+                      "arguments": "{\"query\":\"authentication\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "The user asked to use the search tool to find files containing 'authentication'. I need to call the search function with the query 'authentication'.\n",
+                "reasoning_details": [
+                  {
+                    "format": "xai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.summary",
+                    "summary": "The user asked to use the search tool to find files containing 'authentication'. I need to call the search function with the query 'authentication'.\n"
+                  },
+                  {
+                    "id": "rs_31798da6-6029-ad8e-7acf-242ffabe7339",
+                    "format": "xai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "gceSKARMvgEl1r7/xZWVmAxgGsYmJ+2iwnM4K14ll+vXmbtuHj3868+ay8Ty6/kOnazrRfLh3OmM1oAjN2Ao03FrG/TeogRCfD4DxoK70Zc4pUd5mjeUUKCtfqlUf1zn5h2qczIqieir9/wrlrNna4O+AzDH39kta007JNchwvLJeH8QaY5WZqpc9fxNgXZWaU61se0bgwR/fByVIxizWUiC60oiL9SxiXXe+pdhyaSOy/+ndbmoFvY+LjoKDoHGNDpb2lYHRxefFnsvVXPXX/exJ0HFUC1uMTEr9eFXZgCJXnpc2Ta2c0n30xSkNCVPTYt3PaouqMqrzNvI7GYdXmTPx7BWusyLcK5Ags/AWYaFZ/iPXqsIxqdvhIj/Uy52tEH5DoN8juXB/FyrGpTguce/eEhNNFhj8q6JJh+swe2WcIUEUxI1EdAzznbOYr56"
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764909777,
+          "model": "x-ai/grok-code-fast-1",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 86,
+            "prompt_tokens": 392,
+            "total_tokens": 478,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 62,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 384,
+              "video_tokens": 0
+            },
+            "cost": 0.00013828,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 9.28e-06,
+              "upstream_inference_completions_cost": 0.000129
+            }
+          },
+          "provider": "xAI"
+        }
+      }
+    ]
+  },
+  "summary": {
+    "successes": 5,
+    "trials": 5,
+    "rate": 1.0,
+    "wilson_ci_95": [
+      0.5655085052479191,
+      1.0
+    ]
+  }
+}
