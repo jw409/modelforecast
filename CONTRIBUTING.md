@@ -143,3 +143,19 @@ uv run pytest --cov=modelforecast
 - **Model requests**: Open an issue with `model-request` label
 
 We aim to respond to issues within 48 hours.
+
+---
+
+## Contributor Badges
+
+When your PR is merged, you earn a badge that's displayed in the README.
+
+| Badge | Earned By | Example |
+|-------|-----------|---------|
+| 🔬 Model Contributor | Added results for 1+ new model | "Add results for mistral-large" |
+| ⚙️ Methodology Contributor | Improved test harness, scoring, or CI | "Fix Wilson interval edge case" |
+| 🐛 Bug Hunter | Found and fixed reproducibility issue | "Fix race condition in probe runner" |
+
+**Process**: PR merged → maintainer adds you to README Contributors section.
+
+No point systems. No tiers. Just recognition for real contributions.
