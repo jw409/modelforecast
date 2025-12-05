@@ -99,13 +99,13 @@ Methodology changes require discussion first:
 3. Wait for maintainer feedback
 4. If approved, implement and PR
 
-### New Probe Levels
+### New Probe Dimensions
 
-Adding new probe levels is a significant change:
+Adding new probe dimensions is a significant change:
 
 1. Open an issue with detailed specification
 2. Include: prompt, tools, pass criteria, fail modes
-3. Explain what capability it tests that existing levels don't
+3. Explain what capability it tests that existing probes don't
 4. Wait for approval before implementing
 
 **Example**: See [2025-12-04-capability-dimensions-migration.md](docs/plans/2025-12-04-capability-dimensions-migration.md) for a well-structured plan that:

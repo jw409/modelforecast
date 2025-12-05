@@ -8,7 +8,7 @@ Do free LLM models actually support tool calling? Marketing says yes. We test it
 
 ## Today's Forecast (2025-12-04)
 
-**Only 3 of 26 free models are production-ready. Only 1 handles multi-turn.**
+**Only 7 of 32 tested models are production-ready for tool calling.**
 
 ![Reliability vs Latency](charts/reliability_vs_latency.png)
 
@@ -18,10 +18,10 @@ Do free LLM models actually support tool calling? Marketing says yes. We test it
 
 | Category | Count |
 |----------|------:|
-| Production Ready (≥90%) | 3 |
+| Production Ready (≥90%) | 7 |
 | Unreliable (50-89%) | 4 |
-| Broken (<50%) | 19 |
-| **Total Tested** | **26** |
+| Broken (<50%) | 21 |
+| **Total Tested** | **32** |
 
 ---
 
@@ -64,19 +64,27 @@ Most models pass basic tests. Then they hit A1 (agency) and fall off a cliff.
 - **KAT Coder Pro**: 100% - continues tool use correctly
 - **DeepSeek V3.2-exp**: 60% - sometimes stops or picks wrong tool
 - **Grok 4.1**: 0% - returns text instead of calling next tool
-- **Gemini (free)**: Never gets there - fails T0
+- **Gemini (free)**: Never gets there - fails T0 Invoke
 
 ---
 
 ## Full Results
 
-### Production Ready (≥90% T0)
+### Production Ready (≥90% T0 Invoke)
 
-| Model | T0-T2 | A1 Agency | R0 Restraint | Latency | Grade |
-|-------|-------|-----------|--------------|--------:|-------|
-| **kwaipilot/kat-coder-pro:free** | 100% | **100%** | 100% | **1.3s** | **A+** |
-| deepseek/deepseek-v3.2-exp | 100% | 60% ⚠️ | 100% | 2.6s | B+ |
-| x-ai/grok-4.1-fast:free | 100% | 0% ❌ | 100% | 6.8s | B |
+| Model | T0 Pass | Latency | Tokens | AES | Grade |
+|-------|--------:|--------:|-------:|----:|-------|
+| **gemini-2.5-flash-preview** | 100% | **0.5s** | 7 | **0.95** | **A+** |
+| claude-haiku-4.5 | 100% | 1.1s | 26 | 0.81 | A |
+| kwaipilot/kat-coder-pro:free | 100% | 1.3s | 19 | 0.80 | A |
+| claude-sonnet-4.5 | 100% | 2.0s | 26 | 0.68 | B+ |
+| deepseek-v3.2-exp | 100% | 2.6s | 8 | 0.64 | B+ |
+| claude-opus-4.5 | 100% | 3.4s | 26 | 0.56 | B |
+| x-ai/grok-4.1-fast:free | 100% | 6.8s | 8 | 0.38 | C+ |
+
+*AES = Agent Efficiency Score. Higher is better. See Efficiency Metrics section.*
+
+![Efficiency Comparison](charts/efficiency_comparison.png)
 
 ### The Full Picture
 
@@ -86,8 +94,8 @@ Most models pass basic tests. Then they hit A1 (agency) and fall off a cliff.
 
 ### Unreliable (50-89%)
 
-| Model | T0 | CI (95%) |
-|-------|---:|----------|
+| Model | T0 Invoke | CI (95%) |
+|-------|----------:|----------|
 | nvidia/nemotron-nano-12b-v2-vl:free | 67% | [21%, 94%] |
 | amazon/nova-2-lite-v1:free | 67% | [21%, 94%] |
 | nvidia/nemotron-nano-9b-v2:free | 60% | [31%, 83%] |
@@ -107,18 +115,17 @@ Most models pass basic tests. Then they hit A1 (agency) and fall off a cliff.
 
 ## Free vs Paid: The Real Comparison
 
-| Model | T0-R0 | Agency | Latency | Cost/1M tokens | Grade |
-|-------|-------|--------|--------:|---------------:|-------|
-| claude-sonnet-4-5 | 100% | 100% | 1.8s | $3/$15 | A+ |
-| gpt-4o | 100% | 100% | 2.1s | $2.50/$10 | A+ |
-| gemini-2.0-flash (paid) | 100% | 100% | 0.9s | $0.10/$0.40 | A+ |
-| **kwaipilot/kat-coder-pro:free** | 100% | **100%** | **1.3s** | **$0** | **A+** |
-| deepseek/deepseek-v3.2-exp | 100%* | 60% | ~2s | $0.21/$0.32 | B+ |
-| x-ai/grok-4.1-fast:free | 100%* | 0% | 6.8s | $0 | B |
+| Model | T0 Pass | Latency | AES | Cost/1M | Grade |
+|-------|--------:|--------:|----:|--------:|-------|
+| **gemini-2.5-flash-preview** | 100% | **0.5s** | **0.95** | $0.30/$1.25 | **A+** |
+| claude-haiku-4.5 | 100% | 1.1s | 0.81 | $0.80/$4 | A |
+| **kwaipilot/kat-coder-pro:free** | 100% | 1.3s | 0.80 | **$0** | A |
+| claude-sonnet-4.5 | 100% | 2.0s | 0.68 | $3/$15 | B+ |
+| deepseek-v3.2-exp | 100% | 2.6s | 0.64 | $0.21/$0.32 | B+ |
+| claude-opus-4.5 | 100% | 3.4s | 0.56 | $15/$75 | B |
+| x-ai/grok-4.1-fast:free | 100% | 6.8s | 0.38 | $0 | C+ |
 
-*\*T0-T2+R0 100%, but A1 (agency) degrades*
-
-**Bottom line**: KAT Coder Pro matches $15/1M-token Claude at zero cost for tool calling.
+**Bottom line**: Gemini 2.5 Flash dominates on efficiency. KAT Coder Pro is the best free option - fast, efficient, and $0.
 
 ---
 
@@ -171,6 +178,24 @@ Small sample sizes give false confidence. That's why we use Wilson score interva
 | TOOL CALLING | T2 | Selection | Can it choose the right tool from a set? |
 | AGENCY | A1 | Linear | After getting results, can it continue using tools? |
 | RESTRAINT | R0 | Abstain | Will it NOT call tools when none are appropriate? |
+
+---
+
+## Efficiency Metrics
+
+When multiple models hit 100% pass rate, how do you choose? We measure **efficiency** - how well a model uses tokens and time.
+
+### Agent Efficiency Score (AES)
+
+AES = 0.4 × Token Efficiency + 0.4 × Latency Score + 0.2 × Strictness
+
+| Component | What it measures | Best score |
+|-----------|------------------|:----------:|
+| **Token Efficiency** | Fewer completion tokens = less cost | 1.0 (optimal tokens) |
+| **Latency Score** | Faster response = better UX | 1.0 (< 500ms) |
+| **Strictness** | Uses `tool_calls` finish reason | 1.0 (always strict) |
+
+**Why this matters**: Two models both pass T0 with 100%. But one uses 7 tokens in 500ms, the other uses 50 tokens in 6 seconds. For real applications, that's a massive difference in cost and user experience.
 
 ---
 
