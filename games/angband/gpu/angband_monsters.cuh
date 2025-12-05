@@ -15,6 +15,12 @@
 // MONSTER RACE DATA
 // ============================================================================
 
+// Monster blow (attack) data
+struct MonsterBlow {
+    uint8_t dd;  // Damage dice count
+    uint8_t ds;  // Damage dice sides
+};
+
 struct MonsterRace {
     uint8_t depth;
     uint8_t rarity;
@@ -23,8 +29,10 @@ struct MonsterRace {
     uint8_t ac;
     uint8_t speed;
     uint16_t xp_base;
-    uint8_t sleep; // Base sleep value
-    uint8_t flags; // 1 = Breeds
+    uint8_t sleep;      // Base sleep value
+    uint8_t flags;      // 1 = Breeds
+    uint8_t num_blows;  // Number of attacks per round
+    MonsterBlow blows[4];  // Up to 4 attacks
 };
 
 // Monster Flags
