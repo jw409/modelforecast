@@ -1,0 +1,23 @@
+{
+  "workflow_id": "generic-story-v1",
+  "nodes": [
+    {
+      "id": "chapter1",
+      "prompt": "Write the first chapter of a mystery novel set on Mars. Focus on the atmosphere. Max 200 words.",
+      "model": "google/gemini-2.5-flash-lite-preview-09-2025",
+      "depends_on": []
+    },
+    {
+      "id": "review1",
+      "prompt": "Review the previous chapter. Identify 3 key plot points and 1 potential inconsistency.",
+      "model": "google/gemini-2.5-flash-lite-preview-09-2025",
+      "depends_on": ["chapter1"]
+    },
+    {
+      "id": "chapter2",
+      "prompt": "Write the second chapter. Incorporate the feedback from the review. Max 200 words.",
+      "model": "google/gemini-2.5-flash-lite-preview-09-2025",
+      "depends_on": ["review1"]
+    }
+  ]
+}
