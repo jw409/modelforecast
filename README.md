@@ -4,9 +4,9 @@
 
 Do free LLM models actually support tool calling? Marketing says yes. We test it.
 
-## Latest Results (2025-12-02)
+## Latest Results (2025-12-04)
 
-**Only 2 of 25 free models achieve 100% tool-calling reliability.**
+**Only 1 of 25+ free models achieves 100% L0-L4 tool-calling reliability.**
 
 ### Full Probe Results (L0-L4)
 
@@ -15,6 +15,14 @@ Do free LLM models actually support tool calling? Marketing says yes. We test it
 | kwaipilot/kat-coder-pro:free | 100% | 100% | 100% | **100%** | 100% | **1.3s** | **A+** |
 | x-ai/grok-4.1-fast:free | 100% | 100% | 100% | **0%** ❌ | 100% | 6.8s | **B** |
 | google/gemini-2.5-flash-lite:free | 0% | 0% | 0% | 0% | 0% | N/A | **F** |
+
+### Paid Model Results (L0-L4)
+
+| Model | L0 | L1 | L2 | L3 Multi-turn | L4 Adversarial | Cost | Grade |
+|-------|----|----|----|--------------:|---------------:|-----:|-------|
+| **deepseek/deepseek-v3.2-exp** | 100% | 100% | 100% | **60%** ⚠️ | 100% | $0.21/$0.32 | **B+** |
+
+**DeepSeek V3.2-exp** (new): Strong L0-L2 and L4, but **60% L3 multi-turn** shows weakness similar to Grok. Good for single-shot, not autonomous agents.
 
 ### The Differentiator: Multi-Turn (L3)
 
@@ -66,11 +74,12 @@ Do free LLM models actually support tool calling? Marketing says yes. We test it
 | **gpt-4o** | 100% | ✅ 100% | 2.1s | $2.50/$10 | A+ |
 | **gemini-2.0-flash** (paid) | 100% | ✅ 100% | 0.9s | $0.10/$0.40 | A+ |
 | kwaipilot/kat-coder-pro:free | 100% | ✅ 100% | 1.3s | **$0** | **A+** |
+| **deepseek/deepseek-v3.2-exp** | 100%* | ⚠️ 60% | ~2s | $0.21/$0.32 | B+ |
 | x-ai/grok-4.1-fast:free | 60%* | ❌ 0% | 6.8s | $0 | B |
 
-*\*Grok reaches 100% L0-L2 but fails L3 (multi-turn) without `tool_choice="required"`*
+*\*L0-L2+L4 100%, but L3 (multi-turn) degrades*
 
-**Key insight**: KAT Coder Pro matches $15/1M-token Claude Sonnet at zero cost. The gap between "broken free" and "working free" is larger than "working free" vs "premium paid."
+**Key insight**: KAT Coder Pro matches $15/1M-token Claude Sonnet at zero cost. DeepSeek V3.2-exp is excellent value for single-shot ($0.21/$0.32) but not reliable for autonomous multi-turn like KAT.
 
 ## The 3-Trial Trap
 
