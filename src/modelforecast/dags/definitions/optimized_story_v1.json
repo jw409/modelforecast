@@ -1,0 +1,27 @@
+{
+  "workflow_id": "generic-story-v1",
+  "nodes": [
+    {
+      "id": "chapter1",
+      "prompt": "Write the first chapter (max 150 words) of a Mars mystery novel. Focus on a desolate, atmospheric setting.",
+      "model": "google/gemini-2.5-flash-lite-preview-09-2025",
+      "depends_on": []
+    },
+    {
+      "id": "review1",
+      "prompt": "Review the previous chapter. Identify 3 key plot points and 1 potential inconsistency.",
+      "model": "google/gemini-2.5-flash-lite-preview-09-2025",
+      "depends_on": [
+        "chapter1"
+      ]
+    },
+    {
+      "id": "chapter2",
+      "prompt": "Write the second chapter (max 200 words). Directly incorporate the 3 key plot points identified in the review and ensure smooth handling of the potential inconsistency mentioned.",
+      "model": "google/gemini-2.5-flash-lite-preview-09-2025",
+      "depends_on": [
+        "review1"
+      ]
+    }
+  ]
+}

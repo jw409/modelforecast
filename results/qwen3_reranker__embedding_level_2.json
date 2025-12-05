@@ -1,0 +1,162 @@
+{
+  "submission_id": "sub_f7280270f6dc",
+  "timestamp": "2025-12-05T09:22:57.589083+00:00",
+  "contributor": "unknown",
+  "environment": {
+    "python_version": "3.11.13",
+    "openai_sdk_version": "2.8.1",
+    "os": "Linux 5.15.167.4-microsoft-standard-WSL2",
+    "env_hash": "sha256:82b59585ac582b7441e0dfb1a4ad0fabea13d6ea352206d6704de713f3c103ab"
+  },
+  "probes": {
+    "model": "qwen3_reranker",
+    "level": 2,
+    "trials": [
+      {
+        "ranking_correct": true,
+        "scores": [
+          1.0,
+          0.9287109375,
+          2.8431415557861328e-05
+        ],
+        "success": false,
+        "latency_ms": 264,
+        "margin": 0.0712890625,
+        "error": null,
+        "raw_response": {
+          "model": "qwen3_reranker",
+          "ranking_order": [
+            0,
+            1,
+            2
+          ],
+          "scores": {
+            "relevant": 1.0,
+            "distractor": 0.9287,
+            "irrelevant": 0.0
+          },
+          "margin_relevant_vs_distractor": 0.0713
+        }
+      },
+      {
+        "ranking_correct": true,
+        "scores": [
+          1.0,
+          0.9287109375,
+          2.8431415557861328e-05
+        ],
+        "success": false,
+        "latency_ms": 697,
+        "margin": 0.0712890625,
+        "error": null,
+        "raw_response": {
+          "model": "qwen3_reranker",
+          "ranking_order": [
+            0,
+            1,
+            2
+          ],
+          "scores": {
+            "relevant": 1.0,
+            "distractor": 0.9287,
+            "irrelevant": 0.0
+          },
+          "margin_relevant_vs_distractor": 0.0713
+        }
+      },
+      {
+        "ranking_correct": true,
+        "scores": [
+          1.0,
+          0.9287109375,
+          2.8431415557861328e-05
+        ],
+        "success": false,
+        "latency_ms": 84,
+        "margin": 0.0712890625,
+        "error": null,
+        "raw_response": {
+          "model": "qwen3_reranker",
+          "ranking_order": [
+            0,
+            1,
+            2
+          ],
+          "scores": {
+            "relevant": 1.0,
+            "distractor": 0.9287,
+            "irrelevant": 0.0
+          },
+          "margin_relevant_vs_distractor": 0.0713
+        }
+      },
+      {
+        "ranking_correct": true,
+        "scores": [
+          1.0,
+          0.9287109375,
+          2.8431415557861328e-05
+        ],
+        "success": false,
+        "latency_ms": 86,
+        "margin": 0.0712890625,
+        "error": null,
+        "raw_response": {
+          "model": "qwen3_reranker",
+          "ranking_order": [
+            0,
+            1,
+            2
+          ],
+          "scores": {
+            "relevant": 1.0,
+            "distractor": 0.9287,
+            "irrelevant": 0.0
+          },
+          "margin_relevant_vs_distractor": 0.0713
+        }
+      },
+      {
+        "ranking_correct": true,
+        "scores": [
+          1.0,
+          0.9287109375,
+          2.8431415557861328e-05
+        ],
+        "success": false,
+        "latency_ms": 86,
+        "margin": 0.0712890625,
+        "error": null,
+        "raw_response": {
+          "model": "qwen3_reranker",
+          "ranking_order": [
+            0,
+            1,
+            2
+          ],
+          "scores": {
+            "relevant": 1.0,
+            "distractor": 0.9287,
+            "irrelevant": 0.0
+          },
+          "margin_relevant_vs_distractor": 0.0713
+        }
+      }
+    ]
+  },
+  "summary": {
+    "successes": 0,
+    "trials": 5,
+    "rate": 0.0,
+    "wilson_ci_95": [
+      0.0,
+      0.43449149475208104
+    ]
+  },
+  "embedding_metadata": {
+    "probe_type": "E2",
+    "probe_name": "Reranking Quality",
+    "reranker_model": "qwen3_reranker",
+    "local_url": "http://localhost:8765"
+  }
+}
