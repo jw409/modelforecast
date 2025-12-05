@@ -545,7 +545,7 @@ void run_borg_simulation(uint32_t num_instances, uint32_t max_turns, bool verify
     // Initialize state (simplified)
     std::vector<int16_t> init_depth(num_instances, 1);
     std::vector<int16_t> init_level(num_instances, 1);
-    std::vector<int16_t> init_hp(num_instances, 100);
+    std::vector<int16_t> init_hp(num_instances, 20); // Realistic Level 1 HP
     std::vector<int16_t> init_speed(num_instances, 10);
     std::vector<int16_t> init_ac(num_instances, 20);
     std::vector<int16_t> init_damage(num_instances, 15);
