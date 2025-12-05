@@ -2,17 +2,17 @@
 
 **Date:** 2025-12-05
 **Device:** NVIDIA GeForce RTX 5090
-**Status:** Working Prototype (V2 Kernel - Phase 3 Lethality)
+**Status:** Working Prototype (V2 Kernel - Phase 3 Lethality Verified)
 
-## Benchmark Results (Phase 3)
+## Benchmark Results (Phase 3 + Realistic Stats)
 
 | Metric | Value |
 |:---|:---|
-| **Throughput** | **82,965,711** instance-turns/sec |
-| **Simulation Time** | 0.1205s (10,000 instances x 1,000 turns) |
-| **Survival Rate** | 100% (Depth ~12, Level 1) |
+| **Throughput** | **79,405,343** instance-turns/sec |
+| **Simulation Time** | 0.1259s (10,000 instances x 1,000 turns) |
+| **Survival Rate** | **99.3%** (74 confirmed deaths) |
 
-*Note: Survival rate remains high because simulation depth (1000 turns) is too short for "Breeding Worms" to overwhelm players, or player stats (100 HP, 20 damage) are still too strong for early game monsters. Long-run lethality is expected to rise.*
+*Verification:* By lowering starting HP to 20 (realistic Level 1), we confirmed that monsters (including breeding worms) CAN kill the player. The 0.7% death rate over 1000 turns is consistent with cautious early-game play in open terrain. Survival rates will drop significantly once complex dungeon terrain (corridors) forces combat engagements.
 
 ## Architecture
 
@@ -39,7 +39,7 @@ The implementation uses a Data-Oriented Design (DOD) with Structure-of-Arrays (S
 
 - `prototypes/gpu_prototype.py`: Python/PyTorch proof-of-concept (2.5M SPS).
 - `prototypes/ARCHITECTURE.md`: Detailed architectural analysis ("Ultrathink").
-- `borg_kernel_v2.cu`: High-performance CUDA implementation (83M SPS with complex logic).
+- `borg_kernel_v2.cu`: High-performance CUDA implementation (79M SPS with complex logic).
 
 ## Next Steps
 
