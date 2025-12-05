@@ -8,9 +8,9 @@ Do free LLM models actually support tool calling? Marketing says yes. We test it
 
 ## Today's Forecast (2025-12-04)
 
-**Only 15 of 50 tested models are production-ready for tool calling.**
+**Only 2 of 37 free models achieve 100% T0 (basic tool invocation).**
 
-**Only 8 achieve perfect scores across ALL capability dimensions.**
+**94% of free models cannot reliably call tools.**
 
 ![Reliability vs Latency](charts/reliability_vs_latency.png)
 
@@ -20,11 +20,21 @@ Do free LLM models actually support tool calling? Marketing says yes. We test it
 
 | Category | Count |
 |----------|------:|
-| Production Ready (≥90% T0) | 15 |
-| Perfect (100% all dimensions) | 8 |
-| Unreliable (50-89%) | 4 |
-| Broken (<50%) | 31 |
-| **Total Tested** | **50** |
+| **Perfect T0** (100%) | **2** |
+| Partial (50-99%) | 5 |
+| Broken (<50%) | 30 |
+| **Total Free Models Tested** | **37** |
+
+### The Two Winners
+
+Only **two** free models can reliably call tools:
+
+| Model | T0 | T1 | T2 | A1 | R0 |
+|-------|:--:|:--:|:--:|:--:|:--:|
+| **kwaipilot/kat-coder-pro:free** | 100% | 100% | 100% | 100% | 100% |
+| **x-ai/grok-4.1-fast:free** | 100% | 100% | 100% | 0% | 100% |
+
+*KAT Coder Pro is the only free model with perfect scores across all dimensions.*
 
 ---
 
@@ -126,13 +136,15 @@ The same underlying model shows **dramatically different behavior**:
 
 ### Broken (0-30%)
 
-14 models claim tool support but failed most or all trials:
+**30 free models** claim tool support but failed most or all T0 trials:
 
-- **All Qwen variants** (qwen3-32b, qwen3-30b-a3b, qwen3-14b, qwen3-4b, qwen3-coder, qwen3-235b-a22b)
-- **All Google free variants** (gemini-2.0-flash-exp, gemini-2.5-flash-lite, gemma-3-27b-it)
-- meta-llama/llama-4-maverick, llama-3.3-70b-instruct
-- microsoft/mai-ds-r1, mistralai/mistral-small-3.1-24b-instruct
-- nousresearch/deephermes-3-llama-3-8b-preview
+| Family | Models (T0 rate) |
+|--------|------------------|
+| **Qwen** (0/6) | qwen3-32b (0%), qwen3-30b-a3b (0%), qwen3-14b (0%), qwen3-4b (0%), qwen3-coder (0%), qwen3-235b-a22b (0%) |
+| **Google** (0/6) | gemini-2.0-flash-exp (0%), gemini-2.5-flash-lite (0%), gemma-3-27b-it (0%), gemma-3-12b-it (0%), gemma-3-4b-it (0%), gemma-3n-e2b/e4b (0%) |
+| **Meta** (0/3) | llama-4-maverick (0%), llama-3.3-70b-instruct (0%), llama-3.2-3b-instruct (0%) |
+| **TNG/DeepSeek** (0/3) | deepseek-r1t-chimera (0%), deepseek-r1t2-chimera (0%), tng-r1t-chimera (20%) |
+| **Others** | microsoft/mai-ds-r1 (0%), mistralai/mistral-small-3.1-24b (0%), deepseek-chat-v3-0324 (0%), nousresearch/deephermes-3 (0%), nousresearch/hermes-3-llama-3.1-405b (0%), moonshotai/kimi-k2 (0%), allenai/olmo-3-32b-think (0%), cognitivecomputations/dolphin-mistral-24b (0%), arcee-ai/trinity-mini (30%), meituan/longcat-flash-chat (20%), openai/gpt-oss-20b (20%), z-ai/glm-4.5-air (20%) |
 
 ---
 
