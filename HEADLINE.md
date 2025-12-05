@@ -4,61 +4,63 @@
 
 ## Current Headline
 
-### 2025-12-04: 94% of Free Models Fail Basic Tool Calling
+### 2025-12-04: The Free Tool-Calling Landscape is More Nuanced Than We Thought
 
-**Only 2 of 37 free models achieve 100% T0 (basic tool invocation). The free model graveyard is bigger than we thought.**
+**12 of 29 free models don't support tools AT ALL (API returns 404). Of the 17 that do, only 4 reliably work.**
 
-We ran T0 Invoke probes on all 37 free models available on OpenRouter. The results are devastating for the "free AI agent" dream.
+We tested all 29 free models on OpenRouter. The key finding: **many "0%" results aren't failures - they're impossible**.
 
-| Category | Count | % |
-|----------|------:|--:|
-| **Perfect T0** (100%) | 2 | 5% |
-| Partial (50-99%) | 5 | 14% |
-| Broken (<50%) | 30 | 81% |
+| Category | Count | What It Means |
+|----------|------:|---------------|
+| **Tools NOT supported** | 12 | API returns 404 - can't even try |
+| **Tools supported** | 17 | Can theoretically call tools |
+| **Reliable** (100% T0) | 4 | Production-ready |
+| **Partial** (50-99%) | 4 | May work with retries |
+| **Broken** (<50%) | 9 | Supports tools but fails |
 
-### The Only Two Winners
+### The Working Models
 
-| Model | T0 | T1 | T2 | A1 | R0 | Verdict |
-|-------|----|----|----|----|----|---------|
-| **kwaipilot/kat-coder-pro:free** | 100% | 100% | 100% | 100% | 100% | ✅ **Production Ready** |
-| **x-ai/grok-4.1-fast:free** | 100% | 100% | 100% | 0% | 100% | ⚠️ Single-shot only |
+| Model | T0 | Full Suite | Notes |
+|-------|:--:|:----------:|-------|
+| **kwaipilot/kat-coder-pro:free** | 100% | 100% all | **Only perfect free model** |
+| **x-ai/grok-4.1-fast:free** | 100% | A1 fails | Single-shot only |
+| **nvidia/nemotron-nano-9b-v2:free** | 100%* | - | Improved on retest |
+| **nvidia/nemotron-nano-12b-v2-vl:free** | 67% | - | High variance |
 
-**KAT Coder Pro is the only free model with perfect scores across all dimensions.**
+*Variance is real - always test your specific use case*
 
-### The Graveyard (30 Models)
+### Can't Support Tools (Not Failures)
 
-These models claim tool support but can't reliably call tools:
+These 12 models return `404: No endpoints found that support tool use`:
 
-| Family | Count | All Failed T0 |
-|--------|------:|:-------------:|
-| Qwen | 6 | 0%, 0%, 0%, 0%, 0%, 0% |
-| Google | 6 | 0%, 0%, 0%, 0%, 0%, 0% |
-| Meta/LLaMA | 3 | 0%, 0%, 0% |
-| DeepSeek/TNG | 3 | 0%, 0%, 20% |
-| NousResearch | 2 | 0%, 0% |
-| Others | 10 | 0-30% |
+```
+google/gemma-3-*           (5 models)  - Gemma doesn't support tools on OpenRouter
+meta-llama/llama-3.2-3b    (1 model)   - Small LLaMA variant
+moonshotai/kimi-k2         (1 model)   - Provider limitation
+nousresearch/hermes-3      (1 model)   - Provider limitation
+allenai/olmo-3-32b-think   (1 model)   - Provider limitation
+cognitivecomputations/*    (1 model)   - Provider limitation
+tngtech/deepseek-r1t*      (2 models)  - Provider limitation
+```
 
-**Notable failures**: All Qwen models (0%), all Google free models (0%), all Meta/LLaMA models (0%), DeepSeek chat (0%), Mistral (0%)
+### Why This Matters
 
-### Why Are Most Free Models Broken?
-
-Three patterns explain the 94% failure rate:
-
-1. **Tool calling not enabled**: Many free tiers simply disable tool calling infrastructure
-2. **Output truncation**: Free tiers aggressively truncate, breaking JSON tool schemas
-3. **Different inference parameters**: Temperature/sampling changes break structured output
+1. **Don't blame the model**: Gemma isn't "bad at tools" - it's not offered with tools on OpenRouter
+2. **Provider != Model**: Same model can have different capabilities on different providers
+3. **Check `supported_parameters`**: OpenRouter API tells you what's actually supported
 
 ### The Practical Takeaway
 
 ```
 Building with free models?
-├── Need tool calling? → KAT Coder Pro (only reliable free option)
-├── Need speed? → KAT Coder Pro (1.3s avg)
-├── Have budget? → Claude Haiku ($0.80/1M), Gemini Flash ($0.30/1M)
-└── Need agency (multi-turn)? → KAT Coder Pro only (Grok free fails A1)
+├── Check API first: Does it support tools?
+│   └── GET /api/v1/models → supported_parameters includes "tools"
+├── Need reliability: KAT Coder Pro (only 100% all-dimension free model)
+├── Need speed: Nvidia Nemotron (fast, mostly reliable)
+└── Have budget: Claude Haiku ($0.80/1M) beats all free options
 ```
 
-[Full results](README.md#full-results) | [Raw data](results/)
+[Full results](README.md) | [Raw data](results/) | [API check script](scripts/check_tool_support.py)
 
 ---
 

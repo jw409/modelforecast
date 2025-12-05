@@ -8,33 +8,42 @@ Do free LLM models actually support tool calling? Marketing says yes. We test it
 
 ## Today's Forecast (2025-12-04)
 
-**Only 2 of 37 free models achieve 100% T0 (basic tool invocation).**
+**Reality Check: Most "free" models can't call tools at all.**
 
-**94% of free models cannot reliably call tools.**
+We tested all 29 free models on OpenRouter. Here's what we found:
 
 ![Reliability vs Latency](charts/reliability_vs_latency.png)
 
-*Upper-left quadrant = fast AND reliable. That's where you want to be.*
+### The Honest Numbers
 
-### The Headline Numbers
+| Category | Count | What It Means |
+|----------|------:|---------------|
+| **Tools NOT supported** | 12 | API returns 404 - physically impossible |
+| **Tools supported** | 17 | Can theoretically call tools |
+| **Perfect T0** (100%) | 4 | Reliably invoke tools |
+| **Partial** (50-99%) | 4 | Sometimes works |
+| **Broken** (<50%) | 9 | Supports tools but fails |
 
-| Category | Count |
-|----------|------:|
-| **Perfect T0** (100%) | **2** |
-| Partial (50-99%) | 5 |
-| Broken (<50%) | 30 |
-| **Total Free Models Tested** | **37** |
+### Models That Actually Work
 
-### The Two Winners
+| Model | T0 | T1 | T2 | A1 | R0 | Notes |
+|-------|:--:|:--:|:--:|:--:|:--:|-------|
+| **kwaipilot/kat-coder-pro:free** | 100% | 100% | 100% | 100% | 100% | **Only perfect free model** |
+| **x-ai/grok-4.1-fast:free** | 100% | 100% | 100% | 0% | 100% | Fails multi-turn |
+| **nvidia/nemotron-nano-9b-v2:free** | 100%* | - | - | - | - | Improved on retest |
+| **nvidia/nemotron-nano-12b-v2-vl:free** | 67% | - | - | - | - | Partial |
 
-Only **two** free models can reliably call tools:
+*Recent retest showed 3/3 success - variance may be high*
 
-| Model | T0 | T1 | T2 | A1 | R0 |
-|-------|:--:|:--:|:--:|:--:|:--:|
-| **kwaipilot/kat-coder-pro:free** | 100% | 100% | 100% | 100% | 100% |
-| **x-ai/grok-4.1-fast:free** | 100% | 100% | 100% | 0% | 100% |
+### Don't Support Tools (Can't Test)
 
-*KAT Coder Pro is the only free model with perfect scores across all dimensions.*
+These 12 models return `404: No endpoints found that support tool use`:
+
+- All **Gemma** variants (gemma-3-12b, gemma-3-27b, gemma-3-4b, gemma-3n-e2b, gemma-3n-e4b)
+- **meta-llama/llama-3.2-3b-instruct**
+- **moonshotai/kimi-k2**, **nousresearch/hermes-3-llama-3.1-405b**
+- **allenai/olmo-3-32b-think**, **cognitivecomputations/dolphin-mistral-24b**
+- **tngtech/deepseek-r1t-chimera**, **tngtech/deepseek-r1t2-chimera**
 
 ---
 
