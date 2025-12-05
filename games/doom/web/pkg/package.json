@@ -1,0 +1,15 @@
+{
+  "name": "doom-wasm",
+  "type": "module",
+  "version": "0.1.0",
+  "files": [
+    "doom_wasm_bg.wasm",
+    "doom_wasm.js",
+    "doom_wasm.d.ts"
+  ],
+  "main": "doom_wasm.js",
+  "types": "doom_wasm.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}

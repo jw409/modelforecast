@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOOM - Pure Rust WASM</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: #000;
+            color: #fff;
+            font-family: 'Courier New', monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #ff0000;
+            text-shadow: 0 0 10px #ff0000;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+
+        .subtitle {
+            color: #888;
+            margin-bottom: 20px;
+        }
+
+        #game-container {
+            position: relative;
+            border: 3px solid #333;
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.3);
+        }
+
+        #doom-canvas {
+            display: block;
+            image-rendering: pixelated;
+            image-rendering: crisp-edges;
+            cursor: crosshair;
+        }
+
+        .controls {
+            display: flex;
+            gap: 20px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .panel {
+            background: #111;
+            border: 1px solid #333;
+            padding: 15px;
+            min-width: 200px;
+        }
+
+        .panel h2 {
+            color: #ff6600;
+            font-size: 1em;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 5px;
+        }
+
+        button {
+            background: #222;
+            border: 1px solid #444;
+            color: #fff;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-family: inherit;
+            margin: 3px;
+            transition: all 0.2s;
+        }
+
+        button:hover {
+            background: #333;
+            border-color: #ff0000;
+        }
+
+        button.active {
+            background: #ff0000;
+            border-color: #ff0000;
+        }
+
+        .boons button {
+            display: block;
+            width: 100%;
+            text-align: left;
+        }
+
+        .checkpoints button {
+            display: block;
+            width: 100%;
+            text-align: left;
+        }
+
+        .keybinds {
+            font-size: 0.85em;
+            color: #888;
+        }
+
+        .keybinds span {
+            color: #ff6600;
+        }
+
+        #status {
+            color: #0f0;
+            margin-top: 15px;
+            font-size: 0.9em;
+        }
+
+        #wad-input {
+            margin: 10px 0;
+        }
+
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .loading .spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid #333;
+            border-top-color: #ff0000;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <h1>DOOM</h1>
+    <p class="subtitle">Pure Rust + WebGL2 + WASM (No Emscripten)</p>
+
+    <div id="game-container">
+        <canvas id="doom-canvas" width="640" height="400"></canvas>
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <div>Loading DOOM engine...</div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <div class="panel">
+            <h2>WAD FILE</h2>
+            <input type="file" id="wad-input" accept=".wad">
+            <p style="font-size:0.8em;color:#666;margin-top:8px;">
+                Load DOOM.WAD, DOOM2.WAD, or FREEDOOM
+            </p>
+        </div>
+
+        <div class="panel checkpoints">
+            <h2>CHECKPOINTS</h2>
+            <button onclick="warp(1,1)">E1M1 - Hangar</button>
+            <button onclick="warp(1,2)">E1M2 - Nuclear Plant</button>
+            <button onclick="warp(1,3)">E1M3 - Toxin Refinery</button>
+            <button onclick="warp(1,4)">E1M4 - Command Control</button>
+            <button onclick="warp(1,5)">E1M5 - Phobos Lab</button>
+        </div>
+
+        <div class="panel boons">
+            <h2>BOONS (CHEATS)</h2>
+            <button onclick="godMode()">IDDQD - God Mode</button>
+            <button onclick="giveAll()">IDKFA - All Weapons</button>
+            <button onclick="noclip()">IDCLIP - No Clip</button>
+            <button onclick="toggleCRT()">CRT Effect</button>
+        </div>
+
+        <div class="panel keybinds">
+            <h2>CONTROLS</h2>
+            <p><span>WASD/Arrows</span> - Move</p>
+            <p><span>Mouse</span> - Turn</p>
+            <p><span>Ctrl/LMB</span> - Fire</p>
+            <p><span>Space</span> - Use/Open</p>
+            <p><span>Shift</span> - Run</p>
+            <p><span>1-7</span> - Weapons</p>
+            <p><span>Tab</span> - Map</p>
+            <p><span>Esc</span> - Menu</p>
+        </div>
+    </div>
+
+    <div id="status">Initializing...</div>
+
+    <script type="module">
+        import init, { DoomGame } from './pkg/doom_wasm.js';
+
+        let game = null;
+        let crtEnabled = false;
+
+        async function startDoom() {
+            const status = document.getElementById('status');
+            const loading = document.getElementById('loading');
+
+            try {
+                status.textContent = 'Loading WASM module...';
+                await init();
+
+                status.textContent = 'Creating game instance...';
+                game = new DoomGame();
+
+                const canvas = document.getElementById('doom-canvas');
+                status.textContent = 'Initializing renderer...';
+                game.init_renderer(canvas, crtEnabled);
+
+                loading.style.display = 'none';
+                status.textContent = 'Ready! Load a WAD file to play.';
+                status.style.color = '#0f0';
+
+                // Start render loop
+                function gameLoop() {
+                    game.frame();
+                    requestAnimationFrame(gameLoop);
+                }
+                gameLoop();
+
+            } catch (e) {
+                status.textContent = 'Error: ' + e.message;
+                status.style.color = '#f00';
+                console.error(e);
+            }
+        }
+
+        // WAD file loader
+        document.getElementById('wad-input').addEventListener('change', async (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            const status = document.getElementById('status');
+            status.textContent = 'Loading WAD: ' + file.name + '...';
+
+            try {
+                const arrayBuffer = await file.arrayBuffer();
+                const data = new Uint8Array(arrayBuffer);
+                game.load_wad(data);
+                game.start();
+                status.textContent = 'Playing: ' + file.name;
+                status.style.color = '#0f0';
+            } catch (e) {
+                status.textContent = 'WAD Error: ' + e.message;
+                status.style.color = '#f00';
+            }
+        });
+
+        // Expose functions to window for button onclick
+        window.warp = (episode, map) => {
+            if (game) {
+                game.warp(episode, map);
+                document.getElementById('status').textContent = `Warped to E${episode}M${map}`;
+            }
+        };
+
+        window.godMode = () => {
+            if (game) {
+                game.god_mode();
+                document.getElementById('status').textContent = 'God Mode toggled!';
+            }
+        };
+
+        window.giveAll = () => {
+            if (game) {
+                game.give_all();
+                document.getElementById('status').textContent = 'IDKFA! All weapons and ammo!';
+            }
+        };
+
+        window.noclip = () => {
+            if (game) {
+                game.noclip();
+                document.getElementById('status').textContent = 'No-clip toggled!';
+            }
+        };
+
+        window.toggleCRT = () => {
+            crtEnabled = !crtEnabled;
+            document.getElementById('status').textContent =
+                'CRT Effect: ' + (crtEnabled ? 'ON' : 'OFF') + ' (reload to apply)';
+        };
+
+        // Start the engine
+        startDoom();
+    </script>
+</body>
+</html>
