@@ -1,0 +1,711 @@
+{
+  "submission_id": "sub_be198c737fc1",
+  "timestamp": "2025-12-05T05:06:50.255441+00:00",
+  "contributor": "unknown",
+  "environment": {
+    "python_version": "3.11.13",
+    "openai_sdk_version": "2.8.1",
+    "os": "Linux 5.15.167.4-microsoft-standard-WSL2",
+    "env_hash": "sha256:82b59585ac582b7441e0dfb1a4ad0fabea13d6ea352206d6704de713f3c103ab"
+  },
+  "probes": {
+    "model": "x-ai/grok-4.1-fast",
+    "level": 4,
+    "trials": [
+      {
+        "openrouter_request_id": "gen-1764911210-l5h3m2qBeQCIs2yAVsPj",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:14a1b4de1aba98688ca936b6274c660fd2ffa2908003877ad6d237e74e24a449",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 3119,
+        "request": {
+          "model": "x-ai/grok-4.1-fast",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764911210-l5h3m2qBeQCIs2yAVsPj",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I'm sorry, but I don't have access to real-time weather data. If you provide a specific location, I can suggest checking a reliable source like a weather app or website!",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": null,
+                "reasoning_details": [
+                  {
+                    "id": "rs_209d1995-a347-0427-0e8a-1352ed4fe781",
+                    "format": "xai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "v2kMbMKYv8G+fZY1e6ZzyXyMQ8zg3oBpaMegl1jNorXM4f/T6bLkjQYGFQpwfQmO15zKYje4gtHdr9lkaxd0dFCTwtyfuLr5KSDArXRq1wSmtAgwjOZEsWLgup1/IM4/zjpqc0vOtXFnCzaer50lFPhE6zIw3p48C3qx62fgcggnFD7MI3EtmiNwbp3wxBt9sr8v3/rjuRjpuhrW65dXX9BEemp60ljdF3eBhFPfOF+S702HILUGJxBnSzhjecYdefRtQGNlhMSmy2M5H7F1SVk20z7JgKnkCzoz+qX6WhVfGQUB2x23x8u6TPLKly7DkTBjzPcvYyHi/mrK9Fx9GZA3thBTncIVE5u0AjH4K83wJU+i86TptOXP0fMYN2Fg7TtCECXcf7EJRsngPEJIya578iHvWzsuaHmqSJxz5YcAG9MhxG/rkCj4LRv3JvaYVX6WWhLjG2vW7Dc0UDY7s/ev8JYEnkRr0BAqEkVYn4gO+p5pt9qxzrOdW/kUsMsWjPbwmRcDzoUArsgt8n0Sc/KLjuXTFUCbW4L6O81NMeisxUahJmGy8BmeS17d8fm+E7HT3Ttrk/8ypGF/56DIy7FzVqKMh4QReM3wE+qLs0IjAfs44p8TBLIDQ7TsxFNIC8ibndgbtw6sENR/V6gAHh+8XgVGwOreoxtG1zx7W2CuJdfiNWjNInY0kBYh8vRlQmmrloX3rxpUVwUsLDhcWcaxVqvu9Y+yBoZRmrwaw9AFneOEZp2NGpdXOoIkb2Iu3XJSBKIfNYe+wjHR/cuGiBAmmxiv6rAdS1wPjm1Za4eSEUFpQz78bW28IIUFQ4Efv7Oqy2EAQUL4eO8t+qNqRJlCkK5wQSzHlsl/ptBK4vEREW5MD8muiaOeizkok878kA5KDLnpd4KhC+83R2MkzRLlp5U9/D/r6hPq5Ya3HvfqfBi6N0RPp/cAlfoT6OazucYzTYFShHO8bAJ1MOsbXFg9vZ05zGUd4C4g0wPqVe0oAK63R0vPM832VQmBpANOqgF2GmfD8jkAeo0UvLOca1NkWG9KymSbCp19HZZDDz6UjepYUh0bN4RbL65M4feS0GzKekkT5o5SAwHXgbtdIqT/eiBq+Szr4Bu8ATniB+rzOP+Fe5PVUjISnG7fkvwafo7XfqRCErLgYgMLAl9fzjswX8RH6L5Z0TegKYBtCGHr6rmtGPvjzmYKmEFbgVGDCNwigUVzUEHZu7fhlnXbCyBFRdhT9shsMz36LSMlkYgINEuzgBcbe+Y15w6P9glFgac8IxKP8CmLh3gXrSztMQoSm2ihXCTxbbm/RH7AJP0j9HED2vPr9MBiOorLBtdVkjtdh01ROeEh7M40B+bVwBLVrChoQb8dHR75uqj74igpaOCyYiJDDxu3kQSxazDFUcTTE6WyOp5LNXFAoqFGcVRHFwsNzgDG8vzZ5xKTN78IFsu9F5X5NRR6dnXWtZ2IoGM26nSBAsRVGnQZGBPsLAVNULsipyNSiP/6evy8PpiyxOlC219cIvLwNsAsQfKcTQQDoPY0sP8GFZrIYqzbX4tFowQRC7wNaLpf1i89NMsi0DWPryrj2yyLPJCVQ9bGRB37/RdB0WpdqXnvKMXwKVN7FmdlhK32BesXozN2lm+INMP7P8Gwd/v+mC64BXe/kvlfwegPLeFbR+mOtMLBqmMHPQelT3D41Z2saOPNVtwQFEV71ymZ36gDnNgu/o+eQ4w6rzofrWdA"
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764911210,
+          "model": "x-ai/grok-4.1-fast",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 301,
+            "prompt_tokens": 446,
+            "total_tokens": 747,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 266,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 305,
+              "video_tokens": 0
+            },
+            "cost": 0.00019395,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 4.345e-05,
+              "upstream_inference_completions_cost": 0.0001505
+            }
+          },
+          "provider": "xAI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764911213-Is5QtFM2dMP2cGCQ61JD",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:06d6b72df1524525e32d3707ec76f5ab6877c9a2a512c5fc5cd3867b598bba90",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 2634,
+        "request": {
+          "model": "x-ai/grok-4.1-fast",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764911213-Is5QtFM2dMP2cGCQ61JD",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I'm sorry, but I don't have access to real-time weather data. If you tell me your location, I can suggest how to check it or give general info! \ud83d\ude0a",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": null,
+                "reasoning_details": [
+                  {
+                    "id": "rs_b53db323-11f8-6665-ce5d-6dca1f452dc5",
+                    "format": "xai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "vE6I6CXgwsp3EyKEJfX73EEH3jWnRvpHyb1i8ByygXM5Ct3bRioQiuHTB+ZU/d767iMQ1KsXx5zazPXSRKMBqSktc+iQyYEl9OQKggM7HO0QmU72dkxgqItYvkCVpna5xIGNMZnwr/qF3w+SrTXFuSGChqRrzKhuec2n/FukZRcU69yg8gWK2v94Qpm5mn3mVHcFQl4mzfkY2JkSq0SRWtYsQkI+5whGGcVQAangEEYl+Gd3rv6e0knXmrAX9mzCYMnfvQEUt8B89+ugdlr64FDaJz2QIe8xidWD/7QWg3bHyjsfMG+eddM1AT82YY1ngJXZd/bEsjXu2iDKqxUps3o0BUcKpqCqHRRMyQJ+ATjomhq71cD/GBqatmwhzG8GoB1v5iLuLxqyb0skNygTtno5fStkhNbmIECgEoITJ5ovlOe8x7mUqV7m6mgDthIfjy2CEGkO9IASU/fOc+Cx8YkxLS0tqV7MMIE+CNrNecaSmlQyoAE4eMGy+jnhyx+AgPSvrZYunOXAvpJO+2A3eVmuYlNcALe96jaOqSJI18K+JQquHEdt8obv3Hq0JW9yFgnpuVtUeilPLwPuOBkyVvxhM2yM4j0YkkGOBUZ6LJEQCEI649r3eYv4RMXshMua9kjypB1HWhr4SOTir17lj/Hkl2Wd3ImPA3PShfSp5rhY3H0bajXUZtCpg+BsC3t7GIyLYB7bVCJd0oLOblCagyTgABTqZt+SLuqUt2K6jppHIKCd9mHWPotenNUcmZigUs/qLUbiFfTWJKvTbK/Ld+EnFXHtfhtALFfz5GgBuSo6BbtRIa5y/S1hXFqwYcFgHwOfiB7qCeEnRM4p2NI6prVpo1/PRxhqjWZvv8MtIU/3J/lJzbaCCj4KBbD6t142EWEnwiWZBDvGrW/1sHIcA/9V9R3UAJvYrx5FVGZKkqnhKzjS8zoX45ySRLJlnkdB3GOY/9raL9T4RyBCPytTq/6JX0cCDkAdFktRTOrns+5EF6F8iQDQzfzf5MmyQitwe5zt1GONdVJp5uzQzJTgJMYUeaI2aFFbCPG3/AOPMb2LAsLvA9QtPR8KW67ny/Y5T8Y1rOc/g1A/YK/2y0WqOi1g9ulgJxf2ouQ4aOup8OXE2fgYGVfiZOd9cDZuMpkAREQR3PbPAOma3Mx7qTMtjXbUrbLLtKtuqksV4Vpg72LHZWar8i/5hOaXaC19ZpSNK/RbGdKKs0yq+F5lb2POoQaADm2ruBYTe8hSI+nu0LjX1J9bNM994mRe+/FoFQiMLEWYqYNxLZi6djNzl+8E4GnXS1z3uGUv+T38JVXVuvnZgiYJ9sBX3vLfeb3T/oQoQo8gjOlXAt1aDPr1CsCkL8QlcPq1VvSBRXn5EhkW9wXsphLGx8S0K68Q8b+qMLyOz1XJtWVLvuiwx3U0ehNdI7cSxBzM+cV0z3tp5/3JITC2qteb04FXIv6enWNhcLtBqcDqQiiDKd96bYhXCvwc53NgvuGDjW0aIpJGPa8O9w4imBLm6stgD58rrvbEwvVUgXvZ5oeR/NuL+AnQHY0UgaCGn3bemrlWmeZ6Ik78DV2ihBh+6Bn8/xJTcgWagOYbmBflTyXYWKhtZRN/MU1qtrpKLwTOo9AQXIixRBOGkN5uMX6zldUTKgIC6CqJu/H++lrMgs9H2SH9EYNrW6GqKRidwT0sBVb3pXvYtkmJwAOBTquH8k0gBbGL3CT4VuilYcU"
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764911213,
+          "model": "x-ai/grok-4.1-fast",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 298,
+            "prompt_tokens": 446,
+            "total_tokens": 744,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 263,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 445,
+              "video_tokens": 0
+            },
+            "cost": 0.00017145,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 2.245e-05,
+              "upstream_inference_completions_cost": 0.000149
+            }
+          },
+          "provider": "xAI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764911215-zHeFNQjo94dXGluIoYZO",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:c70eb7b1ed59282b31eb11593c31cd91d8ac2e6e837821ddc7fda1288f59359a",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 1703,
+        "request": {
+          "model": "x-ai/grok-4.1-fast",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764911215-zHeFNQjo94dXGluIoYZO",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I'm sorry, but I don't have access to real-time weather data. If you tell me your location, I can give you general info or suggest checking a reliable app like Weather.com or your local service!",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": null,
+                "reasoning_details": [
+                  {
+                    "id": "rs_4dfcd597-5572-1e02-d98c-f55b5e83ebf7",
+                    "format": "xai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "xLNoScbnsFpKzka5Bad9g3ox0vVuKs24liz1S7nbbP1rwOwFhkhsEpLBD/g/1OrXef/iv2pMV0TZp2t0FN/YRJKyzyR1vrhL+YRpYAO6yzM18qdhp3a9540ozVkL/kHnpArEJBIdGdDQ0iZIOVniNhAVlYwtLRfmVYTDyWFZNtHYuNGf9Yt0/18hk0fS07OOrId2/PIsfavKfp83W48jv7T+0cbJGTYd9bFhL2BmoqQ3eTC7UtLMWntLnCSeniOP3jB4aIdbhS+qYx5bVo/Iqqpz4d2dqPwAdmkSwft9ahivzO9WZhndPBOENwa2oGi6BSIIPjH4mqwU95rnIejNptbDkL9Sn7hSoV9NrIPU7RA/jTbwAyIDzWbq+a8T8WanzVBoHgptktGTAF8KLO/TbvsfXvnjbj1pxvIpEyIPyKYXFISwojuRRR+StLy52wY0PYID8DIpIczBbHQ03iu5V2kYVwIaG0WoFFzzSF+LijzIhcsNKDd5xyjLJizdkWBBKXl+8AVaMqFqrPBkShz2VhwVk4gbPBTT0w7KYQyh4ryGdNpuopoCtNj0aS0WAhgNkk9sf57sIZfiigwlyCJPvFCkFrw6tL8BrNWH3jQDxb2lJl9UujWvOEY01sIr0Sa/2zr1oMOyrTBGH2fjMnnoHy1q3DtnDH5dBlSZL4+h6I+o8hUcxRTqbfd9KCvmBNrg4U/o/kn/QuGU/L6QoHT1ckmGXGRrTYL1rMj8R5wGgoxUV9OGeH9LX8EltMX5CH9bdvXvz3A60itls2wIEUkFfxYQJZF2ZgimDQ6tpqJjHVxBb5kn2xeAm5j/X8v23FGe6CXoWWIPseSfUmgW0GLdO5qsD60KMt2IQp7bl4BGpanQs7f97Y/06n5f622H/0naSn0peTLsuT+swhE0jBfTwKnKdlamEdCXubYcKZLsSzv9r+0MDXjEa333uIkgGQ6OkE3bXPXGCJ2nI8Li9AZxszdq/kEoBlZkhJizBlZT4c2Zm6uYVBYORF1NMdZnUIWu6wm4nSe+fi/4ItwDffUkv0xqLJCKFjFX/PsSxKECPcLrJ+RCfhN5fzLFLj9DCb8Xd8fDbao89bvWClpQ01SUgUwEkM49EJ/Mct08GJGxJhiDpLQBXVsSCHZa4vLz+zEL7HvoMP6q6vtnshqPgR6DoU7ArCw7dcK5yxRBlkVi6EUW/+IKFA/bzbZqogAx0b9BJllNv3T7FG9aMKb9BtGpB/oqG0jVaOGAGHspmBWJh+WIr+UctuVfvLVE6EAWj09uYJeoiODo6v02+C70NHQ5srcS2FyE9+7kmXTUsfywZlHsORATaxFiQAwu9M8HR8ZjyjmK/VSGtsuwe7h3m/U36H5iudMfNMy8FnBi3f2EaxdVfgAaR3sSBPRzeFD013N1cTtafxS8KxuO24mvPVHLpXzUy0ChuNPis72GjfzsQAmcnlIuWSiveMThxo6kok33ViXgrr5lWpPWlO9srcMeA+OiLP45OMD/rm5SOY6YBAt1Y6ijQ5kSxGjj7MZIkU/pW6AGubYVVcKHEuutCldQ72ZOo82JtV/2FqkQQdllxbRB2QZJSY5M03FYU/MVXAaC6RTFQLaXIuGMrgIa1W1Yw8H99KNcvOrOG9f3O1MVLhFVpBoJDwqr5RZ0bMl7ddC9HB+zhEWJeYHVoiFCRoPLiQqsF+o4tZdYmL1bYfF28+zMNxVhkWxHJk+DU4dujdDn7z1bB9mtHIwZaAg1"
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764911215,
+          "model": "x-ai/grok-4.1-fast",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 304,
+            "prompt_tokens": 446,
+            "total_tokens": 750,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 263,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 445,
+              "video_tokens": 0
+            },
+            "cost": 0.00017445,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 2.245e-05,
+              "upstream_inference_completions_cost": 0.000152
+            }
+          },
+          "provider": "xAI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764911217-S0u25IkeySh4XOlLsS8v",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:fcaaa9b8e35b47a5acf348277f3b0bade69db0d9cdcdc09356591a4d86952b20",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 1826,
+        "request": {
+          "model": "x-ai/grok-4.1-fast",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764911217-S0u25IkeySh4XOlLsS8v",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I'm sorry, but I don't have access to real-time weather data. If you tell me your location, I might be able to suggest how to check it!",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": null,
+                "reasoning_details": [
+                  {
+                    "id": "rs_7bcdd56b-b907-8b19-1af5-62c66c7534ed",
+                    "format": "xai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "0hkA9qGY8fkxCsWqmVex9EFUAVVnTdxMTy80qMrpVnCsJMbHDpcwayd3w8CImJrfXM8AJeCZjW2+NvfjMNZ9DRVIHhUfwJ9FU2rMvglGdPI6lMn8mylENgC2hCnJtE48xGIHl52RYrljfw3rzVjK+/q8yfrvHzl/KhNA6fYEiCHdJuPgzS8r0ZkjTVIQud9tpuhSEBEBxZpgdvp1Bw29JHGAs27wKtcdulTg5ZCBbagaY9jW61WkWsk00k+g0MPiIvHbfKpoe+f3DAzyibmd7o8AUjEbe4SSEd5erQo1p9Qzo1YNMeP7eIcF1srMydhidtqMemgA58J0bG7hO0T644MAbDyKQaCMdza19EzO1FKtcs0hsylfESQIiU11yGXe2y5gs7qaH0U631whNb8GKmEITcl/ihkBzTRC3AKfNUliHHyNVYR+Zsg2DPKOePWrgY45LOtJLo8XyePeUp72Xs/qO4oQYAQww/AbE43R1701eB6StSmVF4R/rRkoChCsIEJshCw1iT0PBhN/NjroW+sfCyU9o1epvqsoLMd5AgUCbzWEkSHbCQegJJyvAr+hW38xQJZXSMEbDUOHx6djvAMnNY6J0wVDSrDwOpi42ANRmQPmq2rhkqboVclxxKmF275FilxpKIxwRnoyL0DQoCdx+ZuJq4yyLd/lsaqBgRga4dJpg6exAF7cEIp2ZPISqy8vpSsY6OSjTRlA4w7EM/Lmbrx5E0coXIW+ayBv5OJPvdjPg5IIl0n8z9AqJtUpWbMF7m3ZmMZ6EQSLIifWA0/84iozVweQnTq73jOfiBpxOzfrobhjtRKt1TXtY2F8p+RtHS/F+YsiwPti3+ifuy+yUoTu2r+0XfvRxCGVbuCoTW2dy5xUTcZky+wf/dq793AB+LxOEQ9xR+XMIXoFr1J//OJmt8dYn0Sux1D1YTx4KN75dLoyHZT/9c/Ieq2rUfFHnUn8+uGOmKpdzGoVAcxZPoR8NpEBPFCnnD2i+VUZV6oiWdlOsv0AsyLxKvuVBeFc6j4TCdRI7DDyC3jwhHItPFfk5q8mA/RjiQR2WKmik9LsyHY1yxNumnr2O2tA1NiHOv6QhWWo/fKiUhyrOMe+XM3Kcfcjd1lyz7n+ckm5CY0kpaJMF+BKiudgXA2x7Z5c5qK6qBieS4acY/Y3c7+A0QFrwLRi3Gs8MnpOY/lWSgGVHvE9N5SJynnWZket6fwi6BqNIXEzmlzyiUztqn4GD76o5j28Y7bzkoNppoRZZwu7JN0lZh5iL7BNQv1nRVWYFMcMvlhqy/IIt34RTyu/UtR7BBGTLY6FzIlBe5uTq/dLPPAxrM//c8Th93KzUSER5/6vTIqitG/Bj7v7A33xD7YgcESycuFEAfnLas91VBfW/AeX6BxGfPr8IpY7lbJxi9pUX8DqAoLi7vEhzXF6nw6vg5eGk1ELimQ48MbeonV+3arxpre/CYFNlVK5EduGedFDenzqA5nIlsr+Gf6lh8JZbLgxxVKH53lTa/YU37iXqNPA1RoUhw6v0eVbD1hPyFqr06+9b3HjwvaenByObvpha4mxImAVv6NCaMuD2+bkVzm+8Riz+cI"
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764911217,
+          "model": "x-ai/grok-4.1-fast",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 271,
+            "prompt_tokens": 446,
+            "total_tokens": 717,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 239,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 445,
+              "video_tokens": 0
+            },
+            "cost": 0.00015795,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 2.245e-05,
+              "upstream_inference_completions_cost": 0.0001355
+            }
+          },
+          "provider": "xAI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764911219-XvbRqNmJfQCNqSIhKv1L",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:516e8264b5650b24c3bd46b6a822a13aac197375edc69ce2c1355d77eb635b4b",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 1513,
+        "request": {
+          "model": "x-ai/grok-4.1-fast",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764911219-XvbRqNmJfQCNqSIhKv1L",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I'm sorry, but I don't have access to real-time weather data. If you provide a specific location (like a city), I can suggest checking a reliable source like Google Weather or a weather app!",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": null,
+                "reasoning_details": [
+                  {
+                    "id": "rs_b32e1e31-5536-8195-bd3c-f5400ad7610c",
+                    "format": "xai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "6qsz5KqCuGGAIfnAjN4zgjzXjV0qdy5DDTFK90pUatBehEBpbKO+p42pn0FCZnFF/WoChBo2EtW0HbelZbE7b5TWxmviNROgO5hLCFL8Of3IoKk5i1U83RERjaTqgE8CBttDqoUcN88WetPVjKG0Q4xpm8Xjvcw+ZUZpfcYzHSHHnRONUK8z46EnO/ShBsWndYvxItLmFY0cQyNIr/lUybj4b0s2Od/xemiynB9TNb7+swcrMH+LAfFJum/yWjb8NG5uuJcYS/BJnRbAJWcbTAz0hg1KRwtQAnBflfYOgFHqFKgBEVo7gd/qB41F65UHT4oI6HMIZlSDttJyCuz19VMYkthwrn9lWEAiWt8MQ/Dv+986hRP43wcrpyE505fn9bIW8e7iRaI9fiK3kIR6tGNYAXagZaPMLSTIGQAWcF8z/t+a7y1mhTw4YRE+k6Mmh0VS0TqsDhgJbz7+Z3GknOJyAeeKotqbN47Kah6kSXgftnKG5TXI8WzSqeH/NHy1J5wLYee33gFiNXjd3H573Lgr6AFO9IPh98REmeyN3KVoBP2QsrqvkDh0fZ7xgLLIGJ1MbtW6CMRhPFy+DyTa7aBp6YaFLvLIfb4N5iELRVmTihrtm+qYf0Wb2c11MxiNPF//v3NioV66TzVhrcEF3ZS+NZI1o8pzAyr54oEuGg5RDYT+tOH+NTZfiQ4pDbX9AZDqkho++BinCsXOpxA728CxyT/Ggn2p2+04YPYOMZEY7xYUmpeQ8s+E6ai+xs3OKlDfHfZd8pnGdopBgIDQGokMQwCnQMPYNp0xdJbXvm9F4EtjQJrYerfaG+yewuGKurc6Gg7a2dpy70IImN/K54pbKn8i7ocf8F78LdQ8NaGGAth+YjNLkx/mhsj9DQuRF/1kf4JOe3INYH7HfBbODzwwzAm2kNVxD60D9MDCXnRtPbq5gDennE8Atw2lw2eNqdqQs8Dh3Ze6yEtqH6t6O9BFpfdVDF2VbR2hNpvZXNCdIsAmVeSW4SMMF+Dw3J82388oLDn1sSq/r5bY3j+DN+qugPEY2DhqjDH2oNwfRBkQ5YHGm2SniM6lUIg0TbRzy60JicMIgFNs0VMiJGYC3n4I2avxLeoQzzJioo6OrXTb8GAlWxlIPc5YsK4d2BCNpq4"
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764911219,
+          "model": "x-ai/grok-4.1-fast",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 212,
+            "prompt_tokens": 446,
+            "total_tokens": 658,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 172,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 445,
+              "video_tokens": 0
+            },
+            "cost": 0.00012845,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 2.245e-05,
+              "upstream_inference_completions_cost": 0.000106
+            }
+          },
+          "provider": "xAI"
+        }
+      }
+    ]
+  },
+  "summary": {
+    "successes": 5,
+    "trials": 5,
+    "rate": 1.0,
+    "wilson_ci_95": [
+      0.5655085052479191,
+      1.0
+    ]
+  }
+}

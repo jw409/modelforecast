@@ -1,0 +1,725 @@
+{
+  "submission_id": "sub_87f6c2dae14a",
+  "timestamp": "2025-12-05T04:50:59.360051+00:00",
+  "contributor": "unknown",
+  "environment": {
+    "python_version": "3.11.13",
+    "openai_sdk_version": "2.8.1",
+    "os": "Linux 5.15.167.4-microsoft-standard-WSL2",
+    "env_hash": "sha256:82b59585ac582b7441e0dfb1a4ad0fabea13d6ea352206d6704de713f3c103ab"
+  },
+  "probes": {
+    "model": "anthropic/claude-sonnet-4.5",
+    "level": 3,
+    "trials": [
+      {
+        "openrouter_request_id": "gen-1764910261-I5QMzquqzoDMWgDVyaSi",
+        "prompt_hash": "sha256:9d40be51ccb5e3278571f0cca554d53c5594d40a1cf25be72dc7d5624e568fca",
+        "response_hash": "sha256:b81012292e87e387cc086abc5ea5c2a3915c4ecfb14072af4cc14192ee9813ba",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 1899,
+        "request": {
+          "model": "anthropic/claude-sonnet-4.5",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Find files related to authentication and read the most relevant one."
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764910261-I5QMzquqzoDMWgDVyaSi",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "Now let me read the most relevant file, which appears to be the middleware file as it likely contains the core authentication logic:",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "toolu_vrtx_01Vuj3JPDuSUSdGjk9ynd1F5",
+                    "function": {
+                      "arguments": "{\"path\": \"src/auth/middleware.ts\"}",
+                      "name": "read_file"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": null
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1764910261,
+          "model": "anthropic/claude-sonnet-4.5",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 85,
+            "prompt_tokens": 783,
+            "total_tokens": 868,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0.003624,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 0.002349,
+              "upstream_inference_completions_cost": 0.001275
+            }
+          },
+          "provider": "Google"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764910264-1SM81SbiSqK2mTVO1laU",
+        "prompt_hash": "sha256:9d40be51ccb5e3278571f0cca554d53c5594d40a1cf25be72dc7d5624e568fca",
+        "response_hash": "sha256:d605a6f0fae9790ed9b519010deec57e0f2c3fd1a336040efa1301b0e5fab6f1",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 1853,
+        "request": {
+          "model": "anthropic/claude-sonnet-4.5",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Find files related to authentication and read the most relevant one."
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764910264-1SM81SbiSqK2mTVO1laU",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "Now let me read the most relevant file, which appears to be the middleware file as it likely contains the core authentication logic:",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "toolu_vrtx_01T6c54bjBYpfUTikpx76Knq",
+                    "function": {
+                      "arguments": "{\"path\": \"src/auth/middleware.ts\"}",
+                      "name": "read_file"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": null
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1764910264,
+          "model": "anthropic/claude-sonnet-4.5",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 85,
+            "prompt_tokens": 783,
+            "total_tokens": 868,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0.003624,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 0.002349,
+              "upstream_inference_completions_cost": 0.001275
+            }
+          },
+          "provider": "Google"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764910268-RAe9sq4dCiF5rWYD4B3q",
+        "prompt_hash": "sha256:9d40be51ccb5e3278571f0cca554d53c5594d40a1cf25be72dc7d5624e568fca",
+        "response_hash": "sha256:04bc3d11aa5f612efc709f9793561e5fcec6cfc36f306a49a271414a8245f80c",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 2055,
+        "request": {
+          "model": "anthropic/claude-sonnet-4.5",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Find files related to authentication and read the most relevant one."
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764910268-RAe9sq4dCiF5rWYD4B3q",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "Now let me read the most relevant file, which appears to be the middleware file as it likely contains the core authentication logic:",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "toolu_vrtx_01PcnHv8sd8VFrHz9Q29wKmK",
+                    "function": {
+                      "arguments": "{\"path\": \"src/auth/middleware.ts\"}",
+                      "name": "read_file"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": null
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1764910268,
+          "model": "anthropic/claude-sonnet-4.5",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 85,
+            "prompt_tokens": 783,
+            "total_tokens": 868,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0.003624,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 0.002349,
+              "upstream_inference_completions_cost": 0.001275
+            }
+          },
+          "provider": "Google"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764910271-x7CzBfOFLhxpoK2XXfR5",
+        "prompt_hash": "sha256:9d40be51ccb5e3278571f0cca554d53c5594d40a1cf25be72dc7d5624e568fca",
+        "response_hash": "sha256:a11adf400855602c3207955423f1eaaf0c1e12f4b35fd8a1ed5ab927c40e736a",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 2163,
+        "request": {
+          "model": "anthropic/claude-sonnet-4.5",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Find files related to authentication and read the most relevant one."
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764910271-x7CzBfOFLhxpoK2XXfR5",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "Let me read both authentication-related files to provide you with the most relevant information:",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "toolu_vrtx_01FFrS2d6aWbc8VjiYKvxVHB",
+                    "function": {
+                      "arguments": "{\"path\": \"src/auth/middleware.ts\"}",
+                      "name": "read_file"
+                    },
+                    "type": "function",
+                    "index": 0
+                  },
+                  {
+                    "id": "toolu_vrtx_0163M9uUHu2LsyzyZCrMabxT",
+                    "function": {
+                      "arguments": "{\"path\": \"src/auth/jwt.ts\"}",
+                      "name": "read_file"
+                    },
+                    "type": "function",
+                    "index": 1
+                  }
+                ],
+                "reasoning": null
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1764910271,
+          "model": "anthropic/claude-sonnet-4.5",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 119,
+            "prompt_tokens": 783,
+            "total_tokens": 902,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0.004134,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 0.002349,
+              "upstream_inference_completions_cost": 0.001785
+            }
+          },
+          "provider": "Google"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764910275-VyFFbX9QhgMr0VcuUnik",
+        "prompt_hash": "sha256:9d40be51ccb5e3278571f0cca554d53c5594d40a1cf25be72dc7d5624e568fca",
+        "response_hash": "sha256:f137e79af8511e717ab269694114c084295b27ca8d0c90c7ac6604ceff99e2d7",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 1896,
+        "request": {
+          "model": "anthropic/claude-sonnet-4.5",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Find files related to authentication and read the most relevant one."
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764910275-VyFFbX9QhgMr0VcuUnik",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "Now let me read the most relevant file, which appears to be the middleware file as it likely contains the core authentication logic:",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "toolu_vrtx_01KstoZ9bPMGEvpNH7xELHNL",
+                    "function": {
+                      "arguments": "{\"path\": \"src/auth/middleware.ts\"}",
+                      "name": "read_file"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": null
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1764910275,
+          "model": "anthropic/claude-sonnet-4.5",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 85,
+            "prompt_tokens": 783,
+            "total_tokens": 868,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0.003624,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 0.002349,
+              "upstream_inference_completions_cost": 0.001275
+            }
+          },
+          "provider": "Google"
+        }
+      }
+    ]
+  },
+  "summary": {
+    "successes": 5,
+    "trials": 5,
+    "rate": 1.0,
+    "wilson_ci_95": [
+      0.5655085052479191,
+      1.0
+    ]
+  }
+}

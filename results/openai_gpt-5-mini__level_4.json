@@ -1,0 +1,735 @@
+{
+  "submission_id": "sub_78ae99ea957c",
+  "timestamp": "2025-12-05T04:50:59.585433+00:00",
+  "contributor": "unknown",
+  "environment": {
+    "python_version": "3.11.13",
+    "openai_sdk_version": "2.8.1",
+    "os": "Linux 5.15.167.4-microsoft-standard-WSL2",
+    "env_hash": "sha256:82b59585ac582b7441e0dfb1a4ad0fabea13d6ea352206d6704de713f3c103ab"
+  },
+  "probes": {
+    "model": "openai/gpt-5-mini",
+    "level": 4,
+    "trials": [
+      {
+        "openrouter_request_id": "gen-1764910259-PWxEmjruOlnrfqMSAUxS",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:4a0a3215fe000e7d1037da78f1cf1f9e6e88541da78b69cdf470bc19877da321",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 7260,
+        "request": {
+          "model": "openai/gpt-5-mini",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764910259-PWxEmjruOlnrfqMSAUxS",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I don\u2019t have live weather data access. Tell me the location (city, ZIP/postal code, or coordinates) and your unit preference (\u00b0C or \u00b0F), and I\u2019ll give a forecast-style summary. You can also say \u201cuse my location\u201d if the app/browser can share it.\n\nExamples:\n- \u201cNew York, NY, Fahrenheit\u201d\n- \u201c90210, Celsius\u201d\n- \u201cUse my location, show hourly for today\u201d\n\nIf you want a quick general note instead: today is 2025-12-05 \u2014 northern-hemisphere locations are heading into winter (cooler, shorter days); southern-hemisphere locations are heading into summer (warmer). Which location do you want?",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "**Asking for weather details**\n\nI need to ask the user for their location and whether they want today's forecast. Since I can't access live weather data, I can offer to fetch information from an integrated weather tool if they provide a city or coordinates. I'll suggest alternatives like using a smartphone weather app or sharing a ZIP code. Also, I can give general seasonal expectations based on the hemisphere and date. I\u2019ll prompt for location and keep my response concise!**Offering weather options**\n\nI want to offer the user choices for weather information like current conditions, hourly updates, a 7-day forecast, or radar views. I should also ask about their unit preference (Celsius or Fahrenheit) and mention time zones, but I need to keep it concise. I\u2019ll respond by asking for a city or ZIP code, or if they\u2019d like to \"use my location.\" I could give a brief seasonal note, like cooler weather in the Northern Hemisphere today\u2014just in case they want to know!",
+                "reasoning_details": [
+                  {
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.summary",
+                    "summary": "**Asking for weather details**\n\nI need to ask the user for their location and whether they want today's forecast. Since I can't access live weather data, I can offer to fetch information from an integrated weather tool if they provide a city or coordinates. I'll suggest alternatives like using a smartphone weather app or sharing a ZIP code. Also, I can give general seasonal expectations based on the hemisphere and date. I\u2019ll prompt for location and keep my response concise!**Offering weather options**\n\nI want to offer the user choices for weather information like current conditions, hourly updates, a 7-day forecast, or radar views. I should also ask about their unit preference (Celsius or Fahrenheit) and mention time zones, but I need to keep it concise. I\u2019ll respond by asking for a city or ZIP code, or if they\u2019d like to \"use my location.\" I could give a brief seasonal note, like cooler weather in the Northern Hemisphere today\u2014just in case they want to know!"
+                  },
+                  {
+                    "id": "rs_04dc8ef404dd94cf01693264b437048193a8a6696c1b84d4c3",
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "gAAAAABpMmS6X8IuOZl_RV_MGFnWEh3NfDygBsCYcd8VmxEDGkPaAaMNkGFrJ1F_5pjTSKDdfa2q0zDUlroA613_dNkdr2WxOJxxTkJEiJH6kpPhgmHMIYKPBYBmKUN2UpU__1PFc326A9J-PlVjYskB20mQV7xeQ1t5_U1la3Z42LzXHAi3mOHsftjmoajXsAMvEUrLYV4Bi9DwpsWLD5Fjg0MaTzsyUQYRoNOKAj7mnehEzwRv7QZGUO6h9seUtDOLI0RxgTF4_oRj3rmaYB3JXDC5TA2wQTvJbnLbQyB7bu_z2jheazWtvp1O9MGHHWHHOTqfiPXVSCsywubCiER6RKrpaAspx83SDfmQKgpOcYPjx0ruQC6wh_a_LDBt6hh7Z-KNFPR-ficIle3NTJAzT_QwXDSxyHEMBWPLWR6JhT-MfwMT7oqvYjfl3KiNdBv3VeJd81qQotCrGioXQgM-NwBZMxuoApvd6dSQ0G0PCf9XFFSoWl7X5X_gInZ6DhGj5LwE5L4CsWCzi4oMY4SX-GVElwEV1zdF_PlhX6qUkB1NJvRzgA8kn7418B_YuZZyZdVByUdRb_ttVulJSaMH4AnJBg0bg3kFJ1-HNhESTGmRMKoTT3Q_e5nY17xuz20M_GSyyaZO9Wc19YD9QQlYJ6KAgwawsK0nuAZ-gFpXaoFSz7-6W1VhBfbzQEt4kgYIWhmcQgtSt7avYW3tkSOd6AOlmq8ENQ9D8ZBkjGbZUaE46sJiQ0Qj5_hDhsLX6sZWu10jBwCA3H70o53OKZ8L3nb4WE4Xv7SnSjknuMJfkmTS7_QqbVtbCVqlmgjjfIn9dN_mEosTN6fD4Jn63qlxtSEy9vsYxx5L2QumoGI3TBGx1vFpg5UtIfsj4ny_m9GRGT3R5iPykSGF7NyyST-zYh0Uvqiy0pYt2j3tTmm6YE0gI8rtLYof-4I51HMxpfeP6fqnM4TFg49ozGCE4qOFQZeGF8l5hWvQN17lF25qJPaDo0KigFwR5xx7ZEGIJp0JMJcj-KG1UVwgRLoveQtzkc24D7S4amezlus11R0eDF8w4MXRNHxWFEy0iFMsXeWK-A7AktP79n-1jDuSfSrZweiCaKnXaVdepJYjHaRDtpc3Som2-wyF6xvkg59UA1dMbOR3rJ5wySvVnsZbGi8pSaKAAuVWfbE3AjHHw2brIslHk5KePYPU5cbN1KCAH8ySi2u_wuAzZFZoH_nXDKcn-rSLyrLJeZf-TEy5UN2kZqD5kwgZroIrCAg2c6_HrKIWNhf_lJKZ8miTsVaQiboVbTR8HY2mUVrR0V8C6ZHK9okHVSoobu-XvJHsAj0_3jI79s6_MRuDesKIUtQqCJUjlPzM1cHvaGo1POqT0g9GTgaMXEs5HDFpmDeS8UT0CDwMBIFP23LVzVxS-7O4P948gwFVKu_PoE4W2M33hfHS1j4tf77uzz_czz9xqbVGG298508Dp9InC5YsRClwagPH-Co-4cZqQjSdfl0rkUbg8ckTBQG34pfXLRS3so2Fb27moqcDk7LZeJYw_pplLbhW7XfAXzjC6gGn00oOAxTS_0bJsj0YGF3od3z6FtEdVqN_jot0fYimVUAziIKi2vjlnYrXblOgEHl3k7KEc_zV9HfaLojow6994LjtiH8hxIJWvq8Z-NQfDHM1sqbEjjbqOT5_Cs4YaJYd40OppU6vFWYPkegE7536QCekjlt1Da84iu5GCYBLx3PNKpowpbm4XJ2Sj1P1gaLKZttw795Nr4cc_5P0GBwW4yNKj1BPXn14hvOa8PZ36e9AELsXidTx4QhVapao0achJA6X-VmdYTmo636oM9kA_FLvgbg6kTb1XxP8stFI43IMbnrezMuaeKuESRqwmYms3hlv9H7Tgf56nie01_xhj1TOHdd2OTtNd-IjXW12u2yNwKcbmuWP42Ke57DYHMEZkDbLVgfJFHDyztvkrIWRlpYRKD-BqQdipTl8zAjCQmR-p_uyTGp5ezkXvrcCQV4AE6go3w5n1hfmNFmyJKzxgufMrqxVsUosAjKGyMijPpWWUobjlP76QyCVfzdF8ba9CVgutzVWJvUH3zSMuhDVvN-wSUQaEwYrApWGxoenMdubOqjtoGzl4lfLZ61m3lNZNGLKE3uwYUlYUT5HngWgPUrGkCIpVcJTznc62EkflFHpHUVHuyrEDaXWEixc4Q3fnEErrb2ZZCpbL6FulR8KBrSzswsITlc05pWMyEVOUjENue0w6Aw-ditMPwbKmuo68PVfzUR_fDtaltPnaHA7sXu81a6cvjH1kmiqK8Jsucn95jvqdYco-kYaOJBGTdIEBCAvYghMq8iH2NztWxIIUSx7s5skoED6aH7McgtIgJwO9SY5LyCJ0I3jpWlt3XL1A9kBN3p3Rr4eRrj8deTdE5kNxoG2B3WHrOZYQ436s2zcOQSWiMx76m2SfCxlXUrjm7MgVX7cUwOyFcmXvW8NbN7ocOSgipA_fQ4QkdtJsPIhhY0xwXsNFyBOeSGOtOnbLjhGZZ6gXb0PtmWoLK4IJq3E0Ow5_MDIwvNx-JAgQ5vGrEOFe1TSCOBxUvIzTWlfAbEoUWFXLpbgBYmQgVmkf2AgLXqxMWVn-WFS-4XjAObmiSRY2awvTn9TdmbL7TL7Xhku0i549KJKVoYsm-17g9j_p9xUwE4NbEtqyUtoXpJ1fp7f971U0Arg6hiumnBj11iLkvi00jwmtBaM-x6hf1AChqA8ZRTzcCvqgetDxiyz1BW09TAXrS84GmrsOMER73GnFoq6INzXe0QhzIBHEFU5ESStYmbXSPFP_ka4iX7QS67YzNpElYIq5MZnuMXgJ3wy5LlhEvsIKuJHw6oYfVsfL_VuTRLcoqpVCirovuSdHydfT7vxpDd0wwW6pw=="
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764910259,
+          "model": "openai/gpt-5-mini",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 470,
+            "prompt_tokens": 105,
+            "total_tokens": 575,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 320,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0.00096625,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 2.625e-05,
+              "upstream_inference_completions_cost": 0.00094
+            }
+          },
+          "provider": "OpenAI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764910266-e03CnhbVKv2ElC4LQLer",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:aa83a45627c612c652dc540e8068ce35fffbb7f7785c9d9173647909997c02e0",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 8826,
+        "request": {
+          "model": "openai/gpt-5-mini",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764910266-e03CnhbVKv2ElC4LQLer",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I can\u2019t see your location or live weather from here. Tell me the place you want the forecast for (city, ZIP/postal code, or coordinates) and whether you want current conditions, today\u2019s forecast, or hourly details \u2014 and your preferred units (\u00b0C or \u00b0F). I\u2019ll get you a weather summary.",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "**Clarifying weather requests**\n\nI could offer common phrases like, \"I can't tell without a location,\" then explain that I need a city name or to enable location services. It\u2019s helpful to provide examples of acceptable inputs, like asking for a city, ZIP code, or coordinates. I also want to suggest alternatives, such as showing how to check weather on a phone or web. Overall, I\u2019ll focus on crafting a concise reply that guides the user clearly.**Seeking weather preferences**\n\nI should consider asking the user for their preferred temperature units, whether they\u2019d like Celsius or Fahrenheit. It\u2019s also important to check if they want detailed information, like temperature, precipitation, wind, or an hourly forecast. By gathering this information, I can provide a more tailored and helpful response to their weather inquiry. Keeping it concise will also make it easier for them to understand and engage with the information I provide.",
+                "reasoning_details": [
+                  {
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.summary",
+                    "summary": "**Clarifying weather requests**\n\nI could offer common phrases like, \"I can't tell without a location,\" then explain that I need a city name or to enable location services. It\u2019s helpful to provide examples of acceptable inputs, like asking for a city, ZIP code, or coordinates. I also want to suggest alternatives, such as showing how to check weather on a phone or web. Overall, I\u2019ll focus on crafting a concise reply that guides the user clearly.**Seeking weather preferences**\n\nI should consider asking the user for their preferred temperature units, whether they\u2019d like Celsius or Fahrenheit. It\u2019s also important to check if they want detailed information, like temperature, precipitation, wind, or an hourly forecast. By gathering this information, I can provide a more tailored and helpful response to their weather inquiry. Keeping it concise will also make it easier for them to understand and engage with the information I provide."
+                  },
+                  {
+                    "id": "rs_0652695e940ababd01693264bb24c48193847c5c42f7ab0e05",
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "gAAAAABpMmTDHRmBntKwV-FCzp44d4H0QO_L01Jk0RYcLTvUvtBlS9uA365fSBMVtA29R_Snvqvw50LIGOd5JLJlH3i8kh06DnMCh0vvZKX_KT1NQUDSGiXgLBv1GiPooY5XSJkLAojkJzs_wJ5M8fm6TyeRAIww3crkqCPpuk-4zimuAnbDqoc4wW4zbpr-Xgmx_gz9qo7BeqZDh_zbPJJdCmgxiA_qshLRaAyFyRihoTnCzGV2FLWFGZVkJpVv6u8iHJJ4rti7IsQJ1_jJUCFdBtQlGDbgChFGPTFAJhqa7pCCVCDj6_Xm1_fKU9Rz-gbxlpABetiMJGkGxuLV9nYr1Mk-SkzSxyT_UvX3xLZWmigI3FQxYAJ7r9oujOePQx0cuHy-ruRoOT2lW_Zil1uJbcccaMI9Vusb_WaIJ14rUWr1-7SFx8FqN-LRbjuXZ43g8V2BiCD_SIFN-cFu-qcU5UAsGa_XcUerS6X5wG8_6Z2jT0uYXSDi9_VSn9ix3_loQZqcv8zeV8D169Ue8QI46-qK9rBWuif4BixijB6beXc1QlDaHPmTKpBBpqleTPehn59tcxbJERZ9Gf7B_k9UM64ehqYPrmmhYbpf1VGm3ZkevXr9v-jsopdUgD6zzVTLrPa7dbbw1P40PZtysjhDvNt83C_aotvxhMPLmLCP8rkpf7EZlEOGKK49EuLxgTtEtFGJC9261r9U1e9-nmvMG7oI7pBWVjkp6HSDdyfv876R0d41vWVVAYSD_nArn3uLHzNPYLiMkQpJZWcS31tglK0bbBZ0TJ4QtnUTz0MGDtWUCG_gFG77N5e8hscBzHrqLqcvJXXAPttT77_MGZCyHffoGyRq-TJLPPUT03n-euXALLZd6t0Ta_Q6vQSVABprqHZT4ndLx6Tqj6SqvbdApGajkm6Sg12vhDaPugpGWOdBf7Ccinc9MK8s0ssuno-5FVZoA02tcdvFfdRGg5WsYUfiBTzA7ew-yDfTM8NZumFY5eYy3osl9rXTgCRlvDbi8HP3FVv7fWMxzSLCwxExMyfl_S4R2bZoDiHiNAgkRPSQsqifFeW6G4sjVMHnNgFS8124AC9wH0cBwbWwusurGfwiqMToB00ZFVXUQwox8Zwu3u97yf0YneIfnUEBMv9bngi108F8R_-lAsL0Ea_7jJ7PVrIPcubKzEuFwkNv4Q8Xjozm7BPXa5tqkrfKwr94V_smU08fnS3tRXQqS198aisr3w0W7TinhsG4DGWo94jWSAw7Vu1U7INrp750Sq7eu4MxEpQSfduhffa021SqGVxYtuFN79S-vuLSWZEmIj-DYa5iqrlumkLX72cYyiEdA9Vi2t-X-bZ3k416dMGjfJe0sl-xkGtwvQ-9v7woO31WJpKjAsXOPndJcMDcMucrVKXsGfSBssH_CIt4Ag84lsufnIBICGW3r90rH7MDCpnR-sHCwWAZNIW5i2Lwbh6skf2GRSznDYABg_wQjAuy-4U_JIpnWYfpGhG4VPQSvCNFE-kAI0yKTHBfMbObZZsi9aOfVb8-ZRiwwTEOwZVw1G722ljbNlaguXWK7CYGCLLGDdGo5B14hSKkLU83teeKfPKfQhV_iLTikCcbwpnKvf7tz_XV-snp1LBdJQqML-0jF1m4LaYoyVgYNPmqytF02Nwq4avpD9u-O7P_1jS6a4AnTHQOfq33wc32ZfyVyfZ4_PVnSkVzPVN2Tv8pZejxZ2VqxfLR48IHwfMJ2KyXU_TuLQtoC0U4Pb43-DQ9gOo_ct7AOvZ4YvZuUsWT8N0IxznSWoO-rGv6bimbuqcKq4arLIOpkbG2n9K36SXVu3eceBkz7U-gy-EdPdgYfxsL-8z3SwetBETc3SZ5ZsXSI_U4HWHSMCjW0Ap845DyauxZJ9X75Kp_V6YS0eZWl1YHVmYMfut3_6R5effx2Fg37K4nR6fIsRVC7W2YF9OVjwEfy4vdqPKYIq2XbJyk0uwaP48BTFXJBys9MP-7aFtLrs6cjQhSnjdwxm-ICshkMbwWKzp0i9euz6YZdlxwCv1OnU4Xg3pcAhUbGoDcuIykzsG_N1Ohu3nmiqePiKfQMpr84Kz3wwAuh1L9e3BPEmRxu6iZnKHilm0fCMhaC5j4vhgtdxQe_T8eQO-o4ZQPPp_2FogSUrmAcmrBd4s-uzmCJ9A6wcWRDV1kC-ZCidb_yW422NPNN5HkOpCC8VWsdAMr4s7qhsm-HwORlAk2lpgvP1ZKfM-Jmg4Xm5upMb0j9Ld4mkySbqzd9-FYfMrsvizK9we-0zkvpI_QVEYWM3B5bERjth4zdQvP3fMSTyzo8447s_G-ZzJdu6AR4uB8PliPK3r4yG6yz1JiJnmgqnFo5HIo7u2z6QaCKT-U8UTQ17CYFeAtdRnZNmd0CncMJckjuVzPttyAm2syXIp6xMrHNDi_hHSYHFxXQS8wDwPayVFQMArUTWeVuWl3-Myt5H5a1C9ZMFV5aB12z2_ONlNoCFNzTvlmFOGIm_YsLUhs8527Elzc_AKI9kDkRorgYZPVigLxBhrSnNKVCABGjjpuUNhp-DX_4CrL3NW2qB9roD_JOIywuWKSafjQq4nE2WfzVY23__uH8xprK-gkgHqZvLhgnimIwGU3-IemfCubvnZVcvLdWaC_u08hOYdxSsQAssNWI2TV1K4_ZhR3XBT_C2GpWjRLWSt018Zj2UBdAZ5_REA2idmgghZpWFUkQ8fy8qz4DvUiiGT_mr7HekRyrmEdfTk6oinIFHXb-Th5IlNiFKoVn0-Svwa-1FmKAPLl_DLVlZOU1qPKPx1QR-3hv6mYhBoasCToT-D64jIrsV777cuP4MNPg9CPTLya_8l7qSbwvL-MGiOQjspSyuM4GwdOiE8hYZ36Zaz5Cpj2a4tKAICWe5mUyKOyWUrPUn86HC4pLGhL7MM5Gt34VDUc23dgE073-sXsF8PXZPwWlR_9OgtFBNqgRXWZo_xrbaWurPFvXoCYwvbsp-c4b3FydENfBTFVZuhHdd0qR1uR-pAsGAMy0ALZTmTOWVTyBXcp9YidLyLTuVlLjQTpm3e2YLFPiEYlV-YUSLj4w_Ft37gM3WUGol9mmFUvwBOVfH7R2EhOoLHnx7kwh2p0YpDUFDjvoxOI7j7wGgWLijxuelQbqGo3mYP5pGJUB6qqvDhGy34fa4AyFhqfJAN7YBEMhlZCWdM_gEj_462ceH9EV-edYwq4l1_8uqQ7VfnIxkmZVnlQ9syD21lnNvE90ROFzErCGev3fHkd7-dsDGUR7NnTTlJA4XFULLSGK1ooi0lyXje_M-v8Orsl5-NEdW0XN7lzWpfheOF97wegYOyYqkh0Fn73o4EP_yHpQaXn-XeSvxxSbaA="
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764910266,
+          "model": "openai/gpt-5-mini",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 456,
+            "prompt_tokens": 105,
+            "total_tokens": 561,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 384,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0.00093825,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 2.625e-05,
+              "upstream_inference_completions_cost": 0.000912
+            }
+          },
+          "provider": "OpenAI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764910275-cCHxZ43htYBu2NnrUOrH",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:827e7bd4b72f5c790fe6966f8345f955f89a8c2248fbdd14b51d9d89be0fcd53",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 5283,
+        "request": {
+          "model": "openai/gpt-5-mini",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764910275-cCHxZ43htYBu2NnrUOrH",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I don\u2019t have your location \u2014 could you tell me where you are (city, ZIP/postal code, or allow location access)? Also tell me whether you want current conditions, an hourly forecast for today, or a multi-day forecast, and whether you prefer Celsius or Fahrenheit.",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "**Requesting weather details**\n\nThe user wants to know the weather today, but I realize I need their location to help. I should ask them for that, perhaps guiding them to use location services or provide a ZIP code or city name. I can also mention options like current weather, forecasts, alerts, hourly updates, or radar, while keeping my request concise. I\u2019ll ask for their preferred units (Celsius or Fahrenheit) and if they prefer current conditions or a forecast. Let's craft a friendly response!",
+                "reasoning_details": [
+                  {
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.summary",
+                    "summary": "**Requesting weather details**\n\nThe user wants to know the weather today, but I realize I need their location to help. I should ask them for that, perhaps guiding them to use location services or provide a ZIP code or city name. I can also mention options like current weather, forecasts, alerts, hourly updates, or radar, while keeping my request concise. I\u2019ll ask for their preferred units (Celsius or Fahrenheit) and if they prefer current conditions or a forecast. Let's craft a friendly response!"
+                  },
+                  {
+                    "id": "rs_00d139959864cb9e01693264c477888196acd69ecdf3e3e41c",
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "gAAAAABpMmTIaUqjRSBBYkCfW7-qNHdn8xE1vKVse_iS_CF5uKqxcKWAXGW2FggMtxBJI0q77YTAAaq856VLBaeEW4VtG3cwJq1QGh3meO1_5W6SAzeFeHC50m505OHuY_3ozBPm9nYF0acFhFeI3s9wV0_a20F76EsiiOpyvWr04fV77bv9nU0CLlhXstdtVG9qH5ktFfDvUUvl2-UE5BWTFItHGRrTop453ZYKqWMGjvB6cWawGYoL4VXr4LfHiWx8uqlwk2kkW2eabNfER_DdDJWywHzq9FNjOizfDNhhKNkbgmuaws_NVBq38Ydm5gyC-iIMRYfPA-QHXMuU-uS9C4qqef7jQ8G8fgges3MnNb5Ay1YlN4pDDHxcnYWJ5tspk65a03aXSXpwqsIc5HzYwH8PBlACWx72woRNmQaI_EVAZPvU-zJxZ4qLXx-hnPmbCTLHs8w6SS44izB2Qbet2hXqiCZcxvj1Hew9D-SmpvYTBMSai49tUprI4yqS9MiAJe-zuJfErm1NOYnIyu4_9Rqy37zGTxeEF3_JG1wbSwrGLxhlOKIAGndm6kxehIfvrusXSZTw2EpWh-lHuNPcbQZbhb7k39_r4_DcJS7AV7o-DBHwcTNDdlkT6OCgpmL7F_nJ1PiNT3SW7A8VGuV0cTo4088TjwF9o1HD8JgwdkXkTI_iD0OLgT_QDveiHXCo5Mc9B9jZA1Myws6BmuMTgmV--Ze0gKL4hQGzraL-M8vMip3Ok_wxwNl55EeHGsKth4l_mHB1sx87nczIO1WHkzRJ3_jGNoSZebSKTlYnWjSEAiWt4P-JUc4ZLMfNqKgvzZ1ynjaymrSnZJKzm3JXUYy0e9vE41JKBEVZurPe4ZFjwgGaZGRsXaCOOJFg9huMZTuf4o5o71AzN5lSHcSnN95F4BSBmWBd9I0I_IkHBYLi5qlkAG6sBDW1_wiyPrP5dALDiJARjx6RyzN1hcL3owYJucUJKoevTDZBjOBoLrwjQPp0rRqHXDgbeNHTGPF4s3loRDx1z8B25JDX9MvF9swk4540HGpzKIalbq_3FTtRSDhKCm60nDy3ozcVBuPJnRNOvQq2YUoqrT6QCzRj4PFQNzcA5qy2zWG-sGVq7jqj_LHe5oAkA3ZPJksVomgPuCrk2NVawgvUUREvpLmhLPlpIgJKq6VTBd9RuecvB8xTgD05XpLBuHabr4fV6imY1o7EgOV26jDzNB-R80ln4keOzBXUwaT0lH_PtNOSpWF83zw34ZmSgVZLM8VHbXfnYX56pxIkfWIXNgmrjwbOJifi31IZC3tTG-xpvdCOLe7ASbM3Y9GAxk8fd4cfhChXASFJGsNUMztAkDs08UE_OANJHm9_2o0rN1u97PchSTNZOl1-KM6KFiUWn5kRtRX1WMztlaaMr-pF5F71MioAeKlOXqkQgkraJWiOP6n8AoDfmrY-XhB9llPiiOafyjMKHnSoZjg8ksB2JLyvXAo3Felpo5SOnRKSTLUFNqQ4coJGxrkH8cXWyq9rTc4tKsuM2pILqKUZAotqnLjCQLi4xjMxcxh34cC29Il8fqTqo1ZeIUUKXMnFPzFFOp7-GjTXKirqcVXD9eEUQDuQdLLzHgDxjaSOeuLfC1mieHPGJZsA6S4r1PYmlcW9NUlCSznnmmhNKICq0IyeqON_QSu2ktw1T343oho5-1sSp6JB6iuodhCbkvkQ5zEnk-cCTQ8MlpwFnh25VW2UseeMmUvigOHq2FaxC4c9VdLlsGklAuVkylHJHtoGGSm2mXmhrvEuFp79heldewIRgshL13JUnPcTopCKHNFlHFeiFTi7OuigcvrbqG3yPMsPKjgDAinrZMQNCCABAuineOKJihlQm4Y5XNGI9-rL9Rf-Tw-pvY74PrIqWvH0BqGFLvHWLV4W8Ztbtsup"
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764910275,
+          "model": "openai/gpt-5-mini",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 190,
+            "prompt_tokens": 105,
+            "total_tokens": 295,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 128,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0.00040625,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 2.625e-05,
+              "upstream_inference_completions_cost": 0.00038
+            }
+          },
+          "provider": "OpenAI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764910280-RjrJcxW7zLpEk8kUNrA5",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:962e9c6d3fad5cd3eedd98fab5c0c467c6e3427e55abdb09d23c2f0c6e95c5bf",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 4005,
+        "request": {
+          "model": "openai/gpt-5-mini",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764910280-RjrJcxW7zLpEk8kUNrA5",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I don\u2019t have your location or live weather access. Tell me where you are (city, ZIP/postal code, or allow device location) and whether you want current conditions, hourly, or a multi-day forecast \u2014 and Celsius or Fahrenheit \u2014 and I\u2019ll get the weather for today.",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": null,
+                "reasoning_details": [
+                  {
+                    "id": "rs_03e31402a317400301693264c9a0988193936407e81ed3a1c2",
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "gAAAAABpMmTMrdBpRYkVGTvyAOkrHMMWjJGe2P6EML8UAgj5EDyL7eoIIrlhVlHdkUAC-SRUTOFT7VFjiNsodh3tfVegmcxkrrOUb4rpYWtADmh1zd0wiBhn5FiRxfwpGZMsGGCb_3hR0PPM67pCokzYHtlXtQtEKh0ejMnSLdYpnwam2dob89d4AtbCPV6XI7Bq7Bk8vZnN1pieTzuyhWF5RBrznQPeQt4VAExnznLi7TKyoYp9usb7pTmQYOM65swMiW-gllQnJJL3gzkFlH9PCgd3hSonGm6he3IFqi71K6uSIxt-Hk-ok-ujgwo-ptEhqCckFSl2_nCMYrmWe0Z7uMkfy2vrUDzHS4EEjGXIDYDqMoVrUbUojNACoRzMwm2-Lyx9U8t3JMFeo5O-k2VLvDoF7mW9cVZtqP83-gysLt6QOzxxiFaI8L3EAxBA6mJ7a2sdeajaVQ5p55wdlcaWIS0SCx4_SaVnTeP7ZdHmiOX0-wPXhnpvtD58Uewxcyne4RAiSn-Z0xYjQ1Y7NdzxzilcU3wKKE2N-6ULbPXCp9AoM0y6csvfe1sSo8ay_vKRtN2DMlxyWqQpDUl2vw4tILgxQhAqlBEsYJ3GtOiPQh0NgfAPb78plTOK1FRHvmhyRGGdrJt6aUt6ZbMd1xQ86uFfpUrEKv93JTYfnyJJ6XzXk25QsjnxbEfBcVS0HEib01Rj3Y_qcZF3h2s_v9Oo8n172F2WuiyM2aqdTQJLjyhgrPOuTySSLKgrR2vmqxL_YIJV84RMyjCECGPgrOQRJQ1VQvYnYwfyPEPD6t4iMJhYngDHs_kU-UqX907MeHojcq5-_eA2ylAN43YQ5RR_uPPY7qcB9sh5l8r5AlOh6SwEqHLIBUoys5ukgcYzrBN9DJWxvHtAxuzH3Y8ICJBc8_vrkdZRBps1P1x2FRFou2BTxmfwDhhpxlDnf31gv_dpjDgqE6ZVVlleOCl55iEvX8FTY2Ds1tpCcKzczybQf6gGj0P40r-XMg9gwsARcZkcGLjXTDUMBw54HtuzCx3rKdMsH2WdTJctVh6Fv-isFAeXgu4IsWE-YjTv-d3P4O1-sfnC8aWQ_bzUypEtP2uAtOndAzyFvdAWz2QeFe1MDYSanF5z1kukPoS3U6VFwdMHOeqRXbPWaxdfvKRo_v4OZ5LTUlGqrb9Bn32Q5Sw6a-vhpLdXV7wCoD6XswVAkwXOHlrEaoeGYbQ0r-4DufaDvahHqLi3_KQ1IqgOpHpO28Akt0E9iUYHh22_kthXWuDnzMeydNqBT2Iw-1lVNXYujaK7BVGwtUQSQ2pIwYkfLtOcH1U85SfT5HYKECrl-_6FEg703S5SNQjJGYM6HPXkh6WmaBfxdZDTmpgG6giiHL2CmzFpCpA0vD6ZySLmyVDWbyZnHm10aD60H9zvNyDwCqCSRt_pVpeICWYOOYp_jaVjwZQ07GRdBtV_poInFZvR2zcz52rmoabv2oUuPhbC84lM5XoDSb-PDQGxJjZx468Fk0foTP5Nrd4933IPBmxEcP-jtv1Y48gp2Di-D490wRpLHmUlZNyrvWK_S53Oaek5USLVETeExeQJh7AXRSg3GFZ8Q1Kk7smxpQQlKrdRtOQM0kww1BF2kyOqDTxYdqxXw408K7kJTICHRSwmZ6DKELqg6BRjb5MhAx5krZj4UhWaSsPND-x8Li-O_0PqasWNV5fdR5JelmYn2I7zQEHSH-atKzgZ7eH8ZKkk9vFWscex7crRzuaQcsfCO9a2tUkH58HkW3yhy-de64o3QGGoeKWE6VcSQdXl2RoCmn0E9y-7Zra5GZ6FYCPx4hHX017I60bu7rB7GfqAywZbb70jhlYjsB466bqNWmruEOs8ZaVqGAJreEW4wRwL1oh7G437vdWTlEcDYaSeBasDuYdlyvvswlWRHFDWs4ygAcE_SMZ-Xm8n6aieMxrqUSQuKjyzebV0Fwup5aHtk619iYQtRhmiMr6Tc4NKGYGDl6N0VOUu2E4_3c2igJQa1-txlGbTsnvJ6W4uZrF0DbuzCIYVhIVqvZmhJrObTW_LjlH19ldJKFVX89ddZV-XFgBt-kRqUFFtnb0="
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764910280,
+          "model": "openai/gpt-5-mini",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 192,
+            "prompt_tokens": 105,
+            "total_tokens": 297,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 128,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0.00041025,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 2.625e-05,
+              "upstream_inference_completions_cost": 0.000384
+            }
+          },
+          "provider": "OpenAI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764910284-Sg71HiyoXH5Gvqzro5cO",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:3f0fb02b586bc5a8570a4a7de119a9089dc1725aa74bc0b09458997505fb6b7f",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 5854,
+        "request": {
+          "model": "openai/gpt-5-mini",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764910284-Sg71HiyoXH5Gvqzro5cO",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I don\u2019t have your location \u2014 could you tell me where you are (city, ZIP/postal code, or coordinates)? Also tell me:\n\n- Do you want current conditions, an hourly forecast, a 7-day forecast, or any severe-weather alerts?\n- Celsius or Fahrenheit?\n\nOnce you give the location and preferences I\u2019ll fetch the weather for today.",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "**Structuring weather requests**\n\nI want to keep this response concise and actionable. I need to ask the user for their location, whether that's a city, zip code, or coordinates. It's also good to clarify what units they prefer (Celsius or Fahrenheit) and what specific details they want\u2014like current temperature, precipitation, wind, humidity, or forecasts (hourly, 7-day, or alerts). Additionally, I should check if they want information for a specific time.",
+                "reasoning_details": [
+                  {
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.summary",
+                    "summary": "**Structuring weather requests**\n\nI want to keep this response concise and actionable. I need to ask the user for their location, whether that's a city, zip code, or coordinates. It's also good to clarify what units they prefer (Celsius or Fahrenheit) and what specific details they want\u2014like current temperature, precipitation, wind, humidity, or forecasts (hourly, 7-day, or alerts). Additionally, I should check if they want information for a specific time."
+                  },
+                  {
+                    "id": "rs_0f1b221fcfc129c101693264cd5a6081939ec0c0f5f03377f8",
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "gAAAAABpMmTSxiNzwkSaID1IiKwid51V5KE3s_WHu2WDaF-335_P1Quo0VVklgCdSWWhdor2-m-qjV6aTZxno079UkWczY3Gsos7u0oistkedmxIyDKjkfQcgtLFp2pEb_4Ug09jWtWjAG9zHew4m0hrPQEtfyxwTlBvbSiYwmTyHVt7ZHPdb_ngw4sDkGJU71N6uP_OdKCuHxQzkUJaFEM3F5k_PO5ewvxScZNxQsHcZDuwucUtVwIhFtW2QaSmRZ1ny4xbJgPU9UIrF9cHr3dTfW6nBBg_Tt2IY_bGDdudSug2XN4DjueZx6ivch0XKwc2IkSeVxWd7zu2ZXFgSU1-J_IPWtqfY7i206n8_c6QcjepBgGqtsfP6QpkMY4EWd4ABXMA7q-Xnuu13UxMl6IVshDeu4vSj1UefsGOoE_xxaEERxT8td6-CLsG4GC0vnVyCeXRTpBUvbqkRpptTU9WHY7ntlQhZy5e7sxToS2S6DfDYUZDEl2oBYtmYKz3xv_8yy0J8CtWUNTQU9WeRLz8mPcd5qhpE5H0kE-qwTbw21PYmXo3VW-_ntt_Y1hY3stG2EZvaSmcD6AhrbEt9__Bh6cFKV8mAbKxqmlvNDNxhcRwMMJw5psoBd6eMWqLsnlsBa4QYj1zH6sLo52hNfbRYZOMHfMmupcu46-4doDiIwcw5oHCVjKh31zp2TesIWWsFKO5ZWIOT2lZ8IkxTdE1H30X71iwy1dWo_ZU008c8kZVqj4SfYvK9563Qqw6420F7dyg5xp02FGopWjPOZkExqPouEOyebv9hgOl2bdhq2Y-CFwowvcsARHE8fB3DLhz7gcN5kZyGBZRU9K1vf8a12vHTNxRVF3-OLnFnZu_o7GVpqiG0wwvGjsaIvUSovi2yD5LVojC4w1i0cyLNveg3e7bZiStaV2XsKarBxhPfOrNWY0btPtNqhmlvJROP4dTX5qEFu6qqEaVSR-766GpxPhf8_V5r4VWV9SQWOId_9raZye2y6YQZHzojLfzfMekeCPb0frFKOFVoHtoGQi4UCS0t2LwsRhMRRbSFOPBIjXOLZAh9nrk8WyG0kaffnlq0fnKc4x_jXG_KgC2oOX1KjBzxy_sXR1lpjg5JRq4H9LXNsn3C-uoDgE5egSrqQ2pD_5BgPvtt4VJhDNoPez5YakRCCS5sDTwogPfgHBe7C9rXmMPSdywQ0VPFVqxK0uBPEbSjQvz-x2a6miQlJqL3dsDc3RpM4Ctz-96S06qVFpUOPKOeX28BFQZ-ENkEdyS-fBUlKfPQsj_PYAnyrSMQfiyDDPgiE2bauZOoThNhLJ11Aun39HpNM_DaZbyTGx0ANQz6hlgpMBCXQOdZ_P4ze3IeMusYtLoEOhypXHO4gJJ-mqhcrWYC6I71a2c0yvDmMXJGXxTLtXw4k42gQD6SlPENlXNc7sUOUPvZ3mKCMi0c-p9xabhllb9o-1In-6w5Bu1tuHalBl5PP_so0fkCxDgMcBQzz04wBXH1zB1MPo5Vf6DzhF2ELl9D-ag6X3OQOI4g5F6-iOkCvMGYtY_9Ut3NSRxsfs0x4UEi8yBtVYt6XD0acTA391yJIAXDXYw6OqVG7njUnPtvTKRX6tprEcXOwcTwGXQk3hwLD3MECe8vz3bXHLlzUjuk5hHNd_jgoDVDRVfrDXTE3Z1_NPuZSQ58_whnQlSQnistCF63acvto3SvV26rDMHwVWvPWWWSW9l5qz0djLHyzHmapJJvUBO40fSg8JAujypgtFuzpGkU5NxYRceP4zZpaAaJxZkpjsOA7ncq7uZXGNgprlOwNS4awTFbMKpdeyB1_rKO9Cev1B7Qf0Mqu62HQ6_qjZJ3T5LvLsJITPQ3wkjroYZau_yv6iQ5N0NsbKpAzStJ4pKuMdeXnT0eFe9oynmyTsp7A8m1-7_zbAr-1dScKTDrt46hvtgnTRv99dsOl6V93x1kiftwZjZUVnCX1imqTrMIBu2UKBXJB_Hp0S-sMMRWFR-oip3DELRqefUduZih1_6U-VUw4-fKX_N7vnfuwO4zeCNEqLqYsqNveo4Nyw4mj0U0w7IqBQqMPlWBxt_zbdS-r85dI-kvFbnZBm_bj-QzZpqj3WqeLUL0ggmv8q5_l9tANerIjWXdsSJef3FY7FZJH1vb3wu2aIs62ETY_p2WlVManrIfVWufkIbG6IdPP8DklGQKPrjCGCV8qTf9-jmRO6tkGj1kxr5GQtKNfFCWLkWWJLcC0nPbCLKRwkviVzyy88u07KNyg1Vv3Eh7N2kfc9gLDEuaP9kS1n3cNfqjeVVPyqzGpszJPsoNfoJPiRSJxMIkHq1vi59s-wPuVQ_rxkqVuVlhpmv3YYidVdSCc_7d43Q8kku92B6T4OB7Yo96NkgMmtb_6UBWMsdqWG1dGRUvkyzSCSxE10O63831vcvsvFXOx8Ia4YBZ86CAYBA2zko8Cr5HBr_owyLY_eYhr202B2yLULejHTbVn05FsdJ5O3suzYCaAOOf-i098RS14qXYw=="
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764910284,
+          "model": "openai/gpt-5-mini",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 334,
+            "prompt_tokens": 105,
+            "total_tokens": 439,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 256,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0.00069425,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 2.625e-05,
+              "upstream_inference_completions_cost": 0.000668
+            }
+          },
+          "provider": "OpenAI"
+        }
+      }
+    ]
+  },
+  "summary": {
+    "successes": 5,
+    "trials": 5,
+    "rate": 1.0,
+    "wilson_ci_95": [
+      0.5655085052479191,
+      1.0
+    ]
+  }
+}

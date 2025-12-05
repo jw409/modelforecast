@@ -1,0 +1,791 @@
+{
+  "submission_id": "sub_ea8a690cb720",
+  "timestamp": "2025-12-05T04:50:59.850266+00:00",
+  "contributor": "unknown",
+  "environment": {
+    "python_version": "3.11.13",
+    "openai_sdk_version": "2.8.1",
+    "os": "Linux 5.15.167.4-microsoft-standard-WSL2",
+    "env_hash": "sha256:82b59585ac582b7441e0dfb1a4ad0fabea13d6ea352206d6704de713f3c103ab"
+  },
+  "probes": {
+    "model": "openai/gpt-5.1-codex",
+    "level": 2,
+    "trials": [
+      {
+        "openrouter_request_id": "gen-1764910259-poIiRUxyMSqoNeoMsp1u",
+        "prompt_hash": "sha256:b1b21a108eb3ba14a87eabaacac42f96b50212ecd5909a182b9bcdd9130ecea2",
+        "response_hash": "sha256:f79654cb34a337782b457143df951ad6297152e84ec5bd0ca1f56aaef41f5a56",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 2546,
+        "request": {
+          "model": "openai/gpt-5.1-codex",
+          "messages": [
+            {
+              "role": "user",
+              "content": "I need to understand what the auth module does"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764910259-poIiRUxyMSqoNeoMsp1u",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_LU5VxbuRj29oZwxHWHpHoGrF",
+                    "function": {
+                      "arguments": "{\"path\":\".\"}",
+                      "name": "list_directory"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "**Listing repository root contents**",
+                "reasoning_details": [
+                  {
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.summary",
+                    "summary": "**Listing repository root contents**"
+                  },
+                  {
+                    "id": "rs_065a0ef3b40cf20601693264b44f008196b915067292794a57",
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "gAAAAABpMmS1BgF_60hFO5tluLAjwExoDYA-sm7TBPEfzqnLnDM2BAXbwR17njZui4iiHrHL2rkbMhLHfsyvSv5mZ281EG-KXraR8949e8IebXdGF7foHPX0vJmE2B3BPxzRpWC6MQkfQZGfUjplce1PQQVIV90OJzirCXSmTB1XMOwtuHK-tFKY9mP6nyibASt3j4Ofzi4tqx1yNX-IyIiaQg9OMA4QVhFaCoQ_R6PEvqE62OrAmr_b_Zfp8OAm93m95RKALFfGv6zHG0WMQT28r23xWDtrlJs0GPU8tcPBeQzH4c3ZnGp9yz4roOmAiNsRF2qTmy8MTTJbqXrk-xzMumm5EHeuPYmaa1CmYiDgOTYyqnmSWZLkI9I2xdZbPjmW0_fhKvqrya2h8mkxlbeBEsZthii5dqsiHaBKBLzDlu2JOVSM-MZinzD3g2RZG1tWCaBat4AJ-5_Qmp4-Zea6y8C-1H0qT5SsU8U7tfTr2szV43hcIATaTffrfqaFycDUKojadAruzGPeiR-Y80gJ0bKCywZdmGu5UvvCrkndzWlatwqlS8M8mIIdWAgiPlSytj3r-spfJqmzqsn0uBsZGD8pdQDvHru2J6gJXVEuTxVEBfv9vG-kOAmzvX2QR4gmuCsm0_xXJWFfO7H5RhkkeW2JP72OKBcVeCnALgRoTEZAr41oEZd-FN4-j2YtbSmhj0HYU9_gwStq_4MIVTDQyuw12lJYKIxQiJIC_aYNxQN6oVoXGC72Cvza5stbXv0PBm4S04aQOdtYzcyAoIeozPiRzKvLBo3X8Tn-rpA8mkLbox2jZ02MflyWB7uwwdHeaYBrrXbF3simayUxOP516YJiXY4CZ5VPEk9clcIYzuWEj1nn76Fso59H2TnZrLMf6LylzERb"
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764910259,
+          "model": "openai/gpt-5.1-codex",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 20,
+            "prompt_tokens": 108,
+            "total_tokens": 128,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0.000335,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 0.000135,
+              "upstream_inference_completions_cost": 0.0002
+            }
+          },
+          "provider": "OpenAI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764910262-rqxPqmjk2iH4qgE8tyQ9",
+        "prompt_hash": "sha256:b1b21a108eb3ba14a87eabaacac42f96b50212ecd5909a182b9bcdd9130ecea2",
+        "response_hash": "sha256:7765729bdbf4c225b6b403ed7c131440df84209c32663e87f560cd87e53b2ee8",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 1318,
+        "request": {
+          "model": "openai/gpt-5.1-codex",
+          "messages": [
+            {
+              "role": "user",
+              "content": "I need to understand what the auth module does"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764910262-rqxPqmjk2iH4qgE8tyQ9",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_Wo0H4j20QLAyCmlcwhNAuQtg",
+                    "function": {
+                      "arguments": "{\"path\":\". \"}",
+                      "name": "list_directory"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "**Listing directory contents**",
+                "reasoning_details": [
+                  {
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.summary",
+                    "summary": "**Listing directory contents**"
+                  },
+                  {
+                    "id": "rs_0a89d7ea74e6824401693264b6bbec8196a455ea5e4cfd78e3",
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "gAAAAABpMmS35Uj_pm77SXkY4qiXMW5uGhSO4sbbOOPb0XRBTrYwDohnafgTDiGYsHPI611XNOjN1TAKmkN5h5G_zrs--IU-IVC37GZm64O1oMZg5Iw5U42mbwa4XyOEp4qMHxfDXcMQDxAwmrFO9miO-qk13_tldVcpB5WEs2Ht2oOwjh6O5oPNawRmLbA36wmmh0wwSjJZ1LQRU8rs5SayL5BWp08E6NgmNLPPGHBAK1RGZg5MhtxGUp6c0UR1ySn6SB70_9abulQV24aGlrI3fsDfmD5Vr-3Np5u7oAdSipZXnuXKlmhRTfVteskP1YW_UUJq6npfjfncuPL1WJD7WRuA2ZTzi4kK1K8VyWSAjRJ80M5FadFMnK1D1vhb0AzEH3tFk5QIOecFaGzSQ2uKdTqD_YmNy-_Bi36URJAyzCeKaRXBtooL9Btcg8yOFB9q58caZ2rVIiTT-xXSaM6AqP831ofN3YUgfi_VO8AqnU-2ShYFm7twD1i7clkdjVMh1zDNaS2xR5Q_tLA_eCDz_ehsLwVpg7l9GK-l6XGMYr-GHz8f7WtV6Rhc7MYjjf3FoI-LgGDA4KuBPYT8Ow0R96MhYtNRyYIPx8eymsse97EB9IHbMeTqjJyG0Pw3S1nwbqpFQW5LzSE9DAOnpN4TEQKsAJerg8TTDyjsw9LTxQWoABL-2_CwT_c6E8sV6cfbmgXNDv6G86VIoSJDHoOBFzlwSAqG5MxtHXheb54WAoXE7MtG409fKo6F0Zob0Sniw9SUfQy7b-bhry4H36_SPi0ljhiE2_f-Axbd-xs9rvLreXSqCrKxEq_gW4IdasgnIol4rMJeXlTm3xv6FY7CStm-beh5zCE6nB5N3hktHXEZhLz0nlYSuxz0aCMgCqId1IczeC4E"
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764910262,
+          "model": "openai/gpt-5.1-codex",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 20,
+            "prompt_tokens": 108,
+            "total_tokens": 128,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0.000335,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 0.000135,
+              "upstream_inference_completions_cost": 0.0002
+            }
+          },
+          "provider": "OpenAI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764910263-nLXfVgWzq2h3FbwRnS3v",
+        "prompt_hash": "sha256:b1b21a108eb3ba14a87eabaacac42f96b50212ecd5909a182b9bcdd9130ecea2",
+        "response_hash": "sha256:455711f0279691ed7a118d49ed8c2c2a6c116b6eb2b5be4b945654f995684c63",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 1089,
+        "request": {
+          "model": "openai/gpt-5.1-codex",
+          "messages": [
+            {
+              "role": "user",
+              "content": "I need to understand what the auth module does"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764910263-nLXfVgWzq2h3FbwRnS3v",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_FnCGFZy8XOuxATeXf5XAKCsM",
+                    "function": {
+                      "arguments": "{\"path\":\".\"}",
+                      "name": "list_directory"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "**Inspecting repository contents**",
+                "reasoning_details": [
+                  {
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.summary",
+                    "summary": "**Inspecting repository contents**"
+                  },
+                  {
+                    "id": "rs_07e56f053d16c0b001693264b7f1c48194ba893d167fdcac9d",
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "gAAAAABpMmS46Yy44qqavmLJB-V9jGhl0OdOK4qJcl_JgxlefYwQ5WPbr_sX48MQJwFmhujjnQIhm9UNv_qsW81fgUxGfTd_V8HNKjaiCb7qfhF0IDnPYZC-HXz2TcQGNmb00HM9PzpK89AhXKNISLFS2K7zAJ_8y4LLse2AhyyHR02GSn_2BIXtxnG9vvEJ_qkADycpTsoC0kWTlmIqqQ4WMobFR5jGsrflqyejnkbpv0B3TJabNp6gDQyMdfX1hOHZtPAoaFflRI7G2rkBrUF-c2m2HEErOvFuwBNlP7IVkWgPqB24_7yOgviYe8LiSofIBE9-A3OhEcRnueaf1UALIzGRT3huIEOyJVOK4QKZPYjUXSnS_gdU8k2VbwStLWpZfIVgCrtYLUGAaUpR8TVukqZiUK79hL4Kwgw1tewLgeNgi5cYw-kJEY7zoq-DBSilWx8YyXS1CqKr5lH_K02g-q3gtl2aw54IzXcvD2motzD9wNFpVS-KVBzwKNVd9NL2tFRWso4r4pnes1kKfZH9ycUK31xMDp1cYWFjXvYEnotcBABQwOocDaRtnjFs2cU3EDE8BO1rsCz1ouRaSVOouBEV2GQjbkjr6j7UVk1kxL0RAVttAFE6-XVximZpPpzLZapN65N1IndVROAR8YLZsYdU9ytVn4W0Ax4ZVNexwYEg9QgcOJYVZeV71OuZ6xMdk9miW3SesgGax-9CkKDbvET9-w1IoGnmdGb4n1YUSb84AhfmpfvlHV2LVadYTVM9tFVD7o1SGAhwfxLh-ZAL_D5KqRHL2NFvLE-JVHk3_ktHUtU96F_6eHfbOVVJkaWwUEWEX6v32zzCrbrPLS2JjmUK9G3ynf-driOikyLxzvZHQcv4mc4="
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764910263,
+          "model": "openai/gpt-5.1-codex",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 20,
+            "prompt_tokens": 108,
+            "total_tokens": 128,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0.000335,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 0.000135,
+              "upstream_inference_completions_cost": 0.0002
+            }
+          },
+          "provider": "OpenAI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764910264-parHz5o6X5Z8FCzJhI4J",
+        "prompt_hash": "sha256:b1b21a108eb3ba14a87eabaacac42f96b50212ecd5909a182b9bcdd9130ecea2",
+        "response_hash": "sha256:a1f0f832e215d6dfceced56eabbf7414bb882f138686c853ba5b198fccaf72d9",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 1410,
+        "request": {
+          "model": "openai/gpt-5.1-codex",
+          "messages": [
+            {
+              "role": "user",
+              "content": "I need to understand what the auth module does"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764910264-parHz5o6X5Z8FCzJhI4J",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_EniHJUpWkzj6ERxpuzHFb9Ww",
+                    "function": {
+                      "arguments": "{\"path\": \".\"}",
+                      "name": "list_directory"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "**Searching for authentication module**",
+                "reasoning_details": [
+                  {
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.summary",
+                    "summary": "**Searching for authentication module**"
+                  },
+                  {
+                    "id": "rs_05b1a972970f4d7701693264b913448190bb16ef14e2ecfbc7",
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "gAAAAABpMmS5XXFUpDAXNDwr_KkR_Deo1fJXmnq87L6fBWAGGGAynjj6eWArjIVuQOBNNggnKZNMtVZ15dLdXRa_I3O4ChROrlv0dnsYkmt72szrDUvyCY-NdW3cES_abIx7TA0efUvaj3DlBAx_NO-HRVzSvUL4LxgEmpn0g2kNLSwI0nvDyZ5NbVNSVGGVwzxtSyxsfUWowkUdJ76huMmK9DXZHuHu4LRZ0svk8iiZFhGMaop52gdSJxk2SHznwvO4hAQuuZHCVAqybPpATb5cRO-u8QIV8PClNZvOzGqF-7LSWxVWVtaDI43H6mWMXFRZwysfWUOvjOnDYtB-qO7tBnyiMFo5KU6eXAMTciS0KiwlDB7oSfyIkuMFvbWg-skBBLWL8vzUqa1I116y46PAJDFrV4999vkwMcvqUsIRtbzE6VcX39XHu51_PI2jQzhAv_0emE4GGF-17lcrxmBMmiaGZWekIJp_PrdUAqFrWNFYWWBJIAnU_BXpab3oab5u1MD2RTWZQFmzGD50N6mf8MD86vNUMdGK3DZZ3oiUf2N3za_Bex8f7VYNkLMmuVW0Ukf_JRpfopJRvoW2A3Xz1UUrNvRYkMzaCB5nW2avqJI_ZXMH6NbOMeHActcgH4oWEdzFF84kY20vtxytBjoJe9gHNSCvcMvVU9otehIAfYxOjaENQvxBEKB81t42JA71p0X6pPQB81Q2Ok_3D3FiEGt8SWYnj6VGgxhBKx62qSBffFR6Uhujh-FLtwf9dLbjgufS87Jl4DdoRbRA-_90AGo29Za3Nhw62bHqQZlYzPCtUiqxk4z3CNaDPDxk4lHbdwTHrK6n7FMrdHDUQAbtrmstQgdL9iNd04vP4D9HnFGVRWWwLUhlu76poVzc5KPg61-E91m4"
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764910264,
+          "model": "openai/gpt-5.1-codex",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 20,
+            "prompt_tokens": 108,
+            "total_tokens": 128,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0.000335,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 0.000135,
+              "upstream_inference_completions_cost": 0.0002
+            }
+          },
+          "provider": "OpenAI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764910266-EqT87cf9IkEVvjSmtBV1",
+        "prompt_hash": "sha256:b1b21a108eb3ba14a87eabaacac42f96b50212ecd5909a182b9bcdd9130ecea2",
+        "response_hash": "sha256:9d9f54fdb11375accd6cc0e882853a37bf226d8b6ea52c2361ddfc94161cee8f",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 1091,
+        "request": {
+          "model": "openai/gpt-5.1-codex",
+          "messages": [
+            {
+              "role": "user",
+              "content": "I need to understand what the auth module does"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764910266-EqT87cf9IkEVvjSmtBV1",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_eZnvBpeyQl0kHZuy3f1v7uv9",
+                    "function": {
+                      "arguments": "{\"path\":\".-\"}",
+                      "name": "list_directory"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "**Inspecting repository contents**",
+                "reasoning_details": [
+                  {
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.summary",
+                    "summary": "**Inspecting repository contents**"
+                  },
+                  {
+                    "id": "rs_0be43d12ae3528da01693264ba69508197b8fb68ea709cef8a",
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "gAAAAABpMmS6d8QqmRCeDO9tdUH92HL5p6w4QTYS6FTAFDxIXilHNXVbmQRa16lTLujbgmaXm16jQdLtn02ovS48KKhMM6xP6uWX6Kd541KH_i88jy5vgzQEyR17VUi7yNhWO7Hg_fQDeH1rCg8LH-qmhnslCYRi7Ak3TU6OEs7CArMxGAxMiPxlAXNGOk6Q2Cpju7malV_fILN-NMlpkLKNBCgMcTY3eHmwZfu25jjwhxNvj52WfiR9RMYu67tXwD4C7bqycM5PWJc3tLK8psFhFeq9NFhJE8Fg-lAJPpMk5METPtAFWcJbupT1qbpJJ-fFpfrrTCRfh5YRFN_sGTF9bAx_C6wPUMm8NODrd_-pQVMpBL9rr9mlUdo0CL7MsC7BQFPE8JEE79C88pmB5Z7TDX7DB3OLG6c3NbLBJRPygES3Hh5DBhU0CJexBc_oeOnLHPP3jznhfjcjBNjhd5yfrAsMtHIwjkxryKpKc-dpCrF28r6LdZgmAIMLsWtq3YOtmpzLyAO9RZXICeimxvetdSzWjseg4FuXPNlVvg4-OkYo5sFCFZIXKIWW7PGh1rlB2UBLpZn48-msrfyR4vg1DGppotk8qAknfv6XUd-x-y3VspcBjztAxXc7aK8OG5tMrAZhDMtxomCaH-FLoOgtPFT1aKC7DKHqsmU8DR3TDeuWqrElIrgECBxC07h0RrVZ2DeILS3GDyW6fOmiEmdx2KYnxFRF8HG0TBzTsD-vyohXw4VfZx1tnbuGJ7crqscAUom4p9cpVUMuFK0TlJFJ0QShhf-iPRalNXIoKcs_s9XgFb_88Rbyvei3vtNxV4KnCRaX-bq44r5NnO5fQ0m_-NHp-VA3t-CBTJXA8_8O6PxLxQWiKd3EgWmdhPY1KlMQWahwLSFW"
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764910266,
+          "model": "openai/gpt-5.1-codex",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 21,
+            "prompt_tokens": 108,
+            "total_tokens": 129,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0.000345,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 0.000135,
+              "upstream_inference_completions_cost": 0.00021
+            }
+          },
+          "provider": "OpenAI"
+        }
+      }
+    ]
+  },
+  "summary": {
+    "successes": 5,
+    "trials": 5,
+    "rate": 1.0,
+    "wilson_ci_95": [
+      0.5655085052479191,
+      1.0
+    ]
+  }
+}

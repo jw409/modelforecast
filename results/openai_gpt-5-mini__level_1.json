@@ -1,0 +1,621 @@
+{
+  "submission_id": "sub_a2f2f0d32d3e",
+  "timestamp": "2025-12-05T04:50:59.889105+00:00",
+  "contributor": "unknown",
+  "environment": {
+    "python_version": "3.11.13",
+    "openai_sdk_version": "2.8.1",
+    "os": "Linux 5.15.167.4-microsoft-standard-WSL2",
+    "env_hash": "sha256:82b59585ac582b7441e0dfb1a4ad0fabea13d6ea352206d6704de713f3c103ab"
+  },
+  "probes": {
+    "model": "openai/gpt-5-mini",
+    "level": 1,
+    "trials": [
+      {
+        "openrouter_request_id": "gen-1764910260-ihZaedO3GwHuUOPI9BYU",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:42d77383399695b3e7903ab9cc693957b5244fdad6aa760172fe3405945afa75",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 4937,
+        "request": {
+          "model": "openai/gpt-5-mini",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Search for authentication files, limit results to 5"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764910260-ihZaedO3GwHuUOPI9BYU",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_q1eLshvCkyM6rcf12l4mYzGa",
+                    "function": {
+                      "arguments": "{\"query\":\"auth\",\"limit\":5}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "**Searching for authentication files**\n\nI have the tools I need, so I\u2019m going to use the search function. My query will focus on \"authentication files\" while also considering potential filenames like auth, login, oauth, jwt, passport, and firebase. The user has asked to limit the results to 5, so I\u2019ll call functions.search with the query \"auth\" and set that limit. Since I only need one tool, I can go ahead and call functions.search directly.",
+                "reasoning_details": [
+                  {
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.summary",
+                    "summary": "**Searching for authentication files**\n\nI have the tools I need, so I\u2019m going to use the search function. My query will focus on \"authentication files\" while also considering potential filenames like auth, login, oauth, jwt, passport, and firebase. The user has asked to limit the results to 5, so I\u2019ll call functions.search with the query \"auth\" and set that limit. Since I only need one tool, I can go ahead and call functions.search directly."
+                  },
+                  {
+                    "id": "rs_0ce29b02620ef1d801693264b45b648197909e664f2f995aac",
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "gAAAAABpMmS4Ol2LNK5kW0i2Ry_HFTS24goOzRGeXGf-zex86uOsJJB7N0wR8en5DsTXqX2mlHgF2fCiNjRmr9oWvKoWeM067qb8Y57nKZFh4pxUTvKcyfblofZCxp77WQjA1gvTp3AVpxkUuJtY5nwIbGl1k9FBUWmidFdk7jKn0gBBg3eSh5VecgUw9PSR9AaNt3g2KSwxzHsM50v606AOZzH4mSYuLx0BXsF45OkY8D7ReT6B3cN6yImLGoD5ECfxKwR9_sZH-prP_hDzo4fw5coGonQRZVx4XsIgtlRR_rNcvkZeiJUeUASk1GidKA9X2O7FZOSlNE01R3E0bmmrh-B8-wsjTiFKeNQLuU8jYqiDNVF1-SDCrCISCnZ__EUpHgyq7g2iopHVu47d7OBW4w-rc-ZKt67U2KkL6R0VSAFefb5sOE59ELXiJbbocmzeafg6SS8TSyoWhqBVfG0Ma-ncXBklh7Q0GNf4FDhBrl-jrkzo-6Qir3xF676IpDspdBMpEqbIAm3hXawCdta_mRjAotbvhc3OcT_z4eqa3QJz-c-SvKcwEbRt3x1xqa19ALD1WAiB-G-ZeVx0x25g_RUvhFzwZvyvrbc-3SZrAGeerLdWzzxTZmX4qOdFFIP0Cq6cEC9Yl4Hx7x4ia7BPsobhyOwM0fSkuftpDy5Zf8gYK5EOcl83GzHqnVXVz47ZvBEP6FKeqbQ4aSegjO4_0ieiCmCSveNXY3HEqO93q18A4gIhtw978HGqJ26ztzGbNFo8QarI6Ryzvp2xeVTaFc96_kTxE6CNq9g_hJU58p3gBMKJcU-2z923pdc_C3MwN7Cfj3b7fYdJ4Ztp1ZcoOKJANeob92i-HnJD0FKW1KpkqxynHEBQQ_zV-FfcLk8YCZWBnotmu92P5LB-sEmL4K9OzwQNsrvT0_DFLWba5NEzZmOumq9BV-_ZYVAG_qOeuFX41mDMlVMnhBg7N-H23Ly7pKWNisWcYzIV12x2u74Yf86O0djbOFfbVV0Kd4UnLBaKxsB5jDehCz2TmSyNlFxODq8hTM1dBdrpxPJmTQ9-zpXA4wi4OYo1vcPI7KpAj-CPbDk1QgYnzBI5fzqSZOnMTRya4gXCnKeTxK0H9mDBMhDYnIq7gcCGAjPWgo9zlR2z2RQbueyosLgnivnTB6Hr0dTWLXNEQFgobsq8qxuoZwwsmA72ZrAlWh8Xn45HIxTOx_ZyGsIa98IF5UEFLNG-_xZ3iaGa3rGXd7aiIF7PsA013-rvS_jvDHuTsD6YA_p5r7IYxS_tQGV9V6ZVgqMXK8I-QJHEccHz_AmsMrXyAdmzQNGhl9gpXkfcoVvFsTNbU5n6WBVECb1rD_FRywdxets_2NQO2UTHZa037G888eqnhTyqCNKHiOOIq0kcA-ATkumUf2QECWr9x0hD6VBoVkJADjsqAyrBJtraH3ghMLy5r7N1rjoMRdoPOjv4GhJx9kkYGJO9Px3QfSZhzQ8_6vGTUdhh5oU08PpKJvHBZKVi0BniRaI8LKGZKQjFxXK36QtOUl8n3m3mRzNI4qd4H9-N-RCbatVZ1JG9z72jVoek1MzHraIihtJObtIpaoTX_bCxaisjd8FJ6AhPwLVVjI0CwX7FewXEcmvc29YcH-M1-j60wuBzLH-FuNyUbXieQ9kS6KYG7bnNDirhI5HHcIEJ7VuVF0RbkKyk04zNenjYMBo="
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764910260,
+          "model": "openai/gpt-5-mini",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 151,
+            "prompt_tokens": 66,
+            "total_tokens": 217,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 128,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0.0003185,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 1.65e-05,
+              "upstream_inference_completions_cost": 0.000302
+            }
+          },
+          "provider": "OpenAI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764910264-9cotAUrJHrOhSKVMYVVB",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:7d47c48860ceff1c815e27cd216a112644c2a3c0610ce7c92aa6c7f0066e9673",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 3766,
+        "request": {
+          "model": "openai/gpt-5-mini",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Search for authentication files, limit results to 5"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764910264-9cotAUrJHrOhSKVMYVVB",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_biSrt0esaErgi4Pcyt8NnQjG",
+                    "function": {
+                      "arguments": "{\"query\":\"authentication\",\"limit\":5}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "**Searching for authentication files**\n\nI need to use the search tool to look for authentication files. The query string I\u2019ll use is \"authentication,\" but I might also consider variations like \"auth,\" \"AUTH,\" or \".env.\" The user specifically asked for results limited to 5, so I\u2019ll make sure to set that limit. Getting this right means I\u2019ll use the functions.search tool appropriately. It\u2019s all about being thorough while keeping the results concise!",
+                "reasoning_details": [
+                  {
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.summary",
+                    "summary": "**Searching for authentication files**\n\nI need to use the search tool to look for authentication files. The query string I\u2019ll use is \"authentication,\" but I might also consider variations like \"auth,\" \"AUTH,\" or \".env.\" The user specifically asked for results limited to 5, so I\u2019ll make sure to set that limit. Getting this right means I\u2019ll use the functions.search tool appropriately. It\u2019s all about being thorough while keeping the results concise!"
+                  },
+                  {
+                    "id": "rs_080efc62be4a6f8001693264b91f24819385b955d00dee9328",
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "gAAAAABpMmS8PKbvgBS3Fpjxns6KFACb3ftGeC6IjTMtlD9Fox-PVAmntffgMsWMwS2Cce6apHP_cRUrTZUleHj3PpdvV5GpBj-AJ-5yim39FqBZtszCQaABnflh1k79udUp4ZoYD2ZlwWT0IfNFsoY80tBdmD4UijZErSLfF2WQuK2dEBexprw2DiMZs3pOfBW3I18BbEa0ddwJLYALcTSIi3tqfmdfbt0t7nMhM3Fq4sFdq7WSeSgY7Fzovn622CHJewZhSl9KMmSh-rveA_tGBA2GNa6_OWwKBRkT6cKxjIC1lRSveVgGKH9pTZUlYCC04deZ5jdlR4jaisxWf9-BigkRM-K9X2Ob-PS7Iu1yc9Ik9SQAVtc9E-3bDBcAKAEhD8UgXAsRoWZhCsMJ2TuHd2WlWNzIT1L7PYfGQ03ULvdP3O1U2fXLgn_qNDhqFb3Zg8P3JsOS_e0zx8yH_3nQfH42qBYUokoOtqAEwVZsPlgFOf6ssPQlBTQow3mQm4j2ntMtnuRMMNFb3srrxqla-3NkEFT7ZiSFtb_tA1xUYUTeVlmrfPpJsKdHQ6z6ZZzgNylBJL12sN7XBHbLKRbs-fwV5GlRbsRl_zk4hZBpsw-agyQyqh2HKXRWE070NYyXdLtikviIjIffTtpDLToQKQ-TWp4VeUAG2wNx4y9x4ur44KBhFwCrnMmrozGdrE3fIa3SUArKy3tT9aWizvR4QEmH1NwkOwqTemzqv3HNdu9IB45DbjiGxq2CGjrdMWlKa1QSL-McOPTy6O0AgOAoZGTSiajrGcK8fC6QhQbHZ3JjiYfScS0T0958d3f4EnHKuyAubdFXv5BWhuPANh7I5rTUg5E3XNqOVU8qf9WCXYV_TCeV8RcAZD1iAsyDpglcBQFXAE0NOYimM3HNvx1J-JrPRVvjfYxCdo2yHh_9EGYZnWeKVzDVXzyExsD656uQBjSbrxS0EB8iFAKTWMG9axduphznMcCgnT26UvNMZ2jAUdZ_3dsID2If89C7iDR9irWtI9Egt8TK5kX7qmzUDohBvO__QeatWeCHc_NLePZZKMc68qZbOA4xeCr7x1hb-5Xl1reS5PVi05vsFkq_BrBe5XuQJbdtQX9vu6X_Ejvha-2hioRPSxw-nFylXx8tWasSaemfVsu9UvaUpjZupU3ELpFGHoPAVdGBYkQyL9HjJmKg-GrnlZHmEEC77ZHGy-HjzBqcR7VFaLEjnko_UKTp3mTn68iBkbRPNqP2ycVzlbUb7wQZGW6amEA37UAfVyV30nakJvkWNrm59tssllWluzcqzciW_vTlA0gXYA-bmz5xvdozZYcYPXsFW3zu7QRH7WipyLttdyqtsaVE4axN6p_F0xzaEDT59s9MD3lJaMLBF7lwuPIB8V1OljwG_cx7x0ZS8VRZcgkBSAyB12qKNOrUfOP4cCKw6HInwv90eyrO13M="
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764910264,
+          "model": "openai/gpt-5-mini",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 87,
+            "prompt_tokens": 66,
+            "total_tokens": 153,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 64,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0.0001905,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 1.65e-05,
+              "upstream_inference_completions_cost": 0.000174
+            }
+          },
+          "provider": "OpenAI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764910268-Pp73cXm8XXkXAFatl04p",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:cb7c6d7ad6c80f88a0e776ac34cc94d13b8270669bd2c91b7d99d6a461ba63ce",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 4387,
+        "request": {
+          "model": "openai/gpt-5-mini",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Search for authentication files, limit results to 5"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764910268-Pp73cXm8XXkXAFatl04p",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_mhh9qwPdXwjr3rWp6HEQMfzy",
+                    "function": {
+                      "arguments": "{\"query\":\"authentication\",\"limit\":5}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "**Searching for authentication files**\n\nI have some tools available for this task, like using functions.search. Using multi_tool_use.parallel seems unnecessary since I only need one tool. I should pass the query for \u201cauthentication files\u201d but I\u2019m thinking a better set of search terms could be \"auth\", \"credentials\", and \"token\", among others. However, since the user specifically asked for \"authentication files\" with a limit of 5 results, I'll go ahead and call functions.search with that query and limit.",
+                "reasoning_details": [
+                  {
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.summary",
+                    "summary": "**Searching for authentication files**\n\nI have some tools available for this task, like using functions.search. Using multi_tool_use.parallel seems unnecessary since I only need one tool. I should pass the query for \u201cauthentication files\u201d but I\u2019m thinking a better set of search terms could be \"auth\", \"credentials\", and \"token\", among others. However, since the user specifically asked for \"authentication files\" with a limit of 5 results, I'll go ahead and call functions.search with that query and limit."
+                  },
+                  {
+                    "id": "rs_04aa0bb2a1ac565d01693264bcea108196b1e30ed15b649000",
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "gAAAAABpMmTAiO2x7jzg6DgOI70AJskbqoc19eAZc6tGSUO44NuwwNfJknp5Ou8hbZYE8bZWPEezeRXnT7s4KbhCsrVe_YDiAgZ54HzVLwLhhV8zo4wH4SUh0CY0_zLHhshkMu1pU0L7APOnjEGiQw3N3We8Q_QBMovd5R0LEQFH4wD8kSZaR1anMiAMZTfBZhuAG8_s10nJxgbwd_AgdTaEhUCUs0VqO0RVjG0vRMqp7QpDQDneljk9S2YvE6W3VOMutc20gjgOxPhqiilC_cJQ-Yf_bxRClaQu9NOwLSYQ0ljwqdNvW8gAifnC-Y-QA7g0xt28kXjJr7jyfQ9gvKbU6RUfsvZSITMlJStvhQFd04Vjk7nXuja-yavbSdWvW-b-DieSTLK-xldSnv8mmEQefHanMqjMIdNKUn3GMA8ZaQCnhMlNhL9nOWGklfFv0uhRFidyIZ0885LoVGo4nsY7qBzmE8FXmcXiP35h3vblyD44ywxtj8IcbI44F2Z1QMsbWQqOy0-DlD446DI0znwJGIokBTOXHvedFqHhZEbOQrqFuGT-d9zcltIq5HrviiFq8jyAnSRBJkJ8fL9YrBDwWMl7XEoE4RpQy23ayHgdFly4YT6u4UpdwGU92CovWLiGVyznkVb0QGljjz01--hJwgb0ONhGLz4gPPcz9y8rKZ2UAiziOA8O8SXV0-Vr0ed_ghHxXucdU4ZVNswxyiXjC09eybGVb8ZoJ4fJ3W_zSdi0MsjsIeccPDlVU-wjw3x6gXm7WFdDP1K3mLg5_kb_dNnTycBVTLXJhxnkeMBLRB6XigAaafz8mRp0p8TyByHE3IvYUK5BVj7cAUZ1ZDxyr2z-gj6fT2Kv4y-G3BJySAbyHnCVz5qdF1RaSroHEVKanr0r8jqCmuDkaKEbkUu3dwZpjc4kCVHuyb1YREAplc1wEGAQrnv5pmCjIP_kYpDtcXGKFMLMHgF_DcXQcImcdaeniYQPoBvrizJ-_bdALxgE3YiwGqinj8_c9wzCP3K9e_Lt_E5D-zOIxKvT681u-yhUxYnYecEyUZx0QIGczMa-z5j4WX2cLyUTXZfpVjfcI3Nl8AtsVDI1uLwAqpIEQJRiYJAymYYg8n6i9qC_fZsFCQZSSVNrJ-aGJltarpv6r6u5x8_Yid40EQI9COnuuFfXv4Yw_Vtk6ppUjnCBEOeeLgZh1nDyJHVU7vU3BFh3bOXSyrWo0-5NGWJyh0yJTcadvQSYEqNQFXO361uZyJaDkgGOJZQlToWt-C_HxApeg73xJMhcieN_AiccJ4EaMCRrOhVN2Sn2BMQvoedIF9YpvSDxUdR09qVkwyDBGZrvq7doWKnPy8ESx9zBaT4b9ENg1Kz2EOZfUaurDyZVeu9eWcHj7Q0z48r7HOdVzwFllhu-jlYt9QvS45m4cqRFveDACZ99c87MgzweI2CODl3i3W-Az7znY06uySy5TYN3qFPaCHhYsM3pFk4WHaKh451iNMLFkHKHdox7azW_q4H-O0b2Ne0QlfwMUAdvTu_pzOHFV0quu2WmsizMc81DYMLv19KwpMBzKE2yzlBNJplvp-n4d58KHq8s5E_j97g8J1RUaDUZPfutfBKYnvNDX0Ah6zduZH4I8wWj5bzaaYPlz_oTPbE8RQt1rWYS8AdbTQS3zF-Kxa3wDRV3tByBrTDSHho7V6ye-_UMMUavvHLzSFHBHzGa4EsQd-ls_fylVW81oi5-PkAPRaJR7IVJ-lBfjQsYqg=="
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764910268,
+          "model": "openai/gpt-5-mini",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 151,
+            "prompt_tokens": 66,
+            "total_tokens": 217,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 128,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0.0003185,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 1.65e-05,
+              "upstream_inference_completions_cost": 0.000302
+            }
+          },
+          "provider": "OpenAI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764910272-CE9daPZBdEFI7hl8o6IU",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:ccd015fbb514892f52084e6a4af11ec4a77a624859a71adba344ce16cc5e735b",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 4749,
+        "request": {
+          "model": "openai/gpt-5-mini",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Search for authentication files, limit results to 5"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764910272-CE9daPZBdEFI7hl8o6IU",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_BoZRRa3F9ldRErnk2ZSLryDG",
+                    "function": {
+                      "arguments": "{\"query\":\"authentication\",\"limit\":5}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "**Searching for authentication files**\n\nI see that the user wants to search for authentication files and limit the results to 5. I'll go ahead and use the search function with the query \"authentication\" in the codebase. It might also be useful to consider variations like \"auth\" or \"authenticat\". I\u2019ll definitely make the tool call and ensure to keep it straightforward since we only need one tool here. Let's get those results sorted!",
+                "reasoning_details": [
+                  {
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.summary",
+                    "summary": "**Searching for authentication files**\n\nI see that the user wants to search for authentication files and limit the results to 5. I'll go ahead and use the search function with the query \"authentication\" in the codebase. It might also be useful to consider variations like \"auth\" or \"authenticat\". I\u2019ll definitely make the tool call and ensure to keep it straightforward since we only need one tool here. Let's get those results sorted!"
+                  },
+                  {
+                    "id": "rs_08dd1ea3ee685fd101693264c15f60819790941c5e69841e6c",
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "gAAAAABpMmTFjWrrd4yqX3BpKm1N3JM8NUvseuooJEbUAFWvmHbizio_VInRtYEXUWIVY4CXsQaNnHQzsjCxvknRm5QLy4fGZpGM2conGI0CdnUAXyFrkn1qmpboStv84rz9bQW7BLpXRigkgrRuSw0blJDWFL7bjRf1SiZhqrQVw0OFxVJRG4gRGdwsCbMxq4ZxtMNRKryGN7xIDrNAIaChnWMPCHa8VCmyaiy3VyHuKALhB4vDRkWS-g4l3Upkg1s9PXdo_sVeKzbL1qxqTFyBdRXyUB0i_sNGAlz5PFv4bDYtMyLy9EkguhsUnP79WMXKaR9cmhfNdZnCg4ylYp7-V_sAwSgqc5of2oGjRo-1nbcLMUGyjpXLj9YhQwpHP5LdFMOWgwZMDdnoypJOSzoxkah1bCnD8a5I4fpqypoiTUmWMfKv6w7Q1RTgGW0r6JbL1uoMb9_urRd4AOxmZoMa2VbxuQ00p5MS226_P4ojmKwBMipJaDa_b7WM14K4HzDRUoUM0asGT0WSdeZXkrk3Vshnm5XjJH5H3kbblMZqcR8gEsL0ro4x729_LjoVNDtElVG_xytVMAPXQJ4HMR5zEgWNkuyZWi7INRPXRf1sFPUEWIDSvhNK9uO99uS7Y5XwE18lVZDnxbnRCL9vYq0821d8fImKJmob1HW23UT1W1_xTRfxGgTtDFk9jf7U5J4_maTuqv-Qv1RF3b7cQ_6OLodNNBnRiLaw2iTK0YNvr2sGtFvIUs76uJ7oO8HNsvNFfFXk4evgSiZxyF-687bJeYyAK68tBgFOU_5XjHtbgXbQ0Vi10qb3oNcC_uQx-G14F4JzYkw4oHO63iYtJhxXYTinJ7LaLnnqbBaQkHrXWP6-S96sqm3QUDvmwjnwyjN83MsSalxlo0ylc0Wc5EKvkZEnp7Gs2Ka_uPC9BYaMb7LOMi5VmY935zXYnggbGXLeh3XaJcw6PvbxuS9AJyTwVrwQ-8pW4SPsIzF1D5yz4cWYt1a5ucRTRMFA-pe4cUdwDdBqRAVSbw7gKXPSQBfafwEPWyIwLj5O-kcOY2a46ex8SFMtYBFhpfkCSy_UteTN39qEh6-fy_dHTxIHDKLQoO5pyz_oRB1w_c0HCeYsfekFeAojZHuoWjA0zbtXZRxetLp7lp7fQEXVVdzIZQrdRU9tGO4vJ3Lx5vDEO2WaUe7OxJb4s-RvIkTpWGKN7oIs3Gu2E7abVt3jHqs2EDHzqDI9i6eCYHWXYu206J9pWZ-8niqXMGFE7NfAYtZq-fWYqWNkNJYm6zIST8IfzT4qtwhoQe2qtVhHKFa5ifi7Li4kNrazntj99i9kroOk6mJ84zk8gQ5gHRFnQIZuXeiM8N9afxVyu2wS5LP9NZHqotE2OMeBpi2BdlApIATJx73KulAlZMSQFw8AKmvSs6z-BZnJ8nw0aQ7xmNd-sUf_oiPvgG1DihIchflFMsWbQJZ39rgdSd13WEap7SWxyIzbO0aGAC4hufMV4_RWSM7q-7O364CVUQLJeYF8AFlqRKU8pyTIoiXrQ6ppkxvWXhTOPJwqzT4-STgQ8EbyqlBzF8_Pi88BTkci5nvCz3IeWaOVUUpBOKrMUlL5mS8-OywluFNh_A_w6g=="
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764910272,
+          "model": "openai/gpt-5-mini",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 87,
+            "prompt_tokens": 66,
+            "total_tokens": 153,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 64,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0.0001905,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 1.65e-05,
+              "upstream_inference_completions_cost": 0.000174
+            }
+          },
+          "provider": "OpenAI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764910277-0EJRvpTrqZBhtDhlMcjd",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:78cb5dde6193967dfdc0e762aaa5bbb3e04f6f2c27fbf6a920f92eb7c7e4a465",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 9089,
+        "request": {
+          "model": "openai/gpt-5-mini",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Search for authentication files, limit results to 5"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764910277-0EJRvpTrqZBhtDhlMcjd",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_o4374RKQiO0PTAUTkWqiiXV7",
+                    "function": {
+                      "arguments": "{\"query\":\"authentication auth login jwt oauth passport session signin signup\",\"limit\":5}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "**Searching for authentication files**\n\nI need to use the functions.search tool for this task. While I could use the multi_tool_use.parallel wrapper, I only need one tool, so I\u2019ll call functions.search directly. The user's request is to search for authentication files and limit results to 5, which suggests I should look for terms like \"auth,\" \"jwt,\" or \"login.\" A good query might be \"authentication OR auth OR login,\" but I\u2019ll keep it simple and just use \"authentication\" with a limit of 5 results.**Executing authentication search**\n\nI'm planning to run functions.search with a query that includes several terms: \"authentication,\" \"auth,\" \"login,\" \"jwt,\" \"oauth,\" \"passport,\" \"session,\" \"signin,\" and \"signup.\" I want to be thorough in covering all possible related files. I'll make sure to limit the results to 5 since that's what the user requested. So, I'll go ahead and call functions.search with this comprehensive query and the specified limit.",
+                "reasoning_details": [
+                  {
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.summary",
+                    "summary": "**Searching for authentication files**\n\nI need to use the functions.search tool for this task. While I could use the multi_tool_use.parallel wrapper, I only need one tool, so I\u2019ll call functions.search directly. The user's request is to search for authentication files and limit results to 5, which suggests I should look for terms like \"auth,\" \"jwt,\" or \"login.\" A good query might be \"authentication OR auth OR login,\" but I\u2019ll keep it simple and just use \"authentication\" with a limit of 5 results.**Executing authentication search**\n\nI'm planning to run functions.search with a query that includes several terms: \"authentication,\" \"auth,\" \"login,\" \"jwt,\" \"oauth,\" \"passport,\" \"session,\" \"signin,\" and \"signup.\" I want to be thorough in covering all possible related files. I'll make sure to limit the results to 5 since that's what the user requested. So, I'll go ahead and call functions.search with this comprehensive query and the specified limit."
+                  },
+                  {
+                    "id": "rs_0cc6582e1282e90601693264c6666481948e75e0c27da92c28",
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "gAAAAABpMmTOz2PG4i7clnrNgTy_x-Q2SMVppvij0IkW5zMfAgy8PbodRkIbZC2H9IVY-kROHN1F4twGHN8KShzCqTyfw0JclSLocWuNry3ZLSDj07Cj7k79v4EDkJDvm_X1RQae61eNHJVDF2MAzqvWKDkDXeWi44hyEnN2Eztz-hzqDOHbUVWc6GAOvBX24C-BiuBea1ZzfaNY9COAh-nKdD4JOD_3p9aiAS8RhjbSCqyztG-yeHx4G6NUfTmwzBy4KExvbk5WM8lm4IJO4fBs64fxfesWG0DJybarQz8nVdNx11P0R0yAL869Gi5xVVKGZndhJx1g4MrVgL0PP5QjKSi-qiSGZYkPlW5CIuKSKPz3byvfCrIz6uuT1s_CvaJk0D-0cxj0_mrD9oBrXMdae6o4_xeQXbfOSeZaASW2f-AlOX3Cm69MZChQgZHCKfwo-p8nW4dlgg_fcj9L7oUxYP_UtyhkWcpmPbjog7eCueJKqbYjvQDeI-MfgXHb4lVZ2oIdFeqRLSd4mGj7AgnsrMuIe5jBrmO9bTuUj48SfgWI2112ALhI5fMtSiI2YuhMymQkLsGFrxxdJ-KwFVIyVPeAkQEGcRVA06eIvJirCFsdBNn_5_8CQSekqoev4bFiV3k8DUy5FRKdMSe_m7tZQrkhsd3NNTURlTFLqiIRfuskTmCSxWfDaPSO2o1L0WxE-lMtUyOPtkYx0uVHLoTFxEe42DQJEwS9zDmuaso8_Anka61MEmZxWlXRCqegbgh6ZTkBJX94D3fEhF8KRO5KepmpDp-R9L32lwstDJv0e8QD8R7pAtbam0BTqUqlTM5CBUn9kZTFRpCS43jhWsnZQfH6skyylaYwK3IaZVOsi8QZk5_vL4VZwgoP9e2ckWMHrrnSXtZHR2Eeu4qXv5EVbPX-iAmJQ03UzLqWXxewXHZBzOHn9M2Mj0yBgIfnm8UG33QDlNdZfH79JVtC_U2L6lCy9e7ZFnnyCLgC1XhUljYC-w5OvZsh2XgtiuwIw5nYAHYVnW6GWjRE5EOBpKZvL6Av4_2mogkqy3YDIr4cexUDE8mzWvffsg9xFMaJqtzFEARz-nFGNljM3FfVt7mINZUjigXr9UtYUvDJUsv1jV_-T2l-luHkokmHLKYeqUJslf4PxmE1DmbUjpJZiOU56aSKjyVP873XtAyCH7QjHoF4oAikAZJxOt1SYN7gDgxaA5iJqSuQ2ntvQuJfwbHVmDjoIHoEia0S-oJB7vl6VCMzuyMsIncTyH5jjjzM-BwGpRO_UXuU5sehqjXb_eHq4w7zTdSnGGmrjcaxnFdtNsrD8cFqbmXzi0nP7fyHiEiFCAKwZTknssVg2Evly-L0XjZN5JQthb9_fB_ZKWgB6h1dDTXYHTUUAm7DUUAZ9aFXFcTWJZfVnfnH5t5f4rQHEZxFWah46UpMIMqTsSjZIJju5FMYkX8kJE-58j8eN3cG-LP5BWJvCWQjJq5Au25DhKpGIkkeA2RAg7FASBqKSuB0zReAxyolceX7tlDZr8DxuYT7IYEIOgk7aowf5pnCuPS7OPO1FujQGIZyhElkTKShf0b1-wLY_O7DoTWgOpUtSTaxS-SAi_gxC08z6hY6EjYHrtNWvWkBfHKLKZaVj7wE-76wYLBVPCQW7qoL6fVUAg7IoI1ckdrlHrXCxGv0EnydSVEReU0tgy8SjXMHkx4JgfB0UKqUq4y06TNJnOUYaIVojKuQRZwcvKDHz_byeLGg5Mb85eVuyz29yv_ma5pVK5sfSGN25U3vM6Wt0hvZ0pPYuXyoXQ4hCSt4gS-JSKSTKa4-6floEBc3hnHvpX9E82poM0EPpoS9EgE3qUfK0_NOa1hOvkaVnM63hxO-hysOsyvNw84-lZcQp-Hm6JsUyNOf8h1IlL1_VMpRem71HIjCURKm5B-WyA6893rxk305cgvY-BAzR-RTOrlJ5GCt9B7rWmy6PLJOvDkkp7PZ3Z53lxNrM7BDhfIWaUT0LRJENk3qFQk_TbcswYqxupqzKXvpXAa9mCGZ1vAn_cRjD6CH_tJQ-_96RyZ1vZwfIfiJFWazjOyI3utioYJDx6v-oq9mO-Pw-qnGV-0VXmyS0DDxL-DBIvPHFUxV4FcT0SpOLzs-rjfBVRQJvKz2lcBW9ie07FD7iLEOpRr50U4RB6rQ9TVsbwcbfRtEdY209g_DWK69h1uq2Wv87mkdfziWOl5DrtDKw_Wf5LtcDqsqJdNjtlWDshqZgTO8-7MHqxC-c013SzrjbBHExQz_BJ_hFSwMnenhZYHbSFA_BL6cVBj085UPbupe_ZVoqnTXen1bzo4nZw=="
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764910277,
+          "model": "openai/gpt-5-mini",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 223,
+            "prompt_tokens": 66,
+            "total_tokens": 289,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 192,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0.0004625,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 1.65e-05,
+              "upstream_inference_completions_cost": 0.000446
+            }
+          },
+          "provider": "OpenAI"
+        }
+      }
+    ]
+  },
+  "summary": {
+    "successes": 5,
+    "trials": 5,
+    "rate": 1.0,
+    "wilson_ci_95": [
+      0.5655085052479191,
+      1.0
+    ]
+  }
+}

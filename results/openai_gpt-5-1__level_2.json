@@ -1,0 +1,800 @@
+{
+  "submission_id": "sub_0cc7c5d8461e",
+  "timestamp": "2025-12-05T04:50:59.709841+00:00",
+  "contributor": "unknown",
+  "environment": {
+    "python_version": "3.11.13",
+    "openai_sdk_version": "2.8.1",
+    "os": "Linux 5.15.167.4-microsoft-standard-WSL2",
+    "env_hash": "sha256:82b59585ac582b7441e0dfb1a4ad0fabea13d6ea352206d6704de713f3c103ab"
+  },
+  "probes": {
+    "model": "openai/gpt-5.1",
+    "level": 2,
+    "trials": [
+      {
+        "openrouter_request_id": "gen-1764910259-jTaTRBCRWvjvRlTr0No6",
+        "prompt_hash": "sha256:b1b21a108eb3ba14a87eabaacac42f96b50212ecd5909a182b9bcdd9130ecea2",
+        "response_hash": "sha256:bf4ebac77c4fe6e3bccc724839059595c1457211bd75c6ee0c88c8150440cf03",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 4995,
+        "request": {
+          "model": "openai/gpt-5.1",
+          "messages": [
+            {
+              "role": "user",
+              "content": "I need to understand what the auth module does"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764910259-jTaTRBCRWvjvRlTr0No6",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_i9nSHv2tLHY53CgIQs3bftCD",
+                    "function": {
+                      "arguments": "{\"path\":\"/\"}",
+                      "name": "list_directory"
+                    },
+                    "type": "function",
+                    "index": 0
+                  },
+                  {
+                    "id": "call_q2ExVtoZ23wDpoY4Z8LAGb17",
+                    "function": {
+                      "arguments": "{\"query\":\"auth\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 1
+                  }
+                ],
+                "reasoning": "**Investigating the auth module**\n\nThe user wants to learn about the auth module, which I assume is part of a codebase. I have tools to help me search and read files, as well as list directories. I should start by searching for \"auth\" and listing the directory structure. I'll use the parallel tool to look for \"auth\" while listing the root directory. First, I\u2019ll check the structure at \"/\" to find the project root, which is usually either \"/project\" or \"/app.\"",
+                "reasoning_details": [
+                  {
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.summary",
+                    "summary": "**Investigating the auth module**\n\nThe user wants to learn about the auth module, which I assume is part of a codebase. I have tools to help me search and read files, as well as list directories. I should start by searching for \"auth\" and listing the directory structure. I'll use the parallel tool to look for \"auth\" while listing the root directory. First, I\u2019ll check the structure at \"/\" to find the project root, which is usually either \"/project\" or \"/app.\""
+                  },
+                  {
+                    "id": "rs_01c5930def2dd5b701693264b4e56c819590eccc4fd628206f",
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "gAAAAABpMmS476AJ5wmIT4DAI9uqRZGDrjgPQE1YnbGaAMwdklkY-oEMqXADo7g2l1DBLF8kye7_KRcYU5CGfz7YHgtwVp9BDOuBVGCbdwoFcQziktUBffCd6of3vvVzeESe7diM8Hjg2tmcZjhfRCMqP9KWpc7H-Rcmn6jWVTfn43ReFEHaRtNhaZUzikH5iY9s-MgItwXkXOrgC3SYK75Ivd3xyHLUK8GEBOW6q9Vcn9JRXi3J2_OvRa60Bb1XCHfHcQr6AQSihU4g6vdGWzukJrcnKuQUFnrRxulgncadGA4Mh0QNZ4DFNiRi7hz_FKa8-rAl1saE5-wzG2kvzB40DbQmuUrtGOyrbhCQrGKR_4zkXiFqLoMWVSReyaPOywXPa56Cdf6iZ_ejT48Fxftt1h2xId966zENz8-BP0c0cuFa_xXGq_w1DcqH6iNy6HkZlyHtOUXH5XUe1nowmjOvxGFt1i04kDB9afnzrtIrLh1lqM-3XogeVAq41hs9YE9YUFvHEcgPi4qvIvQXtJ1THwb88z_h92hWQlAxRbuzo-KXn2Q-R_l9zMZ2Qss8jh0oUkkJ9uF3KXiwSuGTbsPx4EIJarhg4yMEdRJfprQbFFDFzz_dlOegoHZkvM1CDRxypMpjMuJexN-YuecRCgqVpCGauEtLkvvbB0z8N0YWkXRip7YRh8CCz6fvT8_98oEhnB1_RABBfXmMFgtuT8hrLRVNW8R3j5uWeCsBwt_O5QjZqE8kjDSUIvs9pBagWtT_DZqAPNDZuZon1eQfV-hHobhmgvx8k8EaxmM-jzN1rDHydIUnH2qjSNpX6LjYgBhoG5g0yqMKmRVfAXnBIu2aCPYgFYSzheH4FyeyiyskiMi0gQxuA7_bdNF4riKl-5QR9duvKJi30i6KuDTP8xEQDAj6p8ZhxtLaU3a5YqveVv-4Q_qa4UYY9Rz9QkMIgN_35TOjxzEV5KPYPaRxXW22C8P2Fq_XD1gzRRigdHXbQ1RnYHR6f4mC0J3i6uppMq4pmeaRNiRNLda2dghFC0gZgAGSfk9dcOmLWwWD7SNqno-SWvze6yYQQDJ_OqjgIbfK0pSfBgruOMvCqnkAifkZvoLzgigsZlb3nl2Ul-0sNWtC4vJiODIWF9H5lIGPkGtQZ7Bcsxi9CdgKLcQGWDXWqkKXRsDctVEkSuB-3E0jpkuv0Uvt9TSLUXf5MOI--uiBlNEwkuPyDVdiaHwUhhiIa8KAmojJbUp-fmoMPpKHvVlPCHTWoQqCbWzwtQxnAofsxhvklx5-n6tj9gl92mfGK-RrTFA6KpVoHPBDGg8bxwZhcTxHELp2rqJXlu5agxa0sFuiPIfUwfkE2PwhmAw9p6jOMG9sTpyzu23wRxXAMdOJ7DOVnx07xI-KTQN-2O7GjOy9OcEKKiA-fdlxtNiFrLHBAijVbivg0kQbs1KJ3xbZe3OaD6Y-Ae5DP3vSzwoLQTrwOC_vvha2IfKc0-obOdmps-jInjrgVkXurbvjt8lAVjANP4f9vlohh_wUW3HG0SgFQm_x"
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764910259,
+          "model": "openai/gpt-5.1",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 158,
+            "prompt_tokens": 54,
+            "total_tokens": 212,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 109,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0.0016475,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 6.75e-05,
+              "upstream_inference_completions_cost": 0.00158
+            }
+          },
+          "provider": "OpenAI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764910264-hvuDt4wyhFojKZ9wf16N",
+        "prompt_hash": "sha256:b1b21a108eb3ba14a87eabaacac42f96b50212ecd5909a182b9bcdd9130ecea2",
+        "response_hash": "sha256:d5906f3eb368c0892b1845e36fb44113591a82869c30ddddb2fb5c3d6d68a27c",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 3933,
+        "request": {
+          "model": "openai/gpt-5.1",
+          "messages": [
+            {
+              "role": "user",
+              "content": "I need to understand what the auth module does"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764910264-hvuDt4wyhFojKZ9wf16N",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_5quFYpSXwplOZ9O7i6D4g7D3",
+                    "function": {
+                      "arguments": "{\"query\":\"auth module\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "**Exploring the auth module**\n\nThe user wants to understand what the auth module does in a codebase. I need to inspect the repository using tools. I think I'll start with a search and maybe list the directory to get more insight. Using tools in parallel could help me explore effectively. It feels like an interesting task to unravel this code and provide clear answers about the auth module's functionality! Let\u2019s dive in and figure this out together.",
+                "reasoning_details": [
+                  {
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.summary",
+                    "summary": "**Exploring the auth module**\n\nThe user wants to understand what the auth module does in a codebase. I need to inspect the repository using tools. I think I'll start with a search and maybe list the directory to get more insight. Using tools in parallel could help me explore effectively. It feels like an interesting task to unravel this code and provide clear answers about the auth module's functionality! Let\u2019s dive in and figure this out together."
+                  },
+                  {
+                    "id": "rs_00217a21b3df9c5701693264b9adc88195b3a6550b78992d04",
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "gAAAAABpMmS817_4WsEp2WZs1JFCSsCBzn3j4XcCvEUo9m6NXY4wAkHmhP6dAGnMy71RrBH6HTC5PcvF-krFErfWts8W4dZdX8rNsIHR9Tz_HCpDOlZFuatM6Qoo0YaC6BSgdruNET1rjLbE28lL3sJChRnXTW_F-r1lCmSP8eP4N0pUp7wRQEMxFXLeTteBaQ8Hw_1l_2pMOLBGMyaTym4uiicn7ZI-9wal8X8nWaHcRncmzw7DNKQz4PJ27i1UAkD2rcaJLPf8z22sihiNmtKzu2dcxyp9NVEdhlTArUw8c3QD-iS66kgm3TYqXUwYOhSw7qpJJUP1SSRxXd42Um3AY-DBLUPnoPdUj9kDXt4Xphfl1kLC6djB98L37fS7yirS1JuTDSPsa_0OdabKkUSfYm4WZBSCnJ8Z3yVsJThrazHCOKApt75ProNDcvsVVmDwOoAJ8zEEl5tQ5jrSeBKC4vrLeAJO95wGzbCj0__Tg5KcXwB90fgY6Ovl63gD6ew48_IYHILllmSPdQx-3nHka6bkekn2j-B5JTFZcQBRiArXOvcT_6vOtulSN1X3b00E5m3Lz-zej1XanVlmDjdtUhTF_XOGFnpUgcUbIbO9t_wLvyaHUbBhiXDvMIN_fOvt-o1EY2TQg9BvdsyX18U6vscxefdLtB65x64WGlYSV9oPH-2cPTDzzjuaTXqabhHTMUNGmiIvf77TTzdKXhdqhCPQkv4glZi-Kt1jVkP_2OPzfHTu4A_jAcEUCyQs-2WCmLOM27Hyk0FN2gzve3zkSaU-RtFO34HPE422Mq_RwwZWtFOAo6YcCqUUmsSClnKCmoQUgTRRPKWHgWmcmQ_MICcSSeu6sVQ0be9XITUeI4p9ce85LBNWU2y2GltvrTcIG_TWI6Tp9Zeub8SexpIBFK2dyblOidx4guFbgM8R3ttC6qfruy2Ll2FZP3zum4FZYMeh7sDiYPggYJBKPG-T0wjE3UwVQwRKwvac44TAxtFAn_LQ4hCGh87TGovaxQdNckp_HfjU8WsHA3Zb113okqRzMTGOq9a8Rd0gOLXc7WdEI9Ih0EPBuOrhBtrkGnTIVQFlqHnHVZscg9ec__z0QoCl-ZtPBEAdLKS6Fw4Jn0RtO2ainHo="
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764910264,
+          "model": "openai/gpt-5.1",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 65,
+            "prompt_tokens": 108,
+            "total_tokens": 173,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 45,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0.000785,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 0.000135,
+              "upstream_inference_completions_cost": 0.00065
+            }
+          },
+          "provider": "OpenAI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764910268-YgY5sCZGMKCpPUkE7jxT",
+        "prompt_hash": "sha256:b1b21a108eb3ba14a87eabaacac42f96b50212ecd5909a182b9bcdd9130ecea2",
+        "response_hash": "sha256:fdbd4f7f47d3379312d30f09bbb020bbdfe7608fae7766afd2291ca834ad0982",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 7011,
+        "request": {
+          "model": "openai/gpt-5.1",
+          "messages": [
+            {
+              "role": "user",
+              "content": "I need to understand what the auth module does"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764910268-YgY5sCZGMKCpPUkE7jxT",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_IEoTE4ryzf9gFb3pC2N6wb86",
+                    "function": {
+                      "arguments": "{\"query\":\"auth module\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "**Looking into the auth module**\n\nThe user is asking about the \"auth module,\" which seems related to a coding context. It looks like I need to inspect the repository to gather more information. I'll use a search tool to dig into the codebase and find relevant details about that module. It\u2019s all about making sure I provide accurate and helpful insights for the user so they can understand its functionality or where to look further!",
+                "reasoning_details": [
+                  {
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.summary",
+                    "summary": "**Looking into the auth module**\n\nThe user is asking about the \"auth module,\" which seems related to a coding context. It looks like I need to inspect the repository to gather more information. I'll use a search tool to dig into the codebase and find relevant details about that module. It\u2019s all about making sure I provide accurate and helpful insights for the user so they can understand its functionality or where to look further!"
+                  },
+                  {
+                    "id": "rs_098d6bcf6bf91dd101693264c0a28c8195b46055e6f0b78b78",
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "gAAAAABpMmTDmaqzxau_5_yyz5QFW04s3uILyJMLN8Cn9MM18r0zwHfR1IBfpQPVnns_NeoChPCsST3s_zZCz990sNKzK9s6Cwy92XBvULfNkOQ-_-QHtxZDlTAssgCx5teQvW225uH24kDtpUENUKH9ZPr0B6vSEufGNAdpvlFHa1D2ylP52vZhfm-pT3x0ff0R9L7_uxHjI4qgU_Ret5M8ftcKpVBDWPPEt0HEjTmDi8Yx0pfWo7SijVVgN60XkTf2IgHwUu8CHgyG0V-QvI-R9Q5PLiSDBzlfkHnKCEyNuRMCOOBGQK1Wsse3q-kNdoUk9urzPOc2Ic4zEnmAzYYUIiCh0c8k7IpBH9QeO_p8iSW6z5Lt5zAWZ6d12Y_llrO9VqVRhARr_T3xKKjO0Nv7cckxNm9kCmA-KmazEzl_7gWUoEQpA-YOETJtE39UEnWSaIlGG3wjsdEyY0aDfX4dAUO7ZRasAoP1YK0KkYYev8dq00g76n8WJhvzX9teAahIFnqqv-ipJPj8uffPhoDcEFbdrV_LYlq4qVLqWEYLP0q_ZCTdF9nSaCea-WA4BTa81wJDOva3cXyF8e839o-WcBY8K3ZRDPNFdmlNWnOVoptU7zmsMJt1luHpY06It6zOa51umq_UVQSegPZhoWtQu0e_BUj8n4KX0UxQaONChdA-XOSXyCzKKOSlD4417GfbIeVptfxRql2-nCFFdVxAEUy53w2FMF82iK0oQKjfaKRB0xFIxnc7pWeBTeh7J7spiWvvYrKgbPGNrfugr34AAflBQQwTcvZuAorGHQMhC8SlLUY8m-gGGKBEiSFB-untv8kUCltB4C6NqHFk-v2CXh551HobGgBO3Pdt9YBHdiNKrpO8GMwXFWDn6zMj6uv5X0FEda3_CMwHpGq3uOO-Jmoi8rYMsYsXPXJjJxv_t56gdp0EKkJIZ3vCP7p5JbAVDFDkfOMpYn26EVqzwt-mOhMFUAHOdn-H48uHQyivNaBJ0CjHuB2ZMGLRRB4PQNGi0P4ZDFqibwdg1GNOcrsdyJqPlH1Swg=="
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764910268,
+          "model": "openai/gpt-5.1",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 54,
+            "prompt_tokens": 108,
+            "total_tokens": 162,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 34,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0.000675,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 0.000135,
+              "upstream_inference_completions_cost": 0.00054
+            }
+          },
+          "provider": "OpenAI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764910275-XXV6W3cz2p9cktPbwOME",
+        "prompt_hash": "sha256:b1b21a108eb3ba14a87eabaacac42f96b50212ecd5909a182b9bcdd9130ecea2",
+        "response_hash": "sha256:571b3bf3decae5ab37ccd7917625da7632c974cf315eaaf86eaee2b88266c9e9",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 3626,
+        "request": {
+          "model": "openai/gpt-5.1",
+          "messages": [
+            {
+              "role": "user",
+              "content": "I need to understand what the auth module does"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764910275-XXV6W3cz2p9cktPbwOME",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_aIZyR1nyPw0omwBUjPzXUvGY",
+                    "function": {
+                      "arguments": "{\"query\":\"auth module\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "**Exploring the auth module**\n\nThe user is interested in understanding what the auth module does. I need to consider using repository tools for that. It might help to ask for clarification to ensure I'm on the right track, especially if they're referring to a specific codebase. I'll think about searching for \"auth\" within the relevant context to gather more information. Let's see where this leads!",
+                "reasoning_details": [
+                  {
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.summary",
+                    "summary": "**Exploring the auth module**\n\nThe user is interested in understanding what the auth module does. I need to consider using repository tools for that. It might help to ask for clarification to ensure I'm on the right track, especially if they're referring to a specific codebase. I'll think about searching for \"auth\" within the relevant context to gather more information. Let's see where this leads!"
+                  },
+                  {
+                    "id": "rs_07686b46e759d61a01693264c4b5788190b135079d25ffdcce",
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "gAAAAABpMmTG5wMmjNctTWCCz1RzCOYmFVhAySKhWxHkQVoJxgmrxtU8VHzrLzfr42A2dnLcucWHZKzN-R2edqcM74IWvi4Gy0jYLckTTbScFJaLrLxeXF5jbXx2HtfkN_HMwEOt-l4WdTil4eR4VhMWoGmk3062fMSrzmsQxE9l7Wvh1PGcJBEusPGg-fuNnxYZby1m5bUn6gJFmDZylHYGiYo2PhQqQAjJAeFEURLWKI7wVLZ-is1ngtKuJq43PWCxQctXccT7iklXgG7y1D6YQXvVHOohG1zK7_o513OTWCgpIqnEBcoAvr5xeoxUzrB-Lgg-8ZI5IrB3zvUlEG4w2MUnNn3vkyXJwWac5WkNvQ-nPTeV48cD7HjsAde4fDLL1vKiUjd2qNEkifY6Bt-DmB-zZngJ9acpUCJD2DqhUDR6klc13Riw3bKVsYbaa65wxt9yeXvpZ5zwZavaNIjT_q1ifxTfOUBxzbUx-QUDxEJKZmfh5s5KkGgx1LFNuM4G049d4qGq0zmOdnddTRBAB401U1dcmPIbZ6ORC8axB-i8ge4ymVx9wLofS2o5SlAkt_cmVpPTfY9i1-zFQSSooBbqM7UGzSDYwxAz1GlhjP8MckLeAbGChIYqDe0r5NQUMMrMpepBU59OAyr1lsGxzZ5BUWxsQ0s4yKeq520S7LcwNrAOLYbDf4y-g54zB3GogZRoRIHypjVb4ITDhlxodD1e1xuyfJDSwwuhTGQS0gfSckxmkytitZi_xHThDtPrfjz23rzXRd9Z8PslBzu7jx14SQ8Ve52mM2QyaqsnqIH9GPt4sPB3vl7-obHGYwklw8WI_XwfyZKDCUg2atgqz0MWhDWEN_Y5OnIjyv5bxdHFsYlWX4n7aosSPiuu1U0DItx0EhENWgtd0DSLCIjBJMVFLg6Z-wgdlybeEs02q43Yso-WsRBk6L0B72_lGcVc3ImSbQ5N0DEE3u0hhrHdLDV1T16v18oQlm8441z-CkTCtzVhFtFesbJVis8t8kWZIWAkA9LcwxPHlJ8Occx8p8w8W7GptQ=="
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764910275,
+          "model": "openai/gpt-5.1",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 55,
+            "prompt_tokens": 108,
+            "total_tokens": 163,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 35,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0.000685,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 0.000135,
+              "upstream_inference_completions_cost": 0.00055
+            }
+          },
+          "provider": "OpenAI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764910279-wyqSvewShBgZDLqzLYmc",
+        "prompt_hash": "sha256:b1b21a108eb3ba14a87eabaacac42f96b50212ecd5909a182b9bcdd9130ecea2",
+        "response_hash": "sha256:a3adf803fdc31c72f6097449a9ef5cea405dbdcc3c5c78b162f92d1413694db9",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 3796,
+        "request": {
+          "model": "openai/gpt-5.1",
+          "messages": [
+            {
+              "role": "user",
+              "content": "I need to understand what the auth module does"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764910279-wyqSvewShBgZDLqzLYmc",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_XfIQpm3b7xqKqa2VCeNgaqOn",
+                    "function": {
+                      "arguments": "{\"query\":\"auth module\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "**Considering codebase tools**\n\nThe user is talking about the codebase, and I need to figure out the best way to inspect it. Should I ask for clarification first, or just dive into searching? I think I\u2019ll probably use a search feature to look for the \"auth\" module. It might make sense to employ multi_tool_use.parallel for more efficiency, and maybe I\u2019ll also list the directory. That should help provide a clearer picture!",
+                "reasoning_details": [
+                  {
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.summary",
+                    "summary": "**Considering codebase tools**\n\nThe user is talking about the codebase, and I need to figure out the best way to inspect it. Should I ask for clarification first, or just dive into searching? I think I\u2019ll probably use a search feature to look for the \"auth\" module. It might make sense to employ multi_tool_use.parallel for more efficiency, and maybe I\u2019ll also list the directory. That should help provide a clearer picture!"
+                  },
+                  {
+                    "id": "rs_0f51fe989738ae5401693264c7e830819388874fd9353751a6",
+                    "format": "openai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "gAAAAABpMmTKyoXFC5N1i44r9lIdFXmtYrf4iH1xGlEHK6NdVv3fe7LtbGk0j3yaYfzlTo5A3U6gu7tOBE-CDqvQr02chRnDL-jrpFBIhVTMfhgRDsD0b7s5H0bNytR1xQb5c_qCgML0jUdOixs36vuzzEKzzQ7RXx0aUlo6AmyL0YrQNYO5_IpY1cvRVaRB3f_MXma-2qPKg7lqiGsx7C9YDG8oosNmENGe53xZy2SjiLmfAsnswcF140MYcxolkIMGTOwWxRxIAt_kf8q_RRr2129M1kupsqr2jybT_IJPoiIMj5-oDGT66TVXQvwdmkGOXeyccx_5XtuGQ-FKpfeXjDxYyy2ABWM9qxk_TrEHfLFugGoKG1iZrTq24OkhadtKyZu74dq7qmQc9HPbYqVhC6MZVAmtEZRytThSB4pMXwbIhnV0EoZ4dlrWfB7AsYz9CceJxNk4F9afKI7sabjNmsIxnVT3Vliua3iVIoep0fjNnhEa6diGUN8_ZbbE0NE3wrwNsiT0WjOH0l0ZE_MeBowejFokXpOKXhnrRwezv1ZJS8w2XoKi6z2clfepjCsEjDursILBWmhAANApAcp4TU3jE6fTHKvk_Tcp0cqUDEtuNG9hYp5lkqQ1chMKAQSFKMGjB95o3sGl004zqzNJOhkgI2k9AlNVk05vOOFfpvmQeGUM-Cr51zdVOH7RHlLVYPg_sgcr8k1WxIpEmnKlwCvXD2isq4bV-XJlqU8ETAvrt3UNSW7Hi5zjvltCoMd5xZJeGcBJAU7uNSMXSX3I9mg6J6jPc5lfBpSErk9IInXMGIJIVTxYWVA0SuREpf39yG6WPlUzUhZ7DfPzoYKa5IBMHksyTylO1ZGEdN_yGFRkOBw7nNtRE3CdvmQPYsznDlwWAKG1DCLeq8B2pQu--9v5AlI22gCipAaKMEM7ZP_Zp1o1gb_G4z_fbJayQywaSonBdbMDFZmzB0N1xKYybOZPDFki96hpwZa3jqO3a7p2v-Mb-HI29ugEO8tnnI2fEKF_P32iykUsYetrctbGTIg8fTe-JaMGn9pbDiFYRssqd82SBaGJSFn4nIsuARp21T7VJo4x-Jlag5aG24F5wVGs6_y3GA=="
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764910279,
+          "model": "openai/gpt-5.1",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 61,
+            "prompt_tokens": 108,
+            "total_tokens": 169,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 41,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0.000745,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 0.000135,
+              "upstream_inference_completions_cost": 0.00061
+            }
+          },
+          "provider": "OpenAI"
+        }
+      }
+    ]
+  },
+  "summary": {
+    "successes": 5,
+    "trials": 5,
+    "rate": 1.0,
+    "wilson_ci_95": [
+      0.5655085052479191,
+      1.0
+    ]
+  }
+}

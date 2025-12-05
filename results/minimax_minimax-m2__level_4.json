@@ -1,0 +1,706 @@
+{
+  "submission_id": "sub_d8cca075f262",
+  "timestamp": "2025-12-05T04:50:59.530266+00:00",
+  "contributor": "unknown",
+  "environment": {
+    "python_version": "3.11.13",
+    "openai_sdk_version": "2.8.1",
+    "os": "Linux 5.15.167.4-microsoft-standard-WSL2",
+    "env_hash": "sha256:82b59585ac582b7441e0dfb1a4ad0fabea13d6ea352206d6704de713f3c103ab"
+  },
+  "probes": {
+    "model": "minimax/minimax-m2",
+    "level": 4,
+    "trials": [
+      {
+        "openrouter_request_id": "gen-1764910259-RSxUyTe07TalykH7na0G",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:a0077a973b0b3c7ea12fd082b9184050dda0e963f02633836892ebc0258eb142",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 8133,
+        "request": {
+          "model": "minimax/minimax-m2",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764910259-RSxUyTe07TalykH7na0G",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "\n\nI don't have access to real-time weather data or current weather conditions. For accurate weather information, I recommend checking a reliable weather service website, using a weather app, or asking a voice assistant with access to live data.",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "Okay, the user is asking about the weather today. Let me think about how to respond to this.\n\nFirst, I need to check if I have access to real-time weather data. Looking at the tools available to me, I have:\n1. search - for searching files in a codebase\n2. read_file - for reading specific files\n3. list_directory - for listing files in a directory\n\nNone of these tools provide access to weather information or external APIs that would give me current weather data. I don't have a tool to query weather services or access location-based information.\n\nWithout access to real-time weather data, I can't provide accurate information about today's weather. I should be honest about this limitation rather than making up information or guessing.\n\nThe user hasn't specified their location either, which would be necessary even if I had access to weather data. Weather is highly location-specific, so I would need to know where they are to provide relevant information.\n\nI should explain that I don't have access to current weather data and suggest alternative ways they can find this information, such as checking a weather website, using a weather app, or asking a voice assistant that has access to real-time data.\n\nI'll keep my response friendly and helpful while being clear about my limitations.\n",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "Okay, the user is asking about the weather today. Let me think about how to respond to this.\n\nFirst, I need to check if I have access to real-time weather data. Looking at the tools available to me, I have:\n1. search - for searching files in a codebase\n2. read_file - for reading specific files\n3. list_directory - for listing files in a directory\n\nNone of these tools provide access to weather information or external APIs that would give me current weather data. I don't have a tool to query weather services or access location-based information.\n\nWithout access to real-time weather data, I can't provide accurate information about today's weather. I should be honest about this limitation rather than making up information or guessing.\n\nThe user hasn't specified their location either, which would be necessary even if I had access to weather data. Weather is highly location-specific, so I would need to know where they are to provide relevant information.\n\nI should explain that I don't have access to current weather data and suggest alternative ways they can find this information, such as checking a weather website, using a weather app, or asking a voice assistant that has access to real-time data.\n\nI'll keep my response friendly and helpful while being clear about my limitations.\n"
+                  }
+                ]
+              },
+              "native_finish_reason": "stop"
+            }
+          ],
+          "created": 1764910259,
+          "model": "minimax/minimax-m2",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 297,
+            "prompt_tokens": 317,
+            "total_tokens": 614,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 336,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0.00042714,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 8.559e-05,
+              "upstream_inference_completions_cost": 0.00034155
+            }
+          },
+          "provider": "DeepInfra"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764910267-eTkaTEtI6Q3IiFeLyiiR",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:549fb1572b66ae166ff5f473c45e915b271937dde39bcdad304f50fa5c30c385",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 5947,
+        "request": {
+          "model": "minimax/minimax-m2",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764910267-eTkaTEtI6Q3IiFeLyiiR",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "\n\nI don't have access to real-time weather data. For current weather conditions, please check a weather website, app, or local news source.",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "Okay, the user is asking about the weather today. Let me think about how to respond to this.\n\nFirst, I need to check what tools I have available. Looking at the tools provided, I have:\n1. search - for searching files in a codebase\n2. read_file - for reading specific files\n3. list_directory - for listing files in a directory\n\nNone of these tools are related to weather information. I don't have access to any weather APIs or services that would allow me to check the current weather conditions.\n\nSince I don't have the capability to retrieve real-time weather data, I can't provide the user with accurate information about today's weather. This is an important limitation I should clearly communicate.\n\nI should explain that I don't have access to weather data and suggest alternative ways they can find this information. The most common ways would be to check a weather website, use a weather app, or check a local news source.\n\nI should be straightforward about my limitations while still being helpful by suggesting alternatives. I won't try to make up weather information or pretend I have access to data I don't have.\n\nSo my response will politely explain that I can't provide weather information and suggest some alternatives for the user to get this information themselves.\n",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "Okay, the user is asking about the weather today. Let me think about how to respond to this.\n\nFirst, I need to check what tools I have available. Looking at the tools provided, I have:\n1. search - for searching files in a codebase\n2. read_file - for reading specific files\n3. list_directory - for listing files in a directory\n\nNone of these tools are related to weather information. I don't have access to any weather APIs or services that would allow me to check the current weather conditions.\n\nSince I don't have the capability to retrieve real-time weather data, I can't provide the user with accurate information about today's weather. This is an important limitation I should clearly communicate.\n\nI should explain that I don't have access to weather data and suggest alternative ways they can find this information. The most common ways would be to check a weather website, use a weather app, or check a local news source.\n\nI should be straightforward about my limitations while still being helpful by suggesting alternatives. I won't try to make up weather information or pretend I have access to data I don't have.\n\nSo my response will politely explain that I can't provide weather information and suggest some alternatives for the user to get this information themselves.\n"
+                  }
+                ]
+              },
+              "native_finish_reason": "stop"
+            }
+          ],
+          "created": 1764910267,
+          "model": "minimax/minimax-m2",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 276,
+            "prompt_tokens": 317,
+            "total_tokens": 593,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 333,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0.00040616,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 8.876e-05,
+              "upstream_inference_completions_cost": 0.0003174
+            }
+          },
+          "provider": "AtlasCloud"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764910273-WeCew0DP3Np27ZZ4S3HW",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:dc86c8c4ffe5746dd87e4f29bcb13623f8b7bd3a5b5793618f7f6575dff43ac7",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 5873,
+        "request": {
+          "model": "minimax/minimax-m2",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764910273-WeCew0DP3Np27ZZ4S3HW",
+          "choices": [
+            {
+              "finish_reason": null,
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "\n\nI don't have access to real-time weather information or external data sources to check current weather conditions. For accurate weather updates, I recommend checking a reliable weather service website, app, or local news source in your area.",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "\nOkay, the user is asking about the weather today. Let me think about how to respond to this.\n\nFirst, I need to check if I have access to real-time information or weather data. Looking at the tools available to me, I can see I have:\n1. search - for searching files in a codebase\n2. read_file - for reading specific files\n3. list_directory - for listing files in a directory\n\nHmm, none of these tools allow me to access real-time weather information or external APIs. I don't have access to weather services, current meteorological data, or location services that would tell me where the user is located.\n\nWithout knowing the user's location, I couldn't provide relevant weather information even if I had access to a weather service. And without real-time data access, I can't check current conditions, forecasts, or any weather-related information.\n\nThe tools I have are clearly focused on interacting with code files and directories, not accessing external data sources or APIs.\n\nI should inform the user that I don't have the capability to access current weather information. I'll need to explain this limitation clearly and suggest alternative ways they can get weather information, such as checking a weather website, app, or service.\n\nI should be polite and helpful in my response, acknowledging their question while explaining why I can't provide the information they're looking for.\n",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "\nOkay, the user is asking about the weather today. Let me think about how to respond to this.\n\nFirst, I need to check if I have access to real-time information or weather data. Looking at the tools available to me, I can see I have:\n1. search - for searching files in a codebase\n2. read_file - for reading specific files\n3. list_directory - for listing files in a directory\n\nHmm, none of these tools allow me to access real-time weather information or external APIs. I don't have access to weather services, current meteorological data, or location services that would tell me where the user is located.\n\nWithout knowing the user's location, I couldn't provide relevant weather information even if I had access to a weather service. And without real-time data access, I can't check current conditions, forecasts, or any weather-related information.\n\nThe tools I have are clearly focused on interacting with code files and directories, not accessing external data sources or APIs.\n\nI should inform the user that I don't have the capability to access current weather information. I'll need to explain this limitation clearly and suggest alternative ways they can get weather information, such as checking a weather website, app, or service.\n\nI should be polite and helpful in my response, acknowledging their question while explaining why I can't provide the information they're looking for.\n"
+                  }
+                ]
+              },
+              "native_finish_reason": null
+            }
+          ],
+          "created": 1764910273,
+          "model": "minimax/minimax-m2",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": "",
+          "usage": {
+            "completion_tokens": 311,
+            "prompt_tokens": 321,
+            "total_tokens": 632,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 270,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0.0004695,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 9.63e-05,
+              "upstream_inference_completions_cost": 0.0003732
+            }
+          },
+          "provider": "Novita"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764910279-zDp0nxmFcmuleb9T97VU",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:f05a6e2e28417d843e178fd6c64f6313759eb313c726b66c33b4de3b34dd1bfd",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 8157,
+        "request": {
+          "model": "minimax/minimax-m2",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764910279-zDp0nxmFcmuleb9T97VU",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "\n\nI don't have access to real-time weather data or current weather conditions. For accurate weather information, I recommend checking a reliable weather service like Weather.com, AccuWeather, or your local meteorological service. You can also ask a voice assistant like Siri, Alexa, or Google Assistant for current weather updates in your area.",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "Okay, the user is asking about the weather today. Let me think about how to respond to this.\n\nFirst, I need to check if I have access to real-time weather data. Looking at the tools available to me, I have:\n1. search - for searching files in a codebase\n2. read_file - for reading specific files\n3. list_directory - for listing files in a directory\n\nNone of these tools provide access to weather information or external APIs that would give me current weather data. I don't have a tool to query weather services or access location-based information.\n\nWithout access to real-time weather data, I can't provide accurate information about today's weather. I could potentially make up information, but that would be misleading and unhelpful to the user.\n\nThe most appropriate response would be to explain that I don't have access to current weather information and suggest alternative ways they can find out the weather, such as checking a weather website, using a weather app, or looking at a local forecast.\n\nI should be honest about my limitations while still being helpful by suggesting alternatives. I'll also offer to help with other questions they might have, to keep the conversation productive.\n\nSo I'll explain that I don't have access to real-time weather data and suggest some alternatives for getting weather information.\n",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "Okay, the user is asking about the weather today. Let me think about how to respond to this.\n\nFirst, I need to check if I have access to real-time weather data. Looking at the tools available to me, I have:\n1. search - for searching files in a codebase\n2. read_file - for reading specific files\n3. list_directory - for listing files in a directory\n\nNone of these tools provide access to weather information or external APIs that would give me current weather data. I don't have a tool to query weather services or access location-based information.\n\nWithout access to real-time weather data, I can't provide accurate information about today's weather. I could potentially make up information, but that would be misleading and unhelpful to the user.\n\nThe most appropriate response would be to explain that I don't have access to current weather information and suggest alternative ways they can find out the weather, such as checking a weather website, using a weather app, or looking at a local forecast.\n\nI should be honest about my limitations while still being helpful by suggesting alternatives. I'll also offer to help with other questions they might have, to keep the conversation productive.\n\nSo I'll explain that I don't have access to real-time weather data and suggest some alternatives for getting weather information.\n"
+                  }
+                ]
+              },
+              "native_finish_reason": "stop"
+            }
+          ],
+          "created": 1764910279,
+          "model": "minimax/minimax-m2",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 319,
+            "prompt_tokens": 317,
+            "total_tokens": 636,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 345,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0.00045244,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 8.559e-05,
+              "upstream_inference_completions_cost": 0.00036685
+            }
+          },
+          "provider": "DeepInfra"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764910287-KxSBOKGEYF1sOefiHpbt",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:6dc560b2c5a1ee1baf878f246d6b15e9d33ab15f1339c9fed671081e3b587905",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 5487,
+        "request": {
+          "model": "minimax/minimax-m2",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764910287-KxSBOKGEYF1sOefiHpbt",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I don't have access to real-time weather data. For current weather information, please check a reliable weather website, app, or local news source.",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "Okay, the user is asking about the weather today. Let me think about how to respond to this.\n\nFirst, I need to check if I have access to real-time weather data. Looking at the tools available to me, I have:\n1. search - for searching files in a codebase\n2. read_file - for reading specific files\n3. list_directory - for listing files in a directory\n\nNone of these tools provide access to weather information or external APIs that would give me current weather data. I don't have a tool to check the weather for a specific location or to access weather services.\n\nWithout access to real-time weather data, I can't provide accurate information about today's weather. I could potentially make assumptions about the user's location and provide general information, but that wouldn't be helpful or accurate.\n\nThe most appropriate response would be to inform the user that I don't have access to real-time weather data and suggest alternative ways they can check the weather themselves. This is honest and helpful - I'm not pretending to have information I don't have, and I'm providing guidance on how they can get the information they're looking for.\n\nI should suggest common ways people check weather, like weather websites, apps, or local news sources. This gives the user actionable advice for getting the information they need.\n\nSo I'll politely explain that I don't have access to weather data and suggest some alternatives for checking the weather.\n",
+                "reasoning_details": [
+                  {
+                    "format": null,
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "Okay, the user is asking about the weather today. Let me think about how to respond to this.\n\nFirst, I need to check if I have access to real-time weather data. Looking at the tools available to me, I have:\n1. search - for searching files in a codebase\n2. read_file - for reading specific files\n3. list_directory - for listing files in a directory\n\nNone of these tools provide access to weather information or external APIs that would give me current weather data. I don't have a tool to check the weather for a specific location or to access weather services.\n\nWithout access to real-time weather data, I can't provide accurate information about today's weather. I could potentially make assumptions about the user's location and provide general information, but that wouldn't be helpful or accurate.\n\nThe most appropriate response would be to inform the user that I don't have access to real-time weather data and suggest alternative ways they can check the weather themselves. This is honest and helpful - I'm not pretending to have information I don't have, and I'm providing guidance on how they can get the information they're looking for.\n\nI should suggest common ways people check weather, like weather websites, apps, or local news sources. This gives the user actionable advice for getting the information they need.\n\nSo I'll politely explain that I don't have access to weather data and suggest some alternatives for checking the weather.\n"
+                  }
+                ]
+              },
+              "native_finish_reason": "stop"
+            }
+          ],
+          "created": 1764910287,
+          "model": "minimax/minimax-m2",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 412,
+            "prompt_tokens": 175,
+            "total_tokens": 587,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 375,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0.0005469,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 5.25e-05,
+              "upstream_inference_completions_cost": 0.0004944
+            }
+          },
+          "provider": "Fireworks"
+        }
+      }
+    ]
+  },
+  "summary": {
+    "successes": 5,
+    "trials": 5,
+    "rate": 1.0,
+    "wilson_ci_95": [
+      0.5655085052479191,
+      1.0
+    ]
+  }
+}

@@ -1,0 +1,741 @@
+{
+  "submission_id": "sub_3d6f2bd8c050",
+  "timestamp": "2025-12-05T04:50:59.801236+00:00",
+  "contributor": "unknown",
+  "environment": {
+    "python_version": "3.11.13",
+    "openai_sdk_version": "2.8.1",
+    "os": "Linux 5.15.167.4-microsoft-standard-WSL2",
+    "env_hash": "sha256:82b59585ac582b7441e0dfb1a4ad0fabea13d6ea352206d6704de713f3c103ab"
+  },
+  "probes": {
+    "model": "x-ai/grok-code-fast-1",
+    "level": 4,
+    "trials": [
+      {
+        "openrouter_request_id": "gen-1764910259-mmvZwub3uNn05dmlmg19",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:3ea268cc64e03da441aa3cc7f4d1faad64a23e0c0a1a55285dbf09ca6586deaf",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 3796,
+        "request": {
+          "model": "x-ai/grok-code-fast-1",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764910259-mmvZwub3uNn05dmlmg19",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I'm sorry, but I don't have access to real-time weather data or tools to fetch it. If you have a question related to codebases, files, or directories, I can help with that using my available tools!",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "The user asked: \"What's the weather like today?\" But I'm an AI assistant focused on tools for searching codebases, reading files, and listing directories. This doesn't relate to that.\n\n\n## Handling User Request  \n- The user asked about today's weather, but I'm designed for tasks like searching codebases and managing files.  \n- This request doesn't align with my capabilities, so I'll need to clarify or suggest alternative resources.",
+                "reasoning_details": [
+                  {
+                    "format": "xai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.summary",
+                    "summary": "The user asked: \"What's the weather like today?\" But I'm an AI assistant focused on tools for searching codebases, reading files, and listing directories. This doesn't relate to that.\n\n\n## Handling User Request  \n- The user asked about today's weather, but I'm designed for tasks like searching codebases and managing files.  \n- This request doesn't align with my capabilities, so I'll need to clarify or suggest alternative resources."
+                  },
+                  {
+                    "id": "rs_484a32b8-f1b9-fef8-36d2-e3c65f4b8a9c",
+                    "format": "xai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "jrBgejxyF83rTs0Zmp4UG8ea6Ul5x2RWpC+THpSg3V8x/2V1ASIdC7s2vOpGyrUanH4hGPH1KsD8lLUH1KujyIlTjIEUmkxLfXhgjdru5WjRC12OcLkRZfuqwy8AD68gfi/bU9YksRzRGtnmazddRmLqC6urSILT6BlEUgNLuv8Dx0uwLtpoVQYBs2w0cRxCDqXJGNs2851RqrmyyzMFCWw4XOSVp33t32QqqPK9Eo8hjH6Hw97SCRlp/pWDRAQ+rCjNtRHxUpgJ9ixoV7ccSlh/V6YilGv9I7PAR6OslW/h8CU3VDfAOu28xCDWZXSA+yQvNF/vytdOhDwjeURl5sZGYHRYWd0lJwuMSxi7LxK9b3vspnCPHmbUAHm8m0WrMjNx+AzLrtd2PI5ofLUfDlOeNfCDgiM2m6g0mAf1Atp78ZowYE4YQx0yKxsY4DOPbqOTsvZo2PADZe0lMrs1mdcH+YVy4ZLOzH/Zw0cO3drRriGEWUEYhqHcELMjbOjYHEDQbFBPVdE50FVNaB+fqExP3JKdLiLVs2xUo/86vjmPIeGIcFJMsNkdaVyz1P39VDIH542wpQy0lNWH/bQ6zLgvGCX1RcgtE0XCCGrwAqBQY57vBBYcKXwCqmFK9clu8AwxzwehoS/mTsAVD3DhHND3S42cfJ3iK8zzF6ji3lte2AUyG/A2POHZ9mDaOhX81FOccjqddbrnJ1EVT7KhUhAoJSKIGxg5LqVZ+dcliTDvLmk8fSZ14fqWzIspAay7SwPTbLLIUAzD9keNMuTH/X1Auxn1A2fxMp7W/uR6IyPEh60woMI+MeiTLHDOlpydO7SPTRjj3AMNQH0nlae0rzI8YjjWENdS+HxhUKd+YyDe8g3fyRGaol0YN5NZtj+Sf+oRTgPxaw/mRTcmvqk1qc3giU6fEXIe1Apit0Ut9DUNGQGQV8mLnD5ilNAzScFMVGdiJHpay9/GvkZtYcgGGmAZXWcpyZijeo0VOsQ6c1XalyF6P5JhVokbGnGqdBNUis+/BMamwvH5MotSJw3HzUx343cq2NeI1/AUuBq9XkvPC6MkEIT3CiregQ5X/jcQMZhaCEf4nvIA8FC7mQEcQ1TY44QrKDnI99xdacW4YQpwCuByEGPWTtwTYNBIhXWIOWdKJuXGkGTlpA+kT3c40iCKYpdHsxpTa+J8Z81UAR9UCZlgLIVCXj3adu73+AaukAQJQj9ptGHQmCTa+vTEp5lubpmGjSvKlzQOKAY"
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764910259,
+          "model": "x-ai/grok-code-fast-1",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 231,
+            "prompt_tokens": 487,
+            "total_tokens": 718,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 187,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 320,
+              "video_tokens": 0
+            },
+            "cost": 0.0003863,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 3.98e-05,
+              "upstream_inference_completions_cost": 0.0003465
+            }
+          },
+          "provider": "xAI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764910263-WmapOKr7Z342zMHNmlgP",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:4bbeab8609ad98324a5c7574d8f5855571d44e5303cbb27f7ca0e848a761a32b",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 3855,
+        "request": {
+          "model": "x-ai/grok-code-fast-1",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764910263-WmapOKr7Z342zMHNmlgP",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I'm sorry, but I don't have access to real-time weather data or external APIs. My capabilities are focused on assisting with tasks related to a codebase using tools like searching, reading files, or listing directories. If you have a question about code or a project, feel free to ask!",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "The user asked, \"What's the weather like today?\" But I'm an AI assistant for a codebase, with tools for searching, reading files, and listing directories. This question doesn't relate to the codebase.\n\n\n## Assessing user query  \n- The user asked about today's weather, which falls outside my focus on codebase-related tasks.  \n- My capabilities include searching code, reading files, and listing directories, but not weather information.  \n- This suggests the query might be mismatched with my intended use for technical assistance.",
+                "reasoning_details": [
+                  {
+                    "format": "xai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.summary",
+                    "summary": "The user asked, \"What's the weather like today?\" But I'm an AI assistant for a codebase, with tools for searching, reading files, and listing directories. This question doesn't relate to the codebase.\n\n\n## Assessing user query  \n- The user asked about today's weather, which falls outside my focus on codebase-related tasks.  \n- My capabilities include searching code, reading files, and listing directories, but not weather information.  \n- This suggests the query might be mismatched with my intended use for technical assistance."
+                  },
+                  {
+                    "id": "rs_00e949df-bbd5-62e8-2bcd-4acef3f47656",
+                    "format": "xai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "CsXzAhsdPvHRiRpfMDtdPXC3KyDawz3gOcelpucP2YEjSdyWfIluKI6fLeBO1rmZjanDZwPXUH2tDN8EuX+Q4dhfkIxL4I9oFtWs7CKI1ft4ZzL0sO5nTZif2B1UEMtVTQ7gWurlvFIocBa2aGD3XsW6rfb3SRF06dS3G4R9sI0eYtyDXfsF49JzvhbJTDncnGtY8ZhzHm3euXvggnQYgmvj6ecieAxXOcYjk+KgkkzqjzVYUj8p3HeFjNZqxv4UpeXGtHIYKTLv4YdWpByzGrMZeF1ecpWg1nQmqw45Uw1WS58fV4wKADd+z2oipB3Yi+fJhh8r/nzFPumCKpbgOQ98su+cduQQAD5Fzzm3zSUyZAmwBaJBDCpQjkZO8y+bahvtnWtTrQ3yFeZYioSKEXNzRaJpo5D3/uqjdeYyNL1JZa7p7HzkZcgR7UMRJGZ4YIxIqXM4zB+t2VPqHP0SrsusoDs+dgdoLsbDqzbdaS8TuXGPSj4KPAGHq3jOa/5QupUMnbI0yh/g1USvJ6WHRH8YUoJ2f/mxnyqo8n7e9+3ScA60/pH5hT2uwOVjiZuvd1eXvZ5+TSauJuFq8O8x9aGw5B3guMPNFMuMCJXJgo1iKlKS46/gnJzqGwvaiGSSXGCc1F2GYuTQgRqr0X/P5sh7s6e86we7L1w8RO2o3PIyJxDJd+K98J/H/o5bDuAtVwuxNKhzQLwJ9AnhWoLMXIc8I333gt8OJEqka9qy27xnSNVXMteF6SsTvY6UkQ0Ke3mMGnG9lcAHJQkzBsWItEOFY5lj7xmdeYoNt2wBUOcuSWrs4EedVONyWLuagz2qUmYUlnlX71AN6nmg0/xmLJ//BpSsO1JfMbK788OrER1UWlIXggR3Jt5hFBEHQTA+ZIHbx/E7az9RifKvAKQ5/QVyamsOxH5OvxK3sLrMy0Wif833hOfZS0xeWya8Uc4oN78jop/1Nvgkgxdw25JQmLtw5J9Wpvl0iIb0uzrcVP3UMSfbvSpzfPn2Y0sNNRspHcpKMacXkAUG0pcuG8PlXzji9R5Zk7N/sPEMY1gryX8d0n3Z9Y/zrRCRn4hPdkv4VByZE1RmHaYqwrNCM0bDZS3hV7wYl430R1z4dPX/DJYv5qE1V2xaOoM7yOQ9eccrHeLytQuzlBYsyDeUwM/lTGMiz5Myr5ImOUJqKWUsVWBZ+68FHj+8owssrPkwBZC8hc5Okj/FjwN9P3U8cqg+48pSUI+FF4sNKyavPW9xu+zDxyM4UtGLSuxkbjX710GCeRaq30eoU7vKl/JJ+8p/Zr0UH/Gr2TEVa+U0HkP9sOJCkCk085cQuN4st3pHYSbMfPfJFlVWiTJJjQhmiGxRcpllZ/Cgpj3qwnXR2XmMH0Ka0UojdTm2h+AUOS2zegiyZaH0uu1QZbjqNdflf4dWdRGpp+udULuPhNsbz4JjbPeNsw9J81vsNHP6rbrG/fS7smGkf+p22GqWuspriru4Yb59vgeDnhGaEdBMN2arv7tTLMaQXt00mFDyAwWGjphNCZD5OxRggSDUMA1in+v/RNJIM0+OWqusUT1pbeFuDDuYX1sBy7mX/cgLgp8xx9xyaoImDPTt/jmwVoygWKdRaPu9WQiegEIZIiUpiAm8YUqoLDXb3mobM9VhKXW/jrL5bqEnkNIsmZSImNF8p9XiK7x2Dv8HnmGLvOFqMlCb1xYhr+vVIxB/Vzz/7MrIVc1ULf1C36H8hKiy1cbh79ZvCCgEc24OQztUrBg8gZH4t46r+U+E3/OiOXpXfxKoErlMu3OedzbBA+5PsUIA3XNhYHOgYm2JxZFaDzxc0+72gIFhnQ0kSE+x1StUn/vHMNYjD/V3T//j/kqLaRUmo8wKezcpzcWZtYPwQAvCXCnZbkZjWBvHEcHcpgtHu9pX/Z447w"
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764910263,
+          "model": "x-ai/grok-code-fast-1",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 350,
+            "prompt_tokens": 487,
+            "total_tokens": 837,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 293,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 448,
+              "video_tokens": 0
+            },
+            "cost": 0.00054176,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 1.676e-05,
+              "upstream_inference_completions_cost": 0.000525
+            }
+          },
+          "provider": "xAI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764910267-DXDdZkhuDhy9O7qNHzD3",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:6fc711e47101d3033be7621f8ca4e7e7dbb614c33bed788a8411f8a0fb737d2d",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 3689,
+        "request": {
+          "model": "x-ai/grok-code-fast-1",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764910267-DXDdZkhuDhy9O7qNHzD3",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I'm sorry, but I don't have access to real-time weather data or the ability to check current conditions. If you have a question related to the codebase or need help with code-related tasks, feel free to ask!",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "The user asked: \"What's the weather like today?\" But I'm an AI assistant for a codebase, with tools like search, read_file, list_directory. These are for interacting with a codebase, not for weather.\n\n\n## Handling User Request  \n- The user asked about today's weather, but my tools are designed for codebase interactions, not weather updates.  \n- My capabilities include searching, reading files, and listing directories, which don't cover external weather data.",
+                "reasoning_details": [
+                  {
+                    "format": "xai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.summary",
+                    "summary": "The user asked: \"What's the weather like today?\" But I'm an AI assistant for a codebase, with tools like search, read_file, list_directory. These are for interacting with a codebase, not for weather.\n\n\n## Handling User Request  \n- The user asked about today's weather, but my tools are designed for codebase interactions, not weather updates.  \n- My capabilities include searching, reading files, and listing directories, which don't cover external weather data."
+                  },
+                  {
+                    "id": "rs_ef41a67c-eec1-d19e-d057-9df9e82a8144",
+                    "format": "xai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "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"
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764910267,
+          "model": "x-ai/grok-code-fast-1",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 368,
+            "prompt_tokens": 487,
+            "total_tokens": 855,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 325,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 448,
+              "video_tokens": 0
+            },
+            "cost": 0.00056876,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 1.676e-05,
+              "upstream_inference_completions_cost": 0.000552
+            }
+          },
+          "provider": "xAI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764910271-yrDUCbMENkCFlRkeE995",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:2e18c78a0a0fa9404c65964c43fa6062b9ebc73a2eda13c21aa0e26471b1b044",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 2829,
+        "request": {
+          "model": "x-ai/grok-code-fast-1",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764910271-yrDUCbMENkCFlRkeE995",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I'm sorry, but I don't have access to real-time weather data or the ability to check current conditions. If you have a specific location in mind, I recommend checking a weather app or website like Weather.com for the latest forecast. If this is related to something in a codebase or file system, feel free to provide more details!",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "The user asked, \"What's the weather like today?\" But I'm an AI assistant with tools for searching codebases, reading files, and listing directories. This doesn't relate to code or files.\n\n\n## Assessing user request  \n- The user asked about today's weather, but the available tools focus on codebases, files, and directories.  \n- This suggests the request doesn't align with the assistant's capabilities for technical searches.",
+                "reasoning_details": [
+                  {
+                    "format": "xai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.summary",
+                    "summary": "The user asked, \"What's the weather like today?\" But I'm an AI assistant with tools for searching codebases, reading files, and listing directories. This doesn't relate to code or files.\n\n\n## Assessing user request  \n- The user asked about today's weather, but the available tools focus on codebases, files, and directories.  \n- This suggests the request doesn't align with the assistant's capabilities for technical searches."
+                  },
+                  {
+                    "id": "rs_ad0bc60c-b25f-336c-2d90-accfe85c612a",
+                    "format": "xai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "s2VQXvpfML05YQUNSSWWTKz1dhY88DPZnLiuV/v5WF8jd5kl5gaqI/IfiWIAAvGXLFZmvaAFVFHfkLsBqr+z3XFohIQkJAfx5/p8Ovxes3hKWaAJzPuWqJMKYgh3bTOlPk1+wrarX7r0hbTpLfweBeJDk+csspg8JrfvT9wGkqVk5r6K2dW0B2ycSkcn8RFeS9YbhF3qhavICenVWMIcMNaV1MQTdW/X/qukeiL7kayQ8A70u9Gat/WIphwtIHqYoz6Dv79ZIGSwpvsmmCwvmfel2+eRhZHfiMIndC2Xe72TwX/8kh0YHv8rh0rfiIyCB461ErZkY/tUqLSLDzixb7o4Yd/jDE15cjrkqL2H2o3h+MxzAHSnTWh2jKS+uy8EoAk7fOA1AhtXCo+uFAcQNXlTs4erJ5Iv+oWtgFa59h4JH2SrNgfmR6oG+JbGuAKczO0h9PxUbEXLPeBXwFh5eqGa2hpXzeTHXRVJjq9YfkIVWuaEzqH7o5UEdg3nJd9ftACT1iE+kpkDODP0Q3F19XnXPlVRXZ55LTOQQgWeXtghUo85U9aAzvv31vR3Zu7/392HMCR442Vn7m4IhUGBc+4Xl/gePgjDYoKEPe+hWIbyD2o2jVHcBKCx4BJGHdRpKtYsdDF/BfxNNIVaxT4bl703ZmbuO0zC7BRDeZtG5YimWjOsfvXPlJztj9O0t9JPiu4YU0Do4IOhbPPcfH096Csi9w5tQIr2dVrw41ihZgHBQZZnFu7iuzYUgZT6rTyLEGY0zKfYqIPTtaATuXtcwbuia5nkD2z9uV2Dt2+9Uqb2LILlxFLrW7YeSDYv/hTEOA5xCSK15f8pPPfbhM8nGN1OxAWOfStCQpyZVGSR9C3A1ZYB+bFEz2AOMFdQbPjyEpGZYdZBbdsqE/OouYNqnYkiJB//22HpboU549SaHSnN8hNPNGm6xTgsmsf8qTPZxP1LmqX+jNnnqFU91eTrJJ4+tsxZ1QEbv4mAGZZyAYnFyFfqewHLP6/pUZ6fFX/WyifYahxvJwp5K3HKhxQQ8Tr0ltLOyPtcc9QGt4PbzQ7j2mRg7dlQyk31c4VsbkY6KQPiQWCHyZUUVkESgWieVgOd0OZ70GRmHxpkehHnK/Zu4eBq9SVtX4jNJLVFH10s4R8fnm75VDDXctwaxCBcGu8+biMFJPbQUbJ8apmjtLD/GQl2WOJhHAOmPcqT817bl4+ZWpFnMtcwb5ptYwu0TymkmY9HHj2UjasciGEkhfhzPzaM2Ogf/73VLi3swf/yoo7vAfqLs2MCY/xPEujWiGBz/AXyfk755EDNGL7/rlHX87fqReKPxbjFk5NEi3Yc0OScpqP8mOXxJDvNpSzxk6WYYvCvVvlbH/Qy6ufAAHLRuinsIXCVanmgIzzzNZPb70hJLbceHJBFuK/SrJqAjUNz7zXkwCqTwhsQtBNEZaShJ1s+IPWzcA"
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764910271,
+          "model": "x-ai/grok-code-fast-1",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 292,
+            "prompt_tokens": 487,
+            "total_tokens": 779,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 226,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 448,
+              "video_tokens": 0
+            },
+            "cost": 0.00045476,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 1.676e-05,
+              "upstream_inference_completions_cost": 0.000438
+            }
+          },
+          "provider": "xAI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764910273-vm60O7PDcCBfEbu1pNeW",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:ff29e020c5d80b825f5f624773e53d578e6c3656afb822ef9f2acc0c77c568ff",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 2357,
+        "request": {
+          "model": "x-ai/grok-code-fast-1",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764910273-vm60O7PDcCBfEbu1pNeW",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I'm sorry, but I don't have access to real-time weather data or external APIs for that information. My capabilities are focused on assisting with coding and codebase-related tasks using the available tools. If you have a question about code, files, or directories, feel free to ask!",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "The user asked, \"What's the weather like today?\" But I'm an AI assistant focused on coding tasks, with tools for searching, reading files, and listing directories in a codebase. This question doesn't relate to any codebase or programming.\n\n\n## Assessing User Request  \n- The user asked about today's weather, which falls outside my focus on coding tasks.  \n- My capabilities include searching, reading files, and listing directories, all related to programming.",
+                "reasoning_details": [
+                  {
+                    "format": "xai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.summary",
+                    "summary": "The user asked, \"What's the weather like today?\" But I'm an AI assistant focused on coding tasks, with tools for searching, reading files, and listing directories in a codebase. This question doesn't relate to any codebase or programming.\n\n\n## Assessing User Request  \n- The user asked about today's weather, which falls outside my focus on coding tasks.  \n- My capabilities include searching, reading files, and listing directories, all related to programming."
+                  },
+                  {
+                    "id": "rs_211bfe17-174e-6827-984c-cd7fd6effd3e",
+                    "format": "xai-responses-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "7QvYGniZNTu9p9wz/kurGiYVdhqcwigQmKNqmO477ZIbs6EYMmgtMhv/ICorhTpk23WhIOa4bqQMWFIoUYViIPWC/Cs9mmUiU8ClCYHA4rik6JmVYphGXxzNmkW0nqLf5nqeWO9AGscJvR9CpZBUPW8Qdur6n2F53qtGQh3xOX/4g3waMoX9D1dCQB+DJspLjZUkseEpoBkTNwE/31V0l3yF78ChuUwnR2Sw6yTjXNyOz0eTEcaqthtJHsugndOetlVF7Jus3zrCV/xdWiJHqYGUlgsXEYqsiUQTrCHhc6w2UQ6esjD0OcWnQoplrUbn9f4hUko2VujMBs5Y1eVxjYYfrqGqIkOjWBU6MRvqsZxAOUbdvPv+3DoTLwtm1xQOkd/7zCovjLA8fb33vwPdoven+XaLlkMY5scfaDE5nQY9XHaFwZ2b4Vl6UIULuDOq1jzRjB6DLet/gGXkNUhV22Lq5LwbM9i0JsIyJRpvxPEpSFY7Ty7PelVGNH0v6453EV0bZNETAqMXbLVyXywcqHe8wAWPM2J8fauzuroL6fLwGUNbJVzbsyWz+4xXJNm/3xpKbog+4IP+5NnSN6W/UC/NTQaQQOngD6dngdYlRuy02iGX/wgOdtqPHhZCTIUsiYxVD+W/hcsgAkJ9hFNPqFr6znzFB/gw18bUy8MCLV5RcyLKHyUuQkiXnWWxZZbD/HG2Egl1Q5ZuYzrO+OupCryKAkfHl8/3viREjx2qcTZqUK8iXw5RRxNXpFPEiODb7pNj1I4uFMdLze8RoImuxsbiK26io6GpBSGqNdyxpuutkONQhxr4rbqFNyrsMKpUcNfp66jh2GZcOHENYC7+OrPb8BVLLFVBOt3tTyY797ax76wI2P6ewUOdOVizpclaRJ4419g/iiDB2fl7fCTCluDs1m9TJVeTLPqc7O+cMAG0W3+TYYllfLPWxRjypEOsXL3DEgD6JTOz3Ab2FTX4tLDokt2vDRwYw0ynm3nD/ZS/S5SRCT7GXWLDNoLiSzdAH3umFCI7NNFWBEMXNT1vhzDa2L4wpCwxnB63Nkkil+VQNenjnoi7Vk5S1//SpMIOlhrM74I41E8hMiNQ8fKSoGT7Zwx5q1VfKrVu+xWVqw6/4HIU0YF8LVrQKsOJtciSty+CJjqhkBuq9lmMnsXc5EfEdYSTnaf8UL/gJQXmq3RJkGBeTwxqos7tiPweSBgQ4RwOWykWcDiIT0Bot8CRG6HDt9wl5evx8OSTqvJThsldSLxfh95AgCn0o/iu1fM/+KUle20lLCuf9esB5FhOgArN8IzqYIdO6K6/YIx9TQtt1++Qvt9Z"
+                  }
+                ]
+              },
+              "native_finish_reason": "completed"
+            }
+          ],
+          "created": 1764910273,
+          "model": "x-ai/grok-code-fast-1",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 242,
+            "prompt_tokens": 487,
+            "total_tokens": 729,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 187,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 448,
+              "video_tokens": 0
+            },
+            "cost": 0.00037976,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 1.676e-05,
+              "upstream_inference_completions_cost": 0.000363
+            }
+          },
+          "provider": "xAI"
+        }
+      }
+    ]
+  },
+  "summary": {
+    "successes": 5,
+    "trials": 5,
+    "rate": 1.0,
+    "wilson_ci_95": [
+      0.5655085052479191,
+      1.0
+    ]
+  }
+}

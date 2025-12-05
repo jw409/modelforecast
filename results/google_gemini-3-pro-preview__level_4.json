@@ -1,0 +1,736 @@
+{
+  "submission_id": "sub_b5cfa5da7183",
+  "timestamp": "2025-12-05T04:50:59.614558+00:00",
+  "contributor": "unknown",
+  "environment": {
+    "python_version": "3.11.13",
+    "openai_sdk_version": "2.8.1",
+    "os": "Linux 5.15.167.4-microsoft-standard-WSL2",
+    "env_hash": "sha256:82b59585ac582b7441e0dfb1a4ad0fabea13d6ea352206d6704de713f3c103ab"
+  },
+  "probes": {
+    "model": "google/gemini-3-pro-preview",
+    "level": 4,
+    "trials": [
+      {
+        "openrouter_request_id": "gen-1764910259-PwjjF9ieniChdnkf9CSc",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:72c602efe80f33718338207369e6930dfe2b147bcabeb3bb7b9cb757a43ef0eb",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 4572,
+        "request": {
+          "model": "google/gemini-3-pro-preview",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764910259-PwjjF9ieniChdnkf9CSc",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I am unable to provide real-time information such as the current weather, as I do not have access to the internet or external APIs. My capabilities are limited to interacting with the provided codebase through file operations.",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "**Examining Weather Queries**\n\nI'm currently reviewing my available tools. The user's request for weather information has prompted me to check if any tool definitions are suitable. So far, the `search` and `read_file` tools don't seem like direct solutions. I'm exploring whether there's an appropriate tool to fulfill the user's need.\n\n\n**Assessing Tool Limitations**\n\nI've analyzed the available tools. The `search`, `read_file`, and `list_directory` functions are unsuitable for fetching live weather data. My assessment shows these tools are limited to file system interactions within the code's context. I can't directly fulfill the user's weather request with these resources. I'll need to inform the user.\n\n\n",
+                "reasoning_details": [
+                  {
+                    "format": "google-gemini-v1",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "**Examining Weather Queries**\n\nI'm currently reviewing my available tools. The user's request for weather information has prompted me to check if any tool definitions are suitable. So far, the `search` and `read_file` tools don't seem like direct solutions. I'm exploring whether there's an appropriate tool to fulfill the user's need.\n\n\n**Assessing Tool Limitations**\n\nI've analyzed the available tools. The `search`, `read_file`, and `list_directory` functions are unsuitable for fetching live weather data. My assessment shows these tools are limited to file system interactions within the code's context. I can't directly fulfill the user's weather request with these resources. I'll need to inform the user.\n\n\n"
+                  },
+                  {
+                    "format": "google-gemini-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "CikBjz1rX7iqm/+HT5+X+2L8PaD2olZSy5d5QNt1yqlqSN5Jg0l3ELueOAp1AY89a190U4BjSlkB3XAi/ltOkC7kMhIyj4z3zseSCIK7KO4763elkqHYFkb0bwl7Z4adCZYezS4F4AKXrlD6fTAdw65vU4stqYKugeHPYhS3F/dsx2r8lWhKM5TJAsTIOmTYlVbXJn+52wesJIvw2lpd1HeRCm4Bjz1rX+dNoidQeJl5nNt5iuoBB9KcXcq5f1qKTBCQuKJ8vSKDAzsNWXp0PUhyG7gWUEeyvEh1tfSdgOJUpos6dJYsHSyKMN16Vb/2/Sx9eOqxg9vKKYassMh9mrJUQ3JpQoxJnfHRNx8c8jHinwqJAQGPPWtfx/iC8tA073hTSA+H08urJdDf/r7iyYPwjZO/4OuYvl7/ZGckEjlMAxCIDcvcumVvJ4an6uh4hFWLIVcs4VLCl+WU8EG9Mqstnk5o0r8sIjzTsgDmq8fv+wolvvonDfYmSoDe2yAM7To//eowboEQEK4fyGU03Ud3K0LUi+PlYgkwLMBJCsABAY89a1+nFNilSC2jG0Jv227PIF2rsEFvejD+Oq2UGcgtvENEKeALp5jdllcoomESJtel4FHfkJ0s4GG/OBDgKGPOrrb7WLt8HX6XtXhpL7sjHmsxtRkJfuMHnX/8JYc499T7kX6e7KHHdPH7IplcjtFz3PIW15BV/khSewCv1/O6KRZj4JvkWbP2y6N2Wm9RrZP6yXL/1+QxVLMBMuHJ1/1Lh+gDkGq9+eBkMwQQcNE742B+9kEPLc4yZZH0PitxCtIBAY89a1+JeWpgX0PAakfZ66/45kUQMzixvRWY4O9HraT0T5+Wk73YFu846XMIglZwZzBKn80bCtWIKz2GgaTY/oHHaxf+jeWCWfJW3LPJWmt45Axylknx5EqGiAgJj1I9IAv7lj0vmSXnOPa2ECqjBymLuPBEibMs7CUTgSoX0frN4KvHFqdhMdaU3HNjibLbBygEbMOsIOF+qi3bpyPJLVAcsQ1FwbbJd/hCeQZfywJ3b/lSRGBxn3zveVv9Q67FoXkdEEjEE2nCAwKCJ38vOLnw"
+                  }
+                ]
+              },
+              "native_finish_reason": "STOP"
+            }
+          ],
+          "created": 1764910259,
+          "model": "google/gemini-3-pro-preview",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 180,
+            "prompt_tokens": 55,
+            "total_tokens": 235,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 137,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0.00227,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 0.00011,
+              "upstream_inference_completions_cost": 0.00216
+            }
+          },
+          "provider": "Google"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764910264-IHIEmgboBWYxJptPP8jo",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:ef309f2005f8e7dc88950900f130029a5f59d83cadebf0a0e2b84540f86e813f",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 4664,
+        "request": {
+          "model": "google/gemini-3-pro-preview",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764910264-IHIEmgboBWYxJptPP8jo",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I am sorry, but I do not have access to real-time information such as the weather. My capabilities are limited to interacting with the provided codebase.",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "**Examining Weather Queries**\n\nI'm currently reviewing my available tools. The user's request for weather information has prompted me to check if any tool definitions are suitable. So far, the `search` and `read_file` tools don't seem like direct solutions. I'm exploring whether there's an appropriate tool to fulfill the user's need.\n\n\n**Assessing Tool Limitations**\n\nI've carefully examined the available tools. Based on their current definitions, `search`, `read_file`, and `list_directory` are unsuitable for fetching weather data. My assessment shows these tools only deal with file system operations. Consequently, I must inform the user that I'm unable to fulfill their weather request with these resources.\n\n\n",
+                "reasoning_details": [
+                  {
+                    "format": "google-gemini-v1",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "**Examining Weather Queries**\n\nI'm currently reviewing my available tools. The user's request for weather information has prompted me to check if any tool definitions are suitable. So far, the `search` and `read_file` tools don't seem like direct solutions. I'm exploring whether there's an appropriate tool to fulfill the user's need.\n\n\n**Assessing Tool Limitations**\n\nI've carefully examined the available tools. Based on their current definitions, `search`, `read_file`, and `list_directory` are unsuitable for fetching weather data. My assessment shows these tools only deal with file system operations. Consequently, I must inform the user that I'm unable to fulfill their weather request with these resources.\n\n\n"
+                  },
+                  {
+                    "format": "google-gemini-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "CikBjz1rXzih8/DYJRkzXV2mCeeYZxKoB765nxDaHH0nHSY/NZx5nIsQ0Qp1AY89a18REJhXNUAXBQK/juVsRFAk88WQQWnSV2LeQvNp6wY7ix3PtiLTvbR8RN7Lm5p25PY0KkbqdgoGdFlPQCbPL1Zo2MIBpEDMD00HGZQ/tUDB3P8jbyP+olpA8a2m+KRYW4KAbeExAuVgRrESw0sbZOLpCm4Bjz1rX3Uw34qt8uP3HcQSPLxX2dqYYmSEhj7CSWZ2AyiixRQEfWqE5HiT77h5qWKdDkKBgv2K4yrvgCbm4lPLDHcHi2le1pVhjzA/23ig3rZUD2H6kmSq71zZL2FUQSU7vIhSvJOVm2rdOq2HdAqJAQGPPWtfxOtX8WS8a2aiGHFOZilDQe3tOw41plTiGeq8uxC8RHFNBrpkkU5mU/0Qz5tK4PoIgQjLL5ohWSu2Fv/PSvJ9stbRAdrqsAim6HQpNN55OfqkllEaVZed7cYZdae0T5V+Kv7MNLC1R/AUK/8kkResvlb1qQaRcZKSfuLa0BGT5JPwo7jvCtQBAY89a1/WjbGs01fj7FO+d0evkVhxqVhciKD2m01Sbbt/AuEglgFPZH7M2QBhm79wxcCtDMpdD5r/renphJtauaRrxh/RIY8hib6pi/YPWdQSfD9OVMfx86LljlLUmUM7d3XQAo4Ssk3tVyzGo8fKFwtxt1gJx+zRvW+EScfOY15qRkEKIp2Cy3l/bqbTzNpsLjdP9KyVBfWrh2DuFx1dVB3j3BLQFTfGZ+gQxMZZ7en/NJd55bNVXCaQrz/Rs7GmdmjPckQ7vJu6VZfGQ9l+qUaQCJ8KwAEBjz1rXxHTbRkzbvQ+FiWXz2OMmSni7kgz2Hj25ECmy+dgwLbrdsXkLw9JWfDRzFp7r4zSXW0o8YoZrEx0SQOEzDodW/kaRn+7Q3Wqnee/FbC0QgPzzuWLfJXCYPVaHY/SG6u4XS0ZqmsYjYoZsMhDvMNGllPVLdpgY9LGAXK01Thxglaf54Y79iQkT5IrJfCzhdUF/PHn4cnrTbkRyr1vVs6AtK8DirUdzfo21hfH//yHFwWPcURpSMhkNQhFW+8="
+                  }
+                ]
+              },
+              "native_finish_reason": "STOP"
+            }
+          ],
+          "created": 1764910264,
+          "model": "google/gemini-3-pro-preview",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 170,
+            "prompt_tokens": 55,
+            "total_tokens": 225,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 138,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0.00215,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 0.00011,
+              "upstream_inference_completions_cost": 0.00204
+            }
+          },
+          "provider": "Google"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764910268-KNc4e3VAGi3BBCbdhe3N",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:c2bf4d4c91933df14efa1c1dcf3a80b7445e9eac2c22e5bb829cbfd254b28f09",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 9344,
+        "request": {
+          "model": "google/gemini-3-pro-preview",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764910268-KNc4e3VAGi3BBCbdhe3N",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I am unable to provide real-time information such as the current weather, as I do not have access to the internet or external APIs. My capabilities are limited to interacting with the provided codebase.",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "**Examining Weather Resources**\n\nI'm currently reviewing my available tools. The user's request for weather information has prompted me to check if any of these tools can fulfill that need. I'm focusing on the `search` and `read_file` functions, since other tools are unavailable. So far, no obvious weather-specific capabilities are evident.\n\n\n**Assessing Tool Limitations**\n\nI've carefully examined the available tools. My analysis confirms the initial impression: none of the current tools offer weather data retrieval capabilities. Their functionalities are restricted to file system interactions. I must inform the user that their request falls outside my current operational scope.\n\n\n",
+                "reasoning_details": [
+                  {
+                    "format": "google-gemini-v1",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "**Examining Weather Resources**\n\nI'm currently reviewing my available tools. The user's request for weather information has prompted me to check if any of these tools can fulfill that need. I'm focusing on the `search` and `read_file` functions, since other tools are unavailable. So far, no obvious weather-specific capabilities are evident.\n\n\n**Assessing Tool Limitations**\n\nI've carefully examined the available tools. My analysis confirms the initial impression: none of the current tools offer weather data retrieval capabilities. Their functionalities are restricted to file system interactions. I must inform the user that their request falls outside my current operational scope.\n\n\n"
+                  },
+                  {
+                    "format": "google-gemini-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "CikBjz1rX2yqqCZ4ZCIvnF8Tiq6KrX7rpRskavqClTPPIq43kyKJKxENtwp1AY89a1/5WII1YJGDgrsH+pT97nWDlEzNJzzPm4PIFYSVdJKGEUavYyxRiInZGrk89gU7tDfC/j+l8/ibJogYQ2cg0HVyE/OManaNQRTKfpN/spBbPQe0MGfuPAnHfsCrNf4K0RLnvn8Gg59HksMh75UtS6nCCm4Bjz1rX2/wuo2M2R2PyranRK0CJ/0go9v47d9kMOTUlvkGxXUmQA/zRCkrlLytb4Bntef9wxl/8mo7vDliG8ib1qj7Da6OeYdN0C7+XIZIuTJwDys87eAweBxwmp5hwpwsIfv196uKw/5VxvRfKQqJAQGPPWtfDgRusK13UXNCcT0798A/2vDriVaCr6PfmrpJeLoQ+4u0XVMQvJyIgoIMaiu3eOCZRsyFU0Grwg2m68twwRTR2xI+ISf8pYC30z4QA7vnJw2tKMtNbgqgYSHEAjVqlc/fVv2iZPxhhnmaFt29g8rGL/LUKZfOH4+OIRmIA8VYB82wbL2MCskBAY89a19buOa10ysmbBsNj9tqOwdrqmJdl9kNCQWzfd95pIU8EsaCt/0m5duIN+yiE1fPBd2b3hjEhMhu9xuiQ2gvKxK40UJhEycSUG4Cn1wn0MwcwYcMpAlIieM81OYffzCZWcdUTj7xHZRF7JXqaL9nkiMkrVOUOYoT9OfBxHKfgVpQ7t9MIMaP366oVjKW/n0jus6UIFCzl9/GhIOhqVwgwLCsWClK1zL844U7esWsn5Gz/mQvxn3Zwo95zRaf8aQbQzbyMpr8CssBAY89a1+nHCc1HEc75TeZU48Hj0mZkuI+pPa+VuBzsgEpGrF2V6iIIwbEsCqGk7iMvlEjZXYjGueLtcujHZBm/AIZER3rViSJmzuOsYK+MVxeUTNug1lStQJ7in53C9dEe1q605PxC0YT4l3qJPOwYJp4Yu8t9ERfaxeSYo9rVuhdxuUavbkLYVLGzWMwn7OqhK+39g/IB861+VxehIPkn+EEK8cVlx1CR3oYb3GpAVx6cgdjIL+kUknrrjHVTsmihatQlhm4mcOi5A0="
+                  }
+                ]
+              },
+              "native_finish_reason": "STOP"
+            }
+          ],
+          "created": 1764910268,
+          "model": "google/gemini-3-pro-preview",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 178,
+            "prompt_tokens": 55,
+            "total_tokens": 233,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 138,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0.002246,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 0.00011,
+              "upstream_inference_completions_cost": 0.002136
+            }
+          },
+          "provider": "Google"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764910278-cD9BH30MR6mC85HYsPn3",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:59a6170f3047cca392a2a399792fe93e720b8bb44df5ee067eee4f0cd03bf6c3",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 4797,
+        "request": {
+          "model": "google/gemini-3-pro-preview",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764910278-cD9BH30MR6mC85HYsPn3",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I cannot provide current weather information as I do not have access to real-time data or external APIs. My capabilities are limited to interacting with the local file system and codebase.",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "**Assessing Tool Capabilities**\n\nI'm currently evaluating the available tools to determine if they can fulfill the user's weather request. Specifically, I'm analyzing the `search` and `read_file` tools. I need to determine if they can provide weather data or if I'll need to develop a new approach.\n\n\n**Concluding Tool Evaluation**\n\nI've determined that the existing tools are insufficient for retrieving real-time weather information. The `list_directory` tool, like the others I analyzed, operates within the file system and doesn't access external data sources. My current assessment is that a new approach is necessary to address the user's weather inquiry effectively. I'll need to communicate this to the user.\n\n\n",
+                "reasoning_details": [
+                  {
+                    "format": "google-gemini-v1",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "**Assessing Tool Capabilities**\n\nI'm currently evaluating the available tools to determine if they can fulfill the user's weather request. Specifically, I'm analyzing the `search` and `read_file` tools. I need to determine if they can provide weather data or if I'll need to develop a new approach.\n\n\n**Concluding Tool Evaluation**\n\nI've determined that the existing tools are insufficient for retrieving real-time weather information. The `list_directory` tool, like the others I analyzed, operates within the file system and doesn't access external data sources. My current assessment is that a new approach is necessary to address the user's weather inquiry effectively. I'll need to communicate this to the user.\n\n\n"
+                  },
+                  {
+                    "format": "google-gemini-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "Eu8FCuwFAXLI2nxDHV1hPf2DPKkd/HQf+Hb/NQMeo26QNtM8dS3OZalF11tBgcpw04bmKWxnUsiLsiGc1rZGOyGbXKSSkSQPPRAVlpMDwq6fhIPDp1z1A7jlvUeP5m5XHbN5jeSMz55uZZSZqfzF9rvJZi2l8nGB+tcpfj41i69bO+GNFvownbEPEM/kENyLll1Z21HYEMwZ7MStXa6M1vh3CFfxbAzCTk7DCkKNbCswfIv7xHBPVMbaWr+JZIyanN8URa55amw0vzDDaWp6ZkXlySgX+b5ry57WF73jas/gnBFVOGPa4aZizLM1nodOk7kU2wCJQaQWv4L/Y1+9pJaMo8AMAZbhfdIpg2lFp/og5B6IBJ9IAyUGXPbpRf0br8pORAJFGpmlv+ZT7nS0N/TAhQ7kv7hfZDVHgHd/ihPeOuTkBldH3WfFh9DcLZEcD7eyc0tI23mjeUbkcYWHyjHZZL94+ZsgMRDOWPCHVgurjfrjAdVs4ZMn3ws8LlOT6R5K8IEjtbRHTfJYgqpyEHEM6s7jBjvU+fg6HS1NjRt6QGT35H74rzRD4lmH9HmhnKLh+7jtmk1Q7NKz0uKnKsjg+kg7eNhPjAFtGob1UgdyV7gNlK/w0mlhmcmgbKF1W0OxIvX1wfjoUs/e/XBpiextxSmQThLA/OQ8+9eSdmI4q9ho86uIV++b69Ft5JXoFruc7z739l5aFaDzt9WN5q7Zmpgzb/GlSuIfPOp0olAXoNMyBi0FeByTqydFGFTVnv5FSbN7zaY8Brg9yPNVa6YNSDO4Xvoxp3ufLQnkYCdHQGpGnTh6P6CXDxM7P/OTL6VY6+nr12SSdSA22jARHrg5hO1s+fdJAtntD/dedbINq5ozFzeQ/n2+DiKpvqG+2lTNuR4W79B+Avvi23v6ekA87XnvkjsclR7WPUXzGCYN+cZK3cgB3M7fB/8n6XNQvByxReqT9jXvFhAQAQX+bgWYVY/fc0EwlxfFLyJ7adv+pQ=="
+                  }
+                ]
+              },
+              "native_finish_reason": "STOP"
+            }
+          ],
+          "created": 1764910278,
+          "model": "google/gemini-3-pro-preview",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 173,
+            "prompt_tokens": 160,
+            "total_tokens": 333,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 138,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0.002396,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 0.00032,
+              "upstream_inference_completions_cost": 0.002076
+            }
+          },
+          "provider": "Google AI Studio"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1764910282-3b5rE3fA8FtZARMdsZmb",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:65a8f57680d14aefd62f80a3173a323dd23cd3ac53d79f43dd1a1830a0bce169",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 4132,
+        "request": {
+          "model": "google/gemini-3-pro-preview",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1764910282-3b5rE3fA8FtZARMdsZmb",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I am sorry, but I do not have access to real-time information such as the weather. My capabilities are limited to interacting with the provided codebase.",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "**Assessing Weather Data Access**\n\nOkay, I'm examining the available tools to determine if they can provide current weather data. I have identified two tools, `search` and `read_file`, and I need to determine if their capabilities align with the request. I'm focusing on whether these tools' functions can be leveraged for weather retrieval.\n\n\n**Recognizing Tool Limitations**\n\nI realize that `list_directory` isn't suitable for fetching weather. Furthermore, neither `search` nor `read_file` are designed for real-time data access. Consequently, I must inform the user that their weather request is beyond the current tools' capabilities. This means I can't currently fulfill their query using these functionalities.\n\n\n",
+                "reasoning_details": [
+                  {
+                    "format": "google-gemini-v1",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "**Assessing Weather Data Access**\n\nOkay, I'm examining the available tools to determine if they can provide current weather data. I have identified two tools, `search` and `read_file`, and I need to determine if their capabilities align with the request. I'm focusing on whether these tools' functions can be leveraged for weather retrieval.\n\n\n**Recognizing Tool Limitations**\n\nI realize that `list_directory` isn't suitable for fetching weather. Furthermore, neither `search` nor `read_file` are designed for real-time data access. Consequently, I must inform the user that their weather request is beyond the current tools' capabilities. This means I can't currently fulfill their query using these functionalities.\n\n\n"
+                  },
+                  {
+                    "format": "google-gemini-v1",
+                    "index": 0,
+                    "type": "reasoning.encrypted",
+                    "data": "Eu8FCuwFAXLI2nx10R7v6H3oNQjoNA4zVItUQrngNwNP4hnFR6ZV+OuEEwNeohW36WTb1KX3ud342h+hiFk9bCd+3JrjYpC8N8Z36Hz7YYxdZ3bp5DiKlVsq1hJPqZrEYHpOqTe21sb92doDI0vvNCt2AUBuGHckxrc403CqC4ELT+xx7JZ0tH1vCZRPQ2VaQNmS315H8RUzJqvpYhi79SuRuV6Uwbbpy+3sffmbqib6P+ECcNNsQZCQYXKJJnK6ZjiWkLb3x7d0dl9czub4gOaQmDAzRHnv2YNy/9qhYc0DsM7Tq7AL20bKtZAXbnVNke2YK+cu8rDk4NumH270SogIbIq0Sz7BUx0+rxrI7GaRV+C1WaSX3L6MnqCI5f5WxCafIhSQEi1rnIpsydX+WoM87svYat2r2MNPU+dZn3WMBqDFH7WZHCWQLSssonfKxWOyYfWkqgPGdbJQyPfCoHa/LIyrKoygWtGxBV56q5uiNtxaVYRJMBmqauNQrsVNftq/ou3pnYSrDJhcImj0PRbvl/KuPBAD3KTNhPipnrU7w7Vgp0mKlQ4NVJ0pj9pnCxH6nK7k4FcMjMPVh8LKaXa8vI50bWLDrMU+0iJ3VltVlupSWisEY2+flrGaUyz1HCpLUL3rdnYfGvYnCikRlXwpbbz3K2kMP5UJjgdSkjziII1bHDslByzoJ2lrbD5e61O8E83y8poXEUtNFYYwODc/5ozarChmBRWUvK6n826inh2Aop1TPQoIeAr97aUhteuXNQrsRYLiKqeB5XOGLbNY0oXd4oxJXszeGnEtmRyPsPUno9l+GYL8Dbs6edOSj9Il8rW3+Z3H1K3OPOESVayotxMDyZ1//GOaXU50fy+q+ZEzIDbtGlhGsP30xP0pqmlfEc157F/NuM8+jEm5oQXIm8jM0A5CXLkLtTVwctBkhh7K4U3mGFEEb1dEkOskfD+EgjalvNAVSSj9UMqX6Fwl7KgSF7iQ4cf05TfAh0PFvw=="
+                  }
+                ]
+              },
+              "native_finish_reason": "STOP"
+            }
+          ],
+          "created": 1764910283,
+          "model": "google/gemini-3-pro-preview",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 169,
+            "prompt_tokens": 160,
+            "total_tokens": 329,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 138,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0.002348,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 0.00032,
+              "upstream_inference_completions_cost": 0.002028
+            }
+          },
+          "provider": "Google AI Studio"
+        }
+      }
+    ]
+  },
+  "summary": {
+    "successes": 5,
+    "trials": 5,
+    "rate": 1.0,
+    "wilson_ci_95": [
+      0.5655085052479191,
+      1.0
+    ]
+  }
+}
