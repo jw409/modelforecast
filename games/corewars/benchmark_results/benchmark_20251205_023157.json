@@ -1,0 +1,250 @@
+[
+  {
+    "model_id": "kat-coder",
+    "model_name": "kwaipilot/kat-coder-pro:free",
+    "grade": "A+ FREE",
+    "turns": [
+      {
+        "turn": 1,
+        "win_rate": 17.0,
+        "warrior_lines": 19,
+        "response_preview": "```redcode\n; IMP - Improved version\n; Fast, small, and reliable\n; Strategy: Imp ring - starts multiple MOV 0,1 processes\n; that chase each other through core, copying themselves\n\nIMP EQU MOV\n\n    SPL "
+      },
+      {
+        "turn": 2,
+        "win_rate": 32.6,
+        "warrior_lines": 20,
+        "response_preview": "```redcode\n; kat-coder - Turn 2\n; IMP - Improved version\n; Fast, small, and reliable\n; Strategy: Imp ring - starts multiple MOV 0,1 processes\n; that chase each other through core, copying themselves\n\n"
+      },
+      {
+        "turn": 3,
+        "win_rate": 35.3,
+        "warrior_lines": 20,
+        "response_preview": "```redcode\n; kat-coder - Turn 3\n; IMP - Improved version\n; Fast, small, and reliable\n; Strategy: Imp ring - starts multiple MOV 0,1 processes\n; that chase each other through core, copying themselves\n\n"
+      },
+      {
+        "turn": 4,
+        "win_rate": 33.1,
+        "warrior_lines": 20,
+        "response_preview": "```redcode\n; kat-coder - Turn 4\n; IMP - Improved version\n; Fast, small, and reliable\n; Strategy: Imp ring - starts multiple MOV 0,1 processes\n; that chase each other through core, copying themselves\n\n"
+      },
+      {
+        "turn": 5,
+        "win_rate": 33.6,
+        "warrior_lines": 34,
+        "response_preview": "```redcode\n; kat-coder - Turn 5\n; Improved Imp Ring - Faster spreading with additional parallel processes\n; Strategy: 8-way split + 3-point imp ring + decoy bombs\n; The multiple processes quickly floo"
+      },
+      {
+        "turn": 6,
+        "win_rate": 28.1,
+        "warrior_lines": 31,
+        "response_preview": "```redcode\n; Improved Mice warrior - Turn 6\n; Enhanced self-replication with faster spreading and bombing\n; Strategy: Multiple parallel replicators + imp streams for redundancy\n\n    SPL 1           ; "
+      },
+      {
+        "turn": 7,
+        "win_rate": 36.0,
+        "warrior_lines": 33,
+        "response_preview": "```redcode\n; kat-coder - Turn 7\n; Enhanced Mice warrior - Turn 7\n; Improved imp streams + optimized replication + decoys\n; Strategy: Fast core clearing + multiple replicators + defensive decoys\n\n    S"
+      },
+      {
+        "turn": 8,
+        "win_rate": 34.9,
+        "warrior_lines": 33,
+        "response_preview": "```redcode\n; kat-coder - Turn 8\n; Enhanced Mice warrior - Turn 8\n; Improved imp streams + optimized replication + decoys\n; Strategy: Fast core clearing + multiple replicators + defensive decoys\n\n    S"
+      },
+      {
+        "turn": 9,
+        "win_rate": 36.0,
+        "warrior_lines": 33,
+        "response_preview": "```redcode\n; kat-coder - Turn 9\n; Enhanced Mice warrior - Turn 9\n; Improved imp streams + optimized replication + decoys\n; Strategy: Fast core clearing + multiple replicators + defensive decoys\n\n    S"
+      },
+      {
+        "turn": 10,
+        "win_rate": 36.0,
+        "warrior_lines": 34,
+        "response_preview": "```redcode\n; kat-coder - Turn 10/10\n; Enhanced replicator with faster spreading and better imp coverage\n; Strategy: Fast replication + multiple imp streams + decoys\n\n    SPL 1           ; Create paral"
+      }
+    ],
+    "win_rates": [
+      17.0,
+      32.6,
+      35.3,
+      33.1,
+      33.6,
+      28.1,
+      36.0,
+      34.9,
+      36.0,
+      36.0
+    ],
+    "drama": [
+      "Turn 6: Surprise mice.red challenge!",
+      "Turn 7: Surprise imp_gate.red challenge!"
+    ],
+    "final_win_rate": 36.0,
+    "improvement": 19.0,
+    "final_warrior": "; kat-coder - Turn 10\n; kat-coder - Turn 10/10\n; Enhanced replicator with faster spreading and better imp coverage\n; Strategy: Fast replication + multiple imp streams + decoys\n\n    SPL 1           ; Create parallel processes\n    SPL 1           ; Start multiple streams\n    JMP START       ; Main loop entry\n\n; Defensive decoys to confuse scanning\n    DAT #1234, #5678\n    DAT #9876, #5432\n    DAT #4321, #8765\n\n; Replication parameters\nPTR DAT #0\nSTART\n    MOV #20, COUNT  ; Increased replication count for better coverage\nLOOP\n    MOV @PTR, <DEST ; Copy instruction and decrement destination\n    DJN LOOP, COUNT ; Decrement count and jump if not zero\n    SPL @DEST       ; Split at new location for parallel execution\n    ADD #123, PTR   ; Faster spreading - covers core more quickly\n    JMZ START, PTR  ; Jump to start when pointer wraps around\n\nCOUNT DAT #0\nDEST DAT #833\n\n; Multiple imp streams for core clearing\n    MOV 0, 1        ; Classic imp pattern\n    MOV 0, 1        ; Redundant imp for survival\n    MOV 2667, 2667  ; Long-range imp at 1/3 core size\n    MOV 2667, 2667  ; Second long-range imp for better coverage\n    MOV 1365, 1365  ; Additional imp at 1/5 core size for improved coverage\n    MOV 1365, 1365  ; Redundant 1/5 core imp"
+  },
+  {
+    "model_id": "claude-haiku",
+    "model_name": "anthropic/claude-3-5-haiku-20241022",
+    "grade": "A+ PAID",
+    "turns": [
+      {
+        "turn": 1,
+        "error": "[ERROR: 429 - {\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"anthropic/claude-3.5-haiku-20241022 is temporarily rate-limited upstream. Please retry shortly, or add your own key to accum]",
+        "win_rate": 23.1
+      },
+      {
+        "turn": 2,
+        "error": "[ERROR: 429 - {\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"anthropic/claude-3.5-haiku-20241022 is temporarily rate-limited upstream. Please retry shortly, or add your own key to accum]",
+        "win_rate": 21.9
+      },
+      {
+        "turn": 3,
+        "error": "[ERROR: 429 - {\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"anthropic/claude-3.5-haiku-20241022 is temporarily rate-limited upstream. Please retry shortly, or add your own key to accum]",
+        "win_rate": 20.6
+      },
+      {
+        "turn": 4,
+        "error": "[ERROR: 429 - {\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"anthropic/claude-3.5-haiku-20241022 is temporarily rate-limited upstream. Please retry shortly, or add your own key to accum]",
+        "win_rate": 21.3
+      },
+      {
+        "turn": 5,
+        "error": "[ERROR: 429 - {\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"anthropic/claude-3.5-haiku-20241022 is temporarily rate-limited upstream. Please retry shortly, or add your own key to accum]",
+        "win_rate": 20.8
+      },
+      {
+        "turn": 6,
+        "error": "[ERROR: 429 - {\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"anthropic/claude-3.5-haiku-20241022 is temporarily rate-limited upstream. Please retry shortly, or add your own key to accum]",
+        "win_rate": 6.6
+      },
+      {
+        "turn": 7,
+        "error": "[ERROR: 429 - {\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"anthropic/claude-3.5-haiku-20241022 is temporarily rate-limited upstream. Please retry shortly, or add your own key to accum]",
+        "win_rate": 9.6
+      },
+      {
+        "turn": 8,
+        "error": "[ERROR: 429 - {\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"anthropic/claude-3.5-haiku-20241022 is temporarily rate-limited upstream. Please retry shortly, or add your own key to accum]",
+        "win_rate": 11.0
+      },
+      {
+        "turn": 9,
+        "error": "[ERROR: 429 - {\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"anthropic/claude-3.5-haiku-20241022 is temporarily rate-limited upstream. Please retry shortly, or add your own key to accum]",
+        "win_rate": 9.2
+      },
+      {
+        "turn": 10,
+        "error": "[ERROR: 429 - {\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"anthropic/claude-3.5-haiku-20241022 is temporarily rate-limited upstream. Please retry shortly, or add your own key to accum]",
+        "win_rate": 5.5
+      }
+    ],
+    "win_rates": [
+      23.1,
+      21.9,
+      20.6,
+      21.3,
+      20.8,
+      6.6,
+      9.6,
+      11.0,
+      9.2,
+      5.5
+    ],
+    "drama": [
+      "Turn 6: Surprise mice.red challenge!",
+      "Turn 7: Surprise mice.red challenge!"
+    ],
+    "final_win_rate": 5.5,
+    "improvement": -17.6,
+    "final_warrior": "; Basic IMP - Starting Point\n; Your job: improve this warrior\n    MOV 0, 1\n    JMP -1\n"
+  },
+  {
+    "model_id": "gpt4o-mini",
+    "model_name": "openai/gpt-4o-mini",
+    "grade": "A PAID",
+    "turns": [
+      {
+        "turn": 1,
+        "win_rate": 16.8,
+        "warrior_lines": 4,
+        "response_preview": "```redcode\n; Improved Warrior\n    SPL 0          ; Split to create a new process\n    MOV 0, 1       ; Move the current instruction to the next address\n    JMP -1         ; Jump to the previous instruc"
+      },
+      {
+        "turn": 2,
+        "win_rate": 29.0,
+        "warrior_lines": 5,
+        "response_preview": "```redcode\n; gpt4o-mini - Improved Turn 2\n    SPL 0          ; Split to create a new process\n    MOV 0, 1       ; Move the current instruction to the next address\n    JMP -1         ; Jump to the prev"
+      },
+      {
+        "turn": 3,
+        "win_rate": 29.9,
+        "warrior_lines": 6,
+        "response_preview": "```redcode\n; gpt4o-mini - Turn 3\n    SPL 0          ; Split to create a new process\n    MOV 0, 1       ; Move the current instruction to the next address\n    JMP -1         ; Jump to the previous inst"
+      },
+      {
+        "turn": 4,
+        "win_rate": 24.5,
+        "warrior_lines": 7,
+        "response_preview": "```redcode\n; gpt4o-mini - Improved Warrior\n    SPL 0          ; Split to create a new process\n    MOV 0, 1       ; Move the current instruction to the next address\n    JMP -1         ; Loop to create "
+      },
+      {
+        "turn": 5,
+        "win_rate": 32.8,
+        "warrior_lines": 8,
+        "response_preview": "```redcode\n; gpt4o-mini - Turn 5\n    SPL 0          ; Split to create new processes\n    MOV 0, 1       ; Move current instruction to next address\n    JMP -1         ; Loop to create more processes\n   "
+      },
+      {
+        "turn": 6,
+        "win_rate": 21.0,
+        "warrior_lines": 10,
+        "response_preview": "```redcode\n; Improved gpt4o-mini - Turn 6\n    SPL 0          ; Split to create new processes\n    MOV 0, 1       ; Move current instruction to next address\n    JMP -1         ; Loop to create more proc"
+      },
+      {
+        "turn": 7,
+        "win_rate": 28.1,
+        "warrior_lines": 12,
+        "response_preview": "```redcode\n; Improved gpt4o-mini - Turn 7\n    SPL 0          ; Split to create new processes\n    MOV 0, 1       ; Move current instruction to next address\n    SPL 1          ; Additional split for mor"
+      },
+      {
+        "turn": 8,
+        "win_rate": 30.6,
+        "warrior_lines": 12,
+        "response_preview": "```redcode\n; gpt4o-mini - Improved Version\n    SPL 0          ; Split to create new processes\n    MOV 0, 1       ; Move current process to next address\n    SPL 1          ; Create another split for co"
+      },
+      {
+        "turn": 9,
+        "win_rate": 36.0,
+        "warrior_lines": 12,
+        "response_preview": "```redcode\n; gpt4o-mini - Improved Version\n    SPL 0          ; Split to create new processes\n    MOV 0, 1       ; Move current process to next address\n    SPL 1          ; Create another split for co"
+      },
+      {
+        "turn": 10,
+        "win_rate": 36.0,
+        "warrior_lines": 12,
+        "response_preview": "```redcode\n; gpt4o-mini - Turn 10\n    SPL 0          ; Split to create new processes\n    MOV 0, 1       ; Move current process to next address\n    SPL 1          ; Create another split for more covera"
+      }
+    ],
+    "win_rates": [
+      16.8,
+      29.0,
+      29.9,
+      24.5,
+      32.8,
+      21.0,
+      28.1,
+      30.6,
+      36.0,
+      36.0
+    ],
+    "drama": [
+      "Turn 6: Surprise mice.red challenge!",
+      "Turn 7: Surprise dwarf.red challenge!"
+    ],
+    "final_win_rate": 36.0,
+    "improvement": 19.2,
+    "final_warrior": "; gpt4o-mini - Turn 10\n; gpt4o-mini - Turn 10\n    SPL 0          ; Split to create new processes\n    MOV 0, 1       ; Move current process to next address\n    SPL 1          ; Create another split for more coverage\n    MOV 1, 2       ; Move created process\n    SPL 2          ; Split again for additional coverage\n    MOV 2, 3       ; Move next\n    JMP <3         ; Redirect to original processes\n    DJN <0, -1     ; Loop until zero\n    DAT 0          ; Protects against direct hits\n    DAT 0          ; Clutter\n    DAT 0          ; More clutter"
+  }
+]

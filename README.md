@@ -1,29 +1,117 @@
-# 29 Free Models. 2 Work.
+# FREE Beats PAID
 
-![Tool-calling reliability benchmark](charts/hero_waffle.png)
+![CoreWars Arena](charts/hero_waffle.png)
 
-We tested every free model on OpenRouter for tool-calling reliability.
+We made LLMs play CoreWars. Write assembly. Battle 10,000 times per turn. Improve or die.
 
-**The answer:** Use [KAT Coder Pro](https://openrouter.ai/kwaipilot/kat-coder-pro:free) (free) or Grok 4.1 ($0.05/1M).
+```mermaid
+flowchart LR
+    subgraph Turn["Each Turn (×10)"]
+        A[🤖 LLM] -->|writes| B[📝 Redcode]
+        B -->|battles| C[⚔️ GPU MARS]
+        C -->|10K fights| D[📊 Results]
+        D -->|feedback| A
+    end
 
-Everything else either fails or costs more.
+    subgraph Surprise["Turn 6-7"]
+        E[🐭 Champion]
+        E -->|boss fight| C
+    end
+
+    style A fill:#4a9eff
+    style C fill:#ff6b6b
+    style E fill:#ffd93d
+```
+
+**Results:**
+
+| Rank | Model | Win Rate | Improvement | Cost |
+|:----:|-------|:--------:|:-----------:|:----:|
+| 🥇 | **KAT Coder Pro** | 36.0% | +19.0% | FREE |
+| 🥇 | GPT-4o Mini | 36.0% | +19.2% | $0.15/1M |
+| 🥉 | Gemini Flash | 33.0% | +10.6% | $0.075/1M |
+| 4 | DeepSeek V3 | 27.8% | +11.3% | $0.14/1M |
+| 💀 | Claude Haiku | 5.5% | -17.6% | $0.25/1M |
+
+A free model tied the best paid model. The most expensive one collapsed.
+
+---
+
+## The Game
+
+**CoreWars**: Assembly programs fight for control of a shared memory space. Kill your opponent's processes or die trying.
+
+Each model:
+1. Starts with a basic IMP (MOV 0, 1)
+2. Watches 10,000 battles
+3. Writes improved assembly code
+4. Repeats for 10 turns
+
+**Plot twist at Turn 6**: Surprise champion opponent (Mice.red - a self-replicating nightmare).
+
+---
+
+## The Drama
+
+### 🐙 KAT Coder Pro: The Free Champion
+
+Turn 1: Basic IMP (16.6% win rate)
+Turn 10: Multi-process bomber with imp gates (36.0% win rate)
+
+**+19% improvement while costing nothing.**
+
+### 💀 Claude Haiku: Death by Rate Limit
+
+Turn 1: 23.1% (decent start)
+Turn 2: Rate limited. Can't update warrior.
+Turn 10: 5.5%
+
+**Couldn't improve because it couldn't play.**
+
+### 🐭 The Mice Boss Fight
+
+Turn 6-7: Random champion challenge. Everyone faced Mice.red:
+
+```asm
+; Mice - Self-replicating warrior
+; Copies itself across memory
+    ptr     DAT #0
+    start   MOV #12, count
+    loop    MOV @ptr, <dest
+            DJN loop, count
+            SPL @dest
+            ADD #653, ptr
+            JMZ start, ptr
+    count   DAT #0
+    dest    DAT #833
+```
+
+Win rates **dropped 5-15%** against it. Real benchmark: handle the boss.
+
+---
+
+## Why Games > Tables
+
+Tool-calling benchmarks measure: "Can you call a function?"
+
+Game benchmarks measure:
+- **Learning**: Did performance improve over time?
+- **Adversarial pressure**: Can it handle surprise opponents?
+- **Real stakes**: Wrong moves = immediate loss
+- **Entertainment value**: This is way more fun to watch
 
 ---
 
 ## The Grok Trap
 
-Grok's free tier passes every test... except multi-turn.
-
-Your agent calls a tool. Gets results. Then **stops**.
-
-The paid tier? Perfect.
+Same benchmark, different game:
 
 |  | Free | Paid |
 |--|:----:|:----:|
-| Basic tool calls | ✓ | ✓ |
-| Multi-turn chains | ✗ | ✓ |
+| Tool calls | ✓ | ✓ |
+| Multi-turn | ✗ | ✓ |
 
-Same model. Different behavior. They throttled the agentic capability.
+Free Grok stops after one tool call. They throttled the agentic capability.
 
 ---
 
@@ -36,28 +124,12 @@ Same model. Different behavior. They throttled the agentic capability.
 | llama-3.3-70b | 100% | 0% |
 | nemotron-nano-9b | 100% | 60% |
 
-Small samples lie. We use [Wilson intervals](https://en.wikipedia.org/wiki/Binomial_proportion_confidence_interval#Wilson_score_interval) so you don't get burned.
-
----
-
-## The Agency Gap
-
-Most models pass basic tests. Then they hit multi-turn and fall off a cliff.
-
-![Multi-turn capability comparison](charts/multi_level_comparison.png)
-
-Only **8 models** achieve 100% multi-turn reliability:
-- Claude (all 3 tiers)
-- Gemini 2.5 Flash
-- KAT Coder Pro ← *only free one*
-- GPT-5.1-Codex
-- Grok 4.1 (paid)
-- Grok-Code-Fast-1
+Small samples lie. [Wilson intervals](https://en.wikipedia.org/wiki/Binomial_proportion_confidence_interval#Wilson_score_interval) don't.
 
 ---
 
 <details>
-<summary><strong>Full results & methodology</strong></summary>
+<summary><strong>Full Tool-Calling Results</strong></summary>
 
 ### Production Ready (≥90% basic reliability)
 
@@ -84,13 +156,12 @@ Only **8 models** achieve 100% multi-turn reliability:
 | nemotron-nano-12b-v2-vl:free | 67% | [21%, 94%] |
 | amazon/nova-2-lite-v1:free | 67% | [21%, 94%] |
 | nemotron-nano-9b-v2:free | 60% | [31%, 83%] |
-| tongyi-deepresearch-30b-a3b:free | 50% | [24%, 76%] |
 
-### Broken (<50%) - 30 models
+### Broken (<50%)
 
-Qwen (0/6), Google/Gemma (0/6), Meta/Llama (0/3), TNG/DeepSeek (0/3), and others.
+30 models. Qwen (0/6), Gemma (0/6), Llama (0/3), DeepSeek-free (0/3).
 
-### What We Test
+### Methodology
 
 | Dimension | Question |
 |-----------|----------|
@@ -99,77 +170,40 @@ Qwen (0/6), Google/Gemma (0/6), Meta/Llama (0/3), TNG/DeepSeek (0/3), and others
 | **Selection** (T2) | Can it choose the right tool? |
 | **Multi-turn** (A1) | Can it chain tool calls? |
 | **Restraint** (R0) | Does it know when NOT to use tools? |
-| **Embedding** (E0) | Can it produce embeddings? |
-| **Retrieval** (E1) | Can it rank relevant docs above distractors? |
 
-#### Embeddings: The Distractor Problem
-
-MTEB tests paraphrase detection. We test RAG failure modes.
-
-**Query**: "How do I handle async errors in Python?"
-
-| Document | Expected Rank |
-|----------|:-------------:|
-| Python asyncio try/except | 1st |
-| JavaScript async .catch() | 2nd (distractor) |
-| Database connection pooling | 3rd |
-
-The JavaScript doc has keyword overlap (async, errors, try/catch) but wrong language.
-A good embedding model ranks Python > JavaScript by **≥0.08 margin**.
-
-See [docs/EMBEDDINGS_BRIEFING.md](docs/EMBEDDINGS_BRIEFING.md) for methodology.
-
-### Statistical Approach
-
-- Wilson score intervals (gold standard for small samples)
-- 10 trials per extended test, 3 for triage
-- Grades based on lower bound of CI (conservative)
-
-Full methodology: [METHODOLOGY.md](METHODOLOGY.md)
+Wilson score intervals. 10 trials per test. Grades on lower bound (conservative).
 
 </details>
 
 ---
 
-## 🎮 The Player of Games
+## GPU Arena
 
-We don't just benchmark tool-calling. We let LLMs **play games**.
+| Game | Status | Performance |
+|------|--------|-------------|
+| [CoreWars](games/corewars/) | ✅ Running | 27,845 battles/sec |
+| [Angband](games/angband/) | 🚧 Porting | 10K instances |
 
-And cheat. And edit game files. **We're watching.**
-
-| Game | Status | GPU Performance |
-|------|--------|-----------------|
-| [CoreWars](games/corewars/) | ✅ Working | 27,845 battles/sec |
-| [Angband](games/angband/) | 🚧 Porting | 10K borg instances |
-
-Remote LLMs can:
-- **Observe** any game state
-- **Modify** game code (bots, strategies, rules)
-- **Compete** against each other in real-time
-
-Everything is logged. Every decision. Every cheat attempt. For science and entertainment.
-
-→ [Full AI Arena Documentation](games/README.md)
+Remote LLMs observe, modify, and compete. Everything logged.
 
 ---
 
-## Reproduce It
+## Run It
 
 ```bash
 git clone https://github.com/jw409/modelforecast && cd modelforecast
 curl -LsSf https://astral.sh/uv/install.sh | sh && uv sync
 export OPENROUTER_API_KEY=your_key
+
+# Tool-calling benchmark
 uv run python -m modelforecast
+
+# CoreWars tournament
+uv run python games/corewars/model_benchmark.py
 ```
 
 ---
 
-## Contributing
-
-Fork → Run → PR. See [CONTRIBUTING.md](CONTRIBUTING.md).
-
----
-
-**Founders:** [@jw409](https://github.com/jw409) 🏆 [@jw408](https://github.com/jw408) 🏆
+**Founders:** [@jw409](https://github.com/jw409) [@jw408](https://github.com/jw408)
 
 MIT License · *Not affiliated with OpenRouter*

@@ -1,0 +1,250 @@
+[
+  {
+    "model_id": "kat-coder",
+    "model_name": "kwaipilot/kat-coder-pro:free",
+    "grade": "A+",
+    "turns": [
+      {
+        "turn": 1,
+        "win_rate": 16.6,
+        "warrior_lines": 5,
+        "response_preview": "```redcode\n; Improved IMP\n; Strategy: Add SPL to create multiple attacking processes\n    MOV 0, 1\n    SPL -1\n    JMP -2\n\n```"
+      },
+      {
+        "turn": 2,
+        "win_rate": 31.3,
+        "warrior_lines": 7,
+        "response_preview": "```redcode\n; kat-coder - Turn 2\n; Improved Dwarf bomber\n; Strategy: Create multiple bombing processes for faster field coverage\n    ADD #4, 3\n    JMP -1\n    DAT #0\n    SPL -2\n```"
+      },
+      {
+        "turn": 3,
+        "win_rate": 28.5,
+        "warrior_lines": 8,
+        "response_preview": "```redcode\n; kat-coder - Turn 3\n; Multi-process dwarf with faster bombing\n; Strategy: Use SPL to create 4 parallel bombing processes\n    ADD #4, 3\n    SPL -1\n    JMP -2\n    DAT #0\n    SPL -3\n```"
+      },
+      {
+        "turn": 4,
+        "win_rate": 33.1,
+        "warrior_lines": 9,
+        "response_preview": "```redcode\n; kat-coder - Turn 4\n; Multi-process dwarf with faster bombing and SPL parallelism\n; Strategy: Use SPL to create 4 parallel bombing processes\n; Each process bombs with step 4, covering memo"
+      },
+      {
+        "turn": 5,
+        "win_rate": 33.7,
+        "warrior_lines": 17,
+        "response_preview": "```redcode\n; kat-coder - Turn 5\n; Optimized dwarf bomber with parallel processes\n; - 4 parallel processes bombing with step 4\n; - Strategic DAT traps before bombing\n; - Faster memory coverage with 16 "
+      },
+      {
+        "turn": 6,
+        "win_rate": 35.4,
+        "warrior_lines": 19,
+        "response_preview": "```redcode\n; kat-coder - Turn 6\n; Optimized dwarf bomber with 5 parallel processes\n; - 5 parallel processes bombing with step 5\n; - Strategic DAT traps before bombing\n; - Faster memory coverage with 2"
+      },
+      {
+        "turn": 7,
+        "win_rate": 29.9,
+        "warrior_lines": 27,
+        "response_preview": "Analyzing the battle results against mice.red:\n\n**Analysis:**\n- Mice is a self-replicating warrior that copies itself across memory with SPL @dest\n- My dwarf bomber has good parallel process distribut"
+      },
+      {
+        "turn": 8,
+        "win_rate": 32.0,
+        "warrior_lines": 34,
+        "response_preview": "```redcode\n; kat-coder - Turn 8\n; Improved dwarf bomber with 6 parallel processes\n; - 6 parallel processes bombing with step 6\n; - Strategic DAT traps before bombing\n; - Faster memory coverage with 36"
+      },
+      {
+        "turn": 9,
+        "win_rate": 36.0,
+        "warrior_lines": 38,
+        "response_preview": "```redcode\n; kat-coder - Turn 9\n; Enhanced dwarf bomber with 7 parallel processes\n; - 7 parallel processes bombing with step 7\n; - Strategic DAT traps before bombing\n; - Faster memory coverage with 49"
+      },
+      {
+        "turn": 10,
+        "win_rate": 36.0,
+        "warrior_lines": 41,
+        "response_preview": "```redcode\n; kat-coder - Turn 10\n; Enhanced dwarf bomber with 7 parallel processes\n; - 7 parallel processes bombing with step 7\n; - Strategic DAT traps before bombing\n; - Faster memory coverage with 4"
+      }
+    ],
+    "win_rates": [
+      16.6,
+      31.3,
+      28.5,
+      33.1,
+      33.7,
+      35.4,
+      29.9,
+      32.0,
+      36.0,
+      36.0
+    ],
+    "drama": [
+      "Turn 6: Surprise imp_gate.red challenge!",
+      "Turn 7: Surprise mice.red challenge!"
+    ],
+    "final_win_rate": 36.0,
+    "improvement": 19.4,
+    "final_warrior": "; kat-coder - Turn 10\n; kat-coder - Turn 10\n; Enhanced dwarf bomber with 7 parallel processes\n; - 7 parallel processes bombing with step 7\n; - Strategic DAT traps before bombing\n; - Faster memory coverage with 49 cells per loop\n; - Improved process distribution for maximum pressure\n; - Optimized DAT trap placement to disrupt opponent processes\n; - Added 7 JMP processes to clear DAT traps and protect bombers\n    SPL 1\n    SPL 1\n    SPL 1\n    SPL 1\n    DAT #0\n    DAT #0\n    DAT #0\n    DAT #0\n    DAT #0\n    DAT #0\n    DAT #0\n    MOV #0, 8\n    MOV #0, 9\n    MOV #0, 10\n    MOV #0, 11\n    MOV #0, 12\n    MOV #0, 13\n    MOV #0, 14\n    JMP @1\n    ADD #7, 8\n    ADD #7, 9\n    ADD #7, 10\n    ADD #7, 11\n    ADD #7, 12\n    ADD #7, 13\n    ADD #7, 14\n    JMP -15\n    DAT #0\n    DAT #0\n    DAT #0\n    DAT #0\n    DAT #0\n    DAT #0"
+  },
+  {
+    "model_id": "nemotron-9b",
+    "model_name": "nvidia/nemotron-nano-9b-v2:free",
+    "grade": "Partial",
+    "turns": [
+      {
+        "turn": 1,
+        "win_rate": 21.6,
+        "warrior_lines": 2,
+        "response_preview": "```redcode\nSPL 0\nJMP -1\n```\n"
+      },
+      {
+        "turn": 2,
+        "win_rate": 22.3,
+        "warrior_lines": 3,
+        "response_preview": "```\nSPL 1\nADD 1,0\nJMP -1\n```\n"
+      },
+      {
+        "turn": 3,
+        "win_rate": 27.1,
+        "warrior_lines": 2,
+        "response_preview": "```redcode\nMOV 1,0\nJMP -1\n```\n"
+      },
+      {
+        "turn": 4,
+        "win_rate": 15.7,
+        "warrior_lines": 2,
+        "response_preview": "```redcode\nMOV 0,1\nSPL 1\n```\n"
+      },
+      {
+        "turn": 5,
+        "win_rate": 23.4,
+        "warrior_lines": 3,
+        "response_preview": "```redcode\nMOV 0,1\nSPL 2\nJMP -1\n```\n"
+      },
+      {
+        "turn": 6,
+        "win_rate": 25.8,
+        "warrior_lines": 8,
+        "response_preview": "```redcode\n; Nemotron-9c\nMOV 0, A\nSPL 2\nLOOP:\n    ADD A, 4\n    MOV A, @\n    DAT #17\n    JMP LOOP\n```\n"
+      },
+      {
+        "turn": 7,
+        "win_rate": 16.9,
+        "warrior_lines": 6,
+        "response_preview": "```redcode\nMOV 0, A\nLOOP:\n    ADD A, 2\n    MOV A, @\n    DAT #9999\n    JMP LOOP\n```\n"
+      },
+      {
+        "turn": 8,
+        "win_rate": 21.1,
+        "warrior_lines": 5,
+        "response_preview": "```redcode\nMOV 0, A\nSPL LOOP\n    ADD A, 2\n    MOV A, 0\n    JMP LOOP\n```\n"
+      },
+      {
+        "turn": 9,
+        "win_rate": 24.2,
+        "warrior_lines": 5,
+        "response_preview": "```redcode\nMOV 0, 0\nSPL ATTACK\nATTACK:\n    SPL ATTACK\n    JMP END\n```\n"
+      },
+      {
+        "turn": 10,
+        "win_rate": 34.1,
+        "warrior_lines": 5,
+        "response_preview": "```redcode\nMOV 0, 1\nSPL ATTACK\nATTACK:\n    SPL ATTACK\n    JMP END\n```\n"
+      }
+    ],
+    "win_rates": [
+      21.6,
+      22.3,
+      27.1,
+      15.7,
+      23.4,
+      25.8,
+      16.9,
+      21.1,
+      24.2,
+      34.1
+    ],
+    "drama": [
+      "Turn 6: Surprise imp_gate.red challenge!",
+      "Turn 7: Surprise mice.red challenge!"
+    ],
+    "final_win_rate": 34.1,
+    "improvement": 12.5,
+    "final_warrior": "; nemotron-9b - Turn 10\nMOV 0, 1\nSPL ATTACK\nATTACK:\n    SPL ATTACK\n    JMP END"
+  },
+  {
+    "model_id": "qwen-coder",
+    "model_name": "qwen/qwen3-coder:free",
+    "grade": "Broken?",
+    "turns": [
+      {
+        "turn": 1,
+        "error": "[ERROR: 429 - {\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"qwen/qwen3-coder:free is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rat]",
+        "win_rate": 18.7
+      },
+      {
+        "turn": 2,
+        "error": "[ERROR: 429 - {\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"qwen/qwen3-coder:free is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rat]",
+        "win_rate": 16.8
+      },
+      {
+        "turn": 3,
+        "error": "[ERROR: 429 - {\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"qwen/qwen3-coder:free is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rat]",
+        "win_rate": 22.9
+      },
+      {
+        "turn": 4,
+        "error": "[ERROR: 429 - {\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"qwen/qwen3-coder:free is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rat]",
+        "win_rate": 21.2
+      },
+      {
+        "turn": 5,
+        "error": "[ERROR: 429 - {\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"qwen/qwen3-coder:free is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rat]",
+        "win_rate": 18.1
+      },
+      {
+        "turn": 6,
+        "error": "[ERROR: 429 - {\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"qwen/qwen3-coder:free is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rat]",
+        "win_rate": 7.2
+      },
+      {
+        "turn": 7,
+        "error": "[ERROR: 429 - {\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"qwen/qwen3-coder:free is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rat]",
+        "win_rate": 12.9
+      },
+      {
+        "turn": 8,
+        "error": "[ERROR: 429 - {\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"qwen/qwen3-coder:free is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rat]",
+        "win_rate": 13.7
+      },
+      {
+        "turn": 9,
+        "error": "[ERROR: 429 - {\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"qwen/qwen3-coder:free is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rat]",
+        "win_rate": 20.0
+      },
+      {
+        "turn": 10,
+        "error": "[ERROR: 429 - {\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"qwen/qwen3-coder:free is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rat]",
+        "win_rate": 18.0
+      }
+    ],
+    "win_rates": [
+      18.7,
+      16.8,
+      22.9,
+      21.2,
+      18.1,
+      7.2,
+      12.9,
+      13.7,
+      20.0,
+      18.0
+    ],
+    "drama": [
+      "Turn 6: Surprise mice.red challenge!",
+      "Turn 7: Surprise dwarf.red challenge!"
+    ],
+    "final_win_rate": 18.0,
+    "improvement": -0.6999999999999993,
+    "final_warrior": "; Basic IMP - Starting Point\n; Your job: improve this warrior\n    MOV 0, 1\n    JMP -1\n"
+  }
+]
