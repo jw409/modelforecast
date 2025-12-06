@@ -16,8 +16,11 @@
  */
 
 #include "doom_types.cuh"
+#include "doom_interest.cuh"
+#include "doom_export.cuh"
 #include <cuda_runtime.h>
 #include <stdio.h>
+#include <string.h>
 #include <chrono>
 
 // =============================================================================
@@ -66,6 +69,9 @@ __device__ uint8_t* d_game_won;
 __device__ int32_t* d_completion_tick;
 __device__ int32_t* d_monsters_killed;
 __device__ int32_t* d_monsters_total;
+
+// Interest tracking state
+__device__ InterestState* d_interest_state;
 
 // Configuration
 __constant__ int c_num_instances;
@@ -155,10 +161,7 @@ __device__ __forceinline__ fixed_t FixedDiv(fixed_t a, fixed_t b) {
 // Angle/Trig Tables (simplified - full version loads from WAD)
 // =============================================================================
 
-// Fine angles: 8192 entries for full circle
-#define FINEANGLES      8192
-#define FINEMASK        (FINEANGLES - 1)
-#define ANGLETOFINESHIFT 19
+// Fine angles defined in doom_types.cuh
 
 // Precomputed sine table (first quadrant, others derived)
 __constant__ fixed_t c_finesine[FINEANGLES / 4 + 1];
@@ -175,82 +178,7 @@ __device__ fixed_t finecosine(int idx) {
     return finesine(idx + FINEANGLES / 4);
 }
 
-// =============================================================================
-// Random Number Generator (simplified from P_Random)
-// =============================================================================
-
-// Simple LCG for GPU (each instance uses different seed)
-__device__ uint32_t gpu_random(int instance_id, int tick) {
-    uint32_t seed = instance_id * 1103515245 + tick * 12345;
-    return (seed / 65536) % 256;
-}
-
-// =============================================================================
-// Combat Helper Functions
-// =============================================================================
-
-// Approximate distance (Manhattan distance scaled by 0.7 for diagonal)
-__device__ fixed_t P_AproxDistance(fixed_t dx, fixed_t dy) {
-    dx = abs(dx);
-    dy = abs(dy);
-    if (dx < dy)
-        return dx + dy - (dx >> 1);
-    return dx + dy - (dy >> 1);
-}
-
-// Check if monster can see player (simplified - no BSP check for Phase 2)
-__device__ bool P_CheckSight_Simple(
-    fixed_t mon_x, fixed_t mon_y,
-    fixed_t target_x, fixed_t target_y)
-{
-    // Phase 2: Always visible if in range
-    // Phase 3 will add BSP line-of-sight checks
-    fixed_t dx = target_x - mon_x;
-    fixed_t dy = target_y - mon_y;
-    fixed_t dist = P_AproxDistance(dx, dy);
-    return dist < MISSILERANGE * 2;
-}
-
-// Damage player
-__device__ void P_DamagePlayer(int instance_id, int damage) {
-    int health = d_player_health[instance_id];
-    int armor = d_player_armor[instance_id];
-
-    // Armor absorbs some damage
-    if (armor > 0) {
-        int absorbed = damage / 3;
-        armor -= absorbed;
-        damage -= absorbed;
-        if (armor < 0) {
-            damage += armor;  // Overflow damage
-            armor = 0;
-        }
-        d_player_armor[instance_id] = armor;
-    }
-
-    health -= damage;
-    if (health <= 0) {
-        health = 0;
-        d_player_alive[instance_id] = 0;
-    }
-    d_player_health[instance_id] = health;
-}
-
-// Damage monster
-__device__ void P_DamageMonster(int monster_idx, int instance_id, int num_instances, int damage) {
-    int idx = monster_idx * num_instances + instance_id;
-    int health = d_monster_health[idx];
-    health -= damage;
-
-    if (health <= 0) {
-        health = 0;
-        d_monster_alive[idx] = 0;
-        // Player gets kill credit
-        d_player_kills[instance_id]++;
-    }
-
-    d_monster_health[idx] = health;
-}
+// Combat helper functions are in doom_combat.cuh (included via doom_levels.cuh)
 
 // =============================================================================
 // P_PlayerThink - GPU Port (Simplified)
@@ -408,37 +336,56 @@ __device__ void WriteCheckpoint_GPU(int instance_id, int tick, int num_instances
 
 __global__ void doom_simulate(int num_instances, int num_ticks, int checkpoint_interval) {
     int instance_id = blockIdx.x * blockDim.x + threadIdx.x;
+
+    // Each instance runs independently - no syncthreads needed
+    // Early exit for threads beyond our instance count
     if (instance_id >= num_instances) return;
 
-    // Initialize level state on first tick
-    if (instance_id < num_instances) {
-        InitLevelState(instance_id);
-    }
-    __syncthreads();
+    // Initialize level state (spawns monsters)
+    InitLevelState(instance_id, num_instances);
+
+    // Initialize interest tracking
+    InitInterestTracking_Impl(&d_interest_state[instance_id]);
+
+    // Track kills for interest detection
+    int16_t prev_kills = 0;
 
     for (int tick = 0; tick < num_ticks; tick++) {
-        // Skip if game already won
-        if (d_game_won[instance_id]) {
-            __syncthreads();
-            continue;
-        }
+        // Store previous health for interest detection
+        int prev_health = d_player_health[instance_id];
+
+        // Skip if player dead or game already won
+        if (!d_player_alive[instance_id] || d_game_won[instance_id]) continue;
+
+        // Get input for this tick
+        int input_idx = tick * num_instances + instance_id;
+        TicCmd cmd = d_input_buffer[input_idx];
 
         // Player thinking (movement, actions)
         P_PlayerThink_GPU(instance_id, tick, num_instances);
 
-        // Check for level completion (exit trigger)
-        CheckLevelCompletion(instance_id, tick);
+        // Monster AI - chase and attack player
+        P_MonsterThink_GPU(instance_id, tick, num_instances);
 
-        // TODO Phase 3: P_RunThinkers_GPU (monsters, projectiles)
-        // TODO Phase 3: P_UpdateSpecials_GPU (doors, platforms)
+        // Check for level completion (exit trigger) - requires USE button
+        CheckLevelCompletion(instance_id, tick, cmd.buttons);
+
+        // Update interest tracking
+        int curr_health = d_player_health[instance_id];
+        int16_t curr_kills = d_player_kills[instance_id];
+        int kills_this_tick = curr_kills - prev_kills;
+        prev_kills = curr_kills;
+
+        int level = d_current_level[instance_id];
+        UpdateInterestTracking_Impl(
+            &d_interest_state[instance_id],
+            tick, prev_health, curr_health, kills_this_tick, level
+        );
 
         // Write checkpoint if interval hit
         if (checkpoint_interval > 0 && (tick % checkpoint_interval) == 0) {
             WriteCheckpoint_GPU(instance_id, tick, num_instances);
         }
-
-        // Sync all instances before next tick (important for multiplayer logic)
-        __syncthreads();
     }
 
     // Final checkpoint
@@ -490,6 +437,9 @@ struct DoomArena {
     int32_t* completion_tick;
     int32_t* monsters_killed;
     int32_t* monsters_total;
+
+    // Interest tracking
+    InterestState* interest_state;
 
     int num_instances;
     int max_ticks;
@@ -585,11 +535,17 @@ void InitArena(DoomArena* arena, int num_instances, int max_ticks) {
     cudaMemcpyToSymbol(d_monsters_killed, &arena->monsters_killed, sizeof(int32_t*));
     cudaMemcpyToSymbol(d_monsters_total, &arena->monsters_total, sizeof(int32_t*));
 
+    // Allocate interest tracking
+    cudaMalloc(&arena->interest_state, n * sizeof(InterestState));
+    cudaMemset(arena->interest_state, 0, n * sizeof(InterestState));
+    cudaMemcpyToSymbol(d_interest_state, &arena->interest_state, sizeof(InterestState*));
+
     printf("Arena initialized: %d instances, %d max ticks\n", num_instances, max_ticks);
     printf("Memory allocated:\n");
     printf("  Player state: %.2f MB\n", (n * 10 * sizeof(fixed_t)) / (1024.0 * 1024.0));
     printf("  Input buffer: %.2f MB\n", (input_size * sizeof(TicCmd)) / (1024.0 * 1024.0));
     printf("  Checkpoints:  %.2f MB\n", (checkpoint_size * sizeof(Checkpoint)) / (1024.0 * 1024.0));
+    printf("  Interest:     %.2f MB\n", (n * sizeof(InterestState)) / (1024.0 * 1024.0));
 }
 
 void FreeArena(DoomArena* arena) {
@@ -627,6 +583,7 @@ void FreeArena(DoomArena* arena) {
     cudaFree(arena->completion_tick);
     cudaFree(arena->monsters_killed);
     cudaFree(arena->monsters_total);
+    cudaFree(arena->interest_state);
 }
 
 // =============================================================================
@@ -823,15 +780,42 @@ int main(int argc, char** argv) {
     int num_instances = 150000;
     int num_ticks = 500;
     int checkpoint_interval = 35;  // Every second of game time
+    const char* export_dir = nullptr;
 
-    if (argc > 1) num_instances = atoi(argv[1]);
-    if (argc > 2) num_ticks = atoi(argv[2]);
-    if (argc > 3) checkpoint_interval = atoi(argv[3]);
+    // Parse arguments
+    for (int i = 1; i < argc; i++) {
+        if (strcmp(argv[i], "--export-scenarios") == 0 && i + 1 < argc) {
+            export_dir = argv[++i];
+        } else if (strcmp(argv[i], "--help") == 0 || strcmp(argv[i], "-h") == 0) {
+            printf("Usage: doom_sim [instances] [ticks] [checkpoint_interval]\n");
+            printf("       doom_sim --export-scenarios <dir> [instances] [ticks]\n");
+            printf("\n");
+            printf("Options:\n");
+            printf("  --export-scenarios <dir>  Export interesting moments as JSON\n");
+            printf("  --help, -h                Show this help\n");
+            printf("\n");
+            printf("Examples:\n");
+            printf("  doom_sim 10000 1000             # Run 10k instances for 1000 ticks\n");
+            printf("  doom_sim --export-scenarios ../browser/dist 10000 500\n");
+            return 0;
+        } else if (argv[i][0] != '-') {
+            // Positional arguments
+            static int pos_arg = 0;
+            if (pos_arg == 0) num_instances = atoi(argv[i]);
+            else if (pos_arg == 1) num_ticks = atoi(argv[i]);
+            else if (pos_arg == 2) checkpoint_interval = atoi(argv[i]);
+            pos_arg++;
+        }
+    }
 
     printf("=== GPU DOOM Test ===\n");
     printf("Instances: %d\n", num_instances);
     printf("Ticks: %d (%.1f seconds game time)\n", num_ticks, num_ticks / 35.0f);
-    printf("Checkpoint interval: %d ticks\n\n", checkpoint_interval);
+    printf("Checkpoint interval: %d ticks\n", checkpoint_interval);
+    if (export_dir) {
+        printf("Export directory: %s\n", export_dir);
+    }
+    printf("\n");
 
     // Initialize
     InitSineTable();
@@ -893,6 +877,36 @@ int main(int argc, char** argv) {
     ReadCheckpoints(&arena, 0);
     if (num_instances > 1) {
         ReadCheckpoints(&arena, num_instances / 2);
+    }
+
+    // Export scenarios if requested
+    if (export_dir) {
+        printf("\n=== Exporting Scenarios ===\n");
+
+        // Copy interest state from GPU
+        InterestState* h_interest = new InterestState[num_instances];
+        cudaMemcpy(h_interest, arena.interest_state,
+                   num_instances * sizeof(InterestState), cudaMemcpyDeviceToHost);
+
+        // Copy input buffer for playback data
+        size_t input_size = (size_t)num_instances * num_ticks;
+        TicCmd* h_inputs = new TicCmd[input_size];
+        cudaMemcpy(h_inputs, arena.input_buffer, input_size * sizeof(TicCmd), cudaMemcpyDeviceToHost);
+
+        // Export to JSON
+        int exported = ExportScenarios(
+            export_dir,
+            num_instances,
+            h_interest,
+            h_inputs,
+            num_ticks,
+            checkpoint_interval
+        );
+
+        printf("\nExported %d scenarios to %s/scenarios/\n", exported, export_dir);
+
+        delete[] h_interest;
+        delete[] h_inputs;
     }
 
     // Cleanup
