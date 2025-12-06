@@ -88,42 +88,29 @@ Batched execution: 84 batches × 300K concurrent battles.
 ---
 
 <details>
-<summary><strong>Tool-Calling Framework (L0-L4)</strong></summary>
+<summary><strong>Tool-Calling Benchmark (TRA Framework)</strong></summary>
 
 Separate benchmark: Can models reliably call tools?
 
-### Perfect Score (A+) - 100% across all dimensions
+See [docs/METHODOLOGY.md](docs/METHODOLOGY.md) for full framework details.
 
-| Model | L0 Basic | L1 Schema | L2 Selection | L3 Multi-turn | L4 Restraint | Grade |
-|-------|:--------:|:---------:|:------------:|:-------------:|:------------:|:-----:|
-| anthropic/claude-haiku-4.5 | 100% | 100% | 100% | 100% | 100% | **A+** |
-| anthropic/claude-sonnet-4.5 | 100% | 100% | 100% | 100% | 100% | **A+** |
-| anthropic/claude-opus-4.5 | 100% | 100% | 100% | 100% | 100% | **A+** |
-| google/gemini-2.5-flash-preview | 100% | 100% | 100% | 100% | 100% | **A+** |
-| kwaipilot/kat-coder-pro:free | 100% | 100% | 100% | 100% | 100% | **A+** |
-| openai/gpt-5.1-codex | 100% | 100% | 100% | 100% | 100% | **A+** |
-| x-ai/grok-4.1-fast | 100% | 100% | 100% | 100% | 100% | **A+** |
+### Dimensions
 
-### L3 Multi-Turn Failures (The Grok Trap)
+| Code | Name | What We Test |
+|------|------|--------------|
+| **T0** | Invoke | Can it produce a `tool_call` at all? |
+| **T1** | Schema | Does it respect parameter types? (int vs string) |
+| **T2** | Selection | Given multiple tools, can it choose correctly? |
+| **A1** | Agency | Can it chain tool calls across turns? |
+| **R0** | Restraint | Does it know when NOT to use tools? |
 
-| Model | L0 | L1 | L2 | L3 | L4 | Notes |
-|-------|:--:|:--:|:--:|:--:|:--:|-------|
-| x-ai/grok-4.1-fast:free | 100% | 100% | 100% | **0%** | 100% | Free tier throttled |
-| openai/gpt-5-mini | 100% | 100% | 80% | **20%** | 100% | Budget = weak L3 |
+### Results
 
-Free Grok stops after one tool call. They throttled the agentic capability.
+| Model | T0 | T1 | T2 | A1 | R0 | Grade |
+|-------|:--:|:--:|:--:|:--:|:--:|:-----:|
+| kwaipilot/kat-coder-pro | 100% | 100% | 100% | 100% | 100% | **A** |
 
-### Methodology
-
-| Level | Dimension | Question |
-|:-----:|-----------|----------|
-| L0 | **Basic** | Can it call a tool at all? |
-| L1 | **Schema** | Does it respect parameter types? |
-| L2 | **Selection** | Can it choose the right tool? |
-| L3 | **Multi-turn** | Can it chain tool calls? |
-| L4 | **Restraint** | Does it know when NOT to use tools? |
-
-Wilson score intervals. 5-10 trials per test.
+*Wilson score intervals. n=10 per cell.*
 
 </details>
 
