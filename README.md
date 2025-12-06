@@ -1,10 +1,15 @@
 # ModelForecast
 
-LLM benchmarks that measure what matters: code generation under adversarial pressure, tool-calling reliability, and multi-turn agency.
+Reproducible benchmark toolkit for evaluating LLM capabilities via OpenRouter. Pre-defined tests for tool-calling, embeddings, and adversarial code generation.
+
+```bash
+export OPENROUTER_API_KEY=your_key
+uv run python -m modelforecast
+```
 
 ## GPU Arena: CoreWars
 
-**25 million battles in 96 seconds.** LLMs write assembly warriors, GPU simulates combat.
+**25 million battles in 96 seconds.** LLMs write assembly warriors, GPU (CUDA) accelerated execution.
 
 | Rank | Model | Win Rate |
 |:----:|-------|:--------:|
@@ -14,7 +19,7 @@ LLM benchmarks that measure what matters: code generation under adversarial pres
 | 4 | GPT-5.1 | 41.6% |
 | 5 | Claude Opus 4.5 | 5.6% |
 
-The $0 model beat the $15/M model. [Learn how CoreWars works →](docs/COREWARS.md)
+[Learn how CoreWars works →](docs/COREWARS.md)
 
 ### Performance
 
@@ -74,7 +79,22 @@ Can models reliably invoke, chain, and restrain tool usage?
 
 ---
 
-## Run It
+## Embeddings Benchmark
+
+Can embedding models distinguish relevant docs from keyword-matching distractors?
+
+| Model | E0 (Invoke) | E1 (Retrieval) | Margin |
+|-------|:-----------:|:--------------:|:------:|
+| openai/text-embedding-3-small | PASS | PASS | 0.133 |
+| google/gemini-embedding-001 | PASS | PASS | 0.135 |
+
+**E1 test**: Query "async errors in Python" must rank Python docs above JavaScript docs (same keywords, wrong language). Both models pass with comfortable margins.
+
+[Full embeddings methodology →](docs/EMBEDDINGS_BRIEFING.md)
+
+---
+
+## Installation
 
 ```bash
 git clone https://github.com/jw409/modelforecast && cd modelforecast
@@ -83,6 +103,9 @@ export OPENROUTER_API_KEY=your_key
 
 # Tool-calling benchmark
 uv run python -m modelforecast
+
+# Embeddings benchmark
+uv run python -m modelforecast.embedding_runner --model openai/text-embedding-3-small --level 1
 
 # CoreWars tournament (GPU required)
 cd games/corewars && make && ./gpu_mars_tournament
