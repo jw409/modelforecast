@@ -1,118 +1,76 @@
-# ARE YOU NOT ENTERTAINED?!
+# ModelForecast
 
-We made LLMs write assembly warriors and fight **25 million battles** in 96 seconds.
+LLM benchmarks that measure what matters: code generation under adversarial pressure, tool-calling reliability, and multi-turn agency.
 
-**262,000 battles/sec** on RTX 5090.
+## GPU Arena: CoreWars
 
-```mermaid
-flowchart LR
-    A[🤖 LLM] -->|reads spec| B[📜 ICWS'94]
-    B -->|writes| C[📝 Redcode]
-    C -->|loads| D[⚔️ GPU MARS]
-    D -->|25M battles| E[📊 Results]
+**25 million battles in 96 seconds.** LLMs write assembly warriors, GPU simulates combat.
 
-    style A fill:#4a9eff
-    style D fill:#ff6b6b
-```
+| Rank | Model | Win Rate |
+|:----:|-------|:--------:|
+| 1 | Claude Sonnet 4.5 | 94.2% |
+| 2 | KwaiPilot KAT Coder Pro | 66.2% |
+| 3 | DeepSeek V3 | 52.5% |
+| 4 | GPT-5.1 | 41.6% |
+| 5 | Claude Opus 4.5 | 5.6% |
 
-## Results
+The $0 model beat the $15/M model. [Learn how CoreWars works →](docs/COREWARS.md)
 
-| Rank | Model | Win Rate | Strategy |
-|:----:|-------|:--------:|----------|
-| 🥇 | **Claude Sonnet 4.5** | 94.2% | Multi-process scanner + bomber + replicator |
-| 🥈 | KwaiPilot KAT Coder Pro | 66.2% | Bomber with protection gate |
-| 🥉 | DeepSeek V3 | 52.5% | Scanner/replicator hybrid |
-| 4 | GPT-5.1 | 41.6% | Mod-4 bomber with imp-gate |
-| 💀 | Claude Opus 4.5 | 5.6% | Rolling stone (3 lines) |
+### Performance
 
-The $0 model beat the $15/M model. The most expensive one wrote 3 lines and lost.
+| Hardware | Throughput | Notes |
+|----------|------------|-------|
+| RTX 5090 (GPU) | 262,000 battles/sec | Batched, 300K concurrent |
+| i9-14900K (CPU) | 1,700 battles/sec | pMARS, single-threaded |
+
+**154x speedup** with GPU acceleration.
 
 ---
 
-## The Game
+## Tool-Calling Benchmark (TRA Framework)
 
-**CoreWars**: Assembly programs fight for control of shared memory. Kill opponent processes or die.
+Can models reliably invoke, chain, and restrain tool usage?
 
-Each model:
-1. Reads the ICWS'94 Redcode specification
-2. Writes ONE warrior (no iteration, no feedback)
-3. Battles every other warrior 1M times each
-4. Winner = highest total win rate
+| Dimension | Code | Question |
+|-----------|------|----------|
+| **Invoke** | T0 | Can it produce a tool call at all? |
+| **Schema** | T1 | Does it respect parameter types? |
+| **Selection** | T2 | Can it choose the right tool? |
+| **Agency** | A1 | Can it chain tool calls across turns? |
+| **Restraint** | R0 | Does it know when NOT to use tools? |
 
-**No learning. No adaptation. Just raw code generation from spec.**
+### Grade A (Production Ready)
 
----
+| Model | T0 | T1 | T2 | A1 | R0 |
+|-------|:--:|:--:|:--:|:--:|:--:|
+| anthropic/claude-haiku-4.5 | 100% | 100% | 100% | 100% | 100% |
+| anthropic/claude-opus-4.5 | 100% | 100% | 100% | 100% | 100% |
+| anthropic/claude-sonnet-4.5 | 100% | 100% | 100% | 100% | 100% |
+| deepseek/deepseek-v3.2-exp | 100% | 100% | 100% | 100% | 100% |
+| google/gemini-2.5-flash-preview | 100% | 100% | 100% | 100% | 100% |
+| kwaipilot/kat-coder-pro:free | 100% | 100% | 100% | 100% | 100% |
+| openai/gpt-5.1 | 100% | 100% | 100% | 100% | 100% |
+| openai/gpt-5.1-codex | 100% | 100% | 100% | 100% | 100% |
+| x-ai/grok-4.1-fast | 100% | 100% | 100% | 100% | 100% |
+| x-ai/grok-code-fast-1 | 100% | 100% | 100% | 100% | 100% |
 
-## The Warriors
+### Grade B (Agency Issues)
 
-### 🥇 Claude Sonnet 4.5: "Silk"
+| Model | T0 | T1 | T2 | A1 | R0 | Notes |
+|-------|:--:|:--:|:--:|:--:|:--:|-------|
+| google/gemini-3-pro-preview | 100% | 100% | 100% | **0%** | 100% | Can't chain tools |
+| x-ai/grok-4.1-fast:free | 100% | 100% | 100% | **0%** | 100% | Free tier throttled |
 
-Multi-pronged attack with redundancy:
+### Grade F (Broken Tool Calling)
 
-```asm
-start   SPL     bomber          ; Split off bomber process
-        SPL     scanner         ; Split off scanner process
-        SPL     replicate       ; Split off replication process
+30+ free-tier models cannot reliably call tools:
 
-scanner ADD.AB  #15,    sptr    ; Hunt for enemy code
-sptr    JMZ.F   scanner, 300    ; If zero, keep scanning
-        MOV.AB  sbomb,  @sptr   ; Found! Bomb it
-```
+- **Qwen free tier**: qwen3-coder, qwen3-4b, qwen3-14b, qwen3-30b, qwen3-32b, qwen3-235b (all 0%)
+- **Llama free tier**: llama-3.3-70b, llama-4-maverick, hermes-3-405b (all 0%)
+- **DeepSeek free tier**: deepseek-chat-v3-0324, r1t-chimera variants (all 0%)
+- **Gemma free tier**: gemma-3-4b, gemma-3-12b, gemma-3-27b (all 0%)
 
-**Why it wins**: Creates 4 parallel attack vectors. If one dies, others continue.
-
-### 💀 Claude Opus 4.5: "Granite"
-
-```asm
-stone   MOV.I   <-100,  >200    ; Decrement behind, increment ahead
-        ADD.AB  #653,   stone   ; Change bombing distance
-        JMP.A   stone           ; Loop
-```
-
-**Why it loses**: Single process, predictable pattern, no defense. Dies to any scanner.
-
----
-
-## GPU Performance
-
-| Metric | Value |
-|--------|-------|
-| Total battles | 25,200,000 |
-| Time | 95.9 seconds |
-| Throughput | 262,773 battles/sec |
-| GPU | RTX 5090 |
-| VRAM used | ~28 GB |
-
-Batched execution: 84 batches × 300K concurrent battles.
-
----
-
-<details>
-<summary><strong>Tool-Calling Benchmark (TRA Framework)</strong></summary>
-
-Separate benchmark: Can models reliably call tools?
-
-See [docs/METHODOLOGY.md](docs/METHODOLOGY.md) for full framework details.
-
-### Dimensions
-
-| Code | Name | What We Test |
-|------|------|--------------|
-| **T0** | Invoke | Can it produce a `tool_call` at all? |
-| **T1** | Schema | Does it respect parameter types? (int vs string) |
-| **T2** | Selection | Given multiple tools, can it choose correctly? |
-| **A1** | Agency | Can it chain tool calls across turns? |
-| **R0** | Restraint | Does it know when NOT to use tools? |
-
-### Results
-
-| Model | T0 | T1 | T2 | A1 | R0 | Grade |
-|-------|:--:|:--:|:--:|:--:|:--:|:-----:|
-| kwaipilot/kat-coder-pro | 100% | 100% | 100% | 100% | 100% | **A** |
-
-*Wilson score intervals. n=10 per cell.*
-
-</details>
+[Full methodology →](docs/METHODOLOGY.md)
 
 ---
 
@@ -123,11 +81,14 @@ git clone https://github.com/jw409/modelforecast && cd modelforecast
 curl -LsSf https://astral.sh/uv/install.sh | sh && uv sync
 export OPENROUTER_API_KEY=your_key
 
-# Generate warriors (calls LLMs)
-uv run python games/corewars/generate_warriors.py
+# Tool-calling benchmark
+uv run python -m modelforecast
 
-# Run tournament (GPU)
+# CoreWars tournament (GPU required)
 cd games/corewars && make && ./gpu_mars_tournament
+
+# CoreWars tournament (CPU only)
+./pmars -r 1000 warriors/*.red
 ```
 
 ---
