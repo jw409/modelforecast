@@ -232,14 +232,14 @@ STRATEGIC_DIRECTIVES = {
 
 This benchmark builds on established DOOM AI research infrastructure:
 
-**ViZDoom** ([external/ViZDoom](../external/ViZDoom) | [Farama Foundation](https://github.com/Farama-Foundation/ViZDoom))
+**ViZDoom** ([games/doom/ViZDoom](../games/doom/ViZDoom) | [Farama Foundation](https://github.com/Farama-Foundation/ViZDoom))
 - Standard API for DOOM reinforcement learning research
 - Python bindings to DOOM engine with Gymnasium integration
 - Provides `GameVariables` (health, ammo, kills) that map directly to our JSON protocol
 - Supports custom scenarios via WAD files
 - Our GPU simulation diverges from ViZDoom's rendering-based approach: we simulate game logic at 140M ticks/sec vs ViZDoom's frame-rate-limited execution
 
-**Arnold** ([external/Arnold](../external/Arnold) | [Guillaume Lample, 2016](https://github.com/glample/Arnold))
+**Arnold** ([games/doom/Arnold](../games/doom/Arnold) | [Guillaume Lample, 2016](https://github.com/glample/Arnold))
 - Landmark DRL implementation: "Playing FPS Games with Deep Reinforcement Learning"
 - First to demonstrate navigation + combat in DOOM deathmatch
 - Architecture: Separate navigation and action networks with curriculum learning
