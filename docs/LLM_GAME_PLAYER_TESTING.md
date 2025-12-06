@@ -1,7 +1,7 @@
-# LLM Intervention Protocol Design Analysis
-**For: ModelForecast GPU-Simulated Game Benchmark**
+# LLM Game Player Testing with Local GPU Enhanced Execution
+**Benchmark Framework for: ModelForecast**
 **Date**: 2025-12-05
-**Focus**: LLM↔GPU Communication Architecture
+**Focus**: LLM↔GPU Communication Architecture | GPU-Accelerated Game Simulation
 
 ## Executive Summary
 
@@ -227,6 +227,32 @@ STRATEGIC_DIRECTIVES = {
     }
 }
 ```
+
+#### DOOM Reference Implementations
+
+This benchmark builds on established DOOM AI research infrastructure:
+
+**ViZDoom** ([external/ViZDoom](../external/ViZDoom) | [Farama Foundation](https://github.com/Farama-Foundation/ViZDoom))
+- Standard API for DOOM reinforcement learning research
+- Python bindings to DOOM engine with Gymnasium integration
+- Provides `GameVariables` (health, ammo, kills) that map directly to our JSON protocol
+- Supports custom scenarios via WAD files
+- Our GPU simulation diverges from ViZDoom's rendering-based approach: we simulate game logic at 140M ticks/sec vs ViZDoom's frame-rate-limited execution
+
+**Arnold** ([external/Arnold](../external/Arnold) | [Guillaume Lample, 2016](https://github.com/glample/Arnold))
+- Landmark DRL implementation: "Playing FPS Games with Deep Reinforcement Learning"
+- First to demonstrate navigation + combat in DOOM deathmatch
+- Architecture: Separate navigation and action networks with curriculum learning
+- Uses ViZDoom as backend
+- Serves as baseline for comparing LLM game-playing against trained DRL agents
+
+**Protocol Compatibility**:
+| Our Protocol Field | ViZDoom GameVariable | Arnold Feature |
+|-------------------|---------------------|----------------|
+| `state.health` | `HEALTH` | `game_feature[0]` |
+| `state.ammo` | `AMMO*` | `game_feature[1-4]` |
+| `state.position` | `POSITION_X/Y` | Navigation network input |
+| `visible_monsters` | Depth buffer + labels | Object detection layer |
 
 #### Angband Action Protocol
 
