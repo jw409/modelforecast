@@ -6,7 +6,7 @@ from pathlib import Path
 from collections import defaultdict
 
 results = defaultdict(dict)
-for f in Path('results').glob('*__level_*.json'):
+for f in Path('results').glob('**/*__level_*.json'):
     if 'embedding' in f.name:
         continue
     parts = f.stem.rsplit('__level_', 1)
