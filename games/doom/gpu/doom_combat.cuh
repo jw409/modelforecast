@@ -13,27 +13,12 @@
 #include "doom_types.cuh"
 #include "doom_monsters.cuh"
 
-// External device memory pointers (defined in doom_main.cu)
-extern __device__ fixed_t* d_monster_x;
-extern __device__ fixed_t* d_monster_y;
-extern __device__ fixed_t* d_monster_z;
-extern __device__ angle_t* d_monster_angle;
-extern __device__ int32_t* d_monster_health;
-extern __device__ uint8_t* d_monster_type;
-extern __device__ uint8_t* d_monster_alive;
-extern __device__ int16_t* d_monster_target_idx;
-extern __device__ uint8_t* d_monster_movedir;
-extern __device__ int16_t* d_monster_movecount;
-extern __device__ int16_t* d_monster_reactiontime;
+// Forward declarations for trig functions (defined in doom_main.cu before this include)
+__device__ fixed_t finesine(int idx);
+__device__ fixed_t finecosine(int idx);
 
-extern __device__ int32_t* d_player_health;
-extern __device__ int32_t* d_player_armor;
-extern __device__ fixed_t* d_player_x;
-extern __device__ fixed_t* d_player_y;
-extern __device__ fixed_t* d_player_z;
-extern __device__ angle_t* d_player_angle;
-extern __device__ uint8_t* d_player_alive;
-extern __device__ int16_t* d_player_kills;
+// Device memory pointers are defined in doom_main.cu before this header is included.
+// Access them directly - they're already declared in the translation unit.
 
 // =============================================================================
 // Random Number Generator (simple LCG for GPU)
@@ -102,8 +87,8 @@ __device__ inline void P_DamageMonster(int monster_idx, int instance_id, int num
     if (health <= 0) {
         health = 0;
         d_monster_alive[idx] = 0;
-        // Player gets kill credit
-        atomicAdd(&d_player_kills[instance_id], 1);
+        // Player gets kill credit (non-atomic since single thread per instance)
+        d_player_kills[instance_id]++;
     }
 
     d_monster_health[idx] = health;

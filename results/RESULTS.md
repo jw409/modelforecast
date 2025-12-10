@@ -4,7 +4,7 @@ Tool-calling capability benchmarks for free LLM models.
 
 | Model | T0 Invoke | T1 Schema | T2 Select | A1 Linear | R0 Abstain | Grade |
 |-------|-----------|-----------|-----------|-----------|------------|-------|
-| kwaipilot/kat-coder-pro | 100% [56,100] | 100% [56,100] | 100% [56,100] | 100% [56,100] | 100% [56,100] | **A** |
+| z-ai/glm-4.5-air | 100% [72,100] | 60% [31,83] | 60% [31,83] | 60% [31,83] | 80% [49,94] | **B** |
 
 *Percentages show success rate. Brackets show 95% Wilson CI.*
 *n=10 per cell. "-" indicates not tested (prerequisite probe failed).*

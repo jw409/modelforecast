@@ -1,80 +1,94 @@
 {
   "metadata": {
     "version": "0.1.0",
-    "generated_at": "2025-12-05T06:33:23.971183+00:00",
+    "generated_at": "2025-12-10T07:59:16.644870+00:00",
     "total_models": 1,
-    "total_levels": 5
+    "total_levels": 6
   },
   "results": [
     {
-      "submission_id": "sub_e9ce5aa1e7a8",
-      "timestamp": "2025-12-05T06:32:46.430942+00:00",
+      "submission_id": "sub_c5c98f339c00",
+      "timestamp": "2025-12-10T07:54:56.742051+00:00",
       "contributor": "unknown",
-      "model": "kwaipilot/kat-coder-pro:free",
+      "model": "z-ai/glm-4.5-air:free",
       "level": 0,
       "rate": 1.0,
       "wilson_ci_95": [
-        0.5655085052479191,
+        0.7224598312333834,
         1.0
       ],
-      "trials": 5,
-      "successes": 5
+      "trials": 10,
+      "successes": 10
     },
     {
-      "submission_id": "sub_dd656af3dc39",
-      "timestamp": "2025-12-05T06:32:54.911990+00:00",
+      "submission_id": "sub_7975f38146ad",
+      "timestamp": "2025-12-10T07:55:20.427995+00:00",
       "contributor": "unknown",
-      "model": "kwaipilot/kat-coder-pro:free",
+      "model": "z-ai/glm-4.5-air:free",
       "level": 1,
-      "rate": 1.0,
+      "rate": 0.6,
       "wilson_ci_95": [
-        0.5655085052479191,
-        1.0
+        0.3126695474501863,
+        0.8318224187964902
       ],
-      "trials": 5,
-      "successes": 5
+      "trials": 10,
+      "successes": 6
     },
     {
-      "submission_id": "sub_84629f1b4723",
-      "timestamp": "2025-12-05T06:33:00.231100+00:00",
+      "submission_id": "sub_6ec28f633c7d",
+      "timestamp": "2025-12-10T07:55:51.123656+00:00",
       "contributor": "unknown",
-      "model": "kwaipilot/kat-coder-pro:free",
+      "model": "z-ai/glm-4.5-air:free",
       "level": 2,
-      "rate": 1.0,
+      "rate": 0.6,
       "wilson_ci_95": [
-        0.5655085052479191,
-        1.0
+        0.3126695474501863,
+        0.8318224187964902
       ],
-      "trials": 5,
-      "successes": 5
+      "trials": 10,
+      "successes": 6
     },
     {
-      "submission_id": "sub_5d4a2d7bb36a",
-      "timestamp": "2025-12-05T06:33:05.352341+00:00",
+      "submission_id": "sub_30b41d37c941",
+      "timestamp": "2025-12-10T07:56:20.063892+00:00",
       "contributor": "unknown",
-      "model": "kwaipilot/kat-coder-pro:free",
+      "model": "z-ai/glm-4.5-air:free",
       "level": 3,
-      "rate": 1.0,
+      "rate": 0.6,
       "wilson_ci_95": [
-        0.5655085052479191,
-        1.0
+        0.3126695474501863,
+        0.8318224187964902
       ],
-      "trials": 5,
-      "successes": 5
+      "trials": 10,
+      "successes": 6
     },
     {
-      "submission_id": "sub_2bec7da7b93c",
-      "timestamp": "2025-12-05T06:33:16.987227+00:00",
+      "submission_id": "sub_d23a32f9b467",
+      "timestamp": "2025-12-10T07:57:28.310846+00:00",
       "contributor": "unknown",
-      "model": "kwaipilot/kat-coder-pro:free",
+      "model": "z-ai/glm-4.5-air:free",
       "level": 4,
+      "rate": 0.8,
+      "wilson_ci_95": [
+        0.49015684672072335,
+        0.9433190520193067
+      ],
+      "trials": 10,
+      "successes": 8
+    },
+    {
+      "submission_id": "sub_41a68cb1d5e0",
+      "timestamp": "2025-12-10T07:58:38.296361+00:00",
+      "contributor": "unknown",
+      "model": "z-ai/glm-4.5-air:free",
+      "level": 5,
       "rate": 1.0,
       "wilson_ci_95": [
-        0.5655085052479191,
+        0.7224598312333834,
         1.0
       ],
-      "trials": 5,
-      "successes": 5
+      "trials": 10,
+      "successes": 10
     }
   ]
 }

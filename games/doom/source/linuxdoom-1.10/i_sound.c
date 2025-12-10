@@ -39,10 +39,13 @@ rcsid[] = "$Id: i_unix.c,v 1.5 1997/02/03 22:45:10 b1 Exp $";
 
 #include <fcntl.h>
 #include <unistd.h>
+
+#ifndef HEADLESS
 #include <sys/ioctl.h>
 
 // Linux voxware output.
 #include <linux/soundcard.h>
+#endif // HEADLESS
 
 // Timer stuff. Experimental.
 #include <time.h>
@@ -57,6 +60,8 @@ rcsid[] = "$Id: i_unix.c,v 1.5 1997/02/03 22:45:10 b1 Exp $";
 #include "w_wad.h"
 
 #include "doomdef.h"
+
+#ifndef HEADLESS
 
 // UNIX hack, to be removed.
 #ifdef SNDSERV
@@ -983,3 +988,32 @@ void I_SoundDelTimer()
   if ( I_SoundSetTimer( 0 ) == -1)
     fprintf( stderr, "I_SoundDelTimer: failed to remove interrupt. Doh!\n");
 }
+
+#else // HEADLESS
+
+// Headless mode stubs - no sound
+void I_SetChannels() {}
+void I_SetSfxVolume(int volume) {}
+void I_SetMusicVolume(int volume) {}
+int I_GetSfxLumpNum(sfxinfo_t* sfx) { return 0; }
+void I_UpdateSound(void) {}
+void I_UpdateSoundParams(int handle, int vol, int sep, int pitch) {}
+void I_SubmitSound(void) {}
+void I_ShutdownSound(void) {}
+void I_InitSound() {}
+void I_InitMusic(void) {}
+void I_ShutdownMusic(void) {}
+void I_PlaySong(int handle, int looping) {}
+void I_PauseSong (int handle) {}
+void I_ResumeSong (int handle) {}
+void I_StopSong(int handle) {}
+void I_UnRegisterSong(int handle) {}
+int I_RegisterSong(void* data) { return 0; }
+int I_QrySongPlaying(int handle) { return 0; }
+
+// Sound effects
+int I_StartSound(int id, int vol, int sep, int pitch, int priority) { return 0; }
+void I_StopSound(int handle) {}
+int I_SoundIsPlaying(int handle) { return 0; }
+
+#endif // HEADLESS

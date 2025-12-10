@@ -30,6 +30,10 @@ rcsid[] = "$Id: p_tick.c,v 1.4 1997/02/03 16:47:55 b1 Exp $";
 
 #include "doomstat.h"
 
+#ifdef VERIFICATION_MODE
+#include <stdio.h>
+#endif
+
 
 int	leveltime;
 
@@ -123,6 +127,46 @@ void P_RunThinkers (void)
 
 
 
+#ifdef VERIFICATION_MODE
+//
+// LogGameState
+// Log player state to stdout in JSONL format for verification
+//
+static void LogGameState(void)
+{
+    int i;
+
+    for (i = 0; i < MAXPLAYERS; i++)
+    {
+        if (playeringame[i])
+        {
+            player_t* p = &players[i];
+            mobj_t* mo = p->mo;
+
+            if (mo)
+            {
+                // Output JSONL: one JSON object per line
+                fprintf(stdout,
+                    "{\"tick\":%d,\"player\":%d,\"x\":%d,\"y\":%d,\"z\":%d,"
+                    "\"angle\":%u,\"health\":%d,\"armor\":%d,\"kills\":%d,\"alive\":%s}\n",
+                    leveltime,
+                    i,
+                    mo->x,
+                    mo->y,
+                    mo->z,
+                    mo->angle,
+                    mo->health,
+                    p->armorpoints,
+                    p->killcount,
+                    (p->playerstate == PST_LIVE) ? "true" : "false"
+                );
+                fflush(stdout);
+            }
+        }
+    }
+}
+#endif
+
 //
 // P_Ticker
 //
@@ -130,11 +174,11 @@ void P_RunThinkers (void)
 void P_Ticker (void)
 {
     int		i;
-    
+
     // run the tic
     if (paused)
 	return;
-		
+
     // pause if in menu and at least one tic has been run
     if ( !netgame
 	 && menuactive
@@ -143,16 +187,20 @@ void P_Ticker (void)
     {
 	return;
     }
-    
-		
+
+
     for (i=0 ; i<MAXPLAYERS ; i++)
 	if (playeringame[i])
 	    P_PlayerThink (&players[i]);
-			
+
     P_RunThinkers ();
     P_UpdateSpecials ();
     P_RespawnSpecials ();
 
     // for par times
-    leveltime++;	
+    leveltime++;
+
+#ifdef VERIFICATION_MODE
+    LogGameState();
+#endif
 }

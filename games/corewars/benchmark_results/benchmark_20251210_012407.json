@@ -1,0 +1,88 @@
+[
+  {
+    "model_id": "kat-coder",
+    "model_name": "kwaipilot/kat-coder-pro:free",
+    "grade": "A+ FREE",
+    "turns": [
+      {
+        "turn": 1,
+        "win_rate": 16.8,
+        "warrior_lines": 5,
+        "response_preview": "```redcode\n; Improved Imp\n; 2/3 ring - faster than original IMP\n; MOV 4, 10 is 2 instructions long, skips every 3rd cell\n    MOV 4, 10\n    JMP -2\n\n```"
+      },
+      {
+        "turn": 2,
+        "win_rate": 23.5,
+        "warrior_lines": 6,
+        "response_preview": "```redcode\n; kat-coder - Turn 2\n; Improved Imp\n; 2/3 ring - faster than original IMP\n; MOV 4, 10 is 2 instructions long, skips every 3rd cell\n    MOV 4, 10\n    JMP -2\n```"
+      },
+      {
+        "turn": 3,
+        "win_rate": 19.5,
+        "warrior_lines": 8,
+        "response_preview": "```redcode\n; kat-coder - Turn 3\n; Dual IMP Ring\n; 2/3 ring for faster coverage\n; Second IMP follows different pattern to cover more ground\n    MOV 4, 10\n    JMP -2\n    MOV 0, 1\n    JMP -1\n```"
+      },
+      {
+        "turn": 4,
+        "win_rate": 27.0,
+        "warrior_lines": 10,
+        "response_preview": "```redcode\n; kat-coder - Turn 4\n; Dual IMP Ring\n; 2/3 ring for faster coverage\n; Second IMP follows different pattern to cover more ground\n; Added SPL for faster process spawning and better coverage\n "
+      },
+      {
+        "turn": 5,
+        "win_rate": 29.8,
+        "warrior_lines": 10,
+        "response_preview": "```redcode\n; kat-coder - Turn 5\n; Dual IMP Ring with SPL\n; Uses 2/3 ring for faster coverage\n; Second IMP follows different pattern for better coverage\n; SPL for faster process spawning\n    MOV 4, 10\n"
+      },
+      {
+        "turn": 6,
+        "win_rate": 28.8,
+        "warrior_lines": 10,
+        "response_preview": "```redcode\n; kat-coder - Turn 6\n; Dual IMP Ring with SPL\n; Uses 2/3 ring for faster coverage\n; Second IMP follows different pattern for better coverage\n; SPL for faster process spawning\n    MOV 4, 10\n"
+      },
+      {
+        "turn": 7,
+        "win_rate": 27.5,
+        "warrior_lines": 9,
+        "response_preview": "```redcode\n; kat-coder - Turn 7\n; Optimized bomber with SPL for faster process spawning\n; Uses DJN loop for efficient bombing\n; SPL allows parallel execution for better coverage\n    ADD #4, 3\n    MOV "
+      },
+      {
+        "turn": 8,
+        "win_rate": 32.0,
+        "warrior_lines": 10,
+        "response_preview": "```redcode\n; kat-coder - Turn 8\n; Enhanced bomber with 5-point attack pattern for better coverage\n; Uses DJN loop for efficient bombing with higher damage per cycle\n; SPL loop creates multiple process"
+      },
+      {
+        "turn": 9,
+        "win_rate": 32.4,
+        "warrior_lines": 10,
+        "response_preview": "```redcode\n; kat-coder - Turn 9\n; Enhanced bomber with 5-point attack pattern for better coverage\n; Uses DJN loop for efficient bombing with higher damage per cycle\n; SPL loop creates multiple process"
+      },
+      {
+        "turn": 10,
+        "win_rate": 30.4,
+        "warrior_lines": 10,
+        "response_preview": "```redcode\n; kat-coder - Turn 10\n; Improved warrior to counter Basic IMP's MOV 0,1 pattern\n; Uses faster DJN bombing with wider spacing to intercept IMP movement\n; SPL loop creates multiple parallel b"
+      }
+    ],
+    "win_rates": [
+      16.8,
+      23.5,
+      19.5,
+      27.0,
+      29.8,
+      28.8,
+      27.5,
+      32.0,
+      32.4,
+      30.4
+    ],
+    "drama": [
+      "Turn 6: Surprise imp_gate.red challenge!",
+      "Turn 7: Surprise mice.red challenge!"
+    ],
+    "final_win_rate": 30.4,
+    "improvement": 13.599999999999998,
+    "final_warrior": "; kat-coder - Turn 10\n; kat-coder - Turn 10\n; Improved warrior to counter Basic IMP's MOV 0,1 pattern\n; Uses faster DJN bombing with wider spacing to intercept IMP movement\n; SPL loop creates multiple parallel bombing processes\n; Optimized to hit IMP's destination before it can move again\n    SPL 1\n    SPL 1\n    MOV -1, 0\n    DJN -1, <-4\n    JMP -2"
+  }
+]

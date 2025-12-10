@@ -27,19 +27,15 @@ struct MonsterStats {
     int speed;             // Movement speed (FRACUNIT per tick)
 };
 
-// Monster type constants
-enum MonsterTypeID : uint8_t {
-    MT_ZOMBIE = 0,     // Former Human - 20 HP, hitscan pistol
-    MT_SHOTGUY = 1,    // Shotgun guy - 30 HP, hitscan shotgun
-    MT_IMP = 2,        // Imp - 60 HP, fireball (treated as hitscan for Phase 2)
-    MT_DEMON = 3,      // Pinky - 150 HP, melee only
-    MT_CACODEMON = 4,  // Cacodemon - 400 HP, fireball
-    MT_BARON = 5,      // Baron of Hell - 1000 HP, fireball
-    MT_TYPE_COUNT = 6
-};
+// Use MobjType from doom_types.cuh for monster types
+// Mapping: MT_POSSESSED=1 (Zombieman), MT_SHOTGUY=2, MT_IMP=3, MT_DEMON=4, etc.
+
+// Number of monster types for stats array (matches first N MobjTypes that are monsters)
+#define MONSTER_STATS_COUNT 6
 
 // Monster stats lookup table (constant device memory)
-__constant__ MonsterStats c_monster_stats[MT_TYPE_COUNT] = {
+// Indexed by MobjType - 1 (MT_POSSESSED=1 -> index 0, etc.)
+__constant__ MonsterStats c_monster_stats[MONSTER_STATS_COUNT] = {
     // MT_ZOMBIE: health, melee_min, melee_max, ranged_min, ranged_max, melee_range, missile_range, speed
     {20, 0, 0, 3, 15, 0, 2048 * FRACUNIT, 8 * FRACUNIT},
     // MT_SHOTGUY
@@ -54,16 +50,7 @@ __constant__ MonsterStats c_monster_stats[MT_TYPE_COUNT] = {
     {1000, 10, 80, 8, 64, 64 * FRACUNIT, 2048 * FRACUNIT, 8 * FRACUNIT}
 };
 
-// Direction constants (8-way movement)
-#define DI_EAST       0
-#define DI_NORTHEAST  1
-#define DI_NORTH      2
-#define DI_NORTHWEST  3
-#define DI_WEST       4
-#define DI_SOUTHWEST  5
-#define DI_SOUTH      6
-#define DI_SOUTHEAST  7
-#define DI_NODIR      8
+// Direction constants defined in doom_types.cuh
 
 // Combat constants
 #define MELEERANGE    (64 * FRACUNIT)

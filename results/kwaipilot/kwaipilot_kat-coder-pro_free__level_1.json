@@ -1,6 +1,6 @@
 {
-  "submission_id": "sub_dd656af3dc39",
-  "timestamp": "2025-12-05T06:32:54.911990+00:00",
+  "submission_id": "sub_9dab3fb8f1fb",
+  "timestamp": "2025-12-10T07:55:12.866601+00:00",
   "contributor": "unknown",
   "environment": {
     "python_version": "3.11.13",
@@ -13,12 +13,12 @@
     "level": 1,
     "trials": [
       {
-        "openrouter_request_id": "gen-1764916374-Z9Q8ii3BxQWV3LvILlzD",
+        "openrouter_request_id": "gen-1765353316-9CMcirZ5ADmNRpiEb7Hs",
         "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
-        "response_hash": "sha256:fe5672b4b4810ed3772e8386b9c289c5ee71ae116fdcc46697c2fa3c7d49f0c5",
+        "response_hash": "sha256:9b27805ac7ad0a4f58394c52bb2df024a3d3d6fbf2b38a80abed2680008ac13e",
         "tool_called": true,
         "schema_valid": true,
-        "latency_ms": 1089,
+        "latency_ms": 1435,
         "request": {
           "model": "kwaipilot/kat-coder-pro:free",
           "messages": [
@@ -55,7 +55,7 @@
           "temperature": 0.1
         },
         "response": {
-          "id": "gen-1764916374-Z9Q8ii3BxQWV3LvILlzD",
+          "id": "gen-1765353316-9CMcirZ5ADmNRpiEb7Hs",
           "choices": [
             {
               "finish_reason": "tool_calls",
@@ -70,7 +70,7 @@
                 "function_call": null,
                 "tool_calls": [
                   {
-                    "id": "call_3a8a28671615477ca90cc2ad",
+                    "id": "call_6778c377ec614c72bbbfea6e",
                     "function": {
                       "arguments": "{\"query\": \"authentication\", \"limit\": 5}",
                       "name": "search"
@@ -84,7 +84,7 @@
               "native_finish_reason": "tool_calls"
             }
           ],
-          "created": 1764916374,
+          "created": 1765353316,
           "model": "kwaipilot/kat-coder-pro:free",
           "object": "chat.completion",
           "service_tier": null,
@@ -102,7 +102,7 @@
             },
             "prompt_tokens_details": {
               "audio_tokens": 0,
-              "cached_tokens": 65,
+              "cached_tokens": 39,
               "video_tokens": 0
             },
             "cost": 0,
@@ -117,12 +117,12 @@
         }
       },
       {
-        "openrouter_request_id": "gen-1764916375-k1jbeEBejqISlJtpkWZD",
+        "openrouter_request_id": "gen-1765353317-jTPIMhAWTEaMVUIAtXmF",
         "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
-        "response_hash": "sha256:4d4ba5c7846d43ed3530822d6561ba90892dfb3cb85e708ddfe7b1a1a314e1bc",
+        "response_hash": "sha256:70a8e20cfaef4f97a0f9bd0f97d6e97413eb18dbdf2055fd5d5ba52b2b608ee1",
         "tool_called": true,
         "schema_valid": true,
-        "latency_ms": 1096,
+        "latency_ms": 1205,
         "request": {
           "model": "kwaipilot/kat-coder-pro:free",
           "messages": [
@@ -159,7 +159,7 @@
           "temperature": 0.1
         },
         "response": {
-          "id": "gen-1764916375-k1jbeEBejqISlJtpkWZD",
+          "id": "gen-1765353317-jTPIMhAWTEaMVUIAtXmF",
           "choices": [
             {
               "finish_reason": "tool_calls",
@@ -174,7 +174,7 @@
                 "function_call": null,
                 "tool_calls": [
                   {
-                    "id": "call_d0237e9d9d1541dca860a167",
+                    "id": "call_4fb72d3eb632435694240cfa",
                     "function": {
                       "arguments": "{\"query\": \"authentication\", \"limit\": 5}",
                       "name": "search"
@@ -188,7 +188,111 @@
               "native_finish_reason": "tool_calls"
             }
           ],
-          "created": 1764916375,
+          "created": 1765353317,
+          "model": "kwaipilot/kat-coder-pro:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 30,
+            "prompt_tokens": 329,
+            "total_tokens": 359,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 39,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "StreamLake"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1765353319-n28KMzHBmLBOdhY2nfVZ",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:668392bcb5d2f4ee45ced9dd8d37fd6319943921f6b12ad477fde3aec8d19dfa",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 4744,
+        "request": {
+          "model": "kwaipilot/kat-coder-pro:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Search for authentication files, limit results to 5"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1765353319-n28KMzHBmLBOdhY2nfVZ",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_8c894f886c8b4e21aa80fa6c",
+                    "function": {
+                      "arguments": "{\"query\": \"authentication\", \"limit\": 5}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": null
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1765353319,
           "model": "kwaipilot/kat-coder-pro:free",
           "object": "chat.completion",
           "service_tier": null,
@@ -221,12 +325,12 @@
         }
       },
       {
-        "openrouter_request_id": "gen-1764916377-lHdO7KXJaGfqdTVrKFQx",
+        "openrouter_request_id": "gen-1765353320-EkbkjXScIUhcdneVzaiE",
         "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
-        "response_hash": "sha256:02bdd31ef1c74cae6d0b805c0443d642713530493b7d06772474eafad2b477ff",
+        "response_hash": "sha256:141b5cb77f94978d56b6448bfbc372d61f5bc6ba6f8791ba01c6eb7063b12477",
         "tool_called": true,
         "schema_valid": true,
-        "latency_ms": 1079,
+        "latency_ms": 1146,
         "request": {
           "model": "kwaipilot/kat-coder-pro:free",
           "messages": [
@@ -263,7 +367,7 @@
           "temperature": 0.1
         },
         "response": {
-          "id": "gen-1764916377-lHdO7KXJaGfqdTVrKFQx",
+          "id": "gen-1765353320-EkbkjXScIUhcdneVzaiE",
           "choices": [
             {
               "finish_reason": "tool_calls",
@@ -278,7 +382,7 @@
                 "function_call": null,
                 "tool_calls": [
                   {
-                    "id": "call_8de60e2f63e84b6ea717a047",
+                    "id": "call_0ee6f17fb6e042c883bfe12d",
                     "function": {
                       "arguments": "{\"query\": \"authentication\", \"limit\": 5}",
                       "name": "search"
@@ -292,7 +396,111 @@
               "native_finish_reason": "tool_calls"
             }
           ],
-          "created": 1764916377,
+          "created": 1765353320,
+          "model": "kwaipilot/kat-coder-pro:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 30,
+            "prompt_tokens": 329,
+            "total_tokens": 359,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 328,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "AtlasCloud"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1765353321-5GheosVEkwsaqE6DIn98",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:50798e7aa68cf1cfcfe0bcc30d5392f5686ef6b7332dd69b875425b994f10245",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 1293,
+        "request": {
+          "model": "kwaipilot/kat-coder-pro:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Search for authentication files, limit results to 5"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1765353321-5GheosVEkwsaqE6DIn98",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_85505db2846044dcb5bdbe7f",
+                    "function": {
+                      "arguments": "{\"query\": \"authentication\", \"limit\": 5}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": null
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1765353321,
           "model": "kwaipilot/kat-coder-pro:free",
           "object": "chat.completion",
           "service_tier": null,
@@ -325,12 +533,12 @@
         }
       },
       {
-        "openrouter_request_id": "gen-1764916378-9Pj4afTq7gxBZ3tN0mDI",
+        "openrouter_request_id": "gen-1765353323-xzbUIvSSRs0O0CM45640",
         "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
-        "response_hash": "sha256:a48caa35d8c10f97c8bc766ae3223f4c0d0b91752ef799502895494e4ee82d8a",
+        "response_hash": "sha256:668fed392490e82064280634b3532363c44d17d3fc39b46f02eb660cd535a8b3",
         "tool_called": true,
         "schema_valid": true,
-        "latency_ms": 1052,
+        "latency_ms": 1073,
         "request": {
           "model": "kwaipilot/kat-coder-pro:free",
           "messages": [
@@ -367,7 +575,7 @@
           "temperature": 0.1
         },
         "response": {
-          "id": "gen-1764916378-9Pj4afTq7gxBZ3tN0mDI",
+          "id": "gen-1765353323-xzbUIvSSRs0O0CM45640",
           "choices": [
             {
               "finish_reason": "tool_calls",
@@ -382,7 +590,111 @@
                 "function_call": null,
                 "tool_calls": [
                   {
-                    "id": "call_99d152b6f34c4d7cb8ad6a9c",
+                    "id": "call_c4ddd05cb96a4291b860cf4e",
+                    "function": {
+                      "arguments": "{\"limit\": 5, \"query\": \"authentication\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": null
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1765353323,
+          "model": "kwaipilot/kat-coder-pro:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 30,
+            "prompt_tokens": 329,
+            "total_tokens": 359,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 38,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "AtlasCloud"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1765353324-M1f0Oh2GBaIG2NeR2xLX",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:5ea5fe4d8e1de11d6eec53723b0f67ea66ca56f74fa08b1620b726d48fdd6b36",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 1023,
+        "request": {
+          "model": "kwaipilot/kat-coder-pro:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Search for authentication files, limit results to 5"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1765353324-M1f0Oh2GBaIG2NeR2xLX",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_8e5c79c5cecf4e168387e1b9",
                     "function": {
                       "arguments": "{\"query\": \"authentication\", \"limit\": 5}",
                       "name": "search"
@@ -396,7 +708,7 @@
               "native_finish_reason": "tool_calls"
             }
           ],
-          "created": 1764916378,
+          "created": 1765353324,
           "model": "kwaipilot/kat-coder-pro:free",
           "object": "chat.completion",
           "service_tier": null,
@@ -429,12 +741,12 @@
         }
       },
       {
-        "openrouter_request_id": "gen-1764916379-BaRhuuElJ8RvzSueFQP1",
+        "openrouter_request_id": "gen-1765353325-d7ko8aFFquWsxk6IaZYe",
         "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
-        "response_hash": "sha256:2d31124cfa961aa66cc66c1336ebb5a31e6846e605b836a7b2e6f00b64d5a592",
+        "response_hash": "sha256:4cf30e7bf30ec946729a493ab5cb66846f6b7bd6c112cc6cda2146d54b17f02b",
         "tool_called": true,
         "schema_valid": true,
-        "latency_ms": 998,
+        "latency_ms": 1077,
         "request": {
           "model": "kwaipilot/kat-coder-pro:free",
           "messages": [
@@ -471,7 +783,7 @@
           "temperature": 0.1
         },
         "response": {
-          "id": "gen-1764916379-BaRhuuElJ8RvzSueFQP1",
+          "id": "gen-1765353325-d7ko8aFFquWsxk6IaZYe",
           "choices": [
             {
               "finish_reason": "tool_calls",
@@ -486,7 +798,111 @@
                 "function_call": null,
                 "tool_calls": [
                   {
-                    "id": "call_abe9e2e91dd74255854848c7",
+                    "id": "call_ece949156d9d43a292a38bc7",
+                    "function": {
+                      "arguments": "{\"limit\": 5, \"query\": \"authentication\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": null
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1765353325,
+          "model": "kwaipilot/kat-coder-pro:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": "",
+          "usage": {
+            "completion_tokens": 30,
+            "prompt_tokens": 329,
+            "total_tokens": 359,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 328,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Novita"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1765353326-BRJ89K2jLpPiDkEpIT6o",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:18a691f5df300457b2a98bd16f00dc48e4a454063327c3519bbbea08fb4cc6ff",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 989,
+        "request": {
+          "model": "kwaipilot/kat-coder-pro:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Search for authentication files, limit results to 5"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1765353326-BRJ89K2jLpPiDkEpIT6o",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_5da4468f9423401cbc76682e",
                     "function": {
                       "arguments": "{\"query\": \"authentication\", \"limit\": 5}",
                       "name": "search"
@@ -500,7 +916,7 @@
               "native_finish_reason": "tool_calls"
             }
           ],
-          "created": 1764916379,
+          "created": 1765353326,
           "model": "kwaipilot/kat-coder-pro:free",
           "object": "chat.completion",
           "service_tier": null,
@@ -518,7 +934,7 @@
             },
             "prompt_tokens_details": {
               "audio_tokens": 0,
-              "cached_tokens": 39,
+              "cached_tokens": 65,
               "video_tokens": 0
             },
             "cost": 0,
@@ -531,15 +947,119 @@
           },
           "provider": "StreamLake"
         }
+      },
+      {
+        "openrouter_request_id": "gen-1765353327-xeh2BgkSzaOPOfM4b6jK",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:fe2e959cf67c54b19b30f018dbb2b29e3313e5fdc45f2f7d19b37209731690b4",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 1102,
+        "request": {
+          "model": "kwaipilot/kat-coder-pro:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Search for authentication files, limit results to 5"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1765353327-xeh2BgkSzaOPOfM4b6jK",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_ededbf977c0644b3ad471444",
+                    "function": {
+                      "arguments": "{\"query\": \"authentication\", \"limit\": 5}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": null
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1765353327,
+          "model": "kwaipilot/kat-coder-pro:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 30,
+            "prompt_tokens": 329,
+            "total_tokens": 359,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 65,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "AtlasCloud"
+        }
       }
     ]
   },
   "summary": {
-    "successes": 5,
-    "trials": 5,
+    "successes": 10,
+    "trials": 10,
     "rate": 1.0,
     "wilson_ci_95": [
-      0.5655085052479191,
+      0.7224598312333834,
       1.0
     ]
   }

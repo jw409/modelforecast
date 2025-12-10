@@ -1,0 +1,88 @@
+[
+  {
+    "model_id": "kat-coder",
+    "model_name": "kwaipilot/kat-coder-pro:free",
+    "grade": "A+ FREE",
+    "turns": [
+      {
+        "turn": 1,
+        "win_rate": 18.0,
+        "warrior_lines": 8,
+        "response_preview": "```redcode\n; Improved Warrior - Imp Ring\n; Strategy: Create multiple imp processes for better survival\n    SPL 1           ; Split for parallel execution\n    SPL 1           ; Create more processes\n  "
+      },
+      {
+        "turn": 2,
+        "win_rate": 31.8,
+        "warrior_lines": 9,
+        "response_preview": "```redcode\n; kat-coder - Turn 2\n; Improved Warrior - Multiple Imp Ring\n; Strategy: Create more imp processes for better survival odds\n    SPL 1           ; Split for parallel execution\n    SPL 1      "
+      },
+      {
+        "turn": 3,
+        "win_rate": 34.7,
+        "warrior_lines": 9,
+        "response_preview": "```redcode\n; kat-coder - Turn 3\n; Improved Warrior - Multiple Imp Ring\n; Strategy: Create more imp processes for better survival odds\n    SPL 1           ; Split for parallel execution\n    SPL 1      "
+      },
+      {
+        "turn": 4,
+        "win_rate": 30.7,
+        "warrior_lines": 9,
+        "response_preview": "```redcode\n; kat-coder - Turn 4\n; Improved Warrior - Multiple Imp Ring with SPL spread\n; Strategy: Create more imp processes for better survival odds\n    SPL 1           ; Split for parallel execution"
+      },
+      {
+        "turn": 5,
+        "win_rate": 36.0,
+        "warrior_lines": 9,
+        "response_preview": "```redcode\n; kat-coder - Turn 5\n; Enhanced Warrior - Multiple Imp Ring with SPL spread\n; Strategy: Create more imp processes for better survival odds\n    SPL 1           ; Split for parallel execution"
+      },
+      {
+        "turn": 6,
+        "win_rate": 30.7,
+        "warrior_lines": 9,
+        "response_preview": "```redcode\n; kat-coder - Turn 6\n; Enhanced Warrior - Multiple Imp Ring with SPL spread\n; Strategy: Create more imp processes for better survival odds\n    SPL 1           ; Split for parallel execution"
+      },
+      {
+        "turn": 7,
+        "win_rate": 22.8,
+        "warrior_lines": 9,
+        "response_preview": "```redcode\n; kat-coder - Turn 7\n; Strategy: Fast replicator with SPL-based spreading\n; Creates multiple processes quickly to fill core and survive opponent's attacks\n    SPL 1           ; Split for pa"
+      },
+      {
+        "turn": 8,
+        "win_rate": 30.0,
+        "warrior_lines": 9,
+        "response_preview": "**Analysis:**\n\nYour warrior is extremely effective against Basic IMP because:\n- IMP is a slow, single-process warrior that moves one cell at a time\n- Your warrior creates a rapid wave of processes tha"
+      },
+      {
+        "turn": 9,
+        "win_rate": 29.8,
+        "warrior_lines": 10,
+        "response_preview": "```redcode\n; kat-coder - Turn 9/10\n; Strategy: Enhanced replicator with faster process creation and improved bombing\n; Uses DJN loop for efficient bombing and multiple replicators for better coverage\n"
+      },
+      {
+        "turn": 10,
+        "win_rate": 36.0,
+        "warrior_lines": 10,
+        "response_preview": "```redcode\n; kat-coder - Turn 10/10\n; Strategy: Optimized replicator with faster spreading and efficient bombing\n; Uses SPL-based replication for rapid coverage and DJN loop for effective bombing\n    "
+      }
+    ],
+    "win_rates": [
+      18.0,
+      31.8,
+      34.7,
+      30.7,
+      36.0,
+      30.7,
+      22.8,
+      30.0,
+      29.8,
+      36.0
+    ],
+    "drama": [
+      "Turn 6: Surprise dwarf.red challenge!",
+      "Turn 7: Surprise mice.red challenge!"
+    ],
+    "final_win_rate": 36.0,
+    "improvement": 18.0,
+    "final_warrior": "; kat-coder - Turn 10\n; kat-coder - Turn 10/10\n; Strategy: Optimized replicator with faster spreading and efficient bombing\n; Uses SPL-based replication for rapid coverage and DJN loop for effective bombing\n    SPL 1           ; Initial process split for parallel execution\n    SPL 1           ; Create multiple processes for faster spreading\n    SPL 1           ; Add more processes to maximize coverage\n    MOV 3, 4        ; First replicator - copies itself forward\n    MOV 3, 4        ; Second replicator - additional copy process\n    MOV 3, 4        ; Third replicator - ensures rapid replication\n    DJN -6, #15     ; Decrement and jump, bomb 15 locations ahead for better coverage"
+  }
+]

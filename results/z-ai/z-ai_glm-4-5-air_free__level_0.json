@@ -1,6 +1,6 @@
 {
-  "submission_id": "sub_5c62ebacd982",
-  "timestamp": "2025-12-03T07:09:14.174390+00:00",
+  "submission_id": "sub_c5c98f339c00",
+  "timestamp": "2025-12-10T07:54:56.742051+00:00",
   "contributor": "unknown",
   "environment": {
     "python_version": "3.11.13",
@@ -13,94 +13,1094 @@
     "level": 0,
     "trials": [
       {
-        "openrouter_request_id": "gen-1764745754-sAfmHOlRaOq9HsylvhEu",
+        "openrouter_request_id": "gen-1765353298-S7m3IKfDRaTYg3xuxqLY",
         "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
-        "response_hash": "sha256:8b0f5b382d82f070d80ded5722f6097a9f26458e7e2750e66dd5caa849f0ae81",
+        "response_hash": "sha256:86cc3080f97969fd6fcda10d2f2dad0a0dffaa1200dd9909e2844c39d0230fd4",
         "tool_called": true,
         "schema_valid": true,
-        "latency_ms": 3045
+        "latency_ms": 1033,
+        "request": {
+          "model": "z-ai/glm-4.5-air:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1765353298-S7m3IKfDRaTYg3xuxqLY",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "\n",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_fcc76848bc3f4438a26bb424",
+                    "function": {
+                      "arguments": "{\"query\": \"authentication\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "\nThe user wants me to search for files containing 'authentication' in the codebase. I need to use the search function with the query parameter set to 'authentication'.",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "\nThe user wants me to search for files containing 'authentication' in the codebase. I need to use the search function with the query parameter set to 'authentication'."
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1765353298,
+          "model": "z-ai/glm-4.5-air:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 50,
+            "prompt_tokens": 175,
+            "total_tokens": 225,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 43,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "AtlasCloud"
+        }
       },
       {
-        "openrouter_request_id": "gen-1764745757-DuOwBdNzb1iVHyRwufen",
+        "openrouter_request_id": "gen-1765353299-me6V8B3sU4QW1JxZhNdN",
         "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
-        "response_hash": "sha256:2bbfc06afa8f26ca535b43579473b91271fee89dfd616a27a6cc6affe5cf4195",
+        "response_hash": "sha256:b2105e368cfd1c8f6ecd95ed27744b1e758c2129abfabea09276929fe892ae26",
         "tool_called": true,
         "schema_valid": true,
-        "latency_ms": 4849
+        "latency_ms": 2873,
+        "request": {
+          "model": "z-ai/glm-4.5-air:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1765353299-me6V8B3sU4QW1JxZhNdN",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "\n",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_5otNrcTmQG-mettZsdNxXg",
+                    "function": {
+                      "arguments": "{\"query\": \"authentication\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "\nThe user wants me to use the search tool to find files containing 'authentication'. I need to call the search function with the query parameter set to 'authentication'.",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "\nThe user wants me to use the search tool to find files containing 'authentication'. I need to call the search function with the query parameter set to 'authentication'."
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1765353299,
+          "model": "z-ai/glm-4.5-air:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 49,
+            "prompt_tokens": 175,
+            "total_tokens": 224,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 43,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 43,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Z.AI"
+        }
       },
       {
-        "openrouter_request_id": null,
+        "openrouter_request_id": "gen-1765353302-mATWr0Xe5xz9m8L85eeG",
         "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
-        "response_hash": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-        "tool_called": false,
-        "schema_valid": false,
-        "latency_ms": 0
+        "response_hash": "sha256:d2afbfda43efb39880311ac4950b2aaa1c1f14549e7d1e9115af59a672749471",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 860,
+        "request": {
+          "model": "z-ai/glm-4.5-air:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1765353302-mATWr0Xe5xz9m8L85eeG",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "\n",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_4add6589b34a4b87b7c1da5c",
+                    "function": {
+                      "arguments": "{\"query\": \"authentication\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "\nThe user wants me to search for files containing 'authentication' in the codebase. I need to use the search tool with the query parameter set to 'authentication'.",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "\nThe user wants me to search for files containing 'authentication' in the codebase. I need to use the search tool with the query parameter set to 'authentication'."
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1765353302,
+          "model": "z-ai/glm-4.5-air:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 50,
+            "prompt_tokens": 175,
+            "total_tokens": 225,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 42,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "AtlasCloud"
+        }
       },
       {
-        "openrouter_request_id": null,
+        "openrouter_request_id": "gen-1765353303-AnN8VZK3kJD08FyDntD5",
         "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
-        "response_hash": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-        "tool_called": false,
-        "schema_valid": false,
-        "latency_ms": 0
+        "response_hash": "sha256:4c4eed8ffcd02503ed7aa5a0ef0e4e7052f2bbed2b4d842db6fd7315ff3efc78",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 2556,
+        "request": {
+          "model": "z-ai/glm-4.5-air:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1765353303-AnN8VZK3kJD08FyDntD5",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "\n",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_0XrFDrr1S9-4A39ndzfffQ",
+                    "function": {
+                      "arguments": "{\"query\": \"authentication\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "\nThe user wants me to search for files containing 'authentication' in the codebase. I need to use the search tool with the query parameter set to 'authentication'.",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "\nThe user wants me to search for files containing 'authentication' in the codebase. I need to use the search tool with the query parameter set to 'authentication'."
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1765353303,
+          "model": "z-ai/glm-4.5-air:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 50,
+            "prompt_tokens": 175,
+            "total_tokens": 225,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 42,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 174,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Z.AI"
+        }
       },
       {
-        "openrouter_request_id": null,
+        "openrouter_request_id": "gen-1765353306-TiQosKCJ3n5oVEb25bgd",
         "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
-        "response_hash": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-        "tool_called": false,
-        "schema_valid": false,
-        "latency_ms": 0
+        "response_hash": "sha256:74fd6d1aa6ce3087b22dfe596e51d7d63f7fe716b85e2f22aee492b2214a520c",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 2575,
+        "request": {
+          "model": "z-ai/glm-4.5-air:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1765353306-TiQosKCJ3n5oVEb25bgd",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "\n",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_v2JrabSJQKSKhNfjn_FN-w",
+                    "function": {
+                      "arguments": "{\"query\": \"authentication\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "\nThe user wants me to search for files containing 'authentication' in the codebase. I need to use the search tool with the query parameter set to 'authentication'.",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "\nThe user wants me to search for files containing 'authentication' in the codebase. I need to use the search tool with the query parameter set to 'authentication'."
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1765353306,
+          "model": "z-ai/glm-4.5-air:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 50,
+            "prompt_tokens": 175,
+            "total_tokens": 225,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 42,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 174,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Z.AI"
+        }
       },
       {
-        "openrouter_request_id": null,
+        "openrouter_request_id": "gen-1765353309-wfHdd41dg0pUmuGfjbOC",
         "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
-        "response_hash": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-        "tool_called": false,
-        "schema_valid": false,
-        "latency_ms": 0
+        "response_hash": "sha256:0b02b2070bbb2f08abaf632ff6c5d78a78ac250d28cd34b1e6e146fb19f5b785",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 2499,
+        "request": {
+          "model": "z-ai/glm-4.5-air:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1765353309-wfHdd41dg0pUmuGfjbOC",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "\n",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_6x_MgIeES0i1PtavgT0yBg",
+                    "function": {
+                      "arguments": "{\"query\": \"authentication\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "\nThe user wants me to search for files containing the term 'authentication'. I need to use the search tool with the query parameter set to 'authentication'.",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "\nThe user wants me to search for files containing the term 'authentication'. I need to use the search tool with the query parameter set to 'authentication'."
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1765353309,
+          "model": "z-ai/glm-4.5-air:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 47,
+            "prompt_tokens": 175,
+            "total_tokens": 222,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 40,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 174,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Z.AI"
+        }
       },
       {
-        "openrouter_request_id": null,
+        "openrouter_request_id": "gen-1765353311-7HNCdXkZFwLKru4J4x9x",
         "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
-        "response_hash": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-        "tool_called": false,
-        "schema_valid": false,
-        "latency_ms": 0
+        "response_hash": "sha256:7a52a025d323d0ca3db9caac486ae059558b83cd10a3f5b055bc890802b94723",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 2294,
+        "request": {
+          "model": "z-ai/glm-4.5-air:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1765353311-7HNCdXkZFwLKru4J4x9x",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "\n",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_4215db256e3f4ed7b87f8463",
+                    "function": {
+                      "arguments": "{\"query\": \"authentication\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "\nThe user wants me to search for files containing the term 'authentication' in the codebase. I need to use the search function with the query parameter set to 'authentication'.",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "\nThe user wants me to search for files containing the term 'authentication' in the codebase. I need to use the search function with the query parameter set to 'authentication'."
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1765353312,
+          "model": "z-ai/glm-4.5-air:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 52,
+            "prompt_tokens": 175,
+            "total_tokens": 227,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 45,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "AtlasCloud"
+        }
       },
       {
-        "openrouter_request_id": null,
+        "openrouter_request_id": "gen-1765353314-jhswW7KXsXjKisjQ3u2Z",
         "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
-        "response_hash": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-        "tool_called": false,
-        "schema_valid": false,
-        "latency_ms": 0
+        "response_hash": "sha256:54c793887d25bdba4399a93c240dd67c9df8dca627b594d06960d579dcdf2e13",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 1243,
+        "request": {
+          "model": "z-ai/glm-4.5-air:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1765353314-jhswW7KXsXjKisjQ3u2Z",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "\n",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_84b25571041c4dc79f0524cc",
+                    "function": {
+                      "arguments": "{\"query\": \"authentication\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "\nThe user wants me to search for files containing 'authentication' in the codebase. I need to use the search tool with the query parameter set to 'authentication'.",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "\nThe user wants me to search for files containing 'authentication' in the codebase. I need to use the search tool with the query parameter set to 'authentication'."
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1765353314,
+          "model": "z-ai/glm-4.5-air:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 50,
+            "prompt_tokens": 175,
+            "total_tokens": 225,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 42,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "AtlasCloud"
+        }
       },
       {
-        "openrouter_request_id": null,
+        "openrouter_request_id": "gen-1765353315-kCDND3SldCaqysndT8Nq",
         "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
-        "response_hash": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-        "tool_called": false,
-        "schema_valid": false,
-        "latency_ms": 0
+        "response_hash": "sha256:ed5115d29ac3105cd9212b0bf9c9f05120fcf20a784d7247339f34383229daca",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 2911,
+        "request": {
+          "model": "z-ai/glm-4.5-air:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1765353315-kCDND3SldCaqysndT8Nq",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "\n",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_60bBICutT7KbTeoayJx_ww",
+                    "function": {
+                      "arguments": "{\"query\": \"authentication\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "\nThe user wants me to search for files containing 'authentication' in the codebase. I need to use the search function with the query parameter set to 'authentication'.",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "\nThe user wants me to search for files containing 'authentication' in the codebase. I need to use the search function with the query parameter set to 'authentication'."
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1765353315,
+          "model": "z-ai/glm-4.5-air:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 50,
+            "prompt_tokens": 175,
+            "total_tokens": 225,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 43,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 174,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Z.AI"
+        }
       },
       {
-        "openrouter_request_id": null,
+        "openrouter_request_id": "gen-1765353319-4V57H4S66ohFQbfCEAdt",
         "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
-        "response_hash": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-        "tool_called": false,
-        "schema_valid": false,
-        "latency_ms": 0
+        "response_hash": "sha256:72633ddbab76fe289338cd5db7e31947eed8b98923780371ac802f2bc709caae",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 4833,
+        "request": {
+          "model": "z-ai/glm-4.5-air:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1765353319-4V57H4S66ohFQbfCEAdt",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "\n",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_811b54f7936e449ba8fedd42",
+                    "function": {
+                      "arguments": "{\"query\": \"authentication\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "\nThe user wants me to use the search tool to find files containing 'authentication'. I need to call the search function with the query parameter set to 'authentication'.",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "\nThe user wants me to use the search tool to find files containing 'authentication'. I need to call the search function with the query parameter set to 'authentication'."
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1765353319,
+          "model": "z-ai/glm-4.5-air:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 49,
+            "prompt_tokens": 175,
+            "total_tokens": 224,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 43,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": null,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "AtlasCloud"
+        }
       }
     ]
   },
   "summary": {
-    "successes": 2,
+    "successes": 10,
     "trials": 10,
-    "rate": 0.2,
+    "rate": 1.0,
     "wilson_ci_95": [
-      0.056680947980693314,
-      0.5098431532792765
+      0.7224598312333834,
+      1.0
     ]
   }
 }

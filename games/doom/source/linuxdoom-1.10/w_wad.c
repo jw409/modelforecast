@@ -66,10 +66,13 @@ void**			lumpcache;
 
 #define strcmpi	strcasecmp
 
+#ifndef WASM
+// Emscripten provides its own strupr in compat/string.h
 void strupr (char* s)
 {
     while (*s) { *s = toupper(*s); s++; }
 }
+#endif
 
 int filelength (int handle) 
 { 
