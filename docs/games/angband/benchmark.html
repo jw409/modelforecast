@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Borg Arena Benchmark - LLM Tournament</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #eee;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        h1 {
+            text-align: center;
+            color: #ffd700;
+            text-shadow: 0 0 20px #ffd700;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #888;
+            margin-bottom: 30px;
+        }
+
+        /* Leaderboard */
+        .leaderboard {
+            background: rgba(0,0,0,0.5);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        .entry {
+            display: grid;
+            grid-template-columns: 60px 1fr 120px 100px 100px 100px 150px;
+            align-items: center;
+            padding: 15px;
+            margin: 10px 0;
+            background: linear-gradient(90deg, rgba(255,215,0,0.1) 0%, rgba(0,0,0,0.3) 100%);
+            border-radius: 10px;
+            border-left: 4px solid #ffd700;
+        }
+        .entry.silver { border-left-color: #c0c0c0; }
+        .entry.bronze { border-left-color: #cd7f32; }
+
+        .rank {
+            font-size: 2em;
+            font-weight: bold;
+            color: #ffd700;
+        }
+        .entry.silver .rank { color: #c0c0c0; }
+        .entry.bronze .rank { color: #cd7f32; }
+
+        .sponsor {
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+        .sponsor-logo { font-size: 0.8em; color: #888; }
+
+        .stat { text-align: center; }
+        .stat-value { font-size: 1.5em; font-weight: bold; color: #4ecdc4; }
+        .stat-label { font-size: 0.8em; color: #888; }
+
+        .watch-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .watch-btn:hover { transform: scale(1.05); }
+
+        /* Prior Art */
+        .prior-art {
+            background: rgba(0,0,0,0.3);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+        .prior-art h2 { color: #4ecdc4; border-bottom: 1px solid #333; padding-bottom: 10px; }
+        .prior-art ul { line-height: 1.8; }
+        .prior-art a { color: #667eea; }
+
+        /* Headers */
+        .headers {
+            display: grid;
+            grid-template-columns: 60px 1fr 120px 100px 100px 100px 150px;
+            padding: 10px 15px;
+            color: #888;
+            font-size: 0.9em;
+        }
+
+        .equipment { font-family: monospace; color: #ff6b6b; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏆 BORG ARENA BENCHMARK</h1>
+        <p class="subtitle">LLM Tournament - Angband Borg Autonomous Gameplay</p>
+
+        <div class="leaderboard">
+            <div class="headers">
+                <div>Rank</div>
+                <div>Sponsor</div>
+                <div>Frames</div>
+                <div>Depth</div>
+                <div>Level</div>
+                <div>HP</div>
+                <div>Action</div>
+            </div>
+
+            <div class="entry">
+                <div class="rank">#1</div>
+                <div>
+                    <div class="sponsor">Claude Opus 4.5</div>
+                    <div class="sponsor-logo">Anthropic - Dec 2024</div>
+                    <div class="equipment">Gear: | = "~(()</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="claude-frames">30,350</div>
+                    <div class="stat-label">frames</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">100ft</div>
+                    <div class="stat-label">depth</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">4</div>
+                    <div class="stat-label">level</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">38</div>
+                    <div class="stat-label">max HP</div>
+                </div>
+                <div>
+                    <a href="replay_viewer_enhanced.html?recording=borg_epic.delta.jsonl.gz" class="watch-btn">▶ WATCH</a>
+                </div>
+            </div>
+
+            <div class="entry silver">
+                <div class="rank">#2</div>
+                <div>
+                    <div class="sponsor">Gemini 2.5 Flash</div>
+                    <div class="sponsor-logo">Google - Dec 2024</div>
+                    <div class="equipment">Gear: TBD</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">-</div>
+                    <div class="stat-label">frames</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">-</div>
+                    <div class="stat-label">depth</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">-</div>
+                    <div class="stat-label">level</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">-</div>
+                    <div class="stat-label">max HP</div>
+                </div>
+                <div>
+                    <span style="color:#666">Recording...</span>
+                </div>
+            </div>
+
+            <div class="entry bronze">
+                <div class="rank">#3</div>
+                <div>
+                    <div class="sponsor">Grok 4</div>
+                    <div class="sponsor-logo">xAI - Dec 2024</div>
+                    <div class="equipment">Gear: TBD</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">-</div>
+                    <div class="stat-label">frames</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">-</div>
+                    <div class="stat-label">depth</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">-</div>
+                    <div class="stat-label">level</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">-</div>
+                    <div class="stat-label">max HP</div>
+                </div>
+                <div>
+                    <span style="color:#666">Recording...</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="prior-art">
+            <h2>📚 Prior Art & References</h2>
+            <ul>
+                <li><strong>Angband</strong> - Classic roguelike dungeon crawler (1990-present)
+                    <br><a href="https://angband.github.io/angband/">https://angband.github.io/angband/</a></li>
+                <li><strong>APWBorg</strong> - Autonomous Playing Without Brain - AI player for Angband
+                    <br>Integrated into Angband via -b flag</li>
+                <li><strong>CoreWars GPU MARS</strong> - 681K battles/sec on RTX 5090
+                    <br>Proof of concept for GPU-accelerated game simulation</li>
+                <li><strong>Recording Format</strong> - Delta-compressed JSONL with gzip
+                    <br>~100x compression (23MB → 230KB for 30K frames)</li>
+                <li><strong>Replay Viewer</strong> - Browser-based with CRT effects, live commentary
+                    <br><a href="replay_viewer_enhanced.html">replay_viewer_enhanced.html</a></li>
+            </ul>
+
+            <h2>🎯 Benchmark Criteria</h2>
+            <ul>
+                <li><strong>Depth</strong> - How deep into the dungeon (ft)</li>
+                <li><strong>Level</strong> - Character experience level</li>
+                <li><strong>Max HP</strong> - Peak hit points achieved</li>
+                <li><strong>Frames</strong> - Total gameplay frames recorded</li>
+                <li><strong>Equipment</strong> - Gear slots filled: | weapon, = ring, " amulet, ~ light, ( armor</li>
+                <li><strong>Cause of Death</strong> - How the run ended</li>
+            </ul>
+
+            <h2>🔧 Technical Stack</h2>
+            <ul>
+                <li><strong>Harness</strong> - Python pyte terminal emulator driving Angband</li>
+                <li><strong>Recording</strong> - Delta compression with keyframes every 30 frames</li>
+                <li><strong>Parallel Fountain</strong> - 16+ CPU workers generating concurrent games</li>
+                <li><strong>Viewer</strong> - Vanilla JS with pako for gzip decompression</li>
+            </ul>
+        </div>
+
+        <p style="text-align:center; color:#666; margin-top:30px;">
+            Benchmark established by Claude Opus 4.5 | December 2024
+            <br>
+            <a href="replay_viewer_enhanced.html" style="color:#667eea">Enhanced Viewer</a> |
+            <a href="replay_viewer_simple.html" style="color:#667eea">Simple Viewer</a>
+        </p>
+    </div>
+</body>
+</html>
