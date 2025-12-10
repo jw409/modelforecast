@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Angband Replay - Simple</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.1.0/pako.min.js"></script>
+    <style>
+        body { background: #000; color: #fff; font-family: monospace; }
+        #screen { white-space: pre; font-size: 14px; line-height: 1.2; }
+        button { padding: 10px 20px; margin: 5px; font-size: 16px; cursor: pointer; }
+        #controls { margin: 10px 0; }
+        #info { color: #888; margin: 10px 0; }
+        .c-player { color: #ff0; font-weight: bold; }
+        .c-wall { color: #555; }
+        .c-monster { color: #f00; }
+    </style>
+</head>
+<body>
+    <div id="info">Loading...</div>
+    <div id="controls">
+        <button id="playBtn">PLAY</button>
+        <button id="pauseBtn">PAUSE</button>
+        <button id="stepBtn">STEP</button>
+        <button id="resetBtn">RESET</button>
+        <span id="frameNum">0/0</span>
+    </div>
+    <pre id="screen">Loading recording...</pre>
+
+<script>
+var frames = [];
+var currentFrame = 0;
+var playing = false;
+var intervalId = null;
+
+// Load recording
+fetch('borg_session.delta.jsonl.gz')
+    .then(r => r.arrayBuffer())
+    .then(buf => {
+        var decompressed = pako.ungzip(new Uint8Array(buf), {to: 'string'});
+        var lines = decompressed.split('\n').filter(l => l.trim());
+        var screen = [];
+        
+        lines.forEach(line => {
+            var d = JSON.parse(line);
+            if (d.type === 'K') {
+                screen = d.data.slice();
+            } else {
+                d.data.forEach(change => {
+                    var row = change[0], col = change[1], ch = change[2];
+                    while (screen[row].length <= col) screen[row] += ' ';
+                    screen[row] = screen[row].substring(0,col) + ch + screen[row].substring(col+1);
+                });
+            }
+            frames.push({screen: screen.slice(), stats: d.stats});
+        });
+        
+        document.getElementById('info').textContent = 'Loaded ' + frames.length + ' frames. Click PLAY!';
+        showFrame(0);
+    })
+    .catch(e => {
+        document.getElementById('info').textContent = 'Error: ' + e;
+    });
+
+function showFrame(n) {
+    if (n < 0 || n >= frames.length) return;
+    currentFrame = n;
+    var f = frames[n];
+    var html = f.screen.map(line => {
+        return line.split('').map(ch => {
+            if (ch === '@') return '<span class="c-player">@</span>';
+            if (ch === '#') return '<span class="c-wall">#</span>';
+            if (ch.match(/[a-zA-Z]/) && ch !== '@') return '<span class="c-monster">'+ch+'</span>';
+            return ch;
+        }).join('');
+    }).join('\n');
+    document.getElementById('screen').innerHTML = html;
+    document.getElementById('frameNum').textContent = (n+1) + '/' + frames.length + 
+        ' HP:' + f.stats.hp[0] + '/' + f.stats.hp[1];
+}
+
+function doPlay() {
+    if (playing) return;
+    playing = true;
+    intervalId = setInterval(function() {
+        if (currentFrame < frames.length - 1) {
+            showFrame(currentFrame + 1);
+        } else {
+            doPause();
+        }
+    }, 25);  // 40 FPS
+}
+
+function doPause() {
+    playing = false;
+    if (intervalId) clearInterval(intervalId);
+    intervalId = null;
+}
+
+function doStep() {
+    doPause();
+    if (currentFrame < frames.length - 1) showFrame(currentFrame + 1);
+}
+
+function doReset() {
+    doPause();
+    showFrame(0);
+}
+
+document.getElementById('playBtn').onclick = doPlay;
+document.getElementById('pauseBtn').onclick = doPause;
+document.getElementById('stepBtn').onclick = doStep;
+document.getElementById('resetBtn').onclick = doReset;
+</script>
+</body>
+</html>

@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Angband Replay - ENHANCED</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.1.0/pako.min.js"></script>
+    <style>
+        * { box-sizing: border-box; }
+
+        body {
+            background: #0a0a0a;
+            color: #fff;
+            font-family: 'Courier New', monospace;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 20px;
+        }
+
+        .main-panel {
+            background: #111;
+            border: 2px solid #333;
+            border-radius: 8px;
+            padding: 15px;
+        }
+
+        .side-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        /* CRT/Scanline effect */
+        #screen-container {
+            position: relative;
+            background: #000;
+            border-radius: 4px;
+            padding: 10px;
+            overflow: hidden;
+        }
+
+        #screen-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0,0,0,0.15),
+                rgba(0,0,0,0.15) 1px,
+                transparent 1px,
+                transparent 2px
+            );
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        #screen-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at center, transparent 0%, rgba(0,0,0,0.3) 100%);
+            pointer-events: none;
+            z-index: 11;
+        }
+
+        #screen {
+            white-space: pre;
+            font-size: 14px;
+            line-height: 1.15;
+            text-shadow: 0 0 5px rgba(255,255,255,0.1);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Title */
+        h1 {
+            color: #ffd700;
+            text-shadow: 0 0 10px #ffd700, 0 0 20px #ff8c00;
+            margin: 0 0 15px 0;
+            font-size: 24px;
+            text-align: center;
+        }
+
+        /* Controls */
+        #controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+            justify-content: center;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 14px;
+            cursor: pointer;
+            background: linear-gradient(180deg, #444, #222);
+            color: #fff;
+            border: 1px solid #555;
+            border-radius: 4px;
+            font-family: inherit;
+            transition: all 0.2s;
+        }
+
+        button:hover {
+            background: linear-gradient(180deg, #555, #333);
+            border-color: #777;
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        #playBtn { color: #0f0; border-color: #0f0; }
+        #pauseBtn { color: #ff0; border-color: #ff0; }
+        #resetBtn { color: #f44; border-color: #f44; }
+
+        /* Speed control */
+        #speed-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #888;
+        }
+
+        #speed-control input {
+            width: 100px;
+        }
+
+        /* Stats panel */
+        .stats-box {
+            background: #111;
+            border: 2px solid #333;
+            border-radius: 8px;
+            padding: 15px;
+        }
+
+        .stats-box h3 {
+            margin: 0 0 10px 0;
+            color: #ffd700;
+            border-bottom: 1px solid #333;
+            padding-bottom: 5px;
+        }
+
+        /* HP Bar */
+        .hp-container {
+            margin-bottom: 15px;
+        }
+
+        .hp-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .hp-bar-bg {
+            background: #300;
+            border-radius: 4px;
+            height: 25px;
+            overflow: hidden;
+            border: 1px solid #500;
+        }
+
+        .hp-bar {
+            height: 100%;
+            transition: width 0.3s, background-color 0.3s;
+            border-radius: 3px;
+        }
+
+        .hp-bar.healthy { background: linear-gradient(180deg, #0f0, #080); }
+        .hp-bar.wounded { background: linear-gradient(180deg, #ff0, #880); }
+        .hp-bar.critical {
+            background: linear-gradient(180deg, #f00, #800);
+            animation: pulse-red 0.5s infinite;
+        }
+
+        @keyframes pulse-red {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        /* Stats grid */
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+            border-bottom: 1px solid #222;
+        }
+
+        .stat-label { color: #888; }
+        .stat-value { color: #fff; font-weight: bold; }
+        .stat-value.depth { color: #0ff; }
+        .stat-value.gold { color: #ffd700; }
+        .stat-value.exp { color: #0f0; }
+
+        /* Commentary box */
+        .commentary-box {
+            background: #111;
+            border: 2px solid #555;
+            border-radius: 8px;
+            padding: 15px;
+            flex-grow: 1;
+            min-height: 200px;
+        }
+
+        .commentary-box h3 {
+            margin: 0 0 10px 0;
+            color: #0ff;
+            border-bottom: 1px solid #333;
+            padding-bottom: 5px;
+        }
+
+        #commentary {
+            font-size: 13px;
+            line-height: 1.5;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .comment {
+            padding: 5px 0;
+            border-bottom: 1px solid #222;
+            animation: fade-in 0.3s;
+        }
+
+        @keyframes fade-in {
+            from { opacity: 0; transform: translateX(-10px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .comment.combat { color: #f44; }
+        .comment.loot { color: #ffd700; }
+        .comment.explore { color: #8ff; }
+        .comment.danger { color: #f80; }
+        .comment.safe { color: #0f0; }
+        .comment.stairs { color: #0ff; }
+
+        /* Frame info */
+        #frameNum {
+            text-align: center;
+            color: #888;
+            font-size: 12px;
+            margin-top: 10px;
+        }
+
+        /* Combat flash effect */
+        .combat-flash {
+            animation: flash-red 0.2s;
+        }
+
+        @keyframes flash-red {
+            0% { box-shadow: inset 0 0 50px rgba(255,0,0,0.5); }
+            100% { box-shadow: inset 0 0 0 transparent; }
+        }
+
+        /* ========== CHARACTER COLORS ========== */
+        /* Player - bright gold */
+        .c-player { color: #ffd700; font-weight: bold; text-shadow: 0 0 5px #ffd700; }
+
+        /* Terrain */
+        .c-wall { color: #555; }
+        .c-floor { color: #333; }
+        .c-door { color: #c90; }
+        .c-stairs { color: #0ff; font-weight: bold; }
+        .c-rubble { color: #654; }
+        .c-tree { color: #0a0; }
+        .c-water { color: #00f; }
+
+        /* Town shops (1-9) */
+        .c-shop1 { color: #f0f; } /* General store - magenta */
+        .c-shop2 { color: #ff8c00; } /* Armory - orange */
+        .c-shop3 { color: #0ff; } /* Weapon smith - cyan */
+        .c-shop4 { color: #0f0; } /* Temple - green */
+        .c-shop5 { color: #ff0; } /* Alchemy - yellow */
+        .c-shop6 { color: #f44; } /* Magic shop - red */
+        .c-shop7 { color: #88f; } /* Black market - blue */
+        .c-shop8 { color: #fff; } /* Home - white */
+        .c-shop9 { color: #fa0; } /* Bookstore - amber */
+
+        /* Items */
+        .c-gold { color: #ffd700; font-weight: bold; }
+        .c-potion { color: #f0f; }
+        .c-scroll { color: #ffe4c4; }
+        .c-wand { color: #0ff; }
+        .c-staff { color: #8b4513; }
+        .c-rod { color: #c0c0c0; }
+        .c-weapon { color: #87ceeb; }
+        .c-armor { color: #90ee90; }
+        .c-ring { color: #ffd700; }
+        .c-amulet { color: #daa520; }
+        .c-light { color: #ffffe0; }
+        .c-food { color: #8b4513; }
+        .c-mushroom { color: #808080; }
+        .c-book { color: #ff6347; }
+        .c-chest { color: #808080; }
+        .c-junk { color: #444; }
+
+        /* Monsters - lowercase (weaker) */
+        .c-mon-a { color: #8b4513; } /* ant - brown */
+        .c-mon-b { color: #666; } /* bat - gray */
+        .c-mon-c { color: #f0f; } /* centipede - magenta */
+        .c-mon-d { color: #f00; } /* dragon - red */
+        .c-mon-e { color: #0ff; } /* floating eye - cyan */
+        .c-mon-f { color: #0a0; } /* feline - green */
+        .c-mon-g { color: #654; } /* golem - brown */
+        .c-mon-h { color: #ffe4c4; } /* humanoid - tan */
+        .c-mon-i { color: #0ff; } /* icky thing - cyan */
+        .c-mon-j { color: #ff8c00; } /* jelly - orange */
+        .c-mon-k { color: #0a0; } /* kobold - green */
+        .c-mon-l { color: #fff; } /* louse - white */
+        .c-mon-m { color: #808080; } /* mold - gray */
+        .c-mon-n { color: #654; } /* naga - brown */
+        .c-mon-o { color: #ff8c00; } /* orc - orange */
+        .c-mon-p { color: #ffe4c4; } /* person - tan */
+        .c-mon-q { color: #0a0; } /* quadruped - green */
+        .c-mon-r { color: #8b4513; } /* rodent - brown */
+        .c-mon-s { color: #0a0; } /* spider - green */
+        .c-mon-t { color: #654; } /* troll - brown */
+        .c-mon-u { color: #f0f; } /* demon (minor) - magenta */
+        .c-mon-v { color: #fff; } /* vortex - white */
+        .c-mon-w { color: #ffe4c4; } /* worm - tan */
+        .c-mon-x { color: #808080; } /* mimic - gray */
+        .c-mon-y { color: #ff0; } /* yeek - yellow */
+        .c-mon-z { color: #808080; } /* zombie - gray */
+
+        /* Monsters - uppercase (stronger/unique) */
+        .c-mon-A { color: #fff; font-weight: bold; } /* Angel - bright white */
+        .c-mon-B { color: #666; font-weight: bold; } /* Bird - gray */
+        .c-mon-C { color: #ffe4c4; font-weight: bold; } /* Canine - tan */
+        .c-mon-D { color: #f00; font-weight: bold; text-shadow: 0 0 5px #f00; } /* Ancient Dragon - red glow */
+        .c-mon-E { color: #ff0; font-weight: bold; } /* Elemental - yellow */
+        .c-mon-F { color: #f0f; font-weight: bold; } /* Flying - magenta */
+        .c-mon-G { color: #fff; font-weight: bold; } /* Ghost - white */
+        .c-mon-H { color: #654; font-weight: bold; } /* Hybrid - brown */
+        .c-mon-I { color: #0ff; font-weight: bold; } /* Insect - cyan */
+        .c-mon-J { color: #f44; font-weight: bold; } /* Snake - red */
+        .c-mon-K { color: #0a0; font-weight: bold; } /* Killer beetle - green */
+        .c-mon-L { color: #fff; font-weight: bold; text-shadow: 0 0 5px #fff; } /* Lich - white glow */
+        .c-mon-M { color: #0a0; font-weight: bold; } /* Mold (multi-hued) - green */
+        .c-mon-N { color: #fff; font-weight: bold; } /* Nightwing - white */
+        .c-mon-O { color: #ff8c00; font-weight: bold; } /* Ogre - orange */
+        .c-mon-P { color: #0a0; font-weight: bold; } /* Giant - green */
+        .c-mon-Q { color: #654; font-weight: bold; } /* Quylthulg - brown */
+        .c-mon-R { color: #ff8c00; font-weight: bold; } /* Reptile - orange */
+        .c-mon-S { color: #0a0; font-weight: bold; } /* Spider - green */
+        .c-mon-T { color: #654; font-weight: bold; } /* Troll - brown */
+        .c-mon-U { color: #f0f; font-weight: bold; text-shadow: 0 0 5px #f0f; } /* Demon (major) - magenta glow */
+        .c-mon-V { color: #fff; font-weight: bold; text-shadow: 0 0 5px #fff; } /* Vampire - white glow */
+        .c-mon-W { color: #ffe4c4; font-weight: bold; } /* Wight/Wraith - tan */
+        .c-mon-X { color: #ff0; font-weight: bold; } /* Xorn - yellow */
+        .c-mon-Y { color: #ff0; font-weight: bold; } /* Yeti - yellow */
+        .c-mon-Z { color: #808080; font-weight: bold; } /* Zephyr hound - gray */
+    </style>
+</head>
+<body>
+    <h1>ANGBAND REPLAY VIEWER</h1>
+
+    <div class="container">
+        <div class="main-panel">
+            <div id="controls">
+                <button id="playBtn">PLAY</button>
+                <button id="pauseBtn">PAUSE</button>
+                <button id="stepBtn">STEP</button>
+                <button id="resetBtn">RESET</button>
+                <div id="speed-control">
+                    <label>Speed:</label>
+                    <input type="range" id="speedSlider" min="1" max="200" value="60">
+                    <span id="speedValue">60 FPS</span>
+                    <button onclick="setSpeed(30)" style="padding:5px 10px">1x</button>
+                    <button onclick="setSpeed(60)" style="padding:5px 10px">2x</button>
+                    <button onclick="setSpeed(120)" style="padding:5px 10px">4x</button>
+                    <button onclick="setSpeed(200)" style="padding:5px 10px">MAX</button>
+                </div>
+            </div>
+
+            <div id="screen-container">
+                <pre id="screen">Loading recording...</pre>
+            </div>
+
+            <div id="frameNum">Frame 0 / 0</div>
+        </div>
+
+        <div class="side-panel">
+            <div class="stats-box">
+                <h3>STATS</h3>
+                <div class="hp-container">
+                    <div class="hp-label">
+                        <span>HP</span>
+                        <span id="hp-text">0 / 0</span>
+                    </div>
+                    <div class="hp-bar-bg">
+                        <div id="hp-bar" class="hp-bar healthy" style="width: 100%"></div>
+                    </div>
+                </div>
+
+                <div class="stat-row">
+                    <span class="stat-label">Depth</span>
+                    <span id="stat-depth" class="stat-value depth">Town</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Gold</span>
+                    <span id="stat-gold" class="stat-value gold">0</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Experience</span>
+                    <span id="stat-exp" class="stat-value exp">0</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Level</span>
+                    <span id="stat-level" class="stat-value">1</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Monsters Near</span>
+                    <span id="stat-monsters" class="stat-value">0</span>
+                </div>
+            </div>
+
+            <div class="commentary-box">
+                <h3>COMMENTARY</h3>
+                <div id="commentary"></div>
+            </div>
+        </div>
+    </div>
+
+<script>
+var frames = [];
+var currentFrame = 0;
+var playing = false;
+var intervalId = null;
+var fps = 40;
+var lastHp = null;
+var lastDepth = null;
+var lastPos = null;
+var lastMonsterCount = 0;
+var commentaryLog = [];
+
+// Monster names by letter
+var monsterNames = {
+    'a': 'ant', 'b': 'bat', 'c': 'centipede', 'd': 'dragon', 'e': 'floating eye',
+    'f': 'feline', 'g': 'golem', 'h': 'humanoid', 'i': 'icky thing', 'j': 'jelly',
+    'k': 'kobold', 'l': 'louse', 'm': 'mold', 'n': 'naga', 'o': 'orc',
+    'p': 'person', 'q': 'quadruped', 'r': 'rodent', 's': 'spider', 't': 'troll',
+    'u': 'minor demon', 'v': 'vortex', 'w': 'worm', 'x': 'mimic', 'y': 'yeek', 'z': 'zombie',
+    'A': 'Angel', 'B': 'Bird', 'C': 'Canine', 'D': 'Ancient Dragon', 'E': 'Elemental',
+    'F': 'Flying creature', 'G': 'Ghost', 'H': 'Hybrid', 'I': 'Insect', 'J': 'Snake',
+    'K': 'Killer Beetle', 'L': 'Lich', 'M': 'Multi-hued mold', 'N': 'Nightwing', 'O': 'Ogre',
+    'P': 'Giant', 'Q': 'Quylthulg', 'R': 'Reptile', 'S': 'Spider', 'T': 'Troll',
+    'U': 'Major Demon', 'V': 'Vampire', 'W': 'Wight', 'X': 'Xorn', 'Y': 'Yeti', 'Z': 'Zephyr Hound'
+};
+
+// Colorize a character
+function colorize(ch) {
+    // Player
+    if (ch === '@') return '<span class="c-player">@</span>';
+
+    // Terrain
+    if (ch === '#') return '<span class="c-wall">#</span>';
+    if (ch === '.') return '<span class="c-floor">.</span>';
+    if (ch === '+') return '<span class="c-door">+</span>';
+    if (ch === '\'' || ch === '\'') return '<span class="c-door">\'</span>';
+    if (ch === '<' || ch === '>') return '<span class="c-stairs">' + ch + '</span>';
+    if (ch === ':') return '<span class="c-rubble">:</span>';
+    if (ch === ';') return '<span class="c-water">;</span>';
+
+    // Shops (1-9)
+    if (ch >= '1' && ch <= '9') return '<span class="c-shop' + ch + '">' + ch + '</span>';
+
+    // Items
+    if (ch === '$' || ch === '*') return '<span class="c-gold">' + ch + '</span>';
+    if (ch === '!') return '<span class="c-potion">!</span>';
+    if (ch === '?') return '<span class="c-scroll">?</span>';
+    if (ch === '/') return '<span class="c-wand">/</span>';
+    if (ch === '_') return '<span class="c-staff">_</span>';
+    if (ch === '-') return '<span class="c-rod">-</span>';
+    if (ch === '|') return '<span class="c-weapon">|</span>';
+    if (ch === '\\') return '<span class="c-weapon">\\</span>';
+    if (ch === '(') return '<span class="c-weapon">(</span>';
+    if (ch === ')') return '<span class="c-armor">)</span>';
+    if (ch === '[') return '<span class="c-armor">[</span>';
+    if (ch === ']') return '<span class="c-armor">]</span>';
+    if (ch === '{') return '<span class="c-armor">{</span>';
+    if (ch === '}') return '<span class="c-junk">}</span>';
+    if (ch === '=') return '<span class="c-ring">=</span>';
+    if (ch === '"') return '<span class="c-amulet">"</span>';
+    if (ch === '~') return '<span class="c-light">~</span>';
+    if (ch === ',') return '<span class="c-mushroom">,</span>';
+    if (ch === '%') return '<span class="c-food">%</span>';
+    if (ch === '&') return '<span class="c-chest">&</span>';
+
+    // Monsters
+    if (ch >= 'a' && ch <= 'z') return '<span class="c-mon-' + ch + '">' + ch + '</span>';
+    if (ch >= 'A' && ch <= 'Z' && ch !== '@') return '<span class="c-mon-' + ch + '">' + ch + '</span>';
+
+    return ch;
+}
+
+// Add commentary
+function addComment(text, type) {
+    var el = document.getElementById('commentary');
+    var div = document.createElement('div');
+    div.className = 'comment ' + (type || '');
+    div.textContent = text;
+    el.insertBefore(div, el.firstChild);
+
+    // Keep only last 20 comments
+    while (el.children.length > 20) {
+        el.removeChild(el.lastChild);
+    }
+}
+
+// Find player position and nearby monsters
+function analyzeScreen(screen) {
+    var playerPos = null;
+    var monsters = [];
+
+    for (var row = 0; row < screen.length; row++) {
+        var line = screen[row];
+        for (var col = 0; col < line.length; col++) {
+            var ch = line[col];
+            if (ch === '@') {
+                playerPos = {row: row, col: col};
+            } else if ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z')) {
+                monsters.push({ch: ch, row: row, col: col});
+            }
+        }
+    }
+
+    // Find monsters near player
+    var nearbyMonsters = [];
+    if (playerPos) {
+        monsters.forEach(function(m) {
+            var dist = Math.abs(m.row - playerPos.row) + Math.abs(m.col - playerPos.col);
+            if (dist < 10) {
+                nearbyMonsters.push({ch: m.ch, dist: dist});
+            }
+        });
+    }
+
+    return {playerPos: playerPos, monsters: monsters, nearbyMonsters: nearbyMonsters};
+}
+
+// Check what's under/near player
+function checkSurroundings(screen, pos) {
+    if (!pos) return {};
+    var result = {onStairs: false, nearItems: false};
+
+    // Check immediate surroundings
+    for (var dr = -1; dr <= 1; dr++) {
+        for (var dc = -1; dc <= 1; dc++) {
+            var r = pos.row + dr;
+            var c = pos.col + dc;
+            if (r >= 0 && r < screen.length && c >= 0 && c < screen[r].length) {
+                var ch = screen[r][c];
+                if (ch === '<' || ch === '>') result.onStairs = true;
+                if ('!?/|][$*='.indexOf(ch) >= 0) result.nearItems = true;
+            }
+        }
+    }
+
+    return result;
+}
+
+// Generate commentary
+function generateCommentary(frame, analysis) {
+    var stats = frame.stats;
+    var currentHp = stats.hp ? stats.hp[0] : 0;
+    var maxHp = stats.hp ? stats.hp[1] : 1;
+    var depth = stats.depth || 0;
+    var hpPercent = currentHp / maxHp;
+
+    // HP changes
+    if (lastHp !== null && currentHp < lastHp) {
+        var dmg = lastHp - currentHp;
+        if (dmg > maxHp * 0.2) {
+            addComment('OUCH! Taking heavy damage! (-' + dmg + ' HP)', 'combat');
+            document.getElementById('screen-container').classList.add('combat-flash');
+            setTimeout(function() {
+                document.getElementById('screen-container').classList.remove('combat-flash');
+            }, 200);
+        } else {
+            addComment('Taking damage (-' + dmg + ' HP)', 'combat');
+        }
+    } else if (lastHp !== null && currentHp > lastHp) {
+        addComment('Health restored! (+' + (currentHp - lastHp) + ' HP)', 'safe');
+    }
+
+    // Depth changes
+    if (lastDepth !== null && depth !== lastDepth) {
+        if (depth > lastDepth) {
+            addComment('Descending deeper... now at depth ' + (depth * 50) + ' ft', 'stairs');
+        } else {
+            addComment('Ascending... now at depth ' + (depth * 50) + ' ft', 'stairs');
+        }
+    }
+
+    // Monster proximity
+    var nearbyCount = analysis.nearbyMonsters.length;
+    if (nearbyCount > lastMonsterCount && nearbyCount > 0) {
+        var closest = analysis.nearbyMonsters.sort(function(a,b) { return a.dist - b.dist; })[0];
+        var name = monsterNames[closest.ch] || 'creature';
+        if (closest.dist <= 2) {
+            addComment('DANGER! A ' + name + ' is attacking!', 'danger');
+        } else {
+            addComment('A ' + name + ' lurks nearby...', 'danger');
+        }
+    }
+    lastMonsterCount = nearbyCount;
+
+    // Stairs
+    var surroundings = checkSurroundings(frame.screen, analysis.playerPos);
+    if (surroundings.onStairs && (!lastPos || !checkSurroundings(frames[currentFrame-1]?.screen, lastPos).onStairs)) {
+        addComment('Stairs detected - deeper we go?', 'stairs');
+    }
+
+    // Location-based
+    if (depth === 0 && (lastDepth === null || lastDepth !== 0)) {
+        addComment('Safe in town... time to resupply?', 'safe');
+    } else if (depth > 10 && (lastDepth === null || lastDepth <= 10)) {
+        addComment('Deep in the dungeon... danger everywhere!', 'danger');
+    }
+
+    // Movement commentary (occasional)
+    if (currentFrame % 50 === 0 && analysis.playerPos) {
+        var explores = [
+            'The Borg explores cautiously...',
+            'Mapping the dungeon...',
+            'Searching for treasure...',
+            'Hunting for monsters...',
+            'Seeking adventure...'
+        ];
+        addComment(explores[Math.floor(Math.random() * explores.length)], 'explore');
+    }
+
+    // Low HP warning
+    if (hpPercent < 0.25 && currentFrame % 30 === 0) {
+        addComment('HP CRITICAL! Retreat may be wise...', 'combat');
+    }
+
+    lastHp = currentHp;
+    lastDepth = depth;
+    lastPos = analysis.playerPos;
+}
+
+// Update stats display
+function updateStats(stats, analysis) {
+    var hp = stats.hp || [0, 1];
+    var hpPercent = (hp[0] / hp[1]) * 100;
+
+    document.getElementById('hp-text').textContent = hp[0] + ' / ' + hp[1];
+
+    var hpBar = document.getElementById('hp-bar');
+    hpBar.style.width = hpPercent + '%';
+    hpBar.className = 'hp-bar ' + (hpPercent > 60 ? 'healthy' : hpPercent > 25 ? 'wounded' : 'critical');
+
+    var depth = stats.depth || 0;
+    document.getElementById('stat-depth').textContent = depth === 0 ? 'Town' : (depth * 50) + ' ft';
+    document.getElementById('stat-gold').textContent = (stats.gold || 0).toLocaleString();
+    document.getElementById('stat-exp').textContent = (stats.exp || 0).toLocaleString();
+    document.getElementById('stat-level').textContent = stats.level || stats.clevel || 1;
+    document.getElementById('stat-monsters').textContent = analysis.nearbyMonsters.length;
+}
+
+// Load recording - try full game first, fall back to short session
+fetch('borg_epic.delta.jsonl.gz')
+    .then(function(r) { return r.arrayBuffer(); })
+    .then(function(buf) {
+        var decompressed = pako.ungzip(new Uint8Array(buf), {to: 'string'});
+        var lines = decompressed.split('\n').filter(function(l) { return l.trim(); });
+        var screen = [];
+
+        lines.forEach(function(line) {
+            var d = JSON.parse(line);
+            if (d.type === 'K') {
+                screen = d.data.slice();
+            } else {
+                d.data.forEach(function(change) {
+                    var row = change[0], col = change[1], ch = change[2];
+                    while (screen[row].length <= col) screen[row] += ' ';
+                    screen[row] = screen[row].substring(0,col) + ch + screen[row].substring(col+1);
+                });
+            }
+            frames.push({screen: screen.slice(), stats: d.stats || {}});
+        });
+
+        addComment('Recording loaded: ' + frames.length + ' frames', 'safe');
+        addComment('AUTO-PLAY starting...', 'explore');
+        showFrame(0);
+        // AUTO-PLAY on load
+        setTimeout(doPlay, 500);
+    })
+    .catch(function(e) {
+        addComment('Error loading: ' + e, 'combat');
+    });
+
+function showFrame(n) {
+    if (n < 0 || n >= frames.length) return;
+    currentFrame = n;
+    var f = frames[n];
+
+    // Colorize screen
+    var html = f.screen.map(function(line) {
+        return line.split('').map(colorize).join('');
+    }).join('\n');
+
+    document.getElementById('screen').innerHTML = html;
+    document.getElementById('frameNum').textContent = 'Frame ' + (n+1) + ' / ' + frames.length;
+
+    // Analyze and update
+    var analysis = analyzeScreen(f.screen);
+    updateStats(f.stats, analysis);
+
+    // Announce character build once at start
+    if (n < 50) {
+        announcesBuild(f.screen);
+    }
+
+    // Generate commentary (not on every frame - adjust based on speed)
+    var commentInterval = fps > 100 ? 20 : fps > 50 ? 10 : 5;
+    if (n % commentInterval === 0 || n === 0) {
+        generateCommentary(f, analysis);
+    }
+}
+
+function doPlay() {
+    if (playing) return;
+    playing = true;
+    addComment('Playback started!', 'explore');
+    intervalId = setInterval(function() {
+        if (currentFrame < frames.length - 1) {
+            showFrame(currentFrame + 1);
+        } else {
+            doPause();
+            addComment('Recording ended. What a journey!', 'safe');
+        }
+    }, 1000 / fps);
+}
+
+function doPause() {
+    playing = false;
+    if (intervalId) clearInterval(intervalId);
+    intervalId = null;
+}
+
+function doStep() {
+    doPause();
+    if (currentFrame < frames.length - 1) showFrame(currentFrame + 1);
+}
+
+function doReset() {
+    doPause();
+    lastHp = null;
+    lastDepth = null;
+    lastPos = null;
+    lastMonsterCount = 0;
+    document.getElementById('commentary').innerHTML = '';
+    addComment('Reset! Ready to replay.', 'safe');
+    showFrame(0);
+}
+
+// Speed control
+function setSpeed(newFps) {
+    fps = newFps;
+    document.getElementById('speedSlider').value = fps;
+    document.getElementById('speedValue').textContent = fps + ' FPS';
+    if (playing) {
+        doPause();
+        doPlay();
+    }
+}
+
+document.getElementById('speedSlider').oninput = function() {
+    fps = parseInt(this.value);
+    document.getElementById('speedValue').textContent = fps + ' FPS';
+    if (playing) {
+        doPause();
+        doPlay();
+    }
+};
+
+// Equipment slot names
+var equipSlots = {
+    '|': 'Weapon', '\\': 'Polearm', '(': 'Bow/Armor',
+    ')': 'Armor', '[': 'Body Armor', ']': 'Shield',
+    '=': 'Ring', '"': 'Amulet', '~': 'Light Source',
+    '{': 'Helm/Crown', '}': 'Cloak'
+};
+
+// Parse character build from screen
+function parseCharacterBuild(screen) {
+    var build = { race: '', class: '', stats: {}, equipment: [] };
+    for (var i = 0; i < Math.min(24, screen.length); i++) {
+        var line = screen[i];
+        // Race is on line ~1
+        if (i >= 0 && i <= 3 && line.length > 0 && line.trim().length > 0) {
+            var trimmed = line.trim();
+            if (!trimmed.match(/^[#.+<>@]/) && trimmed.length < 20) {
+                if (!build.race) build.race = trimmed;
+                else if (!build.class && trimmed !== build.race) build.class = trimmed;
+            }
+        }
+        // Stats line (STR, DEX, etc)
+        if (line.match(/STR:/)) build.stats.STR = line.match(/STR:\s*(\d+)/)?.[1];
+        if (line.match(/INT:/)) build.stats.INT = line.match(/INT:\s*(\d+)/)?.[1];
+        if (line.match(/WIS:/)) build.stats.WIS = line.match(/WIS:\s*(\d+)/)?.[1];
+        if (line.match(/DEX:/)) build.stats.DEX = line.match(/DEX:\s*(\d+)/)?.[1];
+        if (line.match(/CON:/)) build.stats.CON = line.match(/CON:\s*(\d+)/)?.[1];
+        // Equipment indicator line (| = "~(()
+        if (line.match(/\| =/) || line.match(/[|="\~\(\)\[\]]{3,}/)) {
+            var matches = line.match(/[|\\="\~\(\)\[\]\{\}]+/);
+            if (matches) build.equipment = matches[0].split('');
+        }
+    }
+    return build;
+}
+
+// Enhanced commentary
+var lastBuild = null;
+var buildAnnounced = false;
+function announcesBuild(screen) {
+    if (buildAnnounced) return;
+    var build = parseCharacterBuild(screen);
+    if (build.race && build.class) {
+        addComment('CHARACTER: ' + build.race + ' ' + build.class, 'safe');
+        if (Object.keys(build.stats).length > 0) {
+            var statStr = Object.entries(build.stats).map(function(e) { return e[0] + ':' + e[1]; }).join(' ');
+            addComment('STATS: ' + statStr, 'explore');
+        }
+        if (build.equipment.length > 0) {
+            var gearStr = build.equipment.map(function(e) { return equipSlots[e] || e; }).join(', ');
+            addComment('GEAR SLOTS: ' + gearStr, 'explore');
+        }
+        buildAnnounced = true;
+        lastBuild = build;
+    }
+}
+
+document.getElementById('playBtn').onclick = doPlay;
+document.getElementById('pauseBtn').onclick = doPause;
+document.getElementById('stepBtn').onclick = doStep;
+document.getElementById('resetBtn').onclick = doReset;
+
+// Keyboard shortcuts
+document.addEventListener('keydown', function(e) {
+    if (e.key === ' ') {
+        if (playing) doPause(); else doPlay();
+        e.preventDefault();
+    } else if (e.key === 'ArrowRight') {
+        doStep();
+    } else if (e.key === 'r' || e.key === 'R') {
+        doReset();
+    }
+});
+</script>
+</body>
+</html>
