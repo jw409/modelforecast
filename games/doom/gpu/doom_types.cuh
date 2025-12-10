@@ -42,6 +42,22 @@ typedef uint32_t angle_t;
 #define ANG180            0x80000000u
 #define ANG270            0xc0000000u
 
+// Fine angle conversion (for sine/cosine table lookup)
+#define FINEANGLES        8192
+#define FINEMASK          (FINEANGLES - 1)
+#define ANGLETOFINESHIFT  19
+
+// Direction constants (8-way movement for monsters)
+#define DI_EAST       0
+#define DI_NORTHEAST  1
+#define DI_NORTH      2
+#define DI_NORTHWEST  3
+#define DI_WEST       4
+#define DI_SOUTHWEST  5
+#define DI_SOUTH      6
+#define DI_SOUTHEAST  7
+#define DI_NODIR      8
+
 // =============================================================================
 // Input: ticcmd_t (8 bytes) - Player input per tick
 // =============================================================================

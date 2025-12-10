@@ -16,11 +16,15 @@ import json
 import os
 import random
 import subprocess
+import sys
 import time
 from datetime import datetime
 from pathlib import Path
 from typing import Optional
 import httpx
+
+# Force unbuffered output for real-time progress
+sys.stdout.reconfigure(line_buffering=True)
 
 # Paths
 COREWARS_DIR = Path(__file__).parent
@@ -29,13 +33,19 @@ WARRIORS_DIR = COREWARS_DIR / "warriors"
 RESULTS_DIR = COREWARS_DIR / "benchmark_results"
 CHAMPIONS_DIR = WARRIORS_DIR / "champions"
 
-# Models to test - mix of free champion + paid models
+# Models to test - free champions only for now
 MODELS = [
     {"id": "kat-coder", "model": "kwaipilot/kat-coder-pro:free", "grade": "A+ FREE"},
-    {"id": "claude-haiku", "model": "anthropic/claude-3-5-haiku-20241022", "grade": "A+ PAID"},
-    {"id": "gpt4o-mini", "model": "openai/gpt-4o-mini", "grade": "A PAID"},
-    {"id": "gemini-flash", "model": "google/gemini-2.0-flash-001", "grade": "A+ PAID"},
-    {"id": "deepseek-v3", "model": "deepseek/deepseek-chat", "grade": "B+ PAID"},
+    {"id": "glm-4.5", "model": "z-ai/glm-4.5-air:free", "grade": "B FREE"},
+]
+
+# Interpreter swarm for schema-on-read when regex fails
+# Diverse models = different parsing approaches = better extraction
+INTERPRETERS = [
+    "anthropic/claude-sonnet-4",      # Fast, cheap - primary
+    "deepseek/deepseek-chat",         # Different perspective
+    "x-ai/grok-4-1106",               # Grok for variety
+    "anthropic/claude-opus-4",        # Best - final escalation
 ]
 
 # Champion warriors for turn 6-7 surprise
@@ -47,7 +57,7 @@ GPU_BATTLES = 10000
 SURPRISE_TURNS = [6, 7]
 
 
-async def call_openrouter(model: str, messages: list[dict], timeout: int = 60) -> Optional[str]:
+async def call_openrouter(model: str, messages: list[dict], timeout: int = 120) -> Optional[str]:
     """Call OpenRouter API."""
     api_key = os.environ.get("OPENROUTER_API_KEY")
     if not api_key:
@@ -126,8 +136,8 @@ def run_gpu_battles(warrior1_path: Path, warrior2_path: Path, num_battles: int =
         return {"error": str(e), "w1_wins": 0, "w2_wins": 0, "ties": 0}
 
 
-def extract_warrior_code(response: str) -> Optional[str]:
-    """Extract Redcode from model response."""
+def extract_warrior_code_regex(response: str) -> tuple[Optional[str], float]:
+    """Extract Redcode from model response using regex. Returns (code, confidence)."""
     # Look for code blocks
     if "```" in response:
         parts = response.split("```")
@@ -139,7 +149,7 @@ def extract_warrior_code(response: str) -> Optional[str]:
                     lines = lines[1:]
                 code = '\n'.join(lines)
                 if 'MOV' in code.upper() or 'DAT' in code.upper() or 'JMP' in code.upper():
-                    return code
+                    return code, 0.9  # High confidence - clean code block
 
     # Look for inline Redcode
     lines = response.split('\n')
@@ -150,9 +160,73 @@ def extract_warrior_code(response: str) -> Optional[str]:
             code_lines.append(stripped)
 
     if code_lines:
-        return '\n'.join(code_lines)
+        # Lower confidence - inline extraction may miss context
+        return '\n'.join(code_lines), 0.6
+
+    return None, 0.0
+
+
+async def interpret_with_llm(response: str, escalate: bool = False) -> Optional[str]:
+    """Use interpreter model to extract Redcode when regex fails (schema-on-read).
+
+    If escalate=True, tries Opus after Sonnet fails.
+    """
+    if not response or len(response.strip()) < 10:
+        print(f"    → Response too short ({len(response)} chars), skipping interpreter")
+        return None
+
+    prompt = f"""Extract ONLY the Redcode warrior from this response. Output ONLY valid Redcode instructions, nothing else.
+
+Response to parse:
+{response}
+
+Output the Redcode warrior (just the assembly, no explanations):"""
+
+    messages = [
+        {"role": "system", "content": "You extract Redcode from text. Output ONLY valid Redcode assembly. No markdown, no explanations."},
+        {"role": "user", "content": prompt}
+    ]
+
+    # Try interpreters in cascade - full swarm if escalating
+    for i, interpreter in enumerate(INTERPRETERS):
+        name = interpreter.split('/')[-1]
+        print(f"    → Trying {name}...")
+        result = await call_openrouter(interpreter, messages, timeout=60)
+
+        if result and not result.startswith("[ERROR"):
+            # Validate it looks like Redcode
+            if any(op in result.upper() for op in ['MOV', 'ADD', 'JMP', 'DAT', 'SPL']):
+                print(f"    ✓ {name} extracted valid Redcode!")
+                return result.strip()
+            else:
+                print(f"    ✗ {name} returned non-Redcode")
+        else:
+            print(f"    ✗ {name} failed: {result[:50] if result else 'empty'}...")
 
     return None
+
+
+async def extract_warrior_code(response: str) -> Optional[str]:
+    """Extract Redcode with fallback to LLM interpreter."""
+    # Try regex first
+    code, confidence = extract_warrior_code_regex(response)
+
+    if code and confidence >= 0.8:
+        return code  # High confidence, use regex result
+
+    if code and confidence >= 0.5:
+        # Medium confidence - could use regex result, but let's verify
+        return code  # For now, trust medium confidence
+
+    # Low/no confidence - try LLM interpreter
+    print("    → Regex failed, trying LLM interpreter...")
+    llm_code = await interpret_with_llm(response)
+    if llm_code:
+        print("    → LLM interpreter succeeded!")
+        return llm_code
+
+    # Last resort: return whatever regex found
+    return code
 
 
 async def run_model_benchmark(model_config: dict) -> dict:
@@ -267,8 +341,8 @@ Output your improved warrior:"""
             results["turns"].append({"turn": turn, "error": response, "win_rate": win_rate})
             continue
 
-        # Extract warrior code
-        new_code = extract_warrior_code(response)
+        # Extract warrior code (with LLM fallback if regex fails)
+        new_code = await extract_warrior_code(response)
 
         if new_code:
             warrior_path.write_text(f"; {model_id} - Turn {turn}\n{new_code}")

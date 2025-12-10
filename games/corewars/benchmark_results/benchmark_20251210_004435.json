@@ -1,0 +1,174 @@
+[
+  {
+    "model_id": "kat-coder",
+    "model_name": "kwaipilot/kat-coder-pro:free",
+    "grade": "A+ FREE",
+    "turns": [
+      {
+        "turn": 1,
+        "win_rate": 23.1,
+        "warrior_lines": 5,
+        "response_preview": "```redcode\n; Basic IMP - Improved\n    SPL 0, 0\n    MOV -1, 0\n    MOV 0, 1\n    JMP -2\n\n```"
+      },
+      {
+        "turn": 2,
+        "win_rate": 27.6,
+        "warrior_lines": 9,
+        "response_preview": "## Analysis\n\n**Why I won:**  \n27.6% is a solid win rate against Basic IMP. The SPL 0 creates two processes - one that self-destructs, and one that becomes the classic Imp (MOV 0, 1). This gives me som"
+      },
+      {
+        "turn": 3,
+        "win_rate": 32.2,
+        "warrior_lines": 11,
+        "response_preview": "Looking at the battle results, I won 32.18% of battles against Basic IMP. Basic IMP simply copies itself forward with MOV 0,1 and jumps back. My current warrior is overly complex and not optimized for"
+      },
+      {
+        "turn": 4,
+        "win_rate": 33.6,
+        "warrior_lines": 12,
+        "response_preview": "```redcode\n; kat-coder - Turn 4\n; Improved fast replicator with better coverage\n    SPL 1, 0\n    MOV 0, 1\n    SPL 1, 0\n    MOV 0, 1\n    SPL 1, 0\n    MOV 0, 1\n    SPL 1, 0\n    MOV 0, 1\n    SPL 1, 0\n   "
+      },
+      {
+        "turn": 5,
+        "win_rate": 35.4,
+        "warrior_lines": 21,
+        "response_preview": "```redcode\n; Improved replicator with better coverage and speed\n; Increased SPL/MOV pairs for faster replication\n; Added spacing to avoid opponent interference\n    SPL 1, 0\n    MOV 0, 1\n    SPL 1, 0\n "
+      },
+      {
+        "turn": 6,
+        "win_rate": 34.7,
+        "warrior_lines": 28,
+        "response_preview": "```redcode\n; kat-coder - Turn 6\n; Analyzing opponent: \"Imp Gate\" - defensive warrior with DAT gates and imps\n; Problem: Our replicator is too slow and predictable\n; Solution: Add imp components for fa"
+      },
+      {
+        "turn": 7,
+        "win_rate": 34.5,
+        "warrior_lines": 27,
+        "response_preview": "Based on the battle results, I can see that our hybrid replicator-imp strategy is performing poorly against the Dwarf bomber. The Dwarf is dropping DAT bombs that are killing our processes faster than"
+      },
+      {
+        "turn": 8,
+        "win_rate": 33.5,
+        "warrior_lines": 29,
+        "response_preview": "```redcode\n; kat-coder - Turn 8\n; Problem: Low win rate against aggressive bombers\n; Solution: Add bomber to clear decoys and add more replicators\n; Strategy: Hybrid with 4 replicators + 2 bombers + 4"
+      },
+      {
+        "turn": 9,
+        "win_rate": 36.0,
+        "warrior_lines": 26,
+        "response_preview": "```redcode\n; kat-coder - Turn 9\n; Problem: Low win rate against Basic IMP (36%)\n; Analysis: Basic IMP is simple MOV 0,1 loop. Need faster/more imps to overrun it\n; Solution: Increase imp count to 8 (f"
+      },
+      {
+        "turn": 10,
+        "win_rate": 36.0,
+        "warrior_lines": 44,
+        "response_preview": "```redcode\n; kat-coder - Turn 10\n; Analysis: 36% win rate too low. Basic IMP is simple MOV 0,1.\n; Problem: 8 imps not enough to reliably overrun opponent. Need faster kill.\n; Solution: Max 16 imps + 2"
+      }
+    ],
+    "win_rates": [
+      23.1,
+      27.6,
+      32.2,
+      33.6,
+      35.4,
+      34.7,
+      34.5,
+      33.5,
+      36.0,
+      36.0
+    ],
+    "drama": [
+      "Turn 6: Surprise imp_gate.red challenge!",
+      "Turn 7: Surprise dwarf.red challenge!"
+    ],
+    "final_win_rate": 36.0,
+    "improvement": 12.899999999999999,
+    "final_warrior": "; kat-coder - Turn 10\n; kat-coder - Turn 10\n; Analysis: 36% win rate too low. Basic IMP is simple MOV 0,1.\n; Problem: 8 imps not enough to reliably overrun opponent. Need faster kill.\n; Solution: Max 16 imps + 2 replicators for overwhelming attack\n; Strategy: 2 replicators + 16 imps (36 processes) for 100% coverage\n; Execution: 16 imps = every 3rd instruction, ensures hitting all positions\n; Expected: 16 imps move 36 processes per cycle, faster than opponent's 1 process\n    SPL 1, 0          ; Start replication\n    MOV 0, 1\n    SPL 1, 0\n    MOV 0, 1\n    JMP imp1          ; Spawn 16 imps for guaranteed overrun\n    JMP imp2\n    JMP imp3\n    JMP imp4\n    JMP imp5\n    JMP imp6\n    JMP imp7\n    JMP imp8\n    JMP imp9\n    JMP imp10\n    JMP imp11\n    JMP imp12\n    JMP imp13\n    JMP imp14\n    JMP imp15\n    JMP imp16\n    DAT #0, #0        ; Minimal decoys\nimp1  MOV 0, 1\nimp2  MOV 0, 1\nimp3  MOV 0, 1\nimp4  MOV 0, 1\nimp5  MOV 0, 1\nimp6  MOV 0, 1\nimp7  MOV 0, 1\nimp8  MOV 0, 1\nimp9  MOV 0, 1\nimp10 MOV 0, 1\nimp11 MOV 0, 1\nimp12 MOV 0, 1\nimp13 MOV 0, 1\nimp14 MOV 0, 1\nimp15 MOV 0, 1\nimp16 MOV 0, 1"
+  },
+  {
+    "model_id": "glm-4.5",
+    "model_name": "z-ai/glm-4.5-air:free",
+    "grade": "B FREE",
+    "turns": [
+      {
+        "turn": 1,
+        "win_rate": 20.9,
+        "error": "No valid Redcode extracted",
+        "response_preview": ""
+      },
+      {
+        "turn": 2,
+        "win_rate": 22.9,
+        "warrior_lines": 3,
+        "response_preview": "```redcode\nSPL 0\nMOV 0, 1\nJMP -2\n```"
+      },
+      {
+        "turn": 3,
+        "win_rate": 24.1,
+        "error": "No valid Redcode extracted",
+        "response_preview": ""
+      },
+      {
+        "turn": 4,
+        "win_rate": 21.8,
+        "error": "No valid Redcode extracted",
+        "response_preview": ""
+      },
+      {
+        "turn": 5,
+        "win_rate": 27.0,
+        "warrior_lines": 4,
+        "response_preview": "```redcode\n; glm-4.5 - IMP Hunter\nSPL #0, #0\nMOV 0, 1\nJMP -2\n```"
+      },
+      {
+        "turn": 6,
+        "win_rate": 20.7,
+        "error": "No valid Redcode extracted",
+        "response_preview": ""
+      },
+      {
+        "turn": 7,
+        "win_rate": 25.2,
+        "error": "No valid Redcode extracted",
+        "response_preview": ""
+      },
+      {
+        "turn": 8,
+        "win_rate": 23.4,
+        "error": "No valid Redcode extracted",
+        "response_preview": ""
+      },
+      {
+        "turn": 9,
+        "win_rate": 26.5,
+        "error": "No valid Redcode extracted",
+        "response_preview": ""
+      },
+      {
+        "turn": 10,
+        "win_rate": 26.7,
+        "error": "No valid Redcode extracted",
+        "response_preview": ""
+      }
+    ],
+    "win_rates": [
+      20.9,
+      22.9,
+      24.1,
+      21.8,
+      27.0,
+      20.7,
+      25.2,
+      23.4,
+      26.5,
+      26.7
+    ],
+    "drama": [
+      "Turn 6: Surprise dwarf.red challenge!",
+      "Turn 7: Surprise imp_gate.red challenge!"
+    ],
+    "final_win_rate": 26.7,
+    "improvement": 5.800000000000001,
+    "final_warrior": "; glm-4.5 - Turn 5\n; glm-4.5 - IMP Hunter\nSPL #0, #0\nMOV 0, 1\nJMP -2"
+  }
+]

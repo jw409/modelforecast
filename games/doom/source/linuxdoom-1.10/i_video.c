@@ -26,6 +26,8 @@ rcsid[] = "$Id: i_x.c,v 1.6 1997/02/03 22:45:10 b1 Exp $";
 
 #include <stdlib.h>
 #include <unistd.h>
+
+#ifndef HEADLESS
 #include <sys/ipc.h>
 #include <sys/shm.h>
 
@@ -39,6 +41,7 @@ rcsid[] = "$Id: i_x.c,v 1.6 1997/02/03 22:45:10 b1 Exp $";
 #ifdef LINUX
 int XShmGetEventBase( Display* dpy ); // problems with g++?
 #endif
+#endif // HEADLESS
 
 #include <stdarg.h>
 #include <sys/time.h>
@@ -46,7 +49,7 @@ int XShmGetEventBase( Display* dpy ); // problems with g++?
 #include <sys/socket.h>
 
 #include <netinet/in.h>
-#include <errnos.h>
+#include <errno.h>
 #include <signal.h>
 
 #include "doomstat.h"
@@ -58,6 +61,8 @@ int XShmGetEventBase( Display* dpy ); // problems with g++?
 #include "doomdef.h"
 
 #define POINTER_WARP_COUNTDOWN	1
+
+#ifndef HEADLESS
 
 Display*	X_display=0;
 Window		X_mainWindow;
@@ -1047,4 +1052,17 @@ Expand4
     } while (y--);
 }
 
+#else // HEADLESS
 
+// Headless mode stubs - no graphics, no input
+void I_ShutdownGraphics(void) {}
+void I_StartFrame (void) {}
+void I_GetEvent(void) {}
+void I_StartTic (void) {}
+void I_UpdateNoBlit (void) {}
+void I_FinishUpdate (void) {}
+void I_ReadScreen (byte* scr) {}
+void I_SetPalette (byte* palette) {}
+void I_InitGraphics(void) {}
+
+#endif // HEADLESS

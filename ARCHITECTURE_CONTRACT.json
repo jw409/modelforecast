@@ -1,0 +1,99 @@
+{
+  "version": "1.0",
+  "project_id": "modelforecast",
+  "description": "Competitive LLM evaluation platform using CoreWars battles. Tool-calling benchmarks for free LLM models.",
+  "repository": "github.com/jw409/modelforecast",
+  "stack": {
+    "language": "python",
+    "version": ">=3.11",
+    "package_manager": "uv",
+    "frameworks": [
+      "openai-sdk",
+      "dagster",
+      "playwright",
+      "rich",
+      "httpx",
+      "matplotlib",
+      "pandas"
+    ]
+  },
+  "excluded_infrastructure": {
+    "gpu_services": true,
+    "mcp_tools": true,
+    "talent_os": true,
+    "local_inference": true,
+    "room_coordination": true,
+    "port_8765": true,
+    "port_8888": true
+  },
+  "execution_model": {
+    "flow": "User Request -> Claude Code -> Python scripts -> OpenRouter API -> Results",
+    "orchestration": "Dagster DAGs (optional, for tournaments)",
+    "command_prefix": "uv run python"
+  },
+  "filesystem_sandbox": {
+    "read": [
+      "src/**",
+      "tests/**",
+      "games/**",
+      "docs/**",
+      "archive/**",
+      "scripts/**"
+    ],
+    "write": [
+      "var/**",
+      "results/**",
+      "charts/**",
+      "src/**",
+      "tests/**",
+      "games/**",
+      "scripts/**"
+    ]
+  },
+  "tool_selection": {
+    "default_path": "direct_python",
+    "requires_file_ops": false,
+    "requires_mcp": false,
+    "requires_rooms": false,
+    "requires_coordination": false,
+    "decision_tree": {
+      "run_tournament": "uv run python -m modelforecast",
+      "run_probe": "uv run python src/modelforecast/probes/<probe>.py",
+      "generate_charts": "uv run python scripts/generate_waffle.py",
+      "run_tests": "uv run pytest tests/",
+      "dagster_pipeline": "uv run dagster dev"
+    }
+  },
+  "api_dependencies": {
+    "openrouter": {
+      "base_url": "https://openrouter.ai/api/v1",
+      "env_var": "OPENROUTER_API_KEY",
+      "required": true,
+      "free_models": [
+        "google/gemini-2.5-flash-lite-preview-09-2025:free",
+        "qwen/qwen3-32b:free",
+        "meta-llama/llama-4-maverick:free"
+      ]
+    }
+  },
+  "code_style": {
+    "line_length": 100,
+    "linter": "ruff",
+    "lint_command": "uv run ruff check src/",
+    "format_command": "uv run ruff format src/"
+  },
+  "context_boundaries": {
+    "do_reference": [
+      "CLAUDE.md",
+      "README.md",
+      "pyproject.toml",
+      "src/modelforecast/"
+    ],
+    "do_not_reference": [
+      "game1/CLAUDE.md",
+      "talent-os/",
+      "ZMCPTools/",
+      "port 8765/8888 services"
+    ]
+  }
+}

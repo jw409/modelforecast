@@ -231,13 +231,14 @@ typedef struct
     int		untranslated;		// lousy hack
 } default_t;
 
+#ifndef HEADLESS
 default_t	defaults[] =
 {
     {"mouse_sensitivity",&mouseSensitivity, 5},
     {"sfx_volume",&snd_SfxVolume, 8},
     {"music_volume",&snd_MusicVolume, 8},
     {"show_messages",&showMessages, 1},
-    
+
 
 #ifdef NORMALUNIX
     {"key_right",&key_right, KEY_RIGHTARROW},
@@ -252,12 +253,12 @@ default_t	defaults[] =
     {"key_strafe",&key_strafe, KEY_RALT},
     {"key_speed",&key_speed, KEY_RSHIFT},
 
-// UNIX hack, to be removed. 
+// UNIX hack, to be removed.
 #ifdef SNDSERV
     {"sndserver", (int *) &sndserver_filename, (int) "sndserver"},
     {"mb_used", &mb_used, 2},
 #endif
-    
+
 #endif
 
 #ifdef LINUX
@@ -297,6 +298,15 @@ default_t	defaults[] =
     {"chatmacro9", (int *) &chat_macros[9], (int) HUSTR_CHATMACRO9 }
 
 };
+#else
+// Headless mode - minimal defaults array
+default_t	defaults[] =
+{
+    {"mouse_sensitivity",&mouseSensitivity, 5},
+    {"sfx_volume",&snd_SfxVolume, 8},
+    {"music_volume",&snd_MusicVolume, 8}
+};
+#endif
 
 int	numdefaults;
 char*	defaultfile;

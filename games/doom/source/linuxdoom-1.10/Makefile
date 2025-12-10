@@ -87,6 +87,25 @@ $(O)/linuxxdoom:	$(OBJS) $(O)/i_main.o
 	$(CC) $(CFLAGS) $(LDFLAGS) $(OBJS) $(O)/i_main.o \
 	-o $(O)/linuxxdoom $(LIBS)
 
+# Verification mode - headless reference build
+VERIFY_CFLAGS=-g -Wall -DNORMALUNIX -DLINUX -DVERIFICATION_MODE -DHEADLESS
+VERIFY_LDFLAGS=
+VERIFY_LIBS=-lm
+VERIFY_O=verify
+
+# Separate object files for verification build
+VERIFY_OBJS=$(OBJS:$(O)/%=$(VERIFY_O)/%)
+
+doom_reference: $(VERIFY_O)/doom_reference
+
+$(VERIFY_O)/doom_reference: $(VERIFY_OBJS) $(VERIFY_O)/i_main.o
+	$(CC) $(VERIFY_CFLAGS) $(VERIFY_LDFLAGS) $(VERIFY_OBJS) $(VERIFY_O)/i_main.o \
+	-o $(VERIFY_O)/doom_reference $(VERIFY_LIBS)
+
+$(VERIFY_O)/%.o: %.c
+	@mkdir -p $(VERIFY_O)
+	$(CC) $(VERIFY_CFLAGS) -c $< -o $@
+
 $(O)/%.o:	%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 

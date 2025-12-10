@@ -1,0 +1,77 @@
+{
+  "version": "1.0",
+  "project_id": "modelforecast",
+  "services": {},
+  "ports": {},
+  "virtual_environments": {
+    "primary": ".venv",
+    "command_prefix": "uv run python",
+    "python_version": ">=3.11"
+  },
+  "external_binaries": {
+    "pmars": {
+      "path": "/home/jw/dev/game1/external/corewars-sandbox/pmars",
+      "purpose": "CoreWars MARS simulator (reference implementation)",
+      "required": true
+    },
+    "gpu_mars": {
+      "path": "/home/jw/dev/game1/external/corewars-sandbox/gpu_mars/build/gpu_mars_interleaved",
+      "purpose": "GPU-accelerated CoreWars simulator for tournaments",
+      "required": false
+    }
+  },
+  "directories": {
+    "source": "src/modelforecast",
+    "tests": "tests",
+    "scripts": "scripts",
+    "games": "games",
+    "results": "results",
+    "charts": "charts",
+    "var": "var",
+    "archive": "archive",
+    "docs": "docs"
+  },
+  "startup_checks": [
+    {
+      "check": "venv_exists",
+      "path": ".venv",
+      "description": "Virtual environment must exist"
+    },
+    {
+      "check": "env_var_set",
+      "var": "OPENROUTER_API_KEY",
+      "description": "OpenRouter API key required for LLM calls"
+    },
+    {
+      "check": "binary_exists",
+      "path": "/home/jw/dev/game1/external/corewars-sandbox/pmars",
+      "description": "PMARS binary for CoreWars simulation"
+    }
+  ],
+  "baseline_capabilities": {
+    "tournament_execution": {
+      "command": "uv run python -m modelforecast",
+      "expected": "runs without errors"
+    },
+    "test_suite": {
+      "command": "uv run pytest tests/",
+      "expected": "all green"
+    },
+    "chart_generation": {
+      "command": "uv run python scripts/generate_waffle.py",
+      "expected": "produces valid PNG"
+    },
+    "api_connectivity": {
+      "check": "OpenRouter API calls succeed with valid key"
+    }
+  },
+  "pre_commit_checks": [
+    "uv run ruff check src/ tests/",
+    "uv run pytest tests/ -x"
+  ],
+  "git_conventions": {
+    "author_name": "jw",
+    "branch_naming": "feat/description, fix/description, docs/description",
+    "pr_target": "main"
+  }
+}
