@@ -1,0 +1,177 @@
+{
+  "timestamp": "2025-12-12T19:21:51.167817",
+  "metrics": {
+    "alibaba_qwen-3": {
+      "tie_rate": 0.0,
+      "code_complexity": 27,
+      "kills_per_battle": 0.0,
+      "total_battles": 18000,
+      "ties": 0,
+      "kills": 0,
+      "deaths": 18000,
+      "cooperation_score": 42.34234234234234
+    },
+    "anthropic_claude-opus-4.5": {
+      "tie_rate": 1.3222222222222222,
+      "code_complexity": 4,
+      "kills_per_battle": 0.20577777777777778,
+      "total_battles": 18000,
+      "ties": 238,
+      "kills": 3704,
+      "deaths": 14058,
+      "cooperation_score": 50.32981034812021
+    },
+    "anthropic_claude-sonnet-4.5": {
+      "tie_rate": 22.36111111111111,
+      "code_complexity": 24,
+      "kills_per_battle": 0.4593333333333333,
+      "total_battles": 18000,
+      "ties": 4025,
+      "kills": 8268,
+      "deaths": 5707,
+      "cooperation_score": 23.092005257498215
+    },
+    "deepseek_deepseek-chat-v3-0324": {
+      "tie_rate": 50.56666666666667,
+      "code_complexity": 24,
+      "kills_per_battle": 0.3376111111111111,
+      "total_battles": 18000,
+      "ties": 9102,
+      "kills": 6077,
+      "deaths": 2821,
+      "cooperation_score": 40.286573000657505
+    },
+    "google_gemini-2.5-pro": {
+      "tie_rate": 48.583333333333336,
+      "code_complexity": 33,
+      "kills_per_battle": 0.2445,
+      "total_battles": 18000,
+      "ties": 8745,
+      "kills": 4401,
+      "deaths": 4854,
+      "cooperation_score": 37.47837241851327
+    },
+    "kwaipilot_kat-coder-pro_free": {
+      "tie_rate": 66.0111111111111,
+      "code_complexity": 37,
+      "kills_per_battle": 0.25272222222222224,
+      "total_battles": 18000,
+      "ties": 11882,
+      "kills": 4549,
+      "deaths": 1569,
+      "cooperation_score": 39.15763740693318
+    },
+    "meta_llama-4": {
+      "tie_rate": 38.18333333333334,
+      "code_complexity": 25,
+      "kills_per_battle": 0.5206666666666667,
+      "total_battles": 18000,
+      "ties": 6873,
+      "kills": 9372,
+      "deaths": 1755,
+      "cooperation_score": 23.538588588588592
+    },
+    "openai_gpt-5.1-chat": {
+      "tie_rate": 4.316666666666666,
+      "code_complexity": 8,
+      "kills_per_battle": 0.3848888888888889,
+      "total_battles": 18000,
+      "ties": 777,
+      "kills": 6928,
+      "deaths": 10295,
+      "cooperation_score": 36.257574411799766
+    },
+    "openai_gpt-5.2-chat": {
+      "tie_rate": 57.22222222222222,
+      "code_complexity": 30,
+      "kills_per_battle": 0.4262222222222222,
+      "total_battles": 18000,
+      "ties": 10300,
+      "kills": 7672,
+      "deaths": 28,
+      "cooperation_score": 31.42675966619629
+    },
+    "xai_grok-4": {
+      "tie_rate": 54.41111111111111,
+      "code_complexity": 32,
+      "kills_per_battle": 0.4533888888888889,
+      "total_battles": 18000,
+      "ties": 9794,
+      "kills": 8161,
+      "deaths": 45,
+      "cooperation_score": 26.94869760926099
+    }
+  },
+  "sorted_by_cooperation": [
+    {
+      "warrior": "anthropic_claude-opus-4.5",
+      "cooperation_score": 50.32981034812021,
+      "tie_rate": 1.3222222222222222,
+      "code_complexity": 4,
+      "kills_per_battle": 0.20577777777777778
+    },
+    {
+      "warrior": "alibaba_qwen-3",
+      "cooperation_score": 42.34234234234234,
+      "tie_rate": 0.0,
+      "code_complexity": 27,
+      "kills_per_battle": 0.0
+    },
+    {
+      "warrior": "deepseek_deepseek-chat-v3-0324",
+      "cooperation_score": 40.286573000657505,
+      "tie_rate": 50.56666666666667,
+      "code_complexity": 24,
+      "kills_per_battle": 0.3376111111111111
+    },
+    {
+      "warrior": "kwaipilot_kat-coder-pro_free",
+      "cooperation_score": 39.15763740693318,
+      "tie_rate": 66.0111111111111,
+      "code_complexity": 37,
+      "kills_per_battle": 0.25272222222222224
+    },
+    {
+      "warrior": "google_gemini-2.5-pro",
+      "cooperation_score": 37.47837241851327,
+      "tie_rate": 48.583333333333336,
+      "code_complexity": 33,
+      "kills_per_battle": 0.2445
+    },
+    {
+      "warrior": "openai_gpt-5.1-chat",
+      "cooperation_score": 36.257574411799766,
+      "tie_rate": 4.316666666666666,
+      "code_complexity": 8,
+      "kills_per_battle": 0.3848888888888889
+    },
+    {
+      "warrior": "openai_gpt-5.2-chat",
+      "cooperation_score": 31.42675966619629,
+      "tie_rate": 57.22222222222222,
+      "code_complexity": 30,
+      "kills_per_battle": 0.4262222222222222
+    },
+    {
+      "warrior": "xai_grok-4",
+      "cooperation_score": 26.94869760926099,
+      "tie_rate": 54.41111111111111,
+      "code_complexity": 32,
+      "kills_per_battle": 0.4533888888888889
+    },
+    {
+      "warrior": "meta_llama-4",
+      "cooperation_score": 23.538588588588592,
+      "tie_rate": 38.18333333333334,
+      "code_complexity": 25,
+      "kills_per_battle": 0.5206666666666667
+    },
+    {
+      "warrior": "anthropic_claude-sonnet-4.5",
+      "cooperation_score": 23.092005257498215,
+      "tie_rate": 22.36111111111111,
+      "code_complexity": 24,
+      "kills_per_battle": 0.4593333333333333
+    }
+  ]
+}
