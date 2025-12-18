@@ -1,0 +1,646 @@
+{
+  "timestamp": "2025-12-12T19:21:51.167817",
+  "battles_per_matchup": 2000,
+  "warriors": [
+    "alibaba_qwen-3",
+    "anthropic_claude-opus-4.5",
+    "anthropic_claude-sonnet-4.5",
+    "deepseek_deepseek-chat-v3-0324",
+    "google_gemini-2.5-pro",
+    "kwaipilot_kat-coder-pro_free",
+    "meta_llama-4",
+    "mistral_large",
+    "openai_gpt-5.1-chat",
+    "openai_gpt-5.2-chat",
+    "xai_grok-4"
+  ],
+  "matchups": [
+    {
+      "w1": "alibaba_qwen-3",
+      "w2": "anthropic_claude-opus-4.5",
+      "w1_wins": 0,
+      "w2_wins": 2000,
+      "ties": 0,
+      "battles": 2000,
+      "w1_pct": 0.0,
+      "w2_pct": 100.0,
+      "tie_pct": 0.0
+    },
+    {
+      "w1": "alibaba_qwen-3",
+      "w2": "anthropic_claude-sonnet-4.5",
+      "w1_wins": 0,
+      "w2_wins": 2000,
+      "ties": 0,
+      "battles": 2000,
+      "w1_pct": 0.0,
+      "w2_pct": 100.0,
+      "tie_pct": 0.0
+    },
+    {
+      "w1": "alibaba_qwen-3",
+      "w2": "deepseek_deepseek-chat-v3-0324",
+      "w1_wins": 0,
+      "w2_wins": 2000,
+      "ties": 0,
+      "battles": 2000,
+      "w1_pct": 0.0,
+      "w2_pct": 100.0,
+      "tie_pct": 0.0
+    },
+    {
+      "w1": "alibaba_qwen-3",
+      "w2": "google_gemini-2.5-pro",
+      "w1_wins": 0,
+      "w2_wins": 2000,
+      "ties": 0,
+      "battles": 2000,
+      "w1_pct": 0.0,
+      "w2_pct": 100.0,
+      "tie_pct": 0.0
+    },
+    {
+      "error": "No results found",
+      "w1": "alibaba_qwen-3",
+      "w2": "mistral_large",
+      "stdout": "Loading warriors from files...\nLoaded /home/jw/dev/game1/external/corewars-sandbox/gpu_mars/warriors/tournament_001/alibaba_qwen-3.red: 48 instructions, entry=33\nLoaded /home/jw/dev/game1/external/corewars-sandbox/gpu_mars/warriors/tournament_001/mistral_large.red: 0 instructions, entry=0\n"
+    },
+    {
+      "w1": "alibaba_qwen-3",
+      "w2": "meta_llama-4",
+      "w1_wins": 0,
+      "w2_wins": 2000,
+      "ties": 0,
+      "battles": 2000,
+      "w1_pct": 0.0,
+      "w2_pct": 100.0,
+      "tie_pct": 0.0
+    },
+    {
+      "w1": "alibaba_qwen-3",
+      "w2": "kwaipilot_kat-coder-pro_free",
+      "w1_wins": 0,
+      "w2_wins": 2000,
+      "ties": 0,
+      "battles": 2000,
+      "w1_pct": 0.0,
+      "w2_pct": 100.0,
+      "tie_pct": 0.0
+    },
+    {
+      "w1": "alibaba_qwen-3",
+      "w2": "openai_gpt-5.2-chat",
+      "w1_wins": 0,
+      "w2_wins": 2000,
+      "ties": 0,
+      "battles": 2000,
+      "w1_pct": 0.0,
+      "w2_pct": 100.0,
+      "tie_pct": 0.0
+    },
+    {
+      "w1": "alibaba_qwen-3",
+      "w2": "openai_gpt-5.1-chat",
+      "w1_wins": 0,
+      "w2_wins": 2000,
+      "ties": 0,
+      "battles": 2000,
+      "w1_pct": 0.0,
+      "w2_pct": 100.0,
+      "tie_pct": 0.0
+    },
+    {
+      "w1": "alibaba_qwen-3",
+      "w2": "xai_grok-4",
+      "w1_wins": 0,
+      "w2_wins": 2000,
+      "ties": 0,
+      "battles": 2000,
+      "w1_pct": 0.0,
+      "w2_pct": 100.0,
+      "tie_pct": 0.0
+    },
+    {
+      "w1": "anthropic_claude-opus-4.5",
+      "w2": "google_gemini-2.5-pro",
+      "w1_wins": 499,
+      "w2_wins": 1501,
+      "ties": 0,
+      "battles": 2000,
+      "w1_pct": 24.9,
+      "w2_pct": 75.0,
+      "tie_pct": 0.0
+    },
+    {
+      "w1": "anthropic_claude-opus-4.5",
+      "w2": "deepseek_deepseek-chat-v3-0324",
+      "w1_wins": 328,
+      "w2_wins": 1672,
+      "ties": 0,
+      "battles": 2000,
+      "w1_pct": 16.4,
+      "w2_pct": 83.6,
+      "tie_pct": 0.0
+    },
+    {
+      "error": "No results found",
+      "w1": "anthropic_claude-opus-4.5",
+      "w2": "mistral_large",
+      "stdout": "Loading warriors from files...\nLoaded /home/jw/dev/game1/external/corewars-sandbox/gpu_mars/warriors/tournament_001/anthropic_claude-opus-4.5.red: 3 instructions, entry=0\nLoaded /home/jw/dev/game1/external/corewars-sandbox/gpu_mars/warriors/tournament_001/mistral_large.red: 0 instructions, entry=0\n"
+    },
+    {
+      "w1": "anthropic_claude-opus-4.5",
+      "w2": "anthropic_claude-sonnet-4.5",
+      "w1_wins": 104,
+      "w2_wins": 1894,
+      "ties": 2,
+      "battles": 2000,
+      "w1_pct": 5.2,
+      "w2_pct": 94.7,
+      "tie_pct": 0.1
+    },
+    {
+      "w1": "anthropic_claude-opus-4.5",
+      "w2": "meta_llama-4",
+      "w1_wins": 146,
+      "w2_wins": 1854,
+      "ties": 0,
+      "battles": 2000,
+      "w1_pct": 7.3,
+      "w2_pct": 92.7,
+      "tie_pct": 0.0
+    },
+    {
+      "w1": "anthropic_claude-opus-4.5",
+      "w2": "openai_gpt-5.1-chat",
+      "w1_wins": 310,
+      "w2_wins": 1690,
+      "ties": 0,
+      "battles": 2000,
+      "w1_pct": 15.5,
+      "w2_pct": 84.5,
+      "tie_pct": 0.0
+    },
+    {
+      "w1": "anthropic_claude-opus-4.5",
+      "w2": "openai_gpt-5.2-chat",
+      "w1_wins": 0,
+      "w2_wins": 2000,
+      "ties": 0,
+      "battles": 2000,
+      "w1_pct": 0.0,
+      "w2_pct": 100.0,
+      "tie_pct": 0.0
+    },
+    {
+      "w1": "anthropic_claude-opus-4.5",
+      "w2": "kwaipilot_kat-coder-pro_free",
+      "w1_wins": 317,
+      "w2_wins": 1453,
+      "ties": 230,
+      "battles": 2000,
+      "w1_pct": 15.8,
+      "w2_pct": 72.7,
+      "tie_pct": 11.5
+    },
+    {
+      "w1": "anthropic_claude-opus-4.5",
+      "w2": "xai_grok-4",
+      "w1_wins": 0,
+      "w2_wins": 1994,
+      "ties": 6,
+      "battles": 2000,
+      "w1_pct": 0.0,
+      "w2_pct": 99.7,
+      "tie_pct": 0.3
+    },
+    {
+      "w1": "anthropic_claude-sonnet-4.5",
+      "w2": "google_gemini-2.5-pro",
+      "w1_wins": 1053,
+      "w2_wins": 394,
+      "ties": 553,
+      "battles": 2000,
+      "w1_pct": 52.6,
+      "w2_pct": 19.7,
+      "tie_pct": 27.6
+    },
+    {
+      "error": "No results found",
+      "w1": "anthropic_claude-sonnet-4.5",
+      "w2": "mistral_large",
+      "stdout": "Loading warriors from files...\nLoaded /home/jw/dev/game1/external/corewars-sandbox/gpu_mars/warriors/tournament_001/anthropic_claude-sonnet-4.5.red: 23 instructions, entry=0\nLoaded /home/jw/dev/game1/external/corewars-sandbox/gpu_mars/warriors/tournament_001/mistral_large.red: 0 instructions, entry=0\n"
+    },
+    {
+      "w1": "anthropic_claude-sonnet-4.5",
+      "w2": "deepseek_deepseek-chat-v3-0324",
+      "w1_wins": 672,
+      "w2_wins": 844,
+      "ties": 484,
+      "battles": 2000,
+      "w1_pct": 33.6,
+      "w2_pct": 42.2,
+      "tie_pct": 24.2
+    },
+    {
+      "w1": "anthropic_claude-sonnet-4.5",
+      "w2": "kwaipilot_kat-coder-pro_free",
+      "w1_wins": 305,
+      "w2_wins": 40,
+      "ties": 1655,
+      "battles": 2000,
+      "w1_pct": 15.2,
+      "w2_pct": 2.0,
+      "tie_pct": 82.8
+    },
+    {
+      "w1": "anthropic_claude-sonnet-4.5",
+      "w2": "meta_llama-4",
+      "w1_wins": 789,
+      "w2_wins": 862,
+      "ties": 349,
+      "battles": 2000,
+      "w1_pct": 39.5,
+      "w2_pct": 43.1,
+      "tie_pct": 17.4
+    },
+    {
+      "w1": "anthropic_claude-sonnet-4.5",
+      "w2": "openai_gpt-5.1-chat",
+      "w1_wins": 1502,
+      "w2_wins": 412,
+      "ties": 86,
+      "battles": 2000,
+      "w1_pct": 75.1,
+      "w2_pct": 20.6,
+      "tie_pct": 4.3
+    },
+    {
+      "w1": "deepseek_deepseek-chat-v3-0324",
+      "w2": "google_gemini-2.5-pro",
+      "w1_wins": 239,
+      "w2_wins": 0,
+      "ties": 1761,
+      "battles": 2000,
+      "w1_pct": 11.9,
+      "w2_pct": 0.0,
+      "tie_pct": 88.0
+    },
+    {
+      "w1": "anthropic_claude-sonnet-4.5",
+      "w2": "xai_grok-4",
+      "w1_wins": 26,
+      "w2_wins": 1695,
+      "ties": 279,
+      "battles": 2000,
+      "w1_pct": 1.3,
+      "w2_pct": 84.8,
+      "tie_pct": 13.9
+    },
+    {
+      "w1": "anthropic_claude-sonnet-4.5",
+      "w2": "openai_gpt-5.2-chat",
+      "w1_wins": 27,
+      "w2_wins": 1356,
+      "ties": 617,
+      "battles": 2000,
+      "w1_pct": 1.4,
+      "w2_pct": 67.8,
+      "tie_pct": 30.9
+    },
+    {
+      "error": "No results found",
+      "w1": "deepseek_deepseek-chat-v3-0324",
+      "w2": "mistral_large",
+      "stdout": "Loading warriors from files...\nLoaded /home/jw/dev/game1/external/corewars-sandbox/gpu_mars/warriors/tournament_001/deepseek_deepseek-chat-v3-0324.red: 20 instructions, entry=0\nLoaded /home/jw/dev/game1/external/corewars-sandbox/gpu_mars/warriors/tournament_001/mistral_large.red: 0 instructions, entry=0\n"
+    },
+    {
+      "w1": "deepseek_deepseek-chat-v3-0324",
+      "w2": "kwaipilot_kat-coder-pro_free",
+      "w1_wins": 0,
+      "w2_wins": 0,
+      "ties": 2000,
+      "battles": 2000,
+      "w1_pct": 0.0,
+      "w2_pct": 0.0,
+      "tie_pct": 100.0
+    },
+    {
+      "w1": "deepseek_deepseek-chat-v3-0324",
+      "w2": "openai_gpt-5.1-chat",
+      "w1_wins": 1218,
+      "w2_wins": 782,
+      "ties": 0,
+      "battles": 2000,
+      "w1_pct": 60.9,
+      "w2_pct": 39.1,
+      "tie_pct": 0.0
+    },
+    {
+      "w1": "deepseek_deepseek-chat-v3-0324",
+      "w2": "meta_llama-4",
+      "w1_wins": 104,
+      "w2_wins": 911,
+      "ties": 985,
+      "battles": 2000,
+      "w1_pct": 5.2,
+      "w2_pct": 45.5,
+      "tie_pct": 49.2
+    },
+    {
+      "w1": "deepseek_deepseek-chat-v3-0324",
+      "w2": "openai_gpt-5.2-chat",
+      "w1_wins": 0,
+      "w2_wins": 7,
+      "ties": 1993,
+      "battles": 2000,
+      "w1_pct": 0.0,
+      "w2_pct": 0.3,
+      "tie_pct": 99.7
+    },
+    {
+      "error": "No results found",
+      "w1": "google_gemini-2.5-pro",
+      "w2": "mistral_large",
+      "stdout": "Loading warriors from files...\nLoaded /home/jw/dev/game1/external/corewars-sandbox/gpu_mars/warriors/tournament_001/google_gemini-2.5-pro.red: 28 instructions, entry=0\nLoaded /home/jw/dev/game1/external/corewars-sandbox/gpu_mars/warriors/tournament_001/mistral_large.red: 0 instructions, entry=0\n"
+    },
+    {
+      "w1": "google_gemini-2.5-pro",
+      "w2": "openai_gpt-5.1-chat",
+      "w1_wins": 506,
+      "w2_wins": 1494,
+      "ties": 0,
+      "battles": 2000,
+      "w1_pct": 25.3,
+      "w2_pct": 74.7,
+      "tie_pct": 0.0
+    },
+    {
+      "w1": "google_gemini-2.5-pro",
+      "w2": "meta_llama-4",
+      "w1_wins": 0,
+      "w2_wins": 1348,
+      "ties": 652,
+      "battles": 2000,
+      "w1_pct": 0.0,
+      "w2_pct": 67.4,
+      "tie_pct": 32.6
+    },
+    {
+      "w1": "google_gemini-2.5-pro",
+      "w2": "kwaipilot_kat-coder-pro_free",
+      "w1_wins": 0,
+      "w2_wins": 0,
+      "ties": 2000,
+      "battles": 2000,
+      "w1_pct": 0.0,
+      "w2_pct": 0.0,
+      "tie_pct": 100.0
+    },
+    {
+      "w1": "google_gemini-2.5-pro",
+      "w2": "openai_gpt-5.2-chat",
+      "w1_wins": 0,
+      "w2_wins": 1,
+      "ties": 1999,
+      "battles": 2000,
+      "w1_pct": 0.0,
+      "w2_pct": 0.1,
+      "tie_pct": 100.0
+    },
+    {
+      "error": "No results found",
+      "w1": "kwaipilot_kat-coder-pro_free",
+      "w2": "mistral_large",
+      "stdout": "Loading warriors from files...\nLoaded /home/jw/dev/game1/external/corewars-sandbox/gpu_mars/warriors/tournament_001/kwaipilot_kat-coder-pro_free.red: 37 instructions, entry=0\nLoaded /home/jw/dev/game1/external/corewars-sandbox/gpu_mars/warriors/tournament_001/mistral_large.red: 0 instructions, entry=0\n"
+    },
+    {
+      "w1": "kwaipilot_kat-coder-pro_free",
+      "w2": "meta_llama-4",
+      "w1_wins": 0,
+      "w2_wins": 663,
+      "ties": 1337,
+      "battles": 2000,
+      "w1_pct": 0.0,
+      "w2_pct": 33.1,
+      "tie_pct": 66.8
+    },
+    {
+      "w1": "kwaipilot_kat-coder-pro_free",
+      "w2": "openai_gpt-5.1-chat",
+      "w1_wins": 1056,
+      "w2_wins": 266,
+      "ties": 678,
+      "battles": 2000,
+      "w1_pct": 52.8,
+      "w2_pct": 13.3,
+      "tie_pct": 33.9
+    },
+    {
+      "w1": "deepseek_deepseek-chat-v3-0324",
+      "w2": "xai_grok-4",
+      "w1_wins": 0,
+      "w2_wins": 121,
+      "ties": 1879,
+      "battles": 2000,
+      "w1_pct": 0.0,
+      "w2_pct": 6.0,
+      "tie_pct": 94.0
+    },
+    {
+      "error": "No results found",
+      "w1": "meta_llama-4",
+      "w2": "mistral_large",
+      "stdout": "Loading warriors from files...\nLoaded /home/jw/dev/game1/external/corewars-sandbox/gpu_mars/warriors/tournament_001/meta_llama-4.red: 24 instructions, entry=0\nLoaded /home/jw/dev/game1/external/corewars-sandbox/gpu_mars/warriors/tournament_001/mistral_large.red: 0 instructions, entry=0\n"
+    },
+    {
+      "w1": "meta_llama-4",
+      "w2": "openai_gpt-5.1-chat",
+      "w1_wins": 1733,
+      "w2_wins": 267,
+      "ties": 0,
+      "battles": 2000,
+      "w1_pct": 86.7,
+      "w2_pct": 13.3,
+      "tie_pct": 0.0
+    },
+    {
+      "w1": "kwaipilot_kat-coder-pro_free",
+      "w2": "openai_gpt-5.2-chat",
+      "w1_wins": 0,
+      "w2_wins": 0,
+      "ties": 2000,
+      "battles": 2000,
+      "w1_pct": 0.0,
+      "w2_pct": 0.0,
+      "tie_pct": 100.0
+    },
+    {
+      "w1": "kwaipilot_kat-coder-pro_free",
+      "w2": "xai_grok-4",
+      "w1_wins": 0,
+      "w2_wins": 18,
+      "ties": 1982,
+      "battles": 2000,
+      "w1_pct": 0.0,
+      "w2_pct": 0.9,
+      "tie_pct": 99.1
+    },
+    {
+      "error": "No results found",
+      "w1": "mistral_large",
+      "w2": "openai_gpt-5.1-chat",
+      "stdout": "Loading warriors from files...\nLoaded /home/jw/dev/game1/external/corewars-sandbox/gpu_mars/warriors/tournament_001/mistral_large.red: 0 instructions, entry=0\nLoaded /home/jw/dev/game1/external/corewars-sandbox/gpu_mars/warriors/tournament_001/openai_gpt-5.1-chat.red: 6 instructions, entry=2\n"
+    },
+    {
+      "error": "No results found",
+      "w1": "mistral_large",
+      "w2": "openai_gpt-5.2-chat",
+      "stdout": "Loading warriors from files...\nLoaded /home/jw/dev/game1/external/corewars-sandbox/gpu_mars/warriors/tournament_001/mistral_large.red: 0 instructions, entry=0\nLoaded /home/jw/dev/game1/external/corewars-sandbox/gpu_mars/warriors/tournament_001/openai_gpt-5.2-chat.red: 26 instructions, entry=0\n"
+    },
+    {
+      "error": "No results found",
+      "w1": "mistral_large",
+      "w2": "xai_grok-4",
+      "stdout": "Loading warriors from files...\nLoaded /home/jw/dev/game1/external/corewars-sandbox/gpu_mars/warriors/tournament_001/mistral_large.red: 0 instructions, entry=0\nLoaded /home/jw/dev/game1/external/corewars-sandbox/gpu_mars/warriors/tournament_001/xai_grok-4.red: 31 instructions, entry=0\n"
+    },
+    {
+      "w1": "google_gemini-2.5-pro",
+      "w2": "xai_grok-4",
+      "w1_wins": 0,
+      "w2_wins": 220,
+      "ties": 1780,
+      "battles": 2000,
+      "w1_pct": 0.0,
+      "w2_pct": 11.0,
+      "tie_pct": 89.0
+    },
+    {
+      "w1": "openai_gpt-5.1-chat",
+      "w2": "openai_gpt-5.2-chat",
+      "w1_wins": 0,
+      "w2_wins": 2000,
+      "ties": 0,
+      "battles": 2000,
+      "w1_pct": 0.0,
+      "w2_pct": 100.0,
+      "tie_pct": 0.0
+    },
+    {
+      "w1": "openai_gpt-5.1-chat",
+      "w2": "xai_grok-4",
+      "w1_wins": 17,
+      "w2_wins": 1970,
+      "ties": 13,
+      "battles": 2000,
+      "w1_pct": 0.8,
+      "w2_pct": 98.5,
+      "tie_pct": 0.7
+    },
+    {
+      "w1": "meta_llama-4",
+      "w2": "openai_gpt-5.2-chat",
+      "w1_wins": 1,
+      "w2_wins": 306,
+      "ties": 1693,
+      "battles": 2000,
+      "w1_pct": 0.1,
+      "w2_pct": 15.3,
+      "tie_pct": 84.7
+    },
+    {
+      "w1": "meta_llama-4",
+      "w2": "xai_grok-4",
+      "w1_wins": 0,
+      "w2_wins": 143,
+      "ties": 1857,
+      "battles": 2000,
+      "w1_pct": 0.0,
+      "w2_pct": 7.2,
+      "tie_pct": 92.8
+    },
+    {
+      "w1": "openai_gpt-5.2-chat",
+      "w2": "xai_grok-4",
+      "w1_wins": 2,
+      "w2_wins": 0,
+      "ties": 1998,
+      "battles": 2000,
+      "w1_pct": 0.1,
+      "w2_pct": 0.0,
+      "tie_pct": 99.9
+    }
+  ],
+  "rankings": [
+    {
+      "rank": 1,
+      "warrior": "openai_gpt-5.2-chat",
+      "points": 25,
+      "wins": 8,
+      "losses": 0
+    },
+    {
+      "rank": 2,
+      "warrior": "xai_grok-4",
+      "points": 24,
+      "wins": 8,
+      "losses": 1
+    },
+    {
+      "rank": 3,
+      "warrior": "meta_llama-4",
+      "points": 21,
+      "wins": 7,
+      "losses": 2
+    },
+    {
+      "rank": 4,
+      "warrior": "deepseek_deepseek-chat-v3-0324",
+      "points": 16,
+      "wins": 5,
+      "losses": 3
+    },
+    {
+      "rank": 5,
+      "warrior": "anthropic_claude-sonnet-4.5",
+      "points": 15,
+      "wins": 5,
+      "losses": 4
+    },
+    {
+      "rank": 6,
+      "warrior": "kwaipilot_kat-coder-pro_free",
+      "points": 12,
+      "wins": 3,
+      "losses": 3
+    },
+    {
+      "rank": 7,
+      "warrior": "openai_gpt-5.1-chat",
+      "points": 9,
+      "wins": 3,
+      "losses": 6
+    },
+    {
+      "rank": 8,
+      "warrior": "google_gemini-2.5-pro",
+      "points": 7,
+      "wins": 2,
+      "losses": 6
+    },
+    {
+      "rank": 9,
+      "warrior": "anthropic_claude-opus-4.5",
+      "points": 3,
+      "wins": 1,
+      "losses": 8
+    },
+    {
+      "rank": 10,
+      "warrior": "alibaba_qwen-3",
+      "points": 0,
+      "wins": 0,
+      "losses": 9
+    }
+  ]
+}

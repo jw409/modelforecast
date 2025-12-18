@@ -1,0 +1,703 @@
+{
+  "timestamp": "2025-12-12T19:33:58.126455",
+  "battles_per_matchup": 3000,
+  "warriors": [
+    "alibaba_qwen-3",
+    "anthropic_claude-opus-4.5",
+    "anthropic_claude-sonnet-4.5",
+    "deepseek_deepseek-chat-v3-0324",
+    "google_gemini-2.5-pro",
+    "kwaipilot_kat-coder-pro_free",
+    "meta_llama-4",
+    "mistral_large",
+    "openai_gpt-5.1-chat",
+    "openai_gpt-5.2-chat",
+    "xai_grok-4"
+  ],
+  "matchups": [
+    {
+      "w1": "alibaba_qwen-3",
+      "w2": "anthropic_claude-opus-4.5",
+      "w1_wins": 2609,
+      "w2_wins": 389,
+      "ties": 2,
+      "battles": 3000,
+      "w1_pct": 87.0,
+      "w2_pct": 13.0,
+      "tie_pct": 0.1
+    },
+    {
+      "w1": "alibaba_qwen-3",
+      "w2": "anthropic_claude-sonnet-4.5",
+      "w1_wins": 801,
+      "w2_wins": 1483,
+      "ties": 716,
+      "battles": 3000,
+      "w1_pct": 26.7,
+      "w2_pct": 49.4,
+      "tie_pct": 23.9
+    },
+    {
+      "w1": "alibaba_qwen-3",
+      "w2": "google_gemini-2.5-pro",
+      "w1_wins": 739,
+      "w2_wins": 0,
+      "ties": 2261,
+      "battles": 3000,
+      "w1_pct": 24.6,
+      "w2_pct": 0.0,
+      "tie_pct": 75.4
+    },
+    {
+      "w1": "alibaba_qwen-3",
+      "w2": "kwaipilot_kat-coder-pro_free",
+      "w1_wins": 95,
+      "w2_wins": 0,
+      "ties": 2905,
+      "battles": 3000,
+      "w1_pct": 3.2,
+      "w2_pct": 0.0,
+      "tie_pct": 96.8
+    },
+    {
+      "w1": "alibaba_qwen-3",
+      "w2": "deepseek_deepseek-chat-v3-0324",
+      "w1_wins": 96,
+      "w2_wins": 381,
+      "ties": 2523,
+      "battles": 3000,
+      "w1_pct": 3.2,
+      "w2_pct": 12.7,
+      "tie_pct": 84.1
+    },
+    {
+      "w1": "alibaba_qwen-3",
+      "w2": "mistral_large",
+      "w1_wins": 2144,
+      "w2_wins": 839,
+      "ties": 17,
+      "battles": 3000,
+      "w1_pct": 71.5,
+      "w2_pct": 28.0,
+      "tie_pct": 0.6
+    },
+    {
+      "w1": "alibaba_qwen-3",
+      "w2": "meta_llama-4",
+      "w1_wins": 22,
+      "w2_wins": 2281,
+      "ties": 697,
+      "battles": 3000,
+      "w1_pct": 0.7,
+      "w2_pct": 76.0,
+      "tie_pct": 23.2
+    },
+    {
+      "w1": "alibaba_qwen-3",
+      "w2": "openai_gpt-5.1-chat",
+      "w1_wins": 1570,
+      "w2_wins": 1423,
+      "ties": 7,
+      "battles": 3000,
+      "w1_pct": 52.3,
+      "w2_pct": 47.4,
+      "tie_pct": 0.2
+    },
+    {
+      "w1": "anthropic_claude-opus-4.5",
+      "w2": "deepseek_deepseek-chat-v3-0324",
+      "w1_wins": 491,
+      "w2_wins": 2509,
+      "ties": 0,
+      "battles": 3000,
+      "w1_pct": 16.4,
+      "w2_pct": 83.6,
+      "tie_pct": 0.0
+    },
+    {
+      "w1": "anthropic_claude-opus-4.5",
+      "w2": "anthropic_claude-sonnet-4.5",
+      "w1_wins": 162,
+      "w2_wins": 2836,
+      "ties": 2,
+      "battles": 3000,
+      "w1_pct": 5.4,
+      "w2_pct": 94.5,
+      "tie_pct": 0.1
+    },
+    {
+      "w1": "anthropic_claude-opus-4.5",
+      "w2": "google_gemini-2.5-pro",
+      "w1_wins": 741,
+      "w2_wins": 2259,
+      "ties": 0,
+      "battles": 3000,
+      "w1_pct": 24.7,
+      "w2_pct": 75.3,
+      "tie_pct": 0.0
+    },
+    {
+      "w1": "anthropic_claude-opus-4.5",
+      "w2": "meta_llama-4",
+      "w1_wins": 204,
+      "w2_wins": 2796,
+      "ties": 0,
+      "battles": 3000,
+      "w1_pct": 6.8,
+      "w2_pct": 93.2,
+      "tie_pct": 0.0
+    },
+    {
+      "w1": "anthropic_claude-opus-4.5",
+      "w2": "mistral_large",
+      "w1_wins": 727,
+      "w2_wins": 2273,
+      "ties": 0,
+      "battles": 3000,
+      "w1_pct": 24.2,
+      "w2_pct": 75.8,
+      "tie_pct": 0.0
+    },
+    {
+      "w1": "anthropic_claude-opus-4.5",
+      "w2": "openai_gpt-5.1-chat",
+      "w1_wins": 460,
+      "w2_wins": 2540,
+      "ties": 0,
+      "battles": 3000,
+      "w1_pct": 15.3,
+      "w2_pct": 84.7,
+      "tie_pct": 0.0
+    },
+    {
+      "w1": "anthropic_claude-opus-4.5",
+      "w2": "kwaipilot_kat-coder-pro_free",
+      "w1_wins": 439,
+      "w2_wins": 2225,
+      "ties": 336,
+      "battles": 3000,
+      "w1_pct": 14.6,
+      "w2_pct": 74.2,
+      "tie_pct": 11.2
+    },
+    {
+      "w1": "anthropic_claude-opus-4.5",
+      "w2": "openai_gpt-5.2-chat",
+      "w1_wins": 0,
+      "w2_wins": 3000,
+      "ties": 0,
+      "battles": 3000,
+      "w1_pct": 0.0,
+      "w2_pct": 100.0,
+      "tie_pct": 0.0
+    },
+    {
+      "w1": "anthropic_claude-opus-4.5",
+      "w2": "xai_grok-4",
+      "w1_wins": 0,
+      "w2_wins": 2992,
+      "ties": 8,
+      "battles": 3000,
+      "w1_pct": 0.0,
+      "w2_pct": 99.7,
+      "tie_pct": 0.3
+    },
+    {
+      "w1": "alibaba_qwen-3",
+      "w2": "openai_gpt-5.2-chat",
+      "w1_wins": 1,
+      "w2_wins": 190,
+      "ties": 2809,
+      "battles": 3000,
+      "w1_pct": 0.0,
+      "w2_pct": 6.3,
+      "tie_pct": 93.6
+    },
+    {
+      "w1": "anthropic_claude-sonnet-4.5",
+      "w2": "google_gemini-2.5-pro",
+      "w1_wins": 1602,
+      "w2_wins": 584,
+      "ties": 814,
+      "battles": 3000,
+      "w1_pct": 53.4,
+      "w2_pct": 19.5,
+      "tie_pct": 27.1
+    },
+    {
+      "w1": "anthropic_claude-sonnet-4.5",
+      "w2": "deepseek_deepseek-chat-v3-0324",
+      "w1_wins": 1021,
+      "w2_wins": 1268,
+      "ties": 711,
+      "battles": 3000,
+      "w1_pct": 34.0,
+      "w2_pct": 42.3,
+      "tie_pct": 23.7
+    },
+    {
+      "w1": "anthropic_claude-sonnet-4.5",
+      "w2": "kwaipilot_kat-coder-pro_free",
+      "w1_wins": 465,
+      "w2_wins": 60,
+      "ties": 2475,
+      "battles": 3000,
+      "w1_pct": 15.5,
+      "w2_pct": 2.0,
+      "tie_pct": 82.5
+    },
+    {
+      "w1": "alibaba_qwen-3",
+      "w2": "xai_grok-4",
+      "w1_wins": 6,
+      "w2_wins": 518,
+      "ties": 2476,
+      "battles": 3000,
+      "w1_pct": 0.2,
+      "w2_pct": 17.3,
+      "tie_pct": 82.5
+    },
+    {
+      "w1": "anthropic_claude-sonnet-4.5",
+      "w2": "mistral_large",
+      "w1_wins": 2610,
+      "w2_wins": 354,
+      "ties": 36,
+      "battles": 3000,
+      "w1_pct": 87.0,
+      "w2_pct": 11.8,
+      "tie_pct": 1.2
+    },
+    {
+      "w1": "anthropic_claude-sonnet-4.5",
+      "w2": "openai_gpt-5.1-chat",
+      "w1_wins": 2264,
+      "w2_wins": 611,
+      "ties": 125,
+      "battles": 3000,
+      "w1_pct": 75.5,
+      "w2_pct": 20.4,
+      "tie_pct": 4.2
+    },
+    {
+      "w1": "anthropic_claude-sonnet-4.5",
+      "w2": "meta_llama-4",
+      "w1_wins": 1184,
+      "w2_wins": 1276,
+      "ties": 540,
+      "battles": 3000,
+      "w1_pct": 39.5,
+      "w2_pct": 42.5,
+      "tie_pct": 18.0
+    },
+    {
+      "w1": "anthropic_claude-sonnet-4.5",
+      "w2": "openai_gpt-5.2-chat",
+      "w1_wins": 39,
+      "w2_wins": 2027,
+      "ties": 934,
+      "battles": 3000,
+      "w1_pct": 1.3,
+      "w2_pct": 67.6,
+      "tie_pct": 31.1
+    },
+    {
+      "w1": "deepseek_deepseek-chat-v3-0324",
+      "w2": "google_gemini-2.5-pro",
+      "w1_wins": 355,
+      "w2_wins": 0,
+      "ties": 2645,
+      "battles": 3000,
+      "w1_pct": 11.8,
+      "w2_pct": 0.0,
+      "tie_pct": 88.2
+    },
+    {
+      "w1": "anthropic_claude-sonnet-4.5",
+      "w2": "xai_grok-4",
+      "w1_wins": 34,
+      "w2_wins": 2559,
+      "ties": 407,
+      "battles": 3000,
+      "w1_pct": 1.1,
+      "w2_pct": 85.3,
+      "tie_pct": 13.6
+    },
+    {
+      "w1": "deepseek_deepseek-chat-v3-0324",
+      "w2": "mistral_large",
+      "w1_wins": 1395,
+      "w2_wins": 1605,
+      "ties": 0,
+      "battles": 3000,
+      "w1_pct": 46.5,
+      "w2_pct": 53.5,
+      "tie_pct": 0.0
+    },
+    {
+      "w1": "deepseek_deepseek-chat-v3-0324",
+      "w2": "openai_gpt-5.1-chat",
+      "w1_wins": 1864,
+      "w2_wins": 1136,
+      "ties": 0,
+      "battles": 3000,
+      "w1_pct": 62.1,
+      "w2_pct": 37.9,
+      "tie_pct": 0.0
+    },
+    {
+      "w1": "deepseek_deepseek-chat-v3-0324",
+      "w2": "kwaipilot_kat-coder-pro_free",
+      "w1_wins": 2,
+      "w2_wins": 0,
+      "ties": 2998,
+      "battles": 3000,
+      "w1_pct": 0.1,
+      "w2_pct": 0.0,
+      "tie_pct": 99.9
+    },
+    {
+      "w1": "deepseek_deepseek-chat-v3-0324",
+      "w2": "meta_llama-4",
+      "w1_wins": 139,
+      "w2_wins": 1353,
+      "ties": 1508,
+      "battles": 3000,
+      "w1_pct": 4.6,
+      "w2_pct": 45.1,
+      "tie_pct": 50.3
+    },
+    {
+      "w1": "deepseek_deepseek-chat-v3-0324",
+      "w2": "openai_gpt-5.2-chat",
+      "w1_wins": 0,
+      "w2_wins": 15,
+      "ties": 2985,
+      "battles": 3000,
+      "w1_pct": 0.0,
+      "w2_pct": 0.5,
+      "tie_pct": 99.5
+    },
+    {
+      "w1": "google_gemini-2.5-pro",
+      "w2": "mistral_large",
+      "w1_wins": 890,
+      "w2_wins": 2110,
+      "ties": 0,
+      "battles": 3000,
+      "w1_pct": 29.7,
+      "w2_pct": 70.3,
+      "tie_pct": 0.0
+    },
+    {
+      "w1": "google_gemini-2.5-pro",
+      "w2": "meta_llama-4",
+      "w1_wins": 0,
+      "w2_wins": 2032,
+      "ties": 968,
+      "battles": 3000,
+      "w1_pct": 0.0,
+      "w2_pct": 67.7,
+      "tie_pct": 32.3
+    },
+    {
+      "w1": "google_gemini-2.5-pro",
+      "w2": "kwaipilot_kat-coder-pro_free",
+      "w1_wins": 0,
+      "w2_wins": 0,
+      "ties": 3000,
+      "battles": 3000,
+      "w1_pct": 0.0,
+      "w2_pct": 0.0,
+      "tie_pct": 100.0
+    },
+    {
+      "w1": "google_gemini-2.5-pro",
+      "w2": "openai_gpt-5.1-chat",
+      "w1_wins": 785,
+      "w2_wins": 2215,
+      "ties": 0,
+      "battles": 3000,
+      "w1_pct": 26.2,
+      "w2_pct": 73.8,
+      "tie_pct": 0.0
+    },
+    {
+      "w1": "google_gemini-2.5-pro",
+      "w2": "openai_gpt-5.2-chat",
+      "w1_wins": 0,
+      "w2_wins": 1,
+      "ties": 2999,
+      "battles": 3000,
+      "w1_pct": 0.0,
+      "w2_pct": 0.0,
+      "tie_pct": 100.0
+    },
+    {
+      "w1": "kwaipilot_kat-coder-pro_free",
+      "w2": "meta_llama-4",
+      "w1_wins": 0,
+      "w2_wins": 988,
+      "ties": 2012,
+      "battles": 3000,
+      "w1_pct": 0.0,
+      "w2_pct": 32.9,
+      "tie_pct": 67.1
+    },
+    {
+      "w1": "kwaipilot_kat-coder-pro_free",
+      "w2": "mistral_large",
+      "w1_wins": 2250,
+      "w2_wins": 217,
+      "ties": 533,
+      "battles": 3000,
+      "w1_pct": 75.0,
+      "w2_pct": 7.2,
+      "tie_pct": 17.8
+    },
+    {
+      "w1": "deepseek_deepseek-chat-v3-0324",
+      "w2": "xai_grok-4",
+      "w1_wins": 0,
+      "w2_wins": 172,
+      "ties": 2828,
+      "battles": 3000,
+      "w1_pct": 0.0,
+      "w2_pct": 5.7,
+      "tie_pct": 94.3
+    },
+    {
+      "w1": "kwaipilot_kat-coder-pro_free",
+      "w2": "openai_gpt-5.1-chat",
+      "w1_wins": 1578,
+      "w2_wins": 386,
+      "ties": 1036,
+      "battles": 3000,
+      "w1_pct": 52.6,
+      "w2_pct": 12.9,
+      "tie_pct": 34.5
+    },
+    {
+      "w1": "meta_llama-4",
+      "w2": "mistral_large",
+      "w1_wins": 2664,
+      "w2_wins": 336,
+      "ties": 0,
+      "battles": 3000,
+      "w1_pct": 88.8,
+      "w2_pct": 11.2,
+      "tie_pct": 0.0
+    },
+    {
+      "w1": "meta_llama-4",
+      "w2": "openai_gpt-5.1-chat",
+      "w1_wins": 2602,
+      "w2_wins": 398,
+      "ties": 0,
+      "battles": 3000,
+      "w1_pct": 86.7,
+      "w2_pct": 13.3,
+      "tie_pct": 0.0
+    },
+    {
+      "w1": "kwaipilot_kat-coder-pro_free",
+      "w2": "openai_gpt-5.2-chat",
+      "w1_wins": 0,
+      "w2_wins": 0,
+      "ties": 3000,
+      "battles": 3000,
+      "w1_pct": 0.0,
+      "w2_pct": 0.0,
+      "tie_pct": 100.0
+    },
+    {
+      "w1": "google_gemini-2.5-pro",
+      "w2": "xai_grok-4",
+      "w1_wins": 0,
+      "w2_wins": 317,
+      "ties": 2683,
+      "battles": 3000,
+      "w1_pct": 0.0,
+      "w2_pct": 10.6,
+      "tie_pct": 89.4
+    },
+    {
+      "w1": "kwaipilot_kat-coder-pro_free",
+      "w2": "xai_grok-4",
+      "w1_wins": 0,
+      "w2_wins": 26,
+      "ties": 2974,
+      "battles": 3000,
+      "w1_pct": 0.0,
+      "w2_pct": 0.9,
+      "tie_pct": 99.1
+    },
+    {
+      "w1": "mistral_large",
+      "w2": "openai_gpt-5.1-chat",
+      "w1_wins": 650,
+      "w2_wins": 2350,
+      "ties": 0,
+      "battles": 3000,
+      "w1_pct": 21.7,
+      "w2_pct": 78.3,
+      "tie_pct": 0.0
+    },
+    {
+      "w1": "mistral_large",
+      "w2": "openai_gpt-5.2-chat",
+      "w1_wins": 1,
+      "w2_wins": 2996,
+      "ties": 3,
+      "battles": 3000,
+      "w1_pct": 0.0,
+      "w2_pct": 99.9,
+      "tie_pct": 0.1
+    },
+    {
+      "w1": "mistral_large",
+      "w2": "xai_grok-4",
+      "w1_wins": 0,
+      "w2_wins": 2995,
+      "ties": 5,
+      "battles": 3000,
+      "w1_pct": 0.0,
+      "w2_pct": 99.8,
+      "tie_pct": 0.2
+    },
+    {
+      "w1": "meta_llama-4",
+      "w2": "openai_gpt-5.2-chat",
+      "w1_wins": 1,
+      "w2_wins": 467,
+      "ties": 2532,
+      "battles": 3000,
+      "w1_pct": 0.0,
+      "w2_pct": 15.6,
+      "tie_pct": 84.4
+    },
+    {
+      "w1": "openai_gpt-5.1-chat",
+      "w2": "openai_gpt-5.2-chat",
+      "w1_wins": 0,
+      "w2_wins": 2998,
+      "ties": 2,
+      "battles": 3000,
+      "w1_pct": 0.0,
+      "w2_pct": 99.9,
+      "tie_pct": 0.1
+    },
+    {
+      "w1": "openai_gpt-5.1-chat",
+      "w2": "xai_grok-4",
+      "w1_wins": 29,
+      "w2_wins": 2955,
+      "ties": 16,
+      "battles": 3000,
+      "w1_pct": 1.0,
+      "w2_pct": 98.5,
+      "tie_pct": 0.5
+    },
+    {
+      "w1": "meta_llama-4",
+      "w2": "xai_grok-4",
+      "w1_wins": 0,
+      "w2_wins": 195,
+      "ties": 2805,
+      "battles": 3000,
+      "w1_pct": 0.0,
+      "w2_pct": 6.5,
+      "tie_pct": 93.5
+    },
+    {
+      "w1": "openai_gpt-5.2-chat",
+      "w2": "xai_grok-4",
+      "w1_wins": 2,
+      "w2_wins": 0,
+      "ties": 2998,
+      "battles": 3000,
+      "w1_pct": 0.1,
+      "w2_pct": 0.0,
+      "tie_pct": 99.9
+    }
+  ],
+  "rankings": [
+    {
+      "rank": 1,
+      "warrior": "openai_gpt-5.2-chat",
+      "points": 28,
+      "wins": 9,
+      "losses": 0
+    },
+    {
+      "rank": 2,
+      "warrior": "xai_grok-4",
+      "points": 27,
+      "wins": 9,
+      "losses": 1
+    },
+    {
+      "rank": 3,
+      "warrior": "meta_llama-4",
+      "points": 24,
+      "wins": 8,
+      "losses": 2
+    },
+    {
+      "rank": 4,
+      "warrior": "anthropic_claude-sonnet-4.5",
+      "points": 18,
+      "wins": 6,
+      "losses": 4
+    },
+    {
+      "rank": 5,
+      "warrior": "deepseek_deepseek-chat-v3-0324",
+      "points": 18,
+      "wins": 6,
+      "losses": 4
+    },
+    {
+      "rank": 6,
+      "warrior": "alibaba_qwen-3",
+      "points": 15,
+      "wins": 5,
+      "losses": 5
+    },
+    {
+      "rank": 7,
+      "warrior": "kwaipilot_kat-coder-pro_free",
+      "points": 11,
+      "wins": 3,
+      "losses": 5
+    },
+    {
+      "rank": 8,
+      "warrior": "mistral_large",
+      "points": 9,
+      "wins": 3,
+      "losses": 7
+    },
+    {
+      "rank": 9,
+      "warrior": "openai_gpt-5.1-chat",
+      "points": 9,
+      "wins": 3,
+      "losses": 7
+    },
+    {
+      "rank": 10,
+      "warrior": "google_gemini-2.5-pro",
+      "points": 4,
+      "wins": 1,
+      "losses": 8
+    },
+    {
+      "rank": 11,
+      "warrior": "anthropic_claude-opus-4.5",
+      "points": 0,
+      "wins": 0,
+      "losses": 10
+    }
+  ]
+}
