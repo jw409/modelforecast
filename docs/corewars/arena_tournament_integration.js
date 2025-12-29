@@ -51,7 +51,8 @@ function updateLeaderboardWithTournamentData(llmsArray, leaderboardObj, updateLe
         leaderboardObj[key] = { wins: 0, cards: [], streak: 0 };
     });
 
-    // Populate from tournament data
+    // Populate LLM metadata from tournament data (but NOT leaderboard wins)
+    // Leaderboard piles start at 0 for live simulation, tournament data shown in separate panel
     const rankings = tournamentLoader.getRankings();
     rankings.forEach((stats, index) => {
         // Find corresponding LLM
@@ -59,19 +60,14 @@ function updateLeaderboardWithTournamentData(llmsArray, leaderboardObj, updateLe
             if (warrior === stats.warrior) {
                 const llm = llmsArray.find(l => l.id === llmId);
                 if (llm) {
-                    // Update leaderboard entry
-                    leaderboardObj[llmId] = {
-                        wins: stats.wins,
-                        cards: [],
-                        streak: 0,
-                        winRate: stats.winRate,
-                        totalBattles: stats.battleCount
-                    };
+                    // Keep leaderboard at 0 for live wins - don't populate from tournament
+                    // leaderboardObj[llmId] stays at { wins: 0, cards: [], streak: 0 }
 
-                    // Update LLM metadata
+                    // Store tournament data on LLM object for reference/display elsewhere
                     llm.tournamentRank = index + 1;
                     llm.tournamentWins = stats.wins;
                     llm.tournamentWinRate = stats.winRate;
+                    llm.tournamentWarriorName = stats.warrior;
                 }
                 break;
             }
@@ -198,7 +194,7 @@ function showHeadToHeadStats(w1, w2) {
  */
 function exportTournamentAsCSV() {
     if (!tournamentLoader) {
-        alert('No tournament data available');
+        console.warn('[TournamentIntegration] No tournament data available for CSV export');
         return;
     }
 

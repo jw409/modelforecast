@@ -1,0 +1,27 @@
+{
+  "timestamp": "2025-12-28T16:47:00",
+  "warriors": [
+    "deepseek_deepseek-chat-v3-0324",
+    "anthropic_claude-sonnet-4.5",
+    "metacog_obsidian_breaker_v4",
+    "kwaipilot_kat-coder-pro_free",
+    "openai_gpt-5.1-chat",
+    "anthropic_claude-opus-4.5"
+  ],
+  "matchups": {
+    "deepseek_deepseek-chat-v3-0324_vs_anthropic_claude-sonnet-4.5": {
+      "warrior_a": "deepseek_deepseek-chat-v3-0324",
+      "warrior_b": "anthropic_claude-sonnet-4.5",
+      "warrior_a_wins": 62,
+      "warrior_b_wins": 38,
+      "ties": 0
+    },
+    "metacog_obsidian_breaker_v4_vs_openai_gpt-5.1-chat": {
+      "warrior_a": "metacog_obsidian_breaker_v4",
+      "warrior_b": "openai_gpt-5.1-chat",
+      "warrior_a_wins": 45,
+      "warrior_b_wins": 35,
+      "ties": 20
+    }
+  }
+}

@@ -1105,9 +1105,10 @@
         const LLMS = [
             { id: 'claude-sonnet', name: 'Claude Sonnet 4.5', color: 0x00cccc, rank: 1, codename: 'Silk', winRate: '76% vs GPT-5.1', warriorFile: 'anthropic_claude-sonnet-4.5' },
             { id: 'deepseek-v3', name: 'DeepSeek V3', color: 0xff6b00, rank: 2, codename: 'Hydra', winRate: '100% vs KatCoder', warriorFile: 'deepseek_deepseek-chat-v3-0324' },
-            { id: 'gpt-5.1', name: 'GPT-5.1', color: 0x74aa9c, rank: 3, codename: 'StoneGate', winRate: '—', warriorFile: 'openai_gpt-5.1' },
-            { id: 'kat-coder', name: 'KAT Coder', color: 0xffd700, rank: 4, codename: 'IMP swarm', winRate: '—', warriorFile: 'kwaipilot_kat-coder-pro_free' },
-            { id: 'claude-opus', name: 'Claude Opus 4.5', color: 0x00fff7, rank: 5, codename: 'Granite', winRate: '—', warriorFile: 'anthropic_claude-opus-4.5' },
+            { id: 'obsidian-breaker', name: 'Obsidian Breaker v4', color: 0xff00ff, rank: 3, codename: 'Metacog', winRate: '45% vs GPT-5.1', warriorFile: 'metacog_obsidian_breaker_v4' },
+            { id: 'gpt-5.1', name: 'GPT-5.1', color: 0x74aa9c, rank: 4, codename: 'StoneGate', winRate: '—', warriorFile: 'openai_gpt-5.1' },
+            { id: 'kat-coder', name: 'KAT Coder', color: 0xffd700, rank: 5, codename: 'IMP swarm', winRate: '—', warriorFile: 'kwaipilot_kat-coder-pro_free' },
+            { id: 'claude-opus', name: 'Claude Opus 4.5', color: 0x00fff7, rank: 6, codename: 'Granite', winRate: '—', warriorFile: 'anthropic_claude-opus-4.5' },
             { id: 'gemini-2.5', name: 'Gemini 2.5', color: 0x4285f4, rank: null, codename: null, winRate: null, warriorFile: 'google_gemini-3-pro-preview' },
         ];
 
@@ -1263,7 +1264,7 @@
 
             try {
                 // Try loading from warriors directory
-                const response = await fetch(`gpu_mars/warriors/tournament_001/${filename}.red`);
+                const response = await fetch(`warriors/tournament_001/${filename}.red`);
                 if (response.ok) {
                     const code = await response.text();
                     warriorCache[name] = code;
@@ -1646,10 +1647,11 @@
 
         // ============== Flying Card Animation (3D Directional) ==============
         class FlyingCard {
-            constructor(startPos, targetLlm, color) {
+            constructor(startPos, targetLlm, color, sourceBattle = null) {
                 this.startPos = startPos.clone();
                 this.targetLlm = targetLlm;
                 this.color = color;
+                this.sourceBattle = sourceBattle;  // Reference to battle for removal
                 this.progress = 0;
                 this.duration = 1.5; // seconds - fast flight to leaderboard
                 this.complete = false;
@@ -1661,17 +1663,18 @@
                 const is3D = ShapeManager.currentShape !== 'plane';
                 const cardSize = is3D ? 5.0 : 2.0;
                 const geometry = new THREE.PlaneGeometry(cardSize, cardSize * 0.67);
-                const material = new THREE.MeshBasicMaterial({
+                const material = new THREE.MeshStandardMaterial({
                     color: color,
                     side: THREE.DoubleSide,
                     transparent: true,
-                    opacity: 0.95  // Very visible
+                    opacity: 0.95,  // Very visible
+                    emissive: new THREE.Color(color),
+                    emissiveIntensity: 0.8,
+                    metalness: 0.3,
+                    roughness: 0.7
                 });
                 this.mesh = new THREE.Mesh(geometry, material);
                 this.mesh.position.copy(startPos);
-                // FIXED: Add emissive glow for brightness and visibility
-                this.mesh.material.emissive.setHex(color);
-                this.mesh.material.emissiveIntensity = 0.8;
                 scene.add(this.mesh);
 
                 // Add glow trail - FIXED: Make glow brighter and emissive
@@ -1749,6 +1752,17 @@
                     this.progress = 1;
                     this.complete = true;
                     scene.remove(this.mesh);
+
+                    // Remove source battle from scene when card animation completes
+                    if (this.sourceBattle) {
+                        scene.remove(this.sourceBattle.mesh);
+                        scene.remove(this.sourceBattle.border);
+                        if (this.sourceBattle.identityGlow) scene.remove(this.sourceBattle.identityGlow);
+                        if (this.sourceBattle.w0Accent) scene.remove(this.sourceBattle.w0Accent);
+                        if (this.sourceBattle.w1Accent) scene.remove(this.sourceBattle.w1Accent);
+                        if (this.sourceBattle.momentumArrow) scene.remove(this.sourceBattle.momentumArrow);
+                        console.log('[FlyingCard] Removed completed battle from scene');
+                    }
                     return;
                 }
 
@@ -2382,7 +2396,8 @@
                     const card = new FlyingCard(
                         this.mesh.position.clone(),
                         winnerLlm,
-                        this.winner === 0 ? COLORS.w0 : COLORS.w1
+                        this.winner === 0 ? COLORS.w0 : COLORS.w1,
+                        this  // Pass battle reference for removal after animation
                     );
                     flyingCards.push(card);
 
@@ -2615,6 +2630,81 @@
 
             document.getElementById('battle-count').textContent = battles.length;
             updateLeaderboardUI();
+        }
+
+        // ============== RESHUFFLING SYSTEM ==============
+        // Swiss-system pairing: winners face winners, similar records face each other
+        let reshuffleCounter = 0;  // Track total reshuffles for unique battle IDs
+
+        function reshuffleCompletedBattles(removedBattles) {
+            if (removedBattles.length === 0) return;
+
+            console.log(`[Reshuffle] Creating ${removedBattles.length} new matchups based on standings`);
+
+            // Get current standings sorted by win ratio
+            const standings = LLMS.map(llm => ({
+                llm,
+                wins: leaderboard[llm.id].wins,
+                ratio: leaderboard[llm.id].wins / Math.max(1, leaderboard[llm.id].cards.length)
+            })).sort((a, b) => b.ratio - a.ratio);
+
+            // For each removed battle, create a new matchup
+            removedBattles.forEach(removed => {
+                // Swiss pairing: pair LLMs with similar standings
+                const w0Idx = Math.floor(Math.random() * standings.length);
+                let w1Idx = (w0Idx + 1 + Math.floor(Math.random() * (standings.length - 1))) % standings.length;
+
+                // Ensure different LLMs
+                if (w1Idx === w0Idx) w1Idx = (w1Idx + 1) % standings.length;
+
+                const w0Llm = standings[w0Idx].llm;
+                const w1Llm = standings[w1Idx].llm;
+
+                // Create new battle at the freed grid position
+                const newBattle = new Battle(
+                    battles.length + reshuffleCounter,
+                    removed.col,
+                    removed.row,
+                    w0Llm,
+                    w1Llm
+                );
+
+                // Initialize the battle's GPU resources (creates mesh, texture, etc.)
+                newBattle.ensureInitialized();
+
+                // Add to scene
+                scene.add(newBattle.mesh);
+                scene.add(newBattle.border);
+
+                // Spawn immediately (already past hero mode)
+                newBattle.spawned = true;
+                newBattle.mesh.visible = true;
+                newBattle.border.visible = true;
+
+                // Position in 3D space - USE the captured position from removed battle
+                // This places the new battle EXACTLY where the old one was
+                if (removed.position) {
+                    newBattle.mesh.position.copy(removed.position);
+                    newBattle.border.position.copy(removed.position);
+                    newBattle.basePosition = removed.position.clone();
+                    console.log(`[Reshuffle] Placed at captured position: (${removed.position.x.toFixed(1)}, ${removed.position.y.toFixed(1)}, ${removed.position.z.toFixed(1)})`);
+                } else {
+                    // Fallback: calculate position based on index
+                    const battleIndex = battles.length + reshuffleCounter;
+                    const shapePos = ShapeManager.getPosition(battleIndex, battles.length + removedBattles.length);
+                    newBattle.mesh.position.copy(shapePos);
+                    newBattle.border.position.copy(shapePos);
+                    newBattle.basePosition = shapePos.clone();
+                }
+
+                battles.push(newBattle);
+                reshuffleCounter++;
+
+                console.log(`[Reshuffle] New battle #${newBattle.index}: ${w0Llm.name} vs ${w1Llm.name} at (${removed.col}, ${removed.row})`);
+            });
+
+            // Update battle count display
+            document.getElementById('battle-count').textContent = battles.length;
         }
 
         // ============== Leaderboard UI ==============
@@ -2926,6 +3016,32 @@
             particleExplosions.forEach(explosion => explosion.update(deltaTime));
             particleExplosions = particleExplosions.filter(explosion => !explosion.complete);
 
+            // Filter out battles that have been removed from scene (by FlyingCard)
+            const removedBattles = [];
+            battles = battles.filter(battle => {
+                // Detect battles removed from scene (mesh.parent becomes null after scene.remove())
+                if (battle.mesh && battle.mesh.parent === null) {
+                    console.log(`[Cleanup] Battle removed - capturing position for reshuffle`);
+                    removedBattles.push({
+                        col: battle.col,
+                        row: battle.row,
+                        // CRITICAL: Capture the ACTUAL 3D position for replacement
+                        position: battle.basePosition ? battle.basePosition.clone() : battle.mesh.position.clone(),
+                        w0Llm: battle.w0Llm,
+                        w1Llm: battle.w1Llm,
+                        winner: battle.winner
+                    });
+                    return false;  // Remove from battles array
+                }
+                return true;
+            });
+
+            // RESHUFFLING: Create new battles to replace removed ones
+            if (removedBattles.length > 0 && !Sequencer.heroMode) {
+                console.log(`[Reshuffle] ${removedBattles.length} battles to replace`);
+                reshuffleCompletedBattles(removedBattles);
+            }
+
             // Update victory pulse animations
             battles.forEach(battle => {
                 if (battle.victoryPulseStart && battle.border && battle.border.material) {
@@ -3207,16 +3323,13 @@
                 const centerCol = Math.floor(GRID_COLS / 2);
                 const centerRow = Math.floor(GRID_ROWS / 2);
 
-                // Pick 4 positions with good LLM variety (based on col%6, row%6)
-                // Hero 1: center (Claude Opus vs GPT-5.1)
-                // Hero 2: offset for Claude Sonnet vs DeepSeek
-                // Hero 3: offset for GPT vs KAT Coder
-                // Hero 4: offset for Gemini vs DeepSeek
+                // Pick 4 positions in a tight 2x2 grid around center for smooth transitions
+                // All heroes stay near center for better visual flow
                 this.heroQueue = [
-                    centerRow * GRID_COLS + centerCol,           // Hero 1: center
-                    (centerRow + 1) * GRID_COLS + (centerCol - 4), // Hero 2: down-left
-                    (centerRow - 1) * GRID_COLS + (centerCol + 3), // Hero 3: up-right
-                    (centerRow + 2) * GRID_COLS + (centerCol - 1), // Hero 4: further down
+                    centerRow * GRID_COLS + centerCol,               // Hero 1: center
+                    centerRow * GRID_COLS + (centerCol + 1),         // Hero 2: right of center
+                    (centerRow + 1) * GRID_COLS + centerCol,         // Hero 3: below center
+                    (centerRow + 1) * GRID_COLS + (centerCol + 1),   // Hero 4: diagonal
                 ];
                 this.currentHeroIndex = 0;
 
@@ -3551,8 +3664,8 @@
                 try {
                     // Try different naming patterns
                     const patterns = [
-                        `gpu_mars/warriors/tournament_001/${warriorName}.json`,
-                        `gpu_mars/warriors/tournament_001/anthropic_${warriorName}.json`,
+                        `warriors/tournament_001/${warriorName}.json`,
+                        `warriors/tournament_001/anthropic_${warriorName}.json`,
                     ];
 
                     for (const url of patterns) {
@@ -3623,7 +3736,7 @@
                     };
 
                     const redFile = redFileMap[warriorName] || `${warriorName}.red`;
-                    const url = `gpu_mars/warriors/tournament_001/${redFile}`;
+                    const url = `warriors/tournament_001/${redFile}`;
                     const response = await fetch(url);
 
                     if (!response.ok) return null;
@@ -3791,7 +3904,7 @@
                     codeBody.appendChild(div);
 
                     lineIndex++;
-                    setTimeout(typeNextLine, 60);  // FAST typing
+                    setTimeout(typeNextLine, 80);  // Typing speed (was 60, slowed 30%)
                 };
 
                 setTimeout(typeNextLine, 100 + delay);  // Quick start
@@ -4021,6 +4134,135 @@
                 );
             },
 
+            // OVAL: Ellipsoid stretched on y-axis
+            ovalPosition(index, total) {
+                const goldenAngle = Math.PI * (3 - Math.sqrt(5));
+                const theta = goldenAngle * index;
+                const y = 1 - (index / (total - 1 || 1)) * 2;
+                const radiusAtY = Math.sqrt(1 - y * y);
+                // Ellipsoid with 1.5x vertical stretch
+                return new THREE.Vector3(
+                    Math.cos(theta) * radiusAtY * SPHERE_RADIUS * 0.7,
+                    y * SPHERE_RADIUS * 1.4,  // Stretched vertically
+                    Math.sin(theta) * radiusAtY * SPHERE_RADIUS * 0.7
+                );
+            },
+
+            // TORUS: Donut shape (major + minor radius)
+            torusPosition(index, total) {
+                const majorRadius = 70;  // Distance from center to tube center
+                const minorRadius = 30;  // Tube radius
+                const goldenAngle = Math.PI * (3 - Math.sqrt(5));
+
+                // Distribute around torus surface
+                const u = goldenAngle * index;  // Around the tube
+                const v = (index / (total - 1 || 1)) * Math.PI * 2;  // Around the major circle
+
+                const x = (majorRadius + minorRadius * Math.cos(u)) * Math.cos(v);
+                const y = minorRadius * Math.sin(u);
+                const z = (majorRadius + minorRadius * Math.cos(u)) * Math.sin(v);
+
+                return new THREE.Vector3(x, y, z);
+            },
+
+            // HELIX: DNA double-helix spiral
+            helixPosition(index, total) {
+                const radius = 50;
+                const height = 200;
+                const turns = 3;  // Number of full rotations
+
+                const t = index / (total - 1 || 1);  // 0 to 1
+                const theta = t * Math.PI * 2 * turns;
+                const y = t * height - height / 2;
+
+                // Alternate between two strands
+                const strand = index % 2;
+                const offset = strand * Math.PI;  // 180 degree offset for second strand
+
+                return new THREE.Vector3(
+                    Math.cos(theta + offset) * radius,
+                    y,
+                    Math.sin(theta + offset) * radius
+                );
+            },
+
+            // GALAXY: Spiral arms like a galaxy
+            galaxyPosition(index, total) {
+                const maxRadius = 120;
+                const arms = 4;  // Number of spiral arms
+                const armSpread = 0.4;  // How tight the spiral is
+
+                const t = index / (total - 1 || 1);
+                const arm = index % arms;
+                const armOffset = (arm / arms) * Math.PI * 2;
+
+                // Spiral equation: r = a * theta
+                const theta = t * Math.PI * 4 + armOffset;  // 2 full rotations
+                const r = t * maxRadius;
+
+                // Add some scatter
+                const scatter = (Math.sin(index * 7.3) * 0.2 + 0.9);
+
+                return new THREE.Vector3(
+                    Math.cos(theta) * r * scatter,
+                    (Math.random() - 0.5) * 10,  // Slight vertical variation
+                    Math.sin(theta) * r * scatter
+                );
+            },
+
+            // GRAPES: Cluster of spheres like a bunch of grapes
+            grapesPosition(index, total) {
+                const clusterRadius = 25;
+                const stemHeight = 80;
+
+                // Create clusters at different heights
+                const numClusters = 5;
+                const clusterIndex = Math.floor(index / (total / numClusters));
+                const withinCluster = index % Math.ceil(total / numClusters);
+
+                // Each cluster is a small sphere distribution
+                const goldenAngle = Math.PI * (3 - Math.sqrt(5));
+                const theta = goldenAngle * withinCluster;
+                const phi = Math.acos(1 - 2 * (withinCluster / Math.ceil(total / numClusters)));
+
+                // Cluster center positions (hanging down like grapes)
+                const clusterY = stemHeight - (clusterIndex / (numClusters - 1)) * stemHeight * 1.2;
+                const clusterSpread = clusterIndex * 15;  // Wider at bottom
+                const clusterTheta = (clusterIndex / numClusters) * Math.PI * 2;
+
+                const cx = Math.cos(clusterTheta) * clusterSpread;
+                const cz = Math.sin(clusterTheta) * clusterSpread;
+
+                return new THREE.Vector3(
+                    cx + Math.sin(phi) * Math.cos(theta) * clusterRadius,
+                    clusterY + Math.cos(phi) * clusterRadius * 0.5,
+                    cz + Math.sin(phi) * Math.sin(theta) * clusterRadius
+                );
+            },
+
+            // TORNADO: Funnel shape with swirling motion
+            tornadoPosition(index, total) {
+                const height = 180;
+                const maxRadius = 80;
+                const minRadius = 10;
+
+                const t = index / (total - 1 || 1);  // 0 to 1, bottom to top
+                const y = t * height - height / 2;
+
+                // Funnel shape: narrow at bottom, wide at top
+                const radius = minRadius + (maxRadius - minRadius) * Math.pow(t, 0.5);
+
+                // Spiral around the funnel
+                const spiralTurns = 5;
+                const theta = t * Math.PI * 2 * spiralTurns + index * 0.1;
+
+                return new THREE.Vector3(
+                    Math.cos(theta) * radius,
+                    y,
+                    Math.sin(theta) * radius
+                );
+            },
+
             // MORPH: Animate transition between shapes
             morphTo(newShape) {
                 if (newShape === this.currentShape) return;
@@ -4028,7 +4270,9 @@
                 // Store current positions
                 this.previousPositions.clear();
                 battles.forEach((b, i) => {
-                    this.previousPositions.set(i, b.mesh.position.clone());
+                    if (b && b.mesh) {
+                        this.previousPositions.set(i, b.mesh.position.clone());
+                    }
                 });
 
                 this.currentShape = newShape;
@@ -4046,12 +4290,13 @@
                 const eased = this.easeInOutCubic(this.morphProgress);
 
                 battles.forEach((b, i) => {
+                    if (!b || !b.mesh) return;  // Skip null battles or uninitialized meshes
                     const start = this.previousPositions.get(i);
                     if (!start) return;
 
                     const end = this.getPosition(i, battles.length);
                     b.mesh.position.lerpVectors(start, end, eased);
-                    b.border.position.copy(b.mesh.position);
+                    if (b.border) b.border.position.copy(b.mesh.position);
 
                     // Move identity visuals with the battle in 3D space
                     if (b.identityGlow) {
@@ -4300,11 +4545,17 @@
 
         // ============== Shape Button Handlers ==============
         function updateShapeButtons(activeShape) {
-            ['plane', 'cube', 'sphere', 'cylinder', 'heart', 'pear'].forEach(shape => {
+            // All 12 shape buttons
+            ['plane', 'cube', 'sphere', 'cylinder', 'heart', 'pear', 'oval', 'torus', 'helix', 'galaxy', 'grapes', 'tornado'].forEach(shape => {
                 const btn = document.getElementById(`shape-${shape}`);
                 if (btn) btn.classList.toggle('active', shape === activeShape);
             });
         }
+
+        // Expose globals for testing
+        window.getBattles = () => battles;
+        window.Sequencer = Sequencer;
+        window.leaderboard = leaderboard;
 
         // Wire up shape toggle buttons
         document.getElementById('shape-plane').onclick = () => {
@@ -4422,6 +4673,120 @@
             if (camera !== perspCamera) {
                 camera = perspCamera;
                 perspCamera.position.set(0, 50, 200);
+                controls.dispose();
+                controls = new THREE.OrbitControls(camera, renderer.domElement);
+                controls.enableRotate = true;
+                controls.enablePan = false;
+                controls.target.set(0, 0, 0);
+                controls.update();
+            }
+        };
+
+        document.getElementById('shape-oval').onclick = () => {
+            console.log('[Shape] OVAL clicked - morphing...');
+            Sequencer.heroMode = false;
+            Sequencer.waitingForHeroIntro = false;
+            ShapeManager.morphTo('oval');
+            CameraDirector.setMode('orbit');
+            updateShapeButtons('oval');
+            if (camera !== perspCamera) {
+                camera = perspCamera;
+                perspCamera.position.set(0, 50, 200);
+                controls.dispose();
+                controls = new THREE.OrbitControls(camera, renderer.domElement);
+                controls.enableRotate = true;
+                controls.enablePan = false;
+                controls.target.set(0, 0, 0);
+                controls.update();
+            }
+        };
+
+        document.getElementById('shape-torus').onclick = () => {
+            console.log('[Shape] TORUS clicked - morphing...');
+            Sequencer.heroMode = false;
+            Sequencer.waitingForHeroIntro = false;
+            ShapeManager.morphTo('torus');
+            CameraDirector.setMode('orbit');
+            updateShapeButtons('torus');
+            if (camera !== perspCamera) {
+                camera = perspCamera;
+                perspCamera.position.set(0, 80, 200);
+                controls.dispose();
+                controls = new THREE.OrbitControls(camera, renderer.domElement);
+                controls.enableRotate = true;
+                controls.enablePan = false;
+                controls.target.set(0, 0, 0);
+                controls.update();
+            }
+        };
+
+        document.getElementById('shape-helix').onclick = () => {
+            console.log('[Shape] HELIX clicked - morphing...');
+            Sequencer.heroMode = false;
+            Sequencer.waitingForHeroIntro = false;
+            ShapeManager.morphTo('helix');
+            CameraDirector.setMode('orbit');
+            updateShapeButtons('helix');
+            if (camera !== perspCamera) {
+                camera = perspCamera;
+                perspCamera.position.set(0, 100, 200);
+                controls.dispose();
+                controls = new THREE.OrbitControls(camera, renderer.domElement);
+                controls.enableRotate = true;
+                controls.enablePan = false;
+                controls.target.set(0, 0, 0);
+                controls.update();
+            }
+        };
+
+        document.getElementById('shape-galaxy').onclick = () => {
+            console.log('[Shape] GALAXY clicked - morphing...');
+            Sequencer.heroMode = false;
+            Sequencer.waitingForHeroIntro = false;
+            ShapeManager.morphTo('galaxy');
+            CameraDirector.setMode('orbit');
+            updateShapeButtons('galaxy');
+            if (camera !== perspCamera) {
+                camera = perspCamera;
+                perspCamera.position.set(0, 150, 250);
+                controls.dispose();
+                controls = new THREE.OrbitControls(camera, renderer.domElement);
+                controls.enableRotate = true;
+                controls.enablePan = false;
+                controls.target.set(0, 0, 0);
+                controls.update();
+            }
+        };
+
+        document.getElementById('shape-grapes').onclick = () => {
+            console.log('[Shape] GRAPES clicked - morphing...');
+            Sequencer.heroMode = false;
+            Sequencer.waitingForHeroIntro = false;
+            ShapeManager.morphTo('grapes');
+            CameraDirector.setMode('orbit');
+            updateShapeButtons('grapes');
+            if (camera !== perspCamera) {
+                camera = perspCamera;
+                perspCamera.position.set(0, 50, 200);
+                controls.dispose();
+                controls = new THREE.OrbitControls(camera, renderer.domElement);
+                controls.enableRotate = true;
+                controls.enablePan = false;
+                controls.target.set(0, 0, 0);
+                controls.update();
+            }
+        };
+
+        document.getElementById('shape-tornado').onclick = () => {
+            console.log('[Shape] TORNADO clicked - morphing...');
+            Sequencer.heroMode = false;
+            Sequencer.waitingForHeroIntro = false;
+            ShapeManager.morphTo('tornado');
+            CameraDirector.setMode('orbit');
+            updateShapeButtons('tornado');
+            if (camera !== perspCamera) {
+                camera = perspCamera;
+                perspCamera.position.set(0, 100, 220);
                 controls.dispose();
                 controls = new THREE.OrbitControls(camera, renderer.domElement);
                 controls.enableRotate = true;
