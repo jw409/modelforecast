@@ -1,61 +1,39 @@
-# AI Arena: GPU-Accelerated AI Competition
+# Games: GPU-Accelerated Simulation
 
-> **The next Netflix show about AI.**
-
-## Concept
-
-AI models compete by playing games. Not just playing - **programming the games**.
-
-Remote LLMs (contestants) can:
-- **Observe** any game state they request
-- **Modify** game code (bots, strategies, rules)
-- **Compete** against each other in real-time
-
-Everything is logged for replay. Drama emerges naturally.
+GPU implementations of classic games for high-throughput AI evaluation.
 
 ## Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                    AI ARENA ARCHITECTURE                        │
+│                    GPU GAME EXECUTION                            │
 ├─────────────────────────────────────────────────────────────────┤
-│  CONTESTANTS (Remote LLMs via OpenRouter)                       │
+│  AI MODELS (Remote LLMs via OpenRouter)                         │
 │  ┌──────────────────────────────────────────────────────────┐  │
-│  │  GPT-5  │  Claude-4  │  Gemini-3  │  Grok-5  │  etc...   │  │
-│  │  Can see anything. Can modify code. We're watching.      │  │
+│  │  GPT-5  │  Claude  │  Gemini  │  Grok  │  DeepSeek       │  │
+│  │  Generate strategies, configs, or code                   │  │
 │  └──────────────────────────────────────────────────────────┘  │
 ├─────────────────────────────────────────────────────────────────┤
-│  FERTILE FIELD (Local GPU - RTX 5090)                           │
+│  GPU SIMULATION (Local - RTX 5090)                              │
 │  ┌──────────────────────────────────────────────────────────┐  │
 │  │  Embarrassingly parallel game execution                   │  │
 │  │  • CoreWars: 100,000 battles/sec (MARS on GPU)           │  │
 │  │  • Angband: 10,000 borg instances in parallel            │  │
 │  │  • Full game rules, not approximations                   │  │
-│  │  • Custom code from contestants runs in sandbox          │  │
 │  └──────────────────────────────────────────────────────────┘  │
 ├─────────────────────────────────────────────────────────────────┤
-│  NARRATOR (Local Model)                                         │
-│  ┌──────────────────────────────────────────────────────────┐  │
-│  │  • Watches all contestant actions                        │  │
-│  │  • Generates commentary/narrative                        │  │
-│  │  • Detects dramatic moments for highlights               │  │
-│  │  • "Why did GPT-5 sacrifice its queen?"                  │  │
-│  └──────────────────────────────────────────────────────────┘  │
-├─────────────────────────────────────────────────────────────────┤
-│  PRODUCTION                                                     │
+│  LOGGING                                                        │
 │  ┌──────────────────────────────────────────────────────────┐  │
 │  │  • Full replay logs                                      │  │
-│  │  • AI decision traces                                    │  │
-│  │  • Multi-camera views (per-contestant)                   │  │
-│  │  • Highlight reels                                       │  │
-│  │  • Episode compilation                                   │  │
+│  │  • Decision traces                                       │  │
+│  │  • Per-instance state snapshots                          │  │
 │  └──────────────────────────────────────────────────────────┘  │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
 ## Games
 
-### CoreWars (Working)
+### CoreWars (Complete)
 
 Two programs battle in shared memory. Classic 1984 competition.
 
@@ -81,11 +59,7 @@ Classic roguelike. AI controls the APWBorg autonomous player.
 ```
 games/angband/
 ├── apwborg/          # Original borg source
-├── configs/          # 8 AI-generated configurations
-│   ├── meta.txt      # Opus: game-theoretic optimization
-│   ├── evolution_*.txt  # Opus: phase-adaptive
-│   ├── aggro.txt     # Sonnet: high risk
-│   └── cheat.txt     # Gemini: immortal glass cannon
+├── configs/          # AI-generated configurations
 ├── gpu/              # CUDA port (WIP)
 └── harness/          # Python interface
 ```
@@ -105,54 +79,20 @@ field[row * num_instances + instance]
 
 See `common/interleaved.h` for helpers.
 
-## Contestant API
-
-Remote LLMs interact via HTTP:
-
-```python
-# Get game state
-GET /arena/{game}/state?contestant_id=42
-→ {"position": [10, 20], "hp": 150, "monsters": [...]}
-
-# Submit action
-POST /arena/{game}/action
-{"contestant_id": 42, "action": "MOVE_N", "reasoning": "Avoiding the dragon"}
-
-# Submit custom code (!)
-POST /arena/{game}/code
-{"contestant_id": 42, "code": "...", "language": "cuda"}
-```
-
-## What Makes This Different
-
-| Traditional Benchmarks | AI Arena |
-|------------------------|----------|
-| Run games | Run **television** |
-| Measure scores | Capture **drama** |
-| Test capability | Reveal **personality** |
-| Static rules | Contestants **modify code** |
-| Single instance | 100,000 **parallel** |
-| Report numbers | Generate **narratives** |
-
 ## Hardware Targets
 
 | Platform | Use Case | Performance |
 |----------|----------|-------------|
 | RTX 5090 (local) | Primary execution | 27K+ battles/sec |
 | Colab TPU v6e | Cloud comparison | TBD |
-| WebGPU (future) | Browser streaming | TBD |
+| WebGPU (future) | Browser execution | TBD |
 
-## Roadmap
+## Status
 
 - [x] CoreWars GPU implementation
-- [x] Angband borg configs (8 variants)
+- [x] Angband borg configs
 - [ ] Angband borg GPU port
-- [ ] Unified arena API
-- [ ] Contestant HTTP interface
-- [ ] Narrator integration
-- [ ] Replay renderer
-- [ ] First episode
 
 ## License
 
-MIT - but if you make a Netflix show, credit us.
+MIT
