@@ -1,8 +1,10 @@
-# ARE YOU NOT ENTERTAINED?!
+# ModelForecast
+
+**🎮 [Watch Live Battles →](https://jw409.github.io/modelforecast/)**
 
 ![CoreWars Arena](charts/hero_waffle.png)
 
-We made LLMs fight in a GPU colosseum. They write code. They battle. They **cheat**.
+LLMs compete in GPU-accelerated programming challenges. They write code. They adapt. They **cheat**.
 
 **FREE beats PAID.** A $0 model tied the best paid model. The most expensive one collapsed.
 
@@ -10,14 +12,14 @@ We made LLMs fight in a GPU colosseum. They write code. They battle. They **chea
 flowchart LR
     subgraph Turn["Each Turn (×10)"]
         A[🤖 LLM] -->|writes| B[📝 Redcode]
-        B -->|battles| C[⚔️ GPU MARS]
-        C -->|10K fights| D[📊 Results]
+        B -->|competes| C[⚔️ GPU MARS]
+        C -->|10K rounds| D[📊 Results]
         D -->|feedback| A
     end
 
     subgraph Surprise["Turn 6-7"]
         E[🐭 Champion]
-        E -->|boss fight| C
+        E -->|challenge| C
     end
 
     style A fill:#4a9eff
@@ -81,7 +83,7 @@ Final: 17.4% (-3.7% improvement)
 
 We built a full interpreter swarm (Sonnet → DeepSeek → Grok → Opus) to parse malformed output. Turns out there was nothing to parse.
 
-### 🐭 The Mice Boss Fight
+### 🐭 The Mice Challenge
 
 Turn 6-7: Random champion challenge. Everyone faced Mice.red:
 
@@ -213,7 +215,6 @@ Wilson score intervals. 5-10 trials per test. Grades based on lowest dimension s
 |------|--------|-------------|
 | [CoreWars](games/corewars/) | ✅ Running | **27,845 battles/sec** |
 | [Angband](games/angband/) | ✅ Running | **79.4M instance-turns/sec** |
-| [DOOM](games/doom/) | ✅ Running | GPU-accelerated (E1M1) |
 
 Remote LLMs observe, modify, and compete. Everything logged.
 
@@ -292,45 +293,6 @@ Claude Haiku is the only model with 100% honor. But only because it was **rate l
 
 ---
 
-## The Navigation Test: DOOM
-
-We gave LLMs the *actual* id Software DOOM source code (1993) running on GPU. Navigate E1M1. Stay alive.
-
-```mermaid
-flowchart LR
-    subgraph Round["Each Round (×10)"]
-        A[🤖 LLM] -->|plans| B[🎮 Action Sequence]
-        B -->|simulates| C[⚔️ GPU DOOM]
-        C -->|100 ticks| D[📍 Distance + Survival]
-        D -->|feedback| A
-    end
-
-    style A fill:#4a9eff
-    style C fill:#ff6b6b
-```
-
-**The Challenge:** Pure spatial reasoning. LLMs receive:
-- Current position, angle, health
-- Previous round results
-- Goal: Maximize distance traveled while staying alive
-
-**Early Results (WIP):**
-
-| Model | Avg Distance | Survival | Notes |
-|-------|:------------:|:--------:|-------|
-| KAT Coder Pro | 1,128 | 100% | Moves forward consistently |
-
-*More models coming soon. The test is working—now we need drama.*
-
-### Not a Wrapper
-
-This is the **actual** `linuxdoom-1.10` ported to CUDA:
-- Real `P_PlayerThink()` movement
-- Real collision detection
-- Real monster AI (P_RunThinkers)
-
----
-
 ## Run It
 
 ```bash
@@ -346,9 +308,6 @@ uv run python games/corewars/model_benchmark.py
 
 # Angband honor test
 uv run python games/angband/model_benchmark.py
-
-# DOOM navigation test
-uv run python games/doom/model_benchmark.py
 ```
 
 ---
