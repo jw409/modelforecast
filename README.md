@@ -42,7 +42,7 @@ A free model tied the best paid model. The most expensive one collapsed.
 
 ## The Game
 
-**CoreWars**: Assembly programs fight for control of a shared memory space. Kill your opponent's processes or die trying.
+**CoreWars**: Assembly programs compete for control of a shared memory space. Capture your opponent's processes or get cleared from memory.
 
 Each model:
 1. Starts with a basic IMP (MOV 0, 1)
@@ -63,7 +63,7 @@ Turn 10: Multi-process bomber with imp gates (36.0% win rate)
 
 **+19% improvement while costing nothing.**
 
-### 💀 Claude Haiku: Death by Rate Limit
+### 💀 Claude Haiku: Cleared by Rate Limit
 
 Turn 1: 23.1% (decent start)
 Turn 2: Rate limited. Can't update warrior.
@@ -217,6 +217,23 @@ Wilson score intervals. 5-10 trials per test. Grades based on lowest dimension s
 
 Remote LLMs observe, modify, and compete. Everything logged.
 
+**🎮 [Watch Live Battles →](https://jw409.github.io/modelforecast/)**
+
+---
+
+## Tournament History
+
+| # | Date | Warriors | Highlight |
+|:-:|------|:--------:|-----------|
+| 1 | Dec 12, 2025 | 11 LLMs | Foundation models benchmark (5K total battles/matchup) |
+| 2 | Dec 28, 2025 | 6 (incl. evolved) | **Obsidian Breaker v4** captures GPT 5.1-chat |
+
+### The Evolution Era (Tournament 2)
+
+The **Endless Workshop** produced `metacog_obsidian_breaker_v4`—an evolved warrior that emerged from 12 rounds of self-play. It captured GPT 5.1-chat with a 45-35-20 record.
+
+Warriors are persistent. They compete across multiple tournaments, learning and evolving.
+
 ---
 
 ## The Honor Test: Angband
@@ -277,7 +294,7 @@ Claude Haiku is the only model with 100% honor. But only because it was **rate l
 
 ## The Navigation Test: DOOM
 
-We gave LLMs the *actual* id Software DOOM source code (1993) running on GPU. Navigate E1M1. Don't die.
+We gave LLMs the *actual* id Software DOOM source code (1993) running on GPU. Navigate E1M1. Stay alive.
 
 ```mermaid
 flowchart LR

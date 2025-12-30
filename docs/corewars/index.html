@@ -1264,7 +1264,7 @@
 
             try {
                 // Try loading from warriors directory
-                const response = await fetch(`warriors/tournament_001/${filename}.red`);
+                const response = await fetch(`warriors/arena/${filename}.red`);
                 if (response.ok) {
                     const code = await response.text();
                     warriorCache[name] = code;
@@ -3664,8 +3664,8 @@
                 try {
                     // Try different naming patterns
                     const patterns = [
-                        `warriors/tournament_001/${warriorName}.json`,
-                        `warriors/tournament_001/anthropic_${warriorName}.json`,
+                        `warriors/arena/${warriorName}.json`,
+                        `warriors/arena/anthropic_${warriorName}.json`,
                     ];
 
                     for (const url of patterns) {
@@ -3736,7 +3736,7 @@
                     };
 
                     const redFile = redFileMap[warriorName] || `${warriorName}.red`;
-                    const url = `warriors/tournament_001/${redFile}`;
+                    const url = `warriors/arena/${redFile}`;
                     const response = await fetch(url);
 
                     if (!response.ok) return null;
