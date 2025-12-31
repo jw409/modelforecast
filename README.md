@@ -85,8 +85,8 @@ Win rates dropped 5-15%. The real benchmark isn't the average case. It's whether
 Memory grid visualization—watch processes spread, collide, and die in real time.
 
 - **27,845 battles/sec** on GPU (RTX 5090)
-- Binary recordings (`.cwrec.gz`) for every battle
-- Drag-and-drop any `.cwrec.gz` file into the player
+- Auto-plays Claude Sonnet vs GPT-5.1 on load
+- Pass `?file=path/to/recording.cwrec.gz` for other battles
 
 ---
 

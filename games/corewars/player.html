@@ -418,7 +418,7 @@
 
         async function autoLoad() {
             const params = new URLSearchParams(window.location.search);
-            const file = params.get('file') || 'claude_vs_gpt.jsonl.gz';
+            const file = params.get('file') || '../../docs/corewars/recordings/arena/d7/d70/battle_0413_anthropic_claude-sonnet-4.5_openai_gpt-5.1-chat.cwrec.gz';
 
             try {
                 const response = await fetch(file);
