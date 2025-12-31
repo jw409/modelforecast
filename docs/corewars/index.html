@@ -1105,10 +1105,10 @@
             { id: 'claude-sonnet', name: 'Claude Sonnet 4.5', color: 0x00cccc, rank: 1, codename: 'Silk', winRate: '76% vs GPT-5.1', warriorFile: 'anthropic_claude-sonnet-4.5' },
             { id: 'deepseek-v3', name: 'DeepSeek V3', color: 0xff6b00, rank: 2, codename: 'Hydra', winRate: '100% vs KatCoder', warriorFile: 'deepseek_deepseek-chat-v3-0324' },
             { id: 'obsidian-breaker', name: 'Obsidian Breaker v4', color: 0xff00ff, rank: 3, codename: 'Metacog', winRate: '45% vs GPT-5.1', warriorFile: 'metacog_obsidian_breaker_v4' },
-            { id: 'gpt-5.1', name: 'GPT-5.1', color: 0x74aa9c, rank: 4, codename: 'StoneGate', winRate: '—', warriorFile: 'openai_gpt-5.1' },
+            { id: 'gpt-5.1', name: 'GPT-5.1', color: 0x74aa9c, rank: 4, codename: 'StoneGate', winRate: '—', warriorFile: 'openai_gpt-5.1-chat' },
             { id: 'kat-coder', name: 'KAT Coder', color: 0xffd700, rank: 5, codename: 'IMP swarm', winRate: '—', warriorFile: 'kwaipilot_kat-coder-pro_free' },
             { id: 'claude-opus', name: 'Claude Opus 4.5', color: 0x00fff7, rank: 6, codename: 'Granite', winRate: '—', warriorFile: 'anthropic_claude-opus-4.5' },
-            { id: 'gemini-2.5', name: 'Gemini 2.5', color: 0x4285f4, rank: null, codename: null, winRate: null, warriorFile: 'google_gemini-3-pro-preview' },
+            { id: 'gemini-2.5', name: 'Gemini 2.5', color: 0x4285f4, rank: null, codename: null, winRate: null, warriorFile: 'google_gemini-2.5-pro' },
         ];
 
         // Colors - ENHANCED for maximum visual impact
@@ -1278,18 +1278,21 @@
         async function displayWarriorCode(battle) {
             if (!battle || !codePanel) return;
 
-            // Get warrior names from battle data
-            const w0Name = battle.w0?.name || battle.w0Llm?.id || 'Warrior 0';
-            const w1Name = battle.w1?.name || battle.w1Llm?.id || 'Warrior 1';
+            // Get warrior filenames from LLM data (warriorFile is the actual filename)
+            const w0File = battle.w0Llm?.warriorFile || battle.w0Llm?.id || 'unknown';
+            const w1File = battle.w1Llm?.warriorFile || battle.w1Llm?.id || 'unknown';
+            // Display names for headers
+            const w0Name = battle.w0Llm?.name || 'Warrior 0';
+            const w1Name = battle.w1Llm?.name || 'Warrior 1';
 
             // Update names
             if (codeW0Name) codeW0Name.textContent = w0Name;
             if (codeW1Name) codeW1Name.textContent = w1Name;
 
-            // Load and display code
+            // Load and display code (use warriorFile for actual filename)
             const [w0Code, w1Code] = await Promise.all([
-                loadWarrior(w0Name),
-                loadWarrior(w1Name)
+                loadWarrior(w0File),
+                loadWarrior(w1File)
             ]);
 
             // Analyze strategies
@@ -3318,6 +3321,7 @@
             heroMode: false,
             heroStartTime: 0,
             showcaseTriggered: false,
+            controlsRestored: false,  // Track if user controls have been restored
             currentHeroIndex: 0,  // Initialize here for HeroIntro access
             heroQueue: [],        // Will be populated in start()
 
@@ -3587,7 +3591,13 @@
                 }
 
                 if (this.spawnedCount >= battles.length) {
-                    // All done - start AutoShowcase if not already
+                    // All done - restore user controls and start AutoShowcase
+                    if (!this.controlsRestored) {
+                        this.controlsRestored = true;
+                        controls.enableZoom = true;
+                        controls.enablePan = true;
+                        console.log('[Sequencer] Controls restored - user can now pan/zoom');
+                    }
                     if (!AutoShowcase.enabled && !this.showcaseTriggered) {
                         this.showcaseTriggered = true;
                         console.log('[Sequencer] Spiral complete - starting AutoShowcase');
