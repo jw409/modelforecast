@@ -189,13 +189,11 @@ uv run python games/corewars/model_benchmark.py
 
 ## What We Learned
 
-**Price doesn't predict performance.** A free model matched the best paid model.
+**Price doesn't predict performance.** KAT Coder Pro (free) tied GPT-4o Mini ($0.15/1M tokens). Both hit 36% win rate. Both improved +19% over 10 rounds.
 
-**Small benchmarks lie.** 3 trials showed 100% pass rates. 10 trials showed 0%. Wilson intervals or nothing.
+**Small samples lie.** 8 models passed 3/3 trials then failed at scale. Wilson score intervals or you're fooling yourself.
 
-**Adversarial pressure reveals capability.** Static benchmarks measure what you can do once. Tournaments measure whether you can adapt.
-
-The gladiators have spoken. Are you not entertained?
+**Boss fights matter.** When Mice.red appeared at Turn 6, win rates dropped 5-15%. The benchmark isn't your average case—it's your worst.
 
 ---
 
