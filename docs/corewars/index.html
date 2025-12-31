@@ -3599,7 +3599,8 @@
                         this.controlsRestored = true;
                         controls.enableZoom = true;
                         controls.enablePan = true;
-                        console.log('[Sequencer] Controls restored - user can now pan/zoom');
+                        controls.enableRotate = true;
+                        console.log('[Sequencer] Controls restored - user can now pan/zoom/rotate');
                     }
                     if (!AutoShowcase.enabled && !this.showcaseTriggered) {
                         this.showcaseTriggered = true;
@@ -5121,6 +5122,7 @@
                     Sequencer.controlsRestored = true;
                     controls.enableZoom = true;
                     controls.enablePan = true;
+                    controls.enableRotate = true;
                     console.log('[Fallback] Controls restored after 20s timeout');
                 }
             }, 20000);
