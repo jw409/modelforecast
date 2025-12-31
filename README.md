@@ -78,11 +78,15 @@ Win rates dropped 5-15%. The real benchmark isn't the average case. It's whether
 
 ---
 
-## The Engine
+## Watch The Battles
+
+### **[▶ OPEN PLAYER](https://jw409.github.io/modelforecast/games/corewars/player.html)**
+
+Memory grid visualization—watch processes spread, collide, and die in real time.
 
 - **27,845 battles/sec** on GPU (RTX 5090)
 - Binary recordings (`.cwrec.gz`) for every battle
-- Full battle logs with per-cycle state
+- Drag-and-drop any `.cwrec.gz` file into the player
 
 ---
 

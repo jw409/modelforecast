@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CoreWars Player</title>
+    <meta charset="UTF-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.1.0/pako.min.js"></script>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background: #0a0a0f;
+            color: #00ffff;
+            font-family: 'Consolas', 'Monaco', monospace;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #header {
+            background: linear-gradient(180deg, #0f1a2a 0%, #0a0a0f 100%);
+            border-bottom: 2px solid #00ffff33;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .title {
+            font-size: 20px;
+            font-weight: bold;
+            text-shadow: 0 0 10px #00ffff66;
+        }
+
+        .warriors {
+            display: flex;
+            gap: 30px;
+            font-size: 14px;
+        }
+
+        .warrior {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .warrior-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 2px;
+        }
+
+        .w0-color { background: #00aaff; box-shadow: 0 0 8px #00aaff88; }
+        .w1-color { background: #ff6600; box-shadow: 0 0 8px #ff660088; }
+
+        #controls {
+            background: #0f0f18;
+            padding: 12px 20px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            border-bottom: 1px solid #ffffff11;
+        }
+
+        button {
+            background: linear-gradient(180deg, #1a3a4a 0%, #0f2030 100%);
+            color: #00ffff;
+            border: 1px solid #00ffff44;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 12px;
+            border-radius: 3px;
+            transition: all 0.2s;
+        }
+
+        button:hover {
+            background: linear-gradient(180deg, #2a5a6a 0%, #1f3040 100%);
+            border-color: #00ffff88;
+            box-shadow: 0 0 10px #00ffff33;
+        }
+
+        button.active {
+            background: #00ffff;
+            color: #000;
+        }
+
+        select {
+            background: #0f1a2a;
+            color: #00ffff;
+            border: 1px solid #00ffff44;
+            padding: 8px 12px;
+            font-family: inherit;
+            font-size: 12px;
+            border-radius: 3px;
+        }
+
+        .info {
+            margin-left: auto;
+            font-size: 13px;
+            opacity: 0.8;
+        }
+
+        #canvas-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background: radial-gradient(ellipse at center, #0f1520 0%, #0a0a0f 100%);
+        }
+
+        #core-canvas {
+            border: 2px solid #00ffff22;
+            border-radius: 4px;
+            box-shadow: 0 0 30px #00ffff11, inset 0 0 50px #00000088;
+        }
+
+        #stats {
+            background: #0f0f18;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            font-size: 14px;
+            border-top: 1px solid #ffffff11;
+        }
+
+        .stat {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .stat-value {
+            font-size: 18px;
+            font-weight: bold;
+            min-width: 50px;
+        }
+
+        .w0-text { color: #00aaff; text-shadow: 0 0 5px #00aaff66; }
+        .w1-text { color: #ff6600; text-shadow: 0 0 5px #ff660066; }
+
+        #progress-bar {
+            height: 20px;
+            background: #1a1a2a;
+            position: relative;
+            cursor: pointer;
+            border-bottom: 1px solid #00ffff22;
+        }
+
+        #progress-bar:hover {
+            background: #252535;
+        }
+
+        #progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00aaff, #00ffff);
+            width: 0%;
+            transition: width 0.05s;
+            box-shadow: 0 0 10px #00ffff88;
+            pointer-events: none;
+        }
+
+        #scrub-handle {
+            position: absolute;
+            top: 0;
+            width: 3px;
+            height: 100%;
+            background: #ffffff;
+            box-shadow: 0 0 8px #00ffff;
+            pointer-events: none;
+            display: none;
+        }
+
+        #timeline-tooltip {
+            position: absolute;
+            bottom: 25px;
+            background: #0f1a2acc;
+            border: 1px solid #00ffff44;
+            padding: 6px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+            color: #00ffff;
+            pointer-events: none;
+            display: none;
+            white-space: nowrap;
+            transform: translateX(-50%);
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <div class="title">⚔️ CoreWars Battle</div>
+        <div class="warriors">
+            <div class="warrior">
+                <div class="warrior-color w0-color"></div>
+                <span id="w0-name">Warrior 0</span>
+            </div>
+            <div class="warrior">
+                <div class="warrior-color w1-color"></div>
+                <span id="w1-name">Warrior 1</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="controls">
+        <button id="play">▶ Play</button>
+        <button id="pause">⏸ Pause</button>
+        <button id="step">⏭ Step</button>
+        <button id="reset">⏮ Reset</button>
+        <label>Speed:
+            <select id="speed">
+                <option value="0.25">0.25x</option>
+                <option value="0.5">0.5x</option>
+                <option value="1" selected>1x</option>
+                <option value="2">2x</option>
+                <option value="4">4x</option>
+                <option value="8">8x</option>
+                <option value="16">16x</option>
+            </select>
+        </label>
+        <div class="info">
+            Frame: <span id="frame-num">0</span> / <span id="frame-total">0</span>
+            &nbsp;|&nbsp; Cycle: <span id="cycle">0</span>
+        </div>
+    </div>
+
+    <div id="progress-bar">
+        <div id="progress-fill"></div>
+        <div id="scrub-handle"></div>
+        <div id="timeline-tooltip"></div>
+    </div>
+
+    <div id="canvas-container">
+        <canvas id="core-canvas"></canvas>
+    </div>
+
+    <div id="stats">
+        <div class="stat">
+            <div class="warrior-color w0-color"></div>
+            <span id="w0-name2">Warrior 0</span>:
+            <span class="stat-value w0-text" id="w0-count">0</span>
+        </div>
+        <div class="stat">
+            <div class="warrior-color w1-color"></div>
+            <span id="w1-name2">Warrior 1</span>:
+            <span class="stat-value w1-text" id="w1-count">0</span>
+        </div>
+    </div>
+
+    <script>
+        const CORE_SIZE = 8000;
+        const GRID_COLS = 100;
+        const GRID_ROWS = 80;
+
+        // Colors - cyberpunk neon
+        const COLORS = {
+            dead: '#0a0a12',
+            w0: '#00aaff',
+            w1: '#ff6600',
+            write: '#ffffff',
+            read: '#ffff00',
+            grid: '#151520'
+        };
+
+        // State
+        let frames = [];
+        let currentFrame = 0;
+        let playing = false;
+        let playInterval = null;
+        let core = new Array(CORE_SIZE).fill(0);
+        let prevCore = new Array(CORE_SIZE).fill(0);
+        let writes = new Set();
+        let reads = new Set();
+
+        // Particles for "card spitting" effect
+        let particles = [];
+
+        // Canvas
+        const canvas = document.getElementById('core-canvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            const container = document.getElementById('canvas-container');
+            const maxW = container.clientWidth - 40;
+            const maxH = container.clientHeight - 40;
+
+            const aspect = GRID_COLS / GRID_ROWS;
+            let w = maxW;
+            let h = w / aspect;
+
+            if (h > maxH) {
+                h = maxH;
+                w = h * aspect;
+            }
+
+            canvas.width = Math.floor(w);
+            canvas.height = Math.floor(h);
+            render();
+        }
+
+        class Particle {
+            constructor(x, y, color) {
+                this.x = x;
+                this.y = y;
+                this.color = color;
+                this.vx = (Math.random() - 0.5) * 10;
+                this.vy = (Math.random() - 0.5) * 10 - 4;
+                this.life = 1.0;
+                this.decay = 0.025 + Math.random() * 0.025;
+                this.size = 3 + Math.random() * 4;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                this.vy += 0.25;
+                this.life -= this.decay;
+                return this.life > 0;
+            }
+
+            draw(ctx) {
+                ctx.globalAlpha = this.life * 0.8;
+                ctx.fillStyle = this.color;
+                ctx.shadowBlur = 12;
+                ctx.shadowColor = this.color;
+                ctx.fillRect(this.x - this.size/2, this.y - this.size/2, this.size, this.size);
+                ctx.shadowBlur = 0;
+                ctx.globalAlpha = 1;
+            }
+        }
+
+        function spawnParticles(cellIndex, color, count = 8) {
+            const cellW = canvas.width / GRID_COLS;
+            const cellH = canvas.height / GRID_ROWS;
+            const col = cellIndex % GRID_COLS;
+            const row = Math.floor(cellIndex / GRID_COLS);
+            const x = col * cellW + cellW / 2;
+            const y = row * cellH + cellH / 2;
+
+            for (let i = 0; i < count; i++) {
+                particles.push(new Particle(x, y, color));
+            }
+        }
+
+        function render() {
+            const cellW = canvas.width / GRID_COLS;
+            const cellH = canvas.height / GRID_ROWS;
+
+            // Clear
+            ctx.fillStyle = COLORS.dead;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Grid lines (subtle)
+            ctx.strokeStyle = COLORS.grid;
+            ctx.lineWidth = 0.3;
+            for (let x = 0; x <= GRID_COLS; x++) {
+                ctx.beginPath();
+                ctx.moveTo(x * cellW, 0);
+                ctx.lineTo(x * cellW, canvas.height);
+                ctx.stroke();
+            }
+            for (let y = 0; y <= GRID_ROWS; y++) {
+                ctx.beginPath();
+                ctx.moveTo(0, y * cellH);
+                ctx.lineTo(canvas.width, y * cellH);
+                ctx.stroke();
+            }
+
+            // Draw cells
+            for (let i = 0; i < CORE_SIZE; i++) {
+                const col = i % GRID_COLS;
+                const row = Math.floor(i / GRID_COLS);
+                const x = col * cellW;
+                const y = row * cellH;
+
+                let color = null;
+                let glow = false;
+
+                if (writes.has(i)) {
+                    color = COLORS.write;
+                    glow = true;
+                    if (core[i] !== prevCore[i]) {
+                        spawnParticles(i, core[i] === 1 ? COLORS.w0 : COLORS.w1, 10);
+                    }
+                } else if (reads.has(i)) {
+                    color = COLORS.read;
+                    glow = true;
+                } else if (core[i] === 1) {
+                    color = COLORS.w0;
+                } else if (core[i] === 2) {
+                    color = COLORS.w1;
+                }
+
+                if (color) {
+                    if (glow) {
+                        ctx.shadowBlur = 10;
+                        ctx.shadowColor = color;
+                    }
+                    ctx.fillStyle = color;
+                    ctx.fillRect(x + 0.5, y + 0.5, cellW - 1, cellH - 1);
+                    ctx.shadowBlur = 0;
+                }
+            }
+
+            // Draw particles (deck of cards effect)
+            particles = particles.filter(p => {
+                p.draw(ctx);
+                return p.update();
+            });
+        }
+
+        function animate() {
+            if (particles.length > 0) {
+                render();
+            }
+            requestAnimationFrame(animate);
+        }
+
+        async function autoLoad() {
+            const params = new URLSearchParams(window.location.search);
+            const file = params.get('file') || 'claude_vs_gpt.jsonl.gz';
+
+            try {
+                const response = await fetch(file);
+                if (!response.ok) throw new Error('File not found: ' + file);
+                const buffer = await response.arrayBuffer();
+                const text = pako.ungzip(new Uint8Array(buffer), { to: 'string' });
+                loadRecording(text);
+            } catch (e) {
+                console.error('Load failed:', e);
+                document.getElementById('w0-name').textContent = 'Error';
+                document.getElementById('w1-name').textContent = file;
+            }
+        }
+
+        function loadRecording(text) {
+            const lines = text.trim().split('\n');
+            frames = [];
+            const header = JSON.parse(lines[0]);
+
+            const w0Name = header.warriors?.[0]?.name || 'Warrior 0';
+            const w1Name = header.warriors?.[1]?.name || 'Warrior 1';
+
+            document.getElementById('w0-name').textContent = w0Name;
+            document.getElementById('w1-name').textContent = w1Name;
+            document.getElementById('w0-name2').textContent = w0Name;
+            document.getElementById('w1-name2').textContent = w1Name;
+
+            for (let i = 1; i < lines.length; i++) {
+                try { frames.push(JSON.parse(lines[i])); } catch (e) {}
+            }
+
+            document.getElementById('frame-total').textContent = frames.length;
+            currentFrame = 0;
+            core = new Array(CORE_SIZE).fill(0);
+            prevCore = new Array(CORE_SIZE).fill(0);
+            renderFrame(0);
+        }
+
+        function expandRLE(rleData) {
+            const result = [];
+            for (const [value, count] of rleData) {
+                for (let i = 0; i < count; i++) result.push(value);
+            }
+            return result;
+        }
+
+        function renderFrame(index) {
+            if (index < 0 || index >= frames.length) return;
+            const frame = frames[index];
+
+            prevCore = [...core];
+
+            if (frame.type === 'K') {
+                core = expandRLE(frame.data);
+                while (core.length < CORE_SIZE) core.push(0);
+            } else {
+                for (const [addr, value] of frame.data) {
+                    core[addr] = value;
+                }
+            }
+
+            writes = new Set(frame.writes || []);
+            reads = new Set(frame.reads || []);
+
+            const stats = frame.stats || {};
+            document.getElementById('w0-count').textContent = stats.w0 || 0;
+            document.getElementById('w1-count').textContent = stats.w1 || 0;
+            document.getElementById('cycle').textContent = stats.cycle || 0;
+            document.getElementById('frame-num').textContent = index;
+
+            const progress = frames.length > 1 ? (index / (frames.length - 1)) * 100 : 0;
+            document.getElementById('progress-fill').style.width = progress + '%';
+
+            currentFrame = index;
+            render();
+        }
+
+        // Controls
+        document.getElementById('play').onclick = () => {
+            if (playing) return;
+            playing = true;
+            document.getElementById('play').classList.add('active');
+            const speed = parseFloat(document.getElementById('speed').value);
+            const interval = Math.max(16, Math.floor(1000 / 60 / speed));
+            playInterval = setInterval(() => {
+                if (currentFrame < frames.length - 1) {
+                    renderFrame(currentFrame + 1);
+                } else {
+                    stopPlayback();
+                }
+            }, interval);
+        };
+
+        document.getElementById('pause').onclick = stopPlayback;
+
+        function stopPlayback() {
+            playing = false;
+            document.getElementById('play').classList.remove('active');
+            if (playInterval) { clearInterval(playInterval); playInterval = null; }
+        }
+
+        document.getElementById('step').onclick = () => {
+            stopPlayback();
+            if (currentFrame < frames.length - 1) renderFrame(currentFrame + 1);
+        };
+
+        document.getElementById('reset').onclick = () => {
+            stopPlayback();
+            currentFrame = 0;
+            core = new Array(CORE_SIZE).fill(0);
+            prevCore = new Array(CORE_SIZE).fill(0);
+            particles = [];
+            renderFrame(0);
+        };
+
+        document.getElementById('speed').onchange = () => {
+            if (playing) { stopPlayback(); document.getElementById('play').click(); }
+        };
+
+        // Timeline scrubbing
+        const progressBar = document.getElementById('progress-bar');
+        const scrubHandle = document.getElementById('scrub-handle');
+        const tooltip = document.getElementById('timeline-tooltip');
+
+        function getFrameFromX(x) {
+            const rect = progressBar.getBoundingClientRect();
+            const pct = Math.max(0, Math.min(1, (x - rect.left) / rect.width));
+            return Math.floor(pct * (frames.length - 1));
+        }
+
+        progressBar.addEventListener('mousemove', (e) => {
+            if (frames.length === 0) return;
+            const frameIdx = getFrameFromX(e.clientX);
+            const frame = frames[frameIdx];
+            const rect = progressBar.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+
+            scrubHandle.style.left = x + 'px';
+            scrubHandle.style.display = 'block';
+
+            tooltip.style.left = x + 'px';
+            tooltip.style.display = 'block';
+            tooltip.textContent = `Frame ${frameIdx} | Cycle ${frame?.stats?.cycle || 0}`;
+        });
+
+        progressBar.addEventListener('mouseleave', () => {
+            scrubHandle.style.display = 'none';
+            tooltip.style.display = 'none';
+        });
+
+        progressBar.addEventListener('click', (e) => {
+            if (frames.length === 0) return;
+            stopPlayback();
+            const frameIdx = getFrameFromX(e.clientX);
+            // Rebuild core state from beginning to target frame
+            core = new Array(CORE_SIZE).fill(0);
+            prevCore = new Array(CORE_SIZE).fill(0);
+            for (let i = 0; i <= frameIdx; i++) {
+                const frame = frames[i];
+                if (frame.type === 'K') {
+                    core = expandRLE(frame.data);
+                    while (core.length < CORE_SIZE) core.push(0);
+                } else {
+                    for (const [addr, value] of frame.data) {
+                        core[addr] = value;
+                    }
+                }
+            }
+            prevCore = [...core];
+            renderFrame(frameIdx);
+        });
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
+            switch(e.key) {
+                case ' ':
+                    e.preventDefault();
+                    if (playing) stopPlayback();
+                    else document.getElementById('play').click();
+                    break;
+                case 'ArrowRight':
+                    e.preventDefault();
+                    stopPlayback();
+                    if (currentFrame < frames.length - 1) renderFrame(currentFrame + 1);
+                    break;
+                case 'ArrowLeft':
+                    e.preventDefault();
+                    stopPlayback();
+                    if (currentFrame > 0) {
+                        // Rebuild state to previous frame
+                        const targetFrame = currentFrame - 1;
+                        core = new Array(CORE_SIZE).fill(0);
+                        for (let i = 0; i <= targetFrame; i++) {
+                            const frame = frames[i];
+                            if (frame.type === 'K') {
+                                core = expandRLE(frame.data);
+                                while (core.length < CORE_SIZE) core.push(0);
+                            } else {
+                                for (const [addr, value] of frame.data) {
+                                    core[addr] = value;
+                                }
+                            }
+                        }
+                        prevCore = [...core];
+                        renderFrame(targetFrame);
+                    }
+                    break;
+                case 'Home':
+                    e.preventDefault();
+                    document.getElementById('reset').click();
+                    break;
+                case 'End':
+                    e.preventDefault();
+                    stopPlayback();
+                    // Jump to last frame
+                    core = new Array(CORE_SIZE).fill(0);
+                    for (let i = 0; i < frames.length; i++) {
+                        const frame = frames[i];
+                        if (frame.type === 'K') {
+                            core = expandRLE(frame.data);
+                            while (core.length < CORE_SIZE) core.push(0);
+                        } else {
+                            for (const [addr, value] of frame.data) {
+                                core[addr] = value;
+                            }
+                        }
+                    }
+                    prevCore = [...core];
+                    renderFrame(frames.length - 1);
+                    break;
+            }
+        });
+
+        // Init
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+        animate();
+        autoLoad().then(() => {
+            // Auto-play on load
+            setTimeout(() => document.getElementById('play').click(), 100);
+        });
+    </script>
+</body>
+</html>
