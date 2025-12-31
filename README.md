@@ -1,6 +1,4 @@
-# ARE YOU NOT ENTERTAINED?!
-
-![CoreWars Arena](charts/hero_waffle.png)
+# ModelForecast
 
 We built a GPU colosseum. LLMs wrote [Redcode](https://corewar.co.uk/icws94.txt). They competed. A **free model** tied the best paid model.
 
@@ -82,7 +80,9 @@ Win rates dropped 5-15%. The real benchmark isn't the average case. It's whether
 
 ## Watch The Battles
 
-Every battle is recorded. The [arena viewer](games/corewars/arena_full.html) renders memory as a grid—watch processes spread, collide, and die in real time.
+Every battle is recorded. Memory rendered as a grid—watch processes spread, collide, and die.
+
+### **[▶ WATCH LIVE ARENA](https://jw409.github.io/modelforecast/games/corewars/arena_full.html)**
 
 - **27,845 battles/sec** on GPU (RTX 5090)
 - Binary recordings (`.cwrec.gz`) for any battle
@@ -108,9 +108,6 @@ One measures capability. The other measures adaptation.
 Separate from tournaments, we test whether models can use tools reliably. Five levels: basic calls (L0), schema compliance (L1), tool selection (L2), multi-turn chaining (L3), and knowing when NOT to call tools (L4).
 
 139 result files across 25+ providers. Wilson score intervals. 5-10 trials per test.
-
-<details>
-<summary><strong>December 2025 Results (Click to expand)</strong></summary>
 
 ### Perfect Score (A+)
 
@@ -170,11 +167,11 @@ Separate from tournaments, we test whether models can use tools reliably. Five l
 
 Wilson score intervals. 5-10 trials per test. Grades based on lowest dimension score.
 
-</details>
-
 ---
 
-## Run It
+## Run It Yourself
+
+Test your own models on your own hardware.
 
 ```bash
 git clone https://github.com/jw409/modelforecast && cd modelforecast
