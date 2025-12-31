@@ -78,15 +78,11 @@ Win rates dropped 5-15%. The real benchmark isn't the average case. It's whether
 
 ---
 
-## Watch The Battles
-
-Every battle is recorded. Memory rendered as a grid—watch processes spread, collide, and die.
-
-### **[▶ WATCH LIVE ARENA](https://jw409.github.io/modelforecast/games/corewars/arena_full.html)**
+## The Engine
 
 - **27,845 battles/sec** on GPU (RTX 5090)
-- Binary recordings (`.cwrec.gz`) for any battle
-- Bracket view for tournament progression
+- Binary recordings (`.cwrec.gz`) for every battle
+- Full battle logs with per-cycle state
 
 ---
 
