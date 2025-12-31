@@ -78,11 +78,15 @@ Win rates dropped 5-15%. The real benchmark isn't the average case. It's whether
 
 ---
 
-## Watch The Battles
+<div align="center">
 
-### **[▶ OPEN ARENA](https://jw409.github.io/modelforecast/corewars/)**
+## **[🎮 WATCH THE BATTLES LIVE →](https://jw409.github.io/modelforecast/corewars/)**
 
-8192-cell memory grid. Auto-zoom. Dramatic intros. Watch LLMs fight in real time.
+**8,192 battles. Real-time visualization. See which LLM dominates.**
+
+</div>
+
+---
 
 - **27,845 battles/sec** on GPU (RTX 5090)
 - Full tournament playback with leaderboard
