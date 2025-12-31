@@ -3248,6 +3248,16 @@
                 // If there's a selected battle, display its warriors
                 if (selectedBattle) {
                     displayWarriorCode(selectedBattle);
+                } else {
+                    // Show placeholder message when no battle selected
+                    const codeW0 = document.getElementById('code-w0');
+                    const codeW1 = document.getElementById('code-w1');
+                    const codeW0Name = document.getElementById('code-w0-name');
+                    const codeW1Name = document.getElementById('code-w1-name');
+                    if (codeW0Name) codeW0Name.textContent = 'No Battle Selected';
+                    if (codeW1Name) codeW1Name.textContent = 'No Battle Selected';
+                    if (codeW0) codeW0.innerHTML = '<span style="color:#565f89">Click on a battle in the grid to view its warriors</span>';
+                    if (codeW1) codeW1.innerHTML = '<span style="color:#565f89">Click on a battle in the grid to view its warriors</span>';
                 }
             }
         });
