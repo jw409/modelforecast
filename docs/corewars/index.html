@@ -1145,30 +1145,32 @@
                 let codePart = commentIdx >= 0 ? line.substring(0, commentIdx) : line;
                 let commentPart = commentIdx >= 0 ? line.substring(commentIdx) : '';
 
-                // Highlight code part
-                // Opcodes (case insensitive)
+                // Highlight code part - ORDER MATTERS!
+                // 1. First, mark addressing modes (< > must be done before adding any HTML tags)
+                codePart = codePart.replace(/([#$@<>*{}])/g, '\x00ADDR:$1\x00');
+
+                // 2. Numbers
+                codePart = codePart.replace(/\b(-?\d+)\b/g, '\x00NUM:$1\x00');
+
+                // 3. Opcodes (case insensitive)
                 codePart = codePart.replace(/\b(DAT|MOV|ADD|SUB|MUL|DIV|MOD|JMP|JMZ|JMN|DJN|SPL|SLT|CMP|SEQ|SNE|NOP|LDP|STP)\b/gi,
                     '<span class="rc-opcode">$1</span>');
 
-                // Pseudo-opcodes
+                // 4. Pseudo-opcodes
                 codePart = codePart.replace(/\b(EQU|ORG|END|FOR|ROF|PIN)\b/gi,
                     '<span class="rc-pseudo">$1</span>');
 
-                // Modifiers (.A, .B, .AB, .BA, .F, .X, .I)
+                // 5. Modifiers (.A, .B, .AB, .BA, .F, .X, .I)
                 codePart = codePart.replace(/\.(A|B|AB|BA|F|X|I)\b/gi,
                     '<span class="rc-modifier">.$1</span>');
 
-                // Addressing modes
-                codePart = codePart.replace(/([#$@<>*{}])/g,
-                    '<span class="rc-address">$1</span>');
-
-                // Numbers (after addressing modes to avoid double-highlighting)
-                codePart = codePart.replace(/\b(-?\d+)\b/g,
-                    '<span class="rc-number">$1</span>');
-
-                // Labels at start of line (word before opcode, not a keyword)
+                // 6. Labels at start of line (word before opcode)
                 codePart = codePart.replace(/^(\s*)([a-zA-Z_][a-zA-Z0-9_]*)(\s+)(?=<span class="rc-)/,
                     '$1<span class="rc-label">$2</span>$3');
+
+                // 7. Now convert placeholders to actual spans (after all other HTML is added)
+                codePart = codePart.replace(/\x00ADDR:([#$@<>*{}])\x00/g, '<span class="rc-address">$1</span>');
+                codePart = codePart.replace(/\x00NUM:(-?\d+)\x00/g, '<span class="rc-number">$1</span>');
 
                 // Combine with comment
                 if (commentPart) {
