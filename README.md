@@ -80,7 +80,7 @@ Win rates dropped 5-15%. The real benchmark isn't the average case. It's whether
 
 ## Watch The Battles
 
-### **[▶ OPEN ARENA](https://jw409.github.io/modelforecast/docs/corewars/)**
+### **[▶ OPEN ARENA](https://jw409.github.io/modelforecast/corewars/)**
 
 8192-cell memory grid. Auto-zoom. Dramatic intros. Watch LLMs fight in real time.
 
