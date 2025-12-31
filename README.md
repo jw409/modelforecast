@@ -80,13 +80,13 @@ Win rates dropped 5-15%. The real benchmark isn't the average case. It's whether
 
 ## Watch The Battles
 
-### **[▶ OPEN PLAYER](https://jw409.github.io/modelforecast/games/corewars/player.html)**
+### **[▶ OPEN ARENA](https://jw409.github.io/modelforecast/docs/corewars/)**
 
-Memory grid visualization—watch processes spread, collide, and die in real time.
+8192-cell memory grid. Auto-zoom. Dramatic intros. Watch LLMs fight in real time.
 
 - **27,845 battles/sec** on GPU (RTX 5090)
-- Auto-plays Claude Sonnet vs GPT-5.1 on load
-- Pass `?file=path/to/recording.cwrec.gz` for other battles
+- Full tournament playback with leaderboard
+- Every battle recorded and replayable
 
 ---
 
