@@ -21,7 +21,7 @@
 ### What This Project IS NOT
 - No local GPU inference (no 8765/8888 ports)
 - No MCP server integration
-- No LocalService/talent-os infrastructure
+- No multi-agent infrastructure
 - No room coordination or agent spawning
 
 ### Execution Model
@@ -51,11 +51,11 @@ User Request → Claude Code → Python scripts → OpenRouter API → Results
 ### External Dependencies
 | Dependency | Purpose | Location |
 |------------|---------|----------|
-| PMARS | CoreWars simulator | `$PROJECT_PATH/external/corewars-sandbox/pmars` |
-| GPU MARS | Fast GPU simulator | `$PROJECT_PATH/external/corewars-sandbox/gpu_mars/build/gpu_mars_interleaved` |
+| PMARS | CoreWars simulator | `$PMARS_PATH` or `external/pmars` |
+| GPU MARS | Fast GPU simulator | `$GPU_MARS_PATH` or `external/gpu_mars` |
 
 ### Environment
-- **Virtual env**: `.venv/` (project-local, NOT game1/.venv)
+- **Virtual env**: `.venv/` (project-local)
 - **Python**: `uv run python` (always, never `python` or `python3`)
 - **Config**: `.mcp.json` (MCP disabled for this project)
 
@@ -133,9 +133,8 @@ Before proposing changes, verify:
 - src/modelforecast/ (implementation)
 
 **DO NOT reference**:
-- game1/CLAUDE.md (different project)
-- helpers/ (not used here)
-- mcptools/ (not used here)
+- Other projects' CLAUDE.md files
+- External infrastructure not in this repo
 - Port 8765/8888 services (not running)
 
 ---
@@ -210,13 +209,13 @@ curl -H "Authorization: Bearer $OPENROUTER_API_KEY" \
 
 ---
 
-## Anti-Patterns (From AnalysisV3 Analysis)
+## Anti-Patterns
 
 ### DO NOT:
-1. **Import game1 infrastructure** - This project is standalone
+1. **Import external infrastructure** - This project is standalone
 2. **Reference 8765/8888 ports** - No GPU services here
 3. **Use MCP tools** - Direct Python + OpenRouter only
-4. **Create talent-os style rooms** - No agent coordination
+4. **Create multi-agent coordination** - Single-agent only
 5. **Skip preflight checks** - Validate before running tournaments
 
 ### DO:
@@ -240,5 +239,4 @@ curl -H "Authorization: Bearer $OPENROUTER_API_KEY" \
 
 ---
 
-*Generated from AnalysisV3 pattern analysis (12,650 patterns, 3,297 sessions)*
-*Confidence: 0.89 | Last updated: 2025-12-10*
+*Last updated: 2025-12-10*
