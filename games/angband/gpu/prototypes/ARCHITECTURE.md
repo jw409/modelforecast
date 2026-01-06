@@ -101,4 +101,4 @@ To tune this ultrathink architecture, we track:
 
 ## Implementation Prototype
 
-See `helpers/projects/angband/gpu_prototype.py` for a PyTorch proof-of-concept demonstrating the tensor mapping.
+See `games/angband/gpu_prototype.py` for a PyTorch proof-of-concept demonstrating the tensor mapping.

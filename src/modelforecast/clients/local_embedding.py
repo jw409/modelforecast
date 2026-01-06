@@ -1,4 +1,4 @@
-"""Local embedding client for LocalService localhost:8765 service.
+"""Local embedding client for localhost embedding service.
 
 Provides OpenAI-compatible interface for local embedding service.
 """
@@ -35,7 +35,7 @@ class LocalEmbeddingResponse:
 
 
 class LocalEmbeddingClient:
-    """Client for localhost:8765 LocalService embedding service.
+    """Client for localhost embedding service.
 
     Provides OpenAI-compatible interface so existing probes work unchanged.
 
@@ -123,7 +123,7 @@ class LocalEmbeddingsAPI:
 
 
 class LocalRerankClient:
-    """Client for localhost:8765 LocalService reranking service.
+    """Client for localhost reranking service.
 
     Usage:
         client = LocalRerankClient()

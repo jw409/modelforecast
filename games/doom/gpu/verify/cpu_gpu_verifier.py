@@ -10,7 +10,7 @@ Architecture:
 - Both read TicCmd from stdin (binary), output JSONL state to stdout
 - Verification: Exact match required for all fields
 
-Reference: $PROJECT_PATH/contexts/modelforecast/private/docs/plans/DOOM-cpu-vs-gpu.md
+Reference: docs/plans/docs/plans/DOOM-cpu-vs-gpu.md
 
 Usage:
     python cpu_gpu_verifier.py --ticks 100

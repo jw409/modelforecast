@@ -10,12 +10,14 @@
   },
   "external_binaries": {
     "pmars": {
-      "path": "$PROJECT_PATH/external/corewars-sandbox/pmars",
+      "path": "$PMARS_PATH",
+      "fallback": "external/pmars",
       "purpose": "CoreWars MARS simulator (reference implementation)",
       "required": true
     },
     "gpu_mars": {
-      "path": "$PROJECT_PATH/external/corewars-sandbox/gpu_mars/build/gpu_mars_interleaved",
+      "path": "$GPU_MARS_PATH",
+      "fallback": "external/gpu_mars",
       "purpose": "GPU-accelerated CoreWars simulator for tournaments",
       "required": false
     }
@@ -44,7 +46,7 @@
     },
     {
       "check": "binary_exists",
-      "path": "$PROJECT_PATH/external/corewars-sandbox/pmars",
+      "path": "$PMARS_PATH",
       "description": "PMARS binary for CoreWars simulation"
     }
   ],

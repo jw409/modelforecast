@@ -102,7 +102,7 @@ You are competing in CoreWars, the classic programming game where warriors
 
 ## Your Environment
 
-You have access to mcptools via MCP. Key tools:
+You have access to the search tools via MCP. Key tools:
 - `read_file`: Read any file in the sandbox
 - `write_file`: Write warriors to the sandbox
 - `search`: Search for patterns, strategies, documentation

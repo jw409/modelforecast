@@ -255,7 +255,7 @@ python ai/generate_warrior.py --model gemini-2.5-flash
 export OPENROUTER_API_KEY="sk-or-v1-..."
 
 # Optional (Python path for imports)
-export PYTHONPATH="$PROJECT_PATH/talent-os:$PYTHONPATH"
+export PYTHONPATH="$HELPER_MODULES_PATH:$PYTHONPATH"
 ```
 
 ## Directory Structure
@@ -345,4 +345,4 @@ Built on:
 
 ## License
 
-Part of the ModelForecast/LocalService project.
+Part of the ModelForecast project.

@@ -20,11 +20,9 @@
   "excluded_infrastructure": {
     "gpu_services": true,
     "mcp_tools": true,
-    "talent_os": true,
     "local_inference": true,
     "room_coordination": true,
-    "port_8765": true,
-    "port_8888": true
+    "local_gpu_ports": true
   },
   "execution_model": {
     "flow": "User Request -> Claude Code -> Python scripts -> OpenRouter API -> Results",
@@ -90,10 +88,8 @@
       "src/modelforecast/"
     ],
     "do_not_reference": [
-      "game1/CLAUDE.md",
-      "helpers/",
-      "mcptools/",
-      "port 8765/8888 services"
+      "external project CLAUDE.md files",
+      "external infrastructure"
     ]
   }
 }

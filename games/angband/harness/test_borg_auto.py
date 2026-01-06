@@ -10,7 +10,7 @@ import sys
 import os
 import re
 
-ANGBAND_DIR = "$PROJECT_PATH/external/angband-arena/angband/build"
+ANGBAND_DIR = "external/angband-arena/angband/build"
 ANGBAND_PATH = f"{ANGBAND_DIR}/game/angband"
 
 def run_borg_test(duration_seconds=15):

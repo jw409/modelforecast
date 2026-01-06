@@ -6,9 +6,9 @@
 
 ### Reference Files
 ```
-$PROJECT_PATH/external/angband-arena/angband/src/player-attack.c
-$PROJECT_PATH/external/angband-arena/angband/src/mon-attack.c
-$PROJECT_PATH/external/angband-arena/angband/src/obj-util.c
+external/angband-arena/angband/src/player-attack.c
+external/angband-arena/angband/src/mon-attack.c
+external/angband-arena/angband/src/obj-util.c
 ```
 
 ### Functions to Implement
@@ -60,9 +60,9 @@ make verify_v2
 
 ### Reference Files
 ```
-$PROJECT_PATH/external/angband-arena/angband/lib/gamedata/monster.txt
-$PROJECT_PATH/external/angband-arena/angband/src/monster.h
-$PROJECT_PATH/external/angband-arena/angband/src/list-mon-race-flags.h
+external/angband-arena/angband/lib/gamedata/monster.txt
+external/angband-arena/angband/src/monster.h
+external/angband-arena/angband/src/list-mon-race-flags.h
 ```
 
 ### Data to Extract
@@ -135,10 +135,10 @@ struct MonsterRace {
 
 ### Reference Files
 ```
-$PROJECT_PATH/external/angband-arena/angband/src/gen-cave.c
-$PROJECT_PATH/external/angband-arena/angband/src/gen-room.c
-$PROJECT_PATH/external/angband-arena/angband/src/gen-util.c
-$PROJECT_PATH/external/angband-arena/angband/lib/gamedata/vault.txt
+external/angband-arena/angband/src/gen-cave.c
+external/angband-arena/angband/src/gen-room.c
+external/angband-arena/angband/src/gen-util.c
+external/angband-arena/angband/lib/gamedata/vault.txt
 ```
 
 ### Current Implementation
@@ -373,7 +373,7 @@ Integration:
 ├── borg_kernel_v2.cu       ← Calls your functions
 
 Reference (Angband source):
-$PROJECT_PATH/external/angband-arena/angband/src/
+external/angband-arena/angband/src/
 ├── player-attack.c         ← Combat formulas
 ├── mon-attack.c            ← Monster attacks
 ├── monster.h               ← Monster structures
@@ -382,7 +382,7 @@ $PROJECT_PATH/external/angband-arena/angband/src/
 └── ...
 
 Data files:
-$PROJECT_PATH/external/angband-arena/angband/lib/gamedata/
+external/angband-arena/angband/lib/gamedata/
 ├── monster.txt             ← Monster definitions
 ├── vault.txt               ← Vault templates
 └── ...

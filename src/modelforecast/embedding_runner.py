@@ -1,6 +1,6 @@
 """CLI runner for embedding probes (E0, E1, E2).
 
-Supports both OpenRouter API and local LocalService service (localhost:8765).
+Supports both OpenRouter API and local embedding service.
 """
 
 import argparse
@@ -31,7 +31,7 @@ EMBEDDING_MODELS = [
     "mistralai/mistral-embed-2312",
 ]
 
-# Local LocalService models (localhost:8765)
+# Local embedding models
 LOCAL_MODELS = {
     "embedding": ["qwen3_4b"],
     "reranker": ["qwen3_reranker"],
@@ -55,7 +55,7 @@ class EmbeddingRunner:
             output_dir: Directory to write results to
             model: Embedding model identifier
             contributor: GitHub username for provenance (defaults to env var or "unknown")
-            local: If True, use local LocalService service instead of OpenRouter
+            local: If True, use local embedding service instead of OpenRouter
             local_url: Base URL for local service (default: http://localhost:8765)
         """
         self.output_dir = Path(output_dir)
@@ -310,7 +310,7 @@ def main():
     parser.add_argument(
         "--local",
         action="store_true",
-        help="Use local LocalService service (localhost:8765) instead of OpenRouter",
+        help="Use local embedding service instead of OpenRouter",
     )
     parser.add_argument(
         "--local-url",
@@ -328,7 +328,7 @@ def main():
         print("\nOpenRouter embedding models (via API):\n")
         for model in EMBEDDING_MODELS:
             print(f"  {model}")
-        print("\nLocal LocalService models (--local flag):\n")
+        print("\nLocal embedding models (--local flag):\n")
         print("  Embedding:")
         for model in LOCAL_MODELS["embedding"]:
             print(f"    {model}")
@@ -344,7 +344,7 @@ def main():
     if not args.local and not os.getenv("OPENROUTER_API_KEY"):
         print("ERROR: OPENROUTER_API_KEY environment variable not set")
         print("Get your API key from: https://openrouter.ai/keys")
-        print("Or use --local flag for local LocalService service")
+        print("Or use --local flag for local embedding service")
         return 1
 
     # Validate required arguments when not listing models

@@ -290,7 +290,7 @@ When enhancing the headers:
 
 ## References
 
-- Original Angband source: `$PROJECT_PATH/external/angband-arena/angband/src/`
+- Original Angband source: `external/angband-arena/angband/src/`
 - Combat system: `player-attack.c`, `mon-attack.c`
 - Monster data: `monster.h`, `list-mon-*.h`
 - Generation: `generate.c`, `gen-cave.c`, `gen-room.c`

@@ -11,7 +11,7 @@ import select
 import re
 import subprocess
 
-ANGBAND_DIR = "$PROJECT_PATH/external/angband-arena/angband/build"
+ANGBAND_DIR = "external/angband-arena/angband/build"
 ANGBAND_BIN = f"{ANGBAND_DIR}/game/angband"
 
 def strip_ansi(text):

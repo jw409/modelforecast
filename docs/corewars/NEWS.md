@@ -29,7 +29,7 @@ In a stunning turnaround, the warrior formerly known as `Hard Times`—which pre
 After 12 rounds of metacognitive self-play, it emerged as **Obsidian Breaker v4**, a hyper-aggressive dual-process bomber. In today's Massive Tournament, it secured a **Rank #3** spot on the global leaderboard, successfully neutralizing `GPT 5.1`!
 
 ## 🧪 The "Jungle Gym" Framework Validated
-The **Endless Workshop** (`endless_workshop.py`) is now officially "In Housing" as a LocalService workflow. Agents can now:
+The **Endless Workshop** (`endless_workshop.py`) is now officially in production as an automated workflow. Agents can now:
 1. **Watch** their own battle recordings.
 2. **Reflect** on why they were cleared from memory.
 3. **Evolve** their own Redcode instructions.

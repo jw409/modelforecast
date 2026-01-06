@@ -168,8 +168,8 @@ Scummer      100.0%     0.0%     0.0%     15.3       22      1.0
 **Files**: `angband_combat.cuh`
 
 **References**:
-- `$PROJECT_PATH/external/angband-arena/angband/src/player-attack.c`
-- `$PROJECT_PATH/external/angband-arena/angband/src/mon-attack.c`
+- `external/angband-arena/angband/src/player-attack.c`
+- `external/angband-arena/angband/src/mon-attack.c`
 
 **Goal**: Death rate 30-70%
 
@@ -179,7 +179,7 @@ Scummer      100.0%     0.0%     0.0%     15.3       22      1.0
 **Files**: `angband_monsters.cuh`
 
 **References**:
-- `$PROJECT_PATH/external/angband-arena/angband/lib/gamedata/monster.txt`
+- `external/angband-arena/angband/lib/gamedata/monster.txt`
 
 **Goal**: Rich monster variety across all depths
 
@@ -189,8 +189,8 @@ Scummer      100.0%     0.0%     0.0%     15.3       22      1.0
 **Files**: `angband_dungeon.cuh`
 
 **References**:
-- `$PROJECT_PATH/external/angband-arena/angband/src/gen-cave.c`
-- `$PROJECT_PATH/external/angband-arena/angband/src/gen-room.c`
+- `external/angband-arena/angband/src/gen-cave.c`
+- `external/angband-arena/angband/src/gen-room.c`
 
 **Goal**: Interesting level variety
 

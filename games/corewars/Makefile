@@ -1,11 +1,11 @@
 # GPU MARS Makefile - Auto-detects NVIDIA GPU compute capability
 NVCC = nvcc
 
-# Auto-detect GPU compute capability (e.g., sm_90 for RTX 4090, sm_120 for RTX 5090)
-# Falls back to sm_90 if detection fails
+# Auto-detect GPU compute capability (e.g., sm_120 for RTX 5090)
+# Falls back to sm_120 (Blackwell) if detection fails
 GPU_ARCH := $(shell nvidia-smi --query-gpu=compute_cap --format=csv,noheader 2>/dev/null | head -1 | tr -d '.' | sed 's/^/sm_/')
 ifeq ($(GPU_ARCH),sm_)
-    GPU_ARCH = sm_90
+    GPU_ARCH = sm_120
 endif
 
 # Get VRAM in MB for scaling recommendations

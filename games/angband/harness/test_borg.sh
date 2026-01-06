@@ -2,7 +2,7 @@
 # Test borg startup
 # Run in tmux or with PTY
 
-cd $PROJECT_PATH/external/angband-arena/angband/build
+cd external/angband-arena/angband/build
 
 # Create a test save file name
 SAVENAME="arena_test_$(date +%s)"

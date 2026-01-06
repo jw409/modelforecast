@@ -1,5 +1,14 @@
 NVCC = nvcc
-NVCC_FLAGS = -O3 -arch=sm_120 -std=c++17
+
+# Auto-detect GPU compute capability (e.g., sm_120 for RTX 5090)
+# Falls back to sm_120 (Blackwell) if detection fails
+GPU_ARCH := $(shell nvidia-smi --query-gpu=compute_cap --format=csv,noheader 2>/dev/null | head -1 | tr -d '.' | sed 's/^/sm_/')
+ifeq ($(GPU_ARCH),sm_)
+    GPU_ARCH = sm_120
+endif
+ARCH ?= $(GPU_ARCH)
+
+NVCC_FLAGS = -O3 -arch=$(ARCH) -std=c++17
 
 BUILD_DIR = build
 

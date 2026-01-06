@@ -13,9 +13,9 @@ import requests
 from pathlib import Path
 from typing import Optional, Dict, Any
 
-# Add talent-os to path for OpenRouter integration
+# Add helper modules to path for OpenRouter integration
 REPO_ROOT = Path(__file__).parent.parent.parent.parent.parent
-sys.path.insert(0, str(REPO_ROOT / "talent-os"))
+# sys.path.insert(0, str(REPO_ROOT / "helpers"))  # Optional: add helper modules
 
 try:
     from lib.agent_runtime.openrouter import OpenRouterClient
