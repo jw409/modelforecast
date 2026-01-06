@@ -203,7 +203,7 @@ curl -H "Authorization: Bearer $OPENROUTER_API_KEY" \
 
 ## Git Conventions
 
-- **Commits**: Use "jw" not "Jeff" in author
+- **Commits**: Author as github handles jw409/jw408
 - **Branch naming**: `feat/description`, `fix/description`, `docs/description`
 - **PR target**: `main` branch
 
