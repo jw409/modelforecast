@@ -1,0 +1,576 @@
+{
+  "submission_id": "sub_7ec248b32026",
+  "timestamp": "2026-02-07T03:01:08.170538+00:00",
+  "contributor": "unknown",
+  "environment": {
+    "python_version": "3.11.13",
+    "openai_sdk_version": "2.8.1",
+    "os": "Linux 6.6.87.2-microsoft-standard-WSL2",
+    "env_hash": "sha256:43c15d47fdb31d3498555a3471beb9a2f13e583093f6878d70e5a80a227ad1c8"
+  },
+  "probes": {
+    "model": "tngtech/tng-r1t-chimera:free",
+    "level": 1,
+    "trials": [
+      {
+        "openrouter_request_id": "gen-1770433268-ctQiKZ4xKipoaOsGMqts",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:d5e00c7bdaf2f8473b795682027bb47475038d4e7d94cb3066786d8a77d9292e",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 15063,
+        "request": {
+          "model": "tngtech/tng-r1t-chimera:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Search for authentication files, limit results to 5"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1770433268-ctQiKZ4xKipoaOsGMqts",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "\n\n",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_0_bf5756fb3f4cfb3f",
+                    "function": {
+                      "arguments": "{\"query\": \"authentication\", \"limit\": 5}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "Okay, the user wants me to search for authentication files and limit the results to 5. Let me start by understanding what they need. They're probably looking for files related to authentication in a codebase, like login, signup, or security-related files.\n\nFirst, I need to use the 'search' tool. The parameters required are 'query' and optionally 'limit'. The user specified the query as \"authentication\" and wants a limit of 5 results. \n\nI should structure the tool call correctly. The function name is 'search', and the arguments should include 'query' with the value \"authentication\" and 'limit' set to 5. \n\nWait, the JSON needs to be valid. Let me make sure the syntax is correct. The 'name' field should be \"search\", and the 'arguments' object should have 'query' and 'limit'. \n\nDouble-checking the parameters: 'query' is required, and 'limit' is optional but provided here. The limit is an integer, so 5 is fine. \n\nAlright, I think that's all. Let me format the tool call properly",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "Okay, the user wants me to search for authentication files and limit the results to 5. Let me start by understanding what they need. They're probably looking for files related to authentication in a codebase, like login, signup, or security-related files.\n\nFirst, I need to use the 'search' tool. The parameters required are 'query' and optionally 'limit'. The user specified the query as \"authentication\" and wants a limit of 5 results. \n\nI should structure the tool call correctly. The function name is 'search', and the arguments should include 'query' with the value \"authentication\" and 'limit' set to 5. \n\nWait, the JSON needs to be valid. Let me make sure the syntax is correct. The 'name' field should be \"search\", and the 'arguments' object should have 'query' and 'limit'. \n\nDouble-checking the parameters: 'query' is required, and 'limit' is optional but provided here. The limit is an integer, so 5 is fine. \n\nAlright, I think that's all. Let me format the tool call properly"
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1770433268,
+          "model": "tngtech/tng-r1t-chimera:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 266,
+            "prompt_tokens": 177,
+            "total_tokens": 443,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 255,
+              "rejected_prediction_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Chutes"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1770433283-Ce433UK3iHcmLH1lCZ4w",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:dd4b3bd45224b9cff8219e0552ca18aa0cd5276a75fb71f46339a40c083033e4",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 15834,
+        "request": {
+          "model": "tngtech/tng-r1t-chimera:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Search for authentication files, limit results to 5"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1770433283-Ce433UK3iHcmLH1lCZ4w",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "\n\n",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_0_b7acd5871a3912e0",
+                    "function": {
+                      "arguments": "{\"query\": \"authentication OR auth OR login\", \"limit\": 5}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "Okay, the user wants me to search for authentication-related files and limit the results to 5. Let me start by understanding what \"authentication files\" might refer to. In a typical codebase, these could be files named like auth.py, authentication.js, or maybe files containing terms like login, JWT, OAuth, etc. \n\nI need to call the search function with the query parameter set to something broad enough to catch all authentication-related files. Maybe using \"authentication OR auth OR login\" as the query would cover various naming conventions. The limit is specified as 5, so I'll set that parameter accordingly.\n\nWait, the search function's parameters require a query string and an optional limit. The user provided both, so I'll structure the tool call with those values. Let me double-check the JSON format to ensure it's valid. The function name is \"search\", and the arguments are \"query\" and \"limit\". \n\nI should make sure the JSON syntax is correct\u2014commas in the right places, quotes around strings, etc. Once that's set, I can proceed to make the tool call. Alright, everything looks good. Time to execute the search",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "Okay, the user wants me to search for authentication-related files and limit the results to 5. Let me start by understanding what \"authentication files\" might refer to. In a typical codebase, these could be files named like auth.py, authentication.js, or maybe files containing terms like login, JWT, OAuth, etc. \n\nI need to call the search function with the query parameter set to something broad enough to catch all authentication-related files. Maybe using \"authentication OR auth OR login\" as the query would cover various naming conventions. The limit is specified as 5, so I'll set that parameter accordingly.\n\nWait, the search function's parameters require a query string and an optional limit. The user provided both, so I'll structure the tool call with those values. Let me double-check the JSON format to ensure it's valid. The function name is \"search\", and the arguments are \"query\" and \"limit\". \n\nI should make sure the JSON syntax is correct\u2014commas in the right places, quotes around strings, etc. Once that's set, I can proceed to make the tool call. Alright, everything looks good. Time to execute the search"
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1770433283,
+          "model": "tngtech/tng-r1t-chimera:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 280,
+            "prompt_tokens": 177,
+            "total_tokens": 457,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 287,
+              "rejected_prediction_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 64
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Chutes"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1770433299-SbIjfMXukTeFZqdUJxRp",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:776cb2342b2c7a254cd9111e61b18736df0f10b33b8b2894aa3c1e54c12dfc05",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 21498,
+        "request": {
+          "model": "tngtech/tng-r1t-chimera:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Search for authentication files, limit results to 5"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1770433299-SbIjfMXukTeFZqdUJxRp",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "\n\n",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_0_b48d57e2299fda6d",
+                    "function": {
+                      "arguments": "{\"query\": \"authentication OR auth\", \"limit\": 5}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "Okay, the user wants me to search for authentication-related files and limit the results to 5. Let me start by understanding what \"authentication files\" might refer to. In a typical codebase, these could be files named like auth.py, authentication.js, or maybe files containing terms like login, JWT, OAuth, etc. \n\nI need to use the search tool provided. The function requires a query and an optional limit. The user specified a limit of 5, so I'll set that. The query should be broad enough to catch all relevant files but specific enough to avoid too many irrelevant results. Maybe using \"authentication OR auth\" as the query would cover different naming conventions.\n\nWait, the search function's parameters are \"query\" and \"limit\". The query is required, and the limit is optional but here it's given as 5. So I'll structure the tool call with these parameters. Let me double-check the JSON format to make sure it's valid. The function name is \"search\", arguments include \"query\" as a string and \"limit\" as an integer. \n\nI should ensure that the JSON syntax is correct\u2014quotes around keys and string values, no trailing commas. Alright, putting it all together now",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "Okay, the user wants me to search for authentication-related files and limit the results to 5. Let me start by understanding what \"authentication files\" might refer to. In a typical codebase, these could be files named like auth.py, authentication.js, or maybe files containing terms like login, JWT, OAuth, etc. \n\nI need to use the search tool provided. The function requires a query and an optional limit. The user specified a limit of 5, so I'll set that. The query should be broad enough to catch all relevant files but specific enough to avoid too many irrelevant results. Maybe using \"authentication OR auth\" as the query would cover different naming conventions.\n\nWait, the search function's parameters are \"query\" and \"limit\". The query is required, and the limit is optional but here it's given as 5. So I'll structure the tool call with these parameters. Let me double-check the JSON format to make sure it's valid. The function name is \"search\", arguments include \"query\" as a string and \"limit\" as an integer. \n\nI should ensure that the JSON syntax is correct\u2014quotes around keys and string values, no trailing commas. Alright, putting it all together now"
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1770433299,
+          "model": "tngtech/tng-r1t-chimera:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 292,
+            "prompt_tokens": 177,
+            "total_tokens": 469,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 297,
+              "rejected_prediction_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 64
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Chutes"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1770433320-QmVJDdTnFm6s2g3Y6MI2",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:83d6215321f1e0d104f42b2a69ab69dcbe9a773460287611b2c5eb83aa2cf540",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 12449,
+        "request": {
+          "model": "tngtech/tng-r1t-chimera:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Search for authentication files, limit results to 5"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1770433320-QmVJDdTnFm6s2g3Y6MI2",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "\n\n",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_0_91ba155f40038448",
+                    "function": {
+                      "arguments": "{\"query\": \"authentication\", \"limit\": 5}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "Okay, the user wants me to search for authentication-related files and limit the results to 5. Let me start by understanding the tools I have available. There's a search function that takes a query and a limit. The query is required, and the limit is optional but the user specified 5.\n\nFirst, I need to construct the tool call correctly. The function name is \"search\". The parameters should include \"query\" with a value related to authentication, maybe \"authentication\" as the keyword. Then \"limit\" set to 5 as per the user's instruction.\n\nI should make sure the JSON is valid. The query is a string, and the limit is an integer. Let me double-check the syntax to avoid any errors. The tool call should be enclosed in <tool_call> tags with the JSON inside.\n\nWait, should I use a more specific query? Maybe \"authentication\" is broad enough. The search function will handle it. Alright, I'll proceed with that. The final tool call should look like this:\n\n<tool_call>\n{\"name\": \"search\", \"arguments\": {\"query\": \"authentication\", \"limit\": 5}}\n</tool_call>\n\nThat should fulfill the user's request accurately.\n",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "Okay, the user wants me to search for authentication-related files and limit the results to 5. Let me start by understanding the tools I have available. There's a search function that takes a query and a limit. The query is required, and the limit is optional but the user specified 5.\n\nFirst, I need to construct the tool call correctly. The function name is \"search\". The parameters should include \"query\" with a value related to authentication, maybe \"authentication\" as the keyword. Then \"limit\" set to 5 as per the user's instruction.\n\nI should make sure the JSON is valid. The query is a string, and the limit is an integer. Let me double-check the syntax to avoid any errors. The tool call should be enclosed in <tool_call> tags with the JSON inside.\n\nWait, should I use a more specific query? Maybe \"authentication\" is broad enough. The search function will handle it. Alright, I'll proceed with that. The final tool call should look like this:\n\n<tool_call>\n{\"name\": \"search\", \"arguments\": {\"query\": \"authentication\", \"limit\": 5}}\n</tool_call>\n\nThat should fulfill the user's request accurately.\n"
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1770433320,
+          "model": "tngtech/tng-r1t-chimera:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 284,
+            "prompt_tokens": 177,
+            "total_tokens": 461,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 286,
+              "rejected_prediction_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 64
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Chutes"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1770433333-hiaTDwvAsf4l3unvNoQS",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:c3542282a7341a5a2a4c3dba7ad160cf51bf93ae1dc5e451b4f7521a29020d65",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 20844,
+        "request": {
+          "model": "tngtech/tng-r1t-chimera:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Search for authentication files, limit results to 5"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1770433333-hiaTDwvAsf4l3unvNoQS",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "\n\n",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_0_bf6540c9865e10e1",
+                    "function": {
+                      "arguments": "{\"query\": \"authentication\", \"limit\": 5}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "Okay, the user wants me to search for authentication-related files and limit the results to 5. Let me start by understanding what \"authentication files\" might refer to. In a typical codebase, these could be files named like auth.py, authentication.js, or maybe files containing authentication logic such as login controllers, middleware for sessions, or OAuth configurations.\n\nI need to use the search tool provided. The function is called 'search' and it requires a query parameter. The limit is optional, but the user specified to limit to 5 results. So I'll set the query to something broad like \"authentication\" to catch relevant files. The limit parameter will be 5 as instructed.\n\nWait, should the query be more specific? Maybe just \"auth\" to cover common abbreviations. But I'll stick with \"authentication\" for now since it's more precise. If the results are insufficient, I can adjust later.\n\nNow, constructing the tool call. The name is \"search\", arguments are \"query\" set to \"authentication\" and \"limit\" set to 5. JSON format must be valid. Let me double-check the syntax. No trailing commas, proper quotes. Looks good.\n\nI'll issue the tool call and wait for the response. The results should give me a list of up to 5 files related to authentication. If there are fewer, that's okay too. The user just wants the top 5.\n",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "Okay, the user wants me to search for authentication-related files and limit the results to 5. Let me start by understanding what \"authentication files\" might refer to. In a typical codebase, these could be files named like auth.py, authentication.js, or maybe files containing authentication logic such as login controllers, middleware for sessions, or OAuth configurations.\n\nI need to use the search tool provided. The function is called 'search' and it requires a query parameter. The limit is optional, but the user specified to limit to 5 results. So I'll set the query to something broad like \"authentication\" to catch relevant files. The limit parameter will be 5 as instructed.\n\nWait, should the query be more specific? Maybe just \"auth\" to cover common abbreviations. But I'll stick with \"authentication\" for now since it's more precise. If the results are insufficient, I can adjust later.\n\nNow, constructing the tool call. The name is \"search\", arguments are \"query\" set to \"authentication\" and \"limit\" set to 5. JSON format must be valid. Let me double-check the syntax. No trailing commas, proper quotes. Looks good.\n\nI'll issue the tool call and wait for the response. The results should give me a list of up to 5 files related to authentication. If there are fewer, that's okay too. The user just wants the top 5.\n"
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1770433333,
+          "model": "tngtech/tng-r1t-chimera:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 326,
+            "prompt_tokens": 177,
+            "total_tokens": 503,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 339,
+              "rejected_prediction_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 64
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Chutes"
+        }
+      }
+    ]
+  },
+  "summary": {
+    "successes": 5,
+    "trials": 5,
+    "rate": 1.0,
+    "wilson_ci_95": [
+      0.5655085052479191,
+      1.0
+    ]
+  }
+}

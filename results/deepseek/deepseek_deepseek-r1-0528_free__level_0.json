@@ -1,6 +1,6 @@
 {
-  "submission_id": "sub_d34caf853f27",
-  "timestamp": "2026-02-07T02:37:08.895063+00:00",
+  "submission_id": "sub_b52a2b3247b4",
+  "timestamp": "2026-02-07T02:39:36.192039+00:00",
   "contributor": "unknown",
   "environment": {
     "python_version": "3.11.13",
@@ -9,7 +9,7 @@
     "env_hash": "sha256:43c15d47fdb31d3498555a3471beb9a2f13e583093f6878d70e5a80a227ad1c8"
   },
   "probes": {
-    "model": "moonshotai/kimi-k2:free",
+    "model": "deepseek/deepseek-r1-0528:free",
     "level": 0,
     "trials": [
       {
@@ -20,7 +20,7 @@
         "schema_valid": false,
         "latency_ms": 0,
         "request": {
-          "model": "moonshotai/kimi-k2:free",
+          "model": "deepseek/deepseek-r1-0528:free",
           "messages": [
             {
               "role": "user",
@@ -59,7 +59,7 @@
         "schema_valid": false,
         "latency_ms": 0,
         "request": {
-          "model": "moonshotai/kimi-k2:free",
+          "model": "deepseek/deepseek-r1-0528:free",
           "messages": [
             {
               "role": "user",
@@ -98,7 +98,7 @@
         "schema_valid": false,
         "latency_ms": 0,
         "request": {
-          "model": "moonshotai/kimi-k2:free",
+          "model": "deepseek/deepseek-r1-0528:free",
           "messages": [
             {
               "role": "user",
@@ -137,7 +137,7 @@
         "schema_valid": false,
         "latency_ms": 0,
         "request": {
-          "model": "moonshotai/kimi-k2:free",
+          "model": "deepseek/deepseek-r1-0528:free",
           "messages": [
             {
               "role": "user",
@@ -176,7 +176,7 @@
         "schema_valid": false,
         "latency_ms": 0,
         "request": {
-          "model": "moonshotai/kimi-k2:free",
+          "model": "deepseek/deepseek-r1-0528:free",
           "messages": [
             {
               "role": "user",

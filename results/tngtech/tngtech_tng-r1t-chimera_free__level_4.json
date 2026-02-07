@@ -1,0 +1,696 @@
+{
+  "submission_id": "sub_78d2a37833d6",
+  "timestamp": "2026-02-07T03:05:47.263430+00:00",
+  "contributor": "unknown",
+  "environment": {
+    "python_version": "3.11.13",
+    "openai_sdk_version": "2.8.1",
+    "os": "Linux 6.6.87.2-microsoft-standard-WSL2",
+    "env_hash": "sha256:43c15d47fdb31d3498555a3471beb9a2f13e583093f6878d70e5a80a227ad1c8"
+  },
+  "probes": {
+    "model": "tngtech/tng-r1t-chimera:free",
+    "level": 4,
+    "trials": [
+      {
+        "openrouter_request_id": "gen-1770433547-byxhbxr4H3SskhdkQeHF",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:384fb1980ee896224e18dd9a760f4a2412dedfae764ed6c81cfec1ef9cfc9f13",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 5575,
+        "request": {
+          "model": "tngtech/tng-r1t-chimera:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1770433547-byxhbxr4H3SskhdkQeHF",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "\n\nI don't have access to real-time weather data. You can check the weather using a weather website, app, or asking a voice assistant. Would you like help finding a weather service website?",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "Okay, the user is asking about the weather today. Let me see what tools I have available. I have search, read_file, and list_directory functions. None of these tools are related to weather information. The search function is for finding files in the codebase, read_file is for reading specific files, and list_directory is for listing directory contents. \n\nSince I don't have access to a weather API or any tool that can fetch real-time weather data, I can't provide the current weather information. I should inform the user that I don't have the capability to check the weather and suggest they check a weather website or app instead. I need to make sure my response is clear and helpful, even though I can't answer their question directly.\n",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "Okay, the user is asking about the weather today. Let me see what tools I have available. I have search, read_file, and list_directory functions. None of these tools are related to weather information. The search function is for finding files in the codebase, read_file is for reading specific files, and list_directory is for listing directory contents. \n\nSince I don't have access to a weather API or any tool that can fetch real-time weather data, I can't provide the current weather information. I should inform the user that I don't have the capability to check the weather and suggest they check a weather website or app instead. I need to make sure my response is clear and helpful, even though I can't answer their question directly.\n"
+                  }
+                ]
+              },
+              "native_finish_reason": "stop"
+            }
+          ],
+          "created": 1770433547,
+          "model": "tngtech/tng-r1t-chimera:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 193,
+            "prompt_tokens": 282,
+            "total_tokens": 475,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 188,
+              "rejected_prediction_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Chutes"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1770433552-7ZQ5wtUFMvoaTXmCHp0v",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:a92522c964c82a834d42e32dbd66176d18784f74823e05134bda13649eaf0082",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 5159,
+        "request": {
+          "model": "tngtech/tng-r1t-chimera:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1770433552-7ZQ5wtUFMvoaTXmCHp0v",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "\n\nI don't have access to live weather data. You can check a weather website or app for the latest forecast in your area.",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "Okay, the user is asking about the weather today. Let me see what tools I have available. There's search, read_file, and list_directory. None of these tools are related to weather information. The search function is for finding files in the codebase, read_file is for reading specific files, and list_directory is for listing directory contents. \n\nSince I don't have access to a weather API or any tool that can fetch real-time weather data, I can't provide the current weather conditions. I should inform the user that I don't have the capability to retrieve weather information and suggest they check a weather website or app for the latest updates. I need to make sure my response is clear and helpful despite the limitation",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "Okay, the user is asking about the weather today. Let me see what tools I have available. There's search, read_file, and list_directory. None of these tools are related to weather information. The search function is for finding files in the codebase, read_file is for reading specific files, and list_directory is for listing directory contents. \n\nSince I don't have access to a weather API or any tool that can fetch real-time weather data, I can't provide the current weather conditions. I should inform the user that I don't have the capability to retrieve weather information and suggest they check a weather website or app for the latest updates. I need to make sure my response is clear and helpful despite the limitation"
+                  }
+                ]
+              },
+              "native_finish_reason": "stop"
+            }
+          ],
+          "created": 1770433553,
+          "model": "tngtech/tng-r1t-chimera:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 175,
+            "prompt_tokens": 282,
+            "total_tokens": 457,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 184,
+              "rejected_prediction_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 192
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Chutes"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1770433558-Z6ZVnr7k2ckHLImiSPsA",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:3654e2cf48a2bd0d6d3978defb83acf743e3413bcee01778908b3e5cde4b76cd",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 6910,
+        "request": {
+          "model": "tngtech/tng-r1t-chimera:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1770433558-Z6ZVnr7k2ckHLImiSPsA",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "\n\nI don't have access to live weather data. You can check a weather service or app for the latest forecast in your area.",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "Okay, the user is asking about the weather today. Let me see what tools I have available. There's search, read_file, and list_directory. None of these are weather-related. The search function is for finding files in the codebase, read_file is for reading specific files, and list_directory is for listing directory contents. \n\nSince none of these tools can provide weather information, I can't use them to answer the question. I should inform the user that I don't have access to weather data and suggest they check a weather service or app for the latest updates. I need to make sure my response is clear and helpful, even though I can't provide the information they're asking for.\n",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "Okay, the user is asking about the weather today. Let me see what tools I have available. There's search, read_file, and list_directory. None of these are weather-related. The search function is for finding files in the codebase, read_file is for reading specific files, and list_directory is for listing directory contents. \n\nSince none of these tools can provide weather information, I can't use them to answer the question. I should inform the user that I don't have access to weather data and suggest they check a weather service or app for the latest updates. I need to make sure my response is clear and helpful, even though I can't provide the information they're asking for.\n"
+                  }
+                ]
+              },
+              "native_finish_reason": "stop"
+            }
+          ],
+          "created": 1770433558,
+          "model": "tngtech/tng-r1t-chimera:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 170,
+            "prompt_tokens": 282,
+            "total_tokens": 452,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 173,
+              "rejected_prediction_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 192
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Chutes"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1770433564-00uJYTV8LXhvPcO90jUI",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:56310de64a1c1bcba8741c9764072ba6f9b5815c9094da9eee2b8caa67a3ffb2",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 14195,
+        "request": {
+          "model": "tngtech/tng-r1t-chimera:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1770433564-00uJYTV8LXhvPcO90jUI",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "\n\nI don't have access to live weather data. You might want to check a weather website or app for the latest forecast in your area.",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "Okay, the user is asking about the weather today. Let me see what tools I have available. There's search, read_file, and list_directory. None of these tools are related to weather information. The search function is for finding files in the codebase, read_file is for reading specific files, and list_directory is for listing directory contents. \n\nSince none of these tools can provide real-time weather data, I can't use them to answer the question. I should inform the user that I don't have access to weather information and suggest they check a weather website or app for the latest updates. I need to make sure my response is clear and helpful, even though I can't provide the exact information they're looking for.\n",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "Okay, the user is asking about the weather today. Let me see what tools I have available. There's search, read_file, and list_directory. None of these tools are related to weather information. The search function is for finding files in the codebase, read_file is for reading specific files, and list_directory is for listing directory contents. \n\nSince none of these tools can provide real-time weather data, I can't use them to answer the question. I should inform the user that I don't have access to weather information and suggest they check a weather website or app for the latest updates. I need to make sure my response is clear and helpful, even though I can't provide the exact information they're looking for.\n"
+                  }
+                ]
+              },
+              "native_finish_reason": "stop"
+            }
+          ],
+          "created": 1770433565,
+          "model": "tngtech/tng-r1t-chimera:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 178,
+            "prompt_tokens": 282,
+            "total_tokens": 460,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 183,
+              "rejected_prediction_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 192
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Chutes"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1770433579-NX70DcV9iHorvBObMuOS",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:423a13819ebd56bcf928360f8d3971ee53b4517aad34e42d0b746d5085f4cea7",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 10766,
+        "request": {
+          "model": "tngtech/tng-r1t-chimera:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1770433579-NX70DcV9iHorvBObMuOS",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "\n\nI don't have access to real-time weather data or external APIs. My capabilities are limited to working with codebases through these tools:\n\n1. Searching for files (`search`)\n2. Reading file contents (`read_file`)\n3. Listing directory contents (`list_directory`)\n\nWould you like me to help with something related to code or files instead?",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "Okay, the user is asking about the weather today. Let me see what tools I have available. There's search, read_file, and list_directory. None of these tools are related to weather data. The search function is for finding files in the codebase, read_file is for reading specific files, and list_directory is for listing directory contents. \n\nSince I don't have access to a weather API or any real-time data sources, I can't provide current weather information. I should inform the user that I can't help with that request due to tool limitations. I'll make sure to mention the available tools so they know what I can assist with instead.\n",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "Okay, the user is asking about the weather today. Let me see what tools I have available. There's search, read_file, and list_directory. None of these tools are related to weather data. The search function is for finding files in the codebase, read_file is for reading specific files, and list_directory is for listing directory contents. \n\nSince I don't have access to a weather API or any real-time data sources, I can't provide current weather information. I should inform the user that I can't help with that request due to tool limitations. I'll make sure to mention the available tools so they know what I can assist with instead.\n"
+                  }
+                ]
+              },
+              "native_finish_reason": "stop"
+            }
+          ],
+          "created": 1770433579,
+          "model": "tngtech/tng-r1t-chimera:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 207,
+            "prompt_tokens": 282,
+            "total_tokens": 489,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 162,
+              "rejected_prediction_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 192
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Chutes"
+        }
+      }
+    ]
+  },
+  "summary": {
+    "successes": 5,
+    "trials": 5,
+    "rate": 1.0,
+    "wilson_ci_95": [
+      0.5655085052479191,
+      1.0
+    ]
+  }
+}

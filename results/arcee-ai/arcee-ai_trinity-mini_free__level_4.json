@@ -1,0 +1,696 @@
+{
+  "submission_id": "sub_b3f96fdefc73",
+  "timestamp": "2026-02-07T02:57:10.889305+00:00",
+  "contributor": "unknown",
+  "environment": {
+    "python_version": "3.11.13",
+    "openai_sdk_version": "2.8.1",
+    "os": "Linux 6.6.87.2-microsoft-standard-WSL2",
+    "env_hash": "sha256:43c15d47fdb31d3498555a3471beb9a2f13e583093f6878d70e5a80a227ad1c8"
+  },
+  "probes": {
+    "model": "arcee-ai/trinity-mini:free",
+    "level": 4,
+    "trials": [
+      {
+        "openrouter_request_id": "gen-1770433031-xOVIu0WFR795WnCtig0k",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:e59002c67b9556a14098ba7ac4f73026c12d1d506b09f5020e95670096877caa",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 1045,
+        "request": {
+          "model": "arcee-ai/trinity-mini:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1770433031-xOVIu0WFR795WnCtig0k",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I don't have access to real-time weather data or external APIs to check the current weather conditions. My available tools are limited to searching, reading, and listing files within a codebase. Would you like me to help with something related to files or code instead?",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "Okay, the user is asking about the weather today. Let me check the tools available. The tools provided are for searching files, reading specific files, and listing files in a directory. None of these tools are related to weather data or external APIs. Since there's no function to access weather information, I can't retrieve the current weather for them. I should inform the user that I can't help with that request using the available tools.\n",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "Okay, the user is asking about the weather today. Let me check the tools available. The tools provided are for searching files, reading specific files, and listing files in a directory. None of these tools are related to weather data or external APIs. Since there's no function to access weather information, I can't retrieve the current weather for them. I should inform the user that I can't help with that request using the available tools.\n"
+                  }
+                ]
+              },
+              "native_finish_reason": "stop"
+            }
+          ],
+          "created": 1770433031,
+          "model": "arcee-ai/trinity-mini:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 143,
+            "prompt_tokens": 295,
+            "total_tokens": 438,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 112,
+              "rejected_prediction_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Arcee AI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1770433032-hdnhuuDFHB8vOzCm1ANr",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:8fe5966d80de00389f6285632e71ef294b0f9b6a10696794720b0490d373c089",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 926,
+        "request": {
+          "model": "arcee-ai/trinity-mini:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1770433032-hdnhuuDFHB8vOzCm1ANr",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I don't have access to real-time weather data or external APIs to check the current weather. You might want to check a weather service like Weather.com, your phone's weather app, or a search engine for the latest forecast.",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "Okay, the user is asking about the weather today. Let me check the tools available. The tools provided are for searching files, reading a specific file, and listing files in a directory. None of these tools are related to weather data or external APIs. Since there's no function to fetch real-time weather information, I can't retrieve the current weather for them. I should inform the user that I can't access that information and maybe suggest they check a weather service or app.\n",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "Okay, the user is asking about the weather today. Let me check the tools available. The tools provided are for searching files, reading a specific file, and listing files in a directory. None of these tools are related to weather data or external APIs. Since there's no function to fetch real-time weather information, I can't retrieve the current weather for them. I should inform the user that I can't access that information and maybe suggest they check a weather service or app.\n"
+                  }
+                ]
+              },
+              "native_finish_reason": "stop"
+            }
+          ],
+          "created": 1770433032,
+          "model": "arcee-ai/trinity-mini:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 145,
+            "prompt_tokens": 295,
+            "total_tokens": 440,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 122,
+              "rejected_prediction_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Arcee AI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1770433032-CfgCM4L1yaoRC5DrcID4",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:365e1b58b9eecd6f5eaa5880aa1e1e1289ef753116967ac5fc21e19184c06727",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 1123,
+        "request": {
+          "model": "arcee-ai/trinity-mini:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1770433032-CfgCM4L1yaoRC5DrcID4",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I don't have access to weather data or external APIs to check the current weather conditions. My available tools are limited to searching, reading, and listing files within a codebase. Would you like me to help you with something related to files or code instead?",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "Okay, the user is asking about the weather today. Let me check the tools available. The tools provided are for searching files, reading specific files, and listing files in a directory. None of these tools are related to weather data or external APIs. Since there's no function to access weather information, I can't retrieve the current weather. I should inform the user that I can't help with that request using the available tools.\n",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "Okay, the user is asking about the weather today. Let me check the tools available. The tools provided are for searching files, reading specific files, and listing files in a directory. None of these tools are related to weather data or external APIs. Since there's no function to access weather information, I can't retrieve the current weather. I should inform the user that I can't help with that request using the available tools.\n"
+                  }
+                ]
+              },
+              "native_finish_reason": "stop"
+            }
+          ],
+          "created": 1770433033,
+          "model": "arcee-ai/trinity-mini:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 140,
+            "prompt_tokens": 295,
+            "total_tokens": 435,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 110,
+              "rejected_prediction_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Arcee AI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1770433034-w453UbiBoaoLLG38tLMn",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:bb6c27e528957ac0fc6b1c14092374bccbca05cba5d827cfa639a7649d73e72e",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 911,
+        "request": {
+          "model": "arcee-ai/trinity-mini:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1770433034-w453UbiBoaoLLG38tLMn",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I don't have access to real-time weather data or external APIs to check the current weather conditions. My available tools are limited to searching, reading, and listing files within a codebase. Would you like me to help with something related to files or code instead?",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "Okay, the user is asking about the weather today. Let me check the tools available. The tools provided are for searching files, reading specific files, and listing files in a directory. None of these tools are related to weather data or external APIs. Since there's no function to access weather information, I can't retrieve the current weather for them. I should inform the user that I can't help with that request using the available tools.\n",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "Okay, the user is asking about the weather today. Let me check the tools available. The tools provided are for searching files, reading specific files, and listing files in a directory. None of these tools are related to weather data or external APIs. Since there's no function to access weather information, I can't retrieve the current weather for them. I should inform the user that I can't help with that request using the available tools.\n"
+                  }
+                ]
+              },
+              "native_finish_reason": "stop"
+            }
+          ],
+          "created": 1770433034,
+          "model": "arcee-ai/trinity-mini:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 143,
+            "prompt_tokens": 295,
+            "total_tokens": 438,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 112,
+              "rejected_prediction_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Arcee AI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1770433035-x4J8LwXlfXZu1GEwCn0N",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:29a935e7cff211308ce10790f43f74fd92e7963e20df911c303d0c36ed879173",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 912,
+        "request": {
+          "model": "arcee-ai/trinity-mini:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1770433035-x4J8LwXlfXZu1GEwCn0N",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I don't have access to real-time weather data or external APIs to check current weather conditions. You might want to check a weather service like Weather.com, your phone's weather app, or a trusted weather website for the latest forecast.",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "Okay, the user is asking about the weather today. Let me check the tools available. The tools provided are for searching files, reading specific files, and listing files in a directory. None of these tools are related to weather data or external APIs. Since there's no function to fetch real-time weather information, I can't provide an accurate answer. I should inform the user that I can't access current weather data and maybe suggest they check a weather service or app.\n",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "Okay, the user is asking about the weather today. Let me check the tools available. The tools provided are for searching files, reading specific files, and listing files in a directory. None of these tools are related to weather data or external APIs. Since there's no function to fetch real-time weather information, I can't provide an accurate answer. I should inform the user that I can't access current weather data and maybe suggest they check a weather service or app.\n"
+                  }
+                ]
+              },
+              "native_finish_reason": "stop"
+            }
+          ],
+          "created": 1770433035,
+          "model": "arcee-ai/trinity-mini:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 144,
+            "prompt_tokens": 295,
+            "total_tokens": 439,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 120,
+              "rejected_prediction_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Arcee AI"
+        }
+      }
+    ]
+  },
+  "summary": {
+    "successes": 5,
+    "trials": 5,
+    "rate": 1.0,
+    "wilson_ci_95": [
+      0.5655085052479191,
+      1.0
+    ]
+  }
+}

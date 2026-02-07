@@ -1,0 +1,375 @@
+{
+  "submission_id": "sub_48392cf330ca",
+  "timestamp": "2026-02-07T02:42:10.835638+00:00",
+  "contributor": "unknown",
+  "environment": {
+    "python_version": "3.11.13",
+    "openai_sdk_version": "2.8.1",
+    "os": "Linux 6.6.87.2-microsoft-standard-WSL2",
+    "env_hash": "sha256:43c15d47fdb31d3498555a3471beb9a2f13e583093f6878d70e5a80a227ad1c8"
+  },
+  "probes": {
+    "model": "upstage/solar-pro-3:free",
+    "level": 1,
+    "trials": [
+      {
+        "openrouter_request_id": "gen-1770432131-m6QXWN2lXue1uzuT3Kvr",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:c88ffb84a1a2524352469b4a4a967582e60e356812c912a32bd5054f0f060e66",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 3083,
+        "request": {
+          "model": "upstage/solar-pro-3:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Search for authentication files, limit results to 5"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1770432131-m6QXWN2lXue1uzuT3Kvr",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "285930005m",
+                    "function": {
+                      "arguments": "{\"limit\": 5, \"query\": \"authentication\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "The user wants to search for authentication files, limit results to 5. We have a tool \"search\" that can search for files in the codebase. The user wants to search for authentication files. Likely they want to find files related to authentication. We need to call the search tool with query \"authentication\" and limit 5.\n\nWe need to produce a tool call JSON with name \"search\" and arguments: limit: 5, query: \"authentication\". Then we will get results. Then we need to respond with the results.\n\nWe need to consider that the tool returns a list of files. The user wants to see the files. We should present them in a readable format.\n\nThus, we call the function.\n\n",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "The user wants to search for authentication files, limit results to 5. We have a tool \"search\" that can search for files in the codebase. The user wants to search for authentication files. Likely they want to find files related to authentication. We need to call the search tool with query \"authentication\" and limit 5.\n\nWe need to produce a tool call JSON with name \"search\" and arguments: limit: 5, query: \"authentication\". Then we will get results. Then we need to respond with the results.\n\nWe need to consider that the tool returns a list of files. The user wants to see the files. We should present them in a readable format.\n\nThus, we call the function.\n\n"
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1770432131,
+          "model": "upstage/solar-pro-3:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 178,
+            "prompt_tokens": 354,
+            "total_tokens": 532,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 145,
+              "rejected_prediction_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 128
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Upstage"
+        }
+      },
+      {
+        "openrouter_request_id": null,
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "tool_called": false,
+        "schema_valid": false,
+        "latency_ms": 0,
+        "request": {
+          "model": "upstage/solar-pro-3:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Search for authentication files, limit results to 5"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        }
+      },
+      {
+        "openrouter_request_id": null,
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "tool_called": false,
+        "schema_valid": false,
+        "latency_ms": 0,
+        "request": {
+          "model": "upstage/solar-pro-3:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Search for authentication files, limit results to 5"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1770432138-zhkrwtLkNXzaV2bYnNfB",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:89c71f5ef8d0a48b6fb318123a098bd0c858c82a94a4a3fb407a82dfeb80a028",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 5971,
+        "request": {
+          "model": "upstage/solar-pro-3:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Search for authentication files, limit results to 5"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1770432138-zhkrwtLkNXzaV2bYnNfB",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "480710779q",
+                    "function": {
+                      "arguments": "{\"query\": \"authentication\", \"limit\": 5}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "The user wants to search for authentication files, limit results to 5. We have a tool \"search\" that can search for files in the codebase. The user wants to search for authentication files. Likely they want to find files related to authentication. The tool expects a query string. We can search for \"authentication\" or \"auth\". The user wants limit results to 5. So we need to call the search tool with query \"authentication\" and limit 5.\n\nWe need to produce a tool call JSON with name \"search\" and arguments: {\"query\": \"authentication\", \"limit\": 5}. Then we will get results. Then we need to respond with the results.\n\nWe need to be careful: The tool returns results. We need to format the response accordingly.\n\nThus, we will call the function.\n\n",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "The user wants to search for authentication files, limit results to 5. We have a tool \"search\" that can search for files in the codebase. The user wants to search for authentication files. Likely they want to find files related to authentication. The tool expects a query string. We can search for \"authentication\" or \"auth\". The user wants limit results to 5. So we need to call the search tool with query \"authentication\" and limit 5.\n\nWe need to produce a tool call JSON with name \"search\" and arguments: {\"query\": \"authentication\", \"limit\": 5}. Then we will get results. Then we need to respond with the results.\n\nWe need to be careful: The tool returns results. We need to format the response accordingly.\n\nThus, we will call the function.\n\n"
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1770432138,
+          "model": "upstage/solar-pro-3:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 198,
+            "prompt_tokens": 351,
+            "total_tokens": 549,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 165,
+              "rejected_prediction_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 112
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Upstage"
+        }
+      },
+      {
+        "openrouter_request_id": null,
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "tool_called": false,
+        "schema_valid": false,
+        "latency_ms": 0,
+        "request": {
+          "model": "upstage/solar-pro-3:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Search for authentication files, limit results to 5"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        }
+      }
+    ]
+  },
+  "summary": {
+    "successes": 2,
+    "trials": 5,
+    "rate": 0.4,
+    "wilson_ci_95": [
+      0.1176182311592533,
+      0.769280067791163
+    ]
+  }
+}

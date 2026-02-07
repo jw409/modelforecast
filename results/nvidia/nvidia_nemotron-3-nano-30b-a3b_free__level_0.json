@@ -1,0 +1,556 @@
+{
+  "submission_id": "sub_38b30499532d",
+  "timestamp": "2026-02-07T02:39:38.218678+00:00",
+  "contributor": "unknown",
+  "environment": {
+    "python_version": "3.11.13",
+    "openai_sdk_version": "2.8.1",
+    "os": "Linux 6.6.87.2-microsoft-standard-WSL2",
+    "env_hash": "sha256:43c15d47fdb31d3498555a3471beb9a2f13e583093f6878d70e5a80a227ad1c8"
+  },
+  "probes": {
+    "model": "nvidia/nemotron-3-nano-30b-a3b:free",
+    "level": 0,
+    "trials": [
+      {
+        "openrouter_request_id": "gen-1770431978-vRtYw7MHSsuVquu9RzBF",
+        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
+        "response_hash": "sha256:bcaee1d9ea0a92f8d413fbf551974a0256005bf3883ff923d1325a98977ea90d",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 1238,
+        "request": {
+          "model": "nvidia/nemotron-3-nano-30b-a3b:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1770431978-vRtYw7MHSsuVquu9RzBF",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_a665373e8cc3459c8ec9908e",
+                    "function": {
+                      "arguments": "{\"query\": \"authentication\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "Okay, the user wants me to use the search tool to find files containing 'authentication'. Let me check the available tools. There's a search function that takes a query parameter. The required parameter is \"query\", which should be a string. The user's query is 'authentication', so I need to call the search tool with that exact term. I should make sure there are no typos. The function doesn't have any other parameters, so just passing \"query\": \"authentication\" should work. Let me structure the tool call correctly in JSON within the XML tags.\n",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "Okay, the user wants me to use the search tool to find files containing 'authentication'. Let me check the available tools. There's a search function that takes a query parameter. The required parameter is \"query\", which should be a string. The user's query is 'authentication', so I need to call the search tool with that exact term. I should make sure there are no typos. The function doesn't have any other parameters, so just passing \"query\": \"authentication\" should work. Let me structure the tool call correctly in JSON within the XML tags.\n"
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1770431978,
+          "model": "nvidia/nemotron-3-nano-30b-a3b:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 144,
+            "prompt_tokens": 287,
+            "total_tokens": 431,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 138,
+              "rejected_prediction_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Nvidia"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1770431979-yPRQ3DkyIE3vIrgB2LT7",
+        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
+        "response_hash": "sha256:a3ba106220b649a9d8673b2dff1e4084041fa62fc7bff62c8cbf53e06d68d36b",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 1499,
+        "request": {
+          "model": "nvidia/nemotron-3-nano-30b-a3b:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1770431979-yPRQ3DkyIE3vIrgB2LT7",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_5facebff4a954ecea33ffbaf",
+                    "function": {
+                      "arguments": "{\"query\": \"authentication\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "Okay, the user wants me to use the search tool to find files containing 'authentication'. Let me check the available tools. The search function takes a query parameter, which is a string. The user's query is straightforward: they want files with the term 'authentication'. So I need to call the search tool with the query \"authentication\". I should make sure that the parameters are correctly formatted as a JSON object. The required parameter is \"query\", and it's a string. So the arguments should be {\"query\": \"authentication\"}. I don't see any other parameters needed here. Let me structure the tool call correctly within the XML tags.\n",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "Okay, the user wants me to use the search tool to find files containing 'authentication'. Let me check the available tools. The search function takes a query parameter, which is a string. The user's query is straightforward: they want files with the term 'authentication'. So I need to call the search tool with the query \"authentication\". I should make sure that the parameters are correctly formatted as a JSON object. The required parameter is \"query\", and it's a string. So the arguments should be {\"query\": \"authentication\"}. I don't see any other parameters needed here. Let me structure the tool call correctly within the XML tags.\n"
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1770431979,
+          "model": "nvidia/nemotron-3-nano-30b-a3b:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 160,
+            "prompt_tokens": 287,
+            "total_tokens": 447,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 161,
+              "rejected_prediction_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Nvidia"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1770431981-aCfeUT9FsU6vryYlLSfS",
+        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
+        "response_hash": "sha256:96939bf1c7ee4f26610cc22aaafa2b26a61ccc83c38bc8c4f6bcd9d4b2939817",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 1151,
+        "request": {
+          "model": "nvidia/nemotron-3-nano-30b-a3b:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1770431981-aCfeUT9FsU6vryYlLSfS",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_22004e438daa454dacf36f15",
+                    "function": {
+                      "arguments": "{\"query\": \"authentication\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "Okay, the user wants me to use the search tool to find files containing 'authentication'. Let me check the available tools. There's a search function that takes a query parameter. The required parameter is 'query', which should be a string. So I need to call the search tool with the query 'authentication'. I should make sure that the arguments are correctly formatted as JSON. The function name is 'search', and the arguments should be {\"query\": \"authentication\"}. I'll structure the tool_call accordingly.\n",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "Okay, the user wants me to use the search tool to find files containing 'authentication'. Let me check the available tools. There's a search function that takes a query parameter. The required parameter is 'query', which should be a string. So I need to call the search tool with the query 'authentication'. I should make sure that the arguments are correctly formatted as JSON. The function name is 'search', and the arguments should be {\"query\": \"authentication\"}. I'll structure the tool_call accordingly.\n"
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1770431981,
+          "model": "nvidia/nemotron-3-nano-30b-a3b:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 132,
+            "prompt_tokens": 287,
+            "total_tokens": 419,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 128,
+              "rejected_prediction_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Nvidia"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1770431982-9TX0gOJXgIpbn8fzpURw",
+        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
+        "response_hash": "sha256:3a07af549cd4d267862a400eef923b6977e49c8a1b006142526a3eaf023d4bb0",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 756,
+        "request": {
+          "model": "nvidia/nemotron-3-nano-30b-a3b:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1770431982-9TX0gOJXgIpbn8fzpURw",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_c3272b4386c94e53b19ceb32",
+                    "function": {
+                      "arguments": "{\"query\": \"authentication\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "Okay, the user wants me to use the search tool to find files containing 'authentication'. Let me check the available tools. The search function takes a query parameter. So I need to call the search tool with the query 'authentication'. That should return all files with that term. I'll structure the tool call accordingly.\n",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "Okay, the user wants me to use the search tool to find files containing 'authentication'. Let me check the available tools. The search function takes a query parameter. So I need to call the search tool with the query 'authentication'. That should return all files with that term. I'll structure the tool call accordingly.\n"
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1770431982,
+          "model": "nvidia/nemotron-3-nano-30b-a3b:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 92,
+            "prompt_tokens": 287,
+            "total_tokens": 379,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 82,
+              "rejected_prediction_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Nvidia"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1770431982-BwfLGT7HmmIqQBPxuGaI",
+        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
+        "response_hash": "sha256:84ec5ed4a67d4d7404467d4661d2dceacb3e6a580c28d6f8ed6d21c9b3eaf0ab",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 1092,
+        "request": {
+          "model": "nvidia/nemotron-3-nano-30b-a3b:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1770431982-BwfLGT7HmmIqQBPxuGaI",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_e980f051df5347b1818deff0",
+                    "function": {
+                      "arguments": "{\"query\": \"authentication\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "Okay, the user wants me to use the search tool to find files containing 'authentication'. Let me check the available tools. The search function takes a query parameter. So I need to call the search tool with the query 'authentication'. That should return all files with that term. I'll structure the tool call accordingly.\n",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "Okay, the user wants me to use the search tool to find files containing 'authentication'. Let me check the available tools. The search function takes a query parameter. So I need to call the search tool with the query 'authentication'. That should return all files with that term. I'll structure the tool call accordingly.\n"
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1770431983,
+          "model": "nvidia/nemotron-3-nano-30b-a3b:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 92,
+            "prompt_tokens": 287,
+            "total_tokens": 379,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 82,
+              "rejected_prediction_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Nvidia"
+        }
+      }
+    ]
+  },
+  "summary": {
+    "successes": 5,
+    "trials": 5,
+    "rate": 1.0,
+    "wilson_ci_95": [
+      0.5655085052479191,
+      1.0
+    ]
+  }
+}

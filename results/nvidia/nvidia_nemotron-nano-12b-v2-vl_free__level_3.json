@@ -1,30 +1,30 @@
 {
-  "submission_id": "sub_d918d1baec50",
-  "timestamp": "2026-01-31T07:00:45.967913+00:00",
-  "contributor": "jw409",
+  "submission_id": "sub_c033608cfa5b",
+  "timestamp": "2026-02-07T02:57:41.652271+00:00",
+  "contributor": "unknown",
   "environment": {
     "python_version": "3.11.13",
     "openai_sdk_version": "2.8.1",
-    "os": "Linux 5.15.167.4-microsoft-standard-WSL2",
-    "env_hash": "sha256:82b59585ac582b7441e0dfb1a4ad0fabea13d6ea352206d6704de713f3c103ab"
+    "os": "Linux 6.6.87.2-microsoft-standard-WSL2",
+    "env_hash": "sha256:43c15d47fdb31d3498555a3471beb9a2f13e583093f6878d70e5a80a227ad1c8"
   },
   "probes": {
-    "model": "qwen/qwen3-coder:free",
-    "level": 0,
+    "model": "nvidia/nemotron-nano-12b-v2-vl:free",
+    "level": 3,
     "trials": [
       {
         "openrouter_request_id": null,
-        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
+        "prompt_hash": "sha256:9d40be51ccb5e3278571f0cca554d53c5594d40a1cf25be72dc7d5624e568fca",
         "response_hash": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
         "tool_called": false,
         "schema_valid": false,
         "latency_ms": 0,
         "request": {
-          "model": "qwen/qwen3-coder:free",
+          "model": "nvidia/nemotron-nano-12b-v2-vl:free",
           "messages": [
             {
               "role": "user",
-              "content": "Use the search tool to find files containing 'authentication'"
+              "content": "Find files related to authentication and read the most relevant one."
             }
           ],
           "tools": [
@@ -46,6 +46,44 @@
                   ]
                 }
               }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
             }
           ],
           "temperature": 0.1
@@ -53,17 +91,17 @@
       },
       {
         "openrouter_request_id": null,
-        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
+        "prompt_hash": "sha256:9d40be51ccb5e3278571f0cca554d53c5594d40a1cf25be72dc7d5624e568fca",
         "response_hash": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
         "tool_called": false,
         "schema_valid": false,
         "latency_ms": 0,
         "request": {
-          "model": "qwen/qwen3-coder:free",
+          "model": "nvidia/nemotron-nano-12b-v2-vl:free",
           "messages": [
             {
               "role": "user",
-              "content": "Use the search tool to find files containing 'authentication'"
+              "content": "Find files related to authentication and read the most relevant one."
             }
           ],
           "tools": [
@@ -85,6 +123,44 @@
                   ]
                 }
               }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
             }
           ],
           "temperature": 0.1
@@ -92,17 +168,17 @@
       },
       {
         "openrouter_request_id": null,
-        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
+        "prompt_hash": "sha256:9d40be51ccb5e3278571f0cca554d53c5594d40a1cf25be72dc7d5624e568fca",
         "response_hash": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
         "tool_called": false,
         "schema_valid": false,
         "latency_ms": 0,
         "request": {
-          "model": "qwen/qwen3-coder:free",
+          "model": "nvidia/nemotron-nano-12b-v2-vl:free",
           "messages": [
             {
               "role": "user",
-              "content": "Use the search tool to find files containing 'authentication'"
+              "content": "Find files related to authentication and read the most relevant one."
             }
           ],
           "tools": [
@@ -124,6 +200,44 @@
                   ]
                 }
               }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
             }
           ],
           "temperature": 0.1
@@ -131,17 +245,17 @@
       },
       {
         "openrouter_request_id": null,
-        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
+        "prompt_hash": "sha256:9d40be51ccb5e3278571f0cca554d53c5594d40a1cf25be72dc7d5624e568fca",
         "response_hash": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
         "tool_called": false,
         "schema_valid": false,
         "latency_ms": 0,
         "request": {
-          "model": "qwen/qwen3-coder:free",
+          "model": "nvidia/nemotron-nano-12b-v2-vl:free",
           "messages": [
             {
               "role": "user",
-              "content": "Use the search tool to find files containing 'authentication'"
+              "content": "Find files related to authentication and read the most relevant one."
             }
           ],
           "tools": [
@@ -163,6 +277,44 @@
                   ]
                 }
               }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
             }
           ],
           "temperature": 0.1
@@ -170,17 +322,17 @@
       },
       {
         "openrouter_request_id": null,
-        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
+        "prompt_hash": "sha256:9d40be51ccb5e3278571f0cca554d53c5594d40a1cf25be72dc7d5624e568fca",
         "response_hash": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
         "tool_called": false,
         "schema_valid": false,
         "latency_ms": 0,
         "request": {
-          "model": "qwen/qwen3-coder:free",
+          "model": "nvidia/nemotron-nano-12b-v2-vl:free",
           "messages": [
             {
               "role": "user",
-              "content": "Use the search tool to find files containing 'authentication'"
+              "content": "Find files related to authentication and read the most relevant one."
             }
           ],
           "tools": [
@@ -202,198 +354,41 @@
                   ]
                 }
               }
-            }
-          ],
-          "temperature": 0.1
-        }
-      },
-      {
-        "openrouter_request_id": null,
-        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
-        "response_hash": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-        "tool_called": false,
-        "schema_valid": false,
-        "latency_ms": 0,
-        "request": {
-          "model": "qwen/qwen3-coder:free",
-          "messages": [
-            {
-              "role": "user",
-              "content": "Use the search tool to find files containing 'authentication'"
-            }
-          ],
-          "tools": [
+            },
             {
               "type": "function",
               "function": {
-                "name": "search",
-                "description": "Search for files in the codebase",
+                "name": "read_file",
+                "description": "Read a specific file's contents",
                 "parameters": {
                   "type": "object",
                   "properties": {
-                    "query": {
+                    "path": {
                       "type": "string",
-                      "description": "Search query"
+                      "description": "Absolute path to the file"
                     }
                   },
                   "required": [
-                    "query"
+                    "path"
                   ]
                 }
               }
-            }
-          ],
-          "temperature": 0.1
-        }
-      },
-      {
-        "openrouter_request_id": null,
-        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
-        "response_hash": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-        "tool_called": false,
-        "schema_valid": false,
-        "latency_ms": 0,
-        "request": {
-          "model": "qwen/qwen3-coder:free",
-          "messages": [
-            {
-              "role": "user",
-              "content": "Use the search tool to find files containing 'authentication'"
-            }
-          ],
-          "tools": [
+            },
             {
               "type": "function",
               "function": {
-                "name": "search",
-                "description": "Search for files in the codebase",
+                "name": "list_directory",
+                "description": "List files in a directory",
                 "parameters": {
                   "type": "object",
                   "properties": {
-                    "query": {
+                    "path": {
                       "type": "string",
-                      "description": "Search query"
+                      "description": "Directory path"
                     }
                   },
                   "required": [
-                    "query"
-                  ]
-                }
-              }
-            }
-          ],
-          "temperature": 0.1
-        }
-      },
-      {
-        "openrouter_request_id": null,
-        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
-        "response_hash": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-        "tool_called": false,
-        "schema_valid": false,
-        "latency_ms": 0,
-        "request": {
-          "model": "qwen/qwen3-coder:free",
-          "messages": [
-            {
-              "role": "user",
-              "content": "Use the search tool to find files containing 'authentication'"
-            }
-          ],
-          "tools": [
-            {
-              "type": "function",
-              "function": {
-                "name": "search",
-                "description": "Search for files in the codebase",
-                "parameters": {
-                  "type": "object",
-                  "properties": {
-                    "query": {
-                      "type": "string",
-                      "description": "Search query"
-                    }
-                  },
-                  "required": [
-                    "query"
-                  ]
-                }
-              }
-            }
-          ],
-          "temperature": 0.1
-        }
-      },
-      {
-        "openrouter_request_id": null,
-        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
-        "response_hash": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-        "tool_called": false,
-        "schema_valid": false,
-        "latency_ms": 0,
-        "request": {
-          "model": "qwen/qwen3-coder:free",
-          "messages": [
-            {
-              "role": "user",
-              "content": "Use the search tool to find files containing 'authentication'"
-            }
-          ],
-          "tools": [
-            {
-              "type": "function",
-              "function": {
-                "name": "search",
-                "description": "Search for files in the codebase",
-                "parameters": {
-                  "type": "object",
-                  "properties": {
-                    "query": {
-                      "type": "string",
-                      "description": "Search query"
-                    }
-                  },
-                  "required": [
-                    "query"
-                  ]
-                }
-              }
-            }
-          ],
-          "temperature": 0.1
-        }
-      },
-      {
-        "openrouter_request_id": null,
-        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
-        "response_hash": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-        "tool_called": false,
-        "schema_valid": false,
-        "latency_ms": 0,
-        "request": {
-          "model": "qwen/qwen3-coder:free",
-          "messages": [
-            {
-              "role": "user",
-              "content": "Use the search tool to find files containing 'authentication'"
-            }
-          ],
-          "tools": [
-            {
-              "type": "function",
-              "function": {
-                "name": "search",
-                "description": "Search for files in the codebase",
-                "parameters": {
-                  "type": "object",
-                  "properties": {
-                    "query": {
-                      "type": "string",
-                      "description": "Search query"
-                    }
-                  },
-                  "required": [
-                    "query"
+                    "path"
                   ]
                 }
               }
@@ -406,11 +401,11 @@
   },
   "summary": {
     "successes": 0,
-    "trials": 10,
+    "trials": 5,
     "rate": 0.0,
     "wilson_ci_95": [
       0.0,
-      0.2775401687666166
+      0.43449149475208104
     ]
   }
 }

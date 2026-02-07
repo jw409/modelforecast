@@ -109,65 +109,65 @@ One measures capability. The other measures adaptation.
 
 ## Tool-Calling Benchmark
 
-Separate from tournaments, we test whether models can use tools reliably. Five levels: basic calls (L0), schema compliance (L1), tool selection (L2), multi-turn chaining (L3), and knowing when NOT to call tools (L4).
+Separate from tournaments, we test whether models can use tools reliably. Five probes: basic calls (T0), schema compliance (T1), tool selection (T2), multi-turn chaining (A1), and knowing when NOT to call tools (R0).
 
-139 result files across 25+ providers. Wilson score intervals. 5-10 trials per test.
+60+ models tested across 25+ providers. Wilson score intervals. 5-10 trials per test. Updated Feb 2026.
 
 ### Perfect Score (A+)
 
-| Model | L0 Basic | L1 Schema | L2 Selection | L3 Multi-turn | L4 Restraint | Grade |
-|-------|:--------:|:---------:|:------------:|:-------------:|:------------:|:-----:|
-| anthropic/claude-haiku-4.5 | 100% | 100% | 100% | 100% | 100% | **A+** |
-| anthropic/claude-sonnet-4.5 | 100% | 100% | 100% | 100% | 100% | **A+** |
-| anthropic/claude-opus-4.5 | 100% | 100% | 100% | 100% | 100% | **A+** |
-| google/gemini-2.5-flash-preview | 100% | 100% | 100% | 100% | 100% | **A+** |
-| kwaipilot/kat-coder-pro:free | 100% | 100% | 100% | 100% | 100% | **A+** |
-| openai/gpt-5.1-codex | 100% | 100% | 100% | 100% | 100% | **A+** |
-| x-ai/grok-4.1-fast | 100% | 100% | 100% | 100% | 100% | **A+** |
-| x-ai/grok-code-fast-1 | 100% | 100% | 100% | 100% | 100% | **A+** |
+| Model | T0 | T1 | T2 | A1 | R0 | Cost |
+|-------|:--:|:--:|:--:|:--:|:--:|:----:|
+| anthropic/claude-haiku-4.5 | 100% | 100% | 100% | 100% | 100% | $0.80/M |
+| anthropic/claude-sonnet-4.5 | 100% | 100% | 100% | 100% | 100% | $3/M |
+| anthropic/claude-opus-4.5 | 100% | 100% | 100% | 100% | 100% | $15/M |
+| deepseek/deepseek-v3.2-exp | 100% | 100% | 100% | 100% | 100% | $1.10/M |
+| google/gemini-2.5-flash-preview | 100% | 100% | 100% | 100% | 100% | $0.15/M |
+| kwaipilot/kat-coder-pro:free | 100% | 100% | 100% | 100% | 100% | FREE* |
+| **nvidia/nemotron-3-nano-30b-a3b:free** | 100% | 100% | 100% | 100% | 100% | **FREE** |
+| openai/gpt-5.1-codex | 100% | 100% | 100% | 100% | 100% | $2.50/M |
+| x-ai/grok-4.1-fast | 100% | 100% | 100% | 100% | 100% | $5/M |
+| x-ai/grok-code-fast-1 | 100% | 100% | 100% | 100% | 100% | $5/M |
 
-### Production Ready (A/A-)
+\* KAT Coder Pro free tier no longer available on OpenRouter as of Feb 2026
 
-| Model | L0 | L1 | L2 | L3 | L4 | Grade |
+### Production Ready (A/B)
+
+| Model | T0 | T1 | T2 | A1 | R0 | Grade |
 |-------|:--:|:--:|:--:|:--:|:--:|:-----:|
 | minimax/minimax-m2 | 100% | 80% | 100% | 100% | 100% | A |
 | openai/gpt-5.1 | 100% | 100% | 100% | 80% | 100% | A |
-| deepseek/deepseek-v3.2-exp | 100% | 100% | 100% | 60% | 100% | B+ |
+| z-ai/glm-4.5-air:free | 100% | 60% | 60% | 60% | 80% | B |
+| upstage/solar-pro-3:free | 100% | 40% | 80% | 80% | 100% | B- |
 
-### L3 Multi-Turn Failures
+### A1 Multi-Turn Failures
 
-| Model | L0 | L1 | L2 | L3 | L4 | Notes |
+| Model | T0 | T1 | T2 | A1 | R0 | Notes |
 |-------|:--:|:--:|:--:|:--:|:--:|-------|
 | google/gemini-3-pro-preview | 100% | 100% | 100% | **0%** | 100% | Can't chain tools |
-| openai/gpt-5-mini | 100% | 100% | 80% | **20%** | 100% | Budget = weak L3 |
-| openai/gpt-5.1-codex-mini | 100% | 100% | 100% | **20%** | 100% | Budget = weak L3 |
+| openai/gpt-5-mini | 100% | 100% | 80% | **20%** | 100% | Budget = weak A1 |
+| openai/gpt-5.1-codex-mini | 100% | 100% | 100% | **20%** | 100% | Budget = weak A1 |
+| x-ai/grok-4.1-fast:free | 100% | 100% | 100% | **0%** | 100% | Free tier breaks A1 |
 
-### Unreliable L0
-
-| Model | L0 Rate | 95% CI |
-|-------|:-------:|--------|
-| nemotron-nano-12b-v2-vl:free | 67% | [21%, 94%] |
-| amazon/nova-2-lite-v1:free | 67% | [21%, 94%] |
-| nemotron-nano-9b-v2:free | 60% | [31%, 83%] |
-| alibaba/tongyi-deepresearch-30b-a3b:free | 50% | [23%, 76%] |
-
-### Broken L0 (<50%)
+### Broken T0 (<50%)
 
 30+ models can't reliably call tools at all:
 - **Qwen free tier**: 0/6 models
-- **Llama free tier**: 0/3 models
-- **DeepSeek R1T variants**: 0/3 models
-- **Others**: longcat-flash, gpt-oss-20b, kimi-k2
+- **Google Gemma**: 0/5 models
+- **Meta Llama free tier**: 0/3 models
+- **DeepSeek reasoning**: deepseek-r1-0528, r1t variants
+- **Others**: liquid/lfm-2.5, openai/gpt-oss-120b, nousresearch/hermes-3, moonshotai/kimi-k2
+
+Full results: [results/RESULTS.md](results/RESULTS.md)
 
 ### Methodology
 
-| Level | Dimension | Question |
-|:-----:|-----------|----------|
-| L0 | **Basic** | Can it call a tool at all? |
-| L1 | **Schema** | Does it respect parameter types? |
-| L2 | **Selection** | Can it choose the right tool? |
-| L3 | **Multi-turn** | Can it chain tool calls? |
-| L4 | **Restraint** | Does it know when NOT to use tools? |
+| Level | Probe | Question |
+|:-----:|-------|----------|
+| T0 | **Invoke** | Can it call a tool at all? |
+| T1 | **Schema** | Does it respect parameter types? |
+| T2 | **Selection** | Can it choose the right tool from many? |
+| A1 | **Linear** | Can it chain tool calls across turns? |
+| R0 | **Abstain** | Does it know when NOT to use tools? |
 
 Wilson score intervals. 5-10 trials per test. Grades based on lowest dimension score.
 

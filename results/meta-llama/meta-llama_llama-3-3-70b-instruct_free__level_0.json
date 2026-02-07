@@ -1,7 +1,7 @@
 {
-  "submission_id": "sub_f0608ab1c19f",
-  "timestamp": "2025-12-03T07:08:47.552248+00:00",
-  "contributor": "unknown",
+  "submission_id": "sub_d4769264c8dd",
+  "timestamp": "2026-01-31T07:01:54.362058+00:00",
+  "contributor": "jw409",
   "environment": {
     "python_version": "3.11.13",
     "openai_sdk_version": "2.8.1",
@@ -18,7 +18,38 @@
         "response_hash": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
         "tool_called": false,
         "schema_valid": false,
-        "latency_ms": 0
+        "latency_ms": 0,
+        "request": {
+          "model": "meta-llama/llama-3.3-70b-instruct:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        }
       },
       {
         "openrouter_request_id": null,
@@ -26,7 +57,38 @@
         "response_hash": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
         "tool_called": false,
         "schema_valid": false,
-        "latency_ms": 0
+        "latency_ms": 0,
+        "request": {
+          "model": "meta-llama/llama-3.3-70b-instruct:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        }
       },
       {
         "openrouter_request_id": null,
@@ -34,7 +96,38 @@
         "response_hash": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
         "tool_called": false,
         "schema_valid": false,
-        "latency_ms": 0
+        "latency_ms": 0,
+        "request": {
+          "model": "meta-llama/llama-3.3-70b-instruct:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        }
       },
       {
         "openrouter_request_id": null,
@@ -42,7 +135,38 @@
         "response_hash": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
         "tool_called": false,
         "schema_valid": false,
-        "latency_ms": 0
+        "latency_ms": 0,
+        "request": {
+          "model": "meta-llama/llama-3.3-70b-instruct:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        }
       },
       {
         "openrouter_request_id": null,
@@ -50,7 +174,38 @@
         "response_hash": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
         "tool_called": false,
         "schema_valid": false,
-        "latency_ms": 0
+        "latency_ms": 0,
+        "request": {
+          "model": "meta-llama/llama-3.3-70b-instruct:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        }
       },
       {
         "openrouter_request_id": null,
@@ -58,7 +213,38 @@
         "response_hash": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
         "tool_called": false,
         "schema_valid": false,
-        "latency_ms": 0
+        "latency_ms": 0,
+        "request": {
+          "model": "meta-llama/llama-3.3-70b-instruct:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        }
       },
       {
         "openrouter_request_id": null,
@@ -66,7 +252,38 @@
         "response_hash": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
         "tool_called": false,
         "schema_valid": false,
-        "latency_ms": 0
+        "latency_ms": 0,
+        "request": {
+          "model": "meta-llama/llama-3.3-70b-instruct:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        }
       },
       {
         "openrouter_request_id": null,
@@ -74,7 +291,38 @@
         "response_hash": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
         "tool_called": false,
         "schema_valid": false,
-        "latency_ms": 0
+        "latency_ms": 0,
+        "request": {
+          "model": "meta-llama/llama-3.3-70b-instruct:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        }
       },
       {
         "openrouter_request_id": null,
@@ -82,7 +330,38 @@
         "response_hash": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
         "tool_called": false,
         "schema_valid": false,
-        "latency_ms": 0
+        "latency_ms": 0,
+        "request": {
+          "model": "meta-llama/llama-3.3-70b-instruct:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        }
       },
       {
         "openrouter_request_id": null,
@@ -90,7 +369,38 @@
         "response_hash": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
         "tool_called": false,
         "schema_valid": false,
-        "latency_ms": 0
+        "latency_ms": 0,
+        "request": {
+          "model": "meta-llama/llama-3.3-70b-instruct:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        }
       }
     ]
   },

@@ -1,0 +1,582 @@
+{
+  "submission_id": "sub_511d039b009f",
+  "timestamp": "2026-02-07T02:42:02.472089+00:00",
+  "contributor": "unknown",
+  "environment": {
+    "python_version": "3.11.13",
+    "openai_sdk_version": "2.8.1",
+    "os": "Linux 6.6.87.2-microsoft-standard-WSL2",
+    "env_hash": "sha256:43c15d47fdb31d3498555a3471beb9a2f13e583093f6878d70e5a80a227ad1c8"
+  },
+  "probes": {
+    "model": "stepfun/step-3.5-flash:free",
+    "level": 4,
+    "trials": [
+      {
+        "openrouter_request_id": "gen-1770432122-5mo36QTqQ3PmAdqsfX8v",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:bf88f1a754765878073f6078e66b9d48ea04dd9c40fd28c2a5e075e2105de882",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 1343,
+        "request": {
+          "model": "stepfun/step-3.5-flash:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1770432122-5mo36QTqQ3PmAdqsfX8v",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I don't have access to weather data or real-time information. The tools I have available are for searching and reading files in a codebase.\n\nTo get today's weather, you could:\n- Check a weather website like Weather.com, AccuWeather, or your local meteorological service\n- Use a weather app on your phone\n- Ask a voice assistant like Siri, Google Assistant, or Alexa\n- Search \"weather today\" in your web browser\n\nIs there anything else I can help you with regarding code or files?",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "The user is asking about the weather today. However, I don't have access to any weather-related tools or APIs. The tools I have available are for searching and reading files in a codebase, and listing directories. I cannot provide real-time weather information.\n\nI should let the user know that I don't have access to weather data and suggest alternative ways they could get that information.",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "The user is asking about the weather today. However, I don't have access to any weather-related tools or APIs. The tools I have available are for searching and reading files in a codebase, and listing directories. I cannot provide real-time weather information.\n\nI should let the user know that I don't have access to weather data and suggest alternative ways they could get that information."
+                  }
+                ]
+              },
+              "native_finish_reason": "stop"
+            }
+          ],
+          "created": 1770432122,
+          "model": "stepfun/step-3.5-flash:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 186,
+            "prompt_tokens": 367,
+            "total_tokens": 553,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 100,
+              "rejected_prediction_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "StepFun"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1770432125-DU7JOZ1qbJJyS5sDGRom",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:e73f58e726af554b3aabf065e5c763a4355fa98f0e10bc469e78b1f096dbe089",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 2457,
+        "request": {
+          "model": "stepfun/step-3.5-flash:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1770432125-DU7JOZ1qbJJyS5sDGRom",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I don't have access to weather data or APIs. The tools I have available are for exploring a codebase (searching files, reading files, listing directories). I can't provide current weather information.\n\nIf you need to know the weather, I'd recommend checking a weather service like Weather.com, AccuWeather, or using a weather app on your phone.",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "The user is asking about the weather today. However, I don't have access to any weather-related tools or APIs. The tools I have available are for searching files, reading files, and listing directories in a codebase. These are for exploring a local code repository, not for fetching weather data.\n\nI should let the user know that I cannot provide weather information because I don't have access to weather data or APIs. I can only help with codebase-related queries.",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "The user is asking about the weather today. However, I don't have access to any weather-related tools or APIs. The tools I have available are for searching files, reading files, and listing directories in a codebase. These are for exploring a local code repository, not for fetching weather data.\n\nI should let the user know that I cannot provide weather information because I don't have access to weather data or APIs. I can only help with codebase-related queries."
+                  }
+                ]
+              },
+              "native_finish_reason": "stop"
+            }
+          ],
+          "created": 1770432125,
+          "model": "stepfun/step-3.5-flash:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 170,
+            "prompt_tokens": 367,
+            "total_tokens": 537,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 118,
+              "rejected_prediction_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "StepFun"
+        }
+      },
+      {
+        "openrouter_request_id": null,
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "tool_called": false,
+        "schema_valid": false,
+        "latency_ms": 0,
+        "request": {
+          "model": "stepfun/step-3.5-flash:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        }
+      },
+      {
+        "openrouter_request_id": null,
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "tool_called": false,
+        "schema_valid": false,
+        "latency_ms": 0,
+        "request": {
+          "model": "stepfun/step-3.5-flash:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1770432129-9TnC5fMmF4frflXyFHbi",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:8fc034dda506dfcf3deec750b39c8b07d3fb014e3c9bd27baab5d0ebcc5a874a",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 1584,
+        "request": {
+          "model": "stepfun/step-3.5-flash:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1770432129-9TnC5fMmF4frflXyFHbi",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I don't have access to weather data or real-time information. The tools I have available are for searching and reading files in a codebase, which aren't suitable for checking the weather.\n\nTo get today's weather, you could:\n- Check a weather website or app (like Weather.com, AccuWeather, or your phone's weather app)\n- Ask a voice assistant like Siri, Google Assistant, or Alexa\n- Search \"weather today\" in your web browser\n\nIs there anything related to code or files that I can help you with instead?",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "The user is asking about the weather today. This is a question about current weather conditions. However, I don't have access to any weather APIs or tools that can provide real-time weather information. The tools I have available are for searching and reading files in a codebase, which are not relevant to weather queries.\n\nI should let the user know that I cannot provide weather information and explain what I can actually do.",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "The user is asking about the weather today. This is a question about current weather conditions. However, I don't have access to any weather APIs or tools that can provide real-time weather information. The tools I have available are for searching and reading files in a codebase, which are not relevant to weather queries.\n\nI should let the user know that I cannot provide weather information and explain what I can actually do."
+                  }
+                ]
+              },
+              "native_finish_reason": "stop"
+            }
+          ],
+          "created": 1770432129,
+          "model": "stepfun/step-3.5-flash:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 198,
+            "prompt_tokens": 367,
+            "total_tokens": 565,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 109,
+              "rejected_prediction_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "StepFun"
+        }
+      }
+    ]
+  },
+  "summary": {
+    "successes": 3,
+    "trials": 5,
+    "rate": 0.6,
+    "wilson_ci_95": [
+      0.23071993220883708,
+      0.8823817688407467
+    ]
+  }
+}

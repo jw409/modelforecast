@@ -1,0 +1,556 @@
+{
+  "submission_id": "sub_b92900233d35",
+  "timestamp": "2026-02-07T02:39:44.985464+00:00",
+  "contributor": "unknown",
+  "environment": {
+    "python_version": "3.11.13",
+    "openai_sdk_version": "2.8.1",
+    "os": "Linux 6.6.87.2-microsoft-standard-WSL2",
+    "env_hash": "sha256:43c15d47fdb31d3498555a3471beb9a2f13e583093f6878d70e5a80a227ad1c8"
+  },
+  "probes": {
+    "model": "stepfun/step-3.5-flash:free",
+    "level": 0,
+    "trials": [
+      {
+        "openrouter_request_id": "gen-1770431985-OFQxRgLCXEvzi0gbs2rG",
+        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
+        "response_hash": "sha256:d87cf3d5320a132c7635e2fba1548c832f9129916a39987a31efe4f6add8c522",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 885,
+        "request": {
+          "model": "stepfun/step-3.5-flash:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1770431985-OFQxRgLCXEvzi0gbs2rG",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "chatcmpl-tool-216e7986694c4dc79659b545ee19204f",
+                    "function": {
+                      "arguments": "{\"query\": \"authentication\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "The user wants me to use the search tool to find files containing 'authentication'. I need to call the search function with the query \"authentication\".",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "The user wants me to use the search tool to find files containing 'authentication'. I need to call the search function with the query \"authentication\"."
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1770431985,
+          "model": "stepfun/step-3.5-flash:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 56,
+            "prompt_tokens": 242,
+            "total_tokens": 298,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 38,
+              "rejected_prediction_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "StepFun"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1770431985-rWdczlwtUha70rNm0xKk",
+        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
+        "response_hash": "sha256:25b97efbd9baddf09485d2a4918687c59969c256e2c43c52288222c2d926e01d",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 984,
+        "request": {
+          "model": "stepfun/step-3.5-flash:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1770431985-rWdczlwtUha70rNm0xKk",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I'll search for files containing 'authentication' in the codebase.",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "chatcmpl-tool-a9b0b27139bd4228a20e7d8ea399c359",
+                    "function": {
+                      "arguments": "{\"query\": \"authentication\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "The user wants me to use the search tool to find files containing 'authentication'. I need to call the search function with the query 'authentication'.",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "The user wants me to use the search tool to find files containing 'authentication'. I need to call the search function with the query 'authentication'."
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1770431986,
+          "model": "stepfun/step-3.5-flash:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 71,
+            "prompt_tokens": 242,
+            "total_tokens": 313,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 38,
+              "rejected_prediction_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "StepFun"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1770431986-flpV6eFUfQtd40kYsPoq",
+        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
+        "response_hash": "sha256:627d9c7c692472c33683e9f96f9040e0af5803c57403c18239488a51147a0f13",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 608,
+        "request": {
+          "model": "stepfun/step-3.5-flash:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1770431986-flpV6eFUfQtd40kYsPoq",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "chatcmpl-tool-f9ef934f74554325965890f2759ef086",
+                    "function": {
+                      "arguments": "{\"query\": \"authentication\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "The user wants me to use the search tool to find files containing 'authentication'. I need to call the search function with the query \"authentication\".",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "The user wants me to use the search tool to find files containing 'authentication'. I need to call the search function with the query \"authentication\"."
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1770431987,
+          "model": "stepfun/step-3.5-flash:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 56,
+            "prompt_tokens": 242,
+            "total_tokens": 298,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 38,
+              "rejected_prediction_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "StepFun"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1770431987-JjJwEo4Q2ymfk6RiuTwk",
+        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
+        "response_hash": "sha256:f00075963845252c78af63e6fa34ee7d85bf34e75843f9afbf3ee4cdffbd1061",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 585,
+        "request": {
+          "model": "stepfun/step-3.5-flash:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1770431987-JjJwEo4Q2ymfk6RiuTwk",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "chatcmpl-tool-ec51ebc5e91742a1803c573db2650ea3",
+                    "function": {
+                      "arguments": "{\"query\": \"authentication\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "The user wants me to use the search tool to find files containing 'authentication'. I need to call the search function with the query 'authentication'.",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "The user wants me to use the search tool to find files containing 'authentication'. I need to call the search function with the query 'authentication'."
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1770431987,
+          "model": "stepfun/step-3.5-flash:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 56,
+            "prompt_tokens": 242,
+            "total_tokens": 298,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 38,
+              "rejected_prediction_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "StepFun"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1770431988-oPA6fgk1Nc79aNOlHFfL",
+        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
+        "response_hash": "sha256:24c86d5044cc76a84075fd735d0320f10663eb289540933cbc3c16d0d788bbec",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 588,
+        "request": {
+          "model": "stepfun/step-3.5-flash:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1770431988-oPA6fgk1Nc79aNOlHFfL",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "chatcmpl-tool-71f296122d544c62848ab6d148b492a9",
+                    "function": {
+                      "arguments": "{\"query\": \"authentication\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "The user wants me to use the search tool to find files containing 'authentication'. I need to call the search function with the query \"authentication\".",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "The user wants me to use the search tool to find files containing 'authentication'. I need to call the search function with the query \"authentication\"."
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1770431988,
+          "model": "stepfun/step-3.5-flash:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 56,
+            "prompt_tokens": 242,
+            "total_tokens": 298,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 38,
+              "rejected_prediction_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "StepFun"
+        }
+      }
+    ]
+  },
+  "summary": {
+    "successes": 5,
+    "trials": 5,
+    "rate": 1.0,
+    "wilson_ci_95": [
+      0.5655085052479191,
+      1.0
+    ]
+  }
+}

@@ -1,0 +1,656 @@
+{
+  "submission_id": "sub_b4328f0a4760",
+  "timestamp": "2026-02-07T02:40:22.323960+00:00",
+  "contributor": "unknown",
+  "environment": {
+    "python_version": "3.11.13",
+    "openai_sdk_version": "2.8.1",
+    "os": "Linux 6.6.87.2-microsoft-standard-WSL2",
+    "env_hash": "sha256:43c15d47fdb31d3498555a3471beb9a2f13e583093f6878d70e5a80a227ad1c8"
+  },
+  "probes": {
+    "model": "arcee-ai/trinity-large-preview:free",
+    "level": 2,
+    "trials": [
+      {
+        "openrouter_request_id": "gen-1770432022-0FZRgMHfuhWoFXwoYP48",
+        "prompt_hash": "sha256:b1b21a108eb3ba14a87eabaacac42f96b50212ecd5909a182b9bcdd9130ecea2",
+        "response_hash": "sha256:dc7834487fa979b70fc5d1cf86e09d3ed0ea90a9833bb6d8752d55748eb69c3a",
+        "tool_called": false,
+        "schema_valid": false,
+        "latency_ms": 411,
+        "request": {
+          "model": "arcee-ai/trinity-large-preview:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "I need to understand what the auth module does"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1770432022-0FZRgMHfuhWoFXwoYP48",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": null
+              },
+              "native_finish_reason": "stop"
+            }
+          ],
+          "created": 1770432022,
+          "model": "arcee-ai/trinity-large-preview:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 1,
+            "prompt_tokens": 238,
+            "total_tokens": 239,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Arcee AI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1770432022-XXZ1AFYCOPfvGZJh5Eax",
+        "prompt_hash": "sha256:b1b21a108eb3ba14a87eabaacac42f96b50212ecd5909a182b9bcdd9130ecea2",
+        "response_hash": "sha256:a3b49bfd1778170a1397f97745b9adfcae7232137576689e01c8e81957bf9806",
+        "tool_called": false,
+        "schema_valid": false,
+        "latency_ms": 276,
+        "request": {
+          "model": "arcee-ai/trinity-large-preview:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "I need to understand what the auth module does"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1770432022-XXZ1AFYCOPfvGZJh5Eax",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": null
+              },
+              "native_finish_reason": "stop"
+            }
+          ],
+          "created": 1770432022,
+          "model": "arcee-ai/trinity-large-preview:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 1,
+            "prompt_tokens": 238,
+            "total_tokens": 239,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Arcee AI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1770432023-y0q6Etk81NvK8Xqv64GN",
+        "prompt_hash": "sha256:b1b21a108eb3ba14a87eabaacac42f96b50212ecd5909a182b9bcdd9130ecea2",
+        "response_hash": "sha256:2d4c100030b92e1d570e07cd1dd2cf5ddc9ad58430c01ea14075b76916e99ce2",
+        "tool_called": false,
+        "schema_valid": false,
+        "latency_ms": 279,
+        "request": {
+          "model": "arcee-ai/trinity-large-preview:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "I need to understand what the auth module does"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1770432023-y0q6Etk81NvK8Xqv64GN",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": null
+              },
+              "native_finish_reason": "stop"
+            }
+          ],
+          "created": 1770432023,
+          "model": "arcee-ai/trinity-large-preview:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 1,
+            "prompt_tokens": 238,
+            "total_tokens": 239,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Arcee AI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1770432023-ayFqKLzNELZ0pVv6E9xk",
+        "prompt_hash": "sha256:b1b21a108eb3ba14a87eabaacac42f96b50212ecd5909a182b9bcdd9130ecea2",
+        "response_hash": "sha256:89747585e4797e94978d7c8bf343d4caa0f15ab032dff8e4994aaf22a2bd00f6",
+        "tool_called": false,
+        "schema_valid": false,
+        "latency_ms": 303,
+        "request": {
+          "model": "arcee-ai/trinity-large-preview:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "I need to understand what the auth module does"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1770432023-ayFqKLzNELZ0pVv6E9xk",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": null
+              },
+              "native_finish_reason": "stop"
+            }
+          ],
+          "created": 1770432023,
+          "model": "arcee-ai/trinity-large-preview:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 1,
+            "prompt_tokens": 238,
+            "total_tokens": 239,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Arcee AI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1770432023-pXfcvk9UEJDoTXyrqXOX",
+        "prompt_hash": "sha256:b1b21a108eb3ba14a87eabaacac42f96b50212ecd5909a182b9bcdd9130ecea2",
+        "response_hash": "sha256:eb4ade13b0f9b1a0608a0b5901818125f64f3cf1c3244cd5133392f96ecde1b4",
+        "tool_called": false,
+        "schema_valid": false,
+        "latency_ms": 2667,
+        "request": {
+          "model": "arcee-ai/trinity-large-preview:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "I need to understand what the auth module does"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1770432023-pXfcvk9UEJDoTXyrqXOX",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": null
+              },
+              "native_finish_reason": "stop"
+            }
+          ],
+          "created": 1770432023,
+          "model": "arcee-ai/trinity-large-preview:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 1,
+            "prompt_tokens": 238,
+            "total_tokens": 239,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Arcee AI"
+        }
+      }
+    ]
+  },
+  "summary": {
+    "successes": 0,
+    "trials": 5,
+    "rate": 0.0,
+    "wilson_ci_95": [
+      0.0,
+      0.43449149475208104
+    ]
+  }
+}

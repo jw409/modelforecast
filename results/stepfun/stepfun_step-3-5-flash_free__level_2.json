@@ -1,0 +1,612 @@
+{
+  "submission_id": "sub_21d40288e804",
+  "timestamp": "2026-02-07T02:41:44.735202+00:00",
+  "contributor": "unknown",
+  "environment": {
+    "python_version": "3.11.13",
+    "openai_sdk_version": "2.8.1",
+    "os": "Linux 6.6.87.2-microsoft-standard-WSL2",
+    "env_hash": "sha256:43c15d47fdb31d3498555a3471beb9a2f13e583093f6878d70e5a80a227ad1c8"
+  },
+  "probes": {
+    "model": "stepfun/step-3.5-flash:free",
+    "level": 2,
+    "trials": [
+      {
+        "openrouter_request_id": "gen-1770432104-sLPtE7sjYBALUd0UsVSP",
+        "prompt_hash": "sha256:b1b21a108eb3ba14a87eabaacac42f96b50212ecd5909a182b9bcdd9130ecea2",
+        "response_hash": "sha256:9417b0e7dccc9e83bc48a81a28bc543e095240713a3048e012e9f117761d6470",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 1104,
+        "request": {
+          "model": "stepfun/step-3.5-flash:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "I need to understand what the auth module does"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1770432104-sLPtE7sjYBALUd0UsVSP",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I'll help you understand what the auth module does. Let me search for authentication-related files in the codebase.",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "chatcmpl-tool-4b18da3bb95f46fc83579c4470533264",
+                    "function": {
+                      "arguments": "{\"query\": \"auth\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "The user wants to understand what the auth module does. I need to search for files related to authentication in the codebase. Let me start by searching for files that might contain \"auth\" in their name or path.",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "The user wants to understand what the auth module does. I need to search for files related to authentication in the codebase. Let me start by searching for files that might contain \"auth\" in their name or path."
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1770432105,
+          "model": "stepfun/step-3.5-flash:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 91,
+            "prompt_tokens": 369,
+            "total_tokens": 460,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 53,
+              "rejected_prediction_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "StepFun"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1770432105-pcPYmTNRrXprsKt1Cw2w",
+        "prompt_hash": "sha256:b1b21a108eb3ba14a87eabaacac42f96b50212ecd5909a182b9bcdd9130ecea2",
+        "response_hash": "sha256:d9fa62d9ba83cdf5e5c4e22eb2aeed971846e92b1cb8b4f792502f88a36037b6",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 934,
+        "request": {
+          "model": "stepfun/step-3.5-flash:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "I need to understand what the auth module does"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1770432105-pcPYmTNRrXprsKt1Cw2w",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I'll help you understand what the auth module does. Let me search for authentication-related files in the codebase.",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "chatcmpl-tool-b984109b7f254af78b584bb97c6badf4",
+                    "function": {
+                      "arguments": "{\"query\": \"auth\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "The user wants to understand what the auth module does. I need to search for files related to authentication in the codebase. Let me start by searching for files that might contain \"auth\" in their name or path.",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "The user wants to understand what the auth module does. I need to search for files related to authentication in the codebase. Let me start by searching for files that might contain \"auth\" in their name or path."
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1770432106,
+          "model": "stepfun/step-3.5-flash:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 91,
+            "prompt_tokens": 369,
+            "total_tokens": 460,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 53,
+              "rejected_prediction_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "StepFun"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1770432106-eEPSQ55ZEH1GZoI1xIar",
+        "prompt_hash": "sha256:b1b21a108eb3ba14a87eabaacac42f96b50212ecd5909a182b9bcdd9130ecea2",
+        "response_hash": "sha256:2fe0daca630dd17752db047517a35d5cbe47b8cd2892a3f7de16fec8eb49fa0d",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 799,
+        "request": {
+          "model": "stepfun/step-3.5-flash:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "I need to understand what the auth module does"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1770432106-eEPSQ55ZEH1GZoI1xIar",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I'll help you understand what the auth module does. Let me search for authentication-related files in the codebase.",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "chatcmpl-tool-aefea9cdc552473db1344948d84620b0",
+                    "function": {
+                      "arguments": "{\"query\": \"auth\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "The user wants to understand what the auth module does. I need to search for files related to authentication in the codebase. Let me start by searching for files that might contain \"auth\" in their name or path.",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "The user wants to understand what the auth module does. I need to search for files related to authentication in the codebase. Let me start by searching for files that might contain \"auth\" in their name or path."
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1770432106,
+          "model": "stepfun/step-3.5-flash:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 91,
+            "prompt_tokens": 369,
+            "total_tokens": 460,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 53,
+              "rejected_prediction_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "StepFun"
+        }
+      },
+      {
+        "openrouter_request_id": null,
+        "prompt_hash": "sha256:b1b21a108eb3ba14a87eabaacac42f96b50212ecd5909a182b9bcdd9130ecea2",
+        "response_hash": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "tool_called": false,
+        "schema_valid": false,
+        "latency_ms": 0,
+        "request": {
+          "model": "stepfun/step-3.5-flash:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "I need to understand what the auth module does"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        }
+      },
+      {
+        "openrouter_request_id": null,
+        "prompt_hash": "sha256:b1b21a108eb3ba14a87eabaacac42f96b50212ecd5909a182b9bcdd9130ecea2",
+        "response_hash": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "tool_called": false,
+        "schema_valid": false,
+        "latency_ms": 0,
+        "request": {
+          "model": "stepfun/step-3.5-flash:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "I need to understand what the auth module does"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        }
+      }
+    ]
+  },
+  "summary": {
+    "successes": 3,
+    "trials": 5,
+    "rate": 0.6,
+    "wilson_ci_95": [
+      0.23071993220883708,
+      0.8823817688407467
+    ]
+  }
+}

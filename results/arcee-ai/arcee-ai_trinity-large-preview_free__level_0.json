@@ -1,0 +1,516 @@
+{
+  "submission_id": "sub_30dc7ba2b88e",
+  "timestamp": "2026-02-07T02:39:29.498745+00:00",
+  "contributor": "unknown",
+  "environment": {
+    "python_version": "3.11.13",
+    "openai_sdk_version": "2.8.1",
+    "os": "Linux 6.6.87.2-microsoft-standard-WSL2",
+    "env_hash": "sha256:43c15d47fdb31d3498555a3471beb9a2f13e583093f6878d70e5a80a227ad1c8"
+  },
+  "probes": {
+    "model": "arcee-ai/trinity-large-preview:free",
+    "level": 0,
+    "trials": [
+      {
+        "openrouter_request_id": "gen-1770431969-R7VbKQ7SK45jINexB6Bh",
+        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
+        "response_hash": "sha256:29d31aa25da3b7c021f89fb487b586460931be28afad051bceb46cf4a3850cfc",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 4049,
+        "request": {
+          "model": "arcee-ai/trinity-large-preview:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1770431969-R7VbKQ7SK45jINexB6Bh",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call-6bee9991-88b7-4378-a67e-4f782365a2bd",
+                    "function": {
+                      "arguments": "{\"query\":\"authentication\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": null
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1770431969,
+          "model": "arcee-ai/trinity-large-preview:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 19,
+            "prompt_tokens": 143,
+            "total_tokens": 162,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Arcee AI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1770431973-OrsRBoCqnSMq7aS9DwMY",
+        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
+        "response_hash": "sha256:08232e3f47999e6f3a57ef7dd31614e2b00a15b8ef273f3897c12e0851b50017",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 562,
+        "request": {
+          "model": "arcee-ai/trinity-large-preview:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1770431973-OrsRBoCqnSMq7aS9DwMY",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call-fc1a8fd2-5b2e-4db6-b7f8-afdf9de32611",
+                    "function": {
+                      "arguments": "{\"query\":\"authentication\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": null
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1770431973,
+          "model": "arcee-ai/trinity-large-preview:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 19,
+            "prompt_tokens": 143,
+            "total_tokens": 162,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Arcee AI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1770431974-asiRnwc1LDsLYOBgv9ya",
+        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
+        "response_hash": "sha256:448b68d447659c93e1e5fcca194ef8bcb3e23ad3bc76e2ac1411b56ddd040ceb",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 620,
+        "request": {
+          "model": "arcee-ai/trinity-large-preview:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1770431974-asiRnwc1LDsLYOBgv9ya",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call-a43cf30e-2674-4031-9c36-956da2785432",
+                    "function": {
+                      "arguments": "{\"query\":\"authentication\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": null
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1770431974,
+          "model": "arcee-ai/trinity-large-preview:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 19,
+            "prompt_tokens": 143,
+            "total_tokens": 162,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Arcee AI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1770431974-BPKEoJq5hS9Olrv2eafk",
+        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
+        "response_hash": "sha256:58a29698740adbc725a9c47d430fc4b1aaa41712b1feff92276a0f9402f5b19d",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 496,
+        "request": {
+          "model": "arcee-ai/trinity-large-preview:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1770431974-BPKEoJq5hS9Olrv2eafk",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call-a783ed9e-e38a-4bc7-b500-24f49892f748",
+                    "function": {
+                      "arguments": "{\"query\":\"authentication\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": null
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1770431974,
+          "model": "arcee-ai/trinity-large-preview:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 19,
+            "prompt_tokens": 143,
+            "total_tokens": 162,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Arcee AI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1770431975-cBmcJZYlHtlc87kohDk8",
+        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
+        "response_hash": "sha256:d4ba79d3c2d294ffe27f039f687f70e5b1c873eedfbc10853c8fb6ad4ff4912d",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 610,
+        "request": {
+          "model": "arcee-ai/trinity-large-preview:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1770431975-cBmcJZYlHtlc87kohDk8",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call-666a3118-ac50-4686-a534-4b7cd69a9e22",
+                    "function": {
+                      "arguments": "{\"query\":\"authentication\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": null
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1770431975,
+          "model": "arcee-ai/trinity-large-preview:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 19,
+            "prompt_tokens": 143,
+            "total_tokens": 162,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Arcee AI"
+        }
+      }
+    ]
+  },
+  "summary": {
+    "successes": 5,
+    "trials": 5,
+    "rate": 1.0,
+    "wilson_ci_95": [
+      0.5655085052479191,
+      1.0
+    ]
+  }
+}

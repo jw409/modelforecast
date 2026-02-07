@@ -1,0 +1,736 @@
+{
+  "submission_id": "sub_4e70cc78d91b",
+  "timestamp": "2026-02-07T02:57:26.267687+00:00",
+  "contributor": "unknown",
+  "environment": {
+    "python_version": "3.11.13",
+    "openai_sdk_version": "2.8.1",
+    "os": "Linux 6.6.87.2-microsoft-standard-WSL2",
+    "env_hash": "sha256:43c15d47fdb31d3498555a3471beb9a2f13e583093f6878d70e5a80a227ad1c8"
+  },
+  "probes": {
+    "model": "nvidia/nemotron-nano-12b-v2-vl:free",
+    "level": 2,
+    "trials": [
+      {
+        "openrouter_request_id": "gen-1770433046-zxBth16iMDhvtHobCM6Y",
+        "prompt_hash": "sha256:b1b21a108eb3ba14a87eabaacac42f96b50212ecd5909a182b9bcdd9130ecea2",
+        "response_hash": "sha256:3222d178d7662b6d7e8458ddde29c1d02b608d114af6bc1605d7ef3010338685",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 2964,
+        "request": {
+          "model": "nvidia/nemotron-nano-12b-v2-vl:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "I need to understand what the auth module does"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1770433046-zxBth16iMDhvtHobCM6Y",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "I3dwXFmdT",
+                    "function": {
+                      "arguments": "{\"query\": \"auth\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "Okay, the user wants to understand what the auth module does. Let me start by figuring out where the auth module is located in the codebase. Since I don't have direct access to the file structure, I should use the search tool to look for files related to \"auth\". \n\nI'll call the search function with the query \"auth\" to find relevant files. Once I get the search results, I can check the list of files returned. If there are multiple files, I might need to look into each one to understand their contents. But first, let's see what the search returns.\n\nAfter getting the search results, if there's a file named something like \"auth.py\" or \"auth.js\", I should read that file's contents using the read_file tool. That will give me the code to analyze. If the search doesn't find anything, I might need to ask the user for more information or check if there's a different naming convention. But assuming the search works, reading the file should provide the necessary details about the auth module's functionality.\n",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "Okay, the user wants to understand what the auth module does. Let me start by figuring out where the auth module is located in the codebase. Since I don't have direct access to the file structure, I should use the search tool to look for files related to \"auth\". \n\nI'll call the search function with the query \"auth\" to find relevant files. Once I get the search results, I can check the list of files returned. If there are multiple files, I might need to look into each one to understand their contents. But first, let's see what the search returns.\n\nAfter getting the search results, if there's a file named something like \"auth.py\" or \"auth.js\", I should read that file's contents using the read_file tool. That will give me the code to analyze. If the search doesn't find anything, I might need to ask the user for more information or check if there's a different naming convention. But assuming the search works, reading the file should provide the necessary details about the auth module's functionality.\n"
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1770433046,
+          "model": "nvidia/nemotron-nano-12b-v2-vl:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 247,
+            "prompt_tokens": 352,
+            "total_tokens": 599,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 257,
+              "rejected_prediction_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Nvidia"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1770433049-xoSkSfs21jNa0VpHDllx",
+        "prompt_hash": "sha256:b1b21a108eb3ba14a87eabaacac42f96b50212ecd5909a182b9bcdd9130ecea2",
+        "response_hash": "sha256:1661c26a5d35aba1c9399b30adb67c7782b9750e2ef550b5f9e6f648df9d9530",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 3095,
+        "request": {
+          "model": "nvidia/nemotron-nano-12b-v2-vl:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "I need to understand what the auth module does"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1770433049-xoSkSfs21jNa0VpHDllx",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "kR4nzTStZ",
+                    "function": {
+                      "arguments": "{\"query\": \"auth\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "Okay, the user wants to understand what the auth module does. Let me start by figuring out where the auth module is located in the codebase. Since I don't have direct access to the file structure, I should use the search tool to look for files related to \"auth\". \n\nI'll call the search function with the query \"auth\" to find relevant files. Once I get the search results, I can check the list of files returned. If there are multiple files, I might need to look into each one to understand their contents. But first, let's see what the search returns.\n\nAfter getting the search results, if there's a file named something like \"auth.py\" or \"auth.js\", I should read that file using the read_file tool. That will give me the code inside, which I can then analyze to explain the module's functionality. If the search doesn't find any files, I'll need to inform the user that the auth module isn't found in the codebase. But assuming it's there, reading the file should provide the necessary details.\n",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "Okay, the user wants to understand what the auth module does. Let me start by figuring out where the auth module is located in the codebase. Since I don't have direct access to the file structure, I should use the search tool to look for files related to \"auth\". \n\nI'll call the search function with the query \"auth\" to find relevant files. Once I get the search results, I can check the list of files returned. If there are multiple files, I might need to look into each one to understand their contents. But first, let's see what the search returns.\n\nAfter getting the search results, if there's a file named something like \"auth.py\" or \"auth.js\", I should read that file using the read_file tool. That will give me the code inside, which I can then analyze to explain the module's functionality. If the search doesn't find any files, I'll need to inform the user that the auth module isn't found in the codebase. But assuming it's there, reading the file should provide the necessary details.\n"
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1770433049,
+          "model": "nvidia/nemotron-nano-12b-v2-vl:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 250,
+            "prompt_tokens": 352,
+            "total_tokens": 602,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 253,
+              "rejected_prediction_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Nvidia"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1770433052-qlffLUdKxaRQ2Wet2U8S",
+        "prompt_hash": "sha256:b1b21a108eb3ba14a87eabaacac42f96b50212ecd5909a182b9bcdd9130ecea2",
+        "response_hash": "sha256:30e2319b094931b0f86a2ed67ba8b7d6173596210a1824edea643cecdfb7a7ae",
+        "tool_called": false,
+        "schema_valid": false,
+        "latency_ms": 2226,
+        "request": {
+          "model": "nvidia/nemotron-nano-12b-v2-vl:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "I need to understand what the auth module does"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1770433052-qlffLUdKxaRQ2Wet2U8S",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "TOOLCALL>[{\"name\": \"search\", \"arguments\": {\"query\": \"authALL>\n",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "Okay, the user wants to understand what the auth module does. Let me start by figuring out where the auth module is located in the codebase. Since I don't have direct access to the file structure, I should use the search tool to look for files related to \"auth\". \n\nI'll call the search function with the query \"auth\" to find relevant files. Once I get the search results, I can check the list of files and then use read_file on the most relevant one to get its contents. If the search returns multiple files, I might need to list the directory to see the structure better, but first, let's start with the search.\n",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "Okay, the user wants to understand what the auth module does. Let me start by figuring out where the auth module is located in the codebase. Since I don't have direct access to the file structure, I should use the search tool to look for files related to \"auth\". \n\nI'll call the search function with the query \"auth\" to find relevant files. Once I get the search results, I can check the list of files and then use read_file on the most relevant one to get its contents. If the search returns multiple files, I might need to list the directory to see the structure better, but first, let's start with the search.\n"
+                  }
+                ]
+              },
+              "native_finish_reason": "stop"
+            }
+          ],
+          "created": 1770433052,
+          "model": "nvidia/nemotron-nano-12b-v2-vl:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 166,
+            "prompt_tokens": 352,
+            "total_tokens": 518,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 156,
+              "rejected_prediction_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Nvidia"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1770433054-cly0jKXEpAtoybkeGnEO",
+        "prompt_hash": "sha256:b1b21a108eb3ba14a87eabaacac42f96b50212ecd5909a182b9bcdd9130ecea2",
+        "response_hash": "sha256:f0845b141ec2d9df094d56b77b2e7866677a6ee78394025eee4a4303be68eaa0",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 3783,
+        "request": {
+          "model": "nvidia/nemotron-nano-12b-v2-vl:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "I need to understand what the auth module does"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1770433054-cly0jKXEpAtoybkeGnEO",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "QGYnsKmp2",
+                    "function": {
+                      "arguments": "{\"query\": \"auth\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "Okay, the user wants to understand what the auth module does. Let me start by figuring out where the auth module is located in the codebase. Since I don't have direct access to the file structure, I should use the available tools to search for it.\n\nFirst, I'll use the 'search' function with the query 'auth' to find any files related to authentication. That should give me a list of possible files. Once I have the search results, I can check the file names to see which one is the auth module. Common names might be 'auth.py', 'authentication.py', or something similar.\n\nAfter identifying the correct file, I'll need to read its contents using the 'read_file' function. But wait, I need the absolute path to the file. If the search returns relative paths, I might need to construct the absolute path based on the project structure. However, since I don't have that information, maybe the search results will include absolute paths. If not, I might have to make an assumption or ask the user for clarification, but since I can't ask, I'll proceed with the information I have.\n\nOnce I read the file, I can analyze the code to explain what the auth module does. If the search doesn't find any files, I'll have to inform the user that the auth module isn't found. But given that the user is asking about it, it's likely present. Let me start by performing the search.\n",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "Okay, the user wants to understand what the auth module does. Let me start by figuring out where the auth module is located in the codebase. Since I don't have direct access to the file structure, I should use the available tools to search for it.\n\nFirst, I'll use the 'search' function with the query 'auth' to find any files related to authentication. That should give me a list of possible files. Once I have the search results, I can check the file names to see which one is the auth module. Common names might be 'auth.py', 'authentication.py', or something similar.\n\nAfter identifying the correct file, I'll need to read its contents using the 'read_file' function. But wait, I need the absolute path to the file. If the search returns relative paths, I might need to construct the absolute path based on the project structure. However, since I don't have that information, maybe the search results will include absolute paths. If not, I might have to make an assumption or ask the user for clarification, but since I can't ask, I'll proceed with the information I have.\n\nOnce I read the file, I can analyze the code to explain what the auth module does. If the search doesn't find any files, I'll have to inform the user that the auth module isn't found. But given that the user is asking about it, it's likely present. Let me start by performing the search.\n"
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1770433054,
+          "model": "nvidia/nemotron-nano-12b-v2-vl:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 329,
+            "prompt_tokens": 352,
+            "total_tokens": 681,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 347,
+              "rejected_prediction_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Nvidia"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1770433058-0eMaUzMB7NctDTLLLmM6",
+        "prompt_hash": "sha256:b1b21a108eb3ba14a87eabaacac42f96b50212ecd5909a182b9bcdd9130ecea2",
+        "response_hash": "sha256:4735322f45555994196fb2f55f9e15d32437f301dbda3f7915851b0374ea04a1",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 2965,
+        "request": {
+          "model": "nvidia/nemotron-nano-12b-v2-vl:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "I need to understand what the auth module does"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1770433058-0eMaUzMB7NctDTLLLmM6",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "HfxeYzulN",
+                    "function": {
+                      "arguments": "{\"query\": \"auth\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "Okay, the user wants to understand what the auth module does. Let me start by figuring out where the auth module is located in the codebase. Since I don't have direct access to the file structure, I should use the search tool to look for files related to \"auth\". \n\nI'll call the search function with the query \"auth\" to find relevant files. Once I get the search results, I can check the list of files returned. If there are multiple files, I might need to look into each one to understand their contents. But first, let's see what the search returns.\n\nAfter getting the search results, if there's a file named something like \"auth.py\" or \"auth.js\", I should read that file's contents using the read_file tool. That will give me the code to analyze. If the search doesn't find any files, I might need to ask the user for more information or check if there's a different naming convention. But assuming the search works, reading the file should provide the necessary details about the auth module's functionality.\n",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "Okay, the user wants to understand what the auth module does. Let me start by figuring out where the auth module is located in the codebase. Since I don't have direct access to the file structure, I should use the search tool to look for files related to \"auth\". \n\nI'll call the search function with the query \"auth\" to find relevant files. Once I get the search results, I can check the list of files returned. If there are multiple files, I might need to look into each one to understand their contents. But first, let's see what the search returns.\n\nAfter getting the search results, if there's a file named something like \"auth.py\" or \"auth.js\", I should read that file's contents using the read_file tool. That will give me the code to analyze. If the search doesn't find any files, I might need to ask the user for more information or check if there's a different naming convention. But assuming the search works, reading the file should provide the necessary details about the auth module's functionality.\n"
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1770433058,
+          "model": "nvidia/nemotron-nano-12b-v2-vl:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 248,
+            "prompt_tokens": 352,
+            "total_tokens": 600,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 257,
+              "rejected_prediction_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Nvidia"
+        }
+      }
+    ]
+  },
+  "summary": {
+    "successes": 4,
+    "trials": 5,
+    "rate": 0.8,
+    "wilson_ci_95": [
+      0.3755282641185388,
+      0.9637768390302125
+    ]
+  }
+}

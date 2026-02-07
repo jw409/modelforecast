@@ -1,0 +1,666 @@
+{
+  "submission_id": "sub_42d9550fa28c",
+  "timestamp": "2026-02-07T02:40:26.643415+00:00",
+  "contributor": "unknown",
+  "environment": {
+    "python_version": "3.11.13",
+    "openai_sdk_version": "2.8.1",
+    "os": "Linux 6.6.87.2-microsoft-standard-WSL2",
+    "env_hash": "sha256:43c15d47fdb31d3498555a3471beb9a2f13e583093f6878d70e5a80a227ad1c8"
+  },
+  "probes": {
+    "model": "arcee-ai/trinity-large-preview:free",
+    "level": 3,
+    "trials": [
+      {
+        "openrouter_request_id": "gen-1770432028-qXvIMG9Z4KfObepI0agE",
+        "prompt_hash": "sha256:9d40be51ccb5e3278571f0cca554d53c5594d40a1cf25be72dc7d5624e568fca",
+        "response_hash": "sha256:792afb8439b179724208595971b0877d6e4e0828ee26252d44a1a5be010e40b3",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 682,
+        "request": {
+          "model": "arcee-ai/trinity-large-preview:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Find files related to authentication and read the most relevant one."
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1770432028-qXvIMG9Z4KfObepI0agE",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call-63f0081b-9977-42e4-b438-b217ee57ab1a",
+                    "function": {
+                      "arguments": "{\"path\":\"src/auth/middleware.ts\"}",
+                      "name": "read_file"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": null
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1770432028,
+          "model": "arcee-ai/trinity-large-preview:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 24,
+            "prompt_tokens": 285,
+            "total_tokens": 309,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Arcee AI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1770432029-fJ9WoF0EjyM7sPfrdpbm",
+        "prompt_hash": "sha256:9d40be51ccb5e3278571f0cca554d53c5594d40a1cf25be72dc7d5624e568fca",
+        "response_hash": "sha256:32d2b282b958566a8fb57b7e07a232afe83023637f03601de9419b740d9a7861",
+        "tool_called": false,
+        "schema_valid": false,
+        "latency_ms": 790,
+        "request": {
+          "model": "arcee-ai/trinity-large-preview:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Find files related to authentication and read the most relevant one."
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1770432029-fJ9WoF0EjyM7sPfrdpbm",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I'll help you find files related to authentication and read the most relevant one. Let me start by searching for authentication-related files in the codebase.",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": null
+              },
+              "native_finish_reason": "stop"
+            }
+          ],
+          "created": 1770432029,
+          "model": "arcee-ai/trinity-large-preview:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 30,
+            "prompt_tokens": 241,
+            "total_tokens": 271,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Arcee AI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1770432030-ErqhhkZ7wOtLHEKra16W",
+        "prompt_hash": "sha256:9d40be51ccb5e3278571f0cca554d53c5594d40a1cf25be72dc7d5624e568fca",
+        "response_hash": "sha256:2ea7bf622a6abb53e09f727144f20069978232a2960d709fc45e370d723525f2",
+        "tool_called": false,
+        "schema_valid": false,
+        "latency_ms": 755,
+        "request": {
+          "model": "arcee-ai/trinity-large-preview:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Find files related to authentication and read the most relevant one."
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1770432030-ErqhhkZ7wOtLHEKra16W",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I'll help you find files related to authentication and read the most relevant one. Let me start by searching for authentication-related files in the codebase.",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": null
+              },
+              "native_finish_reason": "stop"
+            }
+          ],
+          "created": 1770432030,
+          "model": "arcee-ai/trinity-large-preview:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 30,
+            "prompt_tokens": 241,
+            "total_tokens": 271,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Arcee AI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1770432031-cPOXyp8eJgCpEjVuLzeC",
+        "prompt_hash": "sha256:9d40be51ccb5e3278571f0cca554d53c5594d40a1cf25be72dc7d5624e568fca",
+        "response_hash": "sha256:01bb1528bea893c79917feb44680f54befeac11d9f1e0721bbac4d2d8d2c635c",
+        "tool_called": false,
+        "schema_valid": false,
+        "latency_ms": 896,
+        "request": {
+          "model": "arcee-ai/trinity-large-preview:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Find files related to authentication and read the most relevant one."
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1770432031-cPOXyp8eJgCpEjVuLzeC",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I'll help you find files related to authentication and read the most relevant one. Let me start by searching for authentication-related files in the codebase.",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": null
+              },
+              "native_finish_reason": "stop"
+            }
+          ],
+          "created": 1770432031,
+          "model": "arcee-ai/trinity-large-preview:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 30,
+            "prompt_tokens": 241,
+            "total_tokens": 271,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Arcee AI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1770432031-ouTsfKQ4J58RYEmDzIa8",
+        "prompt_hash": "sha256:9d40be51ccb5e3278571f0cca554d53c5594d40a1cf25be72dc7d5624e568fca",
+        "response_hash": "sha256:8b48f45be4e68cb6d3957a1e1ecda0ea14595218307310c65243cb192258bc6b",
+        "tool_called": false,
+        "schema_valid": false,
+        "latency_ms": 1085,
+        "request": {
+          "model": "arcee-ai/trinity-large-preview:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Find files related to authentication and read the most relevant one."
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1770432031-ouTsfKQ4J58RYEmDzIa8",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I'll help you find files related to authentication and read the most relevant one. Let me start by searching for authentication-related files in the codebase.",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": null
+              },
+              "native_finish_reason": "stop"
+            }
+          ],
+          "created": 1770432032,
+          "model": "arcee-ai/trinity-large-preview:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 30,
+            "prompt_tokens": 241,
+            "total_tokens": 271,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Arcee AI"
+        }
+      }
+    ]
+  },
+  "summary": {
+    "successes": 1,
+    "trials": 5,
+    "rate": 0.2,
+    "wilson_ci_95": [
+      0.03622316096978745,
+      0.6244717358814613
+    ]
+  }
+}

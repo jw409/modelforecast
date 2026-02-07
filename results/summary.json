@@ -1,94 +1,24 @@
 {
   "metadata": {
     "version": "0.1.0",
-    "generated_at": "2025-12-10T07:59:16.644870+00:00",
+    "generated_at": "2026-02-07T02:37:09.328740+00:00",
     "total_models": 1,
-    "total_levels": 6
+    "total_levels": 1
   },
   "results": [
     {
-      "submission_id": "sub_c5c98f339c00",
-      "timestamp": "2025-12-10T07:54:56.742051+00:00",
+      "submission_id": "sub_d34caf853f27",
+      "timestamp": "2026-02-07T02:37:08.895063+00:00",
       "contributor": "unknown",
-      "model": "z-ai/glm-4.5-air:free",
+      "model": "moonshotai/kimi-k2:free",
       "level": 0,
-      "rate": 1.0,
+      "rate": 0.0,
       "wilson_ci_95": [
-        0.7224598312333834,
-        1.0
+        0.0,
+        0.43449149475208104
       ],
-      "trials": 10,
-      "successes": 10
-    },
-    {
-      "submission_id": "sub_7975f38146ad",
-      "timestamp": "2025-12-10T07:55:20.427995+00:00",
-      "contributor": "unknown",
-      "model": "z-ai/glm-4.5-air:free",
-      "level": 1,
-      "rate": 0.6,
-      "wilson_ci_95": [
-        0.3126695474501863,
-        0.8318224187964902
-      ],
-      "trials": 10,
-      "successes": 6
-    },
-    {
-      "submission_id": "sub_6ec28f633c7d",
-      "timestamp": "2025-12-10T07:55:51.123656+00:00",
-      "contributor": "unknown",
-      "model": "z-ai/glm-4.5-air:free",
-      "level": 2,
-      "rate": 0.6,
-      "wilson_ci_95": [
-        0.3126695474501863,
-        0.8318224187964902
-      ],
-      "trials": 10,
-      "successes": 6
-    },
-    {
-      "submission_id": "sub_30b41d37c941",
-      "timestamp": "2025-12-10T07:56:20.063892+00:00",
-      "contributor": "unknown",
-      "model": "z-ai/glm-4.5-air:free",
-      "level": 3,
-      "rate": 0.6,
-      "wilson_ci_95": [
-        0.3126695474501863,
-        0.8318224187964902
-      ],
-      "trials": 10,
-      "successes": 6
-    },
-    {
-      "submission_id": "sub_d23a32f9b467",
-      "timestamp": "2025-12-10T07:57:28.310846+00:00",
-      "contributor": "unknown",
-      "model": "z-ai/glm-4.5-air:free",
-      "level": 4,
-      "rate": 0.8,
-      "wilson_ci_95": [
-        0.49015684672072335,
-        0.9433190520193067
-      ],
-      "trials": 10,
-      "successes": 8
-    },
-    {
-      "submission_id": "sub_41a68cb1d5e0",
-      "timestamp": "2025-12-10T07:58:38.296361+00:00",
-      "contributor": "unknown",
-      "model": "z-ai/glm-4.5-air:free",
-      "level": 5,
-      "rate": 1.0,
-      "wilson_ci_95": [
-        0.7224598312333834,
-        1.0
-      ],
-      "trials": 10,
-      "successes": 10
+      "trials": 5,
+      "successes": 0
     }
   ]
 }

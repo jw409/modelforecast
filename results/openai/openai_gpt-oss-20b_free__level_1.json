@@ -1,6 +1,6 @@
 {
-  "submission_id": "sub_d34caf853f27",
-  "timestamp": "2026-02-07T02:37:08.895063+00:00",
+  "submission_id": "sub_c0fb9f16f9c5",
+  "timestamp": "2026-02-07T03:01:05.346822+00:00",
   "contributor": "unknown",
   "environment": {
     "python_version": "3.11.13",
@@ -9,22 +9,22 @@
     "env_hash": "sha256:43c15d47fdb31d3498555a3471beb9a2f13e583093f6878d70e5a80a227ad1c8"
   },
   "probes": {
-    "model": "moonshotai/kimi-k2:free",
-    "level": 0,
+    "model": "openai/gpt-oss-20b:free",
+    "level": 1,
     "trials": [
       {
         "openrouter_request_id": null,
-        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
         "response_hash": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
         "tool_called": false,
         "schema_valid": false,
         "latency_ms": 0,
         "request": {
-          "model": "moonshotai/kimi-k2:free",
+          "model": "openai/gpt-oss-20b:free",
           "messages": [
             {
               "role": "user",
-              "content": "Use the search tool to find files containing 'authentication'"
+              "content": "Search for authentication files, limit results to 5"
             }
           ],
           "tools": [
@@ -39,6 +39,10 @@
                     "query": {
                       "type": "string",
                       "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
                     }
                   },
                   "required": [
@@ -53,17 +57,17 @@
       },
       {
         "openrouter_request_id": null,
-        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
         "response_hash": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
         "tool_called": false,
         "schema_valid": false,
         "latency_ms": 0,
         "request": {
-          "model": "moonshotai/kimi-k2:free",
+          "model": "openai/gpt-oss-20b:free",
           "messages": [
             {
               "role": "user",
-              "content": "Use the search tool to find files containing 'authentication'"
+              "content": "Search for authentication files, limit results to 5"
             }
           ],
           "tools": [
@@ -78,6 +82,10 @@
                     "query": {
                       "type": "string",
                       "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
                     }
                   },
                   "required": [
@@ -92,17 +100,17 @@
       },
       {
         "openrouter_request_id": null,
-        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
         "response_hash": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
         "tool_called": false,
         "schema_valid": false,
         "latency_ms": 0,
         "request": {
-          "model": "moonshotai/kimi-k2:free",
+          "model": "openai/gpt-oss-20b:free",
           "messages": [
             {
               "role": "user",
-              "content": "Use the search tool to find files containing 'authentication'"
+              "content": "Search for authentication files, limit results to 5"
             }
           ],
           "tools": [
@@ -117,6 +125,10 @@
                     "query": {
                       "type": "string",
                       "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
                     }
                   },
                   "required": [
@@ -131,17 +143,17 @@
       },
       {
         "openrouter_request_id": null,
-        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
         "response_hash": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
         "tool_called": false,
         "schema_valid": false,
         "latency_ms": 0,
         "request": {
-          "model": "moonshotai/kimi-k2:free",
+          "model": "openai/gpt-oss-20b:free",
           "messages": [
             {
               "role": "user",
-              "content": "Use the search tool to find files containing 'authentication'"
+              "content": "Search for authentication files, limit results to 5"
             }
           ],
           "tools": [
@@ -156,6 +168,10 @@
                     "query": {
                       "type": "string",
                       "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
                     }
                   },
                   "required": [
@@ -170,17 +186,17 @@
       },
       {
         "openrouter_request_id": null,
-        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
         "response_hash": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
         "tool_called": false,
         "schema_valid": false,
         "latency_ms": 0,
         "request": {
-          "model": "moonshotai/kimi-k2:free",
+          "model": "openai/gpt-oss-20b:free",
           "messages": [
             {
               "role": "user",
-              "content": "Use the search tool to find files containing 'authentication'"
+              "content": "Search for authentication files, limit results to 5"
             }
           ],
           "tools": [
@@ -195,6 +211,10 @@
                     "query": {
                       "type": "string",
                       "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
                     }
                   },
                   "required": [

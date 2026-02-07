@@ -1,0 +1,576 @@
+{
+  "submission_id": "sub_475de2d0df08",
+  "timestamp": "2026-02-07T02:41:39.403610+00:00",
+  "contributor": "unknown",
+  "environment": {
+    "python_version": "3.11.13",
+    "openai_sdk_version": "2.8.1",
+    "os": "Linux 6.6.87.2-microsoft-standard-WSL2",
+    "env_hash": "sha256:43c15d47fdb31d3498555a3471beb9a2f13e583093f6878d70e5a80a227ad1c8"
+  },
+  "probes": {
+    "model": "stepfun/step-3.5-flash:free",
+    "level": 1,
+    "trials": [
+      {
+        "openrouter_request_id": "gen-1770432099-uWiblINZgS4TS5bRx35U",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:c128f55ccb3d0977a0a4e254a286c630a44c13ffe444533c96c15294c5946499",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 1417,
+        "request": {
+          "model": "stepfun/step-3.5-flash:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Search for authentication files, limit results to 5"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1770432099-uWiblINZgS4TS5bRx35U",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "chatcmpl-tool-e523d215e1014d4099d8c852bd8cbd46",
+                    "function": {
+                      "arguments": "{\"query\": \"authentication\", \"limit\": 5}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "The user wants to search for authentication files and limit the results to 5. I need to use the search function with a query related to authentication and set the limit to 5.\n\nLet me construct the function call:\n- query: \"authentication\" (this seems like a good general term to find authentication-related files)\n- limit: 5\n\nI'll make this call now.",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "The user wants to search for authentication files and limit the results to 5. I need to use the search function with a query related to authentication and set the limit to 5.\n\nLet me construct the function call:\n- query: \"authentication\" (this seems like a good general term to find authentication-related files)\n- limit: 5\n\nI'll make this call now."
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1770432099,
+          "model": "stepfun/step-3.5-flash:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 113,
+            "prompt_tokens": 258,
+            "total_tokens": 371,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 92,
+              "rejected_prediction_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "StepFun"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1770432100-E4TBBQT0rzPCFzTqTF5K",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:2dd529730ffc7fcb7c02ef5e2cd23b9bfc286b0fb47d6d5148e4299da10fe635",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 983,
+        "request": {
+          "model": "stepfun/step-3.5-flash:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Search for authentication files, limit results to 5"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1770432100-E4TBBQT0rzPCFzTqTF5K",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "chatcmpl-tool-108b91da0a8f458d817c4675f44f8b7d",
+                    "function": {
+                      "arguments": "{\"query\": \"authentication\", \"limit\": 5}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "The user wants to search for authentication files and limit the results to 5. I need to use the search function with a query related to authentication and set the limit to 5.\n\nLet me construct the function call:\n- query: \"authentication\" (this seems like a good general term to find authentication-related files)\n- limit: 5\n\nI'll make this call now.",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "The user wants to search for authentication files and limit the results to 5. I need to use the search function with a query related to authentication and set the limit to 5.\n\nLet me construct the function call:\n- query: \"authentication\" (this seems like a good general term to find authentication-related files)\n- limit: 5\n\nI'll make this call now."
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1770432100,
+          "model": "stepfun/step-3.5-flash:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 113,
+            "prompt_tokens": 258,
+            "total_tokens": 371,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 92,
+              "rejected_prediction_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "StepFun"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1770432101-sjfBaCAqipNLwacJWUrw",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:4190e920f049f94dd1540fe44bdd8b182f1e115b45dd8575aea7a27a294edea7",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 866,
+        "request": {
+          "model": "stepfun/step-3.5-flash:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Search for authentication files, limit results to 5"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1770432101-sjfBaCAqipNLwacJWUrw",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "chatcmpl-tool-a39e083fbd274ae4a1726a033284b199",
+                    "function": {
+                      "arguments": "{\"query\": \"authentication\", \"limit\": 5}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "The user wants to search for authentication files and limit the results to 5. I need to use the search function with a query related to authentication and set the limit to 5.\n\nLet me construct the function call:\n- query: \"authentication\" (this seems like a good general term to find authentication-related files)\n- limit: 5\n\nI'll make this call now.",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "The user wants to search for authentication files and limit the results to 5. I need to use the search function with a query related to authentication and set the limit to 5.\n\nLet me construct the function call:\n- query: \"authentication\" (this seems like a good general term to find authentication-related files)\n- limit: 5\n\nI'll make this call now."
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1770432101,
+          "model": "stepfun/step-3.5-flash:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 113,
+            "prompt_tokens": 258,
+            "total_tokens": 371,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 92,
+              "rejected_prediction_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "StepFun"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1770432102-PTFM5yR5UrYoeWqc1RNh",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:5233ed249d844946edf635cb642812a0bbf9042c923b4c7c8b6cd34401a5c635",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 859,
+        "request": {
+          "model": "stepfun/step-3.5-flash:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Search for authentication files, limit results to 5"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1770432102-PTFM5yR5UrYoeWqc1RNh",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I'll search for authentication files with a limit of 5 results.",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "chatcmpl-tool-b0c3477a71fb4fd88d435304c5411189",
+                    "function": {
+                      "arguments": "{\"query\": \"authentication\", \"limit\": 5}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "The user wants to search for authentication files and limit the results to 5. I need to use the search function with a query related to authentication and set the limit to 5.\n\nLet me construct the function call:\n- query: \"authentication\" (this seems like a good general term to find authentication-related files)\n- limit: 5 (as specified by the user)",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "The user wants to search for authentication files and limit the results to 5. I need to use the search function with a query related to authentication and set the limit to 5.\n\nLet me construct the function call:\n- query: \"authentication\" (this seems like a good general term to find authentication-related files)\n- limit: 5 (as specified by the user)"
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1770432102,
+          "model": "stepfun/step-3.5-flash:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 126,
+            "prompt_tokens": 258,
+            "total_tokens": 384,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 91,
+              "rejected_prediction_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "StepFun"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1770432103-oLRey1sp5l9JyuFRRtOE",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:7a8adb91367fd870eb5f4a2b056c1b130a6fcc9083e3b5fd181e96ee073518fe",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 833,
+        "request": {
+          "model": "stepfun/step-3.5-flash:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Search for authentication files, limit results to 5"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1770432103-oLRey1sp5l9JyuFRRtOE",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "chatcmpl-tool-c05c372129934d2bb9a82cac8518a050",
+                    "function": {
+                      "arguments": "{\"query\": \"authentication\", \"limit\": 5}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "The user wants to search for authentication files and limit the results to 5. I need to use the search function with a query related to authentication and set the limit to 5.\n\nLet me construct the function call:\n- query: \"authentication\" (this seems like a good general term to find authentication-related files)\n- limit: 5\n\nI'll call the search function with these parameters.",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "The user wants to search for authentication files and limit the results to 5. I need to use the search function with a query related to authentication and set the limit to 5.\n\nLet me construct the function call:\n- query: \"authentication\" (this seems like a good general term to find authentication-related files)\n- limit: 5\n\nI'll call the search function with these parameters."
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1770432103,
+          "model": "stepfun/step-3.5-flash:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 116,
+            "prompt_tokens": 258,
+            "total_tokens": 374,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 99,
+              "rejected_prediction_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "StepFun"
+        }
+      }
+    ]
+  },
+  "summary": {
+    "successes": 5,
+    "trials": 5,
+    "rate": 1.0,
+    "wilson_ci_95": [
+      0.5655085052479191,
+      1.0
+    ]
+  }
+}

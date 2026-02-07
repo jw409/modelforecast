@@ -1,0 +1,556 @@
+{
+  "submission_id": "sub_71d19c74b2d8",
+  "timestamp": "2026-02-07T02:39:48.997176+00:00",
+  "contributor": "unknown",
+  "environment": {
+    "python_version": "3.11.13",
+    "openai_sdk_version": "2.8.1",
+    "os": "Linux 6.6.87.2-microsoft-standard-WSL2",
+    "env_hash": "sha256:43c15d47fdb31d3498555a3471beb9a2f13e583093f6878d70e5a80a227ad1c8"
+  },
+  "probes": {
+    "model": "upstage/solar-pro-3:free",
+    "level": 0,
+    "trials": [
+      {
+        "openrouter_request_id": "gen-1770431989-eKHBzIatL3eB6xMkhRp1",
+        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
+        "response_hash": "sha256:3332e46bf15a743c30096748391f27595faae9cadea5a63add0d5ece0286a290",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 2882,
+        "request": {
+          "model": "upstage/solar-pro-3:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1770431989-eKHBzIatL3eB6xMkhRp1",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "629974053q",
+                    "function": {
+                      "arguments": "{\"query\": \"authentication\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "The user wants to search for files containing 'authentication' in the codebase. We have a tool \"search\" that takes a query string. We need to call it with query \"authentication\". The tool likely returns a list of files. We need to respond with the results. The user didn't specify any particular context beyond \"Use the search tool to find files containing 'authentication'\". So we should call the search tool with query \"authentication\". Then present the results.\n\nWe need to be careful about the tool usage: we must output a JSON object with name \"search\" and arguments. The tool will respond with results. Then we need to format the answer.\n\nThus, we call the tool.\n\n",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "The user wants to search for files containing 'authentication' in the codebase. We have a tool \"search\" that takes a query string. We need to call it with query \"authentication\". The tool likely returns a list of files. We need to respond with the results. The user didn't specify any particular context beyond \"Use the search tool to find files containing 'authentication'\". So we should call the search tool with query \"authentication\". Then present the results.\n\nWe need to be careful about the tool usage: we must output a JSON object with name \"search\" and arguments. The tool will respond with results. Then we need to format the answer.\n\nThus, we call the tool.\n\n"
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1770431989,
+          "model": "upstage/solar-pro-3:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 166,
+            "prompt_tokens": 337,
+            "total_tokens": 503,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 139,
+              "rejected_prediction_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 112
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Upstage"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1770431991-a2M3ydjzbtE5emzbmaHj",
+        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
+        "response_hash": "sha256:c5b7401599acc376639584fb38c70e8b14563eb92bc928205e551aee0bc642f1",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 2161,
+        "request": {
+          "model": "upstage/solar-pro-3:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1770431991-a2M3ydjzbtE5emzbmaHj",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "748589107q",
+                    "function": {
+                      "arguments": "{\"query\": \"authentication\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "The user wants to search for files containing 'authentication' in the codebase. We have a tool \"search\" that takes a query string. We need to call it with query \"authentication\". Then we need to parse the results and present them to the user. The user didn't specify any particular format, just \"Use the search tool to find files containing 'authentication'\". So we should search and then respond with the list of files found, maybe with file paths and brief context.\n\nWe need to call the function. Let's do that.\n\n",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "The user wants to search for files containing 'authentication' in the codebase. We have a tool \"search\" that takes a query string. We need to call it with query \"authentication\". Then we need to parse the results and present them to the user. The user didn't specify any particular format, just \"Use the search tool to find files containing 'authentication'\". So we should search and then respond with the list of files found, maybe with file paths and brief context.\n\nWe need to call the function. Let's do that.\n\n"
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1770431992,
+          "model": "upstage/solar-pro-3:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 135,
+            "prompt_tokens": 337,
+            "total_tokens": 472,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 108,
+              "rejected_prediction_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 112
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Upstage"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1770431994-16rX7itkSzc15hf6LRM5",
+        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
+        "response_hash": "sha256:4c902a57247591873150f99fd5ca783fe4fc1d3274db062de1311689887c81cb",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 2446,
+        "request": {
+          "model": "upstage/solar-pro-3:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1770431994-16rX7itkSzc15hf6LRM5",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "1706708107",
+                    "function": {
+                      "arguments": "{\"query\": \"authentication\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "The user wants to search for files containing 'authentication' in the codebase. We have a tool \"search\" that takes a query string. We need to call it with query: \"authentication\". The tool will presumably return a list of files matching that query. We need to output the result. The user didn't specify any particular format, just \"Use the search tool to find files containing 'authentication'\". So we should call the search tool with query \"authentication\". Then we need to present the results. Possibly we need to handle pagination? The tool likely returns a list of file paths. We'll call it.\n\nWe need to produce a tool call JSON with name \"search\" and arguments {\"query\": \"authentication\"}.\n\nAfter that, we need to respond with the results. The tool will return something like {\"files\": [\"...\"]}. We'll need to format the answer accordingly.\n\nWe'll call the tool.",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "The user wants to search for files containing 'authentication' in the codebase. We have a tool \"search\" that takes a query string. We need to call it with query: \"authentication\". The tool will presumably return a list of files matching that query. We need to output the result. The user didn't specify any particular format, just \"Use the search tool to find files containing 'authentication'\". So we should call the search tool with query \"authentication\". Then we need to present the results. Possibly we need to handle pagination? The tool likely returns a list of file paths. We'll call it.\n\nWe need to produce a tool call JSON with name \"search\" and arguments {\"query\": \"authentication\"}.\n\nAfter that, we need to respond with the results. The tool will return something like {\"files\": [\"...\"]}. We'll need to format the answer accordingly.\n\nWe'll call the tool."
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1770431994,
+          "model": "upstage/solar-pro-3:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 211,
+            "prompt_tokens": 337,
+            "total_tokens": 548,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 184,
+              "rejected_prediction_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 112
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Upstage"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1770431996-mnktks3vMCZ6npEYkIeS",
+        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
+        "response_hash": "sha256:c9334a6875303699181826765a4aaf20b81908a1f8f8b0b95d8b147a5d11b8a7",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 3058,
+        "request": {
+          "model": "upstage/solar-pro-3:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1770431996-mnktks3vMCZ6npEYkIeS",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "450199999r",
+                    "function": {
+                      "arguments": "{\"query\": \"authentication\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "The user wants to search for files containing 'authentication' in the codebase. We have a tool \"search\" that takes a query string. We need to call it with query \"authentication\". The tool likely returns a list of files. We need to output the results. The user didn't specify any particular format, just \"Use the search tool to find files containing 'authentication'\". So we should call the search tool with query \"authentication\". Then present the results.\n\nWe need to consider that the tool may return a list of file paths. We need to format the answer accordingly.\n\nWe'll call the function.\n\n",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "The user wants to search for files containing 'authentication' in the codebase. We have a tool \"search\" that takes a query string. We need to call it with query \"authentication\". The tool likely returns a list of files. We need to output the results. The user didn't specify any particular format, just \"Use the search tool to find files containing 'authentication'\". So we should call the search tool with query \"authentication\". Then present the results.\n\nWe need to consider that the tool may return a list of file paths. We need to format the answer accordingly.\n\nWe'll call the function.\n\n"
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1770431996,
+          "model": "upstage/solar-pro-3:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 149,
+            "prompt_tokens": 337,
+            "total_tokens": 486,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 122,
+              "rejected_prediction_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 112
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Upstage"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1770431999-vMhY9E3xogGjhyLxczpb",
+        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
+        "response_hash": "sha256:3378d9ba9c3c167a0ad061d7dcd346a85207c2eeffdd32801f497c53412ea78f",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 1337,
+        "request": {
+          "model": "upstage/solar-pro-3:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Use the search tool to find files containing 'authentication'"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1770431999-vMhY9E3xogGjhyLxczpb",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "706170552q",
+                    "function": {
+                      "arguments": "{\"query\": \"authentication\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "The user wants to search for files containing 'authentication' in the codebase. We have a tool \"search\" that takes a query string. We need to call it with query: \"authentication\". The tool will presumably return a list of files. We need to respond with the results. The user didn't specify any particular format, but we should present the results in a readable way.\n\nWe need to call the function.",
+                "reasoning_details": [
+                  {
+                    "format": "unknown",
+                    "index": 0,
+                    "type": "reasoning.text",
+                    "text": "The user wants to search for files containing 'authentication' in the codebase. We have a tool \"search\" that takes a query string. We need to call it with query: \"authentication\". The tool will presumably return a list of files. We need to respond with the results. The user didn't specify any particular format, but we should present the results in a readable way.\n\nWe need to call the function."
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1770431999,
+          "model": "upstage/solar-pro-3:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 111,
+            "prompt_tokens": 337,
+            "total_tokens": 448,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 84,
+              "rejected_prediction_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 336
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Upstage"
+        }
+      }
+    ]
+  },
+  "summary": {
+    "successes": 5,
+    "trials": 5,
+    "rate": 1.0,
+    "wilson_ci_95": [
+      0.5655085052479191,
+      1.0
+    ]
+  }
+}
