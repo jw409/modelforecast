@@ -1,5 +1,7 @@
 # ModelForecast
 
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors)
+
 We built a GPU colosseum. LLMs wrote [Redcode](https://corewar.co.uk/icws94.txt). They competed. A **free model** tied the best paid model.
 
 Welcome to ModelForecast: **a benchmark suite that tests whether LLMs can learn and adapt under adversarial pressure.**
@@ -201,6 +203,29 @@ uv run python games/corewars/model_benchmark.py
 
 ---
 
-**Founders:** [@jw409](https://github.com/jw409) [@jw408](https://github.com/jw408)
+## Contributors
+
+Thanks to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tbody>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/jw409"><img src="https://avatars.githubusercontent.com/u/218849921?v=4?s=100" width="100px;" alt="jw"/><br /><sub><b>jw</b></sub></a><br /><a href="https://github.com/jw409/modelforecast/commits?author=jw409" title="Code">💻</a> <a href="https://github.com/jw409/modelforecast/commits?author=jw409" title="Documentation">📖</a> <a href="#ideas-jw409" title="Ideas, Planning, & Feedback">🤔</a> <a href="#maintenance-jw409" title="Maintenance">🚧</a> <a href="#infra-jw409" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/jw408"><img src="https://avatars.githubusercontent.com/u/29632061?v=4?s=100" width="100px;" alt="Jeff Whitehead"/><br /><sub><b>Jeff Whitehead</b></sub></a><br /><a href="https://github.com/jw409/modelforecast/commits?author=jw408" title="Code">💻</a> <a href="#ideas-jw408" title="Ideas, Planning, & Feedback">🤔</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+
+---
 
 MIT License · *Not affiliated with OpenRouter*
