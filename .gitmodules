@@ -1,21 +1,12 @@
-[submodule "games/doom/browser/wasm"]
-	path = games/doom/browser/wasm
-	url = https://github.com/cloudflare/doom-wasm.git
-[submodule "games/doom/wads"]
-	path = games/doom/wads
-	url = https://github.com/Akbar30Bill/DOOM_wads.git
-[submodule "games/doom/references/Arnold"]
-	path = games/doom/references/Arnold
-	url = https://github.com/glample/Arnold.git
-[submodule "games/doom/ViZDoom"]
-	path = games/doom/ViZDoom
-	url = https://github.com/Farama-Foundation/ViZDoom.git
-[submodule "games/doom/Arnold"]
-	path = games/doom/Arnold
-	url = https://github.com/glample/Arnold.git
 [submodule "external/llm_multi_round_coding_tournament"]
 	path = external/llm_multi_round_coding_tournament
 	url = https://github.com/Dicklesworthstone/llm_multi_round_coding_tournament
-[submodule "games/angband/angband"]
-	path = games/angband/angband
-	url = https://github.com/jw409/angband
+[submodule "games/corewars"]
+	path = games/corewars
+	url = https://github.com/jw409/mf-corewars.git
+[submodule "games/angband"]
+	path = games/angband
+	url = https://github.com/jw409/mf-angband.git
+[submodule "games/doom"]
+	path = games/doom
+	url = https://github.com/jw409/mf-doom.git
