@@ -3,11 +3,12 @@
 import json
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 from rich.console import Console
 
-from modelforecast.runner import ProbeRunner
+if TYPE_CHECKING:
+    from modelforecast.runner import ProbeRunner
 
 
 class SweepOrchestrator:
@@ -104,7 +105,7 @@ class SweepOrchestrator:
 
     def run(
         self,
-        runner: ProbeRunner,
+        runner: "ProbeRunner",
         trials: int = 10,
         max_level: int = 4,
         resume: bool = False,

@@ -8,6 +8,7 @@ from pathlib import Path
 from modelforecast import __version__
 from modelforecast.models import get_available_models, get_free_models, validate_model
 from modelforecast.runner import ProbeRunner
+from modelforecast.sweep.orchestrator import SweepOrchestrator
 
 
 def main():
@@ -15,6 +16,61 @@ def main():
         description="ModelForecast - Tool-calling capability benchmarks for free LLM models"
     )
     parser.add_argument("--version", action="version", version=f"modelforecast {__version__}")
+
+    # Subparsers — 'sweep' is the new subcommand; no subcommand = single-model/run-all mode
+    subparsers = parser.add_subparsers(dest="command", metavar="COMMAND")
+    subparsers.default = None
+
+    # ------------------------------------------------------------------
+    # sweep subcommand
+    # ------------------------------------------------------------------
+    sweep_parser = subparsers.add_parser(
+        "sweep",
+        help="Run a full sweep of all models with checkpoint-resume and timestamped output",
+    )
+    sweep_parser.add_argument(
+        "--resume",
+        action="store_true",
+        help="Resume from checkpoint.json if sweep was interrupted",
+    )
+    sweep_parser.add_argument(
+        "--trials",
+        type=int,
+        default=10,
+        help="Number of trials per (model, level) combination (default: 10)",
+    )
+    sweep_parser.add_argument(
+        "--max-level",
+        type=int,
+        default=4,
+        help="Maximum probe level to run (default: 4)",
+    )
+    sweep_parser.add_argument(
+        "--output",
+        type=str,
+        default="./results",
+        help="Base results directory (default: ./results)",
+    )
+    sweep_parser.add_argument(
+        "--sweep-id",
+        type=str,
+        default=None,
+        help="Override auto-generated sweep ID (e.g., sweep_20260318)",
+    )
+    sweep_parser.add_argument(
+        "--contributor",
+        type=str,
+        help="GitHub username for provenance (default: GITHUB_USERNAME env var)",
+    )
+    sweep_parser.add_argument(
+        "--skip-validation",
+        action="store_true",
+        help="Skip model ID validation against OpenRouter API",
+    )
+
+    # ------------------------------------------------------------------
+    # Top-level flags (single-model / run-all mode — backward compatible)
+    # ------------------------------------------------------------------
     parser.add_argument(
         "--output",
         type=str,
@@ -29,8 +85,10 @@ def main():
         "--level", type=int, choices=[0, 1, 2, 3, 4, 5], help="Specific level to test (0-5)"
     )
     level_group.add_argument(
-        "--probe", type=str, choices=["T0", "T1", "T2", "A1", "R0", "DAG"],
-        help="Specific probe to test (T0=0, T1=1, T2=2, A1=3, R0=4, DAG=5)"
+        "--probe",
+        type=str,
+        choices=["T0", "T1", "T2", "A1", "R0", "DAG"],
+        help="Specific probe to test (T0=0, T1=1, T2=2, A1=3, R0=4, DAG=5)",
     )
 
     parser.add_argument(
@@ -59,6 +117,39 @@ def main():
     )
 
     args = parser.parse_args()
+
+    # ------------------------------------------------------------------
+    # sweep subcommand dispatch
+    # ------------------------------------------------------------------
+    if args.command == "sweep":
+        print(f"ModelForecast v{__version__}")
+
+        if not os.getenv("OPENROUTER_API_KEY"):
+            print("ERROR: OPENROUTER_API_KEY environment variable not set")
+            print("Get your API key from: https://openrouter.ai/keys")
+            return 1
+
+        orchestrator = SweepOrchestrator(
+            base_results_dir=Path(args.output),
+            sweep_id=args.sweep_id,
+        )
+        runner = ProbeRunner(
+            output_dir=orchestrator.sweep_dir,
+            contributor=args.contributor,
+            skip_validation=args.skip_validation,
+        )
+        results = orchestrator.run(
+            runner=runner,
+            trials=args.trials,
+            max_level=args.max_level,
+            resume=args.resume,
+        )
+        print(f"\nSweep complete. Results in: {orchestrator.sweep_dir}")
+        return 0
+
+    # ------------------------------------------------------------------
+    # Single-model / run-all mode (backward compatible)
+    # ------------------------------------------------------------------
 
     # Map --probe to --level internally
     probe_to_level = {
