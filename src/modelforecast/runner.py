@@ -1,7 +1,6 @@
 """Main probe runner for ModelForecast benchmarks."""
 
 import os
-import time
 from pathlib import Path
 from typing import Any
 
@@ -58,8 +57,8 @@ class ProbeRunner:
         self.client = OpenAI(
             base_url="https://openrouter.ai/api/v1",
             api_key=api_key,
+            max_retries=max_retries,
         )
-        self.max_retries = max_retries
         self.rate_limiter = RateLimiter(calls_per_minute=8)
 
         # Validate and set models
@@ -178,49 +177,19 @@ class ProbeRunner:
                 # Rate limit: enforce minimum interval per model
                 self.rate_limiter.acquire(model)
 
-                # Retry loop for 429 and 5xx errors
-                result = None
-                for attempt in range(self.max_retries + 1):
-                    try:
-                        result = probe.run(model, self.client)
-                        break
-                    except openai.RateLimitError as e:
-                        if attempt < self.max_retries:
-                            wait = 2**attempt
-                            self.console.print(
-                                f"[yellow]Retry {attempt + 1}/{self.max_retries} after {wait}s "
-                                f"(rate limit)[/yellow]"
-                            )
-                            time.sleep(wait)
-                        else:
-                            result = ProbeResult(
-                                success=False,
-                                tool_called=False,
-                                tool_name=None,
-                                parameters=None,
-                                raw_response={"error": str(e)},
-                                latency_ms=0,
-                                error=str(e),
-                            )
-                    except openai.APIStatusError as e:
-                        if e.status_code and e.status_code >= 500 and attempt < self.max_retries:
-                            wait = 2**attempt
-                            self.console.print(
-                                f"[yellow]Retry {attempt + 1}/{self.max_retries} after {wait}s "
-                                f"(server error {e.status_code})[/yellow]"
-                            )
-                            time.sleep(wait)
-                        else:
-                            result = ProbeResult(
-                                success=False,
-                                tool_called=False,
-                                tool_name=None,
-                                parameters=None,
-                                raw_response={"error": str(e)},
-                                latency_ms=0,
-                                error=str(e),
-                            )
-                            break
+                # SDK handles 429 + 5xx retries via max_retries on OpenAI constructor
+                try:
+                    result = probe.run(model, self.client)
+                except (openai.RateLimitError, openai.APIStatusError) as e:
+                    result = ProbeResult(
+                        success=False,
+                        tool_called=False,
+                        tool_name=None,
+                        parameters=None,
+                        raw_response={"error": str(e)},
+                        latency_ms=0,
+                        error=str(e),
+                    )
 
                 # Classify failure mode
                 result.failure_mode = self._classify_failure(result, probe.tools)
