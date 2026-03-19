@@ -4,72 +4,46 @@
 
 ## Current Headline
 
-### 2025-12-04: The Free Tool-Calling Landscape is More Nuanced Than We Thought
+### 2026-03-19: Half of Free "Tool-Capable" Models Can't Actually Call Tools
 
-**12 of 29 free models don't support tools AT ALL (API returns 404). Of the 17 that do, only 4 reliably work.**
+**8 of 16 free models that advertise tool support score 0% on the basic invocation test. One model scores 100% across all dimensions.**
 
-We tested all 29 free models on OpenRouter. The key finding: **many "0%" results aren't failures - they're impossible**.
+We swept all 16 free models on OpenRouter that claim tool support. The results split cleanly:
 
-| Category | Count | What It Means |
-|----------|------:|---------------|
-| **Tools NOT supported** | 12 | API returns 404 - can't even try |
-| **Tools supported** | 17 | Can theoretically call tools |
-| **Reliable** (100% T0) | 4 | Production-ready |
-| **Partial** (50-99%) | 4 | May work with retries |
-| **Broken** (<50%) | 9 | Supports tools but fails |
+| Category | Count | Models |
+|----------|------:|--------|
+| **Perfect (100% all dimensions)** | 1 | nemotron-3-nano-30b |
+| **Grade A** | 4 | + nemotron-3-super-120b, step-3.5-flash, glm-4.5-air |
+| **Partial (some dimensions work)** | 4 | trinity-large-preview, trinity-mini, nemotron-nano-12b-vl, nemotron-nano-9b-v2 |
+| **Completely broken (0% T0)** | 8 | llama-3.3-70b, minimax-m2.5, mistral-small-3.1, gpt-oss-120b, gpt-oss-20b, qwen3-4b, qwen3-coder, qwen3-next-80b |
 
-### The Working Models
+### The Winner
 
-| Model | T0 | Full Suite | Notes |
-|-------|:--:|:----------:|-------|
-| **kwaipilot/kat-coder-pro:free** | 100% | 100% all | **Only perfect free model** |
-| **x-ai/grok-4.1-fast:free** | 100% | A1 fails | Single-shot only |
-| **nvidia/nemotron-nano-9b-v2:free** | 100%* | - | Improved on retest |
-| **nvidia/nemotron-nano-12b-v2-vl:free** | 67% | - | High variance |
+**nvidia/nemotron-3-nano-30b-a3b:free** — 100% across T0 (invoke), T1 (schema), T2 (selection), A1 (multi-turn), R0 (restraint). The only free model with a perfect score.
 
-*Variance is real - always test your specific use case*
+### The Surprises
 
-### Can't Support Tools (Not Failures)
-
-These 12 models return `404: No endpoints found that support tool use`:
-
-```
-google/gemma-3-*           (5 models)  - Gemma doesn't support tools on OpenRouter
-meta-llama/llama-3.2-3b    (1 model)   - Small LLaMA variant
-moonshotai/kimi-k2         (1 model)   - Provider limitation
-nousresearch/hermes-3      (1 model)   - Provider limitation
-allenai/olmo-3-32b-think   (1 model)   - Provider limitation
-cognitivecomputations/*    (1 model)   - Provider limitation
-tngtech/deepseek-r1t*      (2 models)  - Provider limitation
-```
-
-### Why This Matters
-
-1. **Don't blame the model**: Gemma isn't "bad at tools" - it's not offered with tools on OpenRouter
-2. **Provider != Model**: Same model can have different capabilities on different providers
-3. **Check `supported_parameters`**: OpenRouter API tells you what's actually supported
+- **gpt-oss-120b (0%)**: OpenAI's 120B parameter open model can't call tools at all via OpenRouter's free tier
+- **qwen3-coder (0%)**: Despite being a coding model, zero tool calls
+- **llama-3.3-70b (0%)**: Meta's flagship free model — text responses only
+- **trinity-large-preview**: Weak at T0 (30%) but **100% on multi-turn agency (A1)** — it struggles to start but excels at chaining
 
 ### The Practical Takeaway
 
 ```
-Building with free models?
-├── Check API first: Does it support tools?
-│   └── GET /api/v1/models → supported_parameters includes "tools"
-├── Need reliability: KAT Coder Pro (only 100% all-dimension free model)
-├── Need speed: Nvidia Nemotron (fast, mostly reliable)
-└── Have budget: Claude Haiku ($0.80/1M) beats all free options
+Building with free models on OpenRouter?
+├── Need reliable tool calling: nvidia/nemotron-3-nano-30b-a3b (100% all)
+├── Need the biggest model: nvidia/nemotron-3-super-120b-a12b (Grade A)
+├── Need fast + cheap: stepfun/step-3.5-flash (Grade A)
+└── Avoid: anything by Qwen, Meta, OpenAI, or Mistral in free tier (all 0%)
 ```
 
-[Full results](README.md) | [Raw data](results/) | [API check script](scripts/check_tool_support.py)
+[Full results](results/RESULTS.md) | [Raw data](results/sweep_20260318/) | [Methodology](docs/METHODOLOGY.md)
 
 ---
 
 ## Archive
 
-Headlines move here after new results are published.
+### 2025-12-04: The Free Tool-Calling Landscape is More Nuanced Than We Thought
 
-<!-- Format:
-### YYYY-MM-DD: Headline
-Brief summary of key finding.
-[Full article](articles/YYYY-MM-DD-slug.md)
--->
+12 of 29 free models didn't support tools at all (API 404). Of the 17 that did, only 4 reliably worked. KAT Coder Pro was the only perfect free model. [Full results from Dec 2025](results/)
