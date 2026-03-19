@@ -8,10 +8,10 @@
 ### Sweep Infrastructure
 
 - [x] **SWEEP-01**: Runner handles OpenRouter 429s with backoff and SDK built-in retry
-- [ ] **SWEEP-02**: Sweep can be interrupted and resumed from last completed model/level
+- [x] **SWEEP-02**: Sweep can be interrupted and resumed from last completed model/level
 - [x] **SWEEP-03**: Each API response captures `x-openrouter-provider` header for backend tracking
 - [x] **SWEEP-04**: Failed probes are classified by failure mode (text-instead-of-tool, malformed-JSON, wrong-tool, hallucinated-tool, missing-required-param)
-- [ ] **SWEEP-05**: Sweep results write to timestamped directory (`results/sweep_YYYYMMDD/`)
+- [x] **SWEEP-05**: Sweep results write to timestamped directory (`results/sweep_YYYYMMDD/`)
 
 ### Model Management
 
@@ -82,10 +82,10 @@
 | Requirement | Phase | Status |
 |-------------|-------|--------|
 | SWEEP-01 | Phase 1 | Complete |
-| SWEEP-02 | Phase 1 | Pending |
+| SWEEP-02 | Phase 1 | Complete |
 | SWEEP-03 | Phase 1 | Complete |
 | SWEEP-04 | Phase 1 | Complete |
-| SWEEP-05 | Phase 1 | Pending |
+| SWEEP-05 | Phase 1 | Complete |
 | MODEL-01 | Phase 2 | Pending |
 | MODEL-02 | Phase 2 | Pending |
 | MODEL-03 | Phase 2 | Pending |
