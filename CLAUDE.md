@@ -1,10 +1,10 @@
-# ModelForecast Agent Bootloader v1.0
+# ModelForecast Agent Bootloader v1.1
 
 ## Project Identity
 
-**ModelForecast**: Competitive LLM evaluation platform using CoreWars battles. Tool-calling benchmarks for free LLM models.
+**ModelForecast**: Empirical tool-calling benchmarks for free OpenRouter LLM models.
 
-**Stack**: Pure Python 3.11+ | OpenRouter API | Dagster DAGs | No local GPU inference
+**Stack**: Pure Python 3.11+ | OpenRouter API | Probe sweep runner | Wilson CI statistics | No local GPU inference
 
 **Repository**: github.com/jw409/modelforecast
 
@@ -13,10 +13,10 @@
 ## Architecture Contract
 
 ### What This Project IS
-- OpenRouter API client for LLM tool-calling evaluation
-- Dagster-based DAG orchestration for tournament pipelines
-- CoreWars MARS simulator integration (external binaries)
-- Playwright for browser automation testing
+- OpenRouter API client for LLM tool-calling probe evaluation
+- Probe dimensions: T (tool calling), R (restraint), A (agency)
+- SweepOrchestrator with checkpoint-resume and timestamped output directories
+- ProbeRunner with SDK-managed retry and per-model rate limiting
 
 ### What This Project IS NOT
 - No local GPU inference (no 8765/8888 ports)
@@ -26,9 +26,7 @@
 
 ### Execution Model
 ```
-User Request → Claude Code → Python scripts → OpenRouter API → Results
-                   ↓
-              Dagster DAGs (optional, for tournaments)
+uv run python -m modelforecast sweep → SweepOrchestrator → ProbeRunner → OpenRouter API → results/sweep_YYYYMMDD/
 ```
 
 ---
@@ -41,18 +39,10 @@ User Request → Claude Code → Python scripts → OpenRouter API → Results
 | `src/modelforecast/` | Core package | Read/Write |
 | `tests/` | Test suite | Read/Write |
 | `scripts/` | Utility scripts | Read/Write |
-| `games/` | Game definitions (CoreWars warriors) | Read/Write |
-| `results/` | Tournament outputs | Write |
-| `charts/` | Generated visualizations | Write |
+| `results/` | Sweep outputs (timestamped) | Write |
 | `var/` | Runtime data | Write |
 | `archive/` | Historical data | Read |
 | `docs/` | Documentation | Read/Write |
-
-### External Dependencies
-| Dependency | Purpose | Location |
-|------------|---------|----------|
-| PMARS | CoreWars simulator | `$PMARS_PATH` or `external/pmars` |
-| GPU MARS | Fast GPU simulator | `$GPU_MARS_PATH` or `external/gpu_mars` |
 
 ### Environment
 - **Virtual env**: `.venv/` (project-local)
@@ -64,13 +54,13 @@ User Request → Claude Code → Python scripts → OpenRouter API → Results
 ## Tool Selection Decision Tree
 
 ```
-Task Type                          → Tool Choice
-─────────────────────────────────────────────────
-Run tournament                     → uv run python -m modelforecast
-Run single probe                   → uv run python src/modelforecast/probes/<probe>.py
-Generate charts                    → uv run python scripts/generate_waffle.py
-Run tests                          → uv run pytest tests/
-Dagster pipeline                   → uv run dagster dev (port 3000)
+Task Type                                    → Tool Choice
+──────────────────────────────────────────────────────────
+Run full sweep                               → uv run python -m modelforecast sweep
+Check live free model roster                 → uv run python -m modelforecast sweep --validate-roster
+Resume interrupted sweep                     → uv run python -m modelforecast sweep --resume
+Run tests                                    → uv run pytest tests/
+Lint code                                    → uv run ruff check src/
 ```
 
 ### OpenRouter API Usage
@@ -84,10 +74,10 @@ client = OpenAI(
 )
 ```
 
-**Free models** (prioritize these for development):
-- `google/gemini-2.5-flash-lite-preview-09-2025:free`
+**Free models** (examples — actual sweep fetches live roster dynamically):
 - `qwen/qwen3-32b:free`
 - `meta-llama/llama-4-maverick:free`
+- `x-ai/grok-4.1-fast:free`
 
 ---
 
@@ -111,7 +101,7 @@ result = api_call() or default_value  # Don't do this
 ```python
 from rich.console import Console
 console = Console()
-console.print("[green]Success:[/] Tournament completed")
+console.print("[green]Success:[/] Sweep completed")
 console.print("[red]Error:[/] API rate limited", style="bold")
 ```
 
@@ -143,9 +133,9 @@ Before proposing changes, verify:
 
 These features must always work:
 
-1. **Tournament execution**: `uv run python -m modelforecast` runs without errors
-2. **Test suite passes**: `uv run pytest tests/` all green
-3. **Chart generation**: `scripts/generate_waffle.py` produces valid PNG
+1. **Sweep execution**: `uv run python -m modelforecast sweep --trials 10` runs without errors
+2. **Roster validation**: `uv run python -m modelforecast sweep --validate-roster` shows live free models
+3. **Test suite passes**: `uv run pytest tests/` all green
 4. **OpenRouter connectivity**: API calls succeed with valid key
 
 ### Pre-Commit Verification
@@ -160,9 +150,8 @@ uv run pytest tests/ -x
 ## Reasoning Budget
 
 ### Use Sequential Thinking For:
-- Multi-model tournament strategy design
-- CoreWars warrior optimization algorithms
-- DAG dependency conflict resolution
+- Multi-model sweep strategy design
+- Probe dimension taxonomy decisions
 - Performance regression root cause analysis
 
 ### DO NOT Use Sequential Thinking For:
@@ -172,7 +161,7 @@ uv run pytest tests/ -x
 - Status checks
 
 ### Cost Awareness
-- Development: Use free models (Gemini Flash Lite, Qwen3-32b)
+- Development: Use free models (Qwen3-32b, Llama-4-Maverick)
 - Production benchmarks: Use paid models only when necessary
 - Log all API calls to `var/api_calls.jsonl` for cost tracking
 
@@ -180,10 +169,20 @@ uv run pytest tests/ -x
 
 ## Common Tasks
 
-### Run a Tournament
+### Run a Sweep
 ```bash
 cd /home/jw/dev/modelforecast
-uv run python -m modelforecast --models "gpt-4o-mini,gemini-flash" --rounds 10
+uv run python -m modelforecast sweep --trials 10
+```
+
+### Check Live Model Roster
+```bash
+uv run python -m modelforecast sweep --validate-roster
+```
+
+### Resume Interrupted Sweep
+```bash
+uv run python -m modelforecast sweep --resume
 ```
 
 ### Add a New Probe
@@ -214,9 +213,8 @@ curl -H "Authorization: Bearer $OPENROUTER_API_KEY" \
 ### DO NOT:
 1. **Import external infrastructure** - This project is standalone
 2. **Reference 8765/8888 ports** - No GPU services here
-3. **Use MCP tools** - Direct Python + OpenRouter only
-4. **Create multi-agent coordination** - Single-agent only
-5. **Skip preflight checks** - Validate before running tournaments
+3. **Create multi-agent coordination** - Single-agent only
+4. **Skip preflight checks** - Validate before running sweeps
 
 ### DO:
 1. **Use uv run python** - Always, for reproducibility
@@ -230,13 +228,13 @@ curl -H "Authorization: Bearer $OPENROUTER_API_KEY" \
 
 | Command | Purpose |
 |---------|---------|
-| `uv run python -m modelforecast` | Run tournament |
+| `uv run python -m modelforecast sweep` | Run full sweep |
+| `uv run python -m modelforecast sweep --validate-roster` | Check live free model roster |
+| `uv run python -m modelforecast sweep --resume` | Resume interrupted sweep |
 | `uv run pytest tests/` | Run tests |
 | `uv run ruff check src/` | Lint code |
-| `uv run dagster dev` | Start Dagster UI |
 | `cat README.md` | Project overview |
-| `cat CONTRIBUTING.md` | Contribution guide |
 
 ---
 
-*Last updated: 2025-12-10*
+*Last updated: 2026-03-19*
