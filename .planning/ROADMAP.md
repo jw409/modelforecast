@@ -44,7 +44,11 @@ Plans:
   1. Running the sweep against a stale or nonexistent model ID produces a clear error before any API quota is consumed
   2. The runner auto-discovers all current free models with tool support from the live OpenRouter `/api/v1/models` endpoint
   3. A graveyard section documents models that were tested but are no longer available, with the date they disappeared
-**Plans**: TBD
+**Plans**: 2 plans
+
+Plans:
+- [ ] 02-01-PLAN.md — Fix auto-discovery to tools_only=True, add pre-sweep validation, add --validate-roster flag (MODEL-01, MODEL-02)
+- [ ] 02-02-PLAN.md — Create GRAVEYARD.md and scripts/update_graveyard.py for defunct model tracking (MODEL-03)
 
 ### Phase 3: Codebase and Documentation Cleanup
 **Goal**: The project installs cleanly, runs against the current OpenRouter API, and its documentation reflects reality
@@ -88,7 +92,7 @@ Note: Phases 2 and 3 can run in parallel after Phase 1 completes (no dependency 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Sweep Infrastructure | 2/2 | Complete   | 2026-03-19 |
-| 2. Model Roster Validation | 0/TBD | Not started | - |
+| 2. Model Roster Validation | 0/2 | Not started | - |
 | 3. Codebase and Documentation Cleanup | 0/TBD | Not started | - |
 | 4. Fresh Sweep Execution | 0/TBD | Not started | - |
 | 5. Consumer Output | 0/TBD | Not started | - |
