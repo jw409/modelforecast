@@ -21,15 +21,18 @@ class RateLimiter:
         self._jitter_range = jitter_range
 
     def acquire(self, model: str) -> None:
-        """Block until the rate limit interval has passed for this model.
+        """Block until the rate limit interval has passed.
+
+        Uses a global bucket (not per-model) because OpenRouter's free tier
+        rate limit is account-wide, not per-model.
 
         Args:
-            model: Model identifier used as per-model bucket key
+            model: Model identifier (kept for API compat, not used as bucket key)
         """
         now = time.time()
-        last = self._last_call.get(model, 0.0)
+        last = self._last_call.get("__global__", 0.0)
         wait = self._min_interval - (now - last)
         if wait > 0:
             jitter = random.uniform(0, self._jitter_range)
             time.sleep(wait + jitter)
-        self._last_call[model] = time.time()
+        self._last_call["__global__"] = time.time()

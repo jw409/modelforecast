@@ -59,7 +59,7 @@ class ProbeRunner:
             api_key=api_key,
             max_retries=max_retries,
         )
-        self.rate_limiter = RateLimiter(calls_per_minute=8)
+        self.rate_limiter = RateLimiter(calls_per_minute=6)
 
         # Validate and set models
         if models:
