@@ -30,7 +30,11 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. The runner retries 429 responses with backoff and does not fail the sweep on transient errors
   4. Failed probes are stored with a classified failure mode (text-instead-of-tool, malformed-JSON, wrong-tool, hallucinated-tool, missing-required-param)
   5. Results are written to a timestamped directory (`results/sweep_YYYYMMDD/`) with a manifest file
-**Plans**: TBD
+**Plans**: 2 plans
+
+Plans:
+- [ ] 01-01-PLAN.md — Runner hardening: RateLimiter, failure classification, provider header storage (SWEEP-01, SWEEP-03, SWEEP-04)
+- [ ] 01-02-PLAN.md — Sweep orchestration: SweepOrchestrator with checkpoint-resume and timestamped output (SWEEP-02, SWEEP-05)
 
 ### Phase 2: Model Roster Validation
 **Goal**: Every model ID used in the sweep is confirmed live on OpenRouter; defunct models are documented rather than silently skipped
@@ -83,7 +87,7 @@ Note: Phases 2 and 3 can run in parallel after Phase 1 completes (no dependency 
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Sweep Infrastructure | 0/TBD | Not started | - |
+| 1. Sweep Infrastructure | 0/2 | Not started | - |
 | 2. Model Roster Validation | 0/TBD | Not started | - |
 | 3. Codebase and Documentation Cleanup | 0/TBD | Not started | - |
 | 4. Fresh Sweep Execution | 0/TBD | Not started | - |
