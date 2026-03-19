@@ -1,23 +1,79 @@
 {
   "metadata": {
     "version": "0.1.0",
-    "generated_at": "2026-02-07T02:37:09.328740+00:00",
+    "generated_at": "2026-02-24T11:55:41.706526+00:00",
     "total_models": 1,
-    "total_levels": 1
+    "total_levels": 5
   },
   "results": [
     {
-      "submission_id": "sub_d34caf853f27",
-      "timestamp": "2026-02-07T02:37:08.895063+00:00",
-      "contributor": "unknown",
-      "model": "moonshotai/kimi-k2:free",
+      "submission_id": "sub_8cbbb7514049",
+      "timestamp": "2026-02-24T08:55:43.782449+00:00",
+      "contributor": "jw409",
+      "model": "nvidia/nemotron-3-nano-30b-a3b:free",
       "level": 0,
+      "rate": 0.549,
+      "wilson_ci_95": [
+        0.5180298338358857,
+        0.5795951301026481
+      ],
+      "trials": 1000,
+      "successes": 549
+    },
+    {
+      "submission_id": "sub_1562aed6d892",
+      "timestamp": "2026-02-24T09:29:09.413473+00:00",
+      "contributor": "jw409",
+      "model": "nvidia/nemotron-3-nano-30b-a3b:free",
+      "level": 1,
+      "rate": 0.542,
+      "wilson_ci_95": [
+        0.5110172029772966,
+        0.5726613375414467
+      ],
+      "trials": 1000,
+      "successes": 542
+    },
+    {
+      "submission_id": "sub_b3f6c23ae49d",
+      "timestamp": "2026-02-24T10:02:45.036026+00:00",
+      "contributor": "jw409",
+      "model": "nvidia/nemotron-3-nano-30b-a3b:free",
+      "level": 2,
+      "rate": 0.773,
+      "wilson_ci_95": [
+        0.746020700386552,
+        0.797889812985279
+      ],
+      "trials": 1000,
+      "successes": 773
+    },
+    {
+      "submission_id": "sub_8754dd3e1dd2",
+      "timestamp": "2026-02-24T10:50:43.167630+00:00",
+      "contributor": "jw409",
+      "model": "nvidia/nemotron-3-nano-30b-a3b:free",
+      "level": 3,
+      "rate": 0.035,
+      "wilson_ci_95": [
+        0.025272112485012703,
+        0.0482869032003305
+      ],
+      "trials": 1000,
+      "successes": 35
+    },
+    {
+      "submission_id": "sub_cd05b1a08b69",
+      "timestamp": "2026-02-24T11:31:29.244749+00:00",
+      "contributor": "jw409",
+      "model": "nvidia/nemotron-3-nano-30b-a3b:free",
+      "level": 4,
       "rate": 0.0,
       "wilson_ci_95": [
         0.0,
-        0.43449149475208104
+        0.0038268985863905225
       ],
-      "trials": 5,
+      "trials": 1000,
       "successes": 0
     }
   ]
