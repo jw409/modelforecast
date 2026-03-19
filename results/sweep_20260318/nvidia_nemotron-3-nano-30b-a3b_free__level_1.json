@@ -1,0 +1,1176 @@
+{
+  "submission_id": "sub_33a391dd6a61",
+  "timestamp": "2026-03-19T05:44:47.229610+00:00",
+  "contributor": "unknown",
+  "environment": {
+    "python_version": "3.11.13",
+    "openai_sdk_version": "2.8.1",
+    "os": "Linux 6.6.87.2-microsoft-standard-WSL2",
+    "env_hash": "sha256:43c15d47fdb31d3498555a3471beb9a2f13e583093f6878d70e5a80a227ad1c8"
+  },
+  "probes": {
+    "model": "nvidia/nemotron-3-nano-30b-a3b:free",
+    "level": 1,
+    "trials": [
+      {
+        "openrouter_request_id": "gen-1773899098-GfLB2FqpS46n3ugRANwi",
+        "openrouter_provider": "Nvidia",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:5a946d3c717e9dea6a038cd9ab4c7d77e433ce83041d8b83ed685d3fadebc586",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 778,
+        "failure_mode": null,
+        "request": {
+          "model": "nvidia/nemotron-3-nano-30b-a3b:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Search for authentication files, limit results to 5"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773899098-GfLB2FqpS46n3ugRANwi",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": null,
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_eab73a9529e74f229c83c4a1",
+                    "function": {
+                      "arguments": "{\"query\": \"authentication files\", \"limit\": 5}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "Okay, the user wants to search for authentication files and limit the results to 5. Let me check the available tools. There's a search function that takes a query and a limit. The query should be \"authentication files\" and the limit is 5. I need to make sure the parameters are correctly formatted. The function requires the query parameter, and limit is optional but here it's specified as 5. So I'll structure the tool call with those parameters.\n",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "Okay, the user wants to search for authentication files and limit the results to 5. Let me check the available tools. There's a search function that takes a query and a limit. The query should be \"authentication files\" and the limit is 5. I need to make sure the parameters are correctly formatted. The function requires the query parameter, and limit is optional but here it's specified as 5. So I'll structure the tool call with those parameters.\n",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1773899098,
+          "model": "nvidia/nemotron-3-nano-30b-a3b:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 133,
+            "prompt_tokens": 315,
+            "total_tokens": 448,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 113,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Nvidia"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773899109-3Sx1xxrs7ngnjXgRiQud",
+        "openrouter_provider": "Nvidia",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:e0b59c84c5a5e3cc01ed1829f0f7aacf89b095a0141f00279dca0d6a6d54b99c",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 1429,
+        "failure_mode": null,
+        "request": {
+          "model": "nvidia/nemotron-3-nano-30b-a3b:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Search for authentication files, limit results to 5"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773899109-3Sx1xxrs7ngnjXgRiQud",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": null,
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_89686d2ec4564fefb0609705",
+                    "function": {
+                      "arguments": "{\"query\": \"authentication files\", \"limit\": 5}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "Okay, the user wants to search for authentication files and limit the results to 5. Let me check the available tools. There's a search function that takes a query and a limit. The query should be \"authentication files\" and the limit is 5. I need to make sure the parameters are correctly formatted. The function requires the query, and limit is optional but here it's specified as 5. So I'll call the search function with those parameters.\n",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "Okay, the user wants to search for authentication files and limit the results to 5. Let me check the available tools. There's a search function that takes a query and a limit. The query should be \"authentication files\" and the limit is 5. I need to make sure the parameters are correctly formatted. The function requires the query, and limit is optional but here it's specified as 5. So I'll call the search function with those parameters.\n",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1773899109,
+          "model": "nvidia/nemotron-3-nano-30b-a3b:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 132,
+            "prompt_tokens": 315,
+            "total_tokens": 447,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 111,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Nvidia"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773899120-HkKBFg75x44yHsBWBMXd",
+        "openrouter_provider": "Nvidia",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:18d3a7c4b4fc7ed67962155328da33af5fa4d4c422967a802e4564dc08588229",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 884,
+        "failure_mode": null,
+        "request": {
+          "model": "nvidia/nemotron-3-nano-30b-a3b:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Search for authentication files, limit results to 5"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773899120-HkKBFg75x44yHsBWBMXd",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": null,
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_dbd1a1eff80e46cea11b1cdd",
+                    "function": {
+                      "arguments": "{\"query\": \"authentication\", \"limit\": 5}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "Okay, the user wants to search for authentication files and limit the results to 5. Let me check the available tools. There's a search function that takes a query and a limit. The query should be \"authentication\" and the limit is 5. I need to make sure the parameters are correctly formatted. The function requires the query, and limit is optional but here it's specified as 5. So I'll call the search function with those parameters.\n",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "Okay, the user wants to search for authentication files and limit the results to 5. Let me check the available tools. There's a search function that takes a query and a limit. The query should be \"authentication\" and the limit is 5. I need to make sure the parameters are correctly formatted. The function requires the query, and limit is optional but here it's specified as 5. So I'll call the search function with those parameters.\n",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1773899120,
+          "model": "nvidia/nemotron-3-nano-30b-a3b:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 130,
+            "prompt_tokens": 315,
+            "total_tokens": 445,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 110,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Nvidia"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773899131-4B8hrj0G3VyWpezs27q3",
+        "openrouter_provider": "Nvidia",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:e88d02ab330193ff5b2eb5688634b33153eeb96e5aedae0bf63df99e1533cb3d",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 3073,
+        "failure_mode": null,
+        "request": {
+          "model": "nvidia/nemotron-3-nano-30b-a3b:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Search for authentication files, limit results to 5"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773899131-4B8hrj0G3VyWpezs27q3",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": null,
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_b6e27f0be24c47a0b756cad2",
+                    "function": {
+                      "arguments": "{\"query\": \"authentication\", \"limit\": 5}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "Okay, the user wants to search for authentication files and limit the results to 5. Let me check the available tools. There's a search function that takes a query and a limit. The query should be \"authentication\" and the limit is 5. I need to make sure the parameters are correctly formatted. The function requires the query parameter, and limit is optional but here it's specified as 5. So I'll call the search function with those arguments.\n",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "Okay, the user wants to search for authentication files and limit the results to 5. Let me check the available tools. There's a search function that takes a query and a limit. The query should be \"authentication\" and the limit is 5. I need to make sure the parameters are correctly formatted. The function requires the query parameter, and limit is optional but here it's specified as 5. So I'll call the search function with those arguments.\n",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1773899131,
+          "model": "nvidia/nemotron-3-nano-30b-a3b:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 131,
+            "prompt_tokens": 315,
+            "total_tokens": 446,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 112,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Nvidia"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773899140-Sm8SauVJvgszV42Q8d14",
+        "openrouter_provider": "Nvidia",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:943a11190cf3aa3992a8c7ab0c15abfdd51f2717249bad02a93ab79e38f960b5",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 790,
+        "failure_mode": null,
+        "request": {
+          "model": "nvidia/nemotron-3-nano-30b-a3b:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Search for authentication files, limit results to 5"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773899140-Sm8SauVJvgszV42Q8d14",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": null,
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_7734bc5d952a472c85549001",
+                    "function": {
+                      "arguments": "{\"query\": \"authentication\", \"limit\": 5}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "Okay, the user wants to search for authentication files and limit the results to 5. Let me check the available tools. There's a search function that takes a query and a limit. The query should be \"authentication\" and the limit is 5. I need to make sure the parameters are correctly formatted. The required parameter is the query, and limit is optional but here it's specified as 5. So I'll call the search function with those arguments.\n",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "Okay, the user wants to search for authentication files and limit the results to 5. Let me check the available tools. There's a search function that takes a query and a limit. The query should be \"authentication\" and the limit is 5. I need to make sure the parameters are correctly formatted. The required parameter is the query, and limit is optional but here it's specified as 5. So I'll call the search function with those arguments.\n",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1773899140,
+          "model": "nvidia/nemotron-3-nano-30b-a3b:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 131,
+            "prompt_tokens": 315,
+            "total_tokens": 446,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 110,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Nvidia"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773899151-SEa6S2evo9w0AjpFvNCz",
+        "openrouter_provider": "Nvidia",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:12f9d15eb802e384ee811d5db2688a09c5cb600aecef931feefdd5f3dc1d4cec",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 967,
+        "failure_mode": null,
+        "request": {
+          "model": "nvidia/nemotron-3-nano-30b-a3b:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Search for authentication files, limit results to 5"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773899151-SEa6S2evo9w0AjpFvNCz",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": null,
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_d1816a07534a48719d4824bd",
+                    "function": {
+                      "arguments": "{\"query\": \"authentication files\", \"limit\": 5}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "Okay, the user wants to search for authentication files and limit the results to 5. Let me check the available tools. There's a search function that takes a query and a limit. The query should be \"authentication files\" and the limit is 5. I need to make sure the parameters are correctly formatted. The function requires the query, and limit is optional but here it's specified as 5. So I'll structure the tool call with those parameters.\n",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "Okay, the user wants to search for authentication files and limit the results to 5. Let me check the available tools. There's a search function that takes a query and a limit. The query should be \"authentication files\" and the limit is 5. I need to make sure the parameters are correctly formatted. The function requires the query, and limit is optional but here it's specified as 5. So I'll structure the tool call with those parameters.\n",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1773899151,
+          "model": "nvidia/nemotron-3-nano-30b-a3b:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 132,
+            "prompt_tokens": 315,
+            "total_tokens": 447,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 111,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Nvidia"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773899162-45th3jQhEO2ZoQN5Njpp",
+        "openrouter_provider": "Nvidia",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:7c449b2fc03ce53ebb6e76e59217bf14fb1b779c6861e5405cb940f5ec23de52",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 1150,
+        "failure_mode": null,
+        "request": {
+          "model": "nvidia/nemotron-3-nano-30b-a3b:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Search for authentication files, limit results to 5"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773899162-45th3jQhEO2ZoQN5Njpp",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": null,
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_1f47a76d8a494d25a9517a37",
+                    "function": {
+                      "arguments": "{\"query\": \"authentication\", \"limit\": 5}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "Okay, the user wants to search for authentication files and limit the results to 5. Let me check the available tools. There's a search function that takes a query and a limit. The query should be \"authentication\" and the limit is 5. I need to make sure the parameters are correctly formatted. The function requires the query, and limit is optional but here it's specified as 5. So I'll call the search function with those parameters.\n",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "Okay, the user wants to search for authentication files and limit the results to 5. Let me check the available tools. There's a search function that takes a query and a limit. The query should be \"authentication\" and the limit is 5. I need to make sure the parameters are correctly formatted. The function requires the query, and limit is optional but here it's specified as 5. So I'll call the search function with those parameters.\n",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1773899162,
+          "model": "nvidia/nemotron-3-nano-30b-a3b:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 130,
+            "prompt_tokens": 315,
+            "total_tokens": 445,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 110,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Nvidia"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773899173-ut0BkiM3l6uFX3Xjcm92",
+        "openrouter_provider": "Nvidia",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:4fba12996254c451b30ab75b89b3eaf451fac8236772064947b6ae66206f3570",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 939,
+        "failure_mode": null,
+        "request": {
+          "model": "nvidia/nemotron-3-nano-30b-a3b:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Search for authentication files, limit results to 5"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773899173-ut0BkiM3l6uFX3Xjcm92",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": null,
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_d492b26dfabf4883b5531b64",
+                    "function": {
+                      "arguments": "{\"query\": \"authentication files\", \"limit\": 5}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "Okay, the user wants to search for authentication files and limit the results to 5. Let me check the available tools. There's a search function that takes a query and a limit. The required parameter is the query, and the limit is optional. Since the user specified \"authentication files\" as the query and wants a limit of 5, I should structure the tool call with those parameters. I need to make sure the JSON is correctly formatted with the query and limit. Let me double-check the function's parameters: yes, \"query\" is required, and \"limit\" is an integer. So the arguments should be {\"query\": \"authentication files\", \"limit\": 5}. That should do it.\n",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "Okay, the user wants to search for authentication files and limit the results to 5. Let me check the available tools. There's a search function that takes a query and a limit. The required parameter is the query, and the limit is optional. Since the user specified \"authentication files\" as the query and wants a limit of 5, I should structure the tool call with those parameters. I need to make sure the JSON is correctly formatted with the query and limit. Let me double-check the function's parameters: yes, \"query\" is required, and \"limit\" is an integer. So the arguments should be {\"query\": \"authentication files\", \"limit\": 5}. That should do it.\n",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1773899173,
+          "model": "nvidia/nemotron-3-nano-30b-a3b:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 183,
+            "prompt_tokens": 315,
+            "total_tokens": 498,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 164,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Nvidia"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773899184-rr1XWerBgvooe00GmqdR",
+        "openrouter_provider": "Nvidia",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:87f8f1157005d2a9b552afaf6dd897de6a44017ec40e54ee48fb25113ae00312",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 1181,
+        "failure_mode": null,
+        "request": {
+          "model": "nvidia/nemotron-3-nano-30b-a3b:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Search for authentication files, limit results to 5"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773899184-rr1XWerBgvooe00GmqdR",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": null,
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_eb339d3d35e6466abc3c60f8",
+                    "function": {
+                      "arguments": "{\"query\": \"authentication files\", \"limit\": 5}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "Okay, the user wants to search for authentication files and limit the results to 5. Let me check the available tools. There's a search function that takes a query and a limit. The required parameter is the query, and limit is optional. Since they specified to limit to 5, I should include that. The query should be \"authentication files\". So I need to call the search function with query \"authentication files\" and limit 5. Let me make sure the parameters are correctly formatted. The function expects a JSON object with \"query\" and \"limit\". Alright, that should do it.\n",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "Okay, the user wants to search for authentication files and limit the results to 5. Let me check the available tools. There's a search function that takes a query and a limit. The required parameter is the query, and limit is optional. Since they specified to limit to 5, I should include that. The query should be \"authentication files\". So I need to call the search function with query \"authentication files\" and limit 5. Let me make sure the parameters are correctly formatted. The function expects a JSON object with \"query\" and \"limit\". Alright, that should do it.\n",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1773899184,
+          "model": "nvidia/nemotron-3-nano-30b-a3b:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 162,
+            "prompt_tokens": 315,
+            "total_tokens": 477,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 144,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Nvidia"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773899195-rka7z2otbs6I7MjKWoHy",
+        "openrouter_provider": "Nvidia",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:5a280d8227d11a01890e07604f9934ddcea7b23910650c5a7303a5860783e732",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 953,
+        "failure_mode": null,
+        "request": {
+          "model": "nvidia/nemotron-3-nano-30b-a3b:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Search for authentication files, limit results to 5"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773899195-rka7z2otbs6I7MjKWoHy",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": null,
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_9a92543961184b8e94b24f4f",
+                    "function": {
+                      "arguments": "{\"query\": \"authentication\", \"limit\": 5}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "Okay, the user wants to search for authentication files and limit the results to 5. Let me check the available tools. There's a search function that takes a query and a limit. The query should be \"authentication\" and the limit is 5. I need to make sure the parameters are correctly formatted. The function requires the query, and limit is optional but here it's specified as 5. So I'll call the search function with those parameters.\n",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "Okay, the user wants to search for authentication files and limit the results to 5. Let me check the available tools. There's a search function that takes a query and a limit. The query should be \"authentication\" and the limit is 5. I need to make sure the parameters are correctly formatted. The function requires the query, and limit is optional but here it's specified as 5. So I'll call the search function with those parameters.\n",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1773899195,
+          "model": "nvidia/nemotron-3-nano-30b-a3b:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 130,
+            "prompt_tokens": 315,
+            "total_tokens": 445,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 110,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Nvidia"
+        }
+      }
+    ]
+  },
+  "summary": {
+    "successes": 10,
+    "trials": 10,
+    "rate": 1.0,
+    "wilson_ci_95": [
+      0.7224598312333834,
+      1.0
+    ]
+  }
+}

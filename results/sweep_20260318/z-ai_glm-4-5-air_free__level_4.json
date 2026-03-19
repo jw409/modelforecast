@@ -1,0 +1,1296 @@
+{
+  "submission_id": "sub_adcad9a71075",
+  "timestamp": "2026-03-19T08:22:46.018015+00:00",
+  "contributor": "unknown",
+  "environment": {
+    "python_version": "3.11.13",
+    "openai_sdk_version": "2.8.1",
+    "os": "Linux 6.6.87.2-microsoft-standard-WSL2",
+    "env_hash": "sha256:43c15d47fdb31d3498555a3471beb9a2f13e583093f6878d70e5a80a227ad1c8"
+  },
+  "probes": {
+    "model": "z-ai/glm-4.5-air:free",
+    "level": 4,
+    "trials": [
+      {
+        "openrouter_request_id": "gen-1773908573-7TrJqusPRgYFzsoUTQVW",
+        "openrouter_provider": "Z.AI",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:d28855793301836bfd079128f80586524fe41022b0fc038c323c25c207518edb",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 31170,
+        "failure_mode": null,
+        "request": {
+          "model": "z-ai/glm-4.5-air:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773908573-7TrJqusPRgYFzsoUTQVW",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I don't have access to weather tools or APIs to provide current weather information. The tools I have available are for searching and reading files in a codebase, but not for retrieving weather data.\n\nIf you need weather information, you would need to check a weather service like:\n- Weather.com\n- Your local weather service website\n- Weather apps on your phone\n- Search engines with weather queries\n\nIs there anything else I can help you with using the file system tools I have available?",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "\nThe user is asking about the weather today. However, looking at the available tools, I have:\n\n1. `search` - for searching files in the codebase\n2. `read_file` - for reading specific file contents\n3. `list_directory` - for listing files in a directory\n\nNone of these tools are designed to get weather information. They are all related to file system operations and codebase analysis. I don't have access to any weather API or tools that can provide current weather information.\n\nI should let the user know that I don't have access to weather tools and cannot provide current weather information.",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "\nThe user is asking about the weather today. However, looking at the available tools, I have:\n\n1. `search` - for searching files in the codebase\n2. `read_file` - for reading specific file contents\n3. `list_directory` - for listing files in a directory\n\nNone of these tools are designed to get weather information. They are all related to file system operations and codebase analysis. I don't have access to any weather API or tools that can provide current weather information.\n\nI should let the user know that I don't have access to weather tools and cannot provide current weather information.",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "stop"
+            }
+          ],
+          "created": 1773908573,
+          "model": "z-ai/glm-4.5-air:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 228,
+            "prompt_tokens": 291,
+            "total_tokens": 519,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 126,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 43,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Z.AI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773908604-Ay0GXBARM1WXbPX4cile",
+        "openrouter_provider": "Z.AI",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:964d78dfdab96035beb88f234928e79da92f4cc09df9b4cd6653f4b6109dc5cf",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 20590,
+        "failure_mode": null,
+        "request": {
+          "model": "z-ai/glm-4.5-air:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773908604-Ay0GXBARM1WXbPX4cile",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I don't have access to weather tools or APIs that can provide current weather information. The tools I have available are for searching and reading files in a codebase, but not for getting weather data.\n\nTo get today's weather, you would need to:\n- Use a weather app on your phone\n- Check a weather website like weather.com, accuweather.com, or your local weather service\n- Use a voice assistant like Siri, Google Assistant, or Alexa\n- Use a command-line weather tool if you have one installed\n\nIs there anything else I can help you with using the file system tools I have available?",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "\nThe user is asking about the weather today. However, looking at the available tools, I have:\n\n1. `search` - for searching files in the codebase\n2. `read_file` - for reading specific file contents\n3. `list_directory` - for listing files in a directory\n\nNone of these tools are designed to get weather information. They are all related to file system operations and codebase analysis. I don't have access to any weather API or tools that can provide current weather information.\n\nI should let the user know that I don't have access to weather tools and cannot provide current weather information.",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "\nThe user is asking about the weather today. However, looking at the available tools, I have:\n\n1. `search` - for searching files in the codebase\n2. `read_file` - for reading specific file contents\n3. `list_directory` - for listing files in a directory\n\nNone of these tools are designed to get weather information. They are all related to file system operations and codebase analysis. I don't have access to any weather API or tools that can provide current weather information.\n\nI should let the user know that I don't have access to weather tools and cannot provide current weather information.",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "stop"
+            }
+          ],
+          "created": 1773908604,
+          "model": "z-ai/glm-4.5-air:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 255,
+            "prompt_tokens": 291,
+            "total_tokens": 546,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 126,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 290,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Z.AI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773908622-9exVosvsPc0ELIiHSWt1",
+        "openrouter_provider": "Z.AI",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:8e9257cc7ebf21e48dc84cf3fce80f566b6739f5bc2098d4dfc071ab978eb7db",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 10420,
+        "failure_mode": null,
+        "request": {
+          "model": "z-ai/glm-4.5-air:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773908622-9exVosvsPc0ELIiHSWt1",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I don't have access to weather information through the available tools. The functions I have access to are for searching and reading files in a codebase, but there's no weather API or tool available to me.\n\nIf you need weather information, you would need to check a weather website, app, or use a dedicated weather service. Is there anything else I can help you with regarding the codebase or file operations?",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "\nThe user is asking about the weather today. However, looking at the available functions, I have:\n1. search - for searching files in the codebase\n2. read_file - for reading specific file contents\n3. list_directory - for listing files in a directory\n\nNone of these functions can provide weather information. They are all related to file system operations and codebase searching. I don't have access to any weather API or tools that can get current weather data.\n\nI should let the user know that I don't have access to weather information through the available tools.",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "\nThe user is asking about the weather today. However, looking at the available functions, I have:\n1. search - for searching files in the codebase\n2. read_file - for reading specific file contents\n3. list_directory - for listing files in a directory\n\nNone of these functions can provide weather information. They are all related to file system operations and codebase searching. I don't have access to any weather API or tools that can get current weather data.\n\nI should let the user know that I don't have access to weather information through the available tools.",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "stop"
+            }
+          ],
+          "created": 1773908622,
+          "model": "z-ai/glm-4.5-air:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 203,
+            "prompt_tokens": 291,
+            "total_tokens": 494,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 116,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 283,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Z.AI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773908633-7sNIy45LoMuMQfIGAqzr",
+        "openrouter_provider": "Z.AI",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:583b7709482dd1a32e8abb3498761f35fc2fc97d252fb8b4701fd160019483fa",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 37631,
+        "failure_mode": null,
+        "request": {
+          "model": "z-ai/glm-4.5-air:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773908633-7sNIy45LoMuMQfIGAqzr",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I don't have access to weather information tools. The tools I have available are for searching and reading files in a codebase, but I cannot retrieve current weather data. \n\nTo get today's weather, you would need to check a weather service like:\n- Weather.com\n- Your local weather service website\n- A weather app on your phone\n- Search engines like Google or Bing (just type \"weather\" and they'll show your local weather)\n\nIs there anything else I can help you with using the codebase tools I have available?",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "\nThe user is asking about the weather today. However, looking at the available tools, I have:\n1. search - for searching files in the codebase\n2. read_file - for reading specific file contents\n3. list_directory - for listing files in a directory\n\nNone of these tools can provide weather information. These tools are for working with a codebase/filesystem, not for getting real-time weather data. I should let the user know that I don't have access to weather information tools.",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "\nThe user is asking about the weather today. However, looking at the available tools, I have:\n1. search - for searching files in the codebase\n2. read_file - for reading specific file contents\n3. list_directory - for listing files in a directory\n\nNone of these tools can provide weather information. These tools are for working with a codebase/filesystem, not for getting real-time weather data. I should let the user know that I don't have access to weather information tools.",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "stop"
+            }
+          ],
+          "created": 1773908633,
+          "model": "z-ai/glm-4.5-air:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 215,
+            "prompt_tokens": 291,
+            "total_tokens": 506,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 102,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 290,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Z.AI"
+        }
+      },
+      {
+        "openrouter_request_id": null,
+        "openrouter_provider": null,
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "tool_called": false,
+        "schema_valid": false,
+        "latency_ms": 0,
+        "failure_mode": "text-instead-of-tool",
+        "request": {
+          "model": "z-ai/glm-4.5-air:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        }
+      },
+      {
+        "openrouter_request_id": null,
+        "openrouter_provider": null,
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "tool_called": false,
+        "schema_valid": false,
+        "latency_ms": 0,
+        "failure_mode": "text-instead-of-tool",
+        "request": {
+          "model": "z-ai/glm-4.5-air:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773908693-dhLUEwd6fHIu8WaimNgL",
+        "openrouter_provider": "Z.AI",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:133f44a6b2da93c0a8abb5d91f9ee88b6d5cab4e32b01d6083e0a7e2748ededc",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 13655,
+        "failure_mode": null,
+        "request": {
+          "model": "z-ai/glm-4.5-air:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773908693-dhLUEwd6fHIu8WaimNgL",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I don't have access to real-time weather data or tools that can provide current weather information. The tools I have available are for searching and reading files in a codebase, but not for accessing weather services.\n\nTo get today's weather, you could:\n- Check a weather website like weather.com, weather.gov, or your local weather service\n- Use a weather app on your phone\n- Use a voice assistant like Siri, Google Assistant, or Alexa\n- Search \"weather today\" in your web browser\n\nIs there anything else I can help you with using the codebase tools I have available?",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "\nThe user is asking about the weather today. However, I don't have any tools available that can provide weather information. The tools I have are:\n1. search - for searching files in the codebase\n2. read_file - for reading specific file contents\n3. list_directory - for listing files in a directory\n\nNone of these tools can access real-time weather data or provide weather information. I should let the user know that I don't have access to weather data and suggest alternative ways they could get this information.",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "\nThe user is asking about the weather today. However, I don't have any tools available that can provide weather information. The tools I have are:\n1. search - for searching files in the codebase\n2. read_file - for reading specific file contents\n3. list_directory - for listing files in a directory\n\nNone of these tools can access real-time weather data or provide weather information. I should let the user know that I don't have access to weather data and suggest alternative ways they could get this information.",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "stop"
+            }
+          ],
+          "created": 1773908693,
+          "model": "z-ai/glm-4.5-air:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 231,
+            "prompt_tokens": 291,
+            "total_tokens": 522,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 106,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 290,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Z.AI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773908707-PBbI7762jhK5ax51ed1T",
+        "openrouter_provider": "Z.AI",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:4803037a347eda752d02b02c8e96a66a3860863161e71f2360a7036b6b00a85a",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 13601,
+        "failure_mode": null,
+        "request": {
+          "model": "z-ai/glm-4.5-air:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773908707-PBbI7762jhK5ax51ed1T",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I don't have access to weather information through the available tools. The functions I have are for searching and reading files in a codebase, but there's no weather API or tool available to me.\n\nTo get current weather information, you would need to:\n- Check a weather website or app\n- Use a weather service API\n- Look out your window!\n\nIs there anything else I can help you with regarding the codebase or file operations?",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "\nThe user is asking about the weather today. However, looking at the available tools, I have:\n1. search - for searching files in the codebase\n2. read_file - for reading specific file contents\n3. list_directory - for listing files in a directory\n\nNone of these tools can provide weather information. They are all related to file system operations and codebase searching. I don't have access to any weather API or tools that can fetch current weather data.\n\nI should let the user know that I don't have access to weather information through the available tools.",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "\nThe user is asking about the weather today. However, looking at the available tools, I have:\n1. search - for searching files in the codebase\n2. read_file - for reading specific file contents\n3. list_directory - for listing files in a directory\n\nNone of these tools can provide weather information. They are all related to file system operations and codebase searching. I don't have access to any weather API or tools that can fetch current weather data.\n\nI should let the user know that I don't have access to weather information through the available tools.",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "stop"
+            }
+          ],
+          "created": 1773908707,
+          "model": "z-ai/glm-4.5-air:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 209,
+            "prompt_tokens": 291,
+            "total_tokens": 500,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 116,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 290,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Z.AI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773908718-CqceV0FrybsNhAPIoxZX",
+        "openrouter_provider": "Z.AI",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:f8d0270def6cfb19adf143e8267283e23dc1a2fa34e6098a64f97a1894a69914",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 41933,
+        "failure_mode": null,
+        "request": {
+          "model": "z-ai/glm-4.5-air:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773908718-CqceV0FrybsNhAPIoxZX",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I don't have access to weather-related tools or APIs to provide you with current weather information. The tools available to me are for searching and reading files in a codebase, not for retrieving weather data.\n\nTo get today's weather, you would need to:\n- Check a weather website like weather.com, weather.gov, or your local weather service\n- Use a weather app on your phone\n- Use a voice assistant like Siri or Google Assistant\n- Use a command-line weather tool if you have one installed\n\nIs there anything else I can help you with using the file system tools I have available?",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "\nThe user is asking about the weather today. However, looking at the available tools, I have:\n\n1. search - for searching files in the codebase\n2. read_file - for reading specific file contents\n3. list_directory - for listing files in a directory\n\nNone of these tools are designed to get weather information. They are all related to file system operations and codebase searching. I don't have access to any weather API or tools that can provide current weather information.\n\nI should let the user know that I don't have access to weather-related tools and cannot provide current weather information.",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "\nThe user is asking about the weather today. However, looking at the available tools, I have:\n\n1. search - for searching files in the codebase\n2. read_file - for reading specific file contents\n3. list_directory - for listing files in a directory\n\nNone of these tools are designed to get weather information. They are all related to file system operations and codebase searching. I don't have access to any weather API or tools that can provide current weather information.\n\nI should let the user know that I don't have access to weather-related tools and cannot provide current weather information.",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "stop"
+            }
+          ],
+          "created": 1773908718,
+          "model": "z-ai/glm-4.5-air:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 246,
+            "prompt_tokens": 291,
+            "total_tokens": 537,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 121,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 290,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Z.AI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773908760-WPb6rd4khIGVreTae3CT",
+        "openrouter_provider": "Z.AI",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:a6eb9c6744ec7d767e2b2508aff112a11f506d9173602b2964e9e7fbebeafe8f",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 43467,
+        "failure_mode": null,
+        "request": {
+          "model": "z-ai/glm-4.5-air:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773908760-WPb6rd4khIGVreTae3CT",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I don't have access to weather tools or real-time weather data through my available functions. The tools I have are for searching and reading files in a codebase, but not for retrieving weather information.\n\nTo get today's weather, you could:\n- Check a weather website like weather.com, weather.gov, or your local weather service\n- Use a weather app on your phone\n- Use a voice assistant like Siri or Google Assistant\n- Search \"weather today\" in your web browser\n\nIs there anything else I can help you with using the codebase tools I have available?",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "\nThe user is asking about the weather today. However, I don't have any tools that can provide weather information. The available tools are:\n1. search - for searching files in the codebase\n2. read_file - for reading file contents\n3. list_directory - for listing directory contents\n\nNone of these tools can access weather data or provide current weather information. I should let the user know that I don't have access to weather tools and suggest alternative ways they could get weather information.",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "\nThe user is asking about the weather today. However, I don't have any tools that can provide weather information. The available tools are:\n1. search - for searching files in the codebase\n2. read_file - for reading file contents\n3. list_directory - for listing directory contents\n\nNone of these tools can access weather data or provide current weather information. I should let the user know that I don't have access to weather tools and suggest alternative ways they could get weather information.",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "stop"
+            }
+          ],
+          "created": 1773908760,
+          "model": "z-ai/glm-4.5-air:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 220,
+            "prompt_tokens": 291,
+            "total_tokens": 511,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 100,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 283,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Z.AI"
+        }
+      }
+    ]
+  },
+  "summary": {
+    "successes": 8,
+    "trials": 10,
+    "rate": 0.8,
+    "wilson_ci_95": [
+      0.49015684672072335,
+      0.9433190520193067
+    ]
+  }
+}

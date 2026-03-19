@@ -1,0 +1,1446 @@
+{
+  "submission_id": "sub_360222986570",
+  "timestamp": "2026-03-19T06:01:12.280524+00:00",
+  "contributor": "unknown",
+  "environment": {
+    "python_version": "3.11.13",
+    "openai_sdk_version": "2.8.1",
+    "os": "Linux 6.6.87.2-microsoft-standard-WSL2",
+    "env_hash": "sha256:43c15d47fdb31d3498555a3471beb9a2f13e583093f6878d70e5a80a227ad1c8"
+  },
+  "probes": {
+    "model": "nvidia/nemotron-3-super-120b-a12b:free",
+    "level": 4,
+    "trials": [
+      {
+        "openrouter_request_id": "gen-1773900072-pRdDt6mzCD9pD1JDdJu7",
+        "openrouter_provider": "Nvidia",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:cbce7efb07dfc4210315091d7958a38a9f659c6f0d561debb53485388a483f1c",
+        "tool_called": true,
+        "schema_valid": false,
+        "latency_ms": 6240,
+        "failure_mode": "wrong-tool",
+        "request": {
+          "model": "nvidia/nemotron-3-super-120b-a12b:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773900072-pRdDt6mzCD9pD1JDdJu7",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": null,
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_ebf0e9ebf55c4692bb0f23da",
+                    "function": {
+                      "arguments": "{\"query\": \"weather\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "The user is asking about today's weather. I need to check if there's any weather-related information in the codebase. Since I don't have direct access to real-time weather data, I should search for any weather-related files or code that might provide weather information. Let me search for weather-related terms.\n",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "The user is asking about today's weather. I need to check if there's any weather-related information in the codebase. Since I don't have direct access to real-time weather data, I should search for any weather-related files or code that might provide weather information. Let me search for weather-related terms.\n",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1773900072,
+          "model": "nvidia/nemotron-3-super-120b-a12b-20230311:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 87,
+            "prompt_tokens": 422,
+            "total_tokens": 509,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 79,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Nvidia"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773900083-75wj9KkzvyggQ2dpZuLG",
+        "openrouter_provider": "Nvidia",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:961e703da189fa03429d4ebbd6a429eba35c8f6dd3e02e994876f458e0d91dfd",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 12764,
+        "failure_mode": null,
+        "request": {
+          "model": "nvidia/nemotron-3-super-120b-a12b:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773900083-75wj9KkzvyggQ2dpZuLG",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I'm unable toaccess real-time weather information or external data sources like weather APIs. My capabilities are limited to searching, reading, and listing files within the codebase I have access to.\n\nTo check today's weather, I'd recommend:\n- Visiting a weather website (like Weather.com, AccuWeather, or your local meteorological service)\n- Using a weather app on your smartphone\n- Asking a voice assistant (like Siri, Google Assistant, or Alexa)\n- Checking a search engine for \"weather today [your location]\"\n\nIs there anything else I can help you with using the tools available to me?",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "The user is asking about the weather today. However, I don't have access to real-time weather data or external APIs. My tools are limited to searching, reading files, and listing directories within the codebase. I cannot fetch weather information from the internet.\n\nI should explain that I cannot access real-time weather data and suggest they check a weather website or app. I need to be honest about my limitations.\n\nLet me respond accordingly.\n\n",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "The user is asking about the weather today. However, I don't have access to real-time weather data or external APIs. My tools are limited to searching, reading files, and listing directories within the codebase. I cannot fetch weather information from the internet.\n\nI should explain that I cannot access real-time weather data and suggest they check a weather website or app. I need to be honest about my limitations.\n\nLet me respond accordingly.\n\n",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "stop"
+            }
+          ],
+          "created": 1773900083,
+          "model": "nvidia/nemotron-3-super-120b-a12b-20230311:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 216,
+            "prompt_tokens": 422,
+            "total_tokens": 638,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 117,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Nvidia"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773900095-BWXS8HMndYq8Vs0TIAGP",
+        "openrouter_provider": "Nvidia",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:8f0ae3e064e4b80eda6d31b95c3561faa9e7e2326005af2f0adf9284ee8846b5",
+        "tool_called": true,
+        "schema_valid": false,
+        "latency_ms": 1528,
+        "failure_mode": "wrong-tool",
+        "request": {
+          "model": "nvidia/nemotron-3-super-120b-a12b:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773900095-BWXS8HMndYq8Vs0TIAGP",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": null,
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_874a7ebbd4ba465fa74a8df8",
+                    "function": {
+                      "arguments": "{\"query\": \"weather\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "The user is asking about today's weather. I need to check if there's any weather-related information in the codebase. Since I don't have real-time weather data, I should search for any weather-related files or code that might provide weather information. Let me search for weather-related terms.\n",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "The user is asking about today's weather. I need to check if there's any weather-related information in the codebase. Since I don't have real-time weather data, I should search for any weather-related files or code that might provide weather information. Let me search for weather-related terms.\n",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1773900095,
+          "model": "nvidia/nemotron-3-super-120b-a12b-20230311:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 84,
+            "prompt_tokens": 422,
+            "total_tokens": 506,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 75,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Nvidia"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773900106-CLdcXIY8Tlpktzbc6OJG",
+        "openrouter_provider": "Nvidia",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:25728b678f795e2801de9038efa8aef90c70a0e63f72037e8b4b06fa52fe58fe",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 33648,
+        "failure_mode": null,
+        "request": {
+          "model": "nvidia/nemotron-3-super-120b-a12b:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773900106-CLdcXIY8Tlpktzbc6OJG",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I don't have access toreal-time weather data or external APIs to check current weather conditions. My capabilities are limited to searching, reading files, and listing directories within the codebase you've provided.\n\nFor today's weather, I'd recommend checking a weather website, app, or service like Weather.com, AccuWeather, or your local news station for the most accurate and up-to-date information.",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "The user is asking about the weather today. However, I don't have access to real-time weather data or external APIs. My capabilities are limited to searching, reading files, and listing directories within the codebase. I cannot fetch external information like weather.\n\nI should inform the user that I cannot access real-time weather data and suggest they check a weather service or website. I need to be helpful within my limitations.\n\nLet me respond accordingly.\n\n",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "The user is asking about the weather today. However, I don't have access to real-time weather data or external APIs. My capabilities are limited to searching, reading files, and listing directories within the codebase. I cannot fetch external information like weather.\n\nI should inform the user that I cannot access real-time weather data and suggest they check a weather service or website. I need to be helpful within my limitations.\n\nLet me respond accordingly.\n\n",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "stop"
+            }
+          ],
+          "created": 1773900106,
+          "model": "nvidia/nemotron-3-super-120b-a12b-20230311:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 171,
+            "prompt_tokens": 422,
+            "total_tokens": 593,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 121,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Nvidia"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773900140-WNyIMzs6QJvxu7nmtfEQ",
+        "openrouter_provider": "Nvidia",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:6315ad531fcfba465a89350851682a47ea80ddf49c657c582d1fcb04f7b6785d",
+        "tool_called": true,
+        "schema_valid": false,
+        "latency_ms": 14849,
+        "failure_mode": "wrong-tool",
+        "request": {
+          "model": "nvidia/nemotron-3-super-120b-a12b:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773900140-WNyIMzs6QJvxu7nmtfEQ",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": null,
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_0f9a9f9782cb4ab391927572",
+                    "function": {
+                      "arguments": "{\"query\": \"weather\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "The user is asking about today's weather. I need to check if there's any weather-related information in the codebase. Since I don't have direct access to real-time weather data, I should search for any weather-related files or code that might provide weather information. Let me start by searching for weather-related terms.\n",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "The user is asking about today's weather. I need to check if there's any weather-related information in the codebase. Since I don't have direct access to real-time weather data, I should search for any weather-related files or code that might provide weather information. Let me start by searching for weather-related terms.\n",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1773900140,
+          "model": "nvidia/nemotron-3-super-120b-a12b-20230311:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 89,
+            "prompt_tokens": 422,
+            "total_tokens": 511,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 82,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Nvidia"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773900155-6MvfnUwOrI6KrV2BxzEY",
+        "openrouter_provider": "Nvidia",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:0dd4a47e5ab75b7a8cc1c9a1d9abf8e4146d94cef9b012972f5554eb1f59864c",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 13525,
+        "failure_mode": null,
+        "request": {
+          "model": "nvidia/nemotron-3-super-120b-a12b:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773900155-6MvfnUwOrI6KrV2BxzEY",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I don't haveaccess to real-time weather data or external APIs to check current weather conditions. My capabilities are limited to searching, reading, and listing files within the codebase you've provided.\n\nFor today's weather, I'd recommend checking a weather website, app, or service like Weather.com, AccuWeather, or your local news station for the most accurate and up-to-date information.",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "The user is asking about the weather today. However, I don't have access to real-time weather data or external APIs. My available tools are limited to searching, reading files, and listing directories within the codebase. I cannot fetch weather information from the internet.\n\nI should explain that I cannot provide real-time weather information and suggest they check a weather service or website. I need to be honest about my limitations.\n\nLet me respond accordingly.\n\n",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "The user is asking about the weather today. However, I don't have access to real-time weather data or external APIs. My available tools are limited to searching, reading files, and listing directories within the codebase. I cannot fetch weather information from the internet.\n\nI should explain that I cannot provide real-time weather information and suggest they check a weather service or website. I need to be honest about my limitations.\n\nLet me respond accordingly.\n\n",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "stop"
+            }
+          ],
+          "created": 1773900155,
+          "model": "nvidia/nemotron-3-super-120b-a12b-20230311:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 170,
+            "prompt_tokens": 422,
+            "total_tokens": 592,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 123,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Nvidia"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773900168-wjcZZNFgACrlGGNH73on",
+        "openrouter_provider": "Nvidia",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:cb701d4569ef0b8ccb19bf9c91b8049628043aed4d449fbcd973ad57cf826012",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 20375,
+        "failure_mode": null,
+        "request": {
+          "model": "nvidia/nemotron-3-super-120b-a12b:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773900168-wjcZZNFgACrlGGNH73on",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I don't have access to real-time weather data or external APIs to check current weather conditions. My capabilities are limited to searching, reading, and listing files within the codebase I have access to.\n\nFor today's weather, I'd recommend checking a weather website, app, or service like Weather.com, AccuWeather, or your local news station for the most accurate and up-to-date information.",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "The user is asking about today's weather. However, I don't have access to real-time weather data or external APIs. My available tools are limited to searching, reading files, and listing directories within the codebase. I cannot fetch external weather information.\n\nI should explain this limitation to the user and suggest they check a weather service or website for current weather information. I need to be helpful while being clear about what I can and cannot do.\n\nLet me respond accordingly.\n\n",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "The user is asking about today's weather. However, I don't have access to real-time weather data or external APIs. My available tools are limited to searching, reading files, and listing directories within the codebase. I cannot fetch external weather information.\n\nI should explain this limitation to the user and suggest they check a weather service or website for current weather information. I need to be helpful while being clear about what I can and cannot do.\n\nLet me respond accordingly.\n\n",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "stop"
+            }
+          ],
+          "created": 1773900168,
+          "model": "nvidia/nemotron-3-super-120b-a12b-20230311:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 177,
+            "prompt_tokens": 422,
+            "total_tokens": 599,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 129,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Nvidia"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773900189-TID3upkWa8MtvSMz7ubx",
+        "openrouter_provider": "Nvidia",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:0d5a0e946f722527f6d412e0b0246e57893c100f5feb9024bf8517d76a358687",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 4231,
+        "failure_mode": null,
+        "request": {
+          "model": "nvidia/nemotron-3-super-120b-a12b:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773900189-TID3upkWa8MtvSMz7ubx",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I don't haveaccess to real-time weather data or external APIs to check current weather conditions. My capabilities are limited to searching, reading, and listing files within the codebase you've provided.\n\nFor accurate and up-to-date weather information, I'd recommend checking:\n- Weather websites like Weather.com, AccuWeather, or NOAA\n- Weather apps on your smartphone\n- Voice assistants like Siri, Google Assistant, or Alexa\n- Local news weather reports\n\nIs there anything else I can help you with regarding the codebase or files available to me?",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "The user is asking about the weather today. However, I don't have access to real-time weather data or external APIs. My available tools are limited to searching, reading files, and listing directories within the codebase. I cannot fetch weather information from the internet.\n\nI should explain this limitation to the user and suggest they check a weather service or website for current weather information. I need to be honest about my capabilities.\n\nLet me respond accordingly.\n\n",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "The user is asking about the weather today. However, I don't have access to real-time weather data or external APIs. My available tools are limited to searching, reading files, and listing directories within the codebase. I cannot fetch weather information from the internet.\n\nI should explain this limitation to the user and suggest they check a weather service or website for current weather information. I need to be honest about my capabilities.\n\nLet me respond accordingly.\n\n",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "stop"
+            }
+          ],
+          "created": 1773900189,
+          "model": "nvidia/nemotron-3-super-120b-a12b-20230311:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 205,
+            "prompt_tokens": 422,
+            "total_tokens": 627,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 125,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Nvidia"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773900198-Cgq6un9DVbx0KlSqWXnH",
+        "openrouter_provider": "Nvidia",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:02d0b13081bef95a0dbf3353a4b5e3b2238bb56ed32eb88abe338418e16536d6",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 12506,
+        "failure_mode": null,
+        "request": {
+          "model": "nvidia/nemotron-3-super-120b-a12b:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773900198-Cgq6un9DVbx0KlSqWXnH",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I'munable to access real-time weather information or external data sources like weather services. My capabilities are limited to searching, reading, and listing files within the codebase I have access to.\n\nFor current weather information, I'd recommend checking a weather website, app, or service like Weather.com, AccuWeather, or your local news station's weather forecast.",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "The user is asking about the weather today. However, I don't have access to real-time weather data or external APIs. My available tools are limited to searching, reading files, and listing directories within the codebase. I cannot fetch external information like weather.\n\nI should inform the user that I cannot provide real-time weather information and suggest they check a weather service or website. I need to be honest about my limitations.\n\nLet me respond accordingly.\n\n",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "The user is asking about the weather today. However, I don't have access to real-time weather data or external APIs. My available tools are limited to searching, reading files, and listing directories within the codebase. I cannot fetch external information like weather.\n\nI should inform the user that I cannot provide real-time weather information and suggest they check a weather service or website. I need to be honest about my limitations.\n\nLet me respond accordingly.\n\n",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "stop"
+            }
+          ],
+          "created": 1773900198,
+          "model": "nvidia/nemotron-3-super-120b-a12b-20230311:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 164,
+            "prompt_tokens": 422,
+            "total_tokens": 586,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 124,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Nvidia"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773900212-PTM2x2sQAHpbaIU4d9NC",
+        "openrouter_provider": "Nvidia",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:56087cc3ce142e6842d21cff8dc66a6e26b5ee809f487be782d309c0e465b6d5",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 46853,
+        "failure_mode": null,
+        "request": {
+          "model": "nvidia/nemotron-3-super-120b-a12b:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773900212-PTM2x2sQAHpbaIU4d9NC",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I don't have access to real-time weather data or external APIs to check current weather conditions. My capabilities are limited to searching, reading, and listing files within the codebase you've provided.\n\nFor accurate and up-to-date weather information, I'd recommend checking:\n- Weather websites (like Weather.com, AccuWeather, or your local meteorological service)\n- Weather apps on your smartphone\n- Voice assistants (like Siri, Google Assistant, or Alexa)\n- Simply searching \"weather today\" in your preferred search engine\n\nIs there anything else I can help you with regarding the codebase or files available to me?",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "The user is asking about the weather today. However, I don't have access to real-time weather data or external APIs. My tools are limited to searching, reading files, and listing directories within the codebase. I cannot fetch live weather information.\n\nI should explain that I cannot access real-time weather data and suggest they check a weather service or website. I need to be honest about my limitations.\n\nLet me respond accordingly.\n\n",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "The user is asking about the weather today. However, I don't have access to real-time weather data or external APIs. My tools are limited to searching, reading files, and listing directories within the codebase. I cannot fetch live weather information.\n\nI should explain that I cannot access real-time weather data and suggest they check a weather service or website. I need to be honest about my limitations.\n\nLet me respond accordingly.\n\n",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "stop"
+            }
+          ],
+          "created": 1773900212,
+          "model": "nvidia/nemotron-3-super-120b-a12b-20230311:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 213,
+            "prompt_tokens": 422,
+            "total_tokens": 635,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 115,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Nvidia"
+        }
+      }
+    ]
+  },
+  "summary": {
+    "successes": 7,
+    "trials": 10,
+    "rate": 0.7,
+    "wilson_ci_95": [
+      0.39677321997956516,
+      0.892210712513788
+    ]
+  }
+}

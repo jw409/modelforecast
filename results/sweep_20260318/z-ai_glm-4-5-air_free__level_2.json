@@ -1,0 +1,1516 @@
+{
+  "submission_id": "sub_26dee02de7fc",
+  "timestamp": "2026-03-19T08:11:28.069028+00:00",
+  "contributor": "unknown",
+  "environment": {
+    "python_version": "3.11.13",
+    "openai_sdk_version": "2.8.1",
+    "os": "Linux 6.6.87.2-microsoft-standard-WSL2",
+    "env_hash": "sha256:43c15d47fdb31d3498555a3471beb9a2f13e583093f6878d70e5a80a227ad1c8"
+  },
+  "probes": {
+    "model": "z-ai/glm-4.5-air:free",
+    "level": 2,
+    "trials": [
+      {
+        "openrouter_request_id": "gen-1773907888-CaBxBJdGILNLho5qsqlr",
+        "openrouter_provider": "Z.AI",
+        "prompt_hash": "sha256:b1b21a108eb3ba14a87eabaacac42f96b50212ecd5909a182b9bcdd9130ecea2",
+        "response_hash": "sha256:be034a902b9ad05bf5548dc104351f6b4edd2e95f9f4ecf51401a38c477f4903",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 4353,
+        "failure_mode": null,
+        "request": {
+          "model": "z-ai/glm-4.5-air:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "I need to understand what the auth module does"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773907888-CaBxBJdGILNLho5qsqlr",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I'll help you understand what the auth module does. Let me first search for authentication-related files in the codebase.\n",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_9977c1e508fd4c8ba14bd3af",
+                    "function": {
+                      "arguments": "{\"query\":\"auth\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "\nThe user wants to understand what the auth module does. I should first search for files related to authentication in the codebase to locate the auth module.",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "\nThe user wants to understand what the auth module does. I should first search for files related to authentication in the codebase to locate the auth module.",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1773907888,
+          "model": "z-ai/glm-4.5-air:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 71,
+            "prompt_tokens": 293,
+            "total_tokens": 364,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 31,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 98,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Z.AI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773907899-qqSv0fyjZy8AT3np0DPk",
+        "openrouter_provider": "Z.AI",
+        "prompt_hash": "sha256:b1b21a108eb3ba14a87eabaacac42f96b50212ecd5909a182b9bcdd9130ecea2",
+        "response_hash": "sha256:94cbeae951e584342944818b1e4005585d52c92ac83751baff5b6c768dbeab6d",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 33664,
+        "failure_mode": null,
+        "request": {
+          "model": "z-ai/glm-4.5-air:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "I need to understand what the auth module does"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773907899-qqSv0fyjZy8AT3np0DPk",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I'll help you understand what the auth module does. Let me first search for authentication-related files in the codebase.\n",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_cfb9f2b3e1874e52a4f76a47",
+                    "function": {
+                      "arguments": "{\"query\":\"auth\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "\nThe user wants to understand what the auth module does. I should first search for files related to authentication in the codebase to locate the auth module.",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "\nThe user wants to understand what the auth module does. I should first search for files related to authentication in the codebase to locate the auth module.",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1773907899,
+          "model": "z-ai/glm-4.5-air:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 71,
+            "prompt_tokens": 293,
+            "total_tokens": 364,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 31,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 43,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Z.AI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773907935-tc4uJYKya6cA2fY88oQb",
+        "openrouter_provider": "Z.AI",
+        "prompt_hash": "sha256:b1b21a108eb3ba14a87eabaacac42f96b50212ecd5909a182b9bcdd9130ecea2",
+        "response_hash": "sha256:318c819ddae02f943f5ec083d6a0bf4991416ee507de5d37f2128b4c415b4a3f",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 10716,
+        "failure_mode": null,
+        "request": {
+          "model": "z-ai/glm-4.5-air:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "I need to understand what the auth module does"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773907935-tc4uJYKya6cA2fY88oQb",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I'll help you understand what the auth module does. Let me first search for auth-related files in the codebase.\n",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_2fdac87d16b645da945eeeb0",
+                    "function": {
+                      "arguments": "{\"query\":\"auth\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "\nThe user wants to understand what the auth module does. I should first search for files related to authentication in the codebase to understand the structure and then examine the relevant files to understand the functionality.\n\nLet me start by searching for auth-related files.",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "\nThe user wants to understand what the auth module does. I should first search for files related to authentication in the codebase to understand the structure and then examine the relevant files to understand the functionality.\n\nLet me start by searching for auth-related files.",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1773907935,
+          "model": "z-ai/glm-4.5-air:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 90,
+            "prompt_tokens": 293,
+            "total_tokens": 383,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 50,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 292,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Z.AI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773907944-RWLpG9ETqybJGzpHctd9",
+        "openrouter_provider": "Z.AI",
+        "prompt_hash": "sha256:b1b21a108eb3ba14a87eabaacac42f96b50212ecd5909a182b9bcdd9130ecea2",
+        "response_hash": "sha256:015ace18c30846fdf1b646235554ee6bd8f2475dd2a1d297e0568255156f79a4",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 7487,
+        "failure_mode": null,
+        "request": {
+          "model": "z-ai/glm-4.5-air:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "I need to understand what the auth module does"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773907944-RWLpG9ETqybJGzpHctd9",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I'll help you understand what the auth module does. Let me first search for auth-related files in the codebase.\n",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_ea85d502a7434ba085848216",
+                    "function": {
+                      "arguments": "{\"query\":\"auth\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "\nThe user wants to understand what the auth module does. I should first search for files related to authentication/auth in the codebase to understand the structure and then examine the relevant files to understand the functionality.\n\nLet me start by searching for auth-related files.",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "\nThe user wants to understand what the auth module does. I should first search for files related to authentication/auth in the codebase to understand the structure and then examine the relevant files to understand the functionality.\n\nLet me start by searching for auth-related files.",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1773907944,
+          "model": "z-ai/glm-4.5-air:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 91,
+            "prompt_tokens": 293,
+            "total_tokens": 384,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 51,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 43,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Z.AI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773907955-HFYn8hzq6bODoFzMQb1c",
+        "openrouter_provider": "Z.AI",
+        "prompt_hash": "sha256:b1b21a108eb3ba14a87eabaacac42f96b50212ecd5909a182b9bcdd9130ecea2",
+        "response_hash": "sha256:fe6d666ab023a4025c3f4ccdaeab0d59dbebc23061aac73880944cb9b1e9697c",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 8684,
+        "failure_mode": null,
+        "request": {
+          "model": "z-ai/glm-4.5-air:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "I need to understand what the auth module does"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773907955-HFYn8hzq6bODoFzMQb1c",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I'll help you understand what the auth module does. Let me first search for files related to authentication in the codebase.\n",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_657f9878ea734c61a34fcd56",
+                    "function": {
+                      "arguments": "{\"query\":\"auth\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "\nThe user wants to understand what the auth module does. I should first search for files related to authentication in the codebase to locate the auth module.",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "\nThe user wants to understand what the auth module does. I should first search for files related to authentication in the codebase to locate the auth module.",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1773907955,
+          "model": "z-ai/glm-4.5-air:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 72,
+            "prompt_tokens": 293,
+            "total_tokens": 365,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 31,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 292,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Z.AI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773907965-cB0f02XAFIfuuB1QOhNR",
+        "openrouter_provider": "Z.AI",
+        "prompt_hash": "sha256:b1b21a108eb3ba14a87eabaacac42f96b50212ecd5909a182b9bcdd9130ecea2",
+        "response_hash": "sha256:5c39ff8b02e9d6db2a6f6ffea98b4322ed1c042589a297a41a57c50eb76285fa",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 10976,
+        "failure_mode": null,
+        "request": {
+          "model": "z-ai/glm-4.5-air:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "I need to understand what the auth module does"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773907965-cB0f02XAFIfuuB1QOhNR",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I'll help you understand what the auth module does. Let me first search for authentication-related files in the codebase.\n",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_5fdc0cc6ec724f89acee59a2",
+                    "function": {
+                      "arguments": "{\"query\":\"auth\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "\nThe user wants to understand what the auth module does. I should first search for files related to authentication in the codebase to understand the structure and then examine the relevant files to understand the functionality.\n\nLet me start by searching for auth-related files.",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "\nThe user wants to understand what the auth module does. I should first search for files related to authentication in the codebase to understand the structure and then examine the relevant files to understand the functionality.\n\nLet me start by searching for auth-related files.",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1773907965,
+          "model": "z-ai/glm-4.5-air:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 90,
+            "prompt_tokens": 293,
+            "total_tokens": 383,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 50,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 292,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Z.AI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773907974-FVhZKWAdIradTYgkb4kY",
+        "openrouter_provider": "Z.AI",
+        "prompt_hash": "sha256:b1b21a108eb3ba14a87eabaacac42f96b50212ecd5909a182b9bcdd9130ecea2",
+        "response_hash": "sha256:fad902000a2fab829ba80911ae3a585005d561749e0d804ed735069b90246834",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 7126,
+        "failure_mode": null,
+        "request": {
+          "model": "z-ai/glm-4.5-air:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "I need to understand what the auth module does"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773907974-FVhZKWAdIradTYgkb4kY",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I'll help you understand what the auth module does. Let me first search for auth-related files in the codebase.\n",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_fe17f90eed674732a5f784be",
+                    "function": {
+                      "arguments": "{\"query\":\"auth\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "\nThe user wants to understand what the auth module does. I should first search for files related to authentication in the codebase to understand the structure and then read the relevant files to understand the functionality.\n\nLet me start by searching for auth-related files.",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "\nThe user wants to understand what the auth module does. I should first search for files related to authentication in the codebase to understand the structure and then read the relevant files to understand the functionality.\n\nLet me start by searching for auth-related files.",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1773907974,
+          "model": "z-ai/glm-4.5-air:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 90,
+            "prompt_tokens": 293,
+            "total_tokens": 383,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 50,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 292,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Z.AI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773907985-xHipOprBD3iJpvj0IREh",
+        "openrouter_provider": "Z.AI",
+        "prompt_hash": "sha256:b1b21a108eb3ba14a87eabaacac42f96b50212ecd5909a182b9bcdd9130ecea2",
+        "response_hash": "sha256:fc7938864b2672329a3ea5bf7ecbc54c615044e938f8168477f830552c189c3c",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 18482,
+        "failure_mode": null,
+        "request": {
+          "model": "z-ai/glm-4.5-air:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "I need to understand what the auth module does"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773907985-xHipOprBD3iJpvj0IREh",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I'll help you understand what the auth module does. Let me first search for authentication-related files in the codebase.\n",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_8d65727575824be6b0b77fca",
+                    "function": {
+                      "arguments": "{\"query\":\"auth\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "\nThe user wants to understand what the auth module does. I should first search for files related to authentication in the codebase to locate the auth module.",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "\nThe user wants to understand what the auth module does. I should first search for files related to authentication in the codebase to locate the auth module.",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1773907985,
+          "model": "z-ai/glm-4.5-air:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 71,
+            "prompt_tokens": 293,
+            "total_tokens": 364,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 31,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 292,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Z.AI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773908004-NHQXp5wj99WLugpcRdfW",
+        "openrouter_provider": "Z.AI",
+        "prompt_hash": "sha256:b1b21a108eb3ba14a87eabaacac42f96b50212ecd5909a182b9bcdd9130ecea2",
+        "response_hash": "sha256:cb2578ca5b5617436fba1b377bb40761f7005dc60964e9722ce97eb583c728fe",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 5406,
+        "failure_mode": null,
+        "request": {
+          "model": "z-ai/glm-4.5-air:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "I need to understand what the auth module does"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773908004-NHQXp5wj99WLugpcRdfW",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I'll help you understand what the auth module does. Let me first search for authentication-related files in the codebase.\n",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_e6e4e87b95d34f008a6ab31c",
+                    "function": {
+                      "arguments": "{\"query\":\"auth\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "\nThe user wants to understand what the auth module does. I should first search for files related to authentication in the codebase to locate the auth module.",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "\nThe user wants to understand what the auth module does. I should first search for files related to authentication in the codebase to locate the auth module.",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1773908004,
+          "model": "z-ai/glm-4.5-air:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 71,
+            "prompt_tokens": 293,
+            "total_tokens": 364,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 31,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 292,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Z.AI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773908013-aWBxLckZ21p5Ihd2wmX6",
+        "openrouter_provider": "Z.AI",
+        "prompt_hash": "sha256:b1b21a108eb3ba14a87eabaacac42f96b50212ecd5909a182b9bcdd9130ecea2",
+        "response_hash": "sha256:d1331b038ff7d94d0d53151de0269baa3ecf06effaa6e22ed5c0590738b43302",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 6469,
+        "failure_mode": null,
+        "request": {
+          "model": "z-ai/glm-4.5-air:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "I need to understand what the auth module does"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773908013-aWBxLckZ21p5Ihd2wmX6",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I'll help you understand what the auth module does. Let me start by searching for authentication-related files in the codebase.\n",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_ed71da24be2948eca23cff78",
+                    "function": {
+                      "arguments": "{\"query\":\"auth\"}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "\nThe user wants to understand what the auth module does. I should first search for files related to authentication in the codebase to understand the structure and functionality of the auth module.",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "\nThe user wants to understand what the auth module does. I should first search for files related to authentication in the codebase to understand the structure and functionality of the auth module.",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1773908013,
+          "model": "z-ai/glm-4.5-air:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 77,
+            "prompt_tokens": 293,
+            "total_tokens": 370,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 36,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 292,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Z.AI"
+        }
+      }
+    ]
+  },
+  "summary": {
+    "successes": 10,
+    "trials": 10,
+    "rate": 1.0,
+    "wilson_ci_95": [
+      0.7224598312333834,
+      1.0
+    ]
+  }
+}

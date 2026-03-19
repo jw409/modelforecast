@@ -1,0 +1,1176 @@
+{
+  "submission_id": "sub_c9d067ada367",
+  "timestamp": "2026-03-19T05:30:35.068613+00:00",
+  "contributor": "unknown",
+  "environment": {
+    "python_version": "3.11.13",
+    "openai_sdk_version": "2.8.1",
+    "os": "Linux 6.6.87.2-microsoft-standard-WSL2",
+    "env_hash": "sha256:43c15d47fdb31d3498555a3471beb9a2f13e583093f6878d70e5a80a227ad1c8"
+  },
+  "probes": {
+    "model": "arcee-ai/trinity-mini:free",
+    "level": 1,
+    "trials": [
+      {
+        "openrouter_request_id": "gen-1773898242-wcInU3toNXY2jrLEH6Fn",
+        "openrouter_provider": "Arcee AI",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:bc911c9410099957257167746e13f1023b5e5afb1500d83214c868ebecd83321",
+        "tool_called": true,
+        "schema_valid": false,
+        "latency_ms": 1199,
+        "failure_mode": "wrong-tool",
+        "request": {
+          "model": "arcee-ai/trinity-mini:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Search for authentication files, limit results to 5"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773898242-wcInU3toNXY2jrLEH6Fn",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": null,
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "chatcmpl-tool-5198ebb2c5344e5d9d69a668739d0e8e",
+                    "function": {
+                      "arguments": "{}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "Okay, the user wants me to search for authentication files and limit the results to 5. Let me check the available tools. There's a search function that takes a query and a limit parameter. The required parameter is the query, and the limit is optional. Since the user specified \"authentication files,\" I should use that as the query. They want 5 results, so I'll set the limit to 5. I need to make sure the JSON is correctly formatted with the function name and arguments. Let me structure the tool call accordingly.\n",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "Okay, the user wants me to search for authentication files and limit the results to 5. Let me check the available tools. There's a search function that takes a query and a limit parameter. The required parameter is the query, and the limit is optional. Since the user specified \"authentication files,\" I should use that as the query. They want 5 results, so I'll set the limit to 5. I need to make sure the JSON is correctly formatted with the function name and arguments. Let me structure the tool call accordingly.\n",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1773898242,
+          "model": "arcee-ai/trinity-mini-20251201:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 142,
+            "prompt_tokens": 190,
+            "total_tokens": 332,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 130,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Arcee AI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773898253-iERGssERmSccwt8XywtZ",
+        "openrouter_provider": "Arcee AI",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:6fa88878f665b52366572c33d9c3c48cbd5a237da496aeb9fceedec09bcb8292",
+        "tool_called": true,
+        "schema_valid": false,
+        "latency_ms": 1483,
+        "failure_mode": "wrong-tool",
+        "request": {
+          "model": "arcee-ai/trinity-mini:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Search for authentication files, limit results to 5"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773898253-iERGssERmSccwt8XywtZ",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": null,
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "chatcmpl-tool-845810a424a7489399fea12bdb50855e",
+                    "function": {
+                      "arguments": "{}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "Okay, the user wants me to search for authentication files and limit the results to 5. Let me check the available tools. There's a search function that takes a query and a limit parameter. The required parameter is the query, and the limit is optional. Since the user specified \"authentication files,\" I should use that as the query. They want 5 results, so I'll set the limit to 5. I need to make sure the JSON is correctly formatted with the function name and arguments. Let me structure the tool call accordingly.\n",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "Okay, the user wants me to search for authentication files and limit the results to 5. Let me check the available tools. There's a search function that takes a query and a limit parameter. The required parameter is the query, and the limit is optional. Since the user specified \"authentication files,\" I should use that as the query. They want 5 results, so I'll set the limit to 5. I need to make sure the JSON is correctly formatted with the function name and arguments. Let me structure the tool call accordingly.\n",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1773898253,
+          "model": "arcee-ai/trinity-mini-20251201:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 142,
+            "prompt_tokens": 190,
+            "total_tokens": 332,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 130,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Arcee AI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773898264-XgwtGcE3OrqdNM8WTxqi",
+        "openrouter_provider": "Arcee AI",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:b507372ab3db1b3121df89dded085b31a09491bb4bd1cc06101e95ee6603c642",
+        "tool_called": true,
+        "schema_valid": false,
+        "latency_ms": 1309,
+        "failure_mode": "wrong-tool",
+        "request": {
+          "model": "arcee-ai/trinity-mini:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Search for authentication files, limit results to 5"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773898264-XgwtGcE3OrqdNM8WTxqi",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": null,
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "chatcmpl-tool-82cf269a6e414762a233317e3f38fe60",
+                    "function": {
+                      "arguments": "{}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "Okay, the user wants me to search for authentication files and limit the results to 5. Let me check the available tools. There's a search function that takes a query and a limit parameter. The required parameter is the query, and the limit is optional. Since the user specified \"authentication files,\" I should use that as the query. They want 5 results, so I'll set the limit to 5. I need to make sure the JSON is correctly formatted with the function name and arguments. Let me structure the tool call accordingly.\n",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "Okay, the user wants me to search for authentication files and limit the results to 5. Let me check the available tools. There's a search function that takes a query and a limit parameter. The required parameter is the query, and the limit is optional. Since the user specified \"authentication files,\" I should use that as the query. They want 5 results, so I'll set the limit to 5. I need to make sure the JSON is correctly formatted with the function name and arguments. Let me structure the tool call accordingly.\n",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1773898264,
+          "model": "arcee-ai/trinity-mini-20251201:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 142,
+            "prompt_tokens": 190,
+            "total_tokens": 332,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 130,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Arcee AI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773898275-VEySX98H8lWpBJOUhOV5",
+        "openrouter_provider": "Arcee AI",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:60fa6f83659522c34a3fb7a894f2790765a90541afaa255b950110bbbdad23ed",
+        "tool_called": true,
+        "schema_valid": false,
+        "latency_ms": 1515,
+        "failure_mode": "wrong-tool",
+        "request": {
+          "model": "arcee-ai/trinity-mini:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Search for authentication files, limit results to 5"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773898275-VEySX98H8lWpBJOUhOV5",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": null,
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "chatcmpl-tool-c0af43816ba24299881675c9a014750a",
+                    "function": {
+                      "arguments": "{}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "Okay, the user wants me to search for authentication files and limit the results to 5. Let me check the available tools. There's a search function that takes a query and a limit parameter. The required parameter is the query, and the limit is optional. Since the user specified \"authentication files,\" I should use that as the query. They want up to 5 results, so I'll set the limit to 5. I need to make sure the JSON is correctly formatted with the function name and arguments. Let me structure the tool call accordingly.\n",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "Okay, the user wants me to search for authentication files and limit the results to 5. Let me check the available tools. There's a search function that takes a query and a limit parameter. The required parameter is the query, and the limit is optional. Since the user specified \"authentication files,\" I should use that as the query. They want up to 5 results, so I'll set the limit to 5. I need to make sure the JSON is correctly formatted with the function name and arguments. Let me structure the tool call accordingly.\n",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1773898275,
+          "model": "arcee-ai/trinity-mini-20251201:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 144,
+            "prompt_tokens": 190,
+            "total_tokens": 334,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 132,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Arcee AI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773898286-C4gIQgLWQtLqbUuNd3Q8",
+        "openrouter_provider": "Arcee AI",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:a6c98f2deaba79460dd8878003c313de46d0ef525a5b89f1573088583145464f",
+        "tool_called": true,
+        "schema_valid": false,
+        "latency_ms": 1051,
+        "failure_mode": "wrong-tool",
+        "request": {
+          "model": "arcee-ai/trinity-mini:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Search for authentication files, limit results to 5"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773898286-C4gIQgLWQtLqbUuNd3Q8",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": null,
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "chatcmpl-tool-8190e76a702a45d481243b024187a55d",
+                    "function": {
+                      "arguments": "{}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "Okay, the user wants me to search for authentication files and limit the results to 5. Let me check the available tools. There's a search function that takes a query and a limit parameter. The required parameter is the query, and the limit is optional. Since the user specified \"authentication files,\" I should use that as the query. They want up to 5 results, so I'll set the limit to 5. I need to make sure the JSON is correctly formatted with the function name and arguments. Let me structure the tool call accordingly.\n",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "Okay, the user wants me to search for authentication files and limit the results to 5. Let me check the available tools. There's a search function that takes a query and a limit parameter. The required parameter is the query, and the limit is optional. Since the user specified \"authentication files,\" I should use that as the query. They want up to 5 results, so I'll set the limit to 5. I need to make sure the JSON is correctly formatted with the function name and arguments. Let me structure the tool call accordingly.\n",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1773898286,
+          "model": "arcee-ai/trinity-mini-20251201:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 144,
+            "prompt_tokens": 190,
+            "total_tokens": 334,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 132,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Arcee AI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773898296-udLQj7MD3aX7Jx9Kq5zo",
+        "openrouter_provider": "Arcee AI",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:44bcdac468bbf7fbb3e937343af64cf029e929372ef4b5bc3a64c77ac08914ae",
+        "tool_called": true,
+        "schema_valid": false,
+        "latency_ms": 1107,
+        "failure_mode": "wrong-tool",
+        "request": {
+          "model": "arcee-ai/trinity-mini:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Search for authentication files, limit results to 5"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773898296-udLQj7MD3aX7Jx9Kq5zo",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": null,
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "chatcmpl-tool-f23c4fb22d2b455bbf822ebaa42dc8cc",
+                    "function": {
+                      "arguments": "{}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "Okay, the user wants me to search for authentication files and limit the results to 5. Let me check the available tools. There's a search function that takes a query and a limit parameter. The required parameter is the query, and the limit is optional. Since the user specified \"authentication files,\" I should use that as the query. They want up to 5 results, so I'll set the limit to 5. I need to make sure the JSON is correctly formatted with the function name and arguments. Let me structure the tool call accordingly.\n",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "Okay, the user wants me to search for authentication files and limit the results to 5. Let me check the available tools. There's a search function that takes a query and a limit parameter. The required parameter is the query, and the limit is optional. Since the user specified \"authentication files,\" I should use that as the query. They want up to 5 results, so I'll set the limit to 5. I need to make sure the JSON is correctly formatted with the function name and arguments. Let me structure the tool call accordingly.\n",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1773898296,
+          "model": "arcee-ai/trinity-mini-20251201:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 144,
+            "prompt_tokens": 190,
+            "total_tokens": 334,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 132,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Arcee AI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773898307-YerI54xrz79TBjL133sQ",
+        "openrouter_provider": "Arcee AI",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:190ab8825644c4a35f378911e0471f7f3db70a3977302e41cb6a15ab05d5ad19",
+        "tool_called": true,
+        "schema_valid": false,
+        "latency_ms": 1199,
+        "failure_mode": "wrong-tool",
+        "request": {
+          "model": "arcee-ai/trinity-mini:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Search for authentication files, limit results to 5"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773898307-YerI54xrz79TBjL133sQ",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": null,
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "chatcmpl-tool-8aa78890f9044a96a8b2e7faf47bea10",
+                    "function": {
+                      "arguments": "{}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "Okay, the user wants me to search for authentication files and limit the results to 5. Let me check the available tools. There's a search function that takes a query and a limit parameter. The required parameter is the query, and the limit is optional. Since the user specified \"authentication files,\" I should use that as the query. They want 5 results, so I'll set the limit to 5. I need to make sure the JSON is correctly formatted with the function name and arguments. Let me structure the tool call accordingly.\n",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "Okay, the user wants me to search for authentication files and limit the results to 5. Let me check the available tools. There's a search function that takes a query and a limit parameter. The required parameter is the query, and the limit is optional. Since the user specified \"authentication files,\" I should use that as the query. They want 5 results, so I'll set the limit to 5. I need to make sure the JSON is correctly formatted with the function name and arguments. Let me structure the tool call accordingly.\n",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1773898307,
+          "model": "arcee-ai/trinity-mini-20251201:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 142,
+            "prompt_tokens": 190,
+            "total_tokens": 332,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 130,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Arcee AI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773898318-lSWjcP2egKIo6QWGC0nA",
+        "openrouter_provider": "Arcee AI",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:b4d3062308a5d844c8978e96d3841276c14a11bc14fc2066a010f2ce7feb2f9e",
+        "tool_called": true,
+        "schema_valid": false,
+        "latency_ms": 1215,
+        "failure_mode": "wrong-tool",
+        "request": {
+          "model": "arcee-ai/trinity-mini:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Search for authentication files, limit results to 5"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773898318-lSWjcP2egKIo6QWGC0nA",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": null,
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "chatcmpl-tool-de7d7d257e5844e7a9e3934efff3c551",
+                    "function": {
+                      "arguments": "{}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "Okay, the user wants me to search for authentication files and limit the results to 5. Let me check the available tools. There's a search function that takes a query and a limit parameter. The required parameter is the query, and the limit is optional. Since the user specified \"authentication files,\" I should use that as the query. They want 5 results, so I'll set the limit to 5. I need to make sure the JSON is correctly formatted with the function name and arguments. Let me structure the tool call accordingly.\n",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "Okay, the user wants me to search for authentication files and limit the results to 5. Let me check the available tools. There's a search function that takes a query and a limit parameter. The required parameter is the query, and the limit is optional. Since the user specified \"authentication files,\" I should use that as the query. They want 5 results, so I'll set the limit to 5. I need to make sure the JSON is correctly formatted with the function name and arguments. Let me structure the tool call accordingly.\n",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1773898318,
+          "model": "arcee-ai/trinity-mini-20251201:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 142,
+            "prompt_tokens": 190,
+            "total_tokens": 332,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 130,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Arcee AI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773898329-L0UkruRBeDY68Eir1lFt",
+        "openrouter_provider": "Arcee AI",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:4a4ab108721ca90fd74b3791da8a488934c290dce285c9cc558c06e9076544c0",
+        "tool_called": true,
+        "schema_valid": false,
+        "latency_ms": 3658,
+        "failure_mode": "wrong-tool",
+        "request": {
+          "model": "arcee-ai/trinity-mini:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Search for authentication files, limit results to 5"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773898329-L0UkruRBeDY68Eir1lFt",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": null,
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "chatcmpl-tool-2d634650f6a2467ba6ff1b2cca3cda40",
+                    "function": {
+                      "arguments": "{}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "Okay, the user wants me to search for authentication files and limit the results to 5. Let me check the available tools. There's a search function that takes a query and a limit parameter. The required parameter is the query, and the limit is optional. Since the user specified \"authentication files,\" I should use that as the query. They want 5 results, so I'll set the limit to 5. I need to make sure the JSON is correctly formatted with the function name and arguments. Let me structure the tool call accordingly.\n",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "Okay, the user wants me to search for authentication files and limit the results to 5. Let me check the available tools. There's a search function that takes a query and a limit parameter. The required parameter is the query, and the limit is optional. Since the user specified \"authentication files,\" I should use that as the query. They want 5 results, so I'll set the limit to 5. I need to make sure the JSON is correctly formatted with the function name and arguments. Let me structure the tool call accordingly.\n",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1773898329,
+          "model": "arcee-ai/trinity-mini-20251201:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 142,
+            "prompt_tokens": 190,
+            "total_tokens": 332,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 130,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Arcee AI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773898337-MGOKqok14HDXoG9Qfsu5",
+        "openrouter_provider": "Arcee AI",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:5a1bacefef1aef0496868f3791961a49c39784676b008c652957c1b653d7f4fa",
+        "tool_called": true,
+        "schema_valid": false,
+        "latency_ms": 1026,
+        "failure_mode": "wrong-tool",
+        "request": {
+          "model": "arcee-ai/trinity-mini:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Search for authentication files, limit results to 5"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773898337-MGOKqok14HDXoG9Qfsu5",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": null,
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "chatcmpl-tool-e5179939f55c488a81e46dbc8c3f4d43",
+                    "function": {
+                      "arguments": "{}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "Okay, the user wants me to search for authentication files and limit the results to 5. Let me check the available tools. There's a search function that takes a query and a limit parameter. The required parameter is the query, and the limit is optional. Since the user specified \"authentication files,\" I should use that as the query. They want up to 5 results, so I'll set the limit to 5. I need to make sure the JSON is correctly formatted with the function name and arguments. Let me structure the tool call accordingly.\n",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "Okay, the user wants me to search for authentication files and limit the results to 5. Let me check the available tools. There's a search function that takes a query and a limit parameter. The required parameter is the query, and the limit is optional. Since the user specified \"authentication files,\" I should use that as the query. They want up to 5 results, so I'll set the limit to 5. I need to make sure the JSON is correctly formatted with the function name and arguments. Let me structure the tool call accordingly.\n",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1773898337,
+          "model": "arcee-ai/trinity-mini-20251201:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 144,
+            "prompt_tokens": 190,
+            "total_tokens": 334,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 132,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Arcee AI"
+        }
+      }
+    ]
+  },
+  "summary": {
+    "successes": 0,
+    "trials": 10,
+    "rate": 0.0,
+    "wilson_ci_95": [
+      0.0,
+      0.2775401687666166
+    ]
+  }
+}

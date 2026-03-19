@@ -1,0 +1,1106 @@
+{
+  "submission_id": "sub_1b503f32412a",
+  "timestamp": "2026-03-19T08:06:18.475501+00:00",
+  "contributor": "unknown",
+  "environment": {
+    "python_version": "3.11.13",
+    "openai_sdk_version": "2.8.1",
+    "os": "Linux 6.6.87.2-microsoft-standard-WSL2",
+    "env_hash": "sha256:43c15d47fdb31d3498555a3471beb9a2f13e583093f6878d70e5a80a227ad1c8"
+  },
+  "probes": {
+    "model": "z-ai/glm-4.5-air:free",
+    "level": 1,
+    "trials": [
+      {
+        "openrouter_request_id": "gen-1773907587-1GwnGQSNm4IvQJMmdpWf",
+        "openrouter_provider": "Z.AI",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:fa63689ab04df977c2c2fb55616f98abc2772093ad21bba616ae825681bcb8d3",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 10984,
+        "failure_mode": null,
+        "request": {
+          "model": "z-ai/glm-4.5-air:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Search for authentication files, limit results to 5"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773907587-1GwnGQSNm4IvQJMmdpWf",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I'll search for authentication files in the codebase with a limit of 5 results.\n",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_418a565d006c403e9a5f301d",
+                    "function": {
+                      "arguments": "{\"query\":\"auth\",\"limit\":5}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "\nThe user is asking me to search for authentication files in the codebase and limit the results to 5. I need to use the search function with a query related to authentication and set the limit parameter to 5.\n\nLet me think about what would be good search terms for authentication files:\n- \"auth\"\n- \"authentication\"\n- \"login\"\n- \"session\"\n- \"password\"\n\nI'll start with \"auth\" as it's a common term for authentication files and directories.",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "\nThe user is asking me to search for authentication files in the codebase and limit the results to 5. I need to use the search function with a query related to authentication and set the limit parameter to 5.\n\nLet me think about what would be good search terms for authentication files:\n- \"auth\"\n- \"authentication\"\n- \"login\"\n- \"session\"\n- \"password\"\n\nI'll start with \"auth\" as it's a common term for authentication files and directories.",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1773907587,
+          "model": "z-ai/glm-4.5-air:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 140,
+            "prompt_tokens": 192,
+            "total_tokens": 332,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 98,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 43,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Z.AI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773907596-sMigAC5iZ31aQhsub75T",
+        "openrouter_provider": "Z.AI",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:6855412199d6dc0dc0d7cf39f3dde5672cba78aeb735a396c938f80bacad6e61",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 16070,
+        "failure_mode": null,
+        "request": {
+          "model": "z-ai/glm-4.5-air:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Search for authentication files, limit results to 5"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773907596-sMigAC5iZ31aQhsub75T",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": null,
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_fedf3fd0d4cb40d1b59ed340",
+                    "function": {
+                      "arguments": "{\"query\":\"auth\",\"limit\":5}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "\nThe user is asking me to search for authentication files in the codebase and limit the results to 5. I need to use the search function with a query related to authentication and set the limit parameter to 5.\n\nFor the query, I should use terms that would commonly be associated with authentication files. Some good search terms might be:\n- \"auth\"\n- \"authentication\"\n- \"login\"\n- \"session\"\n- \"password\"\n\nI'll start with \"auth\" as it's a common prefix for authentication-related files.",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "\nThe user is asking me to search for authentication files in the codebase and limit the results to 5. I need to use the search function with a query related to authentication and set the limit parameter to 5.\n\nFor the query, I should use terms that would commonly be associated with authentication files. Some good search terms might be:\n- \"auth\"\n- \"authentication\"\n- \"login\"\n- \"session\"\n- \"password\"\n\nI'll start with \"auth\" as it's a common prefix for authentication-related files.",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1773907596,
+          "model": "z-ai/glm-4.5-air:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 131,
+            "prompt_tokens": 192,
+            "total_tokens": 323,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 107,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 84,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Z.AI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773907613-H2DRTi9I8Dd8Opnb9jVv",
+        "openrouter_provider": "Z.AI",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:e7768f4327646b21d98fc79bd3f8df0a9af7a7f02a0dca6034a5d1a65e1bbec3",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 10839,
+        "failure_mode": null,
+        "request": {
+          "model": "z-ai/glm-4.5-air:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Search for authentication files, limit results to 5"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773907613-H2DRTi9I8Dd8Opnb9jVv",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": null,
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_40fba9056cef451db607ac50",
+                    "function": {
+                      "arguments": "{\"query\":\"auth\",\"limit\":5}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "\nThe user is asking me to search for authentication files in the codebase and limit the results to 5. I need to use the search function with a query related to authentication and set the limit parameter to 5.\n\nFor the query, I should use something like \"auth\" or \"authentication\" to find files related to authentication.",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "\nThe user is asking me to search for authentication files in the codebase and limit the results to 5. I need to use the search function with a query related to authentication and set the limit parameter to 5.\n\nFor the query, I should use something like \"auth\" or \"authentication\" to find files related to authentication.",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1773907613,
+          "model": "z-ai/glm-4.5-air:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 92,
+            "prompt_tokens": 192,
+            "total_tokens": 284,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 68,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 43,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Z.AI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773907623-BdOE1voS7c7H1iGpdBKs",
+        "openrouter_provider": "Z.AI",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:26321c3a53e89f287e343bf896cf65894983880859e5fbbef95dbcb684c2107b",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 24333,
+        "failure_mode": null,
+        "request": {
+          "model": "z-ai/glm-4.5-air:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Search for authentication files, limit results to 5"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773907623-BdOE1voS7c7H1iGpdBKs",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": null,
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_12bd6fea485f487f84ea055b",
+                    "function": {
+                      "arguments": "{\"query\":\"auth\",\"limit\":5}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "\nThe user is asking me to search for authentication files in the codebase and limit the results to 5. I need to use the search function with a query related to authentication and set the limit parameter to 5.\n\nFor the query, I should use something like \"auth\" or \"authentication\" to find files related to authentication.",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "\nThe user is asking me to search for authentication files in the codebase and limit the results to 5. I need to use the search function with a query related to authentication and set the limit parameter to 5.\n\nFor the query, I should use something like \"auth\" or \"authentication\" to find files related to authentication.",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1773907623,
+          "model": "z-ai/glm-4.5-air:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 92,
+            "prompt_tokens": 192,
+            "total_tokens": 284,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 68,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 43,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Z.AI"
+        }
+      },
+      {
+        "openrouter_request_id": null,
+        "openrouter_provider": null,
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "tool_called": false,
+        "schema_valid": false,
+        "latency_ms": 0,
+        "failure_mode": "text-instead-of-tool",
+        "request": {
+          "model": "z-ai/glm-4.5-air:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Search for authentication files, limit results to 5"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773907659-VlSvzKVbH721fuzDQca3",
+        "openrouter_provider": "Z.AI",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:7cc0c734753e22b6e633393486dad05391ccf00646c1cad43d3fcd0bc71fe242",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 43624,
+        "failure_mode": null,
+        "request": {
+          "model": "z-ai/glm-4.5-air:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Search for authentication files, limit results to 5"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773907659-VlSvzKVbH721fuzDQca3",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": null,
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_58c38d99eb9649eba1a524c8",
+                    "function": {
+                      "arguments": "{\"query\":\"auth\",\"limit\":5}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "\nThe user is asking me to search for authentication files in the codebase and limit the results to 5. I need to use the search function with a query related to authentication and set the limit parameter to 5.\n\nFor the query, I should use something like \"auth\" or \"authentication\" to find authentication-related files.",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "\nThe user is asking me to search for authentication files in the codebase and limit the results to 5. I need to use the search function with a query related to authentication and set the limit parameter to 5.\n\nFor the query, I should use something like \"auth\" or \"authentication\" to find authentication-related files.",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1773907659,
+          "model": "z-ai/glm-4.5-air:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 91,
+            "prompt_tokens": 192,
+            "total_tokens": 283,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 67,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 43,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Z.AI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773907704-9cyEHUtzz4lfi5yCgr9y",
+        "openrouter_provider": "Z.AI",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:3d111b1463bbc4c7a3179db289824b80989dfc6076e60ea932e6856c78e2a354",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 104227,
+        "failure_mode": null,
+        "request": {
+          "model": "z-ai/glm-4.5-air:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Search for authentication files, limit results to 5"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773907704-9cyEHUtzz4lfi5yCgr9y",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": null,
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_31bd7a812e014daaa0df8d53",
+                    "function": {
+                      "arguments": "{\"query\":\"auth\",\"limit\":5}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "\nThe user is asking me to search for authentication files in the codebase and limit the results to 5. I need to use the search function with a query that would find authentication-related files. \n\nFor authentication files, common terms might include:\n- auth\n- authentication\n- login\n- password\n- security\n- session\n- token\n- credentials\n\nI should use a broad query like \"auth\" to capture various authentication-related files, and set the limit to 5 as requested.",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "\nThe user is asking me to search for authentication files in the codebase and limit the results to 5. I need to use the search function with a query that would find authentication-related files. \n\nFor authentication files, common terms might include:\n- auth\n- authentication\n- login\n- password\n- security\n- session\n- token\n- credentials\n\nI should use a broad query like \"auth\" to capture various authentication-related files, and set the limit to 5 as requested.",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1773907704,
+          "model": "z-ai/glm-4.5-air:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 125,
+            "prompt_tokens": 192,
+            "total_tokens": 317,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 101,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 191,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Z.AI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773907810-ZGaECGFjSUHvmImrxGYF",
+        "openrouter_provider": "Z.AI",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:32316c00ead14e9317394d24255fbf693cc8889e64bcf7c63b19030c818d6c13",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 13902,
+        "failure_mode": null,
+        "request": {
+          "model": "z-ai/glm-4.5-air:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Search for authentication files, limit results to 5"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773907810-ZGaECGFjSUHvmImrxGYF",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": null,
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_1f102144f2cd4c6ab73a52e9",
+                    "function": {
+                      "arguments": "{\"query\":\"auth\",\"limit\":5}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "\nThe user is asking me to search for authentication files in the codebase and limit the results to 5. I need to use the search function with a query related to authentication and set the limit parameter to 5.\n\nFor the query, I should use terms that would commonly be associated with authentication files. Some good search terms could be:\n- \"auth\"\n- \"authentication\"\n- \"login\"\n- \"session\"\n- \"password\"\n\nI'll start with \"auth\" as it's a common prefix for authentication-related files.",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "\nThe user is asking me to search for authentication files in the codebase and limit the results to 5. I need to use the search function with a query related to authentication and set the limit parameter to 5.\n\nFor the query, I should use terms that would commonly be associated with authentication files. Some good search terms could be:\n- \"auth\"\n- \"authentication\"\n- \"login\"\n- \"session\"\n- \"password\"\n\nI'll start with \"auth\" as it's a common prefix for authentication-related files.",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1773907810,
+          "model": "z-ai/glm-4.5-air:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 131,
+            "prompt_tokens": 192,
+            "total_tokens": 323,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 107,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 84,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Z.AI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773907821-0akvNgifn8RYB8yLnCzK",
+        "openrouter_provider": "Z.AI",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:5c182ec3322f1edbdd50c40ab00160e8bc47f3562b95d4a53ba388acf03e10cd",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 22596,
+        "failure_mode": null,
+        "request": {
+          "model": "z-ai/glm-4.5-air:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Search for authentication files, limit results to 5"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773907821-0akvNgifn8RYB8yLnCzK",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": null,
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_d4bcb8e3cc044aed93d30726",
+                    "function": {
+                      "arguments": "{\"query\":\"auth\",\"limit\":5}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "\nThe user is asking me to search for authentication files in the codebase and limit the results to 5. I need to use the search function with a query related to authentication and set the limit parameter to 5.\n\nFor the query, I should use something that would find authentication-related files. Common terms might include \"auth\", \"authentication\", \"login\", \"password\", \"session\", etc. I'll start with \"auth\" as it's a common prefix for authentication-related files.",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "\nThe user is asking me to search for authentication files in the codebase and limit the results to 5. I need to use the search function with a query related to authentication and set the limit parameter to 5.\n\nFor the query, I should use something that would find authentication-related files. Common terms might include \"auth\", \"authentication\", \"login\", \"password\", \"session\", etc. I'll start with \"auth\" as it's a common prefix for authentication-related files.",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1773907821,
+          "model": "z-ai/glm-4.5-air:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 123,
+            "prompt_tokens": 192,
+            "total_tokens": 315,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 99,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 84,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Z.AI"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773907850-1vfLCH2y5jC35ePRzCX4",
+        "openrouter_provider": "Z.AI",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:37ce4e76e54cb6e325ca875edc8d3b5a3b79441e5e8aaf1149359d735a59f864",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 44248,
+        "failure_mode": null,
+        "request": {
+          "model": "z-ai/glm-4.5-air:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Search for authentication files, limit results to 5"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773907850-1vfLCH2y5jC35ePRzCX4",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": null,
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "call_27bce678d69d443a88bc37f1",
+                    "function": {
+                      "arguments": "{\"query\":\"auth\",\"limit\":5}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "\nThe user is asking me to search for authentication files in the codebase and limit the results to 5. I need to use the search function with a query that would find authentication-related files. \n\nFor authentication files, common patterns might include:\n- Files with \"auth\" in the name\n- Files with \"login\" in the name  \n- Files with \"authenticate\" in the name\n- Files with \"session\" in the name\n- Files with \"password\" in the name\n- Files with \"jwt\" in the name\n- Files with \"token\" in the name\n\nI should use a broad search query that would capture authentication-related files. Let me try \"auth\" as the query since it's the most common term for authentication files.",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "\nThe user is asking me to search for authentication files in the codebase and limit the results to 5. I need to use the search function with a query that would find authentication-related files. \n\nFor authentication files, common patterns might include:\n- Files with \"auth\" in the name\n- Files with \"login\" in the name  \n- Files with \"authenticate\" in the name\n- Files with \"session\" in the name\n- Files with \"password\" in the name\n- Files with \"jwt\" in the name\n- Files with \"token\" in the name\n\nI should use a broad search query that would capture authentication-related files. Let me try \"auth\" as the query since it's the most common term for authentication files.",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1773907850,
+          "model": "z-ai/glm-4.5-air:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 178,
+            "prompt_tokens": 192,
+            "total_tokens": 370,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 154,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 191,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "Z.AI"
+        }
+      }
+    ]
+  },
+  "summary": {
+    "successes": 9,
+    "trials": 10,
+    "rate": 0.9,
+    "wilson_ci_95": [
+      0.5958436145024278,
+      0.9821242504842788
+    ]
+  }
+}
