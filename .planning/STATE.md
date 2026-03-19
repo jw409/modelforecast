@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-stopped_at: Completed 03-01-PLAN.md
-last_updated: "2026-03-19T08:27:37.417Z"
+stopped_at: Completed 05-01-PLAN.md
+last_updated: "2026-03-19T08:32:08.861Z"
 progress:
   total_phases: 5
   completed_phases: 3
   total_plans: 8
-  completed_plans: 6
+  completed_plans: 7
 ---
 
 # Project State
@@ -51,6 +51,7 @@ Plan: 1 of N (Plan 01 complete)
 | Phase 02-model-roster-validation P02 | 66 | 2 tasks | 2 files |
 | Phase 03-codebase-and-documentation-cleanup P02 | 116 | 2 tasks | 2 files |
 | Phase 03-codebase-and-documentation-cleanup P01 | 154 | 2 tasks | 3 files |
+| Phase 05-consumer-output P01 | 174 | 2 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -73,6 +74,8 @@ Recent decisions affecting current work:
 - [Phase 03-codebase-and-documentation-cleanup]: google/gemma-3-27b-it:free excluded from METHODOLOGY.md — confirmed in GRAVEYARD.md (removed 2026-03-18)
 - [Phase 03-codebase-and-documentation-cleanup]: CLAUDE.md probe-sweep architecture documented — no Dagster/CoreWars/Playwright; sweep subcommand is canonical entry point
 - [Phase 03-01]: openai>=2.0.0 bumped from 1.x; SDK max_retries replaces 40-line manual backoff loop; dead deps (dagster, matplotlib, pandas, playwright) stripped
+- [Phase 05-consumer-output]: ruff added as dev dependency — was in pyproject.toml tool config but missing from dependency-groups
+- [Phase 05-consumer-output]: All models in same grade receive tie marker when any CI pair overlaps at T0 — marks the entire grade cohort as statistically indistinct
 
 ### Pending Todos
 
@@ -85,6 +88,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-19T05:06:29.578Z
-Stopped at: Completed 03-01-PLAN.md
+Last session: 2026-03-19T08:32:08.860Z
+Stopped at: Completed 05-01-PLAN.md
 Resume file: None
