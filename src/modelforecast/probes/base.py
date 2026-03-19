@@ -29,6 +29,17 @@ class ProbeResult:
     error: str | None = None
     """Error message if the probe encountered an exception."""
 
+    failure_mode: str | None = None
+    """Failure mode classification — None if probe succeeded.
+
+    Valid values:
+    - "text-instead-of-tool": model returned text response when a tool call was expected
+    - "malformed-json": tool call arguments were not valid JSON
+    - "wrong-tool": model called a tool but not the expected one
+    - "hallucinated-tool": model called a tool name that doesn't exist in the tool list
+    - "missing-required-param": tool call missing a required parameter
+    """
+
     def __repr__(self) -> str:
         """Compact representation for logging."""
         status = "PASS" if self.success else "FAIL"
