@@ -32,15 +32,15 @@
 
 ### Methodology
 
-- [ ] **METH-01**: METHODOLOGY.md updated with current model list and dimension descriptions
-- [ ] **METH-02**: Grading rubric documented inline in results table
+- [x] **METH-01**: METHODOLOGY.md updated with current model list and dimension descriptions
+- [x] **METH-02**: Grading rubric documented inline in results table
 
 ### Maintenance
 
 - [ ] **MAINT-01**: Dead dependencies removed from pyproject.toml (dagster, matplotlib, pandas, playwright)
 - [ ] **MAINT-02**: openai SDK upgraded to 2.x with built-in retry
-- [ ] **MAINT-03**: CLAUDE.md updated to reflect current project state
-- [ ] **MAINT-04**: models listed in METHODOLOGY.md match current OpenRouter free roster
+- [x] **MAINT-03**: CLAUDE.md updated to reflect current project state
+- [x] **MAINT-04**: models listed in METHODOLOGY.md match current OpenRouter free roster
 
 ### Execution
 
@@ -91,10 +91,10 @@
 | MODEL-03 | Phase 2 | Complete |
 | MAINT-01 | Phase 3 | Pending |
 | MAINT-02 | Phase 3 | Pending |
-| MAINT-03 | Phase 3 | Pending |
-| MAINT-04 | Phase 3 | Pending |
-| METH-01 | Phase 3 | Pending |
-| METH-02 | Phase 3 | Pending |
+| MAINT-03 | Phase 3 | Complete |
+| MAINT-04 | Phase 3 | Complete |
+| METH-01 | Phase 3 | Complete |
+| METH-02 | Phase 3 | Complete |
 | EXEC-01 | Phase 4 | Pending |
 | EXEC-02 | Phase 4 | Pending |
 | OUTPUT-01 | Phase 5 | Pending |

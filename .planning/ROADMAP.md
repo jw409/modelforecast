@@ -14,7 +14,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Sweep Infrastructure** - Harden the runner with retry, checkpoint-resume, rate limiting, and provider header capture (completed 2026-03-19)
 - [x] **Phase 2: Model Roster Validation** - Validate all model IDs against live OpenRouter API and maintain a graveyard for defunct models (completed 2026-03-19)
-- [ ] **Phase 3: Codebase and Documentation Cleanup** - Remove dead dependencies, upgrade SDK, and update METHODOLOGY.md and CLAUDE.md
+- [x] **Phase 3: Codebase and Documentation Cleanup** - Remove dead dependencies, upgrade SDK, and update METHODOLOGY.md and CLAUDE.md (completed 2026-03-19)
 - [ ] **Phase 4: Fresh Sweep Execution** - Run complete probe sweep across all validated free models with tool support
 - [ ] **Phase 5: Consumer Output** - Generate tiered README, grade badges, category winners, and "best for X" recommendations
 
@@ -97,6 +97,6 @@ Note: Phases 2 and 3 can run in parallel after Phase 1 completes (no dependency 
 |-------|----------------|--------|-----------|
 | 1. Sweep Infrastructure | 2/2 | Complete   | 2026-03-19 |
 | 2. Model Roster Validation | 2/2 | Complete   | 2026-03-19 |
-| 3. Codebase and Documentation Cleanup | 0/2 | Not started | - |
+| 3. Codebase and Documentation Cleanup | 2/2 | Complete   | 2026-03-19 |
 | 4. Fresh Sweep Execution | 0/TBD | Not started | - |
 | 5. Consumer Output | 0/TBD | Not started | - |
