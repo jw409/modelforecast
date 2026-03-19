@@ -63,9 +63,12 @@ def grade_badge_markdown(model_id: str, grade: str) -> str:
         Markdown string: [![Grade X](badge-url)](model-url)
     """
     color = GRADE_COLORS.get(grade, "lightgrey")
-    badge_url = f"{BADGE_BASE}/Grade-{grade}-{color}"
+    short = _short_name(model_id)
+    # Shields.io: hyphens in label need double-dash, dots need escaping
+    label = short.replace("-", "--").replace(".", ".")
+    badge_url = f"{BADGE_BASE}/{label}-Grade_{grade}-{color}"
     model_url = _model_url(model_id)
-    return f"[![Grade {grade}]({badge_url})]({model_url})"
+    return f"[![{short}: Grade {grade}]({badge_url})]({model_url})"
 
 
 def _get_level_rate(model_data: dict, level: int) -> float | None:

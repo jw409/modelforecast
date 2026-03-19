@@ -15,7 +15,7 @@ Full results: [results/RESULTS.md](results/RESULTS.md) · [Methodology](METHODOL
 <!-- MODELFORECAST:GRADE-BADGES:START -->
 ### Top performers
 
-[![Grade A](https://img.shields.io/badge/Grade-A-brightgreen)](https://openrouter.ai/models/nvidia/nemotron-3-nano-30b-a3b) [![Grade A](https://img.shields.io/badge/Grade-A-brightgreen)](https://openrouter.ai/models/nvidia/nemotron-3-super-120b-a12b) [![Grade A](https://img.shields.io/badge/Grade-A-brightgreen)](https://openrouter.ai/models/openai/gpt-oss-120b) [![Grade A](https://img.shields.io/badge/Grade-A-brightgreen)](https://openrouter.ai/models/stepfun/step-3.5-flash) [![Grade A](https://img.shields.io/badge/Grade-A-brightgreen)](https://openrouter.ai/models/z-ai/glm-4.5-air)
+[![nemotron-3-nano-30b-a3b: Grade A](https://img.shields.io/badge/nemotron--3--nano--30b--a3b-Grade_A-brightgreen)](https://openrouter.ai/models/nvidia/nemotron-3-nano-30b-a3b) [![nemotron-3-super-120b-a12b: Grade A](https://img.shields.io/badge/nemotron--3--super--120b--a12b-Grade_A-brightgreen)](https://openrouter.ai/models/nvidia/nemotron-3-super-120b-a12b) [![gpt-oss-120b: Grade A](https://img.shields.io/badge/gpt--oss--120b-Grade_A-brightgreen)](https://openrouter.ai/models/openai/gpt-oss-120b) [![step-3.5-flash: Grade A](https://img.shields.io/badge/step--3.5--flash-Grade_A-brightgreen)](https://openrouter.ai/models/stepfun/step-3.5-flash) [![glm-4.5-air: Grade A](https://img.shields.io/badge/glm--4.5--air-Grade_A-brightgreen)](https://openrouter.ai/models/z-ai/glm-4.5-air)
 
 *Click a badge to view the model on OpenRouter.*
 <!-- MODELFORECAST:GRADE-BADGES:END -->
