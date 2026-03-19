@@ -113,4 +113,4 @@
 
 ---
 *Requirements defined: 2026-03-18*
-*Last updated: 2026-03-18 after initial definition*
+*Last updated: 2026-03-18 — traceability validated against ROADMAP.md*
