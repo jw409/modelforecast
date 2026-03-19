@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-stopped_at: Completed 01-02-PLAN.md
-last_updated: "2026-03-19T04:48:08.621Z"
+stopped_at: Completed 02-02-PLAN.md
+last_updated: "2026-03-19T04:55:54.213Z"
 progress:
   total_phases: 5
-  completed_phases: 1
-  total_plans: 2
-  completed_plans: 2
+  completed_phases: 2
+  total_plans: 4
+  completed_plans: 4
 ---
 
 # Project State
@@ -19,12 +19,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-18)
 
 **Core value:** Empirical, reproducible answers to "which free OpenRouter model actually works for tool calling?" — data with confidence intervals, not vibes
-**Current focus:** Phase 01 — Sweep Infrastructure
+**Current focus:** Phase 02 — Model Roster Validation
 
 ## Current Position
 
-Phase: 01 (Sweep Infrastructure) — EXECUTING
-Plan: 2 of 2 (Plan 01 complete)
+Phase: 02 (Model Roster Validation) — EXECUTING
+Plan: 1 of N (Plan 01 complete)
 
 ## Performance Metrics
 
@@ -47,6 +47,8 @@ Plan: 2 of 2 (Plan 01 complete)
 
 *Updated after each plan completion*
 | Phase 01 P02 | 180 | 2 tasks | 3 files |
+| Phase 02 P01 | 74 | 2 tasks | 3 files |
+| Phase 02-model-roster-validation P02 | 66 | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -63,6 +65,9 @@ Recent decisions affecting current work:
 - [Phase 01]: Retry budget: 3 attempts with exponential backoff (2^attempt seconds) for RateLimitError and 5xx APIStatusError
 - [Phase 01]: Use TYPE_CHECKING guard + string annotation to break runner<->sweep circular import
 - [Phase 01]: sweep subcommand added via subparsers while preserving all top-level flags
+- [Phase 02]: Auto-discovery always uses tools_only=True — prevents wasting quota on models that cannot call tools
+- [Phase 02]: --validate-roster exits before orchestrator/runner construction — zero quota cost for roster check
+- [Phase 02-model-roster-validation]: 2026-03-01 used as conservative Last Known Available for seed entries; already_buried detection uses regex from file text avoiding separate state file
 
 ### Pending Todos
 
@@ -75,6 +80,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-19T04:45:18.546Z
-Stopped at: Completed 01-02-PLAN.md
+Last session: 2026-03-19T04:55:49.216Z
+Stopped at: Completed 02-02-PLAN.md
 Resume file: None

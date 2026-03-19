@@ -15,9 +15,9 @@
 
 ### Model Management
 
-- [ ] **MODEL-01**: Runner validates all model IDs against live OpenRouter API before starting sweep
-- [ ] **MODEL-02**: Runner auto-discovers current free models with tool support from OpenRouter API
-- [ ] **MODEL-03**: Removed/defunct models are tracked in a graveyard section
+- [x] **MODEL-01**: Runner validates all model IDs against live OpenRouter API before starting sweep
+- [x] **MODEL-02**: Runner auto-discovers current free models with tool support from OpenRouter API
+- [x] **MODEL-03**: Removed/defunct models are tracked in a graveyard section
 
 ### Consumer Output
 
@@ -86,9 +86,9 @@
 | SWEEP-03 | Phase 1 | Complete |
 | SWEEP-04 | Phase 1 | Complete |
 | SWEEP-05 | Phase 1 | Complete |
-| MODEL-01 | Phase 2 | Pending |
-| MODEL-02 | Phase 2 | Pending |
-| MODEL-03 | Phase 2 | Pending |
+| MODEL-01 | Phase 2 | Complete |
+| MODEL-02 | Phase 2 | Complete |
+| MODEL-03 | Phase 2 | Complete |
 | MAINT-01 | Phase 3 | Pending |
 | MAINT-02 | Phase 3 | Pending |
 | MAINT-03 | Phase 3 | Pending |
