@@ -75,10 +75,10 @@ class ProbeRunner:
         else:
             # Fetch current free models from OpenRouter
             self.console.print("[bold]Fetching available free models from OpenRouter...[/bold]")
-            self.models = get_free_models(api_key)
+            self.models = get_free_models(api_key, tools_only=True)
             if not self.models:
                 raise ValueError("No free models available on OpenRouter")
-            self.console.print(f"[green]✓ Found {len(self.models)} free models[/green]")
+            self.console.print(f"[green]✓ Found {len(self.models)} free models with tool support[/green]")
 
         # Initialize probe levels
         # Import all probe classes using new T/R/A naming
