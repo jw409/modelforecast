@@ -37,8 +37,8 @@
 
 ### Maintenance
 
-- [ ] **MAINT-01**: Dead dependencies removed from pyproject.toml (dagster, matplotlib, pandas, playwright)
-- [ ] **MAINT-02**: openai SDK upgraded to 2.x with built-in retry
+- [x] **MAINT-01**: Dead dependencies removed from pyproject.toml (dagster, matplotlib, pandas, playwright)
+- [x] **MAINT-02**: openai SDK upgraded to 2.x with built-in retry
 - [x] **MAINT-03**: CLAUDE.md updated to reflect current project state
 - [x] **MAINT-04**: models listed in METHODOLOGY.md match current OpenRouter free roster
 
@@ -89,8 +89,8 @@
 | MODEL-01 | Phase 2 | Complete |
 | MODEL-02 | Phase 2 | Complete |
 | MODEL-03 | Phase 2 | Complete |
-| MAINT-01 | Phase 3 | Pending |
-| MAINT-02 | Phase 3 | Pending |
+| MAINT-01 | Phase 3 | Complete |
+| MAINT-02 | Phase 3 | Complete |
 | MAINT-03 | Phase 3 | Complete |
 | MAINT-04 | Phase 3 | Complete |
 | METH-01 | Phase 3 | Complete |
