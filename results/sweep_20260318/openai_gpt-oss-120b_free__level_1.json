@@ -1,6 +1,6 @@
 {
-  "submission_id": "sub_f727ce058d15",
-  "timestamp": "2026-03-19T09:01:31.326410+00:00",
+  "submission_id": "sub_f4907347d835",
+  "timestamp": "2026-03-19T09:03:25.711855+00:00",
   "contributor": "unknown",
   "environment": {
     "python_version": "3.11.13",
@@ -10,23 +10,23 @@
   },
   "probes": {
     "model": "openai/gpt-oss-120b:free",
-    "level": 0,
+    "level": 1,
     "trials": [
       {
-        "openrouter_request_id": "gen-1773910891-zACl1wQg6T4FbnSrWESF",
+        "openrouter_request_id": "gen-1773911014-aF7AXYxXIruzZgXz7PPh",
         "openrouter_provider": "OpenInference",
-        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
-        "response_hash": "sha256:3f1c2b2bf43bd1b6f0e6acf3f543219d1e1f375da20fd501395fe70c7e67419d",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:cd0c0f6979104b9eb75b6e4ec6751843a091ccc86b2b651dd27c3d7e39d17bb9",
         "tool_called": true,
         "schema_valid": true,
-        "latency_ms": 1220,
+        "latency_ms": 2175,
         "failure_mode": null,
         "request": {
           "model": "openai/gpt-oss-120b:free",
           "messages": [
             {
               "role": "user",
-              "content": "Use the search tool to find files containing 'authentication'"
+              "content": "Search for authentication files, limit results to 5"
             }
           ],
           "tools": [
@@ -41,6 +41,10 @@
                     "query": {
                       "type": "string",
                       "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
                     }
                   },
                   "required": [
@@ -53,7 +57,7 @@
           "temperature": 0.1
         },
         "response": {
-          "id": "gen-1773910891-zACl1wQg6T4FbnSrWESF",
+          "id": "gen-1773911014-aF7AXYxXIruzZgXz7PPh",
           "choices": [
             {
               "finish_reason": "tool_calls",
@@ -68,20 +72,20 @@
                 "function_call": null,
                 "tool_calls": [
                   {
-                    "id": "chatcmpl-tool-8d363a9f33801801",
+                    "id": "chatcmpl-tool-870038ee43e16bd4",
                     "function": {
-                      "arguments": "{\n  \"query\": \"authentication\"\n}",
+                      "arguments": "{\n  \"query\": \"auth\",\n  \"limit\": 5\n}",
                       "name": "search"
                     },
                     "type": "function",
                     "index": 0
                   }
                 ],
-                "reasoning": "We need to use the search tool to find files containing 'authentication'. Use the provided function.",
+                "reasoning": "We need to search codebase for authentication files. Use search tool.",
                 "reasoning_details": [
                   {
                     "type": "reasoning.text",
-                    "text": "We need to use the search tool to find files containing 'authentication'. Use the provided function.",
+                    "text": "We need to search codebase for authentication files. Use search tool.",
                     "format": "unknown",
                     "index": 0
                   }
@@ -90,19 +94,19 @@
               "native_finish_reason": "tool_calls"
             }
           ],
-          "created": 1773910891,
+          "created": 1773911014,
           "model": "openai/gpt-oss-120b:free",
           "object": "chat.completion",
           "service_tier": null,
           "system_fingerprint": null,
           "usage": {
-            "completion_tokens": 46,
-            "prompt_tokens": 134,
-            "total_tokens": 180,
+            "completion_tokens": 48,
+            "prompt_tokens": 142,
+            "total_tokens": 190,
             "completion_tokens_details": {
               "accepted_prediction_tokens": null,
               "audio_tokens": 0,
-              "reasoning_tokens": 25,
+              "reasoning_tokens": 18,
               "rejected_prediction_tokens": null,
               "image_tokens": 0
             },
@@ -124,20 +128,20 @@
         }
       },
       {
-        "openrouter_request_id": "gen-1773910901-mKsgyKB6y672r8kbJoij",
+        "openrouter_request_id": "gen-1773911025-b6zRzpwNHDFh2O1oCcPW",
         "openrouter_provider": "OpenInference",
-        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
-        "response_hash": "sha256:a861069068383cb3ad161a69605303c31d580b973daedd4e3fa21bcf6e13d612",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:345b493b699e21fdfc81d525b815e3ba88f7ac63b06632dc55074bd664a21090",
         "tool_called": true,
         "schema_valid": true,
-        "latency_ms": 1297,
+        "latency_ms": 1488,
         "failure_mode": null,
         "request": {
           "model": "openai/gpt-oss-120b:free",
           "messages": [
             {
               "role": "user",
-              "content": "Use the search tool to find files containing 'authentication'"
+              "content": "Search for authentication files, limit results to 5"
             }
           ],
           "tools": [
@@ -152,6 +156,10 @@
                     "query": {
                       "type": "string",
                       "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
                     }
                   },
                   "required": [
@@ -164,7 +172,7 @@
           "temperature": 0.1
         },
         "response": {
-          "id": "gen-1773910901-mKsgyKB6y672r8kbJoij",
+          "id": "gen-1773911025-b6zRzpwNHDFh2O1oCcPW",
           "choices": [
             {
               "finish_reason": "tool_calls",
@@ -179,20 +187,20 @@
                 "function_call": null,
                 "tool_calls": [
                   {
-                    "id": "chatcmpl-tool-bb998810f29f6184",
+                    "id": "chatcmpl-tool-b7465a0c01979061",
                     "function": {
-                      "arguments": "{\n  \"query\": \"authentication\"\n}",
+                      "arguments": "{\n  \"query\": \"auth\",\n  \"limit\": 5\n}",
                       "name": "search"
                     },
                     "type": "function",
                     "index": 0
                   }
                 ],
-                "reasoning": "We need to use the search tool to find files containing 'authentication'. Use the function.",
+                "reasoning": "We need to search codebase for authentication files. Use search tool.",
                 "reasoning_details": [
                   {
                     "type": "reasoning.text",
-                    "text": "We need to use the search tool to find files containing 'authentication'. Use the function.",
+                    "text": "We need to search codebase for authentication files. Use search tool.",
                     "format": "unknown",
                     "index": 0
                   }
@@ -201,19 +209,19 @@
               "native_finish_reason": "tool_calls"
             }
           ],
-          "created": 1773910901,
+          "created": 1773911025,
           "model": "openai/gpt-oss-120b:free",
           "object": "chat.completion",
           "service_tier": null,
           "system_fingerprint": null,
           "usage": {
-            "completion_tokens": 45,
-            "prompt_tokens": 134,
-            "total_tokens": 179,
+            "completion_tokens": 48,
+            "prompt_tokens": 142,
+            "total_tokens": 190,
             "completion_tokens_details": {
               "accepted_prediction_tokens": null,
               "audio_tokens": 0,
-              "reasoning_tokens": 23,
+              "reasoning_tokens": 18,
               "rejected_prediction_tokens": null,
               "image_tokens": 0
             },
@@ -235,20 +243,20 @@
         }
       },
       {
-        "openrouter_request_id": "gen-1773910911-xPp1EiTvtxbTFAP1WAUp",
+        "openrouter_request_id": "gen-1773911035-i8hczKm6PXrptjn0VhCT",
         "openrouter_provider": "OpenInference",
-        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
-        "response_hash": "sha256:21b3f116ef3f3fa1594bae1cdcc33f37de2ea84410bc05ace2fbcd4cb8ec8f83",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:e5b71c6c87586bd3e53d2aba70bfc3be9dd0a1f593ca0805a7ef79d17a5c2ecc",
         "tool_called": true,
         "schema_valid": true,
-        "latency_ms": 4382,
+        "latency_ms": 938,
         "failure_mode": null,
         "request": {
           "model": "openai/gpt-oss-120b:free",
           "messages": [
             {
               "role": "user",
-              "content": "Use the search tool to find files containing 'authentication'"
+              "content": "Search for authentication files, limit results to 5"
             }
           ],
           "tools": [
@@ -263,6 +271,10 @@
                     "query": {
                       "type": "string",
                       "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
                     }
                   },
                   "required": [
@@ -275,7 +287,7 @@
           "temperature": 0.1
         },
         "response": {
-          "id": "gen-1773910911-xPp1EiTvtxbTFAP1WAUp",
+          "id": "gen-1773911035-i8hczKm6PXrptjn0VhCT",
           "choices": [
             {
               "finish_reason": "tool_calls",
@@ -290,20 +302,20 @@
                 "function_call": null,
                 "tool_calls": [
                   {
-                    "id": "chatcmpl-tool-a4ea8ade797c2541",
+                    "id": "chatcmpl-tool-9a90277d29fad838",
                     "function": {
-                      "arguments": "{\n  \"query\": \"authentication\"\n}",
+                      "arguments": "{\n  \"query\": \"auth\",\n  \"limit\": 5\n}",
                       "name": "search"
                     },
                     "type": "function",
                     "index": 0
                   }
                 ],
-                "reasoning": "We need to use the search tool to find files containing 'authentication'. Use the function.",
+                "reasoning": "We need to search codebase for authentication files. Use search function.",
                 "reasoning_details": [
                   {
                     "type": "reasoning.text",
-                    "text": "We need to use the search tool to find files containing 'authentication'. Use the function.",
+                    "text": "We need to search codebase for authentication files. Use search function.",
                     "format": "unknown",
                     "index": 0
                   }
@@ -312,19 +324,19 @@
               "native_finish_reason": "tool_calls"
             }
           ],
-          "created": 1773910911,
+          "created": 1773911035,
           "model": "openai/gpt-oss-120b:free",
           "object": "chat.completion",
           "service_tier": null,
           "system_fingerprint": null,
           "usage": {
-            "completion_tokens": 45,
-            "prompt_tokens": 134,
-            "total_tokens": 179,
+            "completion_tokens": 48,
+            "prompt_tokens": 142,
+            "total_tokens": 190,
             "completion_tokens_details": {
               "accepted_prediction_tokens": null,
               "audio_tokens": 0,
-              "reasoning_tokens": 23,
+              "reasoning_tokens": 19,
               "rejected_prediction_tokens": null,
               "image_tokens": 0
             },
@@ -346,20 +358,20 @@
         }
       },
       {
-        "openrouter_request_id": "gen-1773910922-X8thUM0jimnb8J6FgpXE",
+        "openrouter_request_id": "gen-1773911045-FIzlp1jKclfOaFmGItGb",
         "openrouter_provider": "OpenInference",
-        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
-        "response_hash": "sha256:5e4d65ecd054b139d34389e559c968203b85e38fdc6c709b9d50604ff2f605d1",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:0e5705cc6db6db2725494e7047e665a9a9d1144020aee2bb1389c47906f85444",
         "tool_called": true,
         "schema_valid": true,
-        "latency_ms": 1451,
+        "latency_ms": 1157,
         "failure_mode": null,
         "request": {
           "model": "openai/gpt-oss-120b:free",
           "messages": [
             {
               "role": "user",
-              "content": "Use the search tool to find files containing 'authentication'"
+              "content": "Search for authentication files, limit results to 5"
             }
           ],
           "tools": [
@@ -374,6 +386,10 @@
                     "query": {
                       "type": "string",
                       "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
                     }
                   },
                   "required": [
@@ -386,7 +402,7 @@
           "temperature": 0.1
         },
         "response": {
-          "id": "gen-1773910922-X8thUM0jimnb8J6FgpXE",
+          "id": "gen-1773911045-FIzlp1jKclfOaFmGItGb",
           "choices": [
             {
               "finish_reason": "tool_calls",
@@ -401,20 +417,20 @@
                 "function_call": null,
                 "tool_calls": [
                   {
-                    "id": "chatcmpl-tool-b3b68d173e06675c",
+                    "id": "chatcmpl-tool-b677a840ee1f0cb4",
                     "function": {
-                      "arguments": "{\n  \"query\": \"authentication\"\n}",
+                      "arguments": "{\n  \"query\": \"auth\",\n  \"limit\": 5\n}",
                       "name": "search"
                     },
                     "type": "function",
                     "index": 0
                   }
                 ],
-                "reasoning": "We need to use the search tool to find files containing 'authentication'. Use the function.",
+                "reasoning": "We need to search codebase for authentication files. Use search tool.",
                 "reasoning_details": [
                   {
                     "type": "reasoning.text",
-                    "text": "We need to use the search tool to find files containing 'authentication'. Use the function.",
+                    "text": "We need to search codebase for authentication files. Use search tool.",
                     "format": "unknown",
                     "index": 0
                   }
@@ -423,19 +439,19 @@
               "native_finish_reason": "tool_calls"
             }
           ],
-          "created": 1773910922,
+          "created": 1773911045,
           "model": "openai/gpt-oss-120b:free",
           "object": "chat.completion",
           "service_tier": null,
           "system_fingerprint": null,
           "usage": {
-            "completion_tokens": 45,
-            "prompt_tokens": 134,
-            "total_tokens": 179,
+            "completion_tokens": 48,
+            "prompt_tokens": 142,
+            "total_tokens": 190,
             "completion_tokens_details": {
               "accepted_prediction_tokens": null,
               "audio_tokens": 0,
-              "reasoning_tokens": 23,
+              "reasoning_tokens": 18,
               "rejected_prediction_tokens": null,
               "image_tokens": 0
             },
@@ -457,20 +473,20 @@
         }
       },
       {
-        "openrouter_request_id": "gen-1773910932-x8iacTgm5t9pD7y0qXc7",
+        "openrouter_request_id": "gen-1773911056-fFrM11O8g7h96i41dBqh",
         "openrouter_provider": "OpenInference",
-        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
-        "response_hash": "sha256:5852f0e06fba904866df2a510a425bf64bbff13f25e71a7ed5011b68336b74dd",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:0ff74147906beb4e8f31776fbbbebafa89d9412c30b8759bd899081b0fc018d6",
         "tool_called": true,
         "schema_valid": true,
-        "latency_ms": 1106,
+        "latency_ms": 1779,
         "failure_mode": null,
         "request": {
           "model": "openai/gpt-oss-120b:free",
           "messages": [
             {
               "role": "user",
-              "content": "Use the search tool to find files containing 'authentication'"
+              "content": "Search for authentication files, limit results to 5"
             }
           ],
           "tools": [
@@ -485,6 +501,10 @@
                     "query": {
                       "type": "string",
                       "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
                     }
                   },
                   "required": [
@@ -497,7 +517,7 @@
           "temperature": 0.1
         },
         "response": {
-          "id": "gen-1773910932-x8iacTgm5t9pD7y0qXc7",
+          "id": "gen-1773911056-fFrM11O8g7h96i41dBqh",
           "choices": [
             {
               "finish_reason": "tool_calls",
@@ -512,20 +532,20 @@
                 "function_call": null,
                 "tool_calls": [
                   {
-                    "id": "chatcmpl-tool-9e014f0050d1bb90",
+                    "id": "chatcmpl-tool-9dfef08b2307bdfc",
                     "function": {
-                      "arguments": "{\n  \"query\": \"authentication\"\n}",
+                      "arguments": "{\n  \"query\": \"auth\",\n  \"limit\": 5\n}",
                       "name": "search"
                     },
                     "type": "function",
                     "index": 0
                   }
                 ],
-                "reasoning": "We need to use the search tool to find files containing 'authentication'. Use the function.",
+                "reasoning": "We need to search codebase for authentication files. Use search tool.",
                 "reasoning_details": [
                   {
                     "type": "reasoning.text",
-                    "text": "We need to use the search tool to find files containing 'authentication'. Use the function.",
+                    "text": "We need to search codebase for authentication files. Use search tool.",
                     "format": "unknown",
                     "index": 0
                   }
@@ -534,19 +554,19 @@
               "native_finish_reason": "tool_calls"
             }
           ],
-          "created": 1773910932,
+          "created": 1773911056,
           "model": "openai/gpt-oss-120b:free",
           "object": "chat.completion",
           "service_tier": null,
           "system_fingerprint": null,
           "usage": {
-            "completion_tokens": 45,
-            "prompt_tokens": 134,
-            "total_tokens": 179,
+            "completion_tokens": 48,
+            "prompt_tokens": 142,
+            "total_tokens": 190,
             "completion_tokens_details": {
               "accepted_prediction_tokens": null,
               "audio_tokens": 0,
-              "reasoning_tokens": 23,
+              "reasoning_tokens": 18,
               "rejected_prediction_tokens": null,
               "image_tokens": 0
             },
@@ -568,102 +588,20 @@
         }
       },
       {
-        "openrouter_request_id": null,
-        "openrouter_provider": null,
-        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
-        "response_hash": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-        "tool_called": false,
-        "schema_valid": false,
-        "latency_ms": 0,
-        "failure_mode": "text-instead-of-tool",
-        "request": {
-          "model": "openai/gpt-oss-120b:free",
-          "messages": [
-            {
-              "role": "user",
-              "content": "Use the search tool to find files containing 'authentication'"
-            }
-          ],
-          "tools": [
-            {
-              "type": "function",
-              "function": {
-                "name": "search",
-                "description": "Search for files in the codebase",
-                "parameters": {
-                  "type": "object",
-                  "properties": {
-                    "query": {
-                      "type": "string",
-                      "description": "Search query"
-                    }
-                  },
-                  "required": [
-                    "query"
-                  ]
-                }
-              }
-            }
-          ],
-          "temperature": 0.1
-        }
-      },
-      {
-        "openrouter_request_id": null,
-        "openrouter_provider": null,
-        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
-        "response_hash": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-        "tool_called": false,
-        "schema_valid": false,
-        "latency_ms": 0,
-        "failure_mode": "text-instead-of-tool",
-        "request": {
-          "model": "openai/gpt-oss-120b:free",
-          "messages": [
-            {
-              "role": "user",
-              "content": "Use the search tool to find files containing 'authentication'"
-            }
-          ],
-          "tools": [
-            {
-              "type": "function",
-              "function": {
-                "name": "search",
-                "description": "Search for files in the codebase",
-                "parameters": {
-                  "type": "object",
-                  "properties": {
-                    "query": {
-                      "type": "string",
-                      "description": "Search query"
-                    }
-                  },
-                  "required": [
-                    "query"
-                  ]
-                }
-              }
-            }
-          ],
-          "temperature": 0.1
-        }
-      },
-      {
-        "openrouter_request_id": "gen-1773910984-CXQDM0Sm3bq3Uv4UoAWZ",
+        "openrouter_request_id": "gen-1773911066-17h0cPAEakfLjeLHR4Mz",
         "openrouter_provider": "OpenInference",
-        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
-        "response_hash": "sha256:33fd609b3fd8b7e763dfd32e38003d51f1e28f41201470a6582548824b9732ee",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:0aed352ab992396ec07ab8e796d2d062a9cbe5966c3ee94b46bd7778ad5b153f",
         "tool_called": true,
         "schema_valid": true,
-        "latency_ms": 988,
+        "latency_ms": 1168,
         "failure_mode": null,
         "request": {
           "model": "openai/gpt-oss-120b:free",
           "messages": [
             {
               "role": "user",
-              "content": "Use the search tool to find files containing 'authentication'"
+              "content": "Search for authentication files, limit results to 5"
             }
           ],
           "tools": [
@@ -678,6 +616,10 @@
                     "query": {
                       "type": "string",
                       "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
                     }
                   },
                   "required": [
@@ -690,7 +632,7 @@
           "temperature": 0.1
         },
         "response": {
-          "id": "gen-1773910984-CXQDM0Sm3bq3Uv4UoAWZ",
+          "id": "gen-1773911066-17h0cPAEakfLjeLHR4Mz",
           "choices": [
             {
               "finish_reason": "tool_calls",
@@ -705,20 +647,20 @@
                 "function_call": null,
                 "tool_calls": [
                   {
-                    "id": "chatcmpl-tool-b8d4539515539b7c",
+                    "id": "chatcmpl-tool-af7ca58aac10800d",
                     "function": {
-                      "arguments": "{\n  \"query\": \"authentication\"\n}",
+                      "arguments": "{\n  \"query\": \"auth\",\n  \"limit\": 5\n}",
                       "name": "search"
                     },
                     "type": "function",
                     "index": 0
                   }
                 ],
-                "reasoning": "We need to use the search tool to find files containing 'authentication'. Use the provided function.",
+                "reasoning": "We need to search codebase for authentication files. Use search tool.",
                 "reasoning_details": [
                   {
                     "type": "reasoning.text",
-                    "text": "We need to use the search tool to find files containing 'authentication'. Use the provided function.",
+                    "text": "We need to search codebase for authentication files. Use search tool.",
                     "format": "unknown",
                     "index": 0
                   }
@@ -727,19 +669,19 @@
               "native_finish_reason": "tool_calls"
             }
           ],
-          "created": 1773910984,
+          "created": 1773911066,
           "model": "openai/gpt-oss-120b:free",
           "object": "chat.completion",
           "service_tier": null,
           "system_fingerprint": null,
           "usage": {
-            "completion_tokens": 46,
-            "prompt_tokens": 134,
-            "total_tokens": 180,
+            "completion_tokens": 48,
+            "prompt_tokens": 142,
+            "total_tokens": 190,
             "completion_tokens_details": {
               "accepted_prediction_tokens": null,
               "audio_tokens": 0,
-              "reasoning_tokens": 25,
+              "reasoning_tokens": 18,
               "rejected_prediction_tokens": null,
               "image_tokens": 0
             },
@@ -761,20 +703,20 @@
         }
       },
       {
-        "openrouter_request_id": "gen-1773910994-L8NK90CvOWADYH3lIdCQ",
+        "openrouter_request_id": "gen-1773911076-RPHex7eL2hSUmYAJxrRH",
         "openrouter_provider": "OpenInference",
-        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
-        "response_hash": "sha256:95df1ed145a6dfd5f1c4a5805aca3ed0751937d8052ef6819f75ab0c3066925e",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:98cd7a53c38036f170dba6c804ba281169c5f2d9decca8df90476c78db402bc0",
         "tool_called": true,
         "schema_valid": true,
-        "latency_ms": 1336,
+        "latency_ms": 961,
         "failure_mode": null,
         "request": {
           "model": "openai/gpt-oss-120b:free",
           "messages": [
             {
               "role": "user",
-              "content": "Use the search tool to find files containing 'authentication'"
+              "content": "Search for authentication files, limit results to 5"
             }
           ],
           "tools": [
@@ -789,6 +731,10 @@
                     "query": {
                       "type": "string",
                       "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
                     }
                   },
                   "required": [
@@ -801,7 +747,7 @@
           "temperature": 0.1
         },
         "response": {
-          "id": "gen-1773910994-L8NK90CvOWADYH3lIdCQ",
+          "id": "gen-1773911076-RPHex7eL2hSUmYAJxrRH",
           "choices": [
             {
               "finish_reason": "tool_calls",
@@ -816,20 +762,20 @@
                 "function_call": null,
                 "tool_calls": [
                   {
-                    "id": "chatcmpl-tool-b358dfbd60778ef4",
+                    "id": "chatcmpl-tool-8925cca6376c45e5",
                     "function": {
-                      "arguments": "{\n  \"query\": \"authentication\"\n}",
+                      "arguments": "{\n  \"query\": \"auth\",\n  \"limit\": 5\n}",
                       "name": "search"
                     },
                     "type": "function",
                     "index": 0
                   }
                 ],
-                "reasoning": "We need to use the search tool to find files containing 'authentication'. Use the function.",
+                "reasoning": "We need to search codebase for authentication files. Use search tool.",
                 "reasoning_details": [
                   {
                     "type": "reasoning.text",
-                    "text": "We need to use the search tool to find files containing 'authentication'. Use the function.",
+                    "text": "We need to search codebase for authentication files. Use search tool.",
                     "format": "unknown",
                     "index": 0
                   }
@@ -838,19 +784,19 @@
               "native_finish_reason": "tool_calls"
             }
           ],
-          "created": 1773910994,
+          "created": 1773911076,
           "model": "openai/gpt-oss-120b:free",
           "object": "chat.completion",
           "service_tier": null,
           "system_fingerprint": null,
           "usage": {
-            "completion_tokens": 45,
-            "prompt_tokens": 134,
-            "total_tokens": 179,
+            "completion_tokens": 48,
+            "prompt_tokens": 142,
+            "total_tokens": 190,
             "completion_tokens_details": {
               "accepted_prediction_tokens": null,
               "audio_tokens": 0,
-              "reasoning_tokens": 23,
+              "reasoning_tokens": 18,
               "rejected_prediction_tokens": null,
               "image_tokens": 0
             },
@@ -872,20 +818,20 @@
         }
       },
       {
-        "openrouter_request_id": "gen-1773911004-FgVA0P1YLqCZcRH8sNWa",
+        "openrouter_request_id": "gen-1773911086-uXh49QXboT0ncJX8MBGw",
         "openrouter_provider": "OpenInference",
-        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
-        "response_hash": "sha256:8331e3706800aa7b42c7c84760a375904b7831aaa0f11ebaa45905181e475d56",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:3bf188761b529b08a4965408858799b572a9ef84996c9ecd9134de0ca64429bb",
         "tool_called": true,
         "schema_valid": true,
-        "latency_ms": 1025,
+        "latency_ms": 1032,
         "failure_mode": null,
         "request": {
           "model": "openai/gpt-oss-120b:free",
           "messages": [
             {
               "role": "user",
-              "content": "Use the search tool to find files containing 'authentication'"
+              "content": "Search for authentication files, limit results to 5"
             }
           ],
           "tools": [
@@ -900,6 +846,10 @@
                     "query": {
                       "type": "string",
                       "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
                     }
                   },
                   "required": [
@@ -912,7 +862,7 @@
           "temperature": 0.1
         },
         "response": {
-          "id": "gen-1773911004-FgVA0P1YLqCZcRH8sNWa",
+          "id": "gen-1773911086-uXh49QXboT0ncJX8MBGw",
           "choices": [
             {
               "finish_reason": "tool_calls",
@@ -927,20 +877,20 @@
                 "function_call": null,
                 "tool_calls": [
                   {
-                    "id": "chatcmpl-tool-9d0df0d5c4d1618d",
+                    "id": "chatcmpl-tool-bc592bbc92ccf6b2",
                     "function": {
-                      "arguments": "{\n  \"query\": \"authentication\"\n}",
+                      "arguments": "{\n  \"query\": \"auth\",\n  \"limit\": 5\n}",
                       "name": "search"
                     },
                     "type": "function",
                     "index": 0
                   }
                 ],
-                "reasoning": "We need to use the search tool to find files containing 'authentication'. Use the provided function.",
+                "reasoning": "We need to search codebase for authentication files. Use search tool.",
                 "reasoning_details": [
                   {
                     "type": "reasoning.text",
-                    "text": "We need to use the search tool to find files containing 'authentication'. Use the provided function.",
+                    "text": "We need to search codebase for authentication files. Use search tool.",
                     "format": "unknown",
                     "index": 0
                   }
@@ -949,19 +899,249 @@
               "native_finish_reason": "tool_calls"
             }
           ],
-          "created": 1773911004,
+          "created": 1773911086,
           "model": "openai/gpt-oss-120b:free",
           "object": "chat.completion",
           "service_tier": null,
           "system_fingerprint": null,
           "usage": {
-            "completion_tokens": 46,
-            "prompt_tokens": 134,
-            "total_tokens": 180,
+            "completion_tokens": 48,
+            "prompt_tokens": 142,
+            "total_tokens": 190,
             "completion_tokens_details": {
               "accepted_prediction_tokens": null,
               "audio_tokens": 0,
-              "reasoning_tokens": 25,
+              "reasoning_tokens": 18,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "OpenInference"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773911097-nZYt0wvINU9nBn1RRTKW",
+        "openrouter_provider": "OpenInference",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:12bdde65fe68a32b4c32fe4832ac64414efac2331d5bdd974678ba6e3ebd5961",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 1234,
+        "failure_mode": null,
+        "request": {
+          "model": "openai/gpt-oss-120b:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Search for authentication files, limit results to 5"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773911097-nZYt0wvINU9nBn1RRTKW",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": null,
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "chatcmpl-tool-be267a22100cff22",
+                    "function": {
+                      "arguments": "{\n  \"query\": \"auth\",\n  \"limit\": 5\n}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "We need to search codebase for authentication files. Use search tool.",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "We need to search codebase for authentication files. Use search tool.",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1773911097,
+          "model": "openai/gpt-oss-120b:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 48,
+            "prompt_tokens": 142,
+            "total_tokens": 190,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 18,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "OpenInference"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773911107-gPygUaeJUO5gqXBEC9UD",
+        "openrouter_provider": "OpenInference",
+        "prompt_hash": "sha256:fe5a3039c1f4f52edd05ea36dfcae152652a459b97a09b72be35e1e02f695c26",
+        "response_hash": "sha256:532953a8472ad32a185b8fbb24266e97073fab476fd7bf8e79b877c784dd7210",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 1085,
+        "failure_mode": null,
+        "request": {
+          "model": "openai/gpt-oss-120b:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "Search for authentication files, limit results to 5"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Max results to return"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773911107-gPygUaeJUO5gqXBEC9UD",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": null,
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "chatcmpl-tool-87e10690a87474ec",
+                    "function": {
+                      "arguments": "{\n  \"query\": \"auth\",\n  \"limit\": 5\n}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "We need to search codebase for authentication files. Use search tool.",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "We need to search codebase for authentication files. Use search tool.",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1773911107,
+          "model": "openai/gpt-oss-120b:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 48,
+            "prompt_tokens": 142,
+            "total_tokens": 190,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 18,
               "rejected_prediction_tokens": null,
               "image_tokens": 0
             },
@@ -985,12 +1165,12 @@
     ]
   },
   "summary": {
-    "successes": 8,
+    "successes": 10,
     "trials": 10,
-    "rate": 0.8,
+    "rate": 1.0,
     "wilson_ci_95": [
-      0.49015684672072335,
-      0.9433190520193067
+      0.7224598312333834,
+      1.0
     ]
   }
 }

@@ -1,0 +1,1416 @@
+{
+  "submission_id": "sub_42f5580d4abf",
+  "timestamp": "2026-03-19T09:08:37.299658+00:00",
+  "contributor": "unknown",
+  "environment": {
+    "python_version": "3.11.13",
+    "openai_sdk_version": "2.8.1",
+    "os": "Linux 6.6.87.2-microsoft-standard-WSL2",
+    "env_hash": "sha256:43c15d47fdb31d3498555a3471beb9a2f13e583093f6878d70e5a80a227ad1c8"
+  },
+  "probes": {
+    "model": "openai/gpt-oss-120b:free",
+    "level": 4,
+    "trials": [
+      {
+        "openrouter_request_id": "gen-1773911324-BMxBYD6JhRiS6Dzv9WVp",
+        "openrouter_provider": "OpenInference",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:b2e73fb175c8cb2fee039147f7ff06d723a7b80f18d67d592943e0d36986044e",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 1860,
+        "failure_mode": null,
+        "request": {
+          "model": "openai/gpt-oss-120b:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773911324-BMxBYD6JhRiS6Dzv9WVp",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I\u2019m not able to pull real\u2011time weather data, but I can help you find the current conditions for wherever you\u2019re interested in. Could you let me know the city or region you\u2019d like the forecast for? Then I can point you to a reliable source (like a weather website or app) or give you tips on how to check it quickly.",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "The user asks \"What's the weather like today?\" As an AI, I don't have real-time data. I should respond that I don't have real-time weather info, suggest checking a weather service, or ask for location. I can ask for location.",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "The user asks \"What's the weather like today?\" As an AI, I don't have real-time data. I should respond that I don't have real-time weather info, suggest checking a weather service, or ask for location. I can ask for location.",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "stop"
+            }
+          ],
+          "created": 1773911324,
+          "model": "openai/gpt-oss-120b:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 132,
+            "prompt_tokens": 181,
+            "total_tokens": 313,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 57,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "OpenInference"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773911334-Lofwep2XlFlsjQPnnDk5",
+        "openrouter_provider": "OpenInference",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:681db6e6eb932b22b53001e688d4fc133d40a0c593abe77cc6670dac9232b8a1",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 2123,
+        "failure_mode": null,
+        "request": {
+          "model": "openai/gpt-oss-120b:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773911334-Lofwep2XlFlsjQPnnDk5",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I\u2019m not able to pull in real\u2011time weather data. To get the current conditions for your area, you can check a weather website or app (like Weather.com, AccuWeather, or your phone\u2019s weather widget) and enter your location. If you let me know the city or region you\u2019re interested in, I can give you a general idea of what the climate is typically like this time of year.",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "The user asks \"What's the weather like today?\" As an AI, I don't have real-time data. I can respond that I don't have live weather info, suggest checking a weather service, or ask for location. Probably respond that I cannot fetch real-time weather.",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "The user asks \"What's the weather like today?\" As an AI, I don't have real-time data. I can respond that I don't have live weather info, suggest checking a weather service, or ask for location. Probably respond that I cannot fetch real-time weather.",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "stop"
+            }
+          ],
+          "created": 1773911334,
+          "model": "openai/gpt-oss-120b:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 147,
+            "prompt_tokens": 181,
+            "total_tokens": 328,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 63,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "OpenInference"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773911345-XqRzJmOyeeKEPjexw514",
+        "openrouter_provider": "OpenInference",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:2cd3cacfc7e4c6e65a6c726ffd75e3ff30a516bc1779b25ddea1131aab01aab5",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 1916,
+        "failure_mode": null,
+        "request": {
+          "model": "openai/gpt-oss-120b:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773911345-XqRzJmOyeeKEPjexw514",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I\u2019m not able to pull real\u2011time weather data, but I can help you find the current conditions for wherever you\u2019re interested in. Could you let me know the city or region you\u2019d like the forecast for? Then I can point you to a reliable source (like a weather website or app) or give you tips on how to check it quickly.",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "The user asks \"What's the weather like today?\" As an AI, I don't have real-time data. I should respond that I don't have real-time weather info, suggest checking a weather service, or ask for location. I can ask for location.",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "The user asks \"What's the weather like today?\" As an AI, I don't have real-time data. I should respond that I don't have real-time weather info, suggest checking a weather service, or ask for location. I can ask for location.",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "stop"
+            }
+          ],
+          "created": 1773911345,
+          "model": "openai/gpt-oss-120b:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 132,
+            "prompt_tokens": 181,
+            "total_tokens": 313,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 57,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "OpenInference"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773911355-PwxscZNO8WyLt3q4h0t9",
+        "openrouter_provider": "OpenInference",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:7d28ecb47e8a0ffb974371a5defd398b3625fd688d7698d3b4a0a52950319bc6",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 1885,
+        "failure_mode": null,
+        "request": {
+          "model": "openai/gpt-oss-120b:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773911355-PwxscZNO8WyLt3q4h0t9",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I\u2019m not able to pull real\u2011time weather data, but I can help you find the current conditions for wherever you\u2019re interested in. Could you let me know the city or region you\u2019d like the forecast for? Then I can point you to a reliable source (like a weather website or app) or give you tips on how to check it yourself.",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "The user asks \"What's the weather like today?\" As an AI, I don't have real-time data. I should respond that I don't have real-time weather info, suggest checking a weather service, or ask for location. I can ask for location.",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "The user asks \"What's the weather like today?\" As an AI, I don't have real-time data. I should respond that I don't have real-time weather info, suggest checking a weather service, or ask for location. I can ask for location.",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "stop"
+            }
+          ],
+          "created": 1773911355,
+          "model": "openai/gpt-oss-120b:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 132,
+            "prompt_tokens": 181,
+            "total_tokens": 313,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 57,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "OpenInference"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773911365-wUqPVzC9KCQYYGaHjuhT",
+        "openrouter_provider": "OpenInference",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:e9f7d894e7c19a784411a5caab855bcb23ba118c15de364ff29827e5a5c82853",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 1968,
+        "failure_mode": null,
+        "request": {
+          "model": "openai/gpt-oss-120b:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773911365-wUqPVzC9KCQYYGaHjuhT",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I\u2019m not able to pull real\u2011time weather data, but you can get the current conditions for your area by checking a weather website or app (e.g., Weather.com, AccuWeather, your phone\u2019s weather widget, or a voice assistant). If you let me know the city or region you\u2019re interested in, I can give you a general idea of what the climate is usually like there around this time of year.",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "The user asks \"What's the weather like today?\" As an AI, I don't have real-time data. I should respond that I don't have real-time weather info, suggest checking a weather service, or ask for location. I can ask for location.",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "The user asks \"What's the weather like today?\" As an AI, I don't have real-time data. I should respond that I don't have real-time weather info, suggest checking a weather service, or ask for location. I can ask for location.",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "stop"
+            }
+          ],
+          "created": 1773911365,
+          "model": "openai/gpt-oss-120b:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 146,
+            "prompt_tokens": 181,
+            "total_tokens": 327,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 57,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "OpenInference"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773911375-wifb3CFWpfi6gygb6a31",
+        "openrouter_provider": "OpenInference",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:19c551bea7f4e50b3d6ee37dfbd9c80a25679315b0847682a3e5ceb760387c51",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 2678,
+        "failure_mode": null,
+        "request": {
+          "model": "openai/gpt-oss-120b:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773911375-wifb3CFWpfi6gygb6a31",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I\u2019m not able to pull in real\u2011time weather data. To get the current conditions for your area, you can check a weather website or app (like Weather.com, AccuWeather, or your phone\u2019s weather widget) and enter your location. If you let me know the city or region you\u2019re interested in, I can give you a general idea of what the climate is usually like at this time of year.",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "The user asks \"What's the weather like today?\" As an AI, I don't have real-time data. I can respond that I don't have live weather info, suggest checking a weather service, or ask for location. Probably respond that I cannot fetch real-time weather.",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "The user asks \"What's the weather like today?\" As an AI, I don't have real-time data. I can respond that I don't have live weather info, suggest checking a weather service, or ask for location. Probably respond that I cannot fetch real-time weather.",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "stop"
+            }
+          ],
+          "created": 1773911375,
+          "model": "openai/gpt-oss-120b:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 148,
+            "prompt_tokens": 181,
+            "total_tokens": 329,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 63,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "OpenInference"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773911385-FA2czlmzLL3ethzO4kBH",
+        "openrouter_provider": "OpenInference",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:2b8892144ebafcab0746829373ef742460980f9fd494c66feefac2fcad4fb1c1",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 1804,
+        "failure_mode": null,
+        "request": {
+          "model": "openai/gpt-oss-120b:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773911385-FA2czlmzLL3ethzO4kBH",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I\u2019m not able to pull live weather data, but I can help you find the current conditions for wherever you\u2019re interested in. Could you let me know the city or region you\u2019d like the forecast for? Then I can point you to a reliable source (like a weather website or app) or give you tips on how to check it quickly.",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "The user asks \"What's the weather like today?\" As an AI, I don't have real-time data. I should respond that I don't have real-time weather info, suggest checking a weather service, or ask for location. I can ask for location.",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "The user asks \"What's the weather like today?\" As an AI, I don't have real-time data. I should respond that I don't have real-time weather info, suggest checking a weather service, or ask for location. I can ask for location.",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "stop"
+            }
+          ],
+          "created": 1773911385,
+          "model": "openai/gpt-oss-120b:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 130,
+            "prompt_tokens": 181,
+            "total_tokens": 311,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 57,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "OpenInference"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773911395-GORmVLDL3tDha3HUH2ix",
+        "openrouter_provider": "OpenInference",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:bd15c5795b8fa91e0318ee33ec751ca77529b8ba6894315adde1402391a1e99b",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 1902,
+        "failure_mode": null,
+        "request": {
+          "model": "openai/gpt-oss-120b:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773911395-GORmVLDL3tDha3HUH2ix",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I\u2019m not able to pull live weather data, but you can quickly find today\u2019s forecast by checking a weather website or app (e.g., Weather.com, AccuWeather, your phone\u2019s weather widget) and entering your location. If you let me know the city or region you\u2019re interested in, I can give you a general idea of what the climate is usually like this time of year.",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "The user asks \"What's the weather like today?\" As an AI, I don't have real-time data. I should respond that I don't have real-time weather info, suggest checking a weather service, or ask for location. I can ask for location.",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "The user asks \"What's the weather like today?\" As an AI, I don't have real-time data. I should respond that I don't have real-time weather info, suggest checking a weather service, or ask for location. I can ask for location.",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "stop"
+            }
+          ],
+          "created": 1773911395,
+          "model": "openai/gpt-oss-120b:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 140,
+            "prompt_tokens": 181,
+            "total_tokens": 321,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 57,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "OpenInference"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773911405-DsVSKzHOHhRyNtrupvxs",
+        "openrouter_provider": "OpenInference",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:d3d427204f4927711565e0e2f7d2e7486fd62caa347ff8b8275e6b24d2a2c617",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 1828,
+        "failure_mode": null,
+        "request": {
+          "model": "openai/gpt-oss-120b:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773911405-DsVSKzHOHhRyNtrupvxs",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I\u2019m not able to pull real\u2011time weather data, but I can help you find the current conditions for wherever you\u2019re interested in. Could you let me know the city or region you\u2019d like the forecast for? Then I can point you to a reliable source (like a weather website or app) or give you tips on how to check it quickly.",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "The user asks \"What's the weather like today?\" As an AI, I don't have real-time data. I should respond that I don't have real-time weather info, suggest checking a weather service, or ask for location. I can ask for location.",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "The user asks \"What's the weather like today?\" As an AI, I don't have real-time data. I should respond that I don't have real-time weather info, suggest checking a weather service, or ask for location. I can ask for location.",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "stop"
+            }
+          ],
+          "created": 1773911405,
+          "model": "openai/gpt-oss-120b:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 132,
+            "prompt_tokens": 181,
+            "total_tokens": 313,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 57,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "OpenInference"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773911416-X895KnD3qGvu2CP3mdL5",
+        "openrouter_provider": "OpenInference",
+        "prompt_hash": "sha256:cd3ec57688cdcfb4e390d0a65bceeb4979cb55302cff6cce5c042dca0896d4e1",
+        "response_hash": "sha256:9af1b252e9ba72c76df4ad4d2f38dbfb1e76b968c9f48d80a797c407b822edcf",
+        "tool_called": false,
+        "schema_valid": true,
+        "latency_ms": 2009,
+        "failure_mode": null,
+        "request": {
+          "model": "openai/gpt-oss-120b:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "What's the weather like today?"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773911416-X895KnD3qGvu2CP3mdL5",
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I\u2019m not able to pull live weather data, but you can quickly find today\u2019s forecast by checking a weather website or app (e.g., Weather.com, AccuWeather, your phone\u2019s weather widget) and entering your location. If you let me know the city or region you\u2019re interested in, I can give you a general idea of what the climate is typically like this time of year.",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": null,
+                "reasoning": "The user asks \"What's the weather like today?\" As an AI, I don't have real-time data. I can respond that I don't have live weather info, suggest checking a weather service, or ask for location. I should respond accordingly.",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "The user asks \"What's the weather like today?\" As an AI, I don't have real-time data. I can respond that I don't have live weather info, suggest checking a weather service, or ask for location. I should respond accordingly.",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "stop"
+            }
+          ],
+          "created": 1773911416,
+          "model": "openai/gpt-oss-120b:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 138,
+            "prompt_tokens": 181,
+            "total_tokens": 319,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 56,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "OpenInference"
+        }
+      }
+    ]
+  },
+  "summary": {
+    "successes": 10,
+    "trials": 10,
+    "rate": 1.0,
+    "wilson_ci_95": [
+      0.7224598312333834,
+      1.0
+    ]
+  }
+}

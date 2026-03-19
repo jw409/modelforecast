@@ -15,7 +15,7 @@ Tool-calling capability benchmarks for free LLM models.
 | [nvidia/nemotron-3-super-120b-a12b](https://openrouter.ai/models/nvidia/nemotron-3-super-120b-a12b) | 100% [72,100] | 100% [72,100] | 100% [72,100] | 100% [72,100] | 70% [39,89] | **A†** |
 | [nvidia/nemotron-nano-12b-v2-vl](https://openrouter.ai/models/nvidia/nemotron-nano-12b-v2-vl) | 20% [5,50] | 0% [0,27] | 30% [10,60] | 0% [0,27] | 30% [10,60] | **D†** |
 | [nvidia/nemotron-nano-9b-v2](https://openrouter.ai/models/nvidia/nemotron-nano-9b-v2) | 100% [72,100] | 0% [0,27] | 100% [72,100] | 100% [72,100] | 100% [72,100] | **C†** |
-| [openai/gpt-oss-120b](https://openrouter.ai/models/openai/gpt-oss-120b) | 0% [0,27] | - | - | - | - | **F†** |
+| [openai/gpt-oss-120b](https://openrouter.ai/models/openai/gpt-oss-120b) | 80% [49,94] | 100% [72,100] | 90% [59,98] | 90% [59,98] | 100% [72,100] | **A†** |
 | [openai/gpt-oss-20b](https://openrouter.ai/models/openai/gpt-oss-20b) | 0% [0,27] | - | - | - | - | **F†** |
 | [qwen/qwen3-4b](https://openrouter.ai/models/qwen/qwen3-4b) | 0% [0,27] | - | - | - | - | **F†** |
 | [qwen/qwen3-coder](https://openrouter.ai/models/qwen/qwen3-coder) | 0% [0,27] | - | - | - | - | **F†** |

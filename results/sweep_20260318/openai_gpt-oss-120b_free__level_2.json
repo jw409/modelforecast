@@ -1,6 +1,6 @@
 {
-  "submission_id": "sub_f727ce058d15",
-  "timestamp": "2026-03-19T09:01:31.326410+00:00",
+  "submission_id": "sub_cf8bc726dfc2",
+  "timestamp": "2026-03-19T09:05:08.314110+00:00",
   "contributor": "unknown",
   "environment": {
     "python_version": "3.11.13",
@@ -10,567 +10,12 @@
   },
   "probes": {
     "model": "openai/gpt-oss-120b:free",
-    "level": 0,
+    "level": 2,
     "trials": [
       {
-        "openrouter_request_id": "gen-1773910891-zACl1wQg6T4FbnSrWESF",
-        "openrouter_provider": "OpenInference",
-        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
-        "response_hash": "sha256:3f1c2b2bf43bd1b6f0e6acf3f543219d1e1f375da20fd501395fe70c7e67419d",
-        "tool_called": true,
-        "schema_valid": true,
-        "latency_ms": 1220,
-        "failure_mode": null,
-        "request": {
-          "model": "openai/gpt-oss-120b:free",
-          "messages": [
-            {
-              "role": "user",
-              "content": "Use the search tool to find files containing 'authentication'"
-            }
-          ],
-          "tools": [
-            {
-              "type": "function",
-              "function": {
-                "name": "search",
-                "description": "Search for files in the codebase",
-                "parameters": {
-                  "type": "object",
-                  "properties": {
-                    "query": {
-                      "type": "string",
-                      "description": "Search query"
-                    }
-                  },
-                  "required": [
-                    "query"
-                  ]
-                }
-              }
-            }
-          ],
-          "temperature": 0.1
-        },
-        "response": {
-          "id": "gen-1773910891-zACl1wQg6T4FbnSrWESF",
-          "choices": [
-            {
-              "finish_reason": "tool_calls",
-              "index": 0,
-              "logprobs": null,
-              "message": {
-                "content": null,
-                "refusal": null,
-                "role": "assistant",
-                "annotations": null,
-                "audio": null,
-                "function_call": null,
-                "tool_calls": [
-                  {
-                    "id": "chatcmpl-tool-8d363a9f33801801",
-                    "function": {
-                      "arguments": "{\n  \"query\": \"authentication\"\n}",
-                      "name": "search"
-                    },
-                    "type": "function",
-                    "index": 0
-                  }
-                ],
-                "reasoning": "We need to use the search tool to find files containing 'authentication'. Use the provided function.",
-                "reasoning_details": [
-                  {
-                    "type": "reasoning.text",
-                    "text": "We need to use the search tool to find files containing 'authentication'. Use the provided function.",
-                    "format": "unknown",
-                    "index": 0
-                  }
-                ]
-              },
-              "native_finish_reason": "tool_calls"
-            }
-          ],
-          "created": 1773910891,
-          "model": "openai/gpt-oss-120b:free",
-          "object": "chat.completion",
-          "service_tier": null,
-          "system_fingerprint": null,
-          "usage": {
-            "completion_tokens": 46,
-            "prompt_tokens": 134,
-            "total_tokens": 180,
-            "completion_tokens_details": {
-              "accepted_prediction_tokens": null,
-              "audio_tokens": 0,
-              "reasoning_tokens": 25,
-              "rejected_prediction_tokens": null,
-              "image_tokens": 0
-            },
-            "prompt_tokens_details": {
-              "audio_tokens": 0,
-              "cached_tokens": 0,
-              "cache_write_tokens": 0,
-              "video_tokens": 0
-            },
-            "cost": 0,
-            "is_byok": false,
-            "cost_details": {
-              "upstream_inference_cost": 0,
-              "upstream_inference_prompt_cost": 0,
-              "upstream_inference_completions_cost": 0
-            }
-          },
-          "provider": "OpenInference"
-        }
-      },
-      {
-        "openrouter_request_id": "gen-1773910901-mKsgyKB6y672r8kbJoij",
-        "openrouter_provider": "OpenInference",
-        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
-        "response_hash": "sha256:a861069068383cb3ad161a69605303c31d580b973daedd4e3fa21bcf6e13d612",
-        "tool_called": true,
-        "schema_valid": true,
-        "latency_ms": 1297,
-        "failure_mode": null,
-        "request": {
-          "model": "openai/gpt-oss-120b:free",
-          "messages": [
-            {
-              "role": "user",
-              "content": "Use the search tool to find files containing 'authentication'"
-            }
-          ],
-          "tools": [
-            {
-              "type": "function",
-              "function": {
-                "name": "search",
-                "description": "Search for files in the codebase",
-                "parameters": {
-                  "type": "object",
-                  "properties": {
-                    "query": {
-                      "type": "string",
-                      "description": "Search query"
-                    }
-                  },
-                  "required": [
-                    "query"
-                  ]
-                }
-              }
-            }
-          ],
-          "temperature": 0.1
-        },
-        "response": {
-          "id": "gen-1773910901-mKsgyKB6y672r8kbJoij",
-          "choices": [
-            {
-              "finish_reason": "tool_calls",
-              "index": 0,
-              "logprobs": null,
-              "message": {
-                "content": null,
-                "refusal": null,
-                "role": "assistant",
-                "annotations": null,
-                "audio": null,
-                "function_call": null,
-                "tool_calls": [
-                  {
-                    "id": "chatcmpl-tool-bb998810f29f6184",
-                    "function": {
-                      "arguments": "{\n  \"query\": \"authentication\"\n}",
-                      "name": "search"
-                    },
-                    "type": "function",
-                    "index": 0
-                  }
-                ],
-                "reasoning": "We need to use the search tool to find files containing 'authentication'. Use the function.",
-                "reasoning_details": [
-                  {
-                    "type": "reasoning.text",
-                    "text": "We need to use the search tool to find files containing 'authentication'. Use the function.",
-                    "format": "unknown",
-                    "index": 0
-                  }
-                ]
-              },
-              "native_finish_reason": "tool_calls"
-            }
-          ],
-          "created": 1773910901,
-          "model": "openai/gpt-oss-120b:free",
-          "object": "chat.completion",
-          "service_tier": null,
-          "system_fingerprint": null,
-          "usage": {
-            "completion_tokens": 45,
-            "prompt_tokens": 134,
-            "total_tokens": 179,
-            "completion_tokens_details": {
-              "accepted_prediction_tokens": null,
-              "audio_tokens": 0,
-              "reasoning_tokens": 23,
-              "rejected_prediction_tokens": null,
-              "image_tokens": 0
-            },
-            "prompt_tokens_details": {
-              "audio_tokens": 0,
-              "cached_tokens": 0,
-              "cache_write_tokens": 0,
-              "video_tokens": 0
-            },
-            "cost": 0,
-            "is_byok": false,
-            "cost_details": {
-              "upstream_inference_cost": 0,
-              "upstream_inference_prompt_cost": 0,
-              "upstream_inference_completions_cost": 0
-            }
-          },
-          "provider": "OpenInference"
-        }
-      },
-      {
-        "openrouter_request_id": "gen-1773910911-xPp1EiTvtxbTFAP1WAUp",
-        "openrouter_provider": "OpenInference",
-        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
-        "response_hash": "sha256:21b3f116ef3f3fa1594bae1cdcc33f37de2ea84410bc05ace2fbcd4cb8ec8f83",
-        "tool_called": true,
-        "schema_valid": true,
-        "latency_ms": 4382,
-        "failure_mode": null,
-        "request": {
-          "model": "openai/gpt-oss-120b:free",
-          "messages": [
-            {
-              "role": "user",
-              "content": "Use the search tool to find files containing 'authentication'"
-            }
-          ],
-          "tools": [
-            {
-              "type": "function",
-              "function": {
-                "name": "search",
-                "description": "Search for files in the codebase",
-                "parameters": {
-                  "type": "object",
-                  "properties": {
-                    "query": {
-                      "type": "string",
-                      "description": "Search query"
-                    }
-                  },
-                  "required": [
-                    "query"
-                  ]
-                }
-              }
-            }
-          ],
-          "temperature": 0.1
-        },
-        "response": {
-          "id": "gen-1773910911-xPp1EiTvtxbTFAP1WAUp",
-          "choices": [
-            {
-              "finish_reason": "tool_calls",
-              "index": 0,
-              "logprobs": null,
-              "message": {
-                "content": null,
-                "refusal": null,
-                "role": "assistant",
-                "annotations": null,
-                "audio": null,
-                "function_call": null,
-                "tool_calls": [
-                  {
-                    "id": "chatcmpl-tool-a4ea8ade797c2541",
-                    "function": {
-                      "arguments": "{\n  \"query\": \"authentication\"\n}",
-                      "name": "search"
-                    },
-                    "type": "function",
-                    "index": 0
-                  }
-                ],
-                "reasoning": "We need to use the search tool to find files containing 'authentication'. Use the function.",
-                "reasoning_details": [
-                  {
-                    "type": "reasoning.text",
-                    "text": "We need to use the search tool to find files containing 'authentication'. Use the function.",
-                    "format": "unknown",
-                    "index": 0
-                  }
-                ]
-              },
-              "native_finish_reason": "tool_calls"
-            }
-          ],
-          "created": 1773910911,
-          "model": "openai/gpt-oss-120b:free",
-          "object": "chat.completion",
-          "service_tier": null,
-          "system_fingerprint": null,
-          "usage": {
-            "completion_tokens": 45,
-            "prompt_tokens": 134,
-            "total_tokens": 179,
-            "completion_tokens_details": {
-              "accepted_prediction_tokens": null,
-              "audio_tokens": 0,
-              "reasoning_tokens": 23,
-              "rejected_prediction_tokens": null,
-              "image_tokens": 0
-            },
-            "prompt_tokens_details": {
-              "audio_tokens": 0,
-              "cached_tokens": 0,
-              "cache_write_tokens": 0,
-              "video_tokens": 0
-            },
-            "cost": 0,
-            "is_byok": false,
-            "cost_details": {
-              "upstream_inference_cost": 0,
-              "upstream_inference_prompt_cost": 0,
-              "upstream_inference_completions_cost": 0
-            }
-          },
-          "provider": "OpenInference"
-        }
-      },
-      {
-        "openrouter_request_id": "gen-1773910922-X8thUM0jimnb8J6FgpXE",
-        "openrouter_provider": "OpenInference",
-        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
-        "response_hash": "sha256:5e4d65ecd054b139d34389e559c968203b85e38fdc6c709b9d50604ff2f605d1",
-        "tool_called": true,
-        "schema_valid": true,
-        "latency_ms": 1451,
-        "failure_mode": null,
-        "request": {
-          "model": "openai/gpt-oss-120b:free",
-          "messages": [
-            {
-              "role": "user",
-              "content": "Use the search tool to find files containing 'authentication'"
-            }
-          ],
-          "tools": [
-            {
-              "type": "function",
-              "function": {
-                "name": "search",
-                "description": "Search for files in the codebase",
-                "parameters": {
-                  "type": "object",
-                  "properties": {
-                    "query": {
-                      "type": "string",
-                      "description": "Search query"
-                    }
-                  },
-                  "required": [
-                    "query"
-                  ]
-                }
-              }
-            }
-          ],
-          "temperature": 0.1
-        },
-        "response": {
-          "id": "gen-1773910922-X8thUM0jimnb8J6FgpXE",
-          "choices": [
-            {
-              "finish_reason": "tool_calls",
-              "index": 0,
-              "logprobs": null,
-              "message": {
-                "content": null,
-                "refusal": null,
-                "role": "assistant",
-                "annotations": null,
-                "audio": null,
-                "function_call": null,
-                "tool_calls": [
-                  {
-                    "id": "chatcmpl-tool-b3b68d173e06675c",
-                    "function": {
-                      "arguments": "{\n  \"query\": \"authentication\"\n}",
-                      "name": "search"
-                    },
-                    "type": "function",
-                    "index": 0
-                  }
-                ],
-                "reasoning": "We need to use the search tool to find files containing 'authentication'. Use the function.",
-                "reasoning_details": [
-                  {
-                    "type": "reasoning.text",
-                    "text": "We need to use the search tool to find files containing 'authentication'. Use the function.",
-                    "format": "unknown",
-                    "index": 0
-                  }
-                ]
-              },
-              "native_finish_reason": "tool_calls"
-            }
-          ],
-          "created": 1773910922,
-          "model": "openai/gpt-oss-120b:free",
-          "object": "chat.completion",
-          "service_tier": null,
-          "system_fingerprint": null,
-          "usage": {
-            "completion_tokens": 45,
-            "prompt_tokens": 134,
-            "total_tokens": 179,
-            "completion_tokens_details": {
-              "accepted_prediction_tokens": null,
-              "audio_tokens": 0,
-              "reasoning_tokens": 23,
-              "rejected_prediction_tokens": null,
-              "image_tokens": 0
-            },
-            "prompt_tokens_details": {
-              "audio_tokens": 0,
-              "cached_tokens": 0,
-              "cache_write_tokens": 0,
-              "video_tokens": 0
-            },
-            "cost": 0,
-            "is_byok": false,
-            "cost_details": {
-              "upstream_inference_cost": 0,
-              "upstream_inference_prompt_cost": 0,
-              "upstream_inference_completions_cost": 0
-            }
-          },
-          "provider": "OpenInference"
-        }
-      },
-      {
-        "openrouter_request_id": "gen-1773910932-x8iacTgm5t9pD7y0qXc7",
-        "openrouter_provider": "OpenInference",
-        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
-        "response_hash": "sha256:5852f0e06fba904866df2a510a425bf64bbff13f25e71a7ed5011b68336b74dd",
-        "tool_called": true,
-        "schema_valid": true,
-        "latency_ms": 1106,
-        "failure_mode": null,
-        "request": {
-          "model": "openai/gpt-oss-120b:free",
-          "messages": [
-            {
-              "role": "user",
-              "content": "Use the search tool to find files containing 'authentication'"
-            }
-          ],
-          "tools": [
-            {
-              "type": "function",
-              "function": {
-                "name": "search",
-                "description": "Search for files in the codebase",
-                "parameters": {
-                  "type": "object",
-                  "properties": {
-                    "query": {
-                      "type": "string",
-                      "description": "Search query"
-                    }
-                  },
-                  "required": [
-                    "query"
-                  ]
-                }
-              }
-            }
-          ],
-          "temperature": 0.1
-        },
-        "response": {
-          "id": "gen-1773910932-x8iacTgm5t9pD7y0qXc7",
-          "choices": [
-            {
-              "finish_reason": "tool_calls",
-              "index": 0,
-              "logprobs": null,
-              "message": {
-                "content": null,
-                "refusal": null,
-                "role": "assistant",
-                "annotations": null,
-                "audio": null,
-                "function_call": null,
-                "tool_calls": [
-                  {
-                    "id": "chatcmpl-tool-9e014f0050d1bb90",
-                    "function": {
-                      "arguments": "{\n  \"query\": \"authentication\"\n}",
-                      "name": "search"
-                    },
-                    "type": "function",
-                    "index": 0
-                  }
-                ],
-                "reasoning": "We need to use the search tool to find files containing 'authentication'. Use the function.",
-                "reasoning_details": [
-                  {
-                    "type": "reasoning.text",
-                    "text": "We need to use the search tool to find files containing 'authentication'. Use the function.",
-                    "format": "unknown",
-                    "index": 0
-                  }
-                ]
-              },
-              "native_finish_reason": "tool_calls"
-            }
-          ],
-          "created": 1773910932,
-          "model": "openai/gpt-oss-120b:free",
-          "object": "chat.completion",
-          "service_tier": null,
-          "system_fingerprint": null,
-          "usage": {
-            "completion_tokens": 45,
-            "prompt_tokens": 134,
-            "total_tokens": 179,
-            "completion_tokens_details": {
-              "accepted_prediction_tokens": null,
-              "audio_tokens": 0,
-              "reasoning_tokens": 23,
-              "rejected_prediction_tokens": null,
-              "image_tokens": 0
-            },
-            "prompt_tokens_details": {
-              "audio_tokens": 0,
-              "cached_tokens": 0,
-              "cache_write_tokens": 0,
-              "video_tokens": 0
-            },
-            "cost": 0,
-            "is_byok": false,
-            "cost_details": {
-              "upstream_inference_cost": 0,
-              "upstream_inference_prompt_cost": 0,
-              "upstream_inference_completions_cost": 0
-            }
-          },
-          "provider": "OpenInference"
-        }
-      },
-      {
         "openrouter_request_id": null,
         "openrouter_provider": null,
-        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
+        "prompt_hash": "sha256:b1b21a108eb3ba14a87eabaacac42f96b50212ecd5909a182b9bcdd9130ecea2",
         "response_hash": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
         "tool_called": false,
         "schema_valid": false,
@@ -581,7 +26,7 @@
           "messages": [
             {
               "role": "user",
-              "content": "Use the search tool to find files containing 'authentication'"
+              "content": "I need to understand what the auth module does"
             }
           ],
           "tools": [
@@ -603,44 +48,41 @@
                   ]
                 }
               }
-            }
-          ],
-          "temperature": 0.1
-        }
-      },
-      {
-        "openrouter_request_id": null,
-        "openrouter_provider": null,
-        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
-        "response_hash": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-        "tool_called": false,
-        "schema_valid": false,
-        "latency_ms": 0,
-        "failure_mode": "text-instead-of-tool",
-        "request": {
-          "model": "openai/gpt-oss-120b:free",
-          "messages": [
-            {
-              "role": "user",
-              "content": "Use the search tool to find files containing 'authentication'"
-            }
-          ],
-          "tools": [
+            },
             {
               "type": "function",
               "function": {
-                "name": "search",
-                "description": "Search for files in the codebase",
+                "name": "read_file",
+                "description": "Read a specific file's contents",
                 "parameters": {
                   "type": "object",
                   "properties": {
-                    "query": {
+                    "path": {
                       "type": "string",
-                      "description": "Search query"
+                      "description": "Absolute path to the file"
                     }
                   },
                   "required": [
-                    "query"
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
                   ]
                 }
               }
@@ -650,20 +92,20 @@
         }
       },
       {
-        "openrouter_request_id": "gen-1773910984-CXQDM0Sm3bq3Uv4UoAWZ",
+        "openrouter_request_id": "gen-1773911128-VSMRuHEtmTI883A9DWGX",
         "openrouter_provider": "OpenInference",
-        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
-        "response_hash": "sha256:33fd609b3fd8b7e763dfd32e38003d51f1e28f41201470a6582548824b9732ee",
+        "prompt_hash": "sha256:b1b21a108eb3ba14a87eabaacac42f96b50212ecd5909a182b9bcdd9130ecea2",
+        "response_hash": "sha256:3bfe3aa99fa6750d41fb09635e010845b3470ab46ca5204b5540df15e04ebcc2",
         "tool_called": true,
         "schema_valid": true,
-        "latency_ms": 988,
+        "latency_ms": 10071,
         "failure_mode": null,
         "request": {
           "model": "openai/gpt-oss-120b:free",
           "messages": [
             {
               "role": "user",
-              "content": "Use the search tool to find files containing 'authentication'"
+              "content": "I need to understand what the auth module does"
             }
           ],
           "tools": [
@@ -682,6 +124,44 @@
                   },
                   "required": [
                     "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
                   ]
                 }
               }
@@ -690,7 +170,7 @@
           "temperature": 0.1
         },
         "response": {
-          "id": "gen-1773910984-CXQDM0Sm3bq3Uv4UoAWZ",
+          "id": "gen-1773911128-VSMRuHEtmTI883A9DWGX",
           "choices": [
             {
               "finish_reason": "tool_calls",
@@ -705,20 +185,20 @@
                 "function_call": null,
                 "tool_calls": [
                   {
-                    "id": "chatcmpl-tool-b8d4539515539b7c",
+                    "id": "chatcmpl-tool-8d585af5ecf69551",
                     "function": {
-                      "arguments": "{\n  \"query\": \"authentication\"\n}",
+                      "arguments": "{\n  \"query\": \"auth\"\n}",
                       "name": "search"
                     },
                     "type": "function",
                     "index": 0
                   }
                 ],
-                "reasoning": "We need to use the search tool to find files containing 'authentication'. Use the provided function.",
+                "reasoning": "We need to explain what the auth module does. We need to look at codebase. Use search for \"auth\".",
                 "reasoning_details": [
                   {
                     "type": "reasoning.text",
-                    "text": "We need to use the search tool to find files containing 'authentication'. Use the provided function.",
+                    "text": "We need to explain what the auth module does. We need to look at codebase. Use search for \"auth\".",
                     "format": "unknown",
                     "index": 0
                   }
@@ -727,15 +207,15 @@
               "native_finish_reason": "tool_calls"
             }
           ],
-          "created": 1773910984,
+          "created": 1773911128,
           "model": "openai/gpt-oss-120b:free",
           "object": "chat.completion",
           "service_tier": null,
           "system_fingerprint": null,
           "usage": {
-            "completion_tokens": 46,
-            "prompt_tokens": 134,
-            "total_tokens": 180,
+            "completion_tokens": 49,
+            "prompt_tokens": 184,
+            "total_tokens": 233,
             "completion_tokens_details": {
               "accepted_prediction_tokens": null,
               "audio_tokens": 0,
@@ -761,20 +241,20 @@
         }
       },
       {
-        "openrouter_request_id": "gen-1773910994-L8NK90CvOWADYH3lIdCQ",
+        "openrouter_request_id": "gen-1773911138-Ya1aEfB8SqWHLDkdy9ai",
         "openrouter_provider": "OpenInference",
-        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
-        "response_hash": "sha256:95df1ed145a6dfd5f1c4a5805aca3ed0751937d8052ef6819f75ab0c3066925e",
+        "prompt_hash": "sha256:b1b21a108eb3ba14a87eabaacac42f96b50212ecd5909a182b9bcdd9130ecea2",
+        "response_hash": "sha256:6bfa02f1d6ead431274f951697a1e86a9144d202d35bb42ffe612b66474d12b1",
         "tool_called": true,
         "schema_valid": true,
-        "latency_ms": 1336,
+        "latency_ms": 991,
         "failure_mode": null,
         "request": {
           "model": "openai/gpt-oss-120b:free",
           "messages": [
             {
               "role": "user",
-              "content": "Use the search tool to find files containing 'authentication'"
+              "content": "I need to understand what the auth module does"
             }
           ],
           "tools": [
@@ -796,12 +276,50 @@
                   ]
                 }
               }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
             }
           ],
           "temperature": 0.1
         },
         "response": {
-          "id": "gen-1773910994-L8NK90CvOWADYH3lIdCQ",
+          "id": "gen-1773911138-Ya1aEfB8SqWHLDkdy9ai",
           "choices": [
             {
               "finish_reason": "tool_calls",
@@ -816,20 +334,20 @@
                 "function_call": null,
                 "tool_calls": [
                   {
-                    "id": "chatcmpl-tool-b358dfbd60778ef4",
+                    "id": "chatcmpl-tool-a08478d424b9b0d2",
                     "function": {
-                      "arguments": "{\n  \"query\": \"authentication\"\n}",
+                      "arguments": "{\n  \"query\": \"auth\"\n}",
                       "name": "search"
                     },
                     "type": "function",
                     "index": 0
                   }
                 ],
-                "reasoning": "We need to use the search tool to find files containing 'authentication'. Use the function.",
+                "reasoning": "We need to explain what the auth module does. We need to look at codebase. Use search for \"auth\".",
                 "reasoning_details": [
                   {
                     "type": "reasoning.text",
-                    "text": "We need to use the search tool to find files containing 'authentication'. Use the function.",
+                    "text": "We need to explain what the auth module does. We need to look at codebase. Use search for \"auth\".",
                     "format": "unknown",
                     "index": 0
                   }
@@ -838,19 +356,19 @@
               "native_finish_reason": "tool_calls"
             }
           ],
-          "created": 1773910994,
+          "created": 1773911138,
           "model": "openai/gpt-oss-120b:free",
           "object": "chat.completion",
           "service_tier": null,
           "system_fingerprint": null,
           "usage": {
-            "completion_tokens": 45,
-            "prompt_tokens": 134,
-            "total_tokens": 179,
+            "completion_tokens": 51,
+            "prompt_tokens": 184,
+            "total_tokens": 235,
             "completion_tokens_details": {
               "accepted_prediction_tokens": null,
               "audio_tokens": 0,
-              "reasoning_tokens": 23,
+              "reasoning_tokens": 25,
               "rejected_prediction_tokens": null,
               "image_tokens": 0
             },
@@ -872,20 +390,20 @@
         }
       },
       {
-        "openrouter_request_id": "gen-1773911004-FgVA0P1YLqCZcRH8sNWa",
+        "openrouter_request_id": "gen-1773911148-NXHrsWkFtYSsrilP4bGf",
         "openrouter_provider": "OpenInference",
-        "prompt_hash": "sha256:277aba57d1b5bd3c44dc730947e67f8a50645aa0ac86f639ee794155543c2f64",
-        "response_hash": "sha256:8331e3706800aa7b42c7c84760a375904b7831aaa0f11ebaa45905181e475d56",
+        "prompt_hash": "sha256:b1b21a108eb3ba14a87eabaacac42f96b50212ecd5909a182b9bcdd9130ecea2",
+        "response_hash": "sha256:0b7f4e0c74716472ce706fb35ee13353e145c2560409c1d7753c62acc193f89a",
         "tool_called": true,
         "schema_valid": true,
-        "latency_ms": 1025,
+        "latency_ms": 1081,
         "failure_mode": null,
         "request": {
           "model": "openai/gpt-oss-120b:free",
           "messages": [
             {
               "role": "user",
-              "content": "Use the search tool to find files containing 'authentication'"
+              "content": "I need to understand what the auth module does"
             }
           ],
           "tools": [
@@ -907,12 +425,50 @@
                   ]
                 }
               }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
             }
           ],
           "temperature": 0.1
         },
         "response": {
-          "id": "gen-1773911004-FgVA0P1YLqCZcRH8sNWa",
+          "id": "gen-1773911148-NXHrsWkFtYSsrilP4bGf",
           "choices": [
             {
               "finish_reason": "tool_calls",
@@ -927,20 +483,20 @@
                 "function_call": null,
                 "tool_calls": [
                   {
-                    "id": "chatcmpl-tool-9d0df0d5c4d1618d",
+                    "id": "chatcmpl-tool-854a12a1926aef17",
                     "function": {
-                      "arguments": "{\n  \"query\": \"authentication\"\n}",
+                      "arguments": "{\n  \"query\": \"auth module\"\n}",
                       "name": "search"
                     },
                     "type": "function",
                     "index": 0
                   }
                 ],
-                "reasoning": "We need to use the search tool to find files containing 'authentication'. Use the provided function.",
+                "reasoning": "We need to explain what the auth module does. We need to look at codebase. Let's search.",
                 "reasoning_details": [
                   {
                     "type": "reasoning.text",
-                    "text": "We need to use the search tool to find files containing 'authentication'. Use the provided function.",
+                    "text": "We need to explain what the auth module does. We need to look at codebase. Let's search.",
                     "format": "unknown",
                     "index": 0
                   }
@@ -949,19 +505,913 @@
               "native_finish_reason": "tool_calls"
             }
           ],
-          "created": 1773911004,
+          "created": 1773911148,
           "model": "openai/gpt-oss-120b:free",
           "object": "chat.completion",
           "service_tier": null,
           "system_fingerprint": null,
           "usage": {
-            "completion_tokens": 46,
-            "prompt_tokens": 134,
-            "total_tokens": 180,
+            "completion_tokens": 49,
+            "prompt_tokens": 184,
+            "total_tokens": 233,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 22,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "OpenInference"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773911159-gF0O8v5EgtGovDuVZNpK",
+        "openrouter_provider": "OpenInference",
+        "prompt_hash": "sha256:b1b21a108eb3ba14a87eabaacac42f96b50212ecd5909a182b9bcdd9130ecea2",
+        "response_hash": "sha256:712284c49d585570d4bcdde961f4e1c598ef06f38586b2ab3b2ecb64ff17e760",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 1117,
+        "failure_mode": null,
+        "request": {
+          "model": "openai/gpt-oss-120b:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "I need to understand what the auth module does"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773911159-gF0O8v5EgtGovDuVZNpK",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": null,
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "chatcmpl-tool-9cce781b2455c4ad",
+                    "function": {
+                      "arguments": "{\n  \"query\": \"auth\"\n}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "We need to explain what the auth module does. We need to look at codebase. Use search for \"auth\".",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "We need to explain what the auth module does. We need to look at codebase. Use search for \"auth\".",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1773911159,
+          "model": "openai/gpt-oss-120b:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 49,
+            "prompt_tokens": 184,
+            "total_tokens": 233,
             "completion_tokens_details": {
               "accepted_prediction_tokens": null,
               "audio_tokens": 0,
               "reasoning_tokens": 25,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "OpenInference"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773911169-xPGzWxIoNXOavXPSkXx6",
+        "openrouter_provider": "OpenInference",
+        "prompt_hash": "sha256:b1b21a108eb3ba14a87eabaacac42f96b50212ecd5909a182b9bcdd9130ecea2",
+        "response_hash": "sha256:d417a19afcc73c11790e0ac38b7a40a45caa8cbcd6e8fedcabaa3446cd3861d4",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 1090,
+        "failure_mode": null,
+        "request": {
+          "model": "openai/gpt-oss-120b:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "I need to understand what the auth module does"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773911169-xPGzWxIoNXOavXPSkXx6",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": null,
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "chatcmpl-tool-883d4ce4e28024e6",
+                    "function": {
+                      "arguments": "{\n  \"query\": \"auth\"\n}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "We need to locate auth module in repo. Use search.",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "We need to locate auth module in repo. Use search.",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1773911169,
+          "model": "openai/gpt-oss-120b:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 39,
+            "prompt_tokens": 184,
+            "total_tokens": 223,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 13,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "OpenInference"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773911179-SDijVttIGyPWkCICTgK2",
+        "openrouter_provider": "OpenInference",
+        "prompt_hash": "sha256:b1b21a108eb3ba14a87eabaacac42f96b50212ecd5909a182b9bcdd9130ecea2",
+        "response_hash": "sha256:2ee4181c153875e701398452aeb781d7fe9afbac2d30610c444648e51452ef78",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 1309,
+        "failure_mode": null,
+        "request": {
+          "model": "openai/gpt-oss-120b:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "I need to understand what the auth module does"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773911179-SDijVttIGyPWkCICTgK2",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": null,
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "chatcmpl-tool-8cf5e4d2ee040355",
+                    "function": {
+                      "arguments": "{\n  \"query\": \"auth module\"\n}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "We need to explain what the auth module does. We need to look at codebase. Let's search.",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "We need to explain what the auth module does. We need to look at codebase. Let's search.",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1773911179,
+          "model": "openai/gpt-oss-120b:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 49,
+            "prompt_tokens": 184,
+            "total_tokens": 233,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 22,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "OpenInference"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773911190-ndmWwdse4rK8lR6zp6UZ",
+        "openrouter_provider": "OpenInference",
+        "prompt_hash": "sha256:b1b21a108eb3ba14a87eabaacac42f96b50212ecd5909a182b9bcdd9130ecea2",
+        "response_hash": "sha256:5e3bec734c749ba15a708563675f2dac8921e53f187174db971e0ac29ad99936",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 993,
+        "failure_mode": null,
+        "request": {
+          "model": "openai/gpt-oss-120b:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "I need to understand what the auth module does"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773911190-ndmWwdse4rK8lR6zp6UZ",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": null,
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "chatcmpl-tool-a367b80f675734ea",
+                    "function": {
+                      "arguments": "{\n  \"query\": \"auth\"\n}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "We need to explain what the auth module does. We need to look at codebase. Use search for \"auth\".",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "We need to explain what the auth module does. We need to look at codebase. Use search for \"auth\".",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1773911190,
+          "model": "openai/gpt-oss-120b:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 51,
+            "prompt_tokens": 184,
+            "total_tokens": 235,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 25,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "OpenInference"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773911200-mQV5UFwWFiWHNFgCBZod",
+        "openrouter_provider": "OpenInference",
+        "prompt_hash": "sha256:b1b21a108eb3ba14a87eabaacac42f96b50212ecd5909a182b9bcdd9130ecea2",
+        "response_hash": "sha256:3df0f80ade8a0e4ae793a6d51a0d60da0dc0e6be0778b3466ef54251177ef0ed",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 1089,
+        "failure_mode": null,
+        "request": {
+          "model": "openai/gpt-oss-120b:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "I need to understand what the auth module does"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773911200-mQV5UFwWFiWHNFgCBZod",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": null,
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "chatcmpl-tool-b254fcf2274592fa",
+                    "function": {
+                      "arguments": "{\n  \"query\": \"auth\"\n}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "We need to locate auth module in codebase. Use search.",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "We need to locate auth module in codebase. Use search.",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1773911200,
+          "model": "openai/gpt-oss-120b:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 40,
+            "prompt_tokens": 184,
+            "total_tokens": 224,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 14,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0,
+              "upstream_inference_prompt_cost": 0,
+              "upstream_inference_completions_cost": 0
+            }
+          },
+          "provider": "OpenInference"
+        }
+      },
+      {
+        "openrouter_request_id": "gen-1773911210-Qs7IkgRIYNxzCqFvW4vG",
+        "openrouter_provider": "OpenInference",
+        "prompt_hash": "sha256:b1b21a108eb3ba14a87eabaacac42f96b50212ecd5909a182b9bcdd9130ecea2",
+        "response_hash": "sha256:ee63856918757242f4e0b8c1be1f38372dc291665ded997c8a8cd2bf0ba1d975",
+        "tool_called": true,
+        "schema_valid": true,
+        "latency_ms": 1033,
+        "failure_mode": null,
+        "request": {
+          "model": "openai/gpt-oss-120b:free",
+          "messages": [
+            {
+              "role": "user",
+              "content": "I need to understand what the auth module does"
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "search",
+                "description": "Search for files in the codebase",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "Search query"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "read_file",
+                "description": "Read a specific file's contents",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Absolute path to the file"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "list_directory",
+                "description": "List files in a directory",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Directory path"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ]
+                }
+              }
+            }
+          ],
+          "temperature": 0.1
+        },
+        "response": {
+          "id": "gen-1773911210-Qs7IkgRIYNxzCqFvW4vG",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": null,
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "chatcmpl-tool-9b1d108cebe365ac",
+                    "function": {
+                      "arguments": "{\n  \"query\": \"auth\"\n}",
+                      "name": "search"
+                    },
+                    "type": "function",
+                    "index": 0
+                  }
+                ],
+                "reasoning": "We need to locate auth module in codebase. Use search.",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "We need to locate auth module in codebase. Use search.",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1773911210,
+          "model": "openai/gpt-oss-120b:free",
+          "object": "chat.completion",
+          "service_tier": null,
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 40,
+            "prompt_tokens": 184,
+            "total_tokens": 224,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 14,
               "rejected_prediction_tokens": null,
               "image_tokens": 0
             },
@@ -985,12 +1435,12 @@
     ]
   },
   "summary": {
-    "successes": 8,
+    "successes": 9,
     "trials": 10,
-    "rate": 0.8,
+    "rate": 0.9,
     "wilson_ci_95": [
-      0.49015684672072335,
-      0.9433190520193067
+      0.5958436145024278,
+      0.9821242504842788
     ]
   }
 }

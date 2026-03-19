@@ -9,13 +9,13 @@
 
 > Use [`nvidia/nemotron-3-nano-30b-a3b:free`](https://openrouter.ai/models/nvidia/nemotron-3-nano-30b-a3b) for tool calling in your agent pipeline.
 
-Full results: [results/RESULTS.md](results/RESULTS.md) · [Methodology](docs/METHODOLOGY.md)
+Full results: [results/RESULTS.md](results/RESULTS.md) · [Methodology](METHODOLOGY.md)
 <!-- MODELFORECAST:QUICK-ANSWER:END -->
 
 <!-- MODELFORECAST:GRADE-BADGES:START -->
 ### Top performers
 
-[![Grade A](https://img.shields.io/badge/Grade-A-brightgreen)](https://openrouter.ai/models/nvidia/nemotron-3-nano-30b-a3b) [![Grade A](https://img.shields.io/badge/Grade-A-brightgreen)](https://openrouter.ai/models/nvidia/nemotron-3-super-120b-a12b) [![Grade A](https://img.shields.io/badge/Grade-A-brightgreen)](https://openrouter.ai/models/stepfun/step-3.5-flash) [![Grade A](https://img.shields.io/badge/Grade-A-brightgreen)](https://openrouter.ai/models/z-ai/glm-4.5-air)
+[![Grade A](https://img.shields.io/badge/Grade-A-brightgreen)](https://openrouter.ai/models/nvidia/nemotron-3-nano-30b-a3b) [![Grade A](https://img.shields.io/badge/Grade-A-brightgreen)](https://openrouter.ai/models/nvidia/nemotron-3-super-120b-a12b) [![Grade A](https://img.shields.io/badge/Grade-A-brightgreen)](https://openrouter.ai/models/openai/gpt-oss-120b) [![Grade A](https://img.shields.io/badge/Grade-A-brightgreen)](https://openrouter.ai/models/stepfun/step-3.5-flash) [![Grade A](https://img.shields.io/badge/Grade-A-brightgreen)](https://openrouter.ai/models/z-ai/glm-4.5-air)
 
 *Click a badge to view the model on OpenRouter.*
 <!-- MODELFORECAST:GRADE-BADGES:END -->
@@ -37,7 +37,6 @@ These models fail the basic tool invocation test (T0 < 20%). They will silently 
 - **llama-3.3-70b-instruct**: text-instead-of-tool (T0=0%)
 - **minimax-m2.5**: text-instead-of-tool (T0=0%)
 - **mistral-small-3.1-24b-instruct**: text-instead-of-tool (T0=0%)
-- **gpt-oss-120b**: text-instead-of-tool (T0=0%)
 - **gpt-oss-20b**: text-instead-of-tool (T0=0%)
 - **qwen3-4b**: text-instead-of-tool (T0=0%)
 - **qwen3-coder**: text-instead-of-tool (T0=0%)
