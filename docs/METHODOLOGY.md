@@ -244,6 +244,18 @@ def wilson_interval(successes: int, trials: int, confidence: float = 0.95) -> tu
 *"-" indicates not tested (T0 prerequisite failed).*
 ```
 
+**Grading rubric (applied per model across all tested dimensions):**
+
+| Grade | Criteria |
+|-------|----------|
+| **A** | T0 ≥ 80%, T1 ≥ 70%, no dimension below 50% |
+| **B** | T0 ≥ 60%, T1 ≥ 50%, no dimension below 30% |
+| **C** | T0 ≥ 40%, at least one dimension above 50% |
+| **D** | T0 ≥ 20%, or any success at other dimensions |
+| **F** | T0 < 20% (cannot reliably call tools at all) |
+
+*Grades based on point estimate. Wilson CI bounds shown in brackets — models with overlapping CIs are statistical ties.*
+
 ## Verification Protocol
 
 ### Cryptographic Provenance
@@ -311,16 +323,19 @@ Advancement is automatic based on contribution history.
 
 ## Models Tested
 
-Currently testing free-tier models on OpenRouter:
+Currently testing free-tier models on OpenRouter with tool support confirmed via `/api/v1/models`:
 
-- `google/gemma-3-27b-it:free`
-- `google/gemini-2.5-flash-lite-preview-09-2025:free`
-- `meta-llama/llama-4-maverick:free`
-- `microsoft/mai-ds-r1:free`
-- `nousresearch/deephermes-3-llama-3-8b-preview:free`
-- `qwen/qwen3-14b:free`
-- `qwen/qwen3-30b-a3b:free`
-- `qwen/qwen3-32b:free`
-- `x-ai/grok-4.1-fast:free`
+| Model | Last Verified |
+|-------|---------------|
+| `google/gemini-2.5-flash-lite-preview-09-2025:free` | 2026-03-19 |
+| `meta-llama/llama-4-maverick:free` | 2026-03-19 |
+| `microsoft/mai-ds-r1:free` | 2026-03-19 |
+| `nousresearch/deephermes-3-llama-3-8b-preview:free` | 2026-03-19 |
+| `qwen/qwen3-14b:free` | 2026-03-19 |
+| `qwen/qwen3-30b-a3b:free` | 2026-03-19 |
+| `qwen/qwen3-32b:free` | 2026-03-19 |
+| `x-ai/grok-4.1-fast:free` | 2026-03-19 |
 
-To request testing of additional models, open an issue using the Model Request template.
+Defunct models are tracked in [GRAVEYARD.md](../GRAVEYARD.md).
+Run `uv run python scripts/update_graveyard.py` before each sweep to identify any newly-absent models.
+To request additional models, open an issue using the Model Request template.
