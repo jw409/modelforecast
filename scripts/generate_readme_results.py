@@ -13,9 +13,11 @@ from pathlib import Path
 from rich.console import Console
 
 from modelforecast.output.markdown_report import (
+    calculate_grade,
     find_latest_sweep_dir,
     write_markdown_report,
 )
+from modelforecast.output.readme_sections import update_readme_sections
 
 console = Console()
 
@@ -143,6 +145,38 @@ def main() -> None:
         written = out_path
 
     console.print(f"[green]Wrote {written}[/]")
+
+    # Build model_summary from the results dict already loaded
+    model_summary: dict[str, dict] = {}
+    for result_data in results.values():
+        if not isinstance(result_data, dict) or "probes" not in result_data:
+            continue
+        model = result_data["probes"]["model"]
+        level = result_data["probes"]["level"]
+        if model not in model_summary:
+            model_summary[model] = {"level_results": {}, "failure_modes": []}
+        model_summary[model]["level_results"][level] = result_data
+        # Collect failure modes from trial data if present
+        for trial in result_data.get("probes", {}).get("trials", []):
+            if fm := trial.get("failure_mode"):
+                model_summary[model]["failure_modes"].append(fm)
+
+    # Calculate grades
+    for model_data in model_summary.values():
+        model_data["grade"] = calculate_grade(model_data["level_results"])
+
+    sweep_metadata = {
+        "sweep_date": sweep_date,
+        "model_count": model_count,
+        "trials_per_level": trials_per_level,
+    }
+
+    readme_path = Path("README.md")
+    if readme_path.exists():
+        update_readme_sections(readme_path, model_summary, sweep_metadata)
+        console.print("[green]✓ Updated README.md sections[/green]")
+    else:
+        console.print("[yellow]README.md not found — skipping README update[/yellow]")
 
 
 if __name__ == "__main__":

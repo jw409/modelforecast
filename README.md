@@ -109,6 +109,33 @@ One measures capability. The other measures adaptation.
 
 ---
 
+<!-- MODELFORECAST:QUICK-ANSWER:START -->
+### Best free model right now: nemotron-3-nano-30b-a3b
+
+![Grade A](https://img.shields.io/badge/Grade-A-brightgreen) — scores A across all tool-calling dimensions. Free on OpenRouter.
+
+> Use [`nvidia/nemotron-3-nano-30b-a3b:free`](https://openrouter.ai/models/nvidia/nemotron-3-nano-30b-a3b) for tool calling in your agent pipeline.
+
+Full results: [results/RESULTS.md](results/RESULTS.md) · [Methodology](METHODOLOGY.md)
+<!-- MODELFORECAST:QUICK-ANSWER:END -->
+
+<!-- MODELFORECAST:GRADE-BADGES:START -->
+### Top performers
+
+[![Grade A](https://img.shields.io/badge/Grade-A-brightgreen)](https://openrouter.ai/models/nvidia/nemotron-3-nano-30b-a3b) [![Grade A](https://img.shields.io/badge/Grade-A-brightgreen)](https://openrouter.ai/models/nvidia/nemotron-3-super-120b-a12b) [![Grade A](https://img.shields.io/badge/Grade-A-brightgreen)](https://openrouter.ai/models/stepfun/step-3.5-flash) [![Grade A](https://img.shields.io/badge/Grade-A-brightgreen)](https://openrouter.ai/models/z-ai/glm-4.5-air)
+
+*Click a badge to view the model on OpenRouter.*
+<!-- MODELFORECAST:GRADE-BADGES:END -->
+
+<!-- MODELFORECAST:CATEGORY-WINNERS:START -->
+### Category winners
+
+- **Best for tool calling (T0+T1)**: [nemotron-3-nano-30b-a3b](https://openrouter.ai/models/nvidia/nemotron-3-nano-30b-a3b) — 100% T0+T1
+- **Best for schema compliance (T1)**: [nemotron-3-nano-30b-a3b](https://openrouter.ai/models/nvidia/nemotron-3-nano-30b-a3b) — 100% T1
+- **Best for restraint (R0)**: [trinity-large-preview](https://openrouter.ai/models/arcee-ai/trinity-large-preview) — 100% R0
+- **Best for multi-turn agency (A1)**: [trinity-large-preview](https://openrouter.ai/models/arcee-ai/trinity-large-preview) — 100% A1
+<!-- MODELFORECAST:CATEGORY-WINNERS:END -->
+
 ## Tool-Calling Benchmark
 
 Separate from tournaments, we test whether models can use tools reliably. Five probes: basic calls (T0), schema compliance (T1), tool selection (T2), multi-turn chaining (A1), and knowing when NOT to call tools (R0).
@@ -160,6 +187,21 @@ Separate from tournaments, we test whether models can use tools reliably. Five p
 - **Others**: liquid/lfm-2.5, openai/gpt-oss-120b, nousresearch/hermes-3, moonshotai/kimi-k2
 
 Full results: [results/RESULTS.md](results/RESULTS.md)
+
+<!-- MODELFORECAST:AVOID:START -->
+### Avoid these models for tool calling
+
+These models fail the basic tool invocation test (T0 < 20%). They will silently fail your agent pipeline.
+
+- **llama-3.3-70b-instruct**: text-instead-of-tool (T0=0%)
+- **minimax-m2.5**: text-instead-of-tool (T0=0%)
+- **mistral-small-3.1-24b-instruct**: text-instead-of-tool (T0=0%)
+- **gpt-oss-120b**: text-instead-of-tool (T0=0%)
+- **gpt-oss-20b**: text-instead-of-tool (T0=0%)
+- **qwen3-4b**: text-instead-of-tool (T0=0%)
+- **qwen3-coder**: text-instead-of-tool (T0=0%)
+- **qwen3-next-80b-a3b-instruct**: text-instead-of-tool (T0=0%)
+<!-- MODELFORECAST:AVOID:END -->
 
 ### Methodology
 
