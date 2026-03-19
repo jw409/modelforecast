@@ -85,7 +85,11 @@ Plans:
   3. The full grade matrix shows Wilson CI alongside each grade; models with overlapping CIs are marked as statistical ties
   4. An "Avoid these" section actively names models that fail T0 (below 20%) with their failure mode
   5. Each model row links directly to its OpenRouter model page; shields.io badges and a sweep metadata badge (date, n=, model count) are present
-**Plans**: TBD
+**Plans**: 2 plans
+
+Plans:
+- [ ] 05-01-PLAN.md — Data pipeline: find_latest_sweep_dir, CI overlap detection, model links, sweep metadata in RESULTS.md (OUTPUT-03, OUTPUT-05, OUTPUT-07)
+- [ ] 05-02-PLAN.md — README injection: quick answer, category winners, avoid section, grade badges (OUTPUT-01, OUTPUT-02, OUTPUT-04, OUTPUT-06, OUTPUT-08)
 
 ## Progress
 
@@ -99,4 +103,4 @@ Note: Phases 2 and 3 can run in parallel after Phase 1 completes (no dependency 
 | 2. Model Roster Validation | 2/2 | Complete   | 2026-03-19 |
 | 3. Codebase and Documentation Cleanup | 2/2 | Complete   | 2026-03-19 |
 | 4. Fresh Sweep Execution | 0/TBD | Not started | - |
-| 5. Consumer Output | 0/TBD | Not started | - |
+| 5. Consumer Output | 0/2 | Not started | - |
