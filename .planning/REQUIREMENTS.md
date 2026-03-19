@@ -21,14 +21,14 @@
 
 ### Consumer Output
 
-- [ ] **OUTPUT-01**: README shows quick answer at top ("Best free model right now: X")
-- [ ] **OUTPUT-02**: README shows category winners ("Best for tool calling", "Best for restraint", etc.)
-- [ ] **OUTPUT-03**: README shows full grade matrix with Wilson CI for all tested models
-- [ ] **OUTPUT-04**: README shows "Avoid these" section for models that fail T0 (<20%)
-- [ ] **OUTPUT-05**: Each model row links to its OpenRouter model page
-- [ ] **OUTPUT-06**: Shields.io grade badges for top models
-- [ ] **OUTPUT-07**: Sweep metadata badge showing date and model count
-- [ ] **OUTPUT-08**: "Best for X" one-liner recommendations by use case (tool calling, coding, chat)
+- [x] **OUTPUT-01**: README shows quick answer at top ("Best free model right now: X")
+- [x] **OUTPUT-02**: README shows category winners ("Best for tool calling", "Best for restraint", etc.)
+- [x] **OUTPUT-03**: README shows full grade matrix with Wilson CI for all tested models
+- [x] **OUTPUT-04**: README shows "Avoid these" section for models that fail T0 (<20%)
+- [x] **OUTPUT-05**: Each model row links to its OpenRouter model page
+- [x] **OUTPUT-06**: Shields.io grade badges for top models
+- [x] **OUTPUT-07**: Sweep metadata badge showing date and model count
+- [x] **OUTPUT-08**: "Best for X" one-liner recommendations by use case (tool calling, coding, chat)
 
 ### Methodology
 
@@ -97,14 +97,14 @@
 | METH-02 | Phase 3 | Complete |
 | EXEC-01 | Phase 4 | Pending |
 | EXEC-02 | Phase 4 | Pending |
-| OUTPUT-01 | Phase 5 | Pending |
-| OUTPUT-02 | Phase 5 | Pending |
-| OUTPUT-03 | Phase 5 | Pending |
-| OUTPUT-04 | Phase 5 | Pending |
-| OUTPUT-05 | Phase 5 | Pending |
-| OUTPUT-06 | Phase 5 | Pending |
-| OUTPUT-07 | Phase 5 | Pending |
-| OUTPUT-08 | Phase 5 | Pending |
+| OUTPUT-01 | Phase 5 | Complete |
+| OUTPUT-02 | Phase 5 | Complete |
+| OUTPUT-03 | Phase 5 | Complete |
+| OUTPUT-04 | Phase 5 | Complete |
+| OUTPUT-05 | Phase 5 | Complete |
+| OUTPUT-06 | Phase 5 | Complete |
+| OUTPUT-07 | Phase 5 | Complete |
+| OUTPUT-08 | Phase 5 | Complete |
 
 **Coverage:**
 - v1 requirements: 22 total
