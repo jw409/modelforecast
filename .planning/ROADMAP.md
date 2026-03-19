@@ -59,7 +59,11 @@ Plans:
   2. The runner uses openai SDK 2.x with built-in retry (no tenacity or custom retry wrapper)
   3. CLAUDE.md describes the current project state accurately (probe dimensions, run command, output structure)
   4. METHODOLOGY.md lists only models that currently exist on OpenRouter free tier, with grading rubric documented inline
-**Plans**: TBD
+**Plans**: 2 plans
+
+Plans:
+- [ ] 03-01-PLAN.md — Strip dead deps, bump openai to >=2.0.0, migrate runner to SDK built-in retry (MAINT-01, MAINT-02)
+- [ ] 03-02-PLAN.md — Rewrite CLAUDE.md, update METHODOLOGY.md model roster and inline rubric (MAINT-03, MAINT-04, METH-01, METH-02)
 
 ### Phase 4: Fresh Sweep Execution
 **Goal**: Complete, fresh probe results exist for all current free models with tool support
@@ -93,6 +97,6 @@ Note: Phases 2 and 3 can run in parallel after Phase 1 completes (no dependency 
 |-------|----------------|--------|-----------|
 | 1. Sweep Infrastructure | 2/2 | Complete   | 2026-03-19 |
 | 2. Model Roster Validation | 2/2 | Complete   | 2026-03-19 |
-| 3. Codebase and Documentation Cleanup | 0/TBD | Not started | - |
+| 3. Codebase and Documentation Cleanup | 0/2 | Not started | - |
 | 4. Fresh Sweep Execution | 0/TBD | Not started | - |
 | 5. Consumer Output | 0/TBD | Not started | - |
