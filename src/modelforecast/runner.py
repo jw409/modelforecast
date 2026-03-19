@@ -1,9 +1,11 @@
 """Main probe runner for ModelForecast benchmarks."""
 
 import os
+import time
 from pathlib import Path
 from typing import Any
 
+import openai
 from openai import OpenAI
 from rich.console import Console
 from rich.progress import Progress, SpinnerColumn, TextColumn
@@ -14,6 +16,7 @@ from modelforecast.output.markdown_report import write_markdown_report
 from modelforecast.probes.base import ProbeResult
 from modelforecast.probes.t0_invoke import T0InvokeProbe
 from modelforecast.stats.confidence import wilson_interval
+from modelforecast.sweep.rate_limiter import RateLimiter
 from modelforecast.verification.provenance import ProvenanceTracker
 
 # Default models set to None - will fetch dynamically from OpenRouter
@@ -32,6 +35,7 @@ class ProbeRunner:
         models: list[str] | None = None,
         contributor: str | None = None,
         skip_validation: bool = False,
+        max_retries: int = 3,
     ):
         """Initialize probe runner.
 
@@ -40,6 +44,7 @@ class ProbeRunner:
             models: List of models to test (defaults to all free models from OpenRouter)
             contributor: GitHub username for provenance (defaults to env var or "unknown")
             skip_validation: If True, skip model validation (for testing)
+            max_retries: Maximum number of retries for rate limit or server errors
         """
         self.output_dir = Path(output_dir)
         self.contributor = contributor or os.getenv("GITHUB_USERNAME", "unknown")
@@ -54,6 +59,8 @@ class ProbeRunner:
             base_url="https://openrouter.ai/api/v1",
             api_key=api_key,
         )
+        self.max_retries = max_retries
+        self.rate_limiter = RateLimiter(calls_per_minute=8)
 
         # Validate and set models
         if models:
@@ -108,6 +115,30 @@ class ProbeRunner:
                 0: T0InvokeProbe(),
             }
 
+    @staticmethod
+    def _classify_failure(result: "ProbeResult", probe_tools: list[dict]) -> str | None:
+        """Classify why a probe trial failed. Returns None if probe succeeded."""
+        if result.success:
+            return None
+        if not result.tool_called:
+            return "text-instead-of-tool"
+        expected_tool_names = {t["function"]["name"] for t in probe_tools if "function" in t}
+        if result.tool_name and result.tool_name not in expected_tool_names:
+            return "hallucinated-tool"
+        if result.tool_name and result.tool_name in expected_tool_names:
+            # Called correct tool but failed — check parameters
+            if result.parameters is None:
+                return "missing-required-param"
+            try:
+                import json as _json
+
+                if isinstance(result.parameters, str):
+                    _json.loads(result.parameters)
+            except (ValueError, TypeError):
+                return "malformed-json"
+            return "wrong-tool"
+        return "wrong-tool"
+
     def run_level(
         self,
         model: str,
@@ -144,8 +175,68 @@ class ProbeRunner:
             task = progress.add_task(f"Running {trials} trials...", total=trials)
 
             for trial_num in range(trials):
-                result = probe.run(model, self.client)
+                # Rate limit: enforce minimum interval per model
+                self.rate_limiter.acquire(model)
+
+                # Retry loop for 429 and 5xx errors
+                result = None
+                for attempt in range(self.max_retries + 1):
+                    try:
+                        result = probe.run(model, self.client)
+                        break
+                    except openai.RateLimitError as e:
+                        if attempt < self.max_retries:
+                            wait = 2**attempt
+                            self.console.print(
+                                f"[yellow]Retry {attempt + 1}/{self.max_retries} after {wait}s "
+                                f"(rate limit)[/yellow]"
+                            )
+                            time.sleep(wait)
+                        else:
+                            result = ProbeResult(
+                                success=False,
+                                tool_called=False,
+                                tool_name=None,
+                                parameters=None,
+                                raw_response={"error": str(e)},
+                                latency_ms=0,
+                                error=str(e),
+                            )
+                    except openai.APIStatusError as e:
+                        if e.status_code and e.status_code >= 500 and attempt < self.max_retries:
+                            wait = 2**attempt
+                            self.console.print(
+                                f"[yellow]Retry {attempt + 1}/{self.max_retries} after {wait}s "
+                                f"(server error {e.status_code})[/yellow]"
+                            )
+                            time.sleep(wait)
+                        else:
+                            result = ProbeResult(
+                                success=False,
+                                tool_called=False,
+                                tool_name=None,
+                                parameters=None,
+                                raw_response={"error": str(e)},
+                                latency_ms=0,
+                                error=str(e),
+                            )
+                            break
+
+                # Classify failure mode
+                result.failure_mode = self._classify_failure(result, probe.tools)
+
                 results.append(result)
+
+                # Extract provider header from raw_response
+                provider = result.raw_response.get(
+                    "x-openrouter-provider",
+                    result.raw_response.get("provider", None),
+                )
+                if provider is None:
+                    self.console.print(
+                        "[yellow]Warning: x-openrouter-provider header not captured for trial"
+                        "[/yellow]"
+                    )
 
                 # Create trial record for provenance with full data for schema-on-read
                 request_data = {
@@ -161,6 +252,8 @@ class ProbeRunner:
                     schema_valid=result.success,  # For T0, success == tool_called
                     latency_ms=result.latency_ms,
                     openrouter_request_id=result.raw_response.get("id"),
+                    openrouter_provider=provider,
+                    failure_mode=result.failure_mode,
                     # Full data for efficiency analysis
                     request_data=request_data,
                     response_data=result.raw_response,

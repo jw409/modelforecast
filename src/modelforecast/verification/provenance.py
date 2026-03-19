@@ -58,6 +58,8 @@ class ProvenanceTracker:
         schema_valid: bool,
         latency_ms: int,
         openrouter_request_id: str | None = None,
+        openrouter_provider: str | None = None,
+        failure_mode: str | None = None,
         *,
         # New: Full request/response for schema-on-read analysis
         request_data: dict[str, Any] | None = None,
@@ -72,6 +74,8 @@ class ProvenanceTracker:
             schema_valid: Whether the tool call schema is valid
             latency_ms: Response latency in milliseconds
             openrouter_request_id: OpenRouter request ID from headers
+            openrouter_provider: Backend provider selected by OpenRouter (e.g., "Google")
+            failure_mode: One of five named failure classifications, or None if succeeded
             request_data: Full request payload (model, messages, tools, settings)
             response_data: Full API response (usage, choices, etc.)
 
@@ -80,11 +84,13 @@ class ProvenanceTracker:
         """
         record = {
             "openrouter_request_id": openrouter_request_id,
+            "openrouter_provider": openrouter_provider,
             "prompt_hash": hash_content(prompt),
             "response_hash": hash_content(response),
             "tool_called": tool_called,
             "schema_valid": schema_valid,
             "latency_ms": latency_ms,
+            "failure_mode": failure_mode,
         }
 
         # Store full data for schema-on-read efficiency analysis
