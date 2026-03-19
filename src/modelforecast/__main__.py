@@ -67,6 +67,11 @@ def main():
         action="store_true",
         help="Skip model ID validation against OpenRouter API",
     )
+    sweep_parser.add_argument(
+        "--validate-roster",
+        action="store_true",
+        help="Fetch current free tool-capable models from OpenRouter and exit with a count",
+    )
 
     # ------------------------------------------------------------------
     # Top-level flags (single-model / run-all mode — backward compatible)
@@ -128,6 +133,19 @@ def main():
             print("ERROR: OPENROUTER_API_KEY environment variable not set")
             print("Get your API key from: https://openrouter.ai/keys")
             return 1
+
+        if args.validate_roster:
+            from modelforecast.models import get_free_models, get_tool_support_matrix
+            print("Fetching current free models with tool support from OpenRouter...")
+            try:
+                tool_models = get_free_models(tools_only=True)
+                print(f"\nFound {len(tool_models)} free models with tool support:\n")
+                for m in tool_models:
+                    print(f"  {m}")
+                return 0
+            except Exception as e:
+                print(f"ERROR: {e}")
+                return 1
 
         orchestrator = SweepOrchestrator(
             base_results_dir=Path(args.output),
