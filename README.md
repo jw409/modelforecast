@@ -127,6 +127,35 @@ uv run python scripts/generate_readme_results.py
 
 ---
 
+## Known Caveats
+
+### OpenRouter privacy settings silently block free endpoints
+
+If a model scores 0% on T0 (invoke) despite being listed as tool-capable, check your OpenRouter account settings before concluding the model is broken.
+
+**How to reproduce the trap:**
+1. Log in to OpenRouter → Settings → Privacy
+2. Check whether "Allow free endpoints that may train on inputs" is enabled
+3. If disabled, free-tier endpoints return errors that resemble model failures — no clear error message distinguishes them
+
+**What happened during this sweep:** `gpt-oss-120b` initially scored 0% on every probe. After enabling free endpoint access in account settings, it scored Grade A. The API returns no meaningful error — the model simply appears unresponsive.
+
+**Mitigation before trusting a zero score:** verify the endpoint responds to a simple non-tool prompt. If that also fails with an auth-adjacent error, it is a settings issue, not a model issue.
+
+### Rate-limited models (March 2026 sweep)
+
+Five models were globally throttled by OpenRouter during the sweep and could not be tested:
+
+- `meta-llama/llama-3.3-70b-instruct:free`
+- `mistral/mistral-small-3.1-24b-instruct:free`
+- `qwen/qwen3-4b:free`
+- `qwen/qwen3-coder:free`
+- `qwen/qwen3-next-80b-a3b-instruct:free`
+
+Results for these models are pending. Re-run with `uv run python scripts/run_sweep.py --resume` when OpenRouter demand drops. Scores shown as "—" in the results table are rate-limit gaps, not failures.
+
+---
+
 ## Contributors
 
 Thanks to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
