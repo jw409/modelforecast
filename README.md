@@ -138,7 +138,7 @@ Thanks to these wonderful people ([emoji key](https://allcontributors.org/docs/e
   <tbody>
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/jw409"><img src="https://avatars.githubusercontent.com/u/218849921?v=4?s=100" width="100px;" alt="jw"/><br /><sub><b>jw</b></sub></a><br /><a href="https://github.com/jw409/modelforecast/commits?author=jw409" title="Code">💻</a> <a href="https://github.com/jw409/modelforecast/commits?author=jw409" title="Documentation">📖</a> <a href="#ideas-jw409" title="Ideas, Planning, & Feedback">🤔</a> <a href="#maintenance-jw409" title="Maintenance">🚧</a> <a href="#infra-jw409" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/jw408"><img src="https://avatars.githubusercontent.com/u/29632061?v=4?s=100" width="100px;" alt="Jeff Whitehead"/><br /><sub><b>Jeff Whitehead</b></sub></a><br /><a href="https://github.com/jw409/modelforecast/commits?author=jw408" title="Code">💻</a> <a href="#ideas-jw408" title="Ideas, Planning, & Feedback">🤔</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/jw408"><img src="https://avatars.githubusercontent.com/u/218849921?v=4?s=100" width="100px;" alt="jw409"/><br /><sub><b>jw409</b></sub></a><br /><a href="https://github.com/jw409/modelforecast/commits?author=jw408" title="Code">💻</a> <a href="#ideas-jw408" title="Ideas, Planning, & Feedback">🤔</a></td>
     </tr>
   </tbody>
 </table>
