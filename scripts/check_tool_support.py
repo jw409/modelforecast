@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Check which free models support tool calling on OpenRouter.
+"""Check which models support tool calling on OpenRouter.
 
 Usage:
     uv run python scripts/check_tool_support.py
 
 Output:
-    Lists all free models with their tool support status.
+    Lists all models with their tool support status.
 """
 
 import os
@@ -38,8 +38,8 @@ def main():
     for model in sorted(not_supports):
         print(f"  ✗ {model}")
 
-    print(f"\n--- Summary ---")
-    print(f"Total free models: {len(matrix)}")
+    print("\n--- Summary ---")
+    print(f"Total models: {len(matrix)}")
     print(f"Support tools: {len(supports)} ({100*len(supports)/len(matrix):.0f}%)")
     print(f"No tool support: {len(not_supports)} ({100*len(not_supports)/len(matrix):.0f}%)")
 

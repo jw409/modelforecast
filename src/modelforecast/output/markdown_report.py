@@ -172,7 +172,7 @@ def write_markdown_report(
     lines = [
         "# ModelForecast Results",
         "",
-        "Tool-calling capability benchmarks for free LLM models.",
+        "Tool-calling capability benchmarks for LLMs.",
         "",
     ]
 

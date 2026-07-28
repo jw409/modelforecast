@@ -81,7 +81,7 @@ class DagInterpreter:
         start_time = time.time()
         prompt = node.get("prompt", "")
         # Respect the model in the DAG, but allow override if needed (not implemented here)
-        model = node.get("model", "google/gemini-2.5-flash-lite-preview-09-2025:free")
+        model = node.get("model", "qwen/qwen3.7-flash")
         
         # Context injection: Append previous outputs
         context_str = "\n\n--- CONTEXT FROM PREVIOUS STEPS ---\n"

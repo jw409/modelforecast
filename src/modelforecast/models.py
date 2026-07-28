@@ -6,6 +6,29 @@ from typing import Any
 
 import httpx
 
+# Curated cross-provider cohort for comparable default sweeps. Every entry was
+# confirmed live and advertising tool support through OpenRouter's model API.
+ROSTER_LAST_VERIFIED = "2026-07-28"
+DEFAULT_ROSTER: tuple[str, ...] = (
+    "anthropic/claude-opus-5",
+    "deepseek/deepseek-v4-pro",
+    "google/gemini-3.6-flash",
+    "minimax/minimax-m3",
+    "moonshotai/kimi-k3",
+    "openai/gpt-5.6-sol",
+    "qwen/qwen3.7-max",
+    "x-ai/grok-4.5",
+    "z-ai/glm-5.2",
+)
+
+# Cheap, diverse endpoints used only to establish that the probe pipeline is
+# healthy before a full run.
+CANARY_ROSTER: tuple[str, ...] = (
+    "deepseek/deepseek-v4-flash",
+    "minimax/minimax-m3",
+    "qwen/qwen3.7-flash",
+)
+
 
 @lru_cache(maxsize=1)
 def get_available_models(api_key: str | None = None) -> dict[str, Any]:
@@ -33,7 +56,7 @@ def supports_tool_calling(model_id: str, api_key: str | None = None) -> bool:
     """Check if a model supports tool calling on OpenRouter.
 
     Args:
-        model_id: Full model ID (e.g., "google/gemma-3-12b-it:free")
+        model_id: Full model ID (e.g., "google/gemini-3.6-flash")
         api_key: Optional API key
 
     Returns:
@@ -45,33 +68,31 @@ def supports_tool_calling(model_id: str, api_key: str | None = None) -> bool:
     return "tools" in supported_params
 
 
-def get_free_models(api_key: str | None = None, tools_only: bool = False) -> list[str]:
-    """Get list of currently available free models.
+def get_models(api_key: str | None = None, tools_only: bool = False) -> list[str]:
+    """Get the current OpenRouter model catalog.
 
     Args:
         api_key: Optional API key
         tools_only: If True, only return models that support tool calling
 
     Returns:
-        List of model IDs ending with :free
+        Sorted model IDs
     """
     models = get_available_models(api_key)
-    free_models = [
-        model_id for model_id in models.keys()
-        if model_id.endswith(":free")
-    ]
+    model_ids = list(models)
 
     if tools_only:
-        free_models = [
-            m for m in free_models
-            if supports_tool_calling(m, api_key)
+        model_ids = [
+            model_id
+            for model_id in model_ids
+            if "tools" in models[model_id].get("supported_parameters", [])
         ]
 
-    return sorted(free_models)
+    return sorted(model_ids)
 
 
 def get_tool_support_matrix(api_key: str | None = None) -> dict[str, bool]:
-    """Get tool support status for all free models.
+    """Get tool support status for the complete OpenRouter catalog.
 
     Returns:
         Dict mapping model_id -> supports_tools (bool)
@@ -80,15 +101,45 @@ def get_tool_support_matrix(api_key: str | None = None) -> dict[str, bool]:
     return {
         model_id: "tools" in model_info.get("supported_parameters", [])
         for model_id, model_info in models.items()
-        if model_id.endswith(":free")
     }
+
+
+def validate_roster(
+    model_ids: tuple[str, ...] | list[str] | None = None,
+    api_key: str | None = None,
+) -> dict[str, tuple[bool, str]]:
+    """Validate that every roster entry is live and advertises tool support."""
+    roster = DEFAULT_ROSTER if model_ids is None else model_ids
+    models = get_available_models(api_key)
+    results: dict[str, tuple[bool, str]] = {}
+
+    for model_id in roster:
+        model_info = models.get(model_id)
+        if model_info is None:
+            results[model_id] = (False, "not found")
+        elif "tools" not in model_info.get("supported_parameters", []):
+            results[model_id] = (False, "does not advertise tool support")
+        else:
+            results[model_id] = (True, "live with tool support")
+
+    return results
+
+
+def get_default_models(api_key: str | None = None) -> list[str]:
+    """Return the curated default roster, failing if it has drifted."""
+    status = validate_roster(api_key=api_key)
+    invalid = [f"{model_id} ({message})" for model_id, (ok, message) in status.items() if not ok]
+    if invalid:
+        details = ", ".join(invalid)
+        raise ValueError(f"Default roster is stale: {details}. Run sweep --validate-roster.")
+    return list(DEFAULT_ROSTER)
 
 
 def validate_model(model_id: str, api_key: str | None = None) -> tuple[bool, str]:
     """Validate that a model ID exists on OpenRouter.
 
     Args:
-        model_id: Full model ID (e.g., "google/gemini-2.0-flash-exp:free")
+        model_id: Full model ID (e.g., "openai/gpt-5.6-sol")
         api_key: Optional API key
 
     Returns:
@@ -113,7 +164,10 @@ def validate_model(model_id: str, api_key: str | None = None) -> tuple[bool, str
         return False, f"Error validating model: {e}"
 
 
-def validate_models(model_ids: list[str], api_key: str | None = None) -> dict[str, tuple[bool, str]]:
+def validate_models(
+    model_ids: list[str],
+    api_key: str | None = None,
+) -> dict[str, tuple[bool, str]]:
     """Validate multiple model IDs.
 
     Args:

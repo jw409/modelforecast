@@ -2,7 +2,7 @@
 
 ## Project Identity
 
-**ModelForecast**: Empirical tool-calling benchmarks for free OpenRouter LLM models.
+**ModelForecast**: Empirical tool-calling benchmarks for OpenRouter LLM models.
 
 **Stack**: Pure Python 3.11+ | OpenRouter API | Probe sweep runner | Wilson CI statistics | No local GPU inference
 
@@ -56,9 +56,9 @@ uv run python -m modelforecast sweep → SweepOrchestrator → ProbeRunner → O
 ```
 Task Type                                    → Tool Choice
 ──────────────────────────────────────────────────────────
-Run full sweep                               → uv run python -m modelforecast sweep
-Check live free model roster                 → uv run python -m modelforecast sweep --validate-roster
-Resume interrupted sweep                     → uv run python -m modelforecast sweep --resume
+Run full sweep                               → uv run python -m modelforecast sweep --confirm-spend
+Validate the current model roster            → uv run python -m modelforecast sweep --validate-roster
+Resume interrupted sweep                     → uv run python -m modelforecast sweep --resume --confirm-spend
 Run tests                                    → uv run pytest tests/
 Lint code                                    → uv run ruff check src/
 ```
@@ -74,10 +74,13 @@ client = OpenAI(
 )
 ```
 
-**Free models** (examples — actual sweep fetches live roster dynamically):
-- `qwen/qwen3-32b:free`
-- `meta-llama/llama-4-maverick:free`
-- `x-ai/grok-4.1-fast:free`
+**Current roster** (validated against OpenRouter before every default sweep):
+- `openai/gpt-5.6-sol`
+- `anthropic/claude-opus-5`
+- `deepseek/deepseek-v4-pro`
+- `google/gemini-3.6-flash`
+- `moonshotai/kimi-k3`
+- `qwen/qwen3.7-max`
 
 ---
 
@@ -133,8 +136,8 @@ Before proposing changes, verify:
 
 These features must always work:
 
-1. **Sweep execution**: `uv run python -m modelforecast sweep --trials 10` runs without errors
-2. **Roster validation**: `uv run python -m modelforecast sweep --validate-roster` shows live free models
+1. **Sweep execution**: `uv run python -m modelforecast sweep --trials 10 --confirm-spend` runs without errors
+2. **Roster validation**: `uv run python -m modelforecast sweep --validate-roster` confirms every curated model is live and tool-capable
 3. **Test suite passes**: `uv run pytest tests/` all green
 4. **OpenRouter connectivity**: API calls succeed with valid key
 
@@ -161,8 +164,8 @@ uv run pytest tests/ -x
 - Status checks
 
 ### Cost Awareness
-- Development: Use free models (Qwen3-32b, Llama-4-Maverick)
-- Production benchmarks: Use paid models only when necessary
+- Development: use the cheap canary roster before a full sweep
+- Production benchmarks: use the curated cross-provider roster
 - Log all API calls to `var/api_calls.jsonl` for cost tracking
 
 ---
@@ -172,7 +175,7 @@ uv run pytest tests/ -x
 ### Run a Sweep
 ```bash
 cd /home/jw/dev/modelforecast
-uv run python -m modelforecast sweep --trials 10
+uv run python -m modelforecast sweep --trials 10 --confirm-spend
 ```
 
 ### Check Live Model Roster
@@ -182,7 +185,7 @@ uv run python -m modelforecast sweep --validate-roster
 
 ### Resume Interrupted Sweep
 ```bash
-uv run python -m modelforecast sweep --resume
+uv run python -m modelforecast sweep --resume --confirm-spend
 ```
 
 ### Add a New Probe
@@ -228,13 +231,13 @@ curl -H "Authorization: Bearer $OPENROUTER_API_KEY" \
 
 | Command | Purpose |
 |---------|---------|
-| `uv run python -m modelforecast sweep` | Run full sweep |
-| `uv run python -m modelforecast sweep --validate-roster` | Check live free model roster |
-| `uv run python -m modelforecast sweep --resume` | Resume interrupted sweep |
+| `uv run python -m modelforecast sweep --confirm-spend` | Run full roster sweep |
+| `uv run python -m modelforecast sweep --validate-roster` | Validate the current model roster |
+| `uv run python -m modelforecast sweep --resume --confirm-spend` | Resume interrupted sweep |
 | `uv run pytest tests/` | Run tests |
 | `uv run ruff check src/` | Lint code |
 | `cat README.md` | Project overview |
 
 ---
 
-*Last updated: 2026-03-19*
+*Last updated: 2026-07-28*

@@ -36,25 +36,16 @@ from dataclasses import dataclass, field
 from datetime import datetime
 from typing import Any
 
-# Pricing per 1M tokens (as of Jan 2026)
-# Updated from OpenRouter API pricing
+from modelforecast.models import get_available_models
+
+# Fallback pricing per 1M tokens for embedding endpoints that may be absent
+# from the chat-oriented model catalog.
 PRICING = {
     # Embeddings
     "qwen/qwen3-embedding-4b": {"input": 0.02, "output": 0.0},
     "qwen/qwen3-embedding-8b": {"input": 0.05, "output": 0.0},
     "openai/text-embedding-3-small": {"input": 0.02, "output": 0.0},
     "openai/text-embedding-3-large": {"input": 0.13, "output": 0.0},
-    # Chat models - free tier
-    "google/gemini-2.0-flash-exp:free": {"input": 0.0, "output": 0.0},
-    "google/gemma-3-12b-it:free": {"input": 0.0, "output": 0.0},
-    "meta-llama/llama-3.2-3b-instruct:free": {"input": 0.0, "output": 0.0},
-    "mistralai/mistral-small-3.1-24b-instruct:free": {"input": 0.0, "output": 0.0},
-    # Chat models - paid
-    "meta-llama/llama-3.2-3b-instruct": {"input": 0.01, "output": 0.02},
-    "meta-llama/llama-3.3-70b-instruct": {"input": 0.30, "output": 0.40},
-    "anthropic/claude-3.5-haiku": {"input": 0.80, "output": 4.00},
-    "anthropic/claude-3.5-sonnet": {"input": 3.00, "output": 15.00},
-    "google/gemini-2.0-flash-001": {"input": 0.10, "output": 0.40},
 }
 
 OPENROUTER_API_URL = "https://openrouter.ai/api/v1"
@@ -333,11 +324,21 @@ class OpenRouterClient:
         self.report = WitnessReport()
 
     def _get_pricing(self, model: str) -> dict[str, float]:
-        """Get pricing for model, with fallback for unknown models."""
+        """Get current per-million-token pricing, with a conservative fallback."""
+        try:
+            model_info = get_available_models(self.api_key).get(model)
+            if model_info:
+                pricing = model_info.get("pricing", {})
+                return {
+                    "input": float(pricing.get("prompt", 0.0)) * 1_000_000,
+                    "output": float(pricing.get("completion", 0.0)) * 1_000_000,
+                }
+        except Exception:
+            pass
+
         if model in PRICING:
             return PRICING[model]
-        # Default pricing for unknown models (conservative estimate)
-        return {"input": 0.10, "output": 0.20}
+        return {"input": 5.00, "output": 30.00}
 
     def _calculate_cost(
         self, model: str, input_tokens: int, output_tokens: int
@@ -604,7 +605,7 @@ def test_openrouter_client() -> WitnessReport:
     print("\n1. Testing chat completion...")
     try:
         response = client.chat.completions.create(
-            model="meta-llama/llama-3.2-3b-instruct:free",
+            model="qwen/qwen3.7-flash",
             messages=[{"role": "user", "content": "What is 2+2? Reply with just the number."}],
             max_tokens=10,
             temperature=0.1,
@@ -634,7 +635,7 @@ def test_openrouter_client() -> WitnessReport:
         }]
 
         response = client.chat.completions.create(
-            model="google/gemini-2.0-flash-exp:free",
+            model="google/gemini-3.6-flash",
             messages=[{"role": "user", "content": "What's the weather in Tokyo?"}],
             tools=tools,
             temperature=0.1,

@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "project_id": "modelforecast",
-  "description": "Competitive LLM evaluation platform using CoreWars battles. Tool-calling benchmarks for free LLM models.",
+  "description": "Tool-calling capability benchmarks for current OpenRouter LLM models.",
   "repository": "github.com/jw409/modelforecast",
   "stack": {
     "language": "python",
@@ -9,12 +9,8 @@
     "package_manager": "uv",
     "frameworks": [
       "openai-sdk",
-      "dagster",
-      "playwright",
       "rich",
-      "httpx",
-      "matplotlib",
-      "pandas"
+      "httpx"
     ]
   },
   "excluded_infrastructure": {
@@ -25,8 +21,8 @@
     "local_gpu_ports": true
   },
   "execution_model": {
-    "flow": "User Request -> Claude Code -> Python scripts -> OpenRouter API -> Results",
-    "orchestration": "Dagster DAGs (optional, for tournaments)",
+    "flow": "CLI -> SweepOrchestrator -> ProbeRunner -> OpenRouter API -> Results",
+    "orchestration": "SweepOrchestrator with checkpoint-resume",
     "command_prefix": "uv run python"
   },
   "filesystem_sandbox": {
@@ -55,11 +51,11 @@
     "requires_rooms": false,
     "requires_coordination": false,
     "decision_tree": {
-      "run_tournament": "uv run python -m modelforecast",
-      "run_probe": "uv run python src/modelforecast/probes/<probe>.py",
-      "generate_charts": "uv run python scripts/generate_waffle.py",
+      "run_sweep": "uv run python -m modelforecast sweep --confirm-spend",
+      "validate_roster": "uv run python -m modelforecast sweep --validate-roster",
+      "run_probe": "uv run python -m modelforecast --model <model> --probe <probe>",
       "run_tests": "uv run pytest tests/",
-      "dagster_pipeline": "uv run dagster dev"
+      "generate_results": "uv run python scripts/generate_readme_results.py"
     }
   },
   "api_dependencies": {
@@ -67,10 +63,16 @@
       "base_url": "https://openrouter.ai/api/v1",
       "env_var": "OPENROUTER_API_KEY",
       "required": true,
-      "free_models": [
-        "google/gemini-2.5-flash-lite-preview-09-2025:free",
-        "qwen/qwen3-32b:free",
-        "meta-llama/llama-4-maverick:free"
+      "default_roster": [
+        "openai/gpt-5.6-sol",
+        "anthropic/claude-opus-5",
+        "deepseek/deepseek-v4-pro",
+        "google/gemini-3.6-flash",
+        "minimax/minimax-m3",
+        "moonshotai/kimi-k3",
+        "qwen/qwen3.7-max",
+        "x-ai/grok-4.5",
+        "z-ai/glm-5.2"
       ]
     }
   },
