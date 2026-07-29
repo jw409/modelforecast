@@ -6,14 +6,20 @@ import sys
 from pathlib import Path
 
 from modelforecast import __version__
-from modelforecast.models import get_available_models, get_free_models, validate_model
+from modelforecast.models import (
+    DEFAULT_ROSTER,
+    ROSTER_LAST_VERIFIED,
+    get_models,
+    validate_model,
+    validate_roster,
+)
 from modelforecast.runner import ProbeRunner
 from modelforecast.sweep.orchestrator import SweepOrchestrator
 
 
 def main():
     parser = argparse.ArgumentParser(
-        description="ModelForecast - Tool-calling capability benchmarks for free LLM models"
+        description="ModelForecast - Tool-calling capability benchmarks for OpenRouter models"
     )
     parser.add_argument("--version", action="version", version=f"modelforecast {__version__}")
 
@@ -70,7 +76,12 @@ def main():
     sweep_parser.add_argument(
         "--validate-roster",
         action="store_true",
-        help="Fetch current free tool-capable models from OpenRouter and exit with a count",
+        help="Validate the curated model roster against OpenRouter and exit",
+    )
+    sweep_parser.add_argument(
+        "--confirm-spend",
+        action="store_true",
+        help="Confirm that the default roster may use paid OpenRouter endpoints",
     )
 
     # ------------------------------------------------------------------
@@ -110,9 +121,14 @@ def main():
         help="Skip model ID validation against OpenRouter API",
     )
     parser.add_argument(
+        "--confirm-spend",
+        action="store_true",
+        help="Confirm that an implicit full-roster run may use paid OpenRouter endpoints",
+    )
+    parser.add_argument(
         "--list-models",
         action="store_true",
-        help="List available free models and exit",
+        help="List all available tool-capable models and exit",
     )
     parser.add_argument(
         "--validate",
@@ -135,17 +151,35 @@ def main():
             return 1
 
         if args.validate_roster:
-            from modelforecast.models import get_free_models, get_tool_support_matrix
-            print("Fetching current free models with tool support from OpenRouter...")
+            print(
+                "Validating the curated model roster against OpenRouter "
+                f"(last verified {ROSTER_LAST_VERIFIED})..."
+            )
             try:
-                tool_models = get_free_models(tools_only=True)
-                print(f"\nFound {len(tool_models)} free models with tool support:\n")
-                for m in tool_models:
-                    print(f"  {m}")
-                return 0
+                status = validate_roster()
+                for model_id, (ok, message) in status.items():
+                    marker = "OK" if ok else "FAIL"
+                    print(f"  {marker:4} {model_id} — {message}")
+                failures = sum(not ok for ok, _ in status.values())
+                print(f"\n{len(status) - failures}/{len(status)} roster models ready")
+                return 1 if failures else 0
             except Exception as e:
                 print(f"ERROR: {e}")
                 return 1
+
+        if not args.confirm_spend:
+            dimensions = args.max_level + 1
+            extra_a1_calls = 1 if args.max_level >= 3 else 0
+            max_requests = len(DEFAULT_ROSTER) * args.trials * (
+                dimensions + extra_a1_calls
+            )
+            print("ERROR: A default-roster sweep may use paid OpenRouter endpoints.")
+            print(
+                f"This configuration can make up to approximately {max_requests} "
+                "model requests."
+            )
+            print("Review the roster, then rerun with --confirm-spend.")
+            return 2
 
         orchestrator = SweepOrchestrator(
             base_results_dir=Path(args.output),
@@ -156,7 +190,7 @@ def main():
             contributor=args.contributor,
             skip_validation=args.skip_validation,
         )
-        results = orchestrator.run(
+        orchestrator.run(
             runner=runner,
             trials=args.trials,
             max_level=args.max_level,
@@ -191,11 +225,11 @@ def main():
 
     # Handle --list-models
     if args.list_models:
-        print("\nFetching available free models from OpenRouter...")
+        print("\nFetching available tool-capable models from OpenRouter...")
         try:
-            free_models = get_free_models()
-            print(f"\nFound {len(free_models)} free models:\n")
-            for model in free_models:
+            models = get_models(tools_only=True)
+            print(f"\nFound {len(models)} tool-capable models:\n")
+            for model in models:
                 print(f"  {model}")
             return 0
         except Exception as e:
@@ -215,6 +249,16 @@ def main():
 
     # Initialize runner
     models = [args.model] if args.model else None
+    if models is None and not args.confirm_spend:
+        max_requests = len(DEFAULT_ROSTER) * args.trials * 6
+        print("ERROR: A default-roster run may use paid OpenRouter endpoints.")
+        print(
+            f"This configuration can make up to approximately {max_requests} "
+            "model requests."
+        )
+        print("Select --model explicitly or rerun with --confirm-spend.")
+        return 2
+
     runner = ProbeRunner(
         output_dir=output_dir,
         models=models,

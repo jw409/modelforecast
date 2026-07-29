@@ -29,7 +29,13 @@ jobs:
         run: uv sync
 
       - name: Run probes
-        run: uv run python -m modelforecast --output results/$(date +%Y-%m-%d)/
+        run: |
+          uv run python -m modelforecast sweep \
+            --trials 3 \
+            --max-level 0 \
+            --confirm-spend \
+            --sweep-id "$(date +%Y-%m-%d)" \
+            --output results/
 
       - name: Generate summary
         run: uv run python -m modelforecast.summary --input results/$(date +%Y-%m-%d)/

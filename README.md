@@ -3,13 +3,13 @@
 [![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors)
 
 <!-- MODELFORECAST:QUICK-ANSWER:START -->
-### Best free model right now: nemotron-3-nano-30b-a3b
+### Best model in the 2026-03-18 sweep: nemotron-3-nano-30b-a3b
 
-![Grade A](https://img.shields.io/badge/Grade-A-brightgreen) — scores A across all tool-calling dimensions. Free on OpenRouter.
+![Grade A](https://img.shields.io/badge/Grade-A-brightgreen) — scored A across all tool-calling dimensions.
 
-> Use [`nvidia/nemotron-3-nano-30b-a3b:free`](https://openrouter.ai/models/nvidia/nemotron-3-nano-30b-a3b) for tool calling in your agent pipeline.
+> Benchmark result from a 16-model cohort: [`nvidia/nemotron-3-nano-30b-a3b:free`](https://openrouter.ai/models/nvidia/nemotron-3-nano-30b-a3b). Validate current availability and rerun before deployment.
 
-Full results: [results/RESULTS.md](results/RESULTS.md) · [Methodology](METHODOLOGY.md)
+Full results: [results/RESULTS.md](results/RESULTS.md) · [Methodology](docs/METHODOLOGY.md)
 <!-- MODELFORECAST:QUICK-ANSWER:END -->
 
 <!-- MODELFORECAST:GRADE-BADGES:START -->
@@ -106,10 +106,10 @@ curl -LsSf https://astral.sh/uv/install.sh | sh && uv sync
 export OPENROUTER_API_KEY=your_key
 
 # Full sweep with canary test
-uv run python scripts/run_sweep.py
+uv run python scripts/run_sweep.py --confirm-spend
 
 # Resume interrupted sweep
-uv run python scripts/run_sweep.py --resume
+uv run python scripts/run_sweep.py --resume --confirm-spend
 
 # Regenerate results
 uv run python scripts/generate_readme_results.py
@@ -119,9 +119,9 @@ uv run python scripts/generate_readme_results.py
 
 ## What We Learned
 
-**Price doesn't predict performance.** NVIDIA's free nemotron-3-nano-30b scores 100% across all dimensions — matching or beating most paid models.
+**Price didn't predict performance in this sweep.** NVIDIA's nemotron-3-nano-30b endpoint scored 100% across all dimensions in the March cohort.
 
-**Half of "tool-capable" free models can't actually call tools.** 8 of 16 free models that advertise tool support fail the basic T0 invocation test at 0%. Don't trust the label — test it.
+**Advertised tool support wasn't sufficient.** 8 of 16 endpoints in the March free-tier cohort failed the basic T0 invocation test at 0%. Don't trust the label — test it.
 
 **Small samples lie.** Wilson score intervals or you're fooling yourself.
 
@@ -152,7 +152,10 @@ Five models were globally throttled by OpenRouter during the sweep and could not
 - `qwen/qwen3-coder:free`
 - `qwen/qwen3-next-80b-a3b-instruct:free`
 
-Results for these models are pending. Re-run with `uv run python scripts/run_sweep.py --resume` when OpenRouter demand drops. Scores shown as "—" in the results table are rate-limit gaps, not failures.
+Results for these models are pending. Re-run with
+`uv run python scripts/run_sweep.py --resume --confirm-spend` when OpenRouter
+demand drops. Scores shown as "—" in the results table are rate-limit gaps,
+not failures.
 
 ---
 

@@ -9,7 +9,7 @@ from openai import OpenAI
 from rich.console import Console
 from rich.progress import Progress, SpinnerColumn, TextColumn
 
-from modelforecast.models import filter_valid_models, get_free_models, validate_model
+from modelforecast.models import filter_valid_models, get_default_models
 from modelforecast.output.json_report import write_individual_result, write_json_report
 from modelforecast.output.markdown_report import write_markdown_report
 from modelforecast.probes.base import ProbeResult
@@ -40,7 +40,7 @@ class ProbeRunner:
 
         Args:
             output_dir: Directory to write results to
-            models: List of models to test (defaults to all free models from OpenRouter)
+            models: List of models to test (defaults to the curated current roster)
             contributor: GitHub username for provenance (defaults to env var or "unknown")
             skip_validation: If True, skip model validation (for testing)
             max_retries: Maximum number of retries for rate limit or server errors
@@ -72,24 +72,26 @@ class ProbeRunner:
                     raise ValueError("No valid models found after validation")
                 self.console.print(f"[green]✓ {len(self.models)} valid models[/green]")
         else:
-            # Fetch current free models from OpenRouter
-            self.console.print("[bold]Fetching available free models from OpenRouter...[/bold]")
-            self.models = get_free_models(api_key, tools_only=True)
+            self.console.print("[bold]Validating the current model roster on OpenRouter...[/bold]")
+            self.models = get_default_models(api_key)
             if not self.models:
-                raise ValueError("No free models available on OpenRouter")
-            self.console.print(f"[green]✓ Found {len(self.models)} free models with tool support[/green]")
+                raise ValueError("The default model roster is empty")
+            self.console.print(
+                f"[green]✓ {len(self.models)} roster models are live with tool support[/green]"
+            )
 
         # Initialize probe levels
         # Import all probe classes using new T/R/A naming
         try:
-            from modelforecast.probes.t1_schema import T1SchemaProbe
-            from modelforecast.probes.t2_selection import T2SelectionProbe
-            from modelforecast.probes.a1_linear import A1LinearProbe
-            from modelforecast.probes.r0_abstain import R0AbstainProbe
-            from modelforecast.probes.dag_probe import DagProbe
-            
             # Load default DAG definition
             import json
+
+            from modelforecast.probes.a1_linear import A1LinearProbe
+            from modelforecast.probes.dag_probe import DagProbe
+            from modelforecast.probes.r0_abstain import R0AbstainProbe
+            from modelforecast.probes.t1_schema import T1SchemaProbe
+            from modelforecast.probes.t2_selection import T2SelectionProbe
+
             dag_path = Path(__file__).parent / "dags/definitions/story_v1.json"
             if dag_path.exists():
                 with open(dag_path) as f:
@@ -107,7 +109,7 @@ class ProbeRunner:
             }
             if dag_probe:
                 self.probes[5] = dag_probe
-                
+
         except ImportError:
             # Fall back to T0 only if other probes not yet implemented
             self.probes = {

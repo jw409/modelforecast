@@ -195,9 +195,12 @@ Each probe tests a specific capability dimension. Models are graded per-dimensio
 
 **Minimum n=10 per (model, dimension) combination**
 
-With 9 free models and 5 dimensions (T0, T1, T2, A1, R0) = 45 combinations = 450 minimum API calls per full run.
+With the 9-model default roster and 5 dimensions (T0, T1, T2, A1, R0) =
+45 combinations = 450 trials per full run. A1 uses two model requests per
+trial, so a fully successful sweep can make up to 540 model requests.
 
-At ~2 seconds per call with rate limiting = ~15 minutes for full suite.
+At the runner's six-trials-per-minute throttle, a complete sweep takes at
+least 75 minutes. Provider latency and retries can make it longer.
 
 ### Confidence Intervals
 
@@ -238,7 +241,7 @@ def wilson_interval(successes: int, trials: int, confidence: float = 0.95) -> tu
 ```markdown
 | Model | T0 Invoke | T1 Schema | T2 Select | A1 Linear | R0 Abstain | Grade |
 |-------|-----------|-----------|-----------|-----------|------------|-------|
-| grok-4.1-fast:free | 90% [76,97] | 85% [62,96] | 80% [52,95] | 70% [42,89] | 95% [75,99] | **A** |
+| grok-4.5 | 90% [76,97] | 85% [62,96] | 80% [52,95] | 70% [42,89] | 95% [75,99] | **A** |
 
 *Percentages show success rate. Brackets show 95% Wilson CI. n=10 per cell.*
 *"-" indicates not tested (T0 prerequisite failed).*
@@ -274,7 +277,7 @@ Every submission includes:
     "env_hash": "sha256:..."
   },
   "probes": {
-    "model": "x-ai/grok-4.1-fast:free",
+    "model": "x-ai/grok-4.5",
     "dimension": "T0",
     "trials": [
       {
@@ -323,19 +326,26 @@ Advancement is automatic based on contribution history.
 
 ## Models Tested
 
-Currently testing free-tier models on OpenRouter with tool support confirmed via `/api/v1/models`:
+The default sweep uses a curated cross-provider cohort. It selects at most one
+current, generally available, non-batch text model per included provider.
+Aliases, provider variants, modality-specific endpoints, and promotional
+pricing variants are excluded. The cohort is comparative rather than exhaustive.
+Every entry is checked against OpenRouter's `/api/v1/models` response before
+any probe traffic is sent.
 
 | Model | Last Verified |
 |-------|---------------|
-| `google/gemini-2.5-flash-lite-preview-09-2025:free` | 2026-03-19 |
-| `meta-llama/llama-4-maverick:free` | 2026-03-19 |
-| `microsoft/mai-ds-r1:free` | 2026-03-19 |
-| `nousresearch/deephermes-3-llama-3-8b-preview:free` | 2026-03-19 |
-| `qwen/qwen3-14b:free` | 2026-03-19 |
-| `qwen/qwen3-30b-a3b:free` | 2026-03-19 |
-| `qwen/qwen3-32b:free` | 2026-03-19 |
-| `x-ai/grok-4.1-fast:free` | 2026-03-19 |
+| `anthropic/claude-opus-5` | 2026-07-28 |
+| `deepseek/deepseek-v4-pro` | 2026-07-28 |
+| `google/gemini-3.6-flash` | 2026-07-28 |
+| `minimax/minimax-m3` | 2026-07-28 |
+| `moonshotai/kimi-k3` | 2026-07-28 |
+| `openai/gpt-5.6-sol` | 2026-07-28 |
+| `qwen/qwen3.7-max` | 2026-07-28 |
+| `x-ai/grok-4.5` | 2026-07-28 |
+| `z-ai/glm-5.2` | 2026-07-28 |
 
 Defunct models are tracked in [GRAVEYARD.md](../GRAVEYARD.md).
-Run `uv run python scripts/update_graveyard.py` before each sweep to identify any newly-absent models.
+Run `uv run python -m modelforecast sweep --validate-roster` before each sweep.
+Full-roster execution additionally requires `--confirm-spend`.
 To request additional models, open an issue using the Model Request template.

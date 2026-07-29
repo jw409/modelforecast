@@ -2,9 +2,9 @@
 """Smart sweep runner with fail-fast canary and progress tracking.
 
 Usage:
-    uv run python scripts/run_sweep.py              # Full sweep
-    uv run python scripts/run_sweep.py --canary     # Test 3 models first
-    uv run python scripts/run_sweep.py --resume     # Resume interrupted sweep
+    uv run python scripts/run_sweep.py --confirm-spend
+    uv run python scripts/run_sweep.py --canary --confirm-spend
+    uv run python scripts/run_sweep.py --resume --confirm-spend
 """
 
 import argparse
@@ -17,19 +17,22 @@ from pathlib import Path
 # Add project root to path
 sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
-from modelforecast.models import get_free_models
+from modelforecast.models import CANARY_ROSTER, get_default_models, validate_roster
 from modelforecast.runner import ProbeRunner
 
 
 def run_canary(api_key: str, output_dir: Path) -> bool:
     """Run T0 on 3 diverse models. If >50% fail, abort."""
-    # Use models known to support tool calling well for canary
-    canary_models = [
-        "nvidia/nemotron-nano-9b-v2:free",
-        "openai/gpt-oss-20b:free",
-    ]
+    canary_models = list(CANARY_ROSTER)
+    status = validate_roster(canary_models, api_key)
+    invalid = [f"{model}: {message}" for model, (ok, message) in status.items() if not ok]
+    if invalid:
+        print("\n=== CANARY ABORTED: stale canary roster ===")
+        for problem in invalid:
+            print(f"  {problem}")
+        return False
 
-    print("\n=== CANARY: Testing 2 models (T0 only, 3 trials each) ===")
+    print(f"\n=== CANARY: Testing {len(canary_models)} models (T0 only, 3 trials each) ===")
     print("  Goal: verify API connectivity and probe pipeline work\n")
 
     runner = ProbeRunner(
@@ -60,9 +63,9 @@ def run_canary(api_key: str, output_dir: Path) -> bool:
 
 
 def run_full_sweep(api_key: str, output_dir: Path, resume: bool = False) -> dict:
-    """Run full sweep across all tool-capable free models."""
-    models = get_free_models(api_key, tools_only=True)
-    print(f"Found {len(models)} tool-capable free models")
+    """Run a full sweep across the curated current roster."""
+    models = get_default_models(api_key)
+    print(f"Validated {len(models)} models in the current roster")
 
     checkpoint_file = output_dir / "checkpoint.json"
     completed = set()
@@ -127,13 +130,26 @@ def main():
     parser = argparse.ArgumentParser(description="ModelForecast Smart Sweep")
     parser.add_argument("--canary", action="store_true", help="Run canary test only")
     parser.add_argument("--resume", action="store_true", help="Resume interrupted sweep")
-    parser.add_argument("--skip-canary", action="store_true", help="Skip canary, go straight to sweep")
+    parser.add_argument(
+        "--skip-canary",
+        action="store_true",
+        help="Skip canary, go straight to sweep",
+    )
+    parser.add_argument(
+        "--confirm-spend",
+        action="store_true",
+        help="Confirm that canaries and sweeps may use paid OpenRouter endpoints",
+    )
     args = parser.parse_args()
 
     api_key = os.environ.get("OPENROUTER_API_KEY")
     if not api_key:
         print("ERROR: OPENROUTER_API_KEY not set")
         sys.exit(1)
+    if not args.confirm_spend:
+        print("ERROR: This command may use paid OpenRouter endpoints.")
+        print("Review the roster, then rerun with --confirm-spend.")
+        sys.exit(2)
 
     sweep_id = f"sweep_{datetime.now().strftime('%Y%m%d')}"
     output_dir = Path("results") / sweep_id
@@ -159,7 +175,10 @@ def main():
     with open(output_dir / "sweep_manifest.json", "w") as f:
         json.dump(manifest, f, indent=2)
 
-    print(f"\n=== SWEEP COMPLETE: {manifest['models_tested']} models, {manifest['total_results']} results ===")
+    print(
+        f"\n=== SWEEP COMPLETE: {manifest['models_tested']} models, "
+        f"{manifest['total_results']} results ==="
+    )
     print(f"Output: {output_dir}/")
 
 

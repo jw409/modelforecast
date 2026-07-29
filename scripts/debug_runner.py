@@ -3,8 +3,8 @@
 
 Usage:
     uv run python scripts/debug_runner.py --model "anthropic/claude-3.5-haiku" --level 0
-    uv run python scripts/debug_runner.py --model "google/gemini-2.5-flash:free" --explore
-    uv run python scripts/debug_runner.py --model "deepseek/deepseek-chat-v3-0324:free" --explore
+    uv run python scripts/debug_runner.py --model "google/gemini-3.6-flash" --explore
+    uv run python scripts/debug_runner.py --model "deepseek/deepseek-v4-pro" --explore
 """
 
 import argparse

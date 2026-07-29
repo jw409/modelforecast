@@ -1,6 +1,5 @@
 """Tests verifying ProbeRunner uses SDK built-in max_retries (not a manual loop)."""
 
-import inspect
 from pathlib import Path
 from unittest.mock import MagicMock, patch
 
@@ -22,11 +21,14 @@ def test_openai_constructor_receives_max_retries(tmp_path, api_key):
     """ProbeRunner must forward max_retries to OpenAI(max_retries=...)."""
     with patch("modelforecast.runner.OpenAI") as mock_openai:
         mock_openai.return_value = MagicMock()
-        # Patch model-fetching calls to avoid network access
-        with patch("modelforecast.runner.get_free_models", return_value=["test-model/x:free"]):
-            from modelforecast.runner import ProbeRunner
+        from modelforecast.runner import ProbeRunner
 
-            runner = ProbeRunner(output_dir=tmp_path, models=["test-model/x:free"], skip_validation=True, max_retries=3)
+        ProbeRunner(
+            output_dir=tmp_path,
+            models=["test-model/x"],
+            skip_validation=True,
+            max_retries=3,
+        )
 
     # Verify OpenAI was called with max_retries=3
     call_kwargs = mock_openai.call_args.kwargs
@@ -75,7 +77,7 @@ def test_run_level_handles_rate_limit_error(tmp_path, monkeypatch):
 
             runner = ProbeRunner(
                 output_dir=tmp_path,
-                models=["test-model/x:free"],
+                models=["test-model/x"],
                 skip_validation=True,
                 max_retries=3,
             )
@@ -106,7 +108,7 @@ def test_run_level_handles_rate_limit_error(tmp_path, monkeypatch):
         }
 
         with patch("modelforecast.runner.write_individual_result"):
-            result = runner.run_level("test-model/x:free", level=0, trials=1)
+            result = runner.run_level("test-model/x", level=0, trials=1)
 
     # Result should be a dict (not an exception)
     assert result is not None

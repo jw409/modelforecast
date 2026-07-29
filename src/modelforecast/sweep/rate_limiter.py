@@ -11,7 +11,7 @@ class RateLimiter:
     Uses jitter to avoid thundering-herd on rate limit resets.
 
     Args:
-        calls_per_minute: Target call rate (default 8 — conservative for 20rpm free tier)
+        calls_per_minute: Target call rate (default 8 — conservative across providers)
         jitter_range: Max random seconds added after wait (default 0.5)
     """
 
@@ -23,8 +23,7 @@ class RateLimiter:
     def acquire(self, model: str) -> None:
         """Block until the rate limit interval has passed.
 
-        Uses a global bucket (not per-model) because OpenRouter's free tier
-        rate limit is account-wide, not per-model.
+        Uses a global bucket to avoid account-wide provider throttles.
 
         Args:
             model: Model identifier (kept for API compat, not used as bucket key)

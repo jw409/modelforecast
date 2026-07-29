@@ -103,6 +103,17 @@ def main() -> None:
         default=Path("results"),
         help="Base results directory for auto-detection (default: results/)",
     )
+    parser.add_argument(
+        "--readme",
+        type=Path,
+        default=Path("README.md"),
+        help="README file to update (default: README.md)",
+    )
+    parser.add_argument(
+        "--no-readme",
+        action="store_true",
+        help="Generate the results report without updating a README",
+    )
     args = parser.parse_args()
 
     # Resolve sweep directory
@@ -171,12 +182,14 @@ def main() -> None:
         "trials_per_level": trials_per_level,
     }
 
-    readme_path = Path("README.md")
-    if readme_path.exists():
+    readme_path = args.readme
+    if args.no_readme:
+        console.print("[dim]README update disabled[/dim]")
+    elif readme_path.exists():
         update_readme_sections(readme_path, model_summary, sweep_metadata)
-        console.print("[green]✓ Updated README.md sections[/green]")
+        console.print(f"[green]✓ Updated {readme_path} sections[/green]")
     else:
-        console.print("[yellow]README.md not found — skipping README update[/yellow]")
+        console.print(f"[yellow]{readme_path} not found — skipping README update[/yellow]")
 
 
 if __name__ == "__main__":

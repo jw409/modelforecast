@@ -32,13 +32,13 @@ export OPENROUTER_API_KEY=your_key_here
 
 ```bash
 # Run all probes (recommended)
-uv run python -m modelforecast
+uv run python -m modelforecast sweep --confirm-spend
 
 # Run specific model only
-uv run python -m modelforecast --model "x-ai/grok-4.1-fast:free"
+uv run python -m modelforecast --model "x-ai/grok-4.5"
 
 # Run specific level only
-uv run python -m modelforecast --level 0
+uv run python -m modelforecast --level 0 --confirm-spend
 ```
 
 #### 4. Verify Your Results
@@ -72,7 +72,7 @@ Use the PR template. Automated CI will verify your results.
 Common causes of verification failures:
 
 - **Rate limiting**: OpenRouter may rate limit differently
-- **Model updates**: Free models can change without notice
+- **Model updates**: Model endpoints can change without notice
 - **Environment**: Different Python/SDK versions
 
 If verification fails but you believe your results are correct:

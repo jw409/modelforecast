@@ -42,7 +42,7 @@ MARKERS = {
 def _short_name(model_id: str) -> str:
     """Extract human-readable short name from a model ID.
 
-    e.g. "nvidia/nemotron-3-nano-30b-a3b:free" -> "nemotron-3-nano-30b-a3b"
+    e.g. "openai/gpt-5.6-sol" -> "gpt-5.6-sol"
     """
     return model_id.split("/")[-1].replace(":free", "")
 
@@ -56,7 +56,7 @@ def grade_badge_markdown(model_id: str, grade: str) -> str:
     """Return inline clickable badge markdown for a single model.
 
     Args:
-        model_id: Full model identifier (may include :free suffix)
+        model_id: Full model identifier
         grade: Letter grade (A, B, C, D, F)
 
     Returns:
@@ -103,7 +103,10 @@ def _pick_top_model(model_summary: dict) -> tuple[str, dict] | None:
     return None
 
 
-def build_quick_answer_section(model_summary: dict) -> str:
+def build_quick_answer_section(
+    model_summary: dict,
+    sweep_metadata: dict | None = None,
+) -> str:
     """Build the QUICK-ANSWER section markdown.
 
     Identifies the top-graded model and emits a one-liner recommendation
@@ -111,6 +114,7 @@ def build_quick_answer_section(model_summary: dict) -> str:
 
     Args:
         model_summary: Dict mapping model_id -> {grade, level_results, failure_modes}
+        sweep_metadata: Optional sweep date, model count, and trial count
 
     Returns:
         Markdown string for injection between QUICK-ANSWER markers.
@@ -127,19 +131,23 @@ def build_quick_answer_section(model_summary: dict) -> str:
     color = GRADE_COLORS.get(grade, "lightgrey")
     short = _short_name(model_id)
     badge_url = f"{BADGE_BASE}/Grade-{grade}-{color}"
-    model_id_no_free = model_id.replace(":free", "")
+    model_id_for_link = model_id.replace(":free", "")
+    metadata = sweep_metadata or {}
+    sweep_date = metadata.get("sweep_date", "this")
+    model_count = metadata.get("model_count")
+    cohort = f" from a {model_count}-model cohort" if model_count else ""
 
     lines = [
-        f"### Best free model right now: {short}",
+        f"### Best model in the {sweep_date} sweep: {short}",
         "",
-        f"![Grade {grade}]({badge_url}) — scores {grade} across all tool-calling dimensions."
-        " Free on OpenRouter.",
+        f"![Grade {grade}]({badge_url}) — scored {grade} across all tool-calling dimensions.",
         "",
-        f"> Use [`{model_id}`](https://openrouter.ai/models/{model_id_no_free})"
-        " for tool calling in your agent pipeline.",
+        f"> Benchmark result{cohort}: "
+        f"[`{model_id}`](https://openrouter.ai/models/{model_id_for_link}). "
+        "Validate current availability and rerun before deployment.",
         "",
         "Full results: [results/RESULTS.md](results/RESULTS.md)"
-        " · [Methodology](METHODOLOGY.md)",
+        " · [Methodology](docs/METHODOLOGY.md)",
     ]
     return "\n".join(lines)
 
@@ -374,7 +382,9 @@ def update_readme_sections(
     content = readme_path.read_text(encoding="utf-8")
 
     content = _inject_section(
-        content, "QUICK-ANSWER", build_quick_answer_section(model_summary)
+        content,
+        "QUICK-ANSWER",
+        build_quick_answer_section(model_summary, sweep_metadata),
     )
     content = _inject_section(
         content, "GRADE-BADGES", build_grade_badges_section(model_summary)

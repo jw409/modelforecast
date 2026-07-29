@@ -32,7 +32,7 @@ class T0InvokeProbe:
         Execute the probe against the specified model.
 
         Args:
-            model: Model identifier (e.g., "x-ai/grok-4.1-fast:free")
+            model: Model identifier (e.g., "x-ai/grok-4.5")
             client: Configured OpenAI client (OpenRouter compatible)
 
         Returns:

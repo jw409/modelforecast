@@ -2,7 +2,7 @@
 """Validate L3 Multi-Turn behavior with raw response capture.
 
 Usage:
-    OPENROUTER_API_KEY=... uv run python scripts/validate_l3.py --model "x-ai/grok-4.1-fast:free"
+    OPENROUTER_API_KEY=... uv run python scripts/validate_l3.py --model "x-ai/grok-4.5"
 """
 
 import argparse

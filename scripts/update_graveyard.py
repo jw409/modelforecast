@@ -2,7 +2,7 @@
 """Update GRAVEYARD.md with models no longer available on OpenRouter.
 
 Usage:
-    uv run python scripts/update_graveyard.py --known vendor/model:free vendor/other:free
+    uv run python scripts/update_graveyard.py --known vendor/model vendor/other
     uv run python scripts/update_graveyard.py --known-file scripts/previous_models.txt
 """
 import argparse
@@ -20,13 +20,13 @@ GRAVEYARD_TABLE_HEADER = "## Graveyard"
 
 def load_graveyard_model_ids(graveyard_text: str) -> set[str]:
     """Extract model IDs already in the graveyard table."""
-    # Model IDs appear as: | `vendor/model:free` |
+    # Model IDs appear as: | `vendor/model` |
     return set(re.findall(r"\| `([^`]+)` \|", graveyard_text))
 
 
 def append_grave(graveyard_path: Path, model_id: str, today: str) -> None:
     """Append one row to the Graveyard table in GRAVEYARD.md."""
-    row = f"| `{model_id}` | {today} | {today} | Removed from OpenRouter free tier |\n"
+    row = f"| `{model_id}` | {today} | {today} | Removed from OpenRouter catalog |\n"
     text = graveyard_path.read_text()
     # Insert before the final newline, after the last table row
     graveyard_path.write_text(text.rstrip("\n") + "\n" + row)
@@ -34,7 +34,7 @@ def append_grave(graveyard_path: Path, model_id: str, today: str) -> None:
 
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="Detect and record models removed from OpenRouter free tier"
+        description="Detect and record models removed from the OpenRouter catalog"
     )
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument(
